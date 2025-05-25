@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCSE CS Lesson: Data Storage Units</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    
+<link rel="stylesheet" href="css/style.css">
+</head>
+<nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <a href="home.html" class="text-xl font-bold hover:text-gray-300 transition-colors">MGS CS Hub</a>
+        <ul class="flex space-x-3 lg:space-x-4">
+        </ul>
+        <ul class="flex flex-wrap space-x-2 sm:space-x-3 lg:space-x-4 text-sm sm:text-base">
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 7</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 8</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 9</a></li>
+            <li><a href="gcse.html" class="hover:text-gray-300 transition-colors">GCSE</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">A Level</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Competitions</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">CS News</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Extracurricular</a></li>
+        </ul>
+    </div>
+</nav>
+
+\1
+
+
+
+    <div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-lg shadow-xl">
+
+        <a href="mgsgcse12.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 group">
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left w-5 h-5 mr-2 transition-transform duration-200 group-hover:-translate-x-1"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+            Back to Memory & Storage
+        </a>
+
+        <header class="mb-8 border-b pb-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-2">Units of Data Storage</h1>
+            <p class="text-lg text-gray-600">OCR GCSE Computer Science (J277) - Topic 1.2.2</p>
+        </header>
+
+        <main class="space-y-8 md:space-y-12">
+
+            <section id="lesson-outcomes" class="task-container mb-10 bg-green-50 border-green-200">
+                <h2 class="text-xl task-title text-green-700"><i class="fas fa-bullseye mr-2"></i>Lesson Outcomes</h2>
+                <p class="text-gray-600 mb-4">By the end of this worksheet, you should be able to:</p>
+                <ul class="list-disc list-inside text-gray-700 space-y-1">
+                    <li>Define the basic units of data storage: <span class="keyword">bit<span class="tooltip">A single binary digit (a zero or a one) written with a lower case b</span></span>, <span class="keyword">nibble<span class="tooltip">A group of 4 binary digits or half a byte</span></span>, <span class="keyword">Byte<span class="tooltip">A group of 8 binary digits or two nibbles, it can hold 256 unique values</span></span>.</li>
+                    <li>List the standard prefixes for storage units (<span class="keyword">KB<span class="tooltip">Abbreviation for the unit that means 1000 bytes</span></span>, <span class="keyword">MB<span class="tooltip">Two-letter abbreviation for Megabyte</span></span>, <span class="keyword">GB<span class="tooltip">A billion bytes, abbreviated to two letters</span></span>, <span class="keyword">TB<span class="tooltip">A thousand GB is which unit, shortened to two letters?</span></span>, <span class="keyword">PB<span class="tooltip">A Petabyte in two letters</span></span>) in order of size.</li>
+                    <li>Understand the relationship between units (e.g., 1 KB ≈ 1000 Bytes).</li>
+                    <li>Perform simple conversions between different units of data storage.</li>
+                    <li>Explain why computers use <span class="keyword">binary<span class="tooltip">A number system using only two digits: 0 and 1.</span></span>.</li>
+                </ul>
+            </section>
+
+            <section id="task0-starter" class="task-container mb-10 bg-yellow-50 border-yellow-200">
+                <h2 class="text-xl task-title text-yellow-800"><i class="fas fa-stopwatch mr-2"></i>Starter Task (Not Scored)</h2>
+                <p class="text-gray-600 mb-4">Quick check! Let's recall the basics of bits and Bytes.</p>
+                <div class="quiz-item mb-4" data-correct="8" data-points="0">
+                    <p class="font-medium text-gray-800 mb-2">1. How many bits are in one Byte?</p>
+                    <div class="flex flex-wrap gap-2">
+                        <button class="option-button px-3 py-1 !mt-0" data-answer="4">4</button>
+                        <button class="option-button px-3 py-1 !mt-0" data-answer="8">8</button>
+                        <button class="option-button px-3 py-1 !mt-0" data-answer="16">16</button>
+                        <button class="option-button px-3 py-1 !mt-0" data-answer="1000">1000</button>
+                    </div>
+                    <div class="feedback mt-1"></div>
+                </div>
+                <div class="mt-4 pt-4 border-t border-yellow-200">
+                    <p class="font-medium text-gray-800 mb-2">2. In one sentence, why is the Byte a more common unit than the bit for measuring file sizes?</p>
+                    <textarea class="exam-answer w-full !mt-1 !mb-2" rows="2" placeholder="Type your reason here..."></textarea>
+                    <button class="reveal-button !mt-1 !py-1 !px-3 text-sm" onclick="toggleReveal('starter-answer-units', this, 'Reveal Answer', 'Hide Answer')">Reveal Answer</button>
+                    <div id="starter-answer-units" class="reveal-content mt-2 text-sm"> <p>A single Byte (8 bits) can represent a useful piece of information like a character, while a single bit can only be 0 or 1, making Bytes more practical for measuring meaningful data.</p> </div>
+                </div>
+            </section>
+
+            <section id="intro" class="task-container mb-10 bg-indigo-50 border-indigo-200">
+                <h2 class="text-xl task-title text-indigo-700"><i class="fas fa-ruler-combined mr-2"></i>Introduction: Measuring Digital Data</h2>
+                <p>Computers store everything using <span class="keyword">binary<span class="tooltip">A number system using only two digits: 0 and 1.</span></span> digits. We need units to measure how much data is being stored or transferred.</p>
+                <p>This lesson covers the standard units of data storage, from the smallest <span class="keyword">bit<span class="tooltip">A single binary digit (a zero or a one) written with a lower case b</span></span> up to large units like <span class="keyword">Petabytes<span class="tooltip">1000 Terabytes, or a million Gigabytes, the long name</span></span>. We'll also look at why computers use binary.</p>
+                <p>Hover over <span class="keyword">keywords<span class="tooltip">This is an example tooltip!</span></span> for definitions.</p>
+            </section>
+
+            <section id="task1-ordering" class="task-container mb-10">
+                <h2 class="text-xl task-title text-indigo-700"><i class="fas fa-sort-amount-up mr-2"></i>Task 1: Order the Units <span class="task-completion-indicator" id="task-1-complete"></span> <span class="font-bold text-sm text-gray-500 ml-auto">(Max 8 points)</span></h2>
+                <p class="text-gray-600 mb-4">Drag the units from the pool below into the numbered slots in the correct order, from smallest (1) to largest (8).</p>
+                <p class="text-sm text-gray-500 mb-4">Hint: Remember the mnemonic: <span class="keyword">But Now Burger King Makes Great Toasted Paninis<span class="tooltip">How to remember file size order: Bits, Nibbles, Bytes, Kilobytes, Megabytes, Gigabytes, Terabytes, Petabytes</span></span>!</p>
+                <div id="unit-pool" class="unit-pool">
+                    <div class="draggable" draggable="true" id="unit-mb" data-order="4">Megabyte (MB)</div>
+                    <div class="draggable" draggable="true" id="unit-bit" data-order="0">bit (b)</div>
+                    <div class="draggable" draggable="true" id="unit-pb" data-order="7">Petabyte (PB)</div>
+                    <div class="draggable" draggable="true" id="unit-kb" data-order="3">Kilobyte (KB)</div>
+                    <div class="draggable" draggable="true" id="unit-nibble" data-order="1">nibble</div>
+                    <div class="draggable" draggable="true" id="unit-gb" data-order="5">Gigabyte (GB)</div>
+                    <div class="draggable" draggable="true" id="unit-byte" data-order="2">Byte (B)</div>
+                    <div class="draggable" draggable="true" id="unit-tb" data-order="6">Terabyte (TB)</div>
+                </div>
+                <div id="unit-order-slots" class="quiz-item grid grid-cols-2 md:grid-cols-4 gap-2" data-points="8">
+                    <!-- Drop slots -->
+                    <div class="dropzone drop-slot" data-slot="0"><span class="text-xs text-gray-400">1. Smallest</span></div>
+                    <div class="dropzone drop-slot" data-slot="1"><span class="text-xs text-gray-400">2.</span></div>
+                    <div class="dropzone drop-slot" data-slot="2"><span class="text-xs text-gray-400">3.</span></div>
+                    <div class="dropzone drop-slot" data-slot="3"><span class="text-xs text-gray-400">4.</span></div>
+                    <div class="dropzone drop-slot" data-slot="4"><span class="text-xs text-gray-400">5.</span></div>
+                    <div class="dropzone drop-slot" data-slot="5"><span class="text-xs text-gray-400">6.</span></div>
+                    <div class="dropzone drop-slot" data-slot="6"><span class="text-xs text-gray-400">7.</span></div>
+                    <div class="dropzone drop-slot" data-slot="7"><span class="text-xs text-gray-400">8. Largest</span></div>
+                </div>
+                <div class="text-center mt-4">
+                    <button onclick="checkUnitOrder()" class="check-button">Check Order</button>
+                    <button onclick="resetUnitOrder()" class="reset-button">Reset Order</button>
+                </div>
+                <div id="unit-order-feedback" class="feedback-area mt-4"></div>
+            </section>
+
+            <section id="task2-definitions" class="task-container mb-10">
+                <h2 class="text-xl task-title text-indigo-700"><i class="fas fa-book-open mr-2"></i>Task 2: Match Definitions <span class="task-completion-indicator" id="task-2-complete"></span> <span class="font-bold text-sm text-gray-500 ml-auto">(Max 8 points)</span></h2>
+                <p class="text-gray-600 mb-4">Match the unit or abbreviation on the left with its correct definition or equivalent size on the right. Click one item from each list to make a pair.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 quiz-item" data-points="8">
+                    <div>
+                        <h4 class="font-semibold mb-2 text-center text-gray-600">Unit / Abbreviation</h4>
+                        <ul id="matching-units" class="matching-list">
+                            <li class="matching-item" data-match="bit">bit</li>
+                            <li class="matching-item" data-match="nibble">nibble</li>
+                            <li class="matching-item" data-match="byte">Byte</li>
+                            <li class="matching-item" data-match="kb">KB</li>
+                            <li class="matching-item" data-match="mb">MB</li>
+                            <li class="matching-item" data-match="gb">GB</li>
+                            <li class="matching-item" data-match="tb">TB</li>
+                            <li class="matching-item" data-match="pb">PB</li>
+                        </ul>
+                    </div>
+                    <div>
+                         <h4 class="font-semibold mb-2 text-center text-gray-600">Definition / Size</h4>
+                         <ul id="matching-defs" class="matching-list">
+                            <li class="matching-item" data-match="byte">A group of 8 binary digits</li>
+                            <li class="matching-item" data-match="gb">1000 Megabytes</li>
+                            <li class="matching-item" data-match="bit">A single binary digit (0 or 1)</li>
+                            <li class="matching-item" data-match="tb">1000 Gigabytes</li>
+                            <li class="matching-item" data-match="nibble">A group of 4 binary digits</li>
+                            <li class="matching-item" data-match="pb">1000 Terabytes</li>
+                            <li class="matching-item" data-match="kb">1000 Bytes</li>
+                            <li class="matching-item" data-match="mb">1000 Kilobytes</li>
+                        </ul>
+                    </div>
+                </div>
+                 <div class="text-center mt-4">
+                    <button onclick="checkDefinitions()" class="check-button">Check Matches</button>
+                    <button onclick="resetDefinitions()" class="reset-button">Reset Matches</button>
+                 </div>
+                 <div id="definitions-feedback" class="feedback-area mt-4"></div>
+            </section>
+
+            <section id="task3-why-binary" class="task-container mb-10">
+                <h2 class="text-xl task-title text-indigo-700"><i class="fas fa-lightbulb mr-2"></i>Task 3: Why Binary? <span class="task-completion-indicator" id="task-3-complete"></span> <span class="font-bold text-sm text-gray-500 ml-auto">(Max 1 point)</span></h2>
+                <p class="text-gray-600 mb-4">Computers fundamentally work with electrical circuits. Why is it easier and more reliable for these circuits to represent data using binary (two states)?</p>
+                <div class="quiz-item" data-points="1">
+                    <div class="flex flex-wrap gap-2">
+                        <button class="option-button" data-answer="a">A) Binary allows for more complex calculations.</button>
+                        <button class="option-button" data-answer="b">B) Circuits only need to reliably detect two states (e.g., on/off, high/low voltage).</button>
+                        <button class="option-button" data-answer="c">C) Binary takes up less physical space on storage media.</button>
+                        <button class="option-button" data-answer="d">D) Humans find binary easier to read than decimal.</button>
+                    </div>
+                    <div class="feedback mt-2"></div>
+                </div>
+                <button class="reveal-button mt-4" onclick="toggleReveal('binary-explanation', this, 'Show Explanation', 'Hide Explanation')">Show Explanation</button>
+                <div id="binary-explanation" class="reveal-content bg-indigo-50 border-indigo-200">
+                    <p>The core reason is <strong>reliability</strong>. Electrical circuits can easily and reliably distinguish between two distinct states, such as:</p>
+                    <ul>
+                        <li>Voltage being present (ON / 1) or absent (OFF / 0).</li>
+                        <li>A switch being closed (1) or open (0).</li>
+                        <li>Current flowing (1) or not flowing (0).</li>
+                    </ul>
+                    <p>Trying to reliably detect many different voltage levels (e.g., for decimal) would be much more complex and prone to errors due to electrical noise or fluctuations.</p>
+                </div>
+            </section>
+
+            <section id="task4-conversions" class="task-container mb-10">
+                <h2 class="text-xl task-title text-indigo-700"><i class="fas fa-calculator mr-2"></i>Task 4: Simple Conversions <span class="task-completion-indicator" id="task-4-complete"></span> <span class="font-bold text-sm text-gray-500 ml-auto">(Max 10 points)</span></h2>
+                <p class="text-gray-600 mb-4">Calculate the answers to these common unit conversions. (Remember: 1 Byte = 8 bits, 1 KB = 1000 Bytes, 1 MB = 1000 KB, etc.)</p>
+                <div id="conversions-container" class="space-y-4">
+                     <div class="quiz-item" data-points="1">1. How many bits are in 8 Bytes? <input type="text" id="conv1" data-answer="64" class="fill-blank"> bits <span class="feedback" id="fb-feedback-1"></span></div>
+                     <div class="quiz-item" data-points="1">2. How many different values can be stored in 1 Byte? <input type="text" id="conv2" data-answer="256" class="fill-blank"> values <span class="feedback" id="fb-feedback-2"></span></div>
+                     <div class="quiz-item" data-points="1">3. How many KB are in 0.5 MB? <input type="text" id="conv3" data-answer="500" class="fill-blank"> KB <span class="feedback" id="fb-feedback-3"></span></div>
+                     <div class="quiz-item" data-points="1">4. How many GB are in 2 TB? <input type="text" id="conv4" data-answer="2000" class="fill-blank"> GB <span class="feedback" id="fb-feedback-4"></span></div>
+                     <div class="quiz-item" data-points="1">5. How many bits are in a 1 KB text file? <input type="text" id="conv5" data-answer="8000" class="fill-blank"> bits <span class="feedback" id="fb-feedback-5"></span></div>
+                     <div class="quiz-item" data-points="1">6. How many Bytes are in 3 KB? <input type="text" id="conv6" data-answer="3000" class="fill-blank"> Bytes <span class="feedback" id="fb-feedback-6"></span></div>
+                     <div class="quiz-item" data-points="1">7. How many MB are in 4000 KB? <input type="text" id="conv7" data-answer="4" class="fill-blank"> MB <span class="feedback" id="fb-feedback-7"></span></div>
+                     <div class="quiz-item" data-points="1">8. How many bits are in a nibble? <input type="text" id="conv8" data-answer="4" class="fill-blank"> bits <span class="feedback" id="fb-feedback-8"></span></div>
+                     <div class="quiz-item" data-points="1">9. How many Bytes does it take to store the word "COMPUTER"? (Assume 1 Byte per character) <input type="text" id="conv9" data-answer="8" class="fill-blank"> Bytes <span class="feedback" id="fb-feedback-9"></span></div>
+                     <div class="quiz-item" data-points="1">10. How many TB are in 5 PB? <input type="text" id="conv10" data-answer="5000" class="fill-blank"> TB <span class="feedback" id="fb-feedback-10"></span></div>
+                </div>
+                <div class="text-center mt-4">
+                    <button onclick="checkConversionsTask()" class="check-button">Check Answers</button>
+                    <button onclick="resetConversionsTask()" class="reset-button">Reset Answers</button>
+                </div>
+                <div id="conversions-feedback" class="feedback-area mt-4"></div>
+            </section>
+
+            <section id="task5-unit-converter" class="task-container mb-10">
+                <h2 class="text-xl task-title text-indigo-700"><i class="fas fa-sync-alt mr-2"></i>Task 5: Interactive Unit Converter</h2>
+                <p class="text-gray-600 mb-4">Experiment with converting between different units of data storage. Enter a value, select the starting and target units.</p>
+                <div class="converter-input flex flex-wrap items-center justify-center gap-4">
+                    <input type="number" id="converter-value" value="1" min="0" step="any">
+                    <select id="converter-from-unit">
+                        <option value="bit">bits (b)</option>
+                        <option value="nibble">Nibbles</option>
+                        <option value="byte" selected>Bytes (B)</option> 
+                        <option value="kb">Kilobytes (KB)</option>
+                        <option value="mb">Megabytes (MB)</option>
+                        <option value="gb">Gigabytes (GB)</option>
+                        <option value="tb">Terabytes (TB)</option>
+                        <option value="pb">Petabytes (PB)</option>
+                    </select>
+                    <span class="text-gray-600 font-medium">to</span>
+                    <select id="converter-to-unit">
+                        <option value="bit" selected>bits (b)</option>
+                        <option value="nibble">Nibbles</option>
+                        <option value="byte">Bytes (B)</option> 
+                        <option value="kb">Kilobytes (KB)</option>
+                        <option value="mb">Megabytes (MB)</option>
+                        <option value="gb">Gigabytes (GB)</option>
+                        <option value="tb">Terabytes (TB)</option>
+                        <option value="pb">Petabytes (PB)</option>
+                    </select>
+                </div>
+                <div id="converter-result"></div>
+                <div id="converter-steps"></div>
+                <p class="text-xs text-gray-500 mt-3 italic text-center">Note: Uses standard prefixes (1 KB = 1000 B, etc.). This tool is for practice and is not scored.</p>
+            </section>
+
+            <section id="task6-build-file-sim" class="task-container mb-10">
+                <h2 class="text-xl task-title text-indigo-700"><i class="fas fa-file-medical mr-2"></i>Task 6: Build a File Simulation</h2>
+                <p class="text-gray-600 mb-4">See how file sizes grow! Choose a file type and add content or files to visualize the size in different units.</p>
+
+                <div class="flex items-center">
+                    <label for="file-type-select" class="mr-2 text-sm font-medium text-gray-700">File Type:</label>
+                    <select id="file-type-select" class="border border-gray-300 rounded-md p-1 text-sm">
+                        <option value="text" selected>Text (Type below)</option>
+                        <option value="small_image">Small Image (50 KB)</option>
+                        <option value="large_image">Large Image (~2 MB)</option> 
+                        <option value="audio">Audio Clip (~1 MB)</option>
+                        <option value="video_hd">Short Video HD (~500 MB)</option> 
+                        <option value="movie_4k">4K Movie (~45 GB)</option>
+                        <option value="game_medium">Medium Game Install (~50 GB)</option>
+                        <option value="game_large">Large Game Install (~100 GB)</option>
+                    </select>
+                    <button id="add-file-btn" class="sim-button ml-2" disabled>Add File Size to Total</button>
+                </div>
+
+                <div id="text-input-area" class="mt-4">
+                    <label for="text-content" class="block text-sm font-medium text-gray-700 mb-1">Type text content (1 char ≈ 1 Byte):</label>
+                    <textarea id="text-content" rows="3" class="exam-answer w-full" placeholder="Start typing here..."></textarea>
+                    <div id="text-size-info" class="text-xs text-gray-500 mt-1">0 characters ≈ 0 Bytes</div>
+                </div>
+
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-700">Current File Size:</h4>
+                    <div id="file-size-bar-container">
+                        <div id="file-size-bar"></div>
+                    </div>
+                    <div id="file-size-display" class="text-sm">
+                        <div><span class="font-medium text-gray-600">Bits:</span> <span id="size-bits">0</span> b</div>
+                        <div><span class="font-medium text-gray-600">Bytes:</span> <span id="size-bytes">0</span> B</div>
+                        <div><span class="font-medium text-gray-600">Kilobytes:</span> <span id="size-kb">0</span> KB</div>
+                        <div><span class="font-medium text-gray-600">Megabytes:</span> <span id="size-mb">0</span> MB</div>
+                        <div><span class="font-medium text-gray-600">Gigabytes:</span> <span id="size-gb">0</span> GB</div>
+                        <div><span class="font-medium text-gray-600">Terabytes:</span> <span id="size-tb">0</span> TB</div>
+                    </div>
+                    <div id="comparison-area" class="text-xs text-gray-500 mt-2 italic"></div>
+                    <div id="capacity-feedback"></div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <button onclick="resetSimulation()" class="reset-button">Reset Simulation</button>
+                </div>
+                 <p class="text-xs text-gray-500 mt-3 italic">Note: This simulation uses approximations (e.g., 1 KB = 1000 B, 1 char = 1 Byte/8 bits) for simplicity. It is not automatically scored.</p>
+            </section>
+
+            <section id="task7-binary-practice" class="task-container mb-10">
+                <h2 class="text-xl task-title text-indigo-700"><i class="fas fa-exchange-alt mr-2"></i>Task 7: Binary Conversion Practice</h2>
+                <p class="text-gray-600 mb-4">Binary-to-denary conversions (and vice-versa) are essential for understanding data representation. Here are the methods:</p>
+
+                <div class="bg-blue-50 border border-blue-200 p-4 rounded-md mb-4">
+                    <h3 class="task-subtitle text-blue-800 border-blue-300 !mt-0">Binary to Denary (Place Value Method)</h3>
+                    <ol class="list-decimal list-inside text-sm text-gray-700">
+                        <li>Write down the binary number.</li>
+                        <li>Above each digit, write its corresponding place value (powers of 2, starting from 1 on the right: ..., 128, 64, 32, 16, 8, 4, 2, 1).</li>
+                        <li>Add up the place values for every position where the binary digit is a '1'.</li>
+                    </ol>
+                    <p class="text-xs italic mt-2">Example: 10110<sub>2</sub> = (16) + (4) + (2) = 22<sub>10</sub></p>
+                </div>
+
+                <div class="bg-green-50 border border-green-200 p-4 rounded-md mb-6">
+                     <h3 class="task-subtitle text-green-800 border-green-300 !mt-0">Denary to Binary (Subtraction Method)</h3>
+                     <ol class="list-decimal list-inside text-sm text-gray-700">
+                         <li>Start with the denary number you want to convert.</li>
+                         <li>Find the largest power of 2 (e.g., 128, 64, 32...) that is less than or equal to your number. Write a '1' in that position in your binary number.</li>
+                         <li>Subtract this power of 2 from your number.</li>
+                         <li>Take the remainder and repeat steps 2 and 3 until the remainder is 0.</li>
+                         <li>Fill any unused place value positions to the right of your leftmost '1' with '0's.</li>
+                     </ol>
+                     <p class="text-xs italic mt-2">Example: Convert 25<sub>10</sub>: Largest power ≤ 25 is 16. Put '1' in 16s place. Remainder = 25-16=9. Largest power ≤ 9 is 8. Put '1' in 8s place. Remainder = 9-8=1. Largest power ≤ 1 is 1. Put '1' in 1s place. Remainder = 1-1=0. Fill gaps: 11001<sub>2</sub></p>
+                </div>
+
+                <p class="text-gray-600 mb-4">Use the linked spreadsheet below for practice questions.</p>
+                <a href="1.2.5 - Binary-denary conversion questions.xlsx" target="_blank" class="inline-block check-button bg-purple-600 hover:bg-purple-700">
+                    <i class="fas fa-file-excel mr-2"></i>Open Binary Practice Questions (Excel)
+                </a>
+                <p class="text-xs text-gray-500 mt-3 italic">Note: This task is for practice and is not automatically scored on this page.</p>
+            </section>
+
+            <section id="key-takeaways" class="mb-10">
+                <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-key mr-2"></i>Key Takeaways</h2>
+                <!-- Removed reveal button -->
+                <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-300 space-y-2 show"> <!-- Restored space-y-2, added show class, removed ID and reveal-content -->
+                    <ul class="list-disc list-inside space-y-1 text-yellow-800">
+                        <li><strong class="font-semibold">Binary Basis:</strong> Computers use <span class="keyword">binary<span class="tooltip">A number system using only two digits: 0 and 1.</span></span> (0s and 1s) because circuits reliably represent two states (on/off).</li>
+                        <li><strong class="font-semibold">Smallest Units:</strong> The smallest unit is a <span class="keyword">bit<span class="tooltip">A single binary digit (a zero or a one) written with a lower case b</span></span>. 4 bits make a <span class="keyword">nibble<span class="tooltip">A group of 4 binary digits or half a byte</span></span>, and 8 bits make a <span class="keyword">Byte<span class="tooltip">A group of 8 binary digits or two nibbles, it can hold 256 unique values</span></span>.</li>
+                        <li><strong class="font-semibold">Standard Prefixes (Decimal):</strong> Units increase by factors of 1000: <span class="keyword">Kilobyte<span class="tooltip">Full name of the unit that represents 1000 bytes</span></span> (KB), <span class="keyword">Megabyte<span class="tooltip">1000 Kilobytes, or 1 million bytes, its full name</span></span> (MB), <span class="keyword">Gigabyte<span class="tooltip">1000 Megabytes, or 1 billion bytes, the full name</span></span> (GB), <span class="keyword">Terabyte<span class="tooltip">1000 Gigabytes, or a million Megabytes, in full</span></span> (TB), <span class="keyword">Petabyte<span class="tooltip">1000 Terabytes, or a million Gigabytes, the long name</span></span> (PB).</li>
+                        <li><strong class="font-semibold">Order:</strong> Remember the order: bit, nibble, Byte, KB, MB, GB, TB, PB.</li>
+                        <li><strong class="font-semibold">Conversions:</strong> Be able to convert between units (e.g., bits to Bytes, KB to MB).</li>
+                        <li><strong class="font-semibold">Binary Prefixes (Optional):</strong> Operating systems sometimes use 1024-based units (KiB, MiB, GiB) which can cause apparent discrepancies in reported sizes.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="task8-quiz" class="task-container mb-10">
+                <h2 class="text-xl task-title text-indigo-700"><i class="fas fa-question-circle mr-2"></i>Task 8: Final Quiz <span class="task-completion-indicator" id="task-8-complete"></span> <span class="font-bold text-sm text-gray-500 ml-auto">(Max 5 points)</span></h2>
+                <div id="quiz-container" class="space-y-6">
+                    </div>
+                <div class="text-center mt-4">
+                    <button onclick="checkQuiz()" class="check-button">Check Quiz Answers</button>
+                    <button onclick="resetQuiz()" class="reset-button">Reset Quiz</button>
+                </div>
+                <div id="quiz-feedback" class="feedback-area mt-4"></div>
+            </section>
+
+            <section id="task9-exam-practice" class="task-container mb-10">
+                <h2 class="text-xl task-title text-indigo-700"><i class="fas fa-graduation-cap mr-2"></i>Task 9: Exam Practice Questions</h2>
+                <p class="text-gray-600 mb-6">Apply your knowledge to these exam-style questions.</p>
+                 <div class="exam-question mb-6 pb-4 border-b">
+                     <p class="font-medium text-gray-800 mb-2">1. Arrange the following units of data storage in order from smallest to largest: MB, bit, TB, Byte, GB. [1 mark]</p>
+                     <textarea id="exam1_answer" placeholder="List the units in order..." class="exam-answer" rows="2"></textarea>
+                     <div class="mt-2"> <button class="mark-scheme-button px-3 py-1 text-sm" data-feedback-id="exam1_feedback">Show Mark Scheme</button> </div>
+                     <div id="exam1_feedback" class="exam-feedback hidden mt-2"> <p><strong>Mark Scheme:</strong></p> <p>bit, Byte, MB, GB, TB (1 mark for correct order)</p> </div>
+                 </div>
+                 <div class="exam-question mb-6 pb-4 border-b">
+                     <p class="font-medium text-gray-800 mb-2">2. A file is 2000 KB in size. How large is this file in MB? [1 mark]</p>
+                     <textarea id="exam2_answer" placeholder="Your answer in MB..." class="exam-answer" rows="1"></textarea>
+                     <div class="mt-2"> <button class="mark-scheme-button px-3 py-1 text-sm" data-feedback-id="exam2_feedback">Show Mark Scheme</button> </div>
+                     <div id="exam2_feedback" class="exam-feedback hidden mt-2"> <p><strong>Mark Scheme:</strong></p> <p>2 MB (1 mark)</p> </div>
+                 </div>
+                 <div class="exam-question mb-6 pb-4 border-b">
+                     <p class="font-medium text-gray-800 mb-2">3. Explain why computers use binary to represent data. [2 marks]</p>
+                     <textarea id="exam3_answer" placeholder="Explain the reason..." class="exam-answer" rows="3"></textarea>
+                     <div class="mt-2"> <button class="mark-scheme-button px-3 py-1 text-sm" data-feedback-id="exam3_feedback">Show Mark Scheme</button> </div>
+                     <div id="exam3_feedback" class="exam-feedback hidden mt-2"> <p><strong>Mark Scheme:</strong></p> <ul class="list-disc list-inside text-sm"> <li>Circuits only need to check for two states / uses switches (1 mark)</li> <li>e.g. electricity flowing or not flowing / on or off / 1 and 0 (1 mark)</li> <li>Resulting in more reliable circuits (1 mark)</li> </ul> <p class="text-xs italic">(Max 2 marks)</p> </div>
+                 </div>
+                 <div class="exam-question mb-6 pb-4 border-b">
+                     <p class="font-medium text-gray-800 mb-2">4. A digital camera stores photos that are 5 MB each. How many photos can be stored on a 1 GB memory card? Show your working. [2 marks]</p>
+                     <textarea id="exam4_answer" placeholder="Calculate the number of photos..." class="exam-answer" rows="3"></textarea>
+                     <div class="mt-2"> <button class="mark-scheme-button px-3 py-1 text-sm" data-feedback-id="exam4_feedback">Show Mark Scheme</button> </div>
+                     <div id="exam4_feedback" class="exam-feedback hidden mt-2"> <p><strong>Mark Scheme:</strong></p> <ul class="list-disc list-inside text-sm"> <li>Convert GB to MB: 1 GB = 1000 MB (1 mark)</li> <li>Divide total size by photo size: 1000 MB / 5 MB = 200 photos (1 mark)</li> </ul> </div>
+                 </div>
+                 <div class="exam-question">
+                     <p class="font-medium text-gray-800 mb-2">5. What is the difference between a bit and a Byte? [2 marks]</p>
+                     <textarea id="exam5_answer" placeholder="Explain the difference..." class="exam-answer" rows="3"></textarea>
+                     <div class="mt-2"> <button class="mark-scheme-button px-3 py-1 text-sm" data-feedback-id="exam5_feedback">Show Mark Scheme</button> </div>
+                     <div id="exam5_feedback" class="exam-feedback hidden mt-2"> <p><strong>Mark Scheme:</strong></p> <ul class="list-disc list-inside text-sm"> <li>A bit is the smallest unit of data / a single binary digit (0 or 1) (1 mark)</li> <li>A Byte is a group of 8 bits (1 mark)</li> </ul> </div>
+                 </div>
+            </section>
+
+            <section id="task10-progress-summary" class="task-container mb-10">
+                 <h2 class="text-xl task-title text-indigo-700"><i class="fas fa-trophy mr-2"></i>Task 10: Worksheet Progress</h2>
+                <p class="text-gray-600 mb-4">Check your score based on the interactive quiz questions and activities.</p>
+                <div class="text-center p-4 bg-indigo-50 rounded-md border border-indigo-200">
+                    <p class="text-lg font-semibold text-indigo-800">Your Score: <span id="current-score" class="text-2xl">0</span> / <span id="total-possible-score">0</span></p>
+                    <button id="calculate-score-btn" class="mt-3 final-button">Calculate My Score</button>
+                </div>
+                 <p class="text-xs text-gray-500 mt-3 text-center">Note: Score based on Tasks 1, 2, 3, 4, 8. Starter Task, Converter, Simulation, Binary Practice & Exam Practice are not auto-scored.</p>
+            </section>
+
+            <section id="related-videos" class="mb-10">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-video mr-2 text-purple-500"></i> Related Videos</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer">
+                        Read
+                    </label>
+                </div>
+                <div class="bg-purple-50 p-5 rounded-lg border border-purple-200 space-y-4">
+                    <p class="text-gray-700">Watch these videos to reinforce your understanding: </p>
+                    <ul class="list-disc list-inside space-y-3 text-purple-800 pl-4">
+                        <li>
+                            <strong>Video Title 1:</strong> 
+                            <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 1]</div>
+                        </li>
+                        <li>
+                            <strong>Video Title 2:</strong> 
+                            <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 2]</div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="extension-kibibytes" class="task-container mb-10 bg-yellow-50 border-yellow-200">
+                <h2 class="text-xl task-title text-yellow-800"><i class="fas fa-flask mr-2"></i>Extension Activity: KB vs KiB (1000 vs 1024)</h2>
+                <p class="text-yellow-700">You might notice that a 1 TB hard drive often shows up in your operating system (like Windows) as having only around 931 GB available. This isn't necessarily lost space!</p>
+                <p class="text-yellow-700">Storage manufacturers typically use decimal prefixes where 1 Kilobyte (KB) = 1000 Bytes, 1 Megabyte (MB) = 1000 KB, and so on. This is the standard SI definition.</p>
+                <p class="text-yellow-700">However, operating systems often use binary prefixes where 1 <span class="keyword">Kibibyte (KiB)<span class="tooltip">A unit representing 1024 (or 2^10) bytes.</span></span> = 1024 Bytes, 1 Mebibyte (MiB) = 1024 KiB, etc. They sometimes confusingly display these using the symbols KB, MB, GB.</p>
+                <h3 class="task-subtitle text-yellow-800 border-yellow-300">Calculation Challenge:</h3>
+                <p class="text-yellow-700">If your operating system reports a drive capacity as <strong>465 GB</strong> (likely meaning 465 GiB), what was the approximate 'advertised' size of the drive in Terabytes (TB), assuming the manufacturer used the 1000-based definition?</p>
+                <p class="text-xs text-gray-500 mt-4 mb-2">Use the space below for rough work:</p>
+                <textarea class="exam-answer w-full" rows="4" placeholder="(Space for working/notes...)"></textarea>
+                <button class="reveal-button mt-2 bg-yellow-600 hover:bg-yellow-700" onclick="toggleReveal('kibi-answer', this, 'Show Calculation Hint', 'Hide Calculation Hint')">Show Calculation Hint</button>
+                <div id="kibi-answer" class="reveal-content bg-yellow-100 border-yellow-300">
+                    <p><strong>Hint:</strong></p>
+                    <ol class="list-decimal list-inside text-sm">
+                        <li>Convert the OS-reported size (465 GiB) into Bytes using the 1024 multiplier (465 * 1024 * 1024 * 1024 Bytes).</li>
+                        <li>Convert this total number of Bytes back into Terabytes (TB) using the 1000 multiplier (Total Bytes / 1000 / 1000 / 1000 / 1000).</li>
+                        <li>The result should be close to a round number commonly used for drive sizes (e.g., 0.5 TB).</li>
+                    </ol>
+                    <p class="text-xs italic mt-2">Answer: Approx 0.5 TB</p>
+                </div>
+            </section>
+
+        </main>
+
+    </div>
+
+    <footer class="text-center mt-16 text-gray-500 text-sm">
+        <p>&copy; <span id="currentYear"></span> MGS. All rights reserved.</p>
+    </footer>
+
+    
+    <script src="js/gcse-memstore-units.js"></script>
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+
+</html>

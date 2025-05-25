@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCSE CS Lesson: Data Storage Devices & Capacity</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    
+<link rel="stylesheet" href="css/style.css">
+</head>
+<nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <a href="home.html" class="text-xl font-bold hover:text-gray-300 transition-colors">MGS CS Hub</a>
+        <ul class="flex space-x-3 lg:space-x-4">
+        </ul>
+        <ul class="flex flex-wrap space-x-2 sm:space-x-3 lg:space-x-4 text-sm sm:text-base">
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 7</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 8</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 9</a></li>
+            <li><a href="gcse.html" class="hover:text-gray-300 transition-colors">GCSE</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">A Level</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Competitions</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">CS News</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Extracurricular</a></li>
+        </ul>
+    </div>
+</nav>
+
+\1
+
+
+
+    <div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-lg shadow-xl">
+
+        <a href="mgsgcse12.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 group">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left w-5 h-5 mr-2 transition-transform duration-200 group-hover:-translate-x-1"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+            Back to Memory & Storage
+        </a>
+
+        <header class="mb-8 border-b pb-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-2">Data Storage Devices & Capacity</h1>
+            <p class="text-lg text-gray-600">OCR GCSE Computer Science (J277) - Topic 1.2.2 / 1.2.3</p>
+        </header>
+
+        <main class="space-y-8 md:space-y-12">
+
+            <section id="lesson-outcomes" class="task-container mb-10 bg-green-50 border-green-200">
+                <h2 class="text-xl task-title text-green-700"><i class="fas fa-bullseye mr-2"></i>Lesson Outcomes</h2>
+                <p class="text-gray-600 mb-4">By the end of this worksheet, you should be able to:</p>
+                <ul class="list-disc list-inside text-gray-700 space-y-1">
+                    <li>Identify common types of secondary storage devices (<span class="keyword">HDD<span class="tooltip">Hard Disk Drive: Magnetic storage with spinning platters. High capacity, lower cost, but slower and less durable than SSDs.</span></span>, <span class="keyword">SSD<span class="tooltip">Solid State Drive: Uses flash memory. Faster, more durable, and lower power than HDDs, but typically more expensive.</span></span>, <span class="keyword">Optical<span class="tooltip">Uses lasers to read/write data on discs like CDs, DVDs, Blu-ray. Lower capacity and slower than modern drives.</span></span>, <span class="keyword">Magnetic Tape<span class="tooltip">Sequential access storage often used for backups and archives due to high capacity and low cost, but very slow access times.</span></span>).</li>
+                    <li>State typical capacities for different storage devices.</li>
+                    <li>Understand the units of data storage (<span class="keyword">bit<span class="tooltip">The smallest unit of data, a 0 or 1.</span></span>, <span class="keyword">nibble<span class="tooltip">4 bits.</span></span>, <span class="keyword">byte<span class="tooltip">8 bits.</span></span>, <span class="keyword">KB<span class="tooltip">Kilobyte: Approx. 1000 bytes.</span></span>, <span class="keyword">MB<span class="tooltip">Megabyte: Approx. 1000 KB.</span></span>, <span class="keyword">GB<span class="tooltip">Gigabyte: Approx. 1000 MB.</span></span>, <span class="keyword">TB<span class="tooltip">Terabyte: Approx. 1000 GB.</span></span>, <span class="keyword">PB<span class="tooltip">Petabyte: Approx. 1000 TB.</span></span>) and their order.</li>
+                    <li>Calculate storage requirements for given files and determine suitable storage devices.</li>
+                    <li>Perform binary addition for 8-bit numbers, showing carries.</li>
+                    <li>Briefly explain how data is represented (numbers, characters, images, sound).</li>
+                </ul>
+            </section>
+
+            <section id="task0-starter" class="task-container mb-10 bg-yellow-50 border-yellow-200">
+                <h2 class="text-xl task-title text-yellow-800"><i class="fas fa-stopwatch mr-2"></i>Starter Task (Not Scored)</h2>
+                <p class="text-gray-600 mb-4">Quick check! How is text typically represented in computers?</p>
+                <div class="quiz-item mb-4" data-correct="char_sets" data-points="0">
+                    <p class="font-medium text-gray-800 mb-2">How are individual characters (like 'A', 'b', '$') usually stored?</p>
+                    <div class="flex flex-wrap gap-2">
+                        <button class="option-button px-3 py-1 !mt-0" data-answer="binary_nums">As pure binary numbers representing their value</button>
+                        <button class="option-button px-3 py-1 !mt-0" data-answer="char_sets">Using character sets like ASCII or Unicode</button>
+                        <button class="option-button px-3 py-1 !mt-0" data-answer="pixels">As a grid of pixels</button>
+                        <button class="option-button px-3 py-1 !mt-0" data-answer="samples">By sampling an analogue wave</button>
+                    </div>
+                    <div class="feedback mt-1"></div>
+                </div>
+                <div class="quiz-item mb-4" data-correct="8_bits" data-points="0">
+                    <p class="font-medium text-gray-800 mb-2">How many bits are typically in one byte?</p>
+                    <div class="flex flex-wrap gap-2">
+                        <button class="option-button px-3 py-1 !mt-0" data-answer="4_bits">4 bits</button>
+                        <button class="option-button px-3 py-1 !mt-0" data-answer="8_bits">8 bits</button>
+                        <button class="option-button px-3 py-1 !mt-0" data-answer="16_bits">16 bits</button>
+                        <button class="option-button px-3 py-1 !mt-0" data-answer="10_bits">10 bits</button>
+                    </div>
+                    <div class="feedback mt-1"></div>
+                </div>
+                <div class="quiz-item mb-4" data-correct="kb_mb_gb" data-points="0">
+                    <p class="font-medium text-gray-800 mb-2">Which list shows storage units in order from smallest to largest?</p>
+                    <div class="flex flex-wrap gap-2">
+                        <button class="option-button px-3 py-1 !mt-0" data-answer="gb_mb_kb">GB, MB, KB</button>
+                        <button class="option-button px-3 py-1 !mt-0" data-answer="mb_kb_gb">MB, KB, GB</button>
+                        <button class="option-button px-3 py-1 !mt-0" data-answer="kb_mb_gb">KB, MB, GB</button>
+                    </div>
+                    <div class="feedback mt-1"></div>
+                </div>
+                <div class="mt-4 pt-4 border-t border-yellow-200">
+                    <p class="font-medium text-gray-800 mb-2">In one sentence, why are character sets necessary?</p>
+                    <textarea class="explanation-textarea w-full !mt-1 !mb-2" rows="2" placeholder="Type your reason here..."></textarea>
+                    <button class="reveal-button !mt-1 !py-1 !px-3 text-sm" onclick="toggleReveal('starter-answer', this, 'Reveal Answer', 'Hide Answer')">Reveal Answer</button>
+                    <div id="starter-answer" class="reveal-content mt-2 text-sm">
+                        <p>Computers only understand binary (0s and 1s), so character sets provide a standard way to map each character to a unique binary code.</p>
+                    </div>
+                    <div class="feedback mt-1"></div>
+                </div>
+            </section>
+
+            <section id="intro" class="task-container mb-10 bg-indigo-50 border-indigo-200">
+                <h2 class="text-xl task-title text-indigo-700"><i class="fas fa-hdd mr-2"></i>Introduction: Storing Digital Data</h2>
+                <p>We've learned about the units used to measure data. Now, let's look at the devices that store this data and how much they can typically hold.</p>
+                <p>We'll explore common storage devices, how to calculate if your files will fit on a device, and the basics of binary addition which computers use for calculations.</p>
+                <p>Hover over <span class="keyword">keywords<span class="tooltip">This is an example tooltip!</span></span> for definitions.</p>
+            </section>
+
+            <section id="task1-devices" class="task-container mb-10">
+                <h2 class="text-xl task-title text-indigo-700"><i class="fas fa-compact-disc mr-2"></i>Task 1: Storage Device Capacities <span class="task-completion-indicator" id="task-1-complete"></span> <span class="font-bold text-sm text-gray-500 ml-auto">(Max 5 points)</span></h2>
+                <p class="text-gray-600 mb-4">Different storage devices have vastly different typical capacities. Match the device type to its common capacity range.</p>
+                <div class="quiz-item" data-points="5">
+                    <div id="device-capacity-pool" class="unit-pool mb-6"> <h4 class="font-semibold mb-2 text-center text-gray-600 w-full">Device Pool (Drag these)</h4>
+                        <div class="draggable" draggable="true" id="dev-cd" data-capacity="cd">CD-ROM</div>
+                        <div class="draggable" draggable="true" id="dev-dvd" data-capacity="dvd">DVD</div>
+                        <div class="draggable" draggable="true" id="dev-usb" data-capacity="usb">USB Flash Drive</div>
+                        <div class="draggable" draggable="true" id="dev-ssd" data-capacity="ssd">SSD (Typical Laptop)</div>
+                        <div class="draggable" draggable="true" id="dev-hdd" data-capacity="hdd">HDD (Typical Desktop)</div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="dropzone p-4" data-accept="cd"> <h4 class="font-semibold text-sm text-center mb-2 text-gray-600">~ 700 MB</h4> </div>
+                        <div class="dropzone p-4" data-accept="dvd"> <h4 class="font-semibold text-sm text-center mb-2 text-gray-600">~ 4.7 GB</h4> </div>
+                        <div class="dropzone p-4" data-accept="usb"> <h4 class="font-semibold text-sm text-center mb-2 text-gray-600">16 GB - 256 GB</h4> </div>
+                        <div class="dropzone p-4" data-accept="ssd"> <h4 class="font-semibold text-sm text-center mb-2 text-gray-600">256 GB - 1 TB</h4> </div>
+                        <div class="dropzone p-4" data-accept="hdd"> <h4 class="font-semibold text-sm text-center mb-2 text-gray-600">1 TB - 8 TB+</h4> </div>
+                    </div>
+                </div>
+                <button onclick="checkDeviceCapacityDragDrop()" class="check-button mt-4">Check Capacities</button>
+                <button onclick="resetDeviceCapacityDragDrop()" class="reset-button mt-4">Reset Capacities</button>
+                <div id="device-feedback" class="feedback-area mt-4"></div>
+            </section>
+
+            <section id="task2-capacity-calc" class="task-container mb-10">
+                <h2 class="text-xl task-title text-indigo-700"><i class="fas fa-calculator mr-2"></i>Task 2: Will It Fit? Storage Calculation <span class="task-completion-indicator" id="task-2-complete"></span> <span class="font-bold text-sm text-gray-500 ml-auto">(Max 3 points)</span></h2>
+                <p class="text-gray-600 mb-4">You need to store the following files:</p>
+                <ul class="list-disc list-inside bg-white p-4 rounded border">
+                    <li>Document.docx: 500 KB</li>
+                    <li>Presentation.pptx: 25 MB</li>
+                    <li>Holiday Photos (Folder): 4.5 GB</li>
+                    <li>Software Install: 800 MB</li>
+                </ul>
+                <p class="text-gray-600 mt-4 mb-2">First, calculate the total storage required in GB.</p>
+                <div class="quiz-item" data-points="1">
+                    Total Size: <input type="number" step="any" id="total-size-gb" class="fill-blank w-24"> GB
+                    <button onclick="checkTotalSize()" class="check-button ml-2 !mt-0 !py-1 !px-3">Check Total</button>
+                    <span class="feedback ml-2" id="total-size-feedback"></span>
+                </div>
+
+                <p class="text-gray-600 mt-6 mb-2">Now, select ALL the devices below that have enough capacity to store all these files:</p>
+                <div class="quiz-item" data-points="2">
+                    <div class="flex flex-wrap gap-2">
+                        <button class="option-button" data-device="usb-4gb" data-capacity-gb="4">USB Drive (4 GB)</button>
+                        <button class="option-button" data-device="sd-8gb" data-capacity-gb="8">SD Card (8 GB)</button>
+                        <button class="option-button" data-device="ssd-128gb" data-capacity-gb="128">SSD (128 GB)</button>
+                        <button class="option-button" data-device="hdd-1tb" data-capacity-gb="1000">HDD (1 TB)</button>
+                    </div>
+                    <button onclick="checkDeviceSelection()" class="check-button mt-4">Check Devices</button>
+                    <div id="device-select-feedback" class="feedback-area mt-4"></div>
+                </div>
+            </section>
+
+            <section id="task3-binary-addition" class="task-container mb-10">
+                <h2 class="text-xl task-title text-indigo-700"><i class="fas fa-plus mr-2"></i>Task 3: Binary Addition</h2>
+                <p class="text-gray-600 mb-4">Computers perform calculations using binary addition. The rules are simple:</p>
+                <ul class="list-none bg-white p-4 rounded border font-mono text-center space-y-1">
+                    <li>0 + 0 = 0</li>
+                    <li>0 + 1 = 1</li>
+                    <li>1 + 0 = 1</li>
+                    <li>1 + 1 = 0, carry 1 (to the next left column)</li>
+                    <li>1 + 1 + 1 = 1, carry 1 (result of adding 1+1, plus a carry-in of 1)</li>
+                </ul>
+
+                <p class="text-gray-600 mt-4 mb-4">For practice questions, use the linked spreadsheet:</p>
+                <a href="1.2.6 - Binary addition questions.xlsx" target="_blank" class="inline-block check-button bg-purple-600 hover:bg-purple-700 !mt-0 mb-4">
+                    <i class="fas fa-file-excel mr-2"></i>Open Binary Addition Practice (Excel)
+                </a>
+                <p class="text-xs text-gray-500 mt-3 italic">Note: This task is for reference and practice via the spreadsheet. It is not automatically scored on this page.</p>
+            </section>
+
+            <section id="task4-quiz" class="task-container mb-10">
+                <h2 class="text-xl task-title text-indigo-700"><i class="fas fa-graduation-cap mr-2"></i>Task 4: Exam Practice Questions</h2>
+                <p class="text-gray-600 mb-6">Apply your knowledge to these exam-style questions.</p>
+                   <div class="exam-question mb-6 pb-4 border-b">
+                       <p class="font-medium text-gray-800 mb-2">1. List two types of storage device and state a typical capacity for each. [2 marks]</p>
+                       <textarea placeholder="Your answer..." class="exam-answer" rows="3"></textarea>
+                       <div class="mt-2"> <button class="mark-scheme-button px-3 py-1 text-sm" data-feedback-id="exam1_feedback">Show Mark Scheme</button> </div>
+                       <div id="exam1_feedback" class="exam-feedback hidden mt-2"> <p><strong>Mark Scheme:</strong></p> <p>Example: SSD (1 mark) - 500GB (1 mark). HDD (1 mark) - 2TB (1 mark). USB Drive (1 mark) - 32GB (1 mark). CD (1 mark) - 700MB (1 mark). (Accept other valid devices/typical capacities). Max 2 marks per device pair, max 2 pairs needed.</p> </div>
+                   </div>
+                   <div class="exam-question mb-6 pb-4 border-b">
+                       <p class="font-medium text-gray-800 mb-2">2. A user has 200 photos, each 5MB in size, and 5 videos, each 600MB in size. Calculate the total storage needed in GB. Show your working. [3 marks]</p>
+                       <div class="canvas-container">
+                           <textarea placeholder="Your calculation and answer..." class="exam-answer !mt-0 !mb-0" rows="5"></textarea>
+                           <div class="flex flex-col items-center">
+                               <canvas id="exam2-canvas-task4" class="drawing-canvas" width="350" height="150"></canvas>
+                               <button class="reset-button !py-1 !px-2 !text-xs !mt-1" onclick="clearCanvas('exam2-canvas-task4')">Clear Working</button>
+                           </div>
+                       </div>
+                       <div class="mt-2"> <button class="mark-scheme-button px-3 py-1 text-sm" data-feedback-id="exam2_feedback">Show Mark Scheme</button> </div>
+                       <div id="exam2_feedback" class="exam-feedback hidden mt-2"> <p><strong>Mark Scheme:</strong></p> <ul class="list-disc list-inside text-sm"><li>Photos total: 200 * 5MB = 1000MB (1 mark)</li><li>Videos total: 5 * 600MB = 3000MB (1 mark)</li><li>Total MB: 1000MB + 3000MB = 4000MB. Convert to GB: 4000 / 1000 = 4 GB (1 mark)</li></ul></div>
+                   </div>
+                   <div class="exam-question">
+                       <p class="font-medium text-gray-800 mb-2">3. Add the following two 8-bit binary numbers: 01101011 + 00110110. Show carries where appropriate. [2 marks]</p>
+                       <div class="canvas-container">
+                           <textarea placeholder="Your binary addition..." class="exam-answer font-mono !mt-0 !mb-0" rows="5"></textarea>
+                            <div class="flex flex-col items-center">
+                               <canvas id="exam3-canvas-task4" class="drawing-canvas" width="350" height="150"></canvas>
+                               <button class="reset-button !py-1 !px-2 !text-xs !mt-1" onclick="clearCanvas('exam3-canvas-task4')">Clear Working</button>
+                           </div>
+                       </div>
+                       <div class="mt-2"> <button class="mark-scheme-button px-3 py-1 text-sm" data-feedback-id="exam3_feedback">Show Mark Scheme</button> </div>
+                       <div id="exam3_feedback" class="exam-feedback hidden mt-2"> <p><strong>Mark Scheme:</strong></p><pre class="font-mono text-sm">
+   11111 1    (Carries - 1 mark)
+    01101011
++   00110110
+------------
+    10100001   (Sum - 1 mark)</pre></div>
+                   </div>
+            </section>
+
+            <section id="key-takeaways" class="mb-10">
+                <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-key mr-2"></i>Key Takeaways</h2>
+                <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-300 space-y-2 show">
+                    <ul class="list-disc list-inside space-y-1 text-yellow-800">
+                        <li><strong class="font-semibold">Storage Devices:</strong> Different devices (<span class="keyword">CD<span class="tooltip">Optical storage, a laser reads and writes the 700MB capacity optical disks. Disks are cheap and portable.</span></span>, <span class="keyword">DVD<span class="tooltip">Optical storage, a laser reads and writes the 4.7GB capacity optical disks which are cheap and portable, but a bit more expensive than CDs.</span></span>, <span class="keyword">USB Drive<span class="tooltip">A solid state storage removable storage device which is very portable, comes in capacities from 1GB up to 512GB</span></span>, <span class="keyword">SSD<span class="tooltip">No moving parts means this high capacity, fast, durable, low power and reliable secondary storage device is good for laptops but it's expensive</span></span>, <span class="keyword">HDD<span class="tooltip">High capacity magnetic secondary storage device. It has spinning platters so it wears out, making it less reliable and portable than SSD.</span></span>) have vastly different typical capacities.</li>
+                        <li><strong class="font-semibold">Capacity Calculation:</strong> To determine if files fit, convert all file sizes to a common unit (e.g., GB) and sum them up. Compare the total to the device capacity (remembering 1 GB ≈ 1000 MB, 1 MB ≈ 1000 KB).</li>
+                        <li><strong class="font-semibold">Binary Addition:</strong> Computers use binary addition rules (0+0=0, 0+1=1, 1+1=0 carry 1, 1+1+1=1 carry 1) for all calculations.</li>
+                        <li><strong class="font-semibold">Data Representation:</strong>
+                            <ul class="list-circle list-inside ml-4">
+                                <li>Numbers are stored in pure binary.</li>
+                                <li>Characters use character sets like <span class="keyword">ASCII<span class="tooltip">American Standard Code for Information Interchange: A 7-bit character set storing 128 characters, including English letters, numbers, and symbols.</span></span> or <span class="keyword">Unicode<span class="tooltip">A character set that aims to represent characters from all the world's writing systems. Uses more bits than ASCII (e.g., 16 or 32).</span></span>.</li>
+                                <li>Images are stored as grids of <span class="keyword">pixels<span class="tooltip">Picture Element: The smallest unit of a digital image or display.</span></span>, with <span class="keyword">colour depth<span class="tooltip">The number of bits used to represent the colour of a single pixel.</span></span> determining the number of colours and <span class="keyword">metadata<span class="tooltip">Data about data, such as image dimensions, resolution, colour depth, date created.</span></span> storing extra info.</li>
+                                <li>Sound is stored by <span class="keyword">sampling<span class="tooltip">Recording the amplitude (height) of a sound wave at regular intervals.</span></span> the analogue wave, with <span class="keyword">sample rate<span class="tooltip">The number of samples of audio recorded per second (measured in Hz).</span></span> and <span class="keyword">bit depth<span class="tooltip">Also known as resolution. The number of bits used to store each audio sample.</span></span> affecting quality and file size.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="task5-quiz" class="task-container mb-10">
+                <h2 class="text-xl task-title text-indigo-700"><i class="fas fa-question-circle mr-2"></i>Task 5: Check Your Knowledge Quiz <span class="task-completion-indicator" id="task-5-complete"></span> <span class="font-bold text-sm text-gray-500 ml-auto">(Max 5 points)</span></h2>
+                <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
+                     <div class="flex justify-between items-center mb-4">
+                        <p class="text-lg font-medium text-purple-800">Data Storage Quiz</p>
+                        <p class="text-lg font-semibold text-purple-800">Score: <span id="quiz-score">0</span> / <span id="quiz-total-questions">0</span></p>
+                    </div>
+                    <div id="quiz-questions">
+                        <!-- Quiz questions will be loaded here by JS -->
+                    </div>
+                    <button id="reset-quiz-btn" class="mt-6 px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition duration-200 hidden">Reset Quiz</button>
+                </div>
+            </section>
+
+            <section id="task6-exam-practice" class="task-container mb-10">
+                <h2 class="text-xl task-title text-indigo-700"><i class="fas fa-graduation-cap mr-2"></i>Task 6: Exam Practice Questions</h2>
+                <p class="text-gray-600 mb-6">Apply your knowledge to these exam-style questions.</p>
+                   <div class="exam-question mb-6 pb-4 border-b">
+                       <p class="font-medium text-gray-800 mb-2">1. List two types of storage device and state a typical capacity for each. [2 marks]</p>
+                       <textarea placeholder="Your answer..." class="exam-answer" rows="3"></textarea>
+                       <div class="mt-2"> <button class="mark-scheme-button px-3 py-1 text-sm" data-feedback-id="exam1_feedback-task6">Show Mark Scheme</button> </div>
+                       <div id="exam1_feedback-task6" class="exam-feedback hidden mt-2"> <p><strong>Mark Scheme:</strong></p> <p>Example: SSD (1 mark) - 500GB (1 mark). HDD (1 mark) - 2TB (1 mark). USB Drive (1 mark) - 32GB (1 mark). CD (1 mark) - 700MB (1 mark). (Accept other valid devices/typical capacities). Max 2 marks per device pair, max 2 pairs needed.</p> </div>
+                   </div>
+                   <div class="exam-question mb-6 pb-4 border-b">
+                       <p class="font-medium text-gray-800 mb-2">2. A user has 200 photos, each 5MB in size, and 5 videos, each 600MB in size. Calculate the total storage needed in GB. Show your working. [3 marks]</p>
+                       <div class="canvas-container">
+                           <textarea placeholder="Your calculation and answer..." class="exam-answer !mt-0 !mb-0" rows="5"></textarea>
+                           <div class="flex flex-col items-center">
+                               <canvas id="exam2-canvas-task6" class="drawing-canvas" width="350" height="150"></canvas>
+                               <button class="reset-button !py-1 !px-2 !text-xs !mt-1" onclick="clearCanvas('exam2-canvas-task6')">Clear Working</button>
+                           </div>
+                       </div>
+                       <div class="mt-2"> <button class="mark-scheme-button px-3 py-1 text-sm" data-feedback-id="exam2_feedback-task6">Show Mark Scheme</button> </div>
+                       <div id="exam2_feedback-task6" class="exam-feedback hidden mt-2"> <p><strong>Mark Scheme:</strong></p> <ul class="list-disc list-inside text-sm"><li>Photos total: 200 * 5MB = 1000MB (1 mark)</li><li>Videos total: 5 * 600MB = 3000MB (1 mark)</li><li>Total MB: 1000MB + 3000MB = 4000MB. Convert to GB: 4000 / 1000 = 4 GB (1 mark)</li></ul></div>
+                   </div>
+                   <div class="exam-question">
+                       <p class="font-medium text-gray-800 mb-2">3. Add the following two 8-bit binary numbers: 01101011 + 00110110. Show carries where appropriate. [2 marks]</p>
+                       <div class="canvas-container">
+                           <textarea placeholder="Your binary addition..." class="exam-answer font-mono !mt-0 !mb-0" rows="5"></textarea>
+                           <div class="flex flex-col items-center">
+                               <canvas id="exam3-canvas-task6" class="drawing-canvas" width="350" height="150"></canvas>
+                               <button class="reset-button !py-1 !px-2 !text-xs !mt-1" onclick="clearCanvas('exam3-canvas-task6')">Clear Working</button>
+                           </div>
+                       </div>
+                       <div class="mt-2"> <button class="mark-scheme-button px-3 py-1 text-sm" data-feedback-id="exam3_feedback-task6">Show Mark Scheme</button> </div>
+                       <div id="exam3_feedback-task6" class="exam-feedback hidden mt-2"> <p><strong>Mark Scheme:</strong></p><pre class="font-mono text-sm">
+Final Answer: 10100001
+(1 mark for correct sum, 1 mark for showing carries in working)</pre></div>
+                   </div>
+            </section>
+
+            <section id="extension-video" class="task-container mb-10"> <!-- Renumbered -->
+                <h2 class="text-xl task-title text-indigo-700"><i class="fas fa-video mr-2"></i>Extension 1: How Optical Discs Work</h2>
+                <p class="text-gray-600 mb-4">Watch the following video clip (from 0:24 to 1:01) which explains the process in more detail.</p>
+                <div class="aspect-video">
+                    <div id="youtube-player"></div> </div>
+                <p class="text-gray-600 mt-6 mb-2">After watching the clip, briefly explain in your own words how data is read from an optical disc:</p>
+                <textarea id="optical-explanation-input" class="explanation-textarea" placeholder="Explain how the laser, pits, lands, and sensor work together to read binary data..."></textarea>
+                <p class="text-xs text-gray-500 mt-3 italic text-center">Note: This explanation is for your understanding and is not automatically scored.</p>
+            </section>
+
+            <section id="next-steps" class="mb-10">
+                <h2 class="text-2xl font-semibold text-indigo-600 mb-4">What's Next?</h2>
+                <div class="bg-teal-50 p-5 rounded-lg border border-teal-300">
+                    <p class="text-teal-800 font-medium">
+                        You've explored data storage devices, capacity calculations, and binary addition!
+                    </p>
+                    <p class="text-teal-700 mt-2">
+                        Next, we'll look at:
+                    </p>
+                    <ul class="list-disc list-inside space-y-1 text-teal-700 mt-3 pl-4">
+                        <li><a href="gcse-memstore-compression.html" class="text-teal-900 font-semibold hover:underline">Compression (Lossy & Lossless)</a> (Spec 1.2.5)</li>
+                        <li>Moving on to <a href="mgsgcse13.html" class="text-teal-900 font-semibold hover:underline">Computer Networks, Connections and Protocols</a> (Spec 1.3)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="task7-progress-summary" class="task-container mb-10"> <!-- Renumbered -->
+                 <h2 class="text-xl task-title text-indigo-700"><i class="fas fa-trophy mr-2"></i>Task 7: Worksheet Progress</h2>
+                <p class="text-gray-600 mb-4">Check your score based on the interactive quiz questions and activities.</p>
+                <div class="text-center p-4 bg-indigo-50 rounded-md border border-indigo-200">
+                    <p class="text-lg font-semibold text-indigo-800">Your Score: <span id="current-score" class="text-2xl">0</span> / <span id="total-possible-score">0</span></p>
+                    <button id="calculate-score-btn" class="mt-3 final-button">Calculate My Score</button>
+                </div>
+                 <p class="text-xs text-gray-500 mt-3 text-center">Note: Score based on Tasks 1, 2 & 5. Starter Task, Binary Addition, Exam practice & Extension activities are not auto-scored.</p> </section>
+
+                 <section id="related-videos" class="mb-10">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-video mr-2 text-purple-500"></i> Related Videos</h2>
+                        <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                            <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer">
+                            Read
+                        </label>
+                    </div>
+                    <div class="bg-purple-50 p-5 rounded-lg border border-purple-200 space-y-4">
+                        <p class="text-gray-700">Watch these videos to reinforce your understanding: </p>
+                        <ul class="list-disc list-inside space-y-3 text-purple-800 pl-4">
+                            <li>
+                                <strong>Video Title 1:</strong> 
+                                <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 1]</div>
+                            </li>
+                            <li>
+                                <strong>Video Title 2:</strong> 
+                                <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 2]</div>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+        </main>
+
+    </div>
+
+    <footer class="text-center mt-16 text-gray-500 text-sm">
+        <p>&copy; <span id="currentYear"></span> MGS. All rights reserved.</p>
+    </footer>
+
+    
+    <script src="js/gcse-memstore-datastorage.js"></script>
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+</html>

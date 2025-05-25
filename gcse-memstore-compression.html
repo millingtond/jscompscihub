@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCSE CS Lesson: Data Compression</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    
+<link rel="stylesheet" href="css/style.css">
+</head>
+<nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <a href="home.html" class="text-xl font-bold hover:text-gray-300 transition-colors">MGS CS Hub</a>
+        <ul class="flex space-x-3 lg:space-x-4">
+        </ul>
+        <ul class="flex flex-wrap space-x-2 sm:space-x-3 lg:space-x-4 text-sm sm:text-base">
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 7</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 8</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 9</a></li>
+            <li><a href="gcse.html" class="hover:text-gray-300 transition-colors">GCSE</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">A Level</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Competitions</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">CS News</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Extracurricular</a></li>
+        </ul>
+    </div>
+</nav>
+
+\1
+
+
+
+    <div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-lg shadow-xl">
+
+        <a href="mgsgcse12.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 group">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left w-5 h-5 mr-2 transition-transform duration-200 group-hover:-translate-x-1"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+             Back to Memory & Storage
+        </a>
+
+        <header class="mb-8 border-b pb-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-2">Making Files Smaller: Data Compression</h1>
+            <p class="text-lg text-gray-600">OCR GCSE Computer Science (J277) - Topic 1.2.4</p>
+        </header>
+
+        <section id="starter-recap" class="mb-10">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-stopwatch mr-2 text-yellow-500"></i> Starter Activity (5 mins)</h2>
+            <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-200 space-y-4">
+                <p class="font-semibold text-yellow-800">Quick Recall - File Sizes:</p>
+                <p>Think about different types of files. Which generally take up more storage space?</p>
+                <div class="space-y-3">
+                    <div class="starter-question">
+                        <label for="starter-filesize" class="block text-sm font-medium text-yellow-700">1. Rank these from typically smallest to largest file size: <br><i>(Plain text document, High-quality photo, Short audio clip, HD Movie)</i></label>
+                        <input type="text" id="starter-filesize" name="starter-filesize" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white" placeholder="Smallest ... Largest">
+                    </div>
+                    <div class="starter-question">
+                        <label for="starter-why-small" class="block text-sm font-medium text-yellow-700">2. Why might we want to make large files smaller?</label>
+                        <input type="text" id="starter-why-small" name="starter-why-small" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white" placeholder="Think about sending/storing files...">
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <div id="starter-encourage-msg" class="text-sm text-orange-600 font-medium mb-2 h-5"></div>
+                    <button id="reveal-starter-btn" onclick="toggleStarterAnswers('starter-answers', this, 'Reveal Answers', 'Hide Answers')" class="px-4 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition duration-200 text-sm">Reveal Answers</button>
+                    <div id="starter-answers" class="reveal-content border-t border-yellow-200">
+                        <h4 class="font-semibold text-yellow-700 mb-2">Example Answers:</h4>
+                        <ul class="list-disc list-inside space-y-1 text-yellow-700 text-sm">
+                            <li>1. Plain text document &lt; Short audio clip &lt; High-quality photo &lt; HD Movie.</li>
+                            <li>2. To save storage space, send files faster (email/internet), reduce download/streaming times, save data allowance.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="lesson-outcomes" class="mb-10">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-bullseye mr-2 text-green-500"></i> Lesson Outcomes</h2>
+            <div class="bg-green-50 p-5 rounded-lg border border-green-200">
+                <p class="font-semibold text-green-800 mb-3">By the end of this lesson, you should be able to:</p>
+                <ul class="list-disc list-inside space-y-2 text-green-700 pl-4">
+                    <li>Define <span class="keyword">compression<span class="tooltip">A method or protocol for using fewer bits to represent the original information.</span></span> and explain why it is needed.</li>
+                    <li>Explain the difference between <span class="keyword">lossy compression<span class="tooltip">Reduction of file size by removing certain, redundant information from the file. The eliminated data is unrecoverable. Tries to recreate a file without the omitted data. Much smaller file sizes but there will be some loss of quality.</span></span> and <span class="keyword">lossless compression<span class="tooltip">Every bit of the original data can be recovered from the compressed file. The uncompressed image will be the same as the original with no loss of data. Works by looking for patterns in the data. Larger compressed file sizes than lossy. e.g. Run-length encoding.</span></span>.</li>
+                    <li>Describe how lossy compression works for images and audio (e.g., reducing colour depth, perceptual shaping).</li>
+                    <li>Describe how lossless compression works, including <span class="keyword">Run Length Encoding (RLE)<span class="tooltip">Lossless compression technique that summarises consecutive patterns of the same data. Works well with image and sound data where data could be repeated many times.</span></span>.</li>
+                    <li>Identify common file types associated with lossy (<span class="keyword">JPEG<span class="tooltip">A commonly used file format that uses lossy compression for digital photography.</span></span>, <span class="keyword">MP3<span class="tooltip">Lossy compressed audio file format.</span></span>) and lossless compression.</li>
+                    <li>Discuss the benefits and drawbacks of each compression type.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="mb-10">
+              <div class="flex justify-between items-center mb-4">
+                  <h2 class="text-2xl font-semibold text-indigo-600">Introduction: Why Compress?</h2>
+                  <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                      <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer"> Read
+                  </label>
+              </div>
+              <div class="bg-indigo-50 p-5 rounded-lg border border-indigo-200 space-y-3">
+                  <p>Digital files, especially images, audio, and video, can be very large. <span class="keyword">Compression<span class="tooltip">A method or protocol for using fewer bits to represent the original information.</span></span> is the process of reducing the size of a data file.</p>
+                  <p>There are many <span class="keyword">reasons to compress data<span class="tooltip">Download/buffering times decrease. Smaller files = fewer packets = faster transmission time. Reduces traffic over the Internet. Less chance of collisions or transmission errors. Data allowances do not run out as quickly = Saves money. Voice can be transmitted fast enough to keep up with speech in a video. Saves spending more money on data storage e.g. hard drives, cloud etc. Faster to back-up data.</span></span>, including saving storage space and reducing the time it takes to transfer files over networks (like the internet).</p>
+                  <p>There are two main types of compression: <span class="keyword">lossy compression<span class="tooltip">Reduction of file size by removing certain, redundant information from the file. The eliminated data is unrecoverable. Tries to recreate a file without the omitted data. Much smaller file sizes but there will be some loss of quality.</span></span> (which removes some data permanently) and <span class="keyword">lossless compression<span class="tooltip">Every bit of the original data can be recovered from the compressed file. The uncompressed image will be the same as the original with no loss of data. Works by looking for patterns in the data. Larger compressed file sizes than lossy. e.g. Run-length encoding.</span></span> (which allows the original data to be perfectly reconstructed).</p>
+                  <p>This lesson explores how these methods work and when they are used. Hover over <span class="keyword">keywords<span class="tooltip">This is an example tooltip!</span></span> for definitions.</p>
+              </div>
+        </section>
+
+        <section id="task1-lossy-image" class="task-container mb-10">
+            <h2 class="text-xl task-title text-indigo-700"><i class="fas fa-image mr-2"></i>Task 1: Lossy Image Compression Techniques</h2>
+            <p class="text-gray-600 mb-4">Describe ways we could reduce the file size of a digital image using <span class="keyword">lossy compression<span class="tooltip">Reduction of file size by removing certain, redundant information from the file. The eliminated data is unrecoverable. Tries to recreate a file without the omitted data. Much smaller file sizes but there will be some loss of quality.</span></span> techniques. [3 marks]</p>
+            <div>
+                <label for="lossy-image-answer" class="sr-only">Your Answer:</label>
+                <textarea id="lossy-image-answer" rows="4" class="w-full p-2 border border-gray-300 rounded-md bg-white" placeholder="Describe at least two techniques..."></textarea>
+            </div>
+            <button class="reveal-button" onclick="toggleReveal('lossy-image-markscheme', this, 'Show Mark Scheme', 'Hide Mark Scheme')">Show Mark Scheme</button>
+            <div id="lossy-image-markscheme" class="reveal-content border-t border-gray-300">
+                <h4 class="font-semibold text-gray-700 mb-2">Mark Scheme / Example Points:</h4>
+                <ul class="list-disc list-inside space-y-1 text-gray-700 text-sm">
+                    <li>Permanently deleting some data / file cannot be restored to original (1 mark).</li>
+                    <li>Reducing the colour depth / using a smaller colour palette (1 mark).</li>
+                    <li>Reducing the image resolution / reducing the number of pixels (1 mark).</li>
+                    <li>Applying a compression algorithm that removes less noticeable details (1 mark).</li>
+                    <li>Removing redundant data (e.g., areas of similar colour) (1 mark).</li>
+                </ul>
+                <p class="text-xs italic mt-2">(Max 3 marks)</p>
+            </div>
+        </section>
+
+        <section id="task2-lossy-lossless" class="task-container mb-10">
+            <h2 class="text-xl task-title text-indigo-700"><i class="fas fa-sliders-h mr-2"></i>Task 2: Choose the Compression Type</h2>
+            <p class="text-gray-600 mb-4">For each use case below, select whether <span class="keyword">lossy compression<span class="tooltip">Reduction of file size by removing certain, redundant information from the file. The eliminated data is unrecoverable. Tries to recreate a file without the omitted data. Much smaller file sizes but there will be some loss of quality.</span></span> or <span class="keyword">lossless compression<span class="tooltip">Every bit of the original data can be recovered from the compressed file. The uncompressed image will be the same as the original with no loss of data. Works by looking for patterns in the data. Larger compressed file sizes than lossy. e.g. Run-length encoding.</span></span> would be more appropriate and briefly explain why.</p>
+            <div class="overflow-x-auto">
+                <table class="w-full border-collapse border border-gray-300 text-sm">
+                    <thead>
+                        <tr class="bg-gray-200">
+                            <th class="border border-gray-300 p-2 text-left">Use Case</th>
+                            <th class="border border-gray-300 p-2 text-left">Lossy / Lossless</th>
+                            <th class="border border-gray-300 p-2 text-left">Reason</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-correct-type="lossy" data-correct-keywords="quality, size, bandwidth, streaming, perceptual">
+                            <td class="border border-gray-300 p-2">A music track for streaming</td>
+                            <td class="border border-gray-300 p-2"><select class="w-full p-1 border border-gray-300 rounded"><option value="">Select...</option><option value="lossy">Lossy</option><option value="lossless">Lossless</option></select></td>
+                            <td class="border border-gray-300 p-2"><input type="text" class="w-full p-1 border border-gray-300 rounded" placeholder="Why?"></td>
+                        </tr>
+                        <tr data-correct-type="lossless" data-correct-keywords="exact, original, data, readable, meaning, code">
+                            <td class="border border-gray-300 p-2">A text document (e.g., essay)</td>
+                            <td class="border border-gray-300 p-2"><select class="w-full p-1 border border-gray-300 rounded"><option value="">Select...</option><option value="lossy">Lossy</option><option value="lossless">Lossless</option></select></td>
+                            <td class="border border-gray-300 p-2"><input type="text" class="w-full p-1 border border-gray-300 rounded" placeholder="Why?"></td>
+                        </tr>
+                        <tr data-correct-type="lossy" data-correct-keywords="size, bandwidth, streaming, quality, difference">
+                            <td class="border border-gray-300 p-2">A video for online streaming</td>
+                            <td class="border border-gray-300 p-2"><select class="w-full p-1 border border-gray-300 rounded"><option value="">Select...</option><option value="lossy">Lossy</option><option value="lossless">Lossless</option></select></td>
+                            <td class="border border-gray-300 p-2"><input type="text" class="w-full p-1 border border-gray-300 rounded" placeholder="Why?"></td>
+                        </tr>
+                        <tr data-correct-type="lossy" data-correct-keywords="size, web, load, speed, quality, jpeg">
+                            <td class="border border-gray-300 p-2">An image for a website</td>
+                            <td class="border border-gray-300 p-2"><select class="w-full p-1 border border-gray-300 rounded"><option value="">Select...</option><option value="lossy">Lossy</option><option value="lossless">Lossless</option></select></td>
+                            <td class="border border-gray-300 p-2"><input type="text" class="w-full p-1 border border-gray-300 rounded" placeholder="Why?"></td>
+                        </tr>
+                        <tr data-correct-type="lossless" data-correct-keywords="exact, original, data, code, function, error">
+                            <td class="border border-gray-300 p-2">A Python program file</td>
+                            <td class="border border-gray-300 p-2"><select class="w-full p-1 border border-gray-300 rounded"><option value="">Select...</option><option value="lossy">Lossy</option><option value="lossless">Lossless</option></select></td>
+                            <td class="border border-gray-300 p-2"><input type="text" class="w-full p-1 border border-gray-300 rounded" placeholder="Why?"></td>
+                        </tr>
+                        <tr data-correct-type="lossless" data-correct-keywords="exact, original, data, integrity, corruption">
+                            <td class="border border-gray-300 p-2">A database file</td>
+                            <td class="border border-gray-300 p-2"><select class="w-full p-1 border border-gray-300 rounded"><option value="">Select...</option><option value="lossy">Lossy</option><option value="lossless">Lossless</option></select></td>
+                            <td class="border border-gray-300 p-2"><input type="text" class="w-full p-1 border border-gray-300 rounded" placeholder="Why?"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button class="check-button" onclick="checkLossyLosslessTable()">Check Answers</button>
+            <div id="lossy-lossless-feedback" class="feedback-area"></div>
+            <button class="reset-button" onclick="resetLossyLosslessTable()">Reset Task 2</button>
+        </section>
+
+        <section id="task3-text-compression" class="task-container mb-10">
+            <h2 class="text-xl task-title text-indigo-700"><i class="fas fa-file-alt mr-2"></i>Task 3 – Text Compression (Dictionary/Index)</h2>
+            <p class="text-gray-600 mb-4">A simple lossless technique uses a dictionary (or index) to replace repeated words/phrases with shorter codes. Consider this text:</p>
+            <pre class="bg-gray-100 p-3 rounded text-sm border border-gray-300 mb-4">Hickory, dickory, dock,
+The mouse ran up the clock.
+The clock struck one,
+The mouse ran down.
+Hickory, dickory, dock.</pre>
+            <p class="text-gray-600 mb-4">Using the dictionary provided, observe the simulation of Line 1 being decoded, then enter the codes for Line 2.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div class="overflow-x-auto">
+                    <h3 class="font-semibold text-gray-700 mb-2">Dictionary:</h3>
+                    <table class="w-full border-collapse border border-gray-300 text-xs">
+                        <thead class="bg-gray-200"><tr><th class="border p-1">Code</th><th class="border p-1">Text</th><th class="border p-1">Code</th><th class="border p-1">Text</th></tr></thead>
+                        <tbody id="dictionary-table-body">
+                            <tr data-code="0"><td class="border p-1">0</td><td class="border p-1">End of Line</td><td class="border p-1">8</td><td class="border p-1">ran_</td></tr>
+                            <tr data-code="1"><td class="border p-1">1</td><td class="border p-1">H</td><td class="border p-1">9</td><td class="border p-1">up_</td></tr>
+                            <tr data-code="2"><td class="border p-1">2</td><td class="border p-1">ickory,_</td><td class="border p-1">10</td><td class="border p-1">the_</td></tr>
+                            <tr><td class="border p-1">3</td><td class="border p-1">d</td><td class="border p-1">11</td><td class="border p-1">cl</td></tr>
+                            <tr><td class="border p-1">4</td><td class="border p-1">ock</td><td class="border p-1">12</td><td class="border p-1">.</td></tr>
+                            <tr><td class="border p-1">5</td><td class="border p-1">,</td><td class="border p-1">13</td><td class="border p-1">_struck_</td></tr>
+                            <tr><td class="border p-1">6</td><td class="border p-1">The_</td><td class="border p-1">14</td><td class="border p-1">one,</td></tr>
+                            <tr><td class="border p-1">7</td><td class="border p-1">mouse_</td><td class="border p-1">15</td><td class="border p-1">down.</td></tr>
+                        </tbody>
+                    </table>
+                    <p class="text-xs text-gray-500 mt-1">Note: '_' represents a space character.</p>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Simulate Line 1 Decoding:</label>
+                    <button class="reveal-button !py-1 !px-2 !text-xs !mb-2 !mt-0" onclick="simulateLine1Decoding()">Simulate</button>
+                    <div id="line1-simulation-output" class="min-h-[2em] p-2 border border-blue-200 bg-blue-50 rounded font-mono text-blue-800">Click 'Simulate' to see Line 1 reconstructed.</div>
+
+                    <label for="encoded-text-line2" class="block text-sm font-medium text-gray-700 mb-1 mt-4">Enter codes for Line 2 ("The mouse ran up the clock."):</label>
+                    <input type="text" id="encoded-text-line2" class="w-full p-2 border border-gray-300 rounded font-mono text-sm" placeholder="Enter codes separated by spaces...">
+                    <div id="encoding-feedback-line2" class="text-xs mt-1 min-h-[1em]"></div>
+                    <button class="check-button !py-1 !px-2 !text-xs" onclick="checkTextEncodingLine2()">Check Line 2 Encoding</button>
+                </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-gray-300 space-y-4">
+                 <p class="text-gray-600 mb-2">Now, consider the <strong class="font-semibold">entire</strong> compressed text sequence (all 5 lines).</p>
+                 <button class="reveal-button !py-1 !px-2 !text-xs !mb-2 !mt-0" onclick="toggleReveal('full-sequence-content', this, 'Show Full Sequence', 'Hide Full Sequence')">Show Full Sequence</button>
+                 <div id="full-sequence-content" class="reveal-content !mt-0 !p-0"> <pre class="bg-gray-100 p-2 rounded text-xs border border-gray-300 mb-4 font-mono">1 2 3 2 3 4 5 0 6 7 8 9 10 11 4 12 0 10 11 4 13 14 0 6 7 8 15 0 1 2 3 2 3 4 12</pre>
+                 </div>
+
+                <div>
+                    <label for="compressed-size" class="block text-sm font-medium text-gray-700">If one byte represents each code in the sequence above, what is the file size (in bytes) of the compressed text (excluding the dictionary)?</label>
+                    <input type="number" id="compressed-size" class="w-24 p-1 border border-gray-300 rounded mt-1"> Bytes
+                    <div id="size-feedback" class="text-xs mt-1 inline-block ml-2 min-h-[1em]"></div>
+                </div>
+                <div>
+                    <label for="percentage-reduction" class="block text-sm font-medium text-gray-700">The original text is 117 characters (assume 1 byte/char). Calculate the reduction in file size as a percentage using the full compressed sequence.</label>
+                    <button class="reveal-button !py-0.5 !px-2 !text-xs !mt-1 !ml-2" onclick="toggleReveal('reduction-hint', this, 'Show Hint', 'Hide Hint')">Show Hint</button>
+                    <input type="text" id="percentage-reduction" class="w-24 p-1 border border-gray-300 rounded mt-1"> %
+                    <div id="reduction-hint" class="reveal-content text-xs text-gray-600 bg-gray-50 border border-gray-200 p-2 rounded !mt-1">
+                         <strong>Hint:</strong> Percentage Reduction = <br>
+                         <code>((Original Size - Compressed Size) / Original Size) * 100</code>
+                    </div>
+                    <div id="reduction-feedback" class="text-xs mt-1 inline-block ml-2 min-h-[1em]"></div>
+                </div>
+                <button class="check-button" onclick="checkTextCalc()">Check Calculations</button>
+                <button class="reset-button" onclick="resetTextCompression()">Reset Task 3</button>
+            </div>
+        </section>
+
+        <section id="task4-audio-compression" class="task-container mb-10">
+            <h2 class="text-xl task-title text-indigo-700"><i class="fas fa-music mr-2"></i>Task 4: Audio Compression Calculation</h2>
+            <p class="text-gray-600 mb-4">
+                Click the link below to open a separate page where you can calculate download times for different audio file qualities and connection speeds, and consider the advantages of audio compression.
+            </p>
+            <a href="gcse-memstore-compression-dlcalc.html" target="_blank"
+               class="inline-flex items-center text-lg font-medium text-indigo-600 hover:text-indigo-800 hover:underline group mt-2">
+                <i class="fas fa-calculator mr-2"></i> Open Download Time Calculator Task <i class="fas fa-external-link-alt ml-2 text-sm opacity-70 group-hover:opacity-100"></i>
+            </a>
+       </section>
+
+        <section id="real-world-connection" class="mb-10">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-globe-europe mr-2 text-blue-500"></i> Real-World Connection: Compression in Daily Life</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer"> Read
+                </label>
+            </div>
+            <div class="bg-blue-50 p-5 rounded-lg border border-blue-200 space-y-3">
+                <p class="text-gray-700">Compression is essential for the modern internet and digital media:</p>
+                <ul class="list-disc list-inside space-y-2 text-blue-800 pl-4">
+                    <li><strong>Web Images:</strong> Most images online use <span class="keyword">lossy compression<span class="tooltip">Reduction of file size by removing certain, redundant information from the file. The eliminated data is unrecoverable. Tries to recreate a file without the omitted data. Much smaller file sizes but there will be some loss of quality.</span></span> (like <span class="keyword">JPEG<span class="tooltip">A commonly used file format that uses lossy compression for digital photography.</span></span>) to load quickly in web browsers. <span class="keyword">Lossless compression<span class="tooltip">Every bit of the original data can be recovered from the compressed file. The uncompressed image will be the same as the original with no loss of data. Works by looking for patterns in the data. Larger compressed file sizes than lossy. e.g. Run-length encoding.</span></span> (like PNG) is used when exact detail is crucial (e.g., logos, diagrams).</li>
+                    <li><strong>Music Streaming:</strong> Services like Spotify use lossy audio formats (like <span class="keyword">MP3<span class="tooltip">Lossy compressed audio file format.</span></span> or AAC) to reduce bandwidth usage and storage, allowing smooth playback even on slower connections. <span class="keyword">Perceptual music shaping<span class="tooltip">Refers to the process of removing inaudible sounds in order to make a file size smaller. e.g. Noises at frequencies that humans cannot hear. Quiet sounds that cannot be heard over louder sounds.</span></span> is key here.</li>
+                    <li><strong>Video Streaming:</strong> YouTube, Netflix etc., heavily compress video using lossy methods to make streaming feasible. Quality settings often adjust the level of compression.</li>
+                    <li><strong>File Archiving:</strong> ZIP or RAR files use lossless compression to bundle multiple files and reduce their total size without losing any data, perfect for backups or sending attachments.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="common-misconceptions" class="mb-10">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-lightbulb-exclamation mr-2 text-red-500"></i> Myth Busters: Compression Misconceptions</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer"> Read
+                </label>
+            </div>
+            <div class="bg-red-50 p-5 rounded-lg border border-red-200 space-y-4">
+                <div class="myth">
+                    <p><strong class="font-semibold text-red-800">Myth 1:</strong> "Lossless compression doesn't make files much smaller."</p>
+                    <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> While <span class="keyword">lossless compression<span class="tooltip">Every bit of the original data can be recovered from the compressed file. The uncompressed image will be the same as the original with no loss of data. Works by looking for patterns in the data. Larger compressed file sizes than lossy. e.g. Run-length encoding.</span></span> typically achieves lower compression ratios than lossy, it can still significantly reduce file size, especially for data with repeating patterns (like text or simple graphics). The reduction depends heavily on the data itself.</p>
+                </div>
+                <div class="myth border-t border-red-200 pt-4">
+                    <p><strong class="font-semibold text-red-800">Myth 2:</strong> "Lossy compression completely ruins the quality of images/audio."</p>
+                    <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> Good <span class="keyword">lossy compression<span class="tooltip">Reduction of file size by removing certain, redundant information from the file. The eliminated data is unrecoverable. Tries to recreate a file without the omitted data. Much smaller file sizes but there will be some loss of quality.</span></span> algorithms are designed to remove data that humans are least likely to notice (<span class="keyword">perceptual music shaping<span class="tooltip">Refers to the process of removing inaudible sounds in order to make a file size smaller. e.g. Noises at frequencies that humans cannot hear. Quiet sounds that cannot be heard over louder sounds.</span></span>). While high levels of compression *can* cause noticeable artifacts, moderate levels often provide a good balance between file size and perceived quality.</p>
+                </div>
+                 <div class="myth border-t border-red-200 pt-4">
+                    <p><strong class="font-semibold text-red-800">Myth 3:</strong> "You should always use lossless compression for everything."</p>
+                    <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> Lossless is essential when *every single bit* matters (e.g., program code, text documents, medical scans). However, for media like photos, music, and video intended for viewing/listening, the much smaller file sizes offered by lossy compression are often more practical for storage and transmission, even with a slight, often imperceptible, quality reduction.</p>
+                </div>
+                 <div class="myth border-t border-red-200 pt-4">
+                    <p><strong class="font-semibold text-red-800">Myth 4:</strong> "Compressing a file multiple times with lossy compression is okay."</p>
+                    <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> Re-compressing an already lossy-compressed file (e.g., saving a JPEG as a JPEG again with quality settings) causes further data loss and quality degradation each time. It's best to work with original or losslessly compressed files if further editing and saving are needed.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="key-takeaways" class="mb-10">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-key mr-2"></i>Key Takeaways</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer"> Read
+                </label>
+            </div>
+            <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-300 space-y-2 show">
+                <ul class="list-disc list-inside space-y-1 text-yellow-800">
+                    <li><strong class="font-semibold">Compression:</strong> Reduces file size for easier storage and faster transmission.</li>
+                    <li><strong class="font-semibold">Lossy Compression:</strong> Permanently removes data (often data humans won't notice) to achieve significant size reduction (e.g., <span class="keyword">JPEG<span class="tooltip">A commonly used file format that uses lossy compression for digital photography.</span></span>, <span class="keyword">MP3<span class="tooltip">Lossy compressed audio file format.</span></span>). Quality is slightly reduced. Cannot recover original file.</li>
+                    <li><strong class="font-semibold">Lossless Compression:</strong> Reduces file size without losing any data by finding patterns (e.g., <span class="keyword">Run Length Encoding (RLE)<span class="tooltip">Lossless compression technique that summarises consecutive patterns of the same data. Works well with image and sound data where data could be repeated many times.</span></span>, ZIP). Original file can be perfectly restored. Less size reduction than lossy.</li>
+                    <li><strong class="font-semibold">RLE:</strong> A lossless method that replaces sequences of repeating data with one instance of the data and a count (e.g., AAAAA becomes A5).</li>
+                    <li><strong class="font-semibold">Benefits of Compression:</strong> Saves storage space, reduces download/upload times, lowers bandwidth usage, saves data costs.</li>
+                    <li><strong class="font-semibold">Trade-offs:</strong> Lossy offers smaller files but sacrifices perfect quality; Lossless preserves quality but results in larger files than lossy.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="exam-questions" class="mb-10">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-pencil-alt mr-2 text-violet-500"></i> Exam Practice Questions</h2>
+
+            <div class="exam-question-container">
+                <p class="exam-question-text">1. Describe 3 reasons for compressing data. [3 marks]</p>
+                <textarea id="exam-q1-answer" class="exam-answer-textarea" placeholder="Enter your answer here..."></textarea>
+                <div id="exam-q1-feedback" class="exam-feedback-msg"></div>
+                <button class="reveal-button !mt-0" onclick="toggleExamAnswer('exam-q1-markscheme', 'exam-q1-answer', 'exam-q1-feedback', this)">Show Mark Scheme</button>
+                <div id="exam-q1-markscheme" class="reveal-content exam-markscheme">
+                    <h4 class="font-semibold mb-2">Mark Scheme / Example Points:</h4>
+                    <p class="text-sm mb-2">(1 mark for each valid reason, max 3 marks)</p>
+                    <ul>
+                        <li>Reduces file size to save storage space (on devices, servers, cloud).</li>
+                        <li>Reduces time needed to transmit files over a network / the internet.</li>
+                        <li>Reduces bandwidth usage (saving data allowance / cost).</li>
+                        <li>Allows large files (like videos) to be streamed effectively without excessive buffering.</li>
+                        <li>Faster to backup or archive data.</li>
+                        <li>Reduces download times for users.</li>
+                        <li>(Accept other valid reasons related to efficiency/cost/speed)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="exam-question-container">
+                <p class="exam-question-text">2. How does <span class="keyword">Run Length Encoding (RLE)<span class="tooltip">Lossless compression technique that summarises consecutive patterns of the same data. Works well with image and sound data where data could be repeated many times.</span></span> work for sound data compression? [2 marks]</p>
+                <textarea id="exam-q2-answer" class="exam-answer-textarea" placeholder="Enter your answer here..."></textarea>
+                <div id="exam-q2-feedback" class="exam-feedback-msg"></div>
+                <button class="reveal-button !mt-0" onclick="toggleExamAnswer('exam-q2-markscheme', 'exam-q2-answer', 'exam-q2-feedback', this)">Show Mark Scheme</button>
+                <div id="exam-q2-markscheme" class="reveal-content exam-markscheme">
+                    <h4 class="font-semibold mb-2">Mark Scheme / Example Points:</h4>
+                    <ul>
+                        <li>Sound is sampled many times per second, creating sequences of digital values. (1 mark)</li>
+                        <li>RLE identifies consecutive, identical sample values (representing the same sound/note for a duration). (1 mark)</li>
+                        <li>It stores the sample value once, along with the count of how many times it repeats consecutively. (1 mark for detail of storage)</li>
+                    </ul>
+                     <p class="text-xs italic mt-2">(Max 2 marks)</p>
+                </div>
+            </div>
+
+             <div class="exam-question-container">
+                 <p class="exam-question-text">3. Explain why <span class="keyword">lossy compression<span class="tooltip">Reduction of file size by removing certain, redundant information from the file. The eliminated data is unrecoverable. Tries to recreate a file without the omitted data. Much smaller file sizes but there will be some loss of quality.</span></span> cannot be used for program code. [2 marks]</p>
+                 <textarea id="exam-q3-answer" class="exam-answer-textarea" placeholder="Enter your answer here..."></textarea>
+                 <div id="exam-q3-feedback" class="exam-feedback-msg"></div>
+                 <button class="reveal-button !mt-0" onclick="toggleExamAnswer('exam-q3-markscheme', 'exam-q3-answer', 'exam-q3-feedback', this)">Show Mark Scheme</button>
+                 <div id="exam-q3-markscheme" class="reveal-content exam-markscheme">
+                     <h4 class="font-semibold mb-2">Mark Scheme / Example Points:</h4>
+                     <ul>
+                         <li>Lossy compression permanently removes data from the file. (1 mark)</li>
+                         <li>Program code requires every single instruction/character to be exactly correct to function. (1 mark)</li>
+                         <li>Removing even a small amount of data (e.g., a single character or instruction) would corrupt the code, likely causing it to fail, produce errors, or behave unpredictably. (1 mark for consequence)</li>
+                         <li>The original code cannot be perfectly reconstructed from a lossy compressed version. (1 mark)</li>
+                     </ul>
+                      <p class="text-xs italic mt-2">(Max 2 marks)</p>
+                 </div>
+             </div>
+
+        </section>
+        <section id="extension-activities" class="mb-10">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-puzzle-piece mr-2 text-orange-500"></i> Extension Activities</h2>
+            <div class="bg-orange-50 p-5 rounded-lg border border-orange-200 space-y-6">
+                <div class="extension-task">
+                    <h3 class="font-semibold text-orange-800 mb-2">1. Huffman Coding</h3>
+                    <p class="text-sm text-gray-700 mb-2">Another common lossless compression technique is Huffman Coding. It assigns shorter binary codes to more frequent characters/symbols and longer codes to less frequent ones.</p>
+                    <p class="text-sm text-gray-700 mb-2">Research Task: How does Huffman Coding create its variable-length codes? Why is it considered a lossless technique?</p>
+                    <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="How are codes assigned? Why lossless?"></textarea>
+                </div>
+                <div class="extension-task border-t border-orange-200 pt-4">
+                    <h3 class="font-semibold text-orange-800 mb-2">2. Video Compression (Codecs)</h3>
+                    <p class="text-sm text-gray-700 mb-2">Video compression is complex, often using lossy techniques. It involves compressing individual frames (intra-frame) and also only storing the differences between consecutive frames (inter-frame).</p>
+                    <p class="text-sm text-gray-700 mb-2">Research Task: What is a video codec (e.g., H.264, H.265/HEVC, AV1)? Briefly explain the difference between intra-frame and inter-frame compression in video.</p>
+                    <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="What's a codec? Intra vs Inter frame?"></textarea>
+                </div>
+            </div>
+        </section>
+
+        <section id="next-steps">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600">What's Next?</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer"> Read
+                </label>
+            </div>
+            <div class="bg-teal-50 p-5 rounded-lg border border-teal-300">
+                <p class="text-teal-800 font-medium">You now understand the basics of lossy and lossless data compression!</p>
+                <p class="text-teal-700 mt-2">This concludes the main topics for Memory & Storage. You might want to review:</p>
+                <ul class="list-disc list-inside space-y-1 text-teal-700 mt-3 pl-4">
+                    <li>Primary Storage (RAM, ROM, Cache).</li>
+                    <li>Secondary Storage (HDD, SSD, Optical).</li>
+                    <li>Storage Units and Capacity Calculations.</li>
+                    <li>Or move on to Data Representation (Topic 1.3).</li>
+                </ul>
+            </div>
+        </section>
+
+    </div>
+
+    
+    <script src="js/gcse-memstore-compression.js"></script>
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+</html>

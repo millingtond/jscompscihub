@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCSE CS Lesson: Embedded Systems vs. General-Purpose Computers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <a href="/index.html" class="text-xl font-bold hover:text-gray-300 transition-colors">MGS CS Hub</a>
+        <ul class="flex space-x-3 lg:space-x-4">
+        </ul>
+        <ul class="flex flex-wrap space-x-2 sm:space-x-3 lg:space-x-4 text-sm sm:text-base">
+            <li><a href="/year7.html" class="hover:text-gray-300 transition-colors">Year 7</a></li>
+            <li><a href="/year8.html" class="hover:text-gray-300 transition-colors">Year 8</a></li>
+            <li><a href="/year9.html" class="hover:text-gray-300 transition-colors">Year 9</a></li>
+            <li><a href="/gcse.html" class="hover:text-gray-300 transition-colors">GCSE</a></li>
+            <li><a href="/alevel.html" class="hover:text-gray-300 transition-colors">A Level</a></li>
+            <li><a href="/competitions.html" class="hover:text-gray-300 transition-colors">Competitions</a></li>
+            <li><a href="/csnews.html" class="hover:text-gray-300 transition-colors">CS News</a></li>
+            <li><a href="/extracurricular.html" class="hover:text-gray-300 transition-colors">Extracurricular</a></li>
+        </ul>
+    </div>
+</nav>
+
+    <div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-lg shadow-xl">
+
+        <a href="mgsgcse11.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 group">
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left w-5 h-5 mr-2 transition-transform duration-200 group-hover:-translate-x-1"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+            Back to Systems Architecture
+        </a>
+
+        <header class="mb-8 border-b pb-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-2">Embedded Systems vs. General-Purpose Computers</h1>
+            <p class="text-lg text-gray-600">OCR GCSE Computer Science (J277) - Topic 1.1.3</p>
+        </header>
+
+        <section id="starter-recap" class="mb-10">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-stopwatch mr-2 text-yellow-500"></i> Starter Recap (5 mins)</h2>
+            <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-200 space-y-4">
+                <p class="font-semibold text-yellow-800">Quick Recall - CPU Concepts:</p>
+                <p>Before we look at different *types* of computer systems, let's recap some key CPU ideas from previous lessons. Answer the questions below:</p>
+                <div class="space-y-3">
+                    <div class="starter-question">
+                        <label for="starter-fde" class="block text-sm font-medium text-yellow-700">1. What is the 3-step cycle the CPU constantly performs?</label>
+                        <input type="text" id="starter-fde" name="starter-fde" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white" placeholder="F... D... E...">
+                    </div>
+                    <div class="starter-question">
+                        <label for="starter-performance" class="block text-sm font-medium text-yellow-700">2. Name two factors that affect CPU performance.</label>
+                        <input type="text" id="starter-performance" name="starter-performance" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white" placeholder="e.g., Clock Speed, ...">
+                    </div>
+                    <div class="starter-question">
+                        <label for="starter-alu-cu" class="block text-sm font-medium text-yellow-700">3. What are the two main operational units inside the CPU?</label>
+                        <input type="text" id="starter-alu-cu" name="starter-alu-cu" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white" placeholder="ALU and C...">
+                    </div>
+                    <div class="starter-question">
+                        <label for="starter-registers" class="block text-sm font-medium text-yellow-700">4. What is the general name for small, fast memory locations *inside* the CPU (like PC, MAR, MDR)?</label>
+                        <input type="text" id="starter-registers" name="starter-registers" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white" placeholder="R...">
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <div id="starter-encourage-msg" class="text-sm text-orange-600 font-medium mb-2 h-5"></div> <button id="reveal-starter-btn" onclick="toggleStarterAnswers('starter-answers', this, 'Reveal Answers', 'Hide Answers')" class="px-4 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition duration-200 text-sm">
+                        Reveal Answers
+                    </button>
+                    <div id="starter-answers" class="reveal-content border-t border-yellow-200">
+                        <h4 class="font-semibold text-yellow-700 mb-2">Example Answers:</h4>
+                        <ul class="list-disc list-inside space-y-1 text-yellow-700 text-sm">
+                            <li>1. <strong>Fetch-Decode-Execute</strong> Cycle.</li>
+                            <li>2. Any two of: <strong>Clock Speed</strong>, <strong>Number of Cores</strong>, <strong>Cache Size</strong>.</li>
+                            <li>3. <strong>ALU</strong> (Arithmetic Logic Unit) and <strong>CU</strong> (Control Unit).</li>
+                            <li>4. <strong>Registers</strong>.</li>
+                        </ul>
+                         <p class="text-xs text-gray-500 mt-2 italic">These concepts apply to the CPUs in both system types we'll discuss today!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="lesson-outcomes" class="mb-10">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-bullseye mr-2 text-green-500"></i> Lesson Outcomes</h2>
+            <div class="bg-green-50 p-5 rounded-lg border border-green-200">
+                <p class="font-semibold text-green-800 mb-3">By the end of this lesson, you should be able to:</p>
+                <ul class="list-disc list-inside space-y-2 text-green-700 pl-4">
+                    <li>Define 'embedded system' and 'general-purpose computer'.</li>
+                    <li>Identify key characteristics of embedded systems (e.g., dedicated function, low power, built-in).</li>
+                    <li>Identify key characteristics of general-purpose computers (e.g., multitasking, expandable, varied software).</li>
+                    <li>Provide examples of devices containing embedded systems.</li>
+                    <li>Compare the advantages and disadvantages of each system type.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="mb-10">
+             <div class="flex justify-between items-center mb-4">
+                 <h2 class="text-2xl font-semibold text-indigo-600">Introduction</h2>
+                 <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                     <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer">
+                     Read
+                 </label>
+             </div>
+             <div class="bg-indigo-50 p-5 rounded-lg border border-indigo-200 space-y-3">
+                <p>Not all computers are like the laptops or phones we use every day. Many are hidden inside other devices, performing specific jobs. These are called <span class="keyword">embedded systems<span class="tooltip">Has a specific purpose / it only performs one/few tasks. Built within a larger device. Dedicated hardware/sensors. Has a microprocessor. Built-in operating system... and software (generally) all stored in ROM. … it's instructions does not change/update (generally)</span></span>.</p>
+                <p>In contrast, the computers we typically interact with directly are <span class="keyword">general-purpose computers<span class="tooltip">A computer that can run many different programs (e.g. a smartphone). The opposite to an embedded system.</span></span>, designed to run many different applications.</p>
+                <p>This lesson explores the differences, characteristics, and examples of these two types of computer systems. Complete the tasks to test your understanding. Hover over <span class="keyword">keywords<span class="tooltip">This is an example tooltip!</span></span> for quick definitions!</p>
+            </div>
+        </section>
+
+        <section id="task1-categorize" class="task-container mb-10">
+            <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-tags mr-2"></i>Task 1: Categorise the Characteristics</h3>
+            <p class="mb-4 text-gray-700">Drag each characteristic from the bank below into the correct category: <strong class="text-blue-600">Embedded System</strong> or <strong class="text-green-600">General-Purpose Computer</strong>.</p>
+
+            <div class="category-container">
+                <div class="category-column">
+                    <h4 class="text-blue-600">Embedded System</h4>
+                    <div id="drop-embedded" class="category-drop-zone" data-category="embedded"></div>
+                </div>
+                <div class="category-column">
+                    <h4 class="text-green-600">General-Purpose Computer</h4>
+                    <div id="drop-general" class="category-drop-zone" data-category="general"></div>
+                </div>
+            </div>
+
+            <div id="category-bank" class="category-bank">
+                <span id="cat-item-1" class="category-item" draggable="true" data-correct-category="embedded">Specific purpose / Dedicated function</span>
+                <span id="cat-item-2" class="category-item" draggable="true" data-correct-category="general">Runs many different programs</span>
+                <span id="cat-item-3" class="category-item" draggable="true" data-correct-category="embedded">Built into larger device</span>
+                <span id="cat-item-4" class="category-item" draggable="true" data-correct-category="general">Multitasking capable</span>
+                <span id="cat-item-5" class="category-item" draggable="true" data-correct-category="embedded">Low power consumption / Energy efficient</span>
+                <span id="cat-item-6" class="category-item" draggable="true" data-correct-category="general">Large memory (RAM) needed</span>
+                <span id="cat-item-7" class="category-item" draggable="true" data-correct-category="embedded">Software usually stored in ROM</span>
+                <span id="cat-item-8" class="category-item" draggable="true" data-correct-category="general">Expandable (add peripherals/cards)</span>
+                <span id="cat-item-9" class="category-item" draggable="true" data-correct-category="embedded">Small & Cheap</span>
+            </div>
+
+            <button id="check-cat-btn" class="check-button" onclick="checkCategories()" disabled>Check Categories</button>
+            <div id="category-feedback" class="feedback-area"></div>           
+            <button class="reset-button" onclick="resetCategories()">Reset Task 1</button>
+        </section>
+
+        <section id="task2-examples" class="task-container mb-10">
+            <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-lightbulb mr-2"></i>Task 2: Identify the System Type</h3>
+            <p class="mb-4 text-gray-700">For each device shown, click on the button indicating whether it's primarily an <strong class="text-blue-600">Embedded System</strong> or a <strong class="text-green-600">General-Purpose Computer</strong>.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div class="example-option-container p-3 bg-white rounded shadow">
+                    <img src="https://placehold.co/100x80/f87171/ffffff?text=Washing+Machine" alt="Washing Machine" class="mx-auto mb-2">
+                    <p class="font-semibold mb-2">Washing Machine</p>
+                    <div class="space-x-2 text-center">
+                        <button class="sim-button text-xs !mt-0" onclick="checkExample(this, 'embedded', 'It only performs tasks related to washing clothes.')">Embedded</button>
+                        <button class="sim-button text-xs !mt-0" onclick="checkExample(this, 'general', 'It only performs tasks related to washing clothes.')">General-Purpose</button>
+                    </div>
+                     <div class="example-feedback"></div>
+                </div>
+                 <div class="example-option-container p-3 bg-white rounded shadow">
+                     <img src="https://placehold.co/100x80/60a5fa/ffffff?text=Laptop" alt="Laptop" class="mx-auto mb-2">
+                     <p class="font-semibold mb-2">Laptop</p>
+                     <div class="space-x-2 text-center">
+                         <button class="sim-button text-xs !mt-0" onclick="checkExample(this, 'general', 'It can run many different types of software.')">Embedded</button>
+                         <button class="sim-button text-xs !mt-0" onclick="checkExample(this, 'general', 'It can run many different types of software.')">General-Purpose</button>
+                     </div>
+                      <div class="example-feedback"></div>
+                 </div>
+                 <div class="example-option-container p-3 bg-white rounded shadow">
+                     <img src="https://placehold.co/100x80/34d399/ffffff?text=Traffic+Light" alt="Traffic Light" class="mx-auto mb-2">
+                     <p class="font-semibold mb-2">Traffic Light Controller</p>
+                     <div class="space-x-2 text-center">
+                         <button class="sim-button text-xs !mt-0" onclick="checkExample(this, 'embedded', 'Its only job is to control the light sequence.')">Embedded</button>
+                         <button class="sim-button text-xs !mt-0" onclick="checkExample(this, 'general', 'Its only job is to control the light sequence.')">General-Purpose</button>
+                     </div>
+                      <div class="example-feedback"></div>
+                 </div>
+                 <div class="example-option-container p-3 bg-white rounded shadow">
+                     <img src="https://placehold.co/100x80/facc15/ffffff?text=Smartphone" alt="Smartphone" class="mx-auto mb-2">
+                     <p class="font-semibold mb-2">Smartphone</p>
+                     <div class="space-x-2 text-center">
+                         <button class="sim-button text-xs !mt-0" onclick="checkExample(this, 'general', 'It can run many different apps for various tasks.')">Embedded</button>
+                         <button class="sim-button text-xs !mt-0" onclick="checkExample(this, 'general', 'It can run many different apps for various tasks.')">General-Purpose</button>
+                     </div>
+                      <div class="example-feedback"></div>
+                 </div>
+                 <div class="example-option-container p-3 bg-white rounded shadow">
+                     <img src="https://placehold.co/100x80/a78bfa/ffffff?text=Microwave" alt="Microwave Oven" class="mx-auto mb-2">
+                     <p class="font-semibold mb-2">Microwave Oven</p>
+                      <div class="space-x-2 text-center">
+                         <button class="sim-button text-xs !mt-0" onclick="checkExample(this, 'embedded', 'It is dedicated to controlling cooking functions.')">Embedded</button>
+                         <button class="sim-button text-xs !mt-0" onclick="checkExample(this, 'general', 'It is dedicated to controlling cooking functions.')">General-Purpose</button>
+                     </div>
+                      <div class="example-feedback"></div>
+                 </div>
+                 <div class="example-option-container p-3 bg-white rounded shadow">
+                     <img src="https://placehold.co/100x80/fb923c/ffffff?text=Game+Console" alt="Game Console" class="mx-auto mb-2">
+                     <p class="font-semibold mb-2">Modern Game Console</p>
+                      <div class="space-x-2 text-center">
+                         <button class="sim-button text-xs !mt-0" onclick="checkExample(this, 'general', 'It can play games, stream media, browse web etc.')">Embedded</button>
+                         <button class="sim-button text-xs !mt-0" onclick="checkExample(this, 'general', 'It can play games, stream media, browse web etc.')">General-Purpose</button>
+                     </div>
+                      <div class="example-feedback"></div>
+                 </div>
+            </div>
+             <button class="reset-button" onclick="resetExamples()">Reset Task 2</button>
+        </section>
+
+        <section id="real-world-embedded" class="mb-10">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-car mr-2 text-blue-500"></i> Real-World Connection: Embedded Systems Everywhere</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer">
+                    Read
+                </label>
+            </div>
+            <div class="bg-blue-50 p-5 rounded-lg border border-blue-200 space-y-3">
+                <p class="text-gray-700">You interact with dozens of embedded systems every day, often without realizing it. They are chosen because they are:</p>
+                <ul class="list-disc list-inside space-y-1 text-sm text-blue-800 pl-4 mb-3">
+                    <li><strong>Cost-effective</strong> for mass production.</li>
+                    <li><strong>Reliable</strong> for performing a specific task repeatedly.</li>
+                    <li><strong>Power-efficient</strong>, allowing battery operation or minimal energy use.</li>
+                    <li><strong>Compact</strong> enough to fit inside other devices.</li>
+                </ul>
+                <p class="text-gray-700 font-medium">Consider these examples:</p>
+                <ul class="list-disc list-inside space-y-2 text-blue-800 pl-4">
+                    <li><strong>In a Car:</strong> Engine management unit (ECU), anti-lock braking system (ABS), airbag controller, infotainment system, climate control. Each has a dedicated safety or functional role.</li>
+                    <li><strong>Home Appliances:</strong> Controllers in washing machines, dishwashers, smart thermostats, digital clocks, TVs (for basic functions like channel changing).</li>
+                    <li><strong>Medical Devices:</strong> Pacemakers, digital thermometers, patient monitoring systems. Reliability and real-time response are critical here.</li>
+                    <li><strong>Other Electronics:</strong> Digital cameras (image processing), printers (controlling print heads), routers (managing network traffic).</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="task3-smartwatch" class="task-container mb-10">
+             <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-watch mr-2"></i>Task 3: The Smartwatch Debate</h3>
+             <p class="mb-4 text-gray-700">A smartwatch is an interesting case. It has characteristics of both system types. List arguments for why it could be considered <strong class="text-blue-600">Embedded</strong> and why it could be considered <strong class="text-green-600">General-Purpose</strong>.</p>
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                 <div>
+                     <label for="args-embedded" class="block font-medium text-blue-700 mb-1">Arguments for Embedded:</label>
+                     <textarea id="args-embedded" rows="4" class="w-full p-2 border border-gray-300 rounded-md" placeholder="e.g., Specific health tracking purpose..."></textarea>
+                 </div>
+                 <div>
+                     <label for="args-general" class="block font-medium text-green-700 mb-1">Arguments for General-Purpose:</label>
+                     <textarea id="args-general" rows="4" class="w-full p-2 border border-gray-300 rounded-md" placeholder="e.g., Can install different apps..."></textarea>
+                 </div>
+             </div>
+             <button id="reveal-smartwatch-btn" class="reveal-button" onclick="toggleReveal('smartwatch-points', this, 'Show Comparison Points', 'Hide Comparison Points')" disabled>Show Comparison Points</button>
+             <div id="smartwatch-points" class="reveal-content bg-indigo-50 border-indigo-200">
+                 <h4 class="font-semibold mb-2">Comparison Points:</h4>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                     <div>
+                         <strong class="text-blue-700">Why it's like an Embedded System:</strong>
+                         <ul class="mt-1">
+                             <li>May only perform a small number of tasks well.</li>
+                             <li>Often has a primary specific purpose (e.g., fitness tracking).</li>
+                             <li>Hardware is usually fixed (can't easily add RAM/storage).</li>
+                             <li>May have one main microprocessor integrated.</li>
+                         </ul>
+                     </div>
+                     <div>
+                         <strong class="text-green-700">Why it's like a General-Purpose System:</strong>
+                         <ul class="mt-1">
+                             <li>Often has multiple functions (time, messages, apps, music, payments).</li>
+                             <li>Can sometimes install new apps (software).</li>
+                             <li>Operating system can often be updated.</li>
+                             <li>Can be seen as a self-contained system, not just part of a larger one.</li>
+                         </ul>
+                     </div>
+                 </div>
+             </div>
+        </section>
+
+        <section id="task4-pros-cons" class="task-container mb-10">
+             <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-balance-scale mr-2"></i>Task 4: Pros & Cons Sorting</h3>
+             <p class="mb-4 text-gray-700">Drag each characteristic below into one of the four boxes representing the advantages (Pros) and disadvantages (Cons) of each system type.</p>
+             <div class="pros-cons-container">
+                 <div class="pros-cons-column">
+                     <h4 class="text-blue-600">Embedded - Advantages</h4>
+                     <div id="drop-embed-adv" class="pros-cons-drop-zone" data-category="embed-adv"></div>
+                 </div>
+                 <div class="pros-cons-column">
+                     <h4 class="text-blue-600">Embedded - Disadvantages</h4>
+                     <div id="drop-embed-dis" class="pros-cons-drop-zone" data-category="embed-dis"></div>
+                 </div>
+                 <div class="pros-cons-column">
+                     <h4 class="text-green-600">General-Purpose - Advantages</h4>
+                     <div id="drop-gp-adv" class="pros-cons-drop-zone" data-category="gp-adv"></div>
+                 </div>
+                 <div class="pros-cons-column">
+                     <h4 class="text-green-600">General-Purpose - Disadvantages</h4>
+                     <div id="drop-gp-dis" class="pros-cons-drop-zone" data-category="gp-dis"></div>
+                 </div>
+             </div>
+             <div id="pros-cons-bank" class="category-bank">
+                 <span id="pc-item-1" class="pros-cons-item" draggable="true" data-correct-category="embed-adv">Lower Cost</span>
+                 <span id="pc-item-2" class="pros-cons-item" draggable="true" data-correct-category="gp-adv">Highly Flexible / Many Uses</span>
+                 <span id="pc-item-3" class="pros-cons-item" draggable="true" data-correct-category="embed-adv">Energy Efficient</span>
+                 <span id="pc-item-4" class="pros-cons-item" draggable="true" data-correct-category="gp-adv">Can run complex software</span>
+                 <span id="pc-item-5" class="pros-cons-item" draggable="true" data-correct-category="embed-dis">Limited Functionality</span>
+                 <span id="pc-item-6" class="pros-cons-item" draggable="true" data-correct-category="gp-dis">Requires more RAM/Storage</span>
+                 <span id="pc-item-7" class="pros-cons-item" draggable="true" data-correct-category="gp-adv">Easier to upgrade hardware/software</span>
+                 <span id="pc-item-8" class="pros-cons-item" draggable="true" data-correct-category="embed-adv">Simpler, potentially more reliable</span>
+                 <span id="pc-item-9" class="pros-cons-item" draggable="true" data-correct-category="embed-dis">Difficult to upgrade</span>
+                 <span id="pc-item-10" class="pros-cons-item" draggable="true" data-correct-category="gp-dis">Higher Cost</span>
+             </div>
+             <button id="check-proscons-btn" class="check-button" onclick="checkProsCons()" disabled>Check Pros & Cons</button>
+             <div id="proscons-feedback" class="feedback-area"></div>
+             <button class="reset-button" onclick="resetProsCons()">Reset Task 4</button>
+        </section>
+
+        <section id="common-misconceptions" class="mb-10">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-lightbulb-exclamation mr-2 text-red-500"></i> Myth Busters: Embedded System Misconceptions</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer">
+                    Read
+                </label>
+            </div>
+            <div class="bg-red-50 p-5 rounded-lg border border-red-200 space-y-4">
+                <div class="myth">
+                    <p><strong class="font-semibold text-red-800">Myth 1:</strong> "Embedded systems are always simple and basic."</p>
+                    <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> While some are simple (like those in a toaster), many <span class="keyword">embedded systems<span class="tooltip">Has a specific purpose / it only performs one/few tasks. Built within a larger device. Dedicated hardware/sensors. Has a microprocessor. Built-in operating system... and software (generally) all stored in ROM. … it's instructions does not change/update (generally)</span></span> are incredibly complex. Consider the systems controlling flight surfaces on an airplane, managing anti-lock brakes in a car, or running a medical pacemaker. These require sophisticated hardware and software.</p>
+                </div>
+                <div class="myth border-t border-red-200 pt-4">
+                    <p><strong class="font-semibold text-red-800">Myth 2:</strong> "General-purpose computers are always 'better' than embedded systems."</p>
+                    <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> "Better" depends on the job! For a specific, repetitive task requiring reliability, low cost, and low <span class="keyword">power<span class="tooltip">Embedded systems consume a lot less of this, meaning they can run for a long time on batteries or solar energy.</span></span> consumption, an embedded system is often the superior choice. A <span class="keyword">general-purpose computer<span class="tooltip">A computer that can run many different programs (e.g. a smartphone). The opposite to an embedded system.</span></span> would be overkill, more expensive, and less <span class="keyword">efficient<span class="tooltip">Embedded systems are this, meaning they can use cheaper, low-spec CPUs and less RAM than general-purpose computers, because they are designed to do just one thing well. (Energy efficient)</span></span> for that role.</p>
+                </div>
+                 <div class="myth border-t border-red-200 pt-4">
+                    <p><strong class="font-semibold text-red-800">Myth 3:</strong> "You can easily install new software or upgrade embedded systems."</p>
+                    <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> Most embedded systems are designed with fixed hardware and software stored in <span class="keyword">ROM<span class="tooltip">Read-Only Memory. Non-volatile memory typically used to store firmware or boot instructions.</span></span>. Upgrading them is often difficult or impossible for the end-user, unlike general-purpose computers where installing applications or changing hardware is common.</p>
+                </div>
+            </div>
+        </section>
+
+
+         <section id="task5-fill-blanks" class="task-container mb-10">
+             <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-pen-fancy mr-2"></i>Task 5: Complete the Sentences</h3>
+             <p class="mb-4 text-gray-700">Fill in the missing keywords in the sentences below.</p>
+             <div class="space-y-3 text-gray-800">
+                 <p>1. A system designed for one specific task, often built into a larger device, is called an <span id="fill-1" class="fill-blank" contenteditable="true" data-placeholder="System Type"></span> system.</p>
+                 <p>2. Computers like laptops and smartphones that can run many different programs are <span id="fill-2" class="fill-blank" contenteditable="true" data-placeholder="System Type"></span> computers.</p>
+                 <p>3. Because they have a dedicated function, embedded systems are often very energy <span id="fill-3" class="fill-blank" contenteditable="true" data-placeholder="Characteristic"></span>.</p>
+                 <p>4. The ability to run multiple programs seemingly at the same time is called <span id="fill-4" class="fill-blank" contenteditable="true" data-placeholder="Characteristic"></span>, a feature common in general-purpose systems.</p>
+                 <p>5. Embedded systems often store their software and OS in <span id="fill-5" class="fill-blank" contenteditable="true" data-placeholder="Memory Type"></span> because it doesn't usually need changing.</p>
+                 <p>6. A dishwasher or traffic light controller is an example of a <span id="fill-6" class="fill-blank" contenteditable="true" data-placeholder="System Type"></span> system within an embedded device.</p>
+             </div>
+             <button id="check-fillblanks-t5-btn" class="check-button" onclick="checkFillBlanksTask5()" disabled>Check Blanks</button>
+             <div id="fill-blanks-feedback" class="feedback-area"></div> 
+             <button class="reset-button" onclick="resetFillBlanksTask5()">Reset Task 5</button>
+
+        </section>
+
+        <section id="quiz" class="task-container mb-10">
+            <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-question-circle mr-2"></i>Task 6: Check Your Knowledge Quiz</h3>
+            <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
+                 <div class="flex justify-between items-center mb-4">
+                    <p class="text-lg font-medium text-purple-800">System Type Quiz</p>
+                    <p class="text-lg font-semibold text-purple-800">Score: <span id="score">0</span> / <span id="total-questions">0</span></p>
+                </div>
+                <div id="quiz-questions">
+                    </div>
+                <button id="reset-quiz-btn" class="mt-6 px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition duration-200 hidden">Reset Task 6</button>
+            </div>
+        </section>
+
+         <section id="task7-exam-practice" class="task-container mb-10">
+             <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-graduation-cap mr-2"></i>Task 7: Exam Practice Questions</h3>
+             <p class="mb-4 text-gray-700">Answer these exam-style questions. Use the 'Show Mark Scheme' button to check your understanding against the key points.</p>
+
+             <div class="exam-question mb-6 p-4 bg-white rounded border border-gray-200" data-marks="2">
+                <p class="mb-3 font-medium text-gray-800">1. Define what is meant by an 'embedded system'. [2 marks]</p>
+                <textarea id="exam-q-define" data-button-id="show-ms-define-btn" class="exam-answer-textarea w-full p-2 border border-gray-300 rounded-md" placeholder="Type your definition here..." rows="3"></textarea>
+                <div class="exam-controls mt-2 flex items-center space-x-4">
+                    <div>
+                        <label for="self-assess-q1" class="text-sm text-gray-600">My predicted marks:</label>
+                        <input type="number" id="self-assess-q1" class="self-assess-input w-20 p-1 border border-gray-300 rounded" min="0" />
+                    </div>
+                    <button id="show-ms-define-btn" class="toggle-mark-scheme-btn mark-scheme-button" data-mark-scheme-id="ms-define" disabled>Show Mark Scheme</button>
+                </div>
+                <div id="ms-define" class="mark-scheme hidden">
+
+
+                    <p><strong>Mark Scheme (Define Embedded System):</strong></p>
+                    <ul>
+                        <li>Has a specific purpose / performs one or few tasks (1 mark)</li>
+                        <li>Built within a larger device/system (1 mark)</li>
+                        <li>(Accept other valid points like: Dedicated hardware, microprocessor, software in ROM, instructions don't change)</li>
+                    </ul>
+                    <p class="text-xs italic mt-1">(Max 2 marks)</p>
+                </div>
+            </div>
+
+            <div class="exam-question mb-6 p-4 bg-white rounded border border-gray-200" data-marks="2">
+                 <textarea id="exam-q-chars" data-button-id="show-ms-chars-btn" class="exam-answer-textarea w-full p-2 border border-gray-300 rounded-md" placeholder="List two different characteristics..." rows="3"></textarea>
+                 <div class="exam-controls mt-2 flex items-center space-x-4">
+                    <div>
+                        <label for="self-assess-q2" class="text-sm text-gray-600">My predicted marks:</label>
+                        <input type="number" id="self-assess-q2" class="self-assess-input w-20 p-1 border border-gray-300 rounded" min="0" />
+                    </div>
+                    <button id="show-ms-chars-btn" class="toggle-mark-scheme-btn mark-scheme-button" data-mark-scheme-id="ms-chars" disabled>Show Mark Scheme</button>
+                </div>
+                 <div id="ms-chars" class="mark-scheme hidden">
+
+
+                     <p><strong>Mark Scheme (Characteristics):</strong></p>
+                     <p>Award 1 mark for each valid characteristic, up to 2 marks. Examples:</p>
+                     <ul>
+                         <li>Dedicated function / Specific purpose (vs. runs many programs)</li>
+                         <li>Small size (vs. larger)</li>
+                         <li>Lower cost / Cheap (vs. more expensive)</li>
+                         <li>Energy efficient / Low power (vs. higher power consumption)</li>
+                         <li>Limited memory / RAM (vs. large memory)</li>
+                         <li>Not easily expandable / Fixed hardware (vs. expandable)</li>
+                         <li>Cannot multitask (vs. can multitask)</li>
+                         <li>Software often in ROM / Not easily updated (vs. software installed/updated)</li>
+                     </ul>
+                      <p class="text-xs italic mt-1">(Max 2 marks)</p>
+                 </div>
+            </div>
+
+             <div class="exam-question p-4 bg-white rounded border border-gray-200" data-marks="2">
+                 <textarea id="exam-q-example" data-button-id="show-ms-example-btn" class="exam-answer-textarea w-full p-2 border border-gray-300 rounded-md" placeholder="Give an example and explain..." rows="3"></textarea>
+                 <div class="exam-controls mt-2 flex items-center space-x-4">
+                    <div>
+                        <label for="self-assess-q3" class="text-sm text-gray-600">My predicted marks:</label>
+                        <input type="number" id="self-assess-q3" class="self-assess-input w-20 p-1 border border-gray-300 rounded" min="0" />
+                    </div>
+                    <button id="show-ms-example-btn" class="toggle-mark-scheme-btn mark-scheme-button" data-mark-scheme-id="ms-example" disabled>Show Mark Scheme</button>
+                </div>
+                 <div id="ms-example" class="mark-scheme hidden">
+
+
+                     <p><strong>Mark Scheme (Example):</strong></p>
+                     <ul>
+                         <li>Correct example (e.g., washing machine, microwave, traffic lights, dishwasher controller) (1 mark)</li>
+                         <li>Valid reason linked to definition (e.g., performs only specific tasks related to washing clothes, built into the appliance, cannot run other software) (1 mark)</li>
+                     </ul>
+                      <p class="text-xs italic mt-1">(Max 2 marks)</p>
+                 </div>
+            </div>
+        </section>
+
+         <section id="final-score-section" class="task-container mb-10 text-center">
+             <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-trophy mr-2"></i>Lesson Score</h3>
+             <p class="mb-4 text-gray-700">Click the button below to calculate your total score for the interactive tasks.</p>
+             <button id="calculate-score-btn" class="final-button" onclick="calculateTotalScore()">Calculate Final Score</button>
+                          <button id="export-pdf-btn" class="export-pdf-button no-print" onclick="exportToPDF()">Export to PDF</button>
+
+             <button id="reset-all-btn" class="reset-button" onclick="resetAllTasks()">Reset All Tasks</button>
+             <div id="final-score-area" class="mt-4">
+                 <div id="final-score-display"></div>
+                 <div id="final-score-feedback"></div>
+             </div>
+         </section>
+
+         <section id="key-takeaways" class="mb-10">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-key mr-2"></i>Key Takeaways</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer">
+                    Read
+                </label>
+            </div>
+            <!-- Removed reveal button -->
+            <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-300 space-y-2 show"> <!-- Restored space-y-2, added show class, removed ID and reveal-content -->
+                <ul class="list-disc list-inside space-y-1 text-yellow-800">
+                    <li><strong class="font-semibold">Embedded Systems:</strong> Computers built into larger devices with a <span class="keyword">dedicated<span class="tooltip">Having a single purpose or function, not general purpose. Embedded systems are this.</span></span> function (e.g., microwave, traffic light controller). They are typically <span class="keyword">small<span class="tooltip">The relative size of embedded systems, compared to general purpose computers.</span></span>, <span class="keyword">cheap<span class="tooltip">The cost of an embedded system compared to a general purpose computer.</span></span>, and energy <span class="keyword">efficient<span class="tooltip">Embedded systems are this, meaning they can use cheaper, low-spec CPUs and less RAM than general-purpose computers, because they are designed to do just one thing well. (Energy efficient)</span></span>.</li>
+                    <li><strong class="font-semibold">General-Purpose Computers:</strong> Designed to run many different applications (e.g., laptop, smartphone). They are flexible, capable of <span class="keyword">multitasking<span class="tooltip">Running more than one program at once. General purpose computers can do this, embedded systems cannot.</span></span>, and often expandable, but usually cost more and use more <span class="keyword">power<span class="tooltip">Embedded systems consume a lot less of this, meaning they can run for a long time on batteries or solar energy.</span></span>.</li>
+                    <li><strong class="font-semibold">Key Differences:</strong> Focus on purpose (specific vs. varied), hardware flexibility (fixed vs. expandable), software (ROM vs. installable), and resource usage (low vs. high).</li>
+                    <li><strong class="font-semibold">Examples:</strong> Washing machines and engine management systems are embedded; PCs and tablets are general-purpose.</li>
+                    <li><strong class="font-semibold">Blurred Lines:</strong> Some modern devices like smartwatches exhibit characteristics of both types.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="related-videos" class="mb-10">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-video mr-2 text-purple-500"></i> Related Videos</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer">
+                    Read
+                </label>
+            </div>
+            <div class="bg-purple-50 p-5 rounded-lg border border-purple-200 space-y-4">
+                <p class="text-gray-700">Watch these videos to reinforce your understanding of embedded and general-purpose systems:</p>
+                <ul class="list-disc list-inside space-y-3 text-purple-800 pl-4">
+                    <li>
+                        <strong>Embedded Systems Explained</strong>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/WR242RfnsIo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <div class="mt-2">
+                            <textarea class="w-full p-2 border border-purple-300 rounded-md text-sm bg-white" rows="3" placeholder="Optional: Add any additional notes from this video..."></textarea>
+                        </.div>
+
+
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+         <section id="next-steps">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600">What's Next?</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer">
+                    Read
+                </label>
+            </div>
+            <div class="bg-teal-50 p-5 rounded-lg border border-teal-300">
+                <p class="text-teal-800 font-medium">
+                    You can now distinguish between embedded and general-purpose systems!
+                </p>
+                <p class="text-teal-700 mt-2">
+                    Next, we'll look at:
+                </p>
+                <ul class="list-disc list-inside space-y-1 text-teal-700 mt-3 pl-4">
+                     <li>Memory and Storage types (Spec 1.2).</li>
+                </ul>
+            </div>
+        </section>
+
+
+        <section id="extension-rtos" class="task-container mb-10">
+            <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-stopwatch-20 mr-2 text-orange-500"></i>Extension 1: Real-Time Operating Systems (RTOS)</h3>
+            <p class="mb-4 text-gray-700">Many embedded systems need to respond to events within a guaranteed timeframe (e.g., car braking systems, medical devices). They often use a special type of OS called a <strong class="text-orange-700">Real-Time Operating System (RTOS)</strong>.</p>
+            <p class="mb-4 text-gray-700">Unlike general-purpose OS (like Windows or macOS) which prioritize overall throughput, RTOS prioritize predictable timing (<span class="keyword">determinism<span class="tooltip">In computing, refers to a system where the same input will always produce the same output, and crucially for RTOS, within a predictable timeframe.</span></span>).</p>
+            <div class="bg-orange-50 p-4 rounded border border-orange-200">
+                <p class="font-semibold text-orange-800 mb-2">Research Task:</p>
+                <ul class="list-disc list-inside text-orange-700 text-sm space-y-1 mb-3">
+                    <li>Find two examples of specific RTOS software (e.g., FreeRTOS, QNX).</li>
+                    <li>What are 1-2 key features or concepts associated with RTOS (e.g., task scheduling, interrupt handling)?</li>
+                </ul>
+                <label for="rtos-research" class="block text-sm font-medium text-gray-700 mb-1">Jot down your findings:</label>
+                <textarea id="rtos-research" rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Examples of RTOS? Key features?"></textarea>
+            </div>
+        </section>
+
+        <section id="extension-microcontroller" class="task-container mb-10">
+            <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-microchip mr-2 text-yellow-500"></i>Extension 2: Microcontrollers vs. Microprocessors</h3>
+            <p class="mb-4 text-gray-700">Embedded systems often use <strong class="text-yellow-700">microcontrollers</strong> rather than the <strong class="text-yellow-700">microprocessors</strong> found in general-purpose computers.</p>
+            <ul class="list-disc list-inside text-gray-700 space-y-1 mb-4 text-sm">
+                <li>A <strong class="font-semibold">Microprocessor</strong> (like the CPU in your laptop) contains the core processing units (CU, ALU, registers) but needs separate chips for RAM, storage interface, and other peripherals.</li>
+                <li>A <strong class="font-semibold">Microcontroller</strong> is a "computer on a chip". It integrates a simpler CPU core *along with* small amounts of RAM, ROM/Flash memory, and input/output interfaces all on a single integrated circuit. Think of devices like Arduino or Raspberry Pi Pico.</li>
+            </ul>
+             <div class="bg-yellow-50 p-4 rounded border border-yellow-200">
+                <p class="font-semibold text-yellow-800 mb-2">Research Task:</p>
+                 <ul class="list-disc list-inside text-yellow-700 text-sm space-y-1 mb-3">
+                     <li>Look up the <strong class="text-yellow-900">Arduino Uno</strong> (uses an ATmega328P microcontroller). What components are integrated onto its chip besides the CPU core?</li>
+                     <li>Compare this to a typical desktop CPU (like the Ryzen 7 5700G from the previous lesson) - what does the desktop CPU *not* have integrated directly on the main CPU chip?</li>
+                 </ul>
+                <label for="mcu-research" class="block text-sm font-medium text-gray-700 mb-1">Jot down your findings:</label>
+                <textarea id="mcu-research" rows="4" class="w-full p-2 border border-yellow-300 rounded-md bg-white" placeholder="What's on the Arduino chip? What's separate on a desktop CPU?"></textarea>
+            </div>
+        </section>
+
+    </div>
+
+
+    <script src="/js/worksheet-common.js"></script>
+    <script src="/js/gcse-sysarch-embedded.js"></script>
+</body>
+</html>

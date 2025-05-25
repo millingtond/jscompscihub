@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCSE CS Lesson: Legislation in Computer Science - DPA, CMA, CDPA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    
+<link rel="stylesheet" href="css/style.css">
+</head>
+<nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <a href="home.html" class="text-xl font-bold hover:text-gray-300 transition-colors">MGS CS Hub</a>
+        <ul class="flex space-x-3 lg:space-x-4">
+        </ul>
+        <ul class="flex flex-wrap space-x-2 sm:space-x-3 lg:space-x-4 text-sm sm:text-base">
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 7</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 8</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 9</a></li>
+            <li><a href="gcse.html" class="hover:text-gray-300 transition-colors">GCSE</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">A Level</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Competitions</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">CS News</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Extracurricular</a></li>
+        </ul>
+    </div>
+</nav>
+
+\1
+
+
+
+    <div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-lg shadow-xl">
+
+        <a href="mgsgcse16.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 group no-print">
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left w-5 h-5 mr-2 transition-transform duration-200 group-hover:-translate-x-1"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+            Back to Ethical, Legal, Cultural & Environmental Concerns
+        </a>
+
+        <header class="mb-8 border-b pb-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-2">Navigating the Digital Rulebook: Key UK Computing Legislation</h1>
+            <p class="text-lg text-gray-600">OCR GCSE Computer Science (J277) - Component 1.6: Legal Concerns</p>
+        </header>
+
+        <main class="space-y-8 md:space-y-12">
+
+            <section id="starter-activity" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-gavel mr-2 text-yellow-500"></i> Starter Activity (5 mins)</h2>
+                <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-200 space-y-4">
+                    <p class="font-semibold text-yellow-800">Laws in the Digital World...</p>
+                    <div class="space-y-3">
+                        <div>
+                            <label for="starter-q1-why-laws" class="block text-sm font-medium text-yellow-700">1. Why do you think specific laws are needed for computers and the internet, in addition to general laws?</label>
+                            <textarea id="starter-q1-why-laws" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" placeholder="e.g., New types of crime, protecting data..."></textarea>
+                        </div>
+                        <div>
+                            <label for="starter-q2-protect" class="block text-sm font-medium text-yellow-700">2. What kind of things related to computers or online activity do you think laws should protect?</label>
+                            <textarea id="starter-q2-protect" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" placeholder="e.g., Personal information, creative work..."></textarea>
+                        </div>
+                         <div>
+                            <label for="starter-q3-illegal" class="block text-sm font-medium text-yellow-700">3. Can you think of any actions using a computer that are, or should be, illegal?</label>
+                            <textarea id="starter-q3-illegal" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" placeholder="e.g., Stealing passwords..."></textarea>
+                        </div>
+                    </div>
+                    <button class="reveal-button !bg-yellow-500 hover:!bg-yellow-600 no-print" onclick="toggleReveal('starter-answers-feedback', this, 'Reveal Discussion Points', 'Hide Discussion Points')">Reveal Discussion Points</button>
+                    <div id="starter-answers-feedback" class="feedback-area !bg-yellow-100 !border-yellow-300 !text-yellow-700">
+                        <p><strong>Discussion Points:</strong></p>
+                        <ul class="list-disc list-inside">
+                            <li>1. Specific laws are needed because technology creates new opportunities for crime (e.g., hacking, data theft) and new ways personal information can be misused. General laws might not adequately cover these digital scenarios.</li>
+                            <li>2. Laws should protect: personal data/privacy, original creative work (software, music, films), against unauthorized access to systems, against the creation and spread of harmful software (malware).</li>
+                            <li>3. Illegal actions: Hacking into someone's account, spreading viruses, illegally downloading copyrighted movies or music, stealing personal data, online fraud.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="lesson-outcomes" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-bullseye mr-2 text-green-500"></i> Lesson Outcomes</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-green-50 p-5 rounded-lg border border-green-200">
+                    <p class="font-semibold text-green-800 mb-3">By the end of this lesson, you should be able to:</p>
+                    <ul class="list-disc list-inside space-y-2 text-green-700 pl-4">
+                        <li>State the purpose of the <span class="keyword">Data Protection Act (DPA)<span class="tooltip">UK law governing the processing of personal data. It sets out principles for how organisations must handle individuals' information. (Often refers to DPA 2018 which incorporates GDPR).</span></span>.</li>
+                        <li>Describe key principles and rights under the DPA (e.g., data accuracy, purpose limitation, right to access).</li>
+                        <li>Identify actions that would infringe the DPA.</li>
+                        <li>State the purpose of the <span class="keyword">Computer Misuse Act (CMA)<span class="tooltip">UK law making it illegal to gain unauthorised access to computer systems, to computer material with intent to commit further offences, or to modify computer material without authorisation. Also covers making/supplying malware.</span></span>.</li>
+                        <li>Describe the main offences under the CMA (e.g., unauthorised access, unauthorised modification).</li>
+                        <li>Identify actions that would infringe the CMA.</li>
+                        <li>State the purpose of the <span class="keyword">Copyright, Designs and Patents Act (CDPA)<span class="tooltip">UK law protecting intellectual property rights for creators of original literary, artistic, musical, dramatic works, software, films, and sound recordings.</span></span>.</li>
+                        <li>Describe what <span class="keyword">copyright<span class="tooltip">A legal right granting the creator of an original work exclusive rights to its use and distribution, usually for a limited time.</span></span> protects and identify actions that infringe copyright.</li>
+                        <li>Understand the concept of <span class="keyword">Creative Commons<span class="tooltip">A licensing framework that allows creators to grant public permission to share and use their work on conditions of their choice, offering alternatives to traditional 'all rights reserved' copyright.</span></span> licensing.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="intro-legislation" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-book-reader mr-2"></i> Introduction: Why Laws for Tech?</h2>
+                     <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-indigo-50 p-5 rounded-lg border border-indigo-200 space-y-3">
+                    <p>As technology becomes more integrated into our lives, laws are essential to protect individuals, businesses, and society from harm and unfair practices. These laws define what is acceptable and unacceptable behaviour in the digital realm, covering areas from how our personal information is handled to the protection of creative works and the security of computer systems.</p>
+                    <p>In the UK, several key pieces of legislation are particularly relevant to computer science. We will focus on three main ones:
+                        <ul class="list-disc list-inside ml-5">
+                            <li><strong>The Data Protection Act (DPA) 2018</strong> (which incorporates the EU's GDPR)</li>
+                            <li><strong>The Computer Misuse Act 1990</strong></li>
+                            <li><strong>The Copyright, Designs and Patents Act 1988</strong></li>
+                        </ul>
+                    </p>
+                    <p>Understanding these acts is crucial for anyone using or developing technology. Hover over <span class="keyword">keywords<span class="tooltip">This is an example tooltip!</span></span> for definitions.</p>
+                </div>
+            </section>
+
+            <section id="dpa-section" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-user-shield mr-2 text-sky-500"></i>The Data Protection Act (DPA) 2018 / GDPR</h2>
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-semibold text-sky-700">Purpose and Principles</h3>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-sky-50 p-4 rounded-lg border border-sky-200 mb-6">
+                    <p>The <strong class="keyword">Data Protection Act (DPA) 2018<span class="tooltip">UK law governing the processing of personal data. It sets out principles for how organisations must handle individuals' information. (Often refers to DPA 2018 which incorporates GDPR).</span></span> is the UK's implementation of the General Data Protection Regulation (GDPR). It controls how your <span class="keyword">personal data<span class="tooltip">Information relating to an identifiable living individual. Examples include name, address, email, medical records, online identifiers.</span></span> is used by organisations, businesses, or the government.</p>
+                    <p class="mt-2"><strong>Key Principles of Data Protection (summarised):</strong></p>
+                    <ul class="list-disc list-inside ml-4 space-y-1 text-sm">
+                        <li><strong>Lawfulness, fairness and transparency:</strong> Data must be processed lawfully, fairly, and in a transparent manner.</li>
+                        <li><strong>Purpose limitation:</strong> Data must be collected for specified, explicit, and legitimate purposes.</li>
+                        <li><strong>Data minimisation:</strong> Data collected must be adequate, relevant, and limited to what is necessary.</li>
+                        <li><strong>Accuracy:</strong> Data must be accurate and, where necessary, kept up to date.</li>
+                        <li><strong>Storage limitation:</strong> Data must be kept in a form which permits identification of data subjects for no longer than is necessary.</li>
+                        <li><strong>Integrity and confidentiality (security):</strong> Data must be processed in a manner that ensures appropriate security.</li>
+                        <li><strong>Accountability:</strong> The <span class="keyword">data controller<span class="tooltip">A person or organisation that determines the purposes and means of processing personal data.</span></span> is responsible for, and must be able to demonstrate, compliance with these principles.</li>
+                    </ul>
+                    <p class="mt-2">Individuals also have rights, such as the right to access their data, the right to have inaccuracies corrected, and the right to have data erased in certain circumstances.</p>
+                </div>
+
+                <div id="task-dpa-scenarios" class="quiz-item mb-6" data-points="4">
+                    <h3 class="text-lg font-medium text-gray-700 mb-2">Task 1.1: DPA Infringement Spotter (Max 4 points)</h3>
+                    <p class="text-sm text-gray-600 mb-2">For each scenario, decide if it's likely a breach of the DPA. (1 point per correct identification)</p>
+                    <div class="space-y-3">
+                        <div class="scenario-box">
+                            <p><strong>Scenario A:</strong> A company sells its customer email list to a marketing firm without informing customers or getting their consent.</p>
+                            <select class="dpa-scenario-select"> <option value="">Is this a DPA breach?</option> <option value="yes">Yes</option> <option value="no">No</option> </select>
+                            <div class="feedback mt-1"></div>
+                        </div>
+                        <div class="scenario-box">
+                            <p><strong>Scenario B:</strong> A school securely stores student exam results on its password-protected server, accessible only by authorized staff for educational purposes.</p>
+                            <select class="dpa-scenario-select"> <option value="">Is this a DPA breach?</option> <option value="yes">Yes</option> <option value="no">No</option> </select>
+                            <div class="feedback mt-1"></div>
+                        </div>
+                        <div class="scenario-box">
+                            <p><strong>Scenario C:</strong> An online shop stores customer credit card details in a plain text file on a publicly accessible web server.</p>
+                            <select class="dpa-scenario-select"> <option value="">Is this a DPA breach?</option> <option value="yes">Yes</option> <option value="no">No</option> </select>
+                            <div class="feedback mt-1"></div>
+                        </div>
+                        <div class="scenario-box">
+                            <p><strong>Scenario D:</strong> You request a copy of the personal data a company holds about you, and they provide it within one month, free of charge.</p>
+                            <select class="dpa-scenario-select"> <option value="">Is this a DPA breach?</option> <option value="yes">Yes</option> <option value="no">No</option> </select>
+                            <div class="feedback mt-1"></div>
+                        </div>
+                    </div>
+                    <button class="check-button no-print !mt-2" onclick="checkDPAScenarios()">Check DPA Scenarios</button>
+                </div>
+            </section>
+
+            <section id="cma-section" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-user-secret mr-2 text-red-500"></i>The Computer Misuse Act (CMA) 1990</h2>
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-semibold text-red-700">Purpose and Offences</h3>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-red-50 p-4 rounded-lg border border-red-200 mb-6">
+                    <p>The <strong class="keyword">Computer Misuse Act (CMA) 1990<span class="tooltip">UK law making it illegal to gain unauthorised access to computer systems, to computer material with intent to commit further offences, or to modify computer material without authorisation. Also covers making/supplying malware.</span></span> was introduced to deal with the problem of <span class="keyword">hacking<span class="tooltip">The act of gaining unauthorised access to computer systems or networks.</span></span> and other forms of computer misuse.</p>
+                    <p class="mt-2"><strong>Main Offences under the CMA:</strong></p>
+                    <ul class="list-disc list-inside ml-4 space-y-1 text-sm">
+                        <li><strong>Section 1: Unauthorised access to computer material.</strong> This covers basic hacking, like guessing a password to log into someone else's account without permission, even if nothing is changed or stolen.</li>
+                        <li><strong>Section 2: Unauthorised access with intent to commit or facilitate commission of further offences.</strong> This is more serious, e.g., hacking into a system with the intention of stealing data or committing fraud.</li>
+                        <li><strong>Section 3: Unauthorised acts with intent to impair, or with recklessness as to impairing, operation of computer, etc.</strong> This covers actions like deleting or corrupting files, or introducing <span class="keyword">malware<span class="tooltip">Malicious software designed to disrupt, damage, or gain unauthorized access to a computer system (e.g., viruses, worms, ransomware, spyware).</span></span> (like viruses or worms) that damages or disrupts a system.</li>
+                        <li><strong>Section 3ZA: Unauthorised acts causing, or creating risk of, serious damage.</strong> This covers acts that endanger human welfare or national security.</li>
+                        <li><strong>Section 3A: Making, supplying or obtaining articles for use in offence under section 1 or 3.</strong> This makes it illegal to create, distribute, or possess tools (like malware creation kits or hacking software) intended for committing CMA offences.</li>
+                    </ul>
+                </div>
+
+                <div id="task-cma-scenarios" class="quiz-item mb-6" data-points="4">
+                    <h3 class="text-lg font-medium text-gray-700 mb-2">Task 2.1: CMA Offence Identifier (Max 4 points)</h3>
+                    <p class="text-sm text-gray-600 mb-2">For each scenario, identify which main section of the Computer Misuse Act has most likely been breached. (1 point per correct identification)</p>
+                    <div class="space-y-3">
+                        <div class="scenario-box">
+                            <p><strong>Scenario A:</strong> An employee guesses their manager's password and reads their private emails out of curiosity, without changing anything.</p>
+                            <select class="cma-scenario-select"> <option value="">Select CMA Section...</option> <option value="s1">Section 1</option> <option value="s2">Section 2</option> <option value="s3">Section 3</option> <option value="s3a">Section 3A</option></select>
+                            <div class="feedback mt-1"></div>
+                        </div>
+                        <div class="scenario-box">
+                            <p><strong>Scenario B:</strong> A student writes and distributes a computer virus that deletes files on infected computers.</p>
+                            <select class="cma-scenario-select"> <option value="">Select CMA Section...</option> <option value="s1">Section 1</option> <option value="s2">Section 2</option> <option value="s3">Section 3 (or 3A)</option> <option value="s3a">Section 3A (or 3)</option></select>
+                            <div class="feedback mt-1"></div>
+                        </div>
+                        <div class="scenario-box">
+                            <p><strong>Scenario C:</strong> A hacker breaks into a bank's computer system to transfer funds illegally to their own account.</p>
+                            <select class="cma-scenario-select"> <option value="">Select CMA Section...</option> <option value="s1">Section 1</option> <option value="s2">Section 2</option> <option value="s3">Section 3</option> <option value="s3a">Section 3A</option></select>
+                            <div class="feedback mt-1"></div>
+                        </div>
+                         <div class="scenario-box">
+                            <p><strong>Scenario D:</strong> Someone creates and sells software designed to help others guess passwords for social media accounts.</p>
+                            <select class="cma-scenario-select"> <option value="">Select CMA Section...</option> <option value="s1">Section 1</option> <option value="s2">Section 2</option> <option value="s3">Section 3</option> <option value="s3a">Section 3A</option></select>
+                            <div class="feedback mt-1"></div>
+                        </div>
+                    </div>
+                    <button class="check-button no-print !mt-2" onclick="checkCMAScenarios()">Check CMA Scenarios</button>
+                </div>
+            </section>
+
+            <section id="cdpa-section" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-copyright mr-2 text-emerald-500"></i>The Copyright, Designs and Patents Act (CDPA) 1988</h2>
+                 <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-semibold text-emerald-700">Protecting Creative Work</h3>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-emerald-50 p-4 rounded-lg border border-emerald-200 mb-6">
+                    <p>The <strong class="keyword">Copyright, Designs and Patents Act (CDPA) 1988<span class="tooltip">UK law protecting intellectual property rights for creators of original literary, artistic, musical, dramatic works, software, films, and sound recordings.</span></span> gives creators of literary, dramatic, musical, and artistic works, sound recordings, broadcasts, films, and typographical arrangements of published editions, the right to control the ways in which their material may be used.</p>
+                    <p class="mt-2"><strong class="keyword">Copyright<span class="tooltip">A legal right granting the creator of an original work exclusive rights to its use and distribution, usually for a limited time.</span></span> is an automatic right; creators don't need to register it. It protects the expression of an idea, not the idea itself. This means you can't copy someone's software code, song, or book chapter without permission, but you can write your own software that does a similar thing, or write your own song about a similar topic.</p>
+                    <p class="mt-2"><strong>What it covers:</strong> Software (code), website content, music, films, books, photographs, video games, etc.</p>
+                    <p class="mt-2"><strong>Infringements include:</strong> Making copies without permission, sharing copyrighted material illegally (e.g., peer-to-peer file sharing of movies), using someone else's images or music in your own work without a license or permission.</p>
+                    <p class="mt-2"><strong class="keyword">Creative Commons<span class="tooltip">A licensing framework that allows creators to grant public permission to share and use their work on conditions of their choice, offering alternatives to traditional 'all rights reserved' copyright.</span></span> is a licensing system that allows creators to let others use their work under certain conditions, offering more flexibility than traditional "all rights reserved" copyright.</p>
+                </div>
+
+                <div id="task-cdpa-scenarios" class="quiz-item mb-6" data-points="4">
+                    <h3 class="text-lg font-medium text-gray-700 mb-2">Task 3.1: CDPA Infringement? Yes or No (Max 4 points)</h3>
+                    <p class="text-sm text-gray-600 mb-2">Is the following action likely an infringement of the CDPA? (1 point per correct identification)</p>
+                    <div class="space-y-3">
+                        <div class="scenario-box">
+                            <p><strong>Scenario A:</strong> Using a picture you found on Google Images as your company logo without checking its license or getting permission.</p>
+                            <select class="cdpa-scenario-select"> <option value="">Infringement?</option> <option value="yes">Yes</option> <option value="no">No</option> </select>
+                            <div class="feedback mt-1"></div>
+                        </div>
+                        <div class="scenario-box">
+                            <p><strong>Scenario B:</strong> Buying a music album and making a copy for your friend to listen to.</p>
+                            <select class="cdpa-scenario-select"> <option value="">Infringement?</option> <option value="yes">Yes</option> <option value="no">No</option> </select>
+                            <div class="feedback mt-1"></div>
+                        </div>
+                        <div class="scenario-box">
+                            <p><strong>Scenario C:</strong> Writing a book review and quoting a short paragraph from the book for criticism, with attribution.</p>
+                            <select class="cdpa-scenario-select"> <option value="">Infringement?</option> <option value="yes">Yes</option> <option value="no">No</option> </select>
+                            <div class="feedback mt-1"></div>
+                        </div>
+                        <div class="scenario-box">
+                            <p><strong>Scenario D:</strong> Downloading a piece of software that is explicitly offered for free under a Creative Commons license that permits sharing.</p>
+                            <select class="cdpa-scenario-select"> <option value="">Infringement?</option> <option value="yes">Yes</option> <option value="no">No</option> </select>
+                            <div class="feedback mt-1"></div>
+                        </div>
+                    </div>
+                    <button class="check-button no-print !mt-2" onclick="checkCDPAScenarios()">Check CDPA Scenarios</button>
+                </div>
+            </section>
+            
+            <section id="real-world-legislation" class="task-container">
+                <div class="flex justify-between items-center mb-4">
+                   <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-landmark mr-2 text-blue-500"></i> Real-World Application of These Laws</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                       <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                   </label>
+               </div>
+               <div class="bg-blue-50 p-5 rounded-lg border border-blue-200 space-y-3">
+                   <p class="text-gray-700">These laws have a daily impact on how we use technology:</p>
+                   <ul class="list-disc list-inside space-y-2 text-blue-800 pl-4">
+                       <li><strong>Data Protection Act:</strong> When you sign up for a website, it must tell you how your data will be used (privacy policy) and get your consent for things like marketing emails. You have the right to see data companies hold on you. Companies must protect your data from breaches.</li>
+                       <li><strong>Computer Misuse Act:</strong> Trying to log into someone else's social media, email, or bank account without permission is illegal. Creating or spreading viruses, or DDoSing a website are also offences.</li>
+                       <li><strong>Copyright, Designs and Patents Act:</strong> You can't legally download movies from pirate sites or copy your friend's purchased software. Using images from the internet for your own commercial project without permission can lead to legal trouble. Software developers own the copyright to their code.</li>
+                   </ul>
+               </div>
+           </section>
+
+           <section id="myth-busters-legislation" class="task-container">
+                <div class="flex justify-between items-center mb-4">
+                   <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-question-circle mr-2 text-red-500"></i> Legislation Myth Busters!</h2>
+                   <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                       <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                   </label>
+               </div>
+               <div class="bg-red-50 p-5 rounded-lg border border-red-200 space-y-4">
+                   <div>
+                       <p><strong class="font-semibold text-red-800">Myth 1:</strong> "If it's on the internet, it's free to use for anything."</p>
+                       <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> Most content on the internet (images, text, music, videos) is protected by <span class="keyword">copyright<span class="tooltip">A legal right granting the creator of an original work exclusive rights to its use and distribution, usually for a limited time.</span></span>. Just because you can access it doesn't mean you have the right to copy, distribute, or use it commercially without permission or a proper license (like Creative Commons).</p>
+                   </div>
+                   <div class="border-t border-red-200 pt-4">
+                       <p><strong class="font-semibold text-red-800">Myth 2:</strong> "The Computer Misuse Act only applies to serious 'hackers' attacking big companies."</p>
+                       <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> The CMA applies to any <span class="keyword">unauthorised access<span class="tooltip">Gaining access to a computer system, program, or data without permission from the owner or a legitimate user.</span></span> to computer material, even if it's just looking at someone's files without permission on a shared computer or guessing a friend's social media password. The intent and level of harm affect the severity of the offence, but the act itself can still be illegal.</p>
+                   </div>
+                   <div class="border-t border-red-200 pt-4">
+                       <p><strong class="font-semibold text-red-800">Myth 3:</strong> "The Data Protection Act means companies can never share my data."</p>
+                       <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> The DPA regulates *how* personal data is processed. Companies can share your data if they have a lawful basis to do so (e.g., you've given explicit consent, it's necessary for a contract, or there's a legal obligation). The key is that it must be done lawfully, fairly, transparently, and for specified purposes.</p>
+                   </div>
+               </div>
+           </section>
+
+            <section id="exam-practice-legislation" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-graduation-cap mr-2"></i>Task 4: Exam Practice Questions</h2>
+                <p class="text-gray-600 mb-6">Apply your knowledge to these exam-style questions.</p>
+                <div class="space-y-6">
+                    <div class="exam-question-item">
+                        <p class="font-medium text-gray-800 mb-2">1. A company stores customer data insecurely, leading to a data breach where personal details are stolen. Which UK law has the company most likely infringed? State one principle of this law they have violated. [2 marks]</p>
+                        <textarea id="exam-q1-leg" class="exam-answer-textarea" placeholder="Law and violated principle..."></textarea>
+                        <button class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q1-leg', 'exam-q1-leg', 15)">Show Mark Scheme</button>
+                        <div id="ms-exam-q1-leg" class="mark-scheme">
+                            <p><strong>Mark Scheme:</strong></p>
+                            <ul>
+                                <li>Law: Data Protection Act (DPA) 2018 / GDPR. (1 mark)</li>
+                                <li>Principle violated: Integrity and confidentiality (security) / Security principle. OR Accountability (for not ensuring security). (1 mark)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="exam-question-item">
+                        <p class="font-medium text-gray-800 mb-2">2. An employee uses their colleague's login details, without permission, to access company sales figures they are not authorized to see. Identify the Act that makes this illegal and the specific type of offence committed. [2 marks]</p>
+                        <textarea id="exam-q2-leg" class="exam-answer-textarea" placeholder="Act and type of offence..."></textarea>
+                        <button class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q2-leg', 'exam-q2-leg', 15)">Show Mark Scheme</button>
+                        <div id="ms-exam-q2-leg" class="mark-scheme">
+                            <p><strong>Mark Scheme:</strong></p>
+                            <ul>
+                                <li>Act: Computer Misuse Act (CMA) 1990. (1 mark)</li>
+                                <li>Offence: Unauthorised access to computer material (Section 1 offence). (1 mark)</li>
+                                <li>(Allow: Could also be Section 2 if intent for further offence is implied, but Section 1 is primary for just access).</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="exam-question-item">
+                        <p class="font-medium text-gray-800 mb-2">3. A musician finds their latest song being used in a popular online video without their permission. Which Act protects their work, and what right has been infringed? [2 marks]</p>
+                        <textarea id="exam-q3-leg" class="exam-answer-textarea" placeholder="Act and right infringed..."></textarea>
+                        <button class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q3-leg', 'exam-q3-leg', 15)">Show Mark Scheme</button>
+                        <div id="ms-exam-q3-leg" class="mark-scheme">
+                            <p><strong>Mark Scheme:</strong></p>
+                            <ul>
+                                <li>Act: Copyright, Designs and Patents Act (CDPA) 1988. (1 mark)</li>
+                                <li>Right infringed: Copyright / Right to control copying or distribution / Right to control public performance or communication to the public. (1 mark)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="related-videos-legislation" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-video mr-2 text-purple-500"></i> Related Videos</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-purple-50 p-5 rounded-lg border border-purple-200 space-y-4">
+                    <p class="text-gray-700">Watch these videos to learn more about UK computing legislation:</p>
+                    <ul class="list-disc list-inside space-y-3 text-purple-800 pl-4">
+                        <li>
+                            <strong>Video 1: Data Protection Act Explained Simply</strong>
+                            <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 1: DPA Overview]</div>
+                        </li>
+                        <li>
+                            <strong>Video 2: Understanding the Computer Misuse Act</strong>
+                            <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 2: CMA Focus]</div>
+                        </li>
+                         <li>
+                            <strong>Video 3: Copyright Basics for Digital Content</strong>
+                            <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 3: CDPA Basics]</div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="key-takeaways-legislation" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-key mr-2"></i>Key Takeaways</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-300 space-y-2 show">
+                    <ul class="list-disc list-inside space-y-1 text-yellow-800">
+                        <li><strong>Data Protection Act (DPA) 2018:</strong> Governs how personal data is collected, processed, stored, and shared. Emphasizes principles like lawfulness, fairness, transparency, purpose limitation, data minimisation, accuracy, storage limitation, integrity/confidentiality, and accountability. Gives individuals rights over their data.</li>
+                        <li><strong>Computer Misuse Act (CMA) 1990:</strong> Makes it illegal to gain unauthorised access to computer systems/material, access with intent to commit further crimes, make unauthorised modifications (e.g., deleting data, spreading malware), or make/supply tools for such misuse.</li>
+                        <li><strong>Copyright, Designs and Patents Act (CDPA) 1988:</strong> Protects <span class="keyword">intellectual property<span class="tooltip">Creations of the mind, such as inventions; literary and artistic works; designs; and symbols, names and images used in commerce. Protected by patents, copyright and trademarks.</span></span> like software, music, films, books, and images. Prevents unauthorised copying, distribution, or adaptation. <span class="keyword">Copyright<span class="tooltip">A legal right granting the creator of an original work exclusive rights to its use and distribution, usually for a limited time.</span></span> is automatic.</li>
+                        <li>These laws are crucial for ensuring privacy, security, and fair use of digital technologies and creative works.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="next-steps-legislation" class="task-container">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600">What's Next?</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-teal-50 p-5 rounded-lg border border-teal-300">
+                    <p class="text-teal-800 font-medium">You've now covered key UK computing legislation!</p>
+                    <p class="text-teal-700 mt-2">Other aspects of Topic 1.6 "Ethical, Legal, Cultural and Environmental concerns" include:</p>
+                    <ul class="list-disc list-inside space-y-1 text-teal-700 mt-3 pl-4">
+                        <li>Ethical implications of AI and Facial Recognition (covered in a previous lesson).</li>
+                        <li>Cultural implications of technology (e.g., digital divide, social media effects).</li>
+                        <li>Environmental impacts of computing (covered in a previous lesson).</li>
+                        <li>Open source vs. proprietary software.</li>
+                    </ul>
+                     <p class="mt-3"><a href="mgsgcse16.html" class="font-semibold text-teal-900 hover:underline">← Back to Ethical, Legal, Cultural & Environmental Concerns Overview</a></p>
+                </div>
+            </section>
+
+            <section id="extension-activities-legislation" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-balance-scale-right mr-2 text-orange-500"></i> Extension Activities</h2>
+                <div class="bg-orange-50 p-5 rounded-lg border border-orange-200 space-y-6">
+                    <div class="extension-task">
+                        <h3 class="font-semibold text-orange-800 mb-2">1. GDPR vs. DPA 2018</h3>
+                        <p class="text-sm text-gray-700 mb-2">The DPA 2018 incorporates the EU's General Data Protection Regulation (GDPR) into UK law.</p>
+                        <p class="text-sm text-gray-700 mb-2">Research Task: What were the main reasons for introducing GDPR across Europe? Are there any significant differences or UK-specific additions in the DPA 2018 compared to the core GDPR text?</p>
+                        <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Reasons for GDPR? DPA 2018 vs GDPR differences?"></textarea>
+                    </div>
+                    <div class="extension-task border-t border-orange-200 pt-4">
+                        <h3 class="font-semibold text-orange-800 mb-2">2. Digital Millennium Copyright Act (DMCA) - USA</h3>
+                        <p class="text-sm text-gray-700 mb-2">The CDPA is UK law. The USA has its own significant copyright law, the DMCA.</p>
+                        <p class="text-sm text-gray-700 mb-2">Research Task: What are the key provisions of the DMCA? How does it address issues like online copyright infringement and anti-circumvention measures (preventing the bypassing of copy protection)?</p>
+                        <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Key DMCA provisions? Online infringement? Anti-circumvention?"></textarea>
+                    </div>
+                    <div class="extension-task border-t border-orange-200 pt-4">
+                        <h3 class="font-semibold text-orange-800 mb-2">3. Ethical Hacking vs. Computer Misuse</h3>
+                        <p class="text-sm text-gray-700 mb-2">"Ethical hackers" (or penetration testers) are hired to find vulnerabilities in systems, which sounds like it could fall under the CMA.</p>
+                        <p class="text-sm text-gray-700 mb-2">Research Task: What distinguishes legal ethical hacking from illegal computer misuse under the CMA? What key factor makes ethical hacking permissible?</p>
+                        <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Ethical hacking vs. CMA? Key distinguishing factor?"></textarea>
+                    </div>
+                </div>
+            </section>
+            
+            <footer class="mt-12 text-center no-print">
+                <div id="final-score-area" class="task-container bg-purple-100 border-purple-300 mb-6">
+                    <h2 class="task-title text-2xl text-purple-700">Worksheet Score</h2>
+                    <p id="final-score-display" class="text-3xl font-bold text-purple-800">Your score: 0 / 0</p>
+                    <p id="final-score-feedback" class="text-purple-600"></p>
+                </div>
+                <button id="calculate-final-score" class="final-button">Calculate Final Score</button>
+                <button id="reset-all-tasks" class="reset-button">Reset All Tasks</button>
+                <button id="export-pdf-button" class="export-pdf-button">Export to PDF</button>
+            </footer>
+
+        </main>
+    </div>
+
+    
+    <script src="js/gcse-ethics-legal.js"></script>
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+</html>

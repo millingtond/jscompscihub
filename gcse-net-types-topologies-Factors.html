@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCSE CS Lesson: Factors Affecting Network Performance</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    
+<link rel="stylesheet" href="css/style.css">
+</head>
+<nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <a href="home.html" class="text-xl font-bold hover:text-gray-300 transition-colors">MGS CS Hub</a>
+        <ul class="flex space-x-3 lg:space-x-4">
+        </ul>
+        <ul class="flex flex-wrap space-x-2 sm:space-x-3 lg:space-x-4 text-sm sm:text-base">
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 7</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 8</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 9</a></li>
+            <li><a href="gcse.html" class="hover:text-gray-300 transition-colors">GCSE</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">A Level</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Competitions</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">CS News</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Extracurricular</a></li>
+        </ul>
+    </div>
+</nav>
+
+\1
+
+
+
+    <div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-lg shadow-xl">
+
+        <a href="mgsgcse131.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 group no-print">
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left w-5 h-5 mr-2 transition-transform duration-200 group-hover:-translate-x-1"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+            Back to Networks Overview
+        </a>
+
+        <header class="mb-8 border-b pb-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-2">Factors Affecting Network Performance</h1>
+            <p class="text-lg text-gray-600">OCR GCSE Computer Science (J277) - Topic 1.3.1</p>
+        </header>
+
+    <main class="space-y-8 md:space-y-12">
+
+        <section id="starter-activity" class="task-container">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-network-wired mr-2 text-yellow-500"></i> Starter Activity (5-10 mins)</h2>
+            <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-200 space-y-4">
+                <p class="font-semibold text-yellow-800">Let's connect our thoughts!</p>
+                <div class="space-y-3 quiz-item" data-points="0">
+                    <p class="mb-1">1. In simple terms, what is a computer <span class="keyword">network<span class="tooltip">Two or more computers/devices connected together to share resources, data, or communicate.</span></span>?</p>
+                    <textarea id="starter-q1-network" class="w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" rows="2" placeholder="Your definition..."></textarea>
+
+                    <p class="mt-3 mb-1">2. Think about your internet connection at home or school. What things sometimes make it feel slow or perform poorly?</p>
+                    <textarea id="starter-q2-slow" class="w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" rows="2" placeholder="e.g., too many people using it, downloading large files..."></textarea>
+
+                    <p class="mt-3 mb-1">3. (Optional) Visit <a href="https://speed.cloudflare.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">speed.cloudflare.com</a> and run a speed test. Record your results below. What do "Download", "Upload", and "Latency" mean in this context?</p>
+                    <label for="starter-download" class="text-sm">Download (Mbps):</label> <input type="text" id="starter-download" class="p-1 border border-yellow-300 rounded-md shadow-sm bg-white w-20">
+                    <label for="starter-upload" class="text-sm ml-2">Upload (Mbps):</label> <input type="text" id="starter-upload" class="p-1 border border-yellow-300 rounded-md shadow-sm bg-white w-20">
+                    <label for="starter-latency" class="text-sm ml-2">Latency (ms):</label> <input type="text" id="starter-latency" class="p-1 border border-yellow-300 rounded-md shadow-sm bg-white w-20">
+                    <textarea id="starter-q3-meaning" class="w-full p-2 mt-2 border border-yellow-300 rounded-md shadow-sm bg-white" rows="2" placeholder="What do these terms mean to you?"></textarea>
+                </div>
+                <button class="reveal-button !bg-yellow-500 hover:!bg-yellow-600 no-print" onclick="toggleReveal('starter-netfactors-answers-feedback', this, 'Reveal Example Answers', 'Hide Example Answers')">Reveal Example Answers</button>
+                <div id="starter-netfactors-answers-feedback" class="feedback-area !bg-yellow-100 !border-yellow-300 !text-yellow-700">
+                    <p><strong>Example Answers:</strong></p>
+                    <ol class="list-decimal list-inside">
+                        <li>A computer network is two or more computers/devices connected together to share resources, data, or communicate.</li>
+                        <li>Things that make internet slow: too many people using it at once, weak Wi-Fi signal, downloading/uploading large files, problems with the ISP, old router.</li>
+                        <li>
+                            <strong>Download Speed:</strong> How quickly data can be transferred from the internet to your device (e.g., for streaming videos, loading web pages). Measured in Mbps (Megabits per second).<br>
+                            <strong>Upload Speed:</strong> How quickly data can be transferred from your device to the internet (e.g., sending emails with attachments, video calls). Measured in Mbps.<br>
+                            <strong>Latency (Ping):</strong> The delay before a transfer of data begins following an instruction for its transfer. It's the time it takes for a small piece of data to travel from your device to a server and back. Measured in ms (milliseconds). Lower is better.
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section id="lesson-outcomes" class="task-container">
+             <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-bullseye mr-2 text-green-500"></i> Lesson Outcomes</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-green-50 p-5 rounded-lg border border-green-200">
+                <p class="font-semibold text-green-800 mb-3">By the end of this lesson, you should be able to:</p>
+                <ul class="list-disc list-inside space-y-2 text-green-700 pl-4">
+                    <li>Identify and describe factors that affect the performance of networks, including:
+                        <ul>
+                            <li><span class="keyword">Bandwidth<span class="tooltip">The maximum amount of data that can be transmitted over a network connection in a given amount of time, usually measured in bits per second (bps).</span></span> available</li>
+                            <li>Number of users/devices connected</li>
+                            <li>Transmission media (e.g., wired vs. wireless, type of cable)</li>
+                            <li>Error rate and <span class="keyword">interference<span class="tooltip">Disturbances that can corrupt or disrupt data signals during transmission, e.g., from other electronic devices or physical obstructions.</span></span></li>
+                            <li><span class="keyword">Latency<span class="tooltip">The delay before a transfer of data begins following an instruction for its transfer. Often referred to as 'ping'.</span></span></li>
+                        </ul>
+                    </li>
+                    <li>Explain how each of these factors can impact network speed and reliability.</li>
+                    <li>Suggest ways to improve network performance based on these factors.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="intro-performance" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-tachometer-alt mr-2"></i> Introduction to Network Performance</h2>
+                 <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-indigo-50 p-5 rounded-lg border border-indigo-200 space-y-3">
+                <p>Network performance isn't just about how "fast" your internet feels; it's a combination of several factors that determine how quickly and reliably data can be sent and received. Whether you're gaming online, streaming a movie, or just browsing the web, these factors are constantly at play.</p>
+                <p>In this lesson, we'll break down the key elements that influence how well a network performs, from the fundamental capacity of the connection (<span class="keyword">bandwidth<span class="tooltip">The maximum amount of data that can be transmitted over a network connection in a given amount of time, usually measured in bits per second (bps).</span></span>) to the delays involved in data travel (<span class="keyword">latency<span class="tooltip">The delay before a transfer of data begins following an instruction for its transfer. Often referred to as 'ping'.</span></span>), and the impact of other users and the physical environment.</p>
+            </div>
+        </section>
+
+        <section id="task1-keyterms-matching" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-700"><i class="fas fa-key mr-2"></i>Task 1: Key Performance Terms <span class="task-completion-indicator" id="task-1-complete"></span><span class="font-bold text-sm text-gray-500 ml-auto">(Max 4 points)</span></h2>
+            <p class="text-gray-600 mb-4">Match the network performance term on the left with its correct definition on the right. Click one item from each list to create a pair.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 quiz-item" data-points="4">
+                <div>
+                    <h4 class="font-semibold mb-2 text-center text-gray-600">Term</h4>
+                    <ul id="term-list" class="matching-list">
+                        <li class="matching-item option-button w-full text-left !mt-1" data-match="bandwidth">Bandwidth</li>
+                        <li class="matching-item option-button w-full text-left !mt-1" data-match="latency">Latency</li>
+                        <li class="matching-item option-button w-full text-left !mt-1" data-match="interference">Interference</li>
+                        <li class="matching-item option-button w-full text-left !mt-1" data-match="error_rate">Error Rate</li>
+                    </ul>
+                </div>
+                <div>
+                     <h4 class="font-semibold mb-2 text-center text-gray-600">Definition</h4>
+                     <ul id="definition-list" class="matching-list">
+                        <li class="matching-item option-button w-full text-left !mt-1" data-match="latency">The delay experienced for data to travel from source to destination.</li>
+                        <li class="matching-item option-button w-full text-left !mt-1" data-match="bandwidth">The maximum rate of data transfer across a network connection.</li>
+                        <li class="matching-item option-button w-full text-left !mt-1" data-match="error_rate">The frequency of errors or corrupted data during transmission.</li>
+                        <li class="matching-item option-button w-full text-left !mt-1" data-match="interference">Disturbances that disrupt or degrade network signals.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <button class="check-button no-print" onclick="checkTermMatches()">Check Matches</button>
+                <button class="reset-button no-print" onclick="resetTermMatches()">Reset Task 1</button>
+            </div>
+            <div id="term-matching-feedback" class="feedback-area mt-4"></div>
+        </section>
+
+        <section id="task2-bandwidth-sim" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-700"><i class="fas fa-road mr-2"></i>Task 2: Bandwidth - The Data Highway <span class="task-completion-indicator" id="task-2-complete"></span><span class="font-bold text-sm text-gray-500 ml-auto">(Max 1 point)</span></h2>
+            <p class="text-gray-600 mb-4"><span class="keyword">Bandwidth<span class="tooltip">The maximum amount of data that can be transmitted over a network connection in a given amount of time, usually measured in bits per second (bps).</span></span> is like the width of a highway. A wider highway (higher bandwidth) can carry more cars (data) at once.</p>
+            <div class="space-y-3 mb-4">
+                <div>
+                    <label for="bandwidth-slider" class="slider-label">Adjust Bandwidth:</label>
+                    <input type="range" id="bandwidth-slider" min="1" max="3" value="2" class="w-full md:w-1/2">
+                </div>
+                <div class="pipe-container">
+                    <span class="text-sm mr-2">Internet</span>
+                    <div id="bandwidth-pipe" class="pipe">
+                        </div>
+                    <span class="text-sm ml-2">Your Device</span>
+                </div>
+            </div>
+            <div class="quiz-item" data-points="1">
+                <p class="font-medium text-gray-800 mb-2">How does higher bandwidth generally affect data transfer?</p>
+                <div class="flex flex-wrap gap-2">
+                    <button class="option-button" data-answer="slower">Makes it slower</button>
+                    <button class="option-button" data-answer="faster">Makes it faster</button>
+                    <button class="option-button" data-answer="no_effect">Has no effect</button>
+                </div>
+                <div class="feedback mt-2"></div>
+            </div>
+            <button class="reset-button no-print !ml-0" onclick="resetBandwidthSim()">Reset Task 2</button>
+        </section>
+
+        <section id="task3-users-sim" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-700"><i class="fas fa-users mr-2"></i>Task 3: Number of Users & Congestion <span class="task-completion-indicator" id="task-3-complete"></span><span class="font-bold text-sm text-gray-500 ml-auto">(Max 1 point)</span></h2>
+            <p class="text-gray-600 mb-4">The more users or devices actively using a network, the more the available <span class="keyword">bandwidth<span class="tooltip">The maximum amount of data that can be transmitted over a network connection in a given amount of time, usually measured in bits per second (bps).</span></span> is shared. This can lead to <span class="keyword">congestion<span class="tooltip">A state where a network is carrying so much data that its quality of service deteriorates, leading to slowdowns and delays.</span></span>.</p>
+            <div class="space-y-3 mb-4">
+                <label for="users-slider" class="slider-label">Number of Active Users: <span id="users-value" class="slider-value">1</span></label>
+                <input type="range" id="users-slider" min="1" max="10" value="1" class="w-full md:w-1/2">
+                <div class="user-congestion-sim mt-4">
+                    <div id="user-icons" class="flex flex-wrap justify-center">
+                        </div>
+                    <div class="server-icon"><i class="fas fa-server"></i></div>
+                </div>
+                <p id="congestion-status" class="text-center text-sm font-medium mt-2"></p>
+            </div>
+             <div class="quiz-item" data-points="1">
+                <p class="font-medium text-gray-800 mb-2">What is the most likely impact of many users simultaneously streaming high-definition videos on a shared home network?</p>
+                <div class="flex flex-wrap gap-2">
+                    <button class="option-button" data-answer="faster_all">Faster speeds for everyone</button>
+                    <button class="option-button" data-answer="slower_buffer">Slower speeds, potential buffering for everyone</button>
+                    <button class="option-button" data-answer="no_change">No change in performance</button>
+                    <button class="option-button" data-answer="improves_wifi">Improves Wi-Fi signal strength</button>
+                </div>
+                <div class="feedback mt-2"></div>
+            </div>
+            <button class="reset-button no-print !ml-0" onclick="resetUsersSim()">Reset Task 3</button>
+        </section>
+
+        <section id="task4-transmission-media" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-700"><i class="fas fa-ethernet mr-2"></i>Task 4: Transmission Media <span class="task-completion-indicator" id="task-4-complete"></span><span class="font-bold text-sm text-gray-500 ml-auto">(Max 3 points)</span></h2>
+            <p class="text-gray-600 mb-4">The physical way data travels impacts performance. Drag the media type to its best description.</p>
+            <div class="quiz-item" data-points="3">
+                <div id="media-pool" class="media-dropzone mb-6 flex-row justify-around">
+                    <div class="media-card draggable" draggable="true" id="media-ethernet" data-type="ethernet">Ethernet Cable (Cat 5e/6)</div>
+                    <div class="media-card draggable" draggable="true" id="media-fibre" data-type="fibre">Fibre Optic Cable</div>
+                    <div class="media-card draggable" draggable="true" id="media-wifi" data-type="wifi">Wi-Fi (Wireless)</div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="media-dropzone" data-accept="fibre">
+                        <h4 class="font-semibold text-sm text-gray-700 mb-1">Highest speed, least interference, long distance, expensive.</h4>
+                    </div>
+                    <div class="media-dropzone" data-accept="ethernet">
+                        <h4 class="font-semibold text-sm text-gray-700 mb-1">Good speed, reliable, less prone to interference than wireless, limited distance.</h4>
+                    </div>
+                    <div class="media-dropzone" data-accept="wifi">
+                        <h4 class="font-semibold text-sm text-gray-700 mb-1">Convenient, no cables, but prone to interference and signal degradation over distance/obstacles.</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <button class="check-button no-print" onclick="checkMediaSort()">Check Media</button>
+                <button class="reset-button no-print" onclick="resetMediaSort()">Reset Task 4</button>
+            </div>
+            <div id="media-sort-feedback" class="feedback-area mt-4"></div>
+        </section>
+
+        <section id="task5-interference-error" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-700"><i class="fas fa-wifi-slash mr-2"></i>Task 5: Interference & Error Rate <span class="task-completion-indicator" id="task-5-complete"></span><span class="font-bold text-sm text-gray-500 ml-auto">(Max 2 points)</span></h2>
+            <p class="text-gray-600 mb-4"><span class="keyword">Interference<span class="tooltip">Disturbances that can corrupt or disrupt data signals during transmission, e.g., from other electronic devices or physical obstructions.</span></span> from other devices (microwaves, cordless phones) or physical obstructions (thick walls) can corrupt data packets, leading to a higher <span class="keyword">error rate<span class="tooltip">The frequency at which errors occur in data transmission over a communication channel.</span></span>. When errors occur, data often needs to be retransmitted, slowing down effective performance.</p>
+            <div class="quiz-item" data-points="2">
+                <p class="font-medium text-gray-800 mb-2">Sarah is streaming a movie over Wi-Fi. Her microwave is running in the kitchen nearby, and the video keeps buffering. What is the MOST LIKELY primary factor affecting her network performance in this scenario, and what is a possible solution?</p>
+                <textarea id="interference-scenario-answer" class="w-full p-2 border rounded-md" rows="3" placeholder="Identify the factor and suggest a solution..."></textarea>
+                <div id="interference-scenario-feedback" class="feedback-area"></div>
+            </div>
+            <button class="check-button no-print" onclick="checkInterferenceScenario()">Check Scenario</button>
+            <button class="reset-button no-print" onclick="resetInterferenceScenario()">Reset Task 5</button>
+        </section>
+
+        <section id="task6-latency" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-700"><i class="fas fa-stopwatch-20 mr-2"></i>Task 6: Latency - The Delay Factor <span class="task-completion-indicator" id="task-6-complete"></span><span class="font-bold text-sm text-gray-500 ml-auto">(Max 2 points)</span></h2>
+            <p class="text-gray-600 mb-4"><span class="keyword">Latency<span class="tooltip">The delay before a transfer of data begins following an instruction for its transfer. Often referred to as 'ping'.</span></span> (often measured as "ping" time in milliseconds) is the delay it takes for a data packet to travel from your device to a server and back. High latency can make online games feel laggy or video calls stutter, even with high bandwidth.</p>
+            <div class="quiz-item" data-points="2">
+                <p class="font-medium text-gray-800 mb-2">You are playing an online game. Server A is located in the same city as you. Server B is located on another continent. Which server is likely to give you lower latency, and why?</p>
+                <textarea id="latency-explanation" class="w-full p-2 border rounded-md" rows="3" placeholder="Which server and why?"></textarea>
+                <div id="latency-explanation-feedback" class="feedback-area"></div>
+            </div>
+            <button class="check-button no-print" onclick="checkLatencyExplanation()">Check Explanation</button>
+            <button class="reset-button no-print" onclick="resetLatencyExplanation()">Reset Task 6</button>
+        </section>
+
+        <section id="real-world-context" class="task-container">
+             <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-globe-europe mr-2"></i> Real-World Context</h2>
+                 <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-blue-50 p-5 rounded-lg border border-blue-200 space-y-3">
+                <ul class="list-disc list-inside text-blue-700 pl-4">
+                    <li><strong>Online Gaming:</strong> Low <span class="keyword">latency<span class="tooltip">The delay before a transfer of data begins following an instruction for its transfer. Often referred to as 'ping'.</span></span> is critical for responsive gameplay. High bandwidth helps download game updates quickly.</li>
+                    <li><strong>Video Streaming (Netflix, YouTube):</strong> Requires sufficient, consistent <span class="keyword">bandwidth<span class="tooltip">The maximum amount of data that can be transmitted over a network connection in a given amount of time, usually measured in bits per second (bps).</span></span> to avoid buffering. Latency is less critical than for gaming but still matters for starting streams.</li>
+                    <li><strong>Office Networks:</strong> Performance is affected by the number of users, the type of tasks (e.g., large file transfers vs. email), and the quality of network hardware (switches, routers, cabling).</li>
+                    <li><strong>Choosing an ISP:</strong> Advertised speeds are usually maximum <span class="keyword">bandwidth<span class="tooltip">The maximum amount of data that can be transmitted over a network connection in a given amount of time, usually measured in bits per second (bps).</span></span>. Real-world performance also depends on factors like network congestion in your area and the ISP's overall network capacity.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="myth-busters" class="task-container">
+             <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-lightbulb-exclamation mr-2 text-red-500"></i> Network Performance Myth Busters!</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-red-50 p-5 rounded-lg border border-red-200 space-y-4">
+                <div>
+                    <p><strong class="font-semibold text-red-800">Myth:</strong> "More bandwidth always means faster internet for everything I do."</p>
+                    <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> While high <span class="keyword">bandwidth<span class="tooltip">The maximum amount of data that can be transmitted over a network connection in a given amount of time, usually measured in bits per second (bps).</span></span> is great for downloading large files or streaming high-quality video, it doesn't always translate to a "snappier" experience for tasks sensitive to <span class="keyword">latency<span class="tooltip">The delay before a transfer of data begins following an instruction for its transfer. Often referred to as 'ping'.</span></span>, like web browsing (initial page load) or online gaming. If your latency is high, even with massive bandwidth, these activities can still feel slow.</p>
+                </div>
+                <div class="border-t border-red-200 pt-4">
+                    <p><strong class="font-semibold text-red-800">Myth:</strong> "Wi-Fi is always much slower than a wired Ethernet connection."</p>
+                    <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> Modern Wi-Fi standards (like Wi-Fi 6/6E) can offer very high speeds, sometimes comparable to or even exceeding older Ethernet standards for typical home use. However, Wi-Fi is more susceptible to <span class="keyword">interference<span class="tooltip">Disturbances that can corrupt or disrupt data signals during transmission, e.g., from other electronic devices or physical obstructions.</span></span> and signal degradation due to distance and obstacles, which can reduce its effective performance. Wired connections are generally more stable and less prone to these issues.</p>
+                </div>
+                 <div class="border-t border-red-200 pt-4">
+                    <p><strong class="font-semibold text-red-800">Myth:</strong> "A few lost packets don't really matter for network speed."</p>
+                    <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> When data packets are lost or corrupted (high <span class="keyword">error rate<span class="tooltip">The frequency at which errors occur in data transmission over a communication channel.</span></span>), protocols like TCP require them to be retransmitted. These retransmissions take extra time and consume additional bandwidth, effectively slowing down the overall data transfer and increasing perceived latency.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="exam-practice" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-700"><i class="fas fa-pencil-alt mr-2"></i> Exam Practice Questions</h2>
+             <div class="exam-question-item mb-6 pb-4 border-b">
+                <p class="font-medium text-gray-800 mb-2">1. Explain how the number of users on a network can affect its performance. [2 marks]</p>
+                <textarea id="exam-q1-netfactors" class="w-full p-2 border border-gray-300 rounded-md mt-1" rows="3" placeholder="Explain the impact of multiple users..."></textarea>
+                <button class="mark-scheme-button no-print" onclick="checkThenToggleMarkScheme('exam-q1-netfactors', 'ms-exam-q1-netfactors', this, 15)">Show Mark Scheme</button>
+                <div id="ms-exam-q1-netfactors" class="mark-scheme">
+                    <p><strong>Mark Scheme:</strong></p>
+                    <ul>
+                        <li>Increased number of users means the available bandwidth is shared among more devices. (1 mark)</li>
+                        <li>This can lead to slower speeds for each user / increased latency / network congestion / devices having to wait longer to transmit. (1 mark)</li>
+                        <li>(Allow: More users can lead to more data collisions (especially on older hub-based or half-duplex wireless networks), requiring retransmissions.)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="exam-question-item">
+                <p class="font-medium text-gray-800 mb-2">2. A company is experiencing slow file transfers. Identify two different factors that could be causing this poor network performance and suggest a possible solution for each. [4 marks]</p>
+                <textarea id="exam-q2-netfactors" class="w-full p-2 border border-gray-300 rounded-md mt-1" rows="4" placeholder="Identify two factors and their solutions..."></textarea>
+                <button class="mark-scheme-button no-print" onclick="checkThenToggleMarkScheme('exam-q2-netfactors', 'ms-exam-q2-netfactors', this, 20)">Show Mark Scheme</button>
+                <div id="ms-exam-q2-netfactors" class="mark-scheme">
+                    <p><strong>Mark Scheme (1 mark for factor, 1 for linked solution, for two factors):</strong></p>
+                    <ul>
+                        <li><strong>Factor:</strong> Insufficient bandwidth. (1 mark) <br><strong>Solution:</strong> Upgrade to a higher bandwidth connection / ISP plan / install better quality network cabling (e.g. fibre optic). (1 mark)</li>
+                        <li><strong>Factor:</strong> Too many users / high network traffic. (1 mark) <br><strong>Solution:</strong> Implement Quality of Service (QoS) to prioritise traffic / segment the network / upgrade network hardware (e.g. faster switches/routers) / schedule large transfers for off-peak hours. (1 mark)</li>
+                        <li><strong>Factor:</strong> Poor transmission media / high interference. (1 mark) <br><strong>Solution:</strong> Switch from Wi-Fi to wired Ethernet / upgrade to better shielded cables / move Wi-Fi router away from sources of interference / use a different Wi-Fi channel. (1 mark)</li>
+                        <li><strong>Factor:</strong> High latency. (1 mark) <br><strong>Solution:</strong> Choose servers closer geographically (if applicable) / optimise network routing / reduce number of hops. (1 mark)</li>
+                        <li><strong>Factor:</strong> High error rate. (1 mark) <br><strong>Solution:</strong> Replace faulty cables or network hardware / reduce interference. (1 mark)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="related-videos" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-video mr-2 text-purple-500"></i> Related Videos</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-purple-50 p-5 rounded-lg border border-purple-200 space-y-4">
+                <p class="text-gray-700">Watch these videos to reinforce your understanding:</p>
+                <ul class="list-disc list-inside space-y-3 text-purple-800 pl-4">
+                    <li>
+                        <strong>Video 1: Network Bandwidth Explained</strong>
+                        <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Placeholder: Link to a video about bandwidth]</div>
+                    </li>
+                    <li>
+                        <strong>Video 2: OCR GCSE (J277) 1.3 Factors that affect the performance of networks</strong>
+                        <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1"><a href="https://www.youtube.com/watch?v=7Up7DIPkTzo&list=PLCiOXwirraUAEhj4TUjMxYm4593B2dUPF" target="_blank" class="text-purple-700 hover:underline">Watch on YouTube (Craig'n'Dave)</a></div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="key-takeaways" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-key mr-2"></i>Key Takeaways</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-300 space-y-2">
+                <ul class="list-disc list-inside space-y-1 text-yellow-800">
+                    <li>Network performance is influenced by multiple interconnected factors.</li>
+                    <li><strong class="keyword">Bandwidth<span class="tooltip">The maximum amount of data that can be transmitted over a network connection in a given amount of time, usually measured in bits per second (bps).</span></strong>: Higher bandwidth allows more data to be transferred simultaneously, generally leading to faster downloads/uploads.</li>
+                    <li><strong>Number of Users/Devices:</strong> More active users sharing the same bandwidth can lead to slower performance for everyone due to <span class="keyword">congestion<span class="tooltip">A state where a network is carrying so much data that its quality of service deteriorates, leading to slowdowns and delays.</span></span>.</li>
+                    <li><strong>Transmission Media:</strong> Wired connections (Ethernet, Fibre Optic) are often faster and more reliable than wireless (Wi-Fi), which is prone to <span class="keyword">interference<span class="tooltip">Disturbances that can corrupt or disrupt data signals during transmission, e.g., from other electronic devices or physical obstructions.</span></span>.</li>
+                    <li><strong>Error Rate & Interference:</strong> Physical obstructions, other electronic devices, or faulty hardware can cause data corruption, leading to retransmissions and slower effective speeds.</li>
+                    <li><strong class="keyword">Latency<span class="tooltip">The delay before a transfer of data begins following an instruction for its transfer. Often referred to as 'ping'.</span></span>: The delay in data travel time, critical for real-time applications like gaming and video calls. Distance and network hops contribute to latency.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="next-steps" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-indigo-600">What's Next?</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-teal-50 p-5 rounded-lg border border-teal-300">
+                <p class="text-teal-800 font-medium">You've explored the key factors that affect how well a network performs!</p>
+                <p class="text-teal-700 mt-2">The next part of this topic (1.3 Computer networks, connections and protocols) delves into:</p>
+                <ul class="list-disc list-inside space-y-1 text-teal-700 mt-3 pl-4">
+                     <li>Different modes of connection (Wired: Ethernet; Wireless: Wi-Fi, Bluetooth) (Spec 1.3.2).</li>
+                    <li>Understanding Encryption, IP addressing, MAC addressing, and Standards (Spec 1.3.2).</li>
+                    <li>Common network protocols (TCP/IP, HTTP, HTTPS, FTP, POP, IMAP, SMTP) and the concept of layers (Spec 1.3.2).</li>
+                </ul>
+                 <p class="mt-3"><a href="gcse-net-connections-protocols.html" class="font-semibold text-teal-900 hover:underline">Continue to: Wired/Wireless, Protocols & Layers →</a></p>
+            </div>
+        </section>
+
+        <section id="extension-activities" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-rocket mr-2 text-orange-500"></i> Extension Activities</h2>
+            <div class="bg-orange-50 p-5 rounded-lg border border-orange-200 space-y-6">
+                <div class="extension-task">
+                    <h3 class="font-semibold text-orange-800 mb-2">1. Wi-Fi Standards Deep Dive</h3>
+                    <p class="text-sm text-gray-700 mb-2">Wi-Fi has evolved through various standards (e.g., 802.11b, 802.11g, 802.11n, 802.11ac, 802.11ax - Wi-Fi 6/6E).</p>
+                    <p class="text-sm text-gray-700 mb-2">Research Task: Choose two different Wi-Fi standards. Compare their maximum theoretical bandwidth, operating frequencies (2.4 GHz vs. 5 GHz vs. 6 GHz), and one other key feature or improvement the newer standard introduced.</p>
+                    <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Compare two Wi-Fi standards..."></textarea>
+                </div>
+                <div class="extension-task border-t border-orange-200 pt-4">
+                    <h3 class="font-semibold text-orange-800 mb-2">2. Quality of Service (QoS)</h3>
+                    <p class="text-sm text-gray-700 mb-2">When many devices share a network, some data is more time-sensitive than others (e.g., a video call vs. a background file download).</p>
+                    <p class="text-sm text-gray-700 mb-2">Research Task: What is Quality of Service (QoS) in networking? How can it be used to manage network traffic and prioritize certain types of data to improve performance for critical applications?</p>
+                    <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="What is QoS? How does it help manage traffic?"></textarea>
+                </div>
+                 <div class="extension-task border-t border-orange-200 pt-4">
+                    <h3 class="font-semibold text-orange-800 mb-2">3. Network Diagnostic Tools: Ping & Traceroute</h3>
+                    <p class="text-sm text-gray-700 mb-2">System administrators and users often use command-line tools to diagnose network problems.</p>
+                    <p class="text-sm text-gray-700 mb-2">Research Task: What information do the `ping` and `traceroute` (or `tracert` on Windows) commands provide? How can this information help identify network performance issues like high latency or connection problems?</p>
+                    <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="What do ping and traceroute show? How do they help?"></textarea>
+                </div>
+            </div>
+        </section>
+
+        <footer class="mt-12 text-center no-print">
+            <div id="final-score-area" class="task-container bg-purple-100 border-purple-300 mb-6">
+                <h2 class="task-title text-2xl text-purple-700">Worksheet Score</h2>
+                <p id="final-score-display-text" class="text-3xl font-bold text-purple-800">Your score: <span id="current-score-value">0</span> / <span id="total-possible-score-value">0</span></p>
+                <p id="final-score-feedback" class="text-purple-600"></p>
+            </div>
+            <button id="calculate-final-score" class="final-button">Calculate Final Score</button>
+            <button id="reset-all-tasks" class="reset-button">Reset All Tasks</button>
+            <button id="export-pdf" class="export-pdf-button">Export to PDF</button>
+        </footer>
+
+    </main>
+    </div>
+
+    
+    <script src="js/gcse-net-types-topologies-Factors.js"></script>
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+</html>

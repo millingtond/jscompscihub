@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCSE CS: Network Security (Full - Enhanced v2)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="marking-script.js" defer></script>
+    <script src="gcse-sec-prevention.js" defer></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <a href="home.html" class="text-xl font-bold hover:text-gray-300 transition-colors">MGS CS Hub</a>
+        <ul class="flex space-x-3 lg:space-x-4">
+        </ul>
+        <ul class="flex flex-wrap space-x-2 sm:space-x-3 lg:space-x-4 text-sm sm:text-base">
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 7</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 8</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 9</a></li>
+            <li><a href="gcse.html" class="hover:text-gray-300 transition-colors">GCSE</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">A Level</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Competitions</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">CS News</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Extracurricular</a></li>
+        </ul>
+    </div>
+</nav>
+
+\1
+
+
+
+    <header class="text-center mb-8 md:mb-12">
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-800">Network Security</h1>
+        <p class="text-lg text-gray-600 mt-2">Threats and Prevention Methods</p>
+    </header>
+
+    <main class="space-y-8 md:space-y-12 max-w-4xl mx-auto">
+
+        <section id="intro" class="bg-white p-6 rounded-lg shadow-md">
+             <h2 class="text-2xl font-semibold text-gray-700 mb-4 border-b pb-2">Task 1: Introduction <span class="font-bold">(Max 1 point)</span></h2>
+             <p class="text-gray-600 mb-4">Network security involves protecting computer systems and data from various threats.</p>
+             <div class="quiz-item" data-correct="protect" data-points="1">
+                 <p class="font-medium text-gray-800 mb-2">What is the primary purpose of implementing network security measures?</p>
+                 <div class="flex flex-wrap gap-2">
+                     <button class="option-button px-3 py-1 border rounded-md" data-answer="speed">Increase network speed</button>
+                     <button class="option-button px-3 py-1 border rounded-md" data-answer="protect">Protect systems & data from threats</button>
+                     <button class="option-button px-3 py-1 border rounded-md" data-answer="share">Simplify file sharing</button>
+                     <button class="option-button px-3 py-1 border rounded-md" data-answer="cost">Reduce hardware costs</button>
+                 </div>
+                 <div class="feedback mt-1"></div>
+             </div>
+        </section>
+
+        <section id="forms-of-attack" class="bg-white p-6 rounded-lg shadow-md">
+             <h2 class="text-2xl font-semibold text-gray-700 mb-4 border-b pb-2">Task 2: Common Forms of Attack Recap <span class="font-bold">(Max 6 points)</span></h2>
+             <p class="text-gray-600 mb-4">Networks face various threats. Match the attack form to its description by clicking one from each column, then check your answers.</p>
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                 <div class="space-y-2" id="attack-list">
+                     <div class="match-item p-3 border rounded-md bg-red-100 text-red-800 quiz-item" data-match="malware" data-points="1"> <p class="font-semibold">Malware</p> <div class="feedback mt-1 text-xs"></div> </div>
+                     <div class="match-item p-3 border rounded-md bg-red-100 text-red-800 quiz-item" data-match="phishing" data-points="1"> <p class="font-semibold">Social Engineering (Phishing)</p> <div class="feedback mt-1 text-xs"></div> </div>
+                     <div class="match-item p-3 border rounded-md bg-red-100 text-red-800 quiz-item" data-match="brute-force" data-points="1"> <p class="font-semibold">Brute-force Attack</p> <div class="feedback mt-1 text-xs"></div> </div>
+                     <div class="match-item p-3 border rounded-md bg-red-100 text-red-800 quiz-item" data-match="dos" data-points="1"> <p class="font-semibold">Denial of Service (DoS)</p> <div class="feedback mt-1 text-xs"></div> </div>
+                     <div class="match-item p-3 border rounded-md bg-red-100 text-red-800 quiz-item" data-match="interception" data-points="1"> <p class="font-semibold">Data Interception/Theft</p> <div class="feedback mt-1 text-xs"></div> </div>
+                     <div class="match-item p-3 border rounded-md bg-red-100 text-red-800 quiz-item" data-match="sql-injection" data-points="1"> <p class="font-semibold">SQL Injection</p> <div class="feedback mt-1 text-xs"></div> </div>
+                 </div>
+                 <div class="space-y-2" id="attack-desc-list">
+                     <div class="match-desc option-button w-full text-left p-3 border rounded-md text-sm" data-answer="phishing">Tricking users into revealing sensitive information (e.g., via fake emails).</div>
+                     <div class="match-desc option-button w-full text-left p-3 border rounded-md text-sm" data-answer="malware">Malicious software designed to harm systems (e.g., viruses, spyware).</div>
+                     <div class="match-desc option-button w-full text-left p-3 border rounded-md text-sm" data-answer="dos">Flooding a network or server with traffic to make it unavailable.</div>
+                     <div class="match-desc option-button w-full text-left p-3 border rounded-md text-sm" data-answer="brute-force">Trying many passwords or combinations to gain unauthorized access.</div>
+                     <div class="match-desc option-button w-full text-left p-3 border rounded-md text-sm" data-answer="sql-injection">Inserting malicious code into database queries to manipulate data.</div>
+                     <div class="match-desc option-button w-full text-left p-3 border rounded-md text-sm" data-answer="interception">Capturing data packets as they travel across a network.</div>
+                 </div>
+             </div>
+             <div id="attack-match-feedback" class="mt-3 text-center"></div>
+             <button id="check-attacks-btn" class="mt-4 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition block mx-auto text-sm">Check Matches</button>
+             <button id="reset-attacks" class="mt-2 px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition block mx-auto text-sm">Reset Matching</button>
+        </section>
+
+        <section id="dos-attack-sim" class="bg-white p-6 rounded-lg shadow-md">
+             <h2 class="text-2xl font-semibold text-gray-700 mb-4 border-b pb-2">Task 3: Denial of Service (DoS) Attack <span class="font-bold">(Max 1 point)</span></h2>
+             <p class="text-gray-600 mb-4">A <strong class="text-red-700">Denial of Service (DoS)</strong> attack aims to make a machine or network resource unavailable to its intended users by disrupting services. This is often done by flooding the target with excessive requests or traffic.</p>
+             <div class="dos-sim-area my-4" id="dos-sim-container">
+                 <div class="dos-internet"> <i class="fas fa-cloud fa-2x"></i> <p class="text-sm font-semibold">Internet Users</p> </div>
+                 <div class="dos-server" id="dos-server"> <i class="fas fa-server"></i> <p class="text-sm font-semibold">Web Server</p> </div>
+             </div>
+             <div class="flex justify-center space-x-4 mt-2 mb-4">
+                 <button id="run-normal-traffic" class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition text-sm">Simulate Normal Traffic</button>
+                 <button id="run-dos-attack" class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition text-sm">Simulate DoS Attack</button>
+             </div>
+             <div class="quiz-item mt-6 pt-4 border-t" data-correct="overwhelm" data-points="1">
+                 <p class="font-medium text-gray-800 mb-2">What is the primary goal of a Denial of Service (DoS) attack?</p>
+                 <div class="flex flex-wrap gap-2">
+                     <button class="option-button px-3 py-1 border rounded-md" data-answer="steal">To steal data</button>
+                     <button class="option-button px-3 py-1 border rounded-md" data-answer="infect">To infect the server with malware</button>
+                     <button class="option-button px-3 py-1 border rounded-md" data-answer="overwhelm">To overwhelm the target and make it unavailable</button>
+                     <button class="option-button px-3 py-1 border rounded-md" data-answer="modify">To modify website content</button>
+                 </div>
+                 <div class="feedback mt-1"></div>
+             </div>
+        </section>
+
+        <section id="sql-injection-task" class="bg-white p-6 rounded-lg shadow-md">
+             <h2 class="text-2xl font-semibold text-gray-700 mb-4 border-b pb-2">Task 4: SQL Injection <span class="font-bold">(Max 5 points)</span></h2>
+             <p class="text-gray-600 mb-4"><strong class="text-red-700">SQL Injection</strong> involves inserting malicious SQL code into data input fields (like search boxes or login forms). If the website doesn't properly check the input, this malicious code can be executed by the database, potentially allowing attackers to view, modify, or delete sensitive data.</p>
+             <p class="text-gray-600 mb-4">Imagine a website search box. Which of the following inputs might be dangerous attempts at SQL injection? Click 'Dangerous' or 'Safe'.</p>
+             <div id="sql-input-examples" class="space-y-2">
+                 <div class="sql-input-example quiz-item" data-correct="safe" data-points="1" data-explanation-safe="Normal search term."> <span>Search term: <code class="inline-code">Laptop</code></span> <div> <button class="option-button sql-choice px-2 py-1 border rounded-md text-xs bg-green-100 hover:bg-green-200" data-answer="safe">Safe</button> <button class="option-button sql-choice px-2 py-1 border rounded-md text-xs bg-red-100 hover:bg-red-200" data-answer="dangerous">Dangerous</button> </div> <div class="feedback w-full text-right text-xs mt-1"></div> </div>
+                 <div class="sql-input-example quiz-item" data-correct="dangerous" data-points="1" data-explanation-dangerous="The ' character can end a string early, and OR '1'='1' is always true, potentially bypassing checks."> <span>Search term: <code class="inline-code">Phone' OR '1'='1</code></span> <div> <button class="option-button sql-choice px-2 py-1 border rounded-md text-xs bg-green-100 hover:bg-green-200" data-answer="safe">Safe</button> <button class="option-button sql-choice px-2 py-1 border rounded-md text-xs bg-red-100 hover:bg-red-200" data-answer="dangerous">Dangerous</button> </div> <div class="feedback w-full text-right text-xs mt-1"></div> </div>
+                 <div class="sql-input-example quiz-item" data-correct="dangerous" data-points="1" data-explanation-dangerous="The semicolon ; can start a new SQL command, like the destructive DROP TABLE. -- comments out the rest."> <span>Search term: <code class="inline-code">Keyboard; DROP TABLE users;--</code></span> <div> <button class="option-button sql-choice px-2 py-1 border rounded-md text-xs bg-green-100 hover:bg-green-200" data-answer="safe">Safe</button> <button class="option-button sql-choice px-2 py-1 border rounded-md text-xs bg-red-100 hover:bg-red-200" data-answer="dangerous">Dangerous</button> </div> <div class="feedback w-full text-right text-xs mt-1"></div> </div>
+                 <div class="sql-input-example quiz-item" data-correct="safe" data-points="1" data-explanation-safe="Normal search term with a space."> <span>Search term: <code class="inline-code">Mouse Mat</code></span> <div> <button class="option-button sql-choice px-2 py-1 border rounded-md text-xs bg-green-100 hover:bg-green-200" data-answer="safe">Safe</button> <button class="option-button sql-choice px-2 py-1 border rounded-md text-xs bg-red-100 hover:bg-red-200" data-answer="dangerous">Dangerous</button> </div> <div class="feedback w-full text-right text-xs mt-1"></div> </div>
+             </div>
+             <div class="quiz-item mt-6 pt-4 border-t" data-correct="sanitisation" data-points="1">
+                 <p class="font-medium text-gray-800 mb-2">What is the primary technique used to prevent SQL injection by cleaning or removing potentially harmful characters from user input?</p>
+                 <div class="flex flex-wrap gap-2">
+                     <button class="option-button px-3 py-1 border rounded-md" data-answer="encryption">Encryption</button>
+                     <button class="option-button px-3 py-1 border rounded-md" data-answer="firewall">Firewall Rules</button>
+                     <button class="option-button px-3 py-1 border rounded-md" data-answer="sanitisation">Input Sanitisation</button>
+                     <button class="option-button px-3 py-1 border rounded-md" data-answer="lockout">Account Lockout</button>
+                 </div>
+                 <div class="feedback mt-1"></div>
+             </div>
+        </section>
+
+        <section id="phishing-sim" class="bg-white p-6 rounded-lg shadow-md" data-points="4"> <h2 class="text-2xl font-semibold text-gray-700 mb-4 border-b pb-2">Task 5: Spot the Phishing Email! <span class="font-bold">(Max 4 points)</span></h2>
+             <p class="text-gray-600 mb-4">Phishing uses deceptive emails or messages to trick people into revealing personal information. Click on the parts of the email below that look suspicious.</p>
+             <div class="phishing-email">
+                 <div class="phishing-header">
+                     <p class="phishing-sender"><strong>From:</strong> <span class="suspicious" data-reason="Suspicious sender address (doesn't match the bank name)">SecureBankingAlert@mail-support-123.com</span></p>
+                     <p class="phishing-subject"><strong>Subject:</strong> <span class="suspicious" data-reason="Urgent/threatening language is common in phishing.">Urgent Action Required: Your Account is Locked!</span></p>
+                 </div>
+                 <div class="phishing-body">
+                     <p><span class="suspicious" data-reason="Generic greeting like 'Dear Customer' instead of your name is a red flag.">Dear Valued Customer,</span></p>
+                     <p>We detected unusual activity on your account. For your security, we have temporarily locked it. You must verify your details immediately to avoid permanent closure.</p>
+                     <p>Please click the link below to log in and confirm your information:</p>
+                     <p><a href="#" onclick="event.preventDefault();" class="phishing-link suspicious" data-reason="Links that ask for login details, especially with urgent warnings, are highly suspicious. Hovering might reveal a different URL.">https://secure-mybank-login-update.com/verify</a></p>
+                     <p>Thank you for your prompt attention to this matter.</p>
+                     <p>Sincerely,<br>My Bank Security Team</p>
+                     <p><span class="suspicious" data-reason="Poor grammar or spelling mistakes can indicate a scam.">Failure to comply will result in account termination imediatly.</span></p>
+                 </div>
+             </div>
+             <div id="phishing-feedback-summary" class="mt-4 text-center feedback"></div> </section>
+
+        <section id="firewalls" class="bg-white p-6 rounded-lg shadow-md">
+             <h2 class="text-2xl font-semibold text-gray-700 mb-4 border-b pb-2">Task 6: Firewalls <span class="font-bold">(Max 3 points)</span></h2>
+             <p class="text-gray-600 mb-4">A <strong class="text-red-700">Firewall</strong> monitors and controls network traffic based on security rules.</p>
+             <ul class="list-disc list-inside text-gray-600 space-y-1 mb-4 text-sm">
+                 <li>Examines incoming/outgoing data packets.</li>
+                 <li>Blocks/filters traffic violating rules (e.g., specific IPs, ports).</li>
+                 <li>Helps prevent unauthorized access and malicious traffic.</li>
+             </ul>
+             <div class="firewall-sim my-4">
+                 <div class="internet-area"> <i class="fas fa-globe fa-2x"></i> <p class="text-sm font-semibold">Internet (Untrusted)</p> </div>
+                 <div id="firewall-visual" class="firewall-wall"></div>
+                 <div class="network-area"> <i class="fas fa-network-wired fa-2x"></i> <p class="text-sm font-semibold">Your Network (Trusted)</p> </div>
+             </div>
+             <button id="run-firewall-sim" class="mt-2 mb-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition block mx-auto text-sm">Simulate Traffic</button>
+             <div class="quiz-item mt-6 pt-4 border-t" data-correct="filter" data-points="1">
+                 <p class="font-medium text-gray-800 mb-2">How does a firewall primarily protect a network?</p>
+                 <div class="flex flex-wrap gap-2"> <button class="option-button px-3 py-1 border rounded-md" data-answer="encrypt">Encrypting data</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="filter">Filtering traffic based on rules</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="scan">Scanning for viruses</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="backup">Backing up data</button> </div>
+                 <div class="feedback mt-1"></div>
+             </div>
+             <div class="quiz-item mt-4 pt-4 border-t" data-correct="block-port" data-points="1">
+                 <p class="font-medium text-gray-800 mb-2">If a school wants to prevent students from accessing online game servers (which often use specific ports), what might a firewall rule do?</p>
+                 <div class="flex flex-wrap gap-2"> <button class="option-button px-3 py-1 border rounded-md" data-answer="allow-all">Allow all traffic</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="block-port">Block traffic on specific game server ports</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="scan-games">Scan game files for malware</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="limit-users">Limit the number of users playing games</button> </div>
+                 <div class="feedback mt-1"></div>
+             </div>
+             <div class="quiz-item mt-4 pt-4 border-t" data-correct="ip-address" data-points="1">
+                 <p class="font-medium text-gray-800 mb-2">Besides ports, what else can a firewall commonly use as criteria to block traffic?</p>
+                 <div class="flex flex-wrap gap-2"> <button class="option-button px-3 py-1 border rounded-md" data-answer="file-size">File size</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="ip-address">IP Address</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="user-age">User's age</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="time-of-day">Time of day (always)</button> </div>
+                 <div class="feedback mt-1"></div>
+             </div>
+        </section>
+
+        <section id="anti-malware" class="bg-white p-6 rounded-lg shadow-md">
+             <h2 class="text-2xl font-semibold text-gray-700 mb-4 border-b pb-2">Task 7: Anti-Malware Software <span class="font-bold">(Max 2 points)</span></h2>
+             <p class="text-gray-600 mb-4"><strong class="text-green-700">Anti-malware</strong> software detects, prevents, and removes malicious software (malware).</p>
+             <ul class="list-disc list-inside text-gray-600 space-y-1 mb-4 text-sm">
+                 <li>Scans files for known malware signatures.</li>
+                 <li>Needs regular updates for new threats.</li>
+                 <li>Can quarantine (isolate) or delete detected malware.</li>
+                 <li>Helps prevent viruses, spyware, ransomware etc.</li>
+             </ul>
+             <div class="quiz-item" data-correct="scan-remove" data-points="1">
+                 <p class="font-medium text-gray-800 mb-2">What are the main functions of anti-malware software?</p>
+                 <div class="flex flex-wrap gap-2"> <button class="option-button px-3 py-1 border rounded-md" data-answer="filter-traffic">Filtering network traffic</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="encrypt-data">Encrypting files</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="scan-remove">Scanning for and removing malicious software</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="manage-passwords">Managing user passwords</button> </div>
+                 <div class="feedback mt-1"></div>
+             </div>
+             <div class="quiz-item mt-4 pt-4 border-t" data-correct="true" data-points="1">
+                 <p class="font-medium text-gray-800 mb-2">True or False: Anti-malware software is most effective when its virus definitions are kept up-to-date.</p>
+                 <div class="flex flex-wrap gap-2"> <button class="option-button px-3 py-1 border rounded-md" data-answer="true">True</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="false">False</button> </div>
+                 <div class="feedback mt-1"></div>
+             </div>
+        </section>
+
+        <section id="physical-security" class="bg-white p-6 rounded-lg shadow-md">
+             <h2 class="text-2xl font-semibold text-gray-700 mb-4 border-b pb-2">Task 8: Physical Security <span class="font-bold">(Max 4 points)</span></h2>
+             <p class="text-gray-600 mb-4"><strong class="text-green-700">Physical Security</strong> measures prevent unauthorized physical access, theft, or damage to hardware and infrastructure.</p>
+             <p class="text-gray-600 mb-4">Select ALL the items below that are examples of physical security measures:</p>
+             <div id="physical-security-quiz" class="space-y-2" data-points="4"> <button class="multi-select-option option-button w-full text-left p-3 border rounded-md" data-correct="true"><i class="fas fa-door-closed fa-fw mr-2"></i>Locking doors to server rooms.</button>
+                 <button class="multi-select-option option-button w-full text-left p-3 border rounded-md" data-correct="false"><i class="fas fa-shield-virus fa-fw mr-2"></i>Installing anti-malware software.</button>
+                 <button class="multi-select-option option-button w-full text-left p-3 border rounded-md" data-correct="true"><i class="fas fa-video fa-fw mr-2"></i>Using CCTV cameras in sensitive areas.</button>
+                 <button class="multi-select-option option-button w-full text-left p-3 border rounded-md" data-correct="true"><i class="fas fa-id-badge fa-fw mr-2"></i>Requiring keycard access to buildings.</button>
+                 <button class="multi-select-option option-button w-full text-left p-3 border rounded-md" data-correct="false"><i class="fas fa-key fa-fw mr-2"></i>Encrypting data transmissions.</button>
+                 <button class="multi-select-option option-button w-full text-left p-3 border rounded-md" data-correct="true"><i class="fas fa-user-shield fa-fw mr-2"></i>Employing security guards.</button>
+                 <button class="multi-select-option option-button w-full text-left p-3 border rounded-md" data-correct="false"><i class="fas fa-lock fa-fw mr-2"></i>Using strong passwords.</button>
+             </div>
+             <button id="check-physical-btn" class="mt-4 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition">Check Answers</button>
+             <div id="physical-feedback" class="feedback mt-2"></div>
+        </section>
+
+        <section id="authentication" class="bg-white p-6 rounded-lg shadow-md">
+             <h2 class="text-2xl font-semibold text-gray-700 mb-4 border-b pb-2">Task 9: Authentication & Passwords <span class="font-bold">(Max 4 points)</span></h2>
+             <p class="text-gray-600 mb-4">Verifying user identity often involves passwords and other methods to prevent brute-force attacks and unauthorized access.</p>
+             <div class="p-4 border rounded-md bg-gray-50 mb-6">
+                 <h3 class="font-medium mb-2">Password Strength Checker</h3>
+                 <input type="text" id="password-input" placeholder="Type a password..." class="w-full p-2 border rounded-md text-sm mb-2">
+                 <div class="strength-meter"><div id="strength-bar" class="strength-bar"></div></div>
+                 <div id="strength-text" class="strength-text"></div>
+                 <ul class="text-xs text-gray-600 mt-2 list-disc list-inside">
+                     <li><span id="check-length">Length (8+)</span></li>
+                     <li><span id="check-upper">Uppercase</span></li>
+                     <li><span id="check-lower">Lowercase</span></li>
+                     <li><span id="check-number">Number</span></li>
+                     <li><span id="check-symbol">Symbol</span></li>
+                 </ul>
+                 <p class="text-xs text-gray-500 mt-2">Strong passwords help prevent brute-force attacks.</p>
+             </div>
+             <div class="space-y-4">
+                 <div class="quiz-item" data-correct="2fa" data-points="1">
+                     <p class="font-medium text-gray-800 mb-2">Requiring a password AND a code sent to your phone is an example of:</p>
+                     <div class="flex flex-wrap gap-2"> <button class="option-button px-3 py-1 border rounded-md" data-answer="firewall">Firewall</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="2fa">Two-Factor Authentication (2FA)</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="encryption">Encryption</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="biometrics">Biometrics</button> </div>
+                     <div class="feedback mt-1"></div>
+                 </div>
+                 <div class="quiz-item mt-4 pt-4 border-t" data-correct="lockout" data-points="1">
+                     <p class="font-medium text-gray-800 mb-2">Temporarily disabling an account after too many failed login attempts is called:</p>
+                     <div class="flex flex-wrap gap-2"> <button class="option-button px-3 py-1 border rounded-md" data-answer="lockout">Account Lockout</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="captcha">CAPTCHA</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="access-level">User Access Level</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="pen-test">Penetration Testing</button> </div>
+                     <div class="feedback mt-1"></div>
+                 </div>
+                 <div class="quiz-item mt-4 pt-4 border-t" data-correct="access-levels" data-points="1">
+                     <p class="font-medium text-gray-800 mb-2">Giving a standard user fewer permissions than an administrator is an example of:</p>
+                     <div class="flex flex-wrap gap-2"> <button class="option-button px-3 py-1 border rounded-md" data-answer="encryption">Encryption</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="firewall">Firewall</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="access-levels">User Access Levels</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="biometrics">Biometrics</button> </div>
+                     <div class="feedback mt-1"></div>
+                 </div>
+                 <div class="quiz-item mt-4 pt-4 border-t" data-correct="captcha" data-points="1">
+                     <p class="font-medium text-gray-800 mb-2">A test designed to distinguish humans from bots, often used on login pages, is called:</p>
+                     <div class="flex flex-wrap gap-2"> <button class="option-button px-3 py-1 border rounded-md" data-answer="biometrics">Biometrics</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="2fa">2FA</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="lockout">Account Lockout</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="captcha">CAPTCHA</button> </div>
+                     <div class="feedback mt-1"></div>
+                 </div>
+             </div>
+        </section>
+
+        <section id="access-levels" class="bg-white p-6 rounded-lg shadow-md">
+             <h2 class="text-2xl font-semibold text-gray-700 mb-4 border-b pb-2">Task 10: User Access Levels <span class="font-bold">(Max 3 points)</span></h2>
+             <p class="text-gray-600 mb-4"><strong class="text-yellow-700">User Access Levels</strong> restrict users' permissions to only what they need for their role. This limits potential damage if an account is compromised or misused.</p>
+             <div class="space-y-4">
+                 <div class="quiz-item p-3 border rounded-md bg-gray-50" data-correct="student" data-points="1">
+                     <p class="font-medium text-gray-800 mb-2">Scenario: A user needs to submit homework to a shared area but should not be able to see or delete other students' submissions.</p>
+                     <p class="text-sm text-gray-600 mb-2">This user should likely have:</p>
+                     <div class="flex flex-wrap gap-2"> <button class="option-button px-3 py-1 border rounded-md" data-answer="admin">Administrator Access (Full Control)</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="student">Restricted Access (e.g., Write-only to specific folder)</button> </div>
+                     <div class="feedback mt-1"></div>
+                 </div>
+                 <div class="quiz-item p-3 border rounded-md bg-gray-50" data-correct="teacher" data-points="1">
+                     <p class="font-medium text-gray-800 mb-2">Scenario: A user needs to read and mark student homework in multiple folders and leave comments, but should not be able to install new software on the school network.</p>
+                     <p class="text-sm text-gray-600 mb-2">This user should likely have:</p>
+                     <div class="flex flex-wrap gap-2"> <button class="option-button px-3 py-1 border rounded-md" data-answer="admin">Administrator Access (Full Control)</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="teacher">Specific Access (e.g., Read/Write to homework folders, no system changes)</button> </div>
+                     <div class="feedback mt-1"></div>
+                 </div>
+                 <div class="quiz-item p-3 border rounded-md bg-gray-50" data-correct="admin" data-points="1">
+                     <p class="font-medium text-gray-800 mb-2">Scenario: A user needs to install updates on all school computers, manage user accounts, and configure network settings.</p>
+                     <p class="text-sm text-gray-600 mb-2">This user should likely have:</p>
+                     <div class="flex flex-wrap gap-2"> <button class="option-button px-3 py-1 border rounded-md" data-answer="admin">Administrator Access (Full Control)</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="teacher">Specific Access (e.g., Teacher)</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="student">Restricted Access (e.g., Student)</button> </div>
+                     <div class="feedback mt-1"></div>
+                 </div>
+             </div>
+        </section>
+
+        <section id="threat-grid-task" class="bg-white p-6 rounded-lg shadow-md" data-points="11"> <h2 class="text-2xl font-semibold text-gray-700 mb-4 border-b pb-2">Task 11: Threat Prevention Grid <span class="font-bold">(Max 11 points)</span></h2>
+             <p class="text-gray-600 mb-4">Drag the shield icon <i class="fas fa-shield-alt text-blue-500"></i> onto the grid cells where the prevention method (column) is a primary way to mitigate the threat (row). Some threats have multiple preventions.</p>
+             <div class="threat-grid-container">
+                 <div class="shield-pool">
+                     <p class="text-xs mb-1">Drag Shield:</p>
+                     <div class="shield-icon draggable" draggable="true"> <i class="fas fa-shield-alt"></i> </div>
+                 </div>
+                 <div class="threat-grid flex-grow overflow-x-auto">
+                     <table class="min-w-full">
+                         <thead>
+                             <tr>
+                                 <th class="w-1/4">Threat</th>
+                                 <th>Firewall</th>
+                                 <th>Anti-Malware</th>
+                                 <th>Encryption</th>
+                                 <th>Strong Passwords / Auth</th>
+                                 <th>Training</th>
+                                 <th>Input Sanitisation</th>
+                                 <th>Access Levels</th>
+                             </tr>
+                         </thead>
+                         <tbody>
+                             <tr> <td class="text-left font-semibold">Malware</td> <td class="drop-zone" data-threat="malware" data-prevention="firewall" data-correct="true" data-points="1"></td> <td class="drop-zone" data-threat="malware" data-prevention="anti-malware" data-correct="true" data-points="1"></td> <td class="drop-zone" data-threat="malware" data-prevention="encryption" data-correct="false" data-points="0"></td> <td class="drop-zone" data-threat="malware" data-prevention="passwords" data-correct="false" data-points="0"></td> <td class="drop-zone" data-threat="malware" data-prevention="training" data-correct="true" data-points="1"></td> <td class="drop-zone" data-threat="malware" data-prevention="sanitisation" data-correct="false" data-points="0"></td> <td class="drop-zone" data-threat="malware" data-prevention="access-levels" data-correct="false" data-points="0"></td> </tr>
+                             <tr> <td class="text-left font-semibold">Phishing</td> <td class="drop-zone" data-threat="phishing" data-prevention="firewall" data-correct="false" data-points="0"></td> <td class="drop-zone" data-threat="phishing" data-prevention="anti-malware" data-correct="false" data-points="0"></td> <td class="drop-zone" data-threat="phishing" data-prevention="encryption" data-correct="false" data-points="0"></td> <td class="drop-zone" data-threat="phishing" data-prevention="passwords" data-correct="false" data-points="0"></td> <td class="drop-zone" data-threat="phishing" data-prevention="training" data-correct="true" data-points="1"></td> <td class="drop-zone" data-threat="phishing" data-prevention="sanitisation" data-correct="false" data-points="0"></td> <td class="drop-zone" data-threat="phishing" data-prevention="access-levels" data-correct="false" data-points="0"></td> </tr>
+                             <tr> <td class="text-left font-semibold">Brute-force</td> <td class="drop-zone" data-threat="brute-force" data-prevention="firewall" data-correct="true" data-points="1"></td> <td class="drop-zone" data-threat="brute-force" data-prevention="anti-malware" data-correct="false" data-points="0"></td> <td class="drop-zone" data-threat="brute-force" data-prevention="encryption" data-correct="false" data-points="0"></td> <td class="drop-zone" data-threat="brute-force" data-prevention="passwords" data-correct="true" data-points="1"></td> <td class="drop-zone" data-threat="brute-force" data-prevention="training" data-correct="false" data-points="0"></td> <td class="drop-zone" data-threat="brute-force" data-prevention="sanitisation" data-correct="false" data-points="0"></td> <td class="drop-zone" data-threat="brute-force" data-prevention="access-levels" data-correct="false" data-points="0"></td> </tr>
+                             <tr> <td class="text-left font-semibold">Data Interception</td> <td class="drop-zone" data-threat="interception" data-prevention="firewall" data-correct="false" data-points="0"></td> <td class="drop-zone" data-threat="interception" data-prevention="anti-malware" data-correct="false" data-points="0"></td> <td class="drop-zone" data-threat="interception" data-prevention="encryption" data-correct="true" data-points="1"></td> <td class="drop-zone" data-threat="interception" data-prevention="passwords" data-correct="false" data-points="0"></td> <td class="drop-zone" data-threat="interception" data-prevention="training" data-correct="false" data-points="0"></td> <td class="drop-zone" data-threat="interception" data-prevention="sanitisation" data-correct="false" data-points="0"></td> <td class="drop-zone" data-threat="interception" data-prevention="access-levels" data-correct="false" data-points="0"></td> </tr>
+                             <tr> <td class="text-left font-semibold">SQL Injection</td> <td class="drop-zone" data-threat="sql-injection" data-prevention="firewall" data-correct="false" data-points="0"></td> <td class="drop-zone" data-threat="sql-injection" data-prevention="anti-malware" data-correct="false" data-points="0"></td> <td class="drop-zone" data-threat="sql-injection" data-prevention="encryption" data-correct="false" data-points="0"></td> <td class="drop-zone" data-threat="sql-injection" data-prevention="passwords" data-correct="false" data-points="0"></td> <td class="drop-zone" data-threat="sql-injection" data-prevention="training" data-correct="false" data-points="0"></td> <td class="drop-zone" data-threat="sql-injection" data-prevention="sanitisation" data-correct="true" data-points="1"></td> <td class="drop-zone" data-threat="sql-injection" data-prevention="access-levels" data-correct="true" data-points="1"></td> </tr>
+                             <tr> <td class="text-left font-semibold">DoS Attack</td> <td class="drop-zone" data-threat="dos" data-prevention="firewall" data-correct="true" data-points="1"></td> <td class="drop-zone" data-threat="dos" data-prevention="anti-malware" data-correct="false" data-points="0"></td> <td class="drop-zone" data-threat="dos" data-prevention="encryption" data-correct="false" data-points="0"></td> <td class="drop-zone" data-threat="dos" data-prevention="passwords" data-correct="false" data-points="0"></td> <td class="drop-zone" data-threat="dos" data-prevention="training" data-correct="false" data-points="0"></td> <td class="drop-zone" data-threat="dos" data-prevention="sanitisation" data-correct="false" data-points="0"></td> <td class="drop-zone" data-threat="dos" data-prevention="access-levels" data-correct="false" data-points="0"></td> </tr>
+                         </tbody>
+                     </table>
+                 </div>
+             </div>
+             <div class="flex justify-center space-x-4 mt-4">
+                 <button id="check-grid-btn" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition text-sm">Check Grid</button>
+                 <button id="reset-grid-btn" class="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition text-sm">Reset Grid</button>
+             </div>
+             <div id="grid-feedback" class="mt-3 text-center feedback"></div> </section>
+
+        <section id="encryption" class="bg-white p-6 rounded-lg shadow-md">
+             <h2 class="text-2xl font-semibold text-gray-700 mb-4 border-b pb-2">Task 12: Encryption <span class="font-bold">(Max 1 point)</span></h2>
+             <p class="text-gray-600 mb-4"><strong class="text-purple-700">Encryption</strong> uses an algorithm and a key to scramble readable data (<strong class="font-medium">plaintext</strong>) into an unintelligible format (<strong class="font-medium">ciphertext</strong>).</p>
+             <p class="text-gray-600 mb-4">Why is encryption important?</p>
+             <ul class="list-disc list-inside text-gray-600 space-y-1 mb-4 text-sm">
+                 <li>Protects data confidentiality (makes intercepted data meaningless).</li>
+                 <li>Ensures only authorized users can access sensitive information.</li>
+                 <li>Helps comply with data protection laws.</li>
+                 <li>Secures data transmitted over networks (e.g., HTTPS).</li>
+             </ul>
+             <div class="quiz-item" data-correct="unreadable" data-points="1">
+                 <p class="font-medium text-gray-800 mb-2">What is the main purpose of encrypting data?</p>
+                 <div class="flex flex-wrap gap-2"> <button class="option-button px-3 py-1 border rounded-md" data-answer="faster">Make data transfer faster</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="smaller">Make data files smaller</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="unreadable">Make data unintelligible to unauthorized users</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="findable">Make data easier to find</button> </div>
+                 <div class="feedback mt-1"></div>
+             </div>
+        </section>
+
+        <section id="pen-test-review" class="bg-white p-6 rounded-lg shadow-md">
+             <h2 class="text-2xl font-semibold text-gray-700 mb-4 border-b pb-2">Task 13: Pen Testing & Hacker Hats Review <span class="font-bold">(Max 2 points)</span></h2>
+             <p class="text-gray-600 mb-4">Let's quickly review these related concepts.</p>
+             <div class="quiz-item" data-correct="pen-test" data-points="1">
+                 <p class="font-medium text-gray-800 mb-2">A company legally hires security experts to attempt to breach their systems to identify weaknesses. What is this called?</p>
+                 <div class="flex flex-wrap gap-2"> <button class="option-button px-3 py-1 border rounded-md" data-answer="malware-scan">Malware Scanning</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="firewall-config">Firewall Configuration</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="pen-test">Penetration Testing</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="dos-attack">Denial of Service Attack</button> </div>
+                 <div class="feedback mt-1"></div>
+             </div>
+             <div class="quiz-item mt-4 pt-4 border-t" data-correct="white-hat" data-points="1">
+                 <p class="font-medium text-gray-800 mb-2">Which type of hacker usually performs penetration testing?</p>
+                 <div class="flex flex-wrap gap-2"> <button class="option-button px-3 py-1 border rounded-md" data-answer="black-hat">Black Hat</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="grey-hat">Grey Hat</button> <button class="option-button px-3 py-1 border rounded-md" data-answer="white-hat">White Hat</button> </div>
+                 <div class="feedback mt-1"></div>
+             </div>
+        </section>
+
+        <section id="definitions-match" class="bg-white p-6 rounded-lg shadow-md">
+             <h2 class="text-2xl font-semibold text-gray-700 mb-4 border-b pb-2">Task 14: Key Definitions <span class="font-bold">(Max 6 points)</span></h2>
+             <p class="text-gray-600 mb-4">Match the security term to its definition:</p>
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                 <div class="space-y-2" id="term-list">
+                     <div class="match-item p-3 border rounded-md bg-sky-100 text-sky-800 quiz-item" data-match="firewall_def" data-points="1"> <p class="font-semibold">Firewall</p> <div class="feedback mt-1 text-xs"></div> </div>
+                     <div class="match-item p-3 border rounded-md bg-sky-100 text-sky-800 quiz-item" data-match="malware_def" data-points="1"> <p class="font-semibold">Malware</p> <div class="feedback mt-1 text-xs"></div> </div>
+                     <div class="match-item p-3 border rounded-md bg-sky-100 text-sky-800 quiz-item" data-match="phishing_def" data-points="1"> <p class="font-semibold">Phishing</p> <div class="feedback mt-1 text-xs"></div> </div>
+                     <div class="match-item p-3 border rounded-md bg-sky-100 text-sky-800 quiz-item" data-match="bruteforce_def" data-points="1"> <p class="font-semibold">Brute-force</p> <div class="feedback mt-1 text-xs"></div> </div>
+                     <div class="match-item p-3 border rounded-md bg-sky-100 text-sky-800 quiz-item" data-match="encryption_def" data-points="1"> <p class="font-semibold">Encryption</p> <div class="feedback mt-1 text-xs"></div> </div>
+                     <div class="match-item p-3 border rounded-md bg-sky-100 text-sky-800 quiz-item" data-match="pentest_def" data-points="1"> <p class="font-semibold">Penetration Testing</p> <div class="feedback mt-1 text-xs"></div> </div>
+                 </div>
+                 <div class="space-y-2" id="definition-list">
+                     <div class="match-desc option-button w-full text-left p-3 border rounded-md text-sm" data-answer="malware_def">Software designed to harm or exploit computer systems.</div>
+                     <div class="match-desc option-button w-full text-left p-3 border rounded-md text-sm" data-answer="encryption_def">Scrambling data so it's unintelligible without a key.</div>
+                     <div class="match-desc option-button w-full text-left p-3 border rounded-md text-sm" data-answer="firewall_def">Monitors and filters network traffic based on rules.</div>
+                     <div class="match-desc option-button w-full text-left p-3 border rounded-md text-sm" data-answer="pentest_def">Authorised simulated attack to find vulnerabilities.</div>
+                     <div class="match-desc option-button w-full text-left p-3 border rounded-md text-sm" data-answer="bruteforce_def">Trying many password combinations to gain access.</div>
+                     <div class="match-desc option-button w-full text-left p-3 border rounded-md text-sm" data-answer="phishing_def">Tricking users into revealing sensitive information.</div>
+                 </div>
+             </div>
+             <div id="definition-match-feedback" class="mt-3 text-center feedback"></div> <button id="reset-definitions" class="mt-4 px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition block mx-auto text-sm">Reset Matching</button>
+        </section>
+
+        <section id="more-scenarios" class="bg-white p-6 rounded-lg shadow-md">
+             <h2 class="text-2xl font-semibold text-gray-700 mb-4 border-b pb-2">Task 15: Security Scenarios <span class="font-bold">(Max 4 points)</span></h2>
+             <p class="text-gray-600 mb-4">For each scenario, choose the most relevant threat or prevention method.</p>
+             <div class="space-y-6">
+                 <div class="quiz-question quiz-item" data-correct="interception" data-points="1">
+                     <p class="font-medium mb-2">1. Sending sensitive data over public Wi-Fi. Primary threat?</p>
+                     <div class="flex flex-wrap gap-2"> <button class="option-button px-4 py-2 border rounded-md" data-answer="dos">Denial of Service</button> <button class="option-button px-4 py-2 border rounded-md" data-answer="interception">Data Interception</button> <button class="option-button px-4 py-2 border rounded-md" data-answer="malware">Malware</button> <button class="option-button px-4 py-2 border rounded-md" data-answer="physical">Physical Theft</button> </div>
+                     <div class="feedback mt-2"></div>
+                 </div>
+                 <div class="quiz-question quiz-item" data-correct="input_sanitisation" data-points="1">
+                     <p class="font-medium mb-2">2. Preventing SQL injection in a website search box. Key technique?</p>
+                     <div class="flex flex-wrap gap-2"> <button class="option-button px-4 py-2 border rounded-md" data-answer="firewall">Using a Firewall</button> <button class="option-button px-4 py-2 border rounded-md" data-answer="encryption">Encrypting the database</button> <button class="option-button px-4 py-2 border rounded-md" data-answer="input_sanitisation">Input Sanitisation</button> <button class="option-button px-4 py-2 border rounded-md" data-answer="backup">Regular Backups</button> </div>
+                     <div class="feedback mt-2"></div>
+                 </div>
+                 <div class="quiz-question quiz-item" data-correct="lockout" data-points="1">
+                     <p class="font-medium mb-2">3. A website stops accepting login attempts from your IP address after 5 failed tries. What prevention method is this?</p>
+                     <div class="flex flex-wrap gap-2"> <button class="option-button px-4 py-2 border rounded-md" data-answer="captcha">CAPTCHA</button> <button class="option-button px-4 py-2 border rounded-md" data-answer="2fa">2FA</button> <button class="option-button px-4 py-2 border rounded-md" data-answer="lockout">Account Lockout/Rate Limiting</button> <button class="option-button px-4 py-2 border rounded-md" data-answer="firewall">Firewall Rule</button> </div>
+                     <div class="feedback mt-2"></div>
+                 </div>
+                 <div class="quiz-question quiz-item" data-correct="encryption" data-points="1">
+                     <p class="font-medium mb-2">4. To protect data if it's stolen during transmission (intercepted), what should be applied beforehand?</p>
+                     <div class="flex flex-wrap gap-2"> <button class="option-button px-4 py-2 border rounded-md" data-answer="firewall">Firewall</button> <button class="option-button px-4 py-2 border rounded-md" data-answer="antimalware">Anti-malware</button> <button class="option-button px-4 py-2 border rounded-md" data-answer="encryption">Encryption</button> <button class="option-button px-4 py-2 border rounded-md" data-answer="access_levels">User Access Levels</button> </div>
+                     <div class="feedback mt-2"></div>
+                 </div>
+             </div>
+        </section>
+
+        <section id="exam-practice" class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-semibold text-gray-700 mb-4 border-b pb-2">Task 16: Exam Practice Questions</h2>
+            <p class="text-gray-600 mb-6">Attempt to answer the following exam-style questions in the text areas provided. Then click 'Show Feedback' to see typical mark scheme points.</p> <div class="exam-question mb-6 pb-4 border-b">
+                <p class="font-medium text-gray-800 mb-2">Hamish stores confidential documents on his laptop. Hamish needs his computer to be secure from unauthorised access when connected to a network.</p>
+                <p class="font-medium text-gray-800 mb-2">i. Describe the problems that can arise from unauthorised access to his laptop and confidential documents. [3]</p>
+                <textarea id="q1i_answer" placeholder="Type your answer here..." class="exam-answer"></textarea>
+                <div class="mt-2 space-x-2">
+                    <button class="show-feedback-btn px-3 py-1 bg-gray-500 text-white text-sm rounded hover:bg-gray-600 transition" data-feedback-id="q1i_feedback">Show Feedback</button>
+                    </div>
+                <div id="q1i_feedback" class="exam-feedback hidden mt-2">
+                    <p><strong>Mark Scheme Points (Select 3):</strong></p>
+                    <ul class="list-disc list-inside text-sm">
+                        <li>Malware could be put on the computer.</li>
+                        <li>Data protection legislation states personal data must be protected / breaks Data protection legislation / breach of privacy.</li>
+                        <li>He could lose his job.</li>
+                        <li>Delete files / change data (so the important work is lost / changed).</li>
+                        <li>Steal files / data / information / copy data / files / information / keylogger transmits data / files / information to third party (use for illegal activities, e.g. profit from the data / gain private information / leak information to the public).</li>
+                        <li>Data could be locked (e.g., ransomware).</li>
+                    </ul>
+                </div>
+                <div id="ai_feedback_q1i" class="ai-feedback hidden mt-2"></div> </div>
+
+             <div class="exam-question mb-6 pb-4 border-b">
+                <p class="font-medium text-gray-800 mb-2">ii. Describe two ways Hamish can help prevent unauthorised access to his laptop. [4]</p>
+                <textarea id="q1ii_answer" placeholder="Type your answer here..." class="exam-answer"></textarea>
+                 <div class="mt-2 space-x-2">
+                    <button class="show-feedback-btn px-3 py-1 bg-gray-500 text-white text-sm rounded hover:bg-gray-600 transition" data-feedback-id="q1ii_feedback">Show Feedback</button>
+                    </div>
+                <div id="q1ii_feedback" class="exam-feedback hidden mt-2">
+                     <p><strong>Mark Scheme Points (Describe 2, 1 mark for identification + 1 for description each):</strong></p>
+                     <ul class="list-disc list-inside text-sm">
+                        <li><strong>Password:</strong> No access without the password (1) // description of strong password / limit attempts to guess / changing it regularly (1).</li>
+                        <li><strong>Firewall:</strong> Monitor incoming and outgoing transmissions (1) // Stop unauthorised/unwanted incoming/outgoing transmissions/packets (1).</li>
+                        <li><strong>Biometrics:</strong> Need fingerprint / retina scan (1).</li>
+                        <li><strong>Do not leave laptop logged on / unattended:</strong> So that other people cannot physical access it (1).</li>
+                        <li><strong>Physical security // keep in locked room:</strong> So that people cannot physically access the laptop (1).</li>
+                        <li><strong>Do not connect laptop to network // standalone computer:</strong> So that there are no network threats (1).</li>
+                        <li><strong>Two-step verification // two-factor authentication:</strong> For example sending code to mobile phone (1).</li>
+                        <li><strong>Anti-Malware:</strong> Install and update anti-malware software (1) to detect/remove malicious software used for access (1).</li>
+                        <li><strong>Encryption:</strong> Encrypt the hard drive (1) making data unreadable even if the laptop is stolen (1).</li>
+                     </ul>
+                </div>
+                 <div id="ai_feedback_q1ii" class="ai-feedback hidden mt-2"></div> </div>
+
+             <div class="exam-question">
+                <p class="font-medium text-gray-800 mb-2">A hospital stores patients' details on its computer network. The hospital is concerned about the security of its patients' details. Staff already use strong passwords to protect systems.</p>
+                <p class="font-medium text-gray-800 mb-2">Explain, with reference to system security, three other ways that the hospital could protect the network system. [6]</p>
+                <textarea id="q2_answer" placeholder="Type your answer here..." class="exam-answer"></textarea>
+                 <div class="mt-2 space-x-2">
+                    <button class="show-feedback-btn px-3 py-1 bg-gray-500 text-white text-sm rounded hover:bg-gray-600 transition" data-feedback-id="q2_feedback">Show Feedback</button>
+                    </div>
+                <div id="q2_feedback" class="exam-feedback hidden mt-2">
+                     <p><strong>Mark Scheme Points (Explain 3, 1 mark for identification + 1 for explanation each):</strong></p>
+                     <ul class="list-disc list-inside text-sm">
+                        <li><strong>Firewall:</strong> Install/configure a firewall (1) to block unauthorized external access to the network/patient records (1).</li>
+                        <li><strong>Anti-Malware:</strong> Use up-to-date anti-malware (1) to prevent viruses/spyware from stealing or damaging data (1).</li>
+                         <li><strong>User Access Levels:</strong> Implement strict access levels (1) so staff can only access patient data relevant to their role (principle of least privilege) (1).</li>
+                         <li><strong>Penetration Testing:</strong> Conduct regular penetration tests (1) to proactively identify and fix vulnerabilities before they are exploited (1).</li>
+                         <li><strong>Encryption:</strong> Encrypt stored patient data (1) so it's unintelligible if the database is breached (1). Also encrypt data during transmission (1) to prevent interception (1).</li>
+                         <li><strong>Physical Security:</strong> Use locked doors, keycards, CCTV for server rooms/terminals (1) to prevent unauthorized physical access to equipment/data (1).</li>
+                         <li><strong>Staff Training:</strong> Train staff on security best practices (e.g., spotting phishing, password security) (1) to reduce human error vulnerabilities (1).</li>
+                         <li><strong>Regular Backups:</strong> Maintain regular backups of patient data (1) to allow recovery in case of data loss/ransomware (1).</li>
+                         <li><strong>Network Policies:</strong> Implement policies restricting software installation or use of external devices (1) to reduce malware entry points (1).</li>
+                     </ul>
+                </div>
+                 <div id="ai_feedback_q2" class="ai-feedback hidden mt-2"></div> </div>
+        </section>
+
+
+        <section id="progress-summary" class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-semibold text-gray-700 mb-4 border-b pb-2">Task 17: Your Progress</h2>
+            <p class="text-gray-600 mb-4">See how you did on the interactive tasks!</p>
+            <div class="text-center p-4 bg-indigo-50 rounded-md border border-indigo-200">
+                <p class="text-lg font-semibold text-indigo-800">Your Score: <span id="current-score" class="text-2xl">0</span> / <span id="total-possible-score">0</span></p>
+                <button id="calculate-score-btn" class="mt-3 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition">Calculate My Score</button>
+            </div>
+             <p class="text-xs text-gray-500 mt-3 text-center">Note: Score based on completed quiz questions and matching activities. Exam practice not scored.</p>
+        </section>
+
+    </main>
+
+    <footer class="text-center mt-8 md:mt-12 text-gray-500 text-sm">
+        Interactive Worksheet | GCSE Computer Science J277
+    </footer>
+<script src="js/gcse-sec-prevention.js"></script>
+        <script src="js/worksheet-common.js"></script>
+</body>
+
+</html>

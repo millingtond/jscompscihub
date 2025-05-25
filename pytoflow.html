@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python to Flowchart</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    
+    
+<link rel="stylesheet" href="css/style.css">
+</head>
+<nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <a href="home.html" class="text-xl font-bold hover:text-gray-300 transition-colors">MGS CS Hub</a>
+        <ul class="flex space-x-3 lg:space-x-4">
+        </ul>
+        <ul class="flex flex-wrap space-x-2 sm:space-x-3 lg:space-x-4 text-sm sm:text-base">
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 7</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 8</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 9</a></li>
+            <li><a href="gcse.html" class="hover:text-gray-300 transition-colors">GCSE</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">A Level</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Competitions</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">CS News</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Extracurricular</a></li>
+        </ul>
+    </div>
+</nav>
+
+\1
+
+
+
+    <div class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-4xl">
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">Python Code to Flowchart Generator</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+                <div class="flex justify-between items-center mb-2">
+                    <label for="pythonCode" class="block text-sm font-medium text-gray-700">Enter Python Code:</label>
+                    <button id="generateRandomBtn" class="control-button">Random Basic Code</button>
+                </div>
+                <textarea id="pythonCode" rows="15"
+                    class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-150 ease-in-out"
+                    placeholder="Example:
+a = 10
+b = 20
+if a > b:
+    print(a)
+else:
+    print(b)
+
+for i in range(3):
+    print(i)
+                    "
+                ></textarea>
+                <div class="mt-3 flex justify-between items-center">
+                    <button id="prevExampleBtn" class="control-button">&lt; Prev Example</button>
+                    <span id="exampleCounter" class="text-sm text-gray-600"></span>
+                    <button id="nextExampleBtn" class="control-button">Next Example &gt;</button>
+                </div>
+                <button id="generateFlowchartBtn"
+                    class="mt-4 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-4 rounded-lg shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 transition duration-150 ease-in-out">
+                    Generate Flowchart
+                </button>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 min-h-[300px] flex flex-col justify-center items-center">
+                <h2 class="text-xl font-semibold text-gray-700 mb-3 self-start">Generated Flowchart:</h2>
+                <div id="errorMessage" class="w-full text-red-600 bg-red-100 border border-red-400 p-3 rounded-md mb-4 hidden"></div>
+                <div id="flowchartOutput" class="mermaid w-full">
+                    <p class="text-gray-500">Flowchart will appear here...</p>
+                </div>
+                <div id="loadingIndicator" class="hidden text-gray-600 mt-4">
+                    <svg class="animate-spin h-8 w-8 text-indigo-600 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <p class="mt-2">Generating...</p>
+                </div>
+            </div>
+        </div>
+         <p class="text-xs text-gray-500 mt-8 text-center">
+            Note: This tool supports basic Python constructs. Complex code might not be rendered correctly.
+        </p>
+    </div>
+
+    
+    <script src="js/pytoflow.js"></script>
+    <script src="js/worksheet-common.js"></script>
+
+
+</html>

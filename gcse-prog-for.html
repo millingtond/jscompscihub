@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCSE CS Lesson: Mastering For Loops</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" xintegrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+
+    </style>
+</head>
+<nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <a href="index.html" class="text-xl font-bold hover:text-gray-300 transition-colors">MGS CS Hub</a>
+        <ul class="flex flex-wrap space-x-2 sm:space-x-3 lg:space-x-4 text-sm sm:text-base">
+            <li><a href="y7.html" class="hover:text-gray-300 transition-colors">Year 7</a></li>
+            <li><a href="y8.html" class="hover:text-gray-300 transition-colors">Year 8</a></li>
+            <li><a href="y9.html" class="hover:text-gray-300 transition-colors">Year 9</a></li>
+            <li><a href="gcse.html" class="hover:text-gray-300 transition-colors">GCSE</a></li>
+            <li><a href="alevel.html" class="hover:text-gray-300 transition-colors">A Level</a></li>
+            <li><a href="competitions.html" class="hover:text-gray-300 transition-colors">Competitions</a></li>
+            <li><a href="news.html" class="hover:text-gray-300 transition-colors">CS News</a></li>
+            <li><a href="extracurricular.html" class="hover:text-gray-300 transition-colors">Extracurricular</a></li>
+        </ul>
+    </div>
+</nav>
+
+    <div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-lg shadow-xl">
+
+        <a href="gcse-progfun-iteration.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 group">
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left w-5 h-5 mr-2 transition-transform duration-200 group-hover:-translate-x-1"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+            Back to Iteration
+        </a>
+
+        <header class="mb-8 border-b pb-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-2">Programming Fundamentals: Mastering For Loops</h1>
+            <p class="text-lg text-gray-600">OCR GCSE Computer Science (J277) - Topic 2.1.1: Iteration</p>
+        </header>
+
+        <section id="starter-recap" class="mb-10">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-lightbulb mr-2 text-yellow-500"></i> Starter Activity: Repeating Tasks (5 mins)</h2>
+            <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-200 space-y-4">
+                <p class="font-semibold text-yellow-800">Initial Thoughts:</p>
+                <div class="space-y-3">
+                    <div class="starter-question">
+                        <label for="starter-daily-task" class="block text-sm font-medium text-yellow-700"><strong>1. Think of a daily task you repeat multiple times. How many times do you do it? Is it always the same number of times?</strong></label>
+                        <input type="text" id="starter-daily-task" name="starter-daily-task" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white" placeholder="Your daily task and repetition...">
+                    </div>
+                    <div class="starter-question">
+                        <label for="starter-print-hello" class="block text-sm font-medium text-yellow-700"><strong>2. If you wanted to tell a computer to print 'Hello' 5 times, how might you write the instructions without just copying the print command 5 times?</strong></label>
+                        <input type="text" id="starter-print-hello" name="starter-print-hello" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white" placeholder="Your ideas for efficient repetition...">
+                    </div>
+                    <div class="starter-question">
+                        <label for="starter-iterate-meaning" class="block text-sm font-medium text-yellow-700"><strong>3. What does the word 'iterate' mean to you?</strong></label>
+                        <input type="text" id="starter-iterate-meaning" name="starter-iterate-meaning" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white" placeholder="Your definition of 'iterate'...">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="lesson-outcomes" class="mb-10">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-bullseye mr-2 text-green-500"></i> Lesson Outcomes</h2>
+            <div class="bg-green-50 p-5 rounded-lg border border-green-200">
+                <p class="font-semibold text-green-800 mb-3">By the end of this lesson, you should be able to:</p>
+                <ul class="list-disc list-inside space-y-2 text-green-700 pl-4">
+                    <li>Understand the concept of <span class="keyword">definite iteration<span class="tooltip">Also known as count-controlled iteration. A loop that repeats a specific number of times, known before the loop starts.</span></span> (count-controlled loops).</li>
+                    <li>Identify and use <code>for</code> loops to repeat a block of code a specific number of times using OCR Exam Reference Language.</li>
+                    <li>Understand and use the components of a <code>for</code> loop (e.g., <span class="keyword">loop variable<span class="tooltip">A variable that controls the iterations of a loop. Its value typically changes with each iteration.</span></span>, start value, end value, step value in <span class="keyword">pseudocode<span class="tooltip">A plain language description of the steps in an algorithm or program. OCR uses its Exam Reference Language for this.</span></span>/Python <code>range</code>).</li>
+                    <li>Be able to write and trace <code>for</code> loops in OCR ERL pseudocode and a high-level language (e.g., Python).</li>
+                    <li>Apply <code>for</code> loops to solve simple problems, including iterating through strings or generating sequences.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="mb-10">
+             <div class="flex justify-between items-center mb-4">
+                 <h2 class="text-2xl font-semibold text-indigo-600">Introduction to For Loops</h2>
+                 <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                     <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer read-checkbox">
+                     Read
+                 </label>
+             </div>
+             <div class="bg-indigo-50 p-5 rounded-lg border border-indigo-200 space-y-3">
+                <p><span class="keyword">Iteration<span class="tooltip">The process of repeating a set of instructions.</span></span> means repetition, and it's a fundamental concept in programming, allowing us to automate repetitive tasks efficiently.</p>
+                <p><code>for</code> loops (as written in OCR Exam Reference Language) are a type of iteration structure used for <span class="keyword">definite iteration<span class="tooltip">Also known as count-controlled iteration. A loop that repeats a specific number of times, known before the loop starts.</span></span>, also known as a <span class="keyword">count-controlled loop<span class="tooltip">A loop that repeats a predetermined number of times. FOR loops are count-controlled.</span></span>. This means they are ideal when you know in advance exactly how many times you need a block of code to run.</p>
+                <p>We'll explore how <code>for</code> loops are structured in <span class="keyword">pseudocode<span class="tooltip">A plain language description of the steps in an algorithm or program, not tied to a specific programming language. OCR uses its Exam Reference Language (ERL) for this.</span></span> (specifically OCR ERL) and see how they translate into a high-level language like Python. The <span class="keyword">loop variable<span class="tooltip">A variable used in a loop to keep track of the current iteration. It often changes its value with each pass through the loop.</span></span> is key to controlling these repetitions.</p>
+            </div>
+        </section>
+
+        <section id="task1-forloop-anatomy" class="task-container mb-10">
+            <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-puzzle-piece mr-2"></i>Task 1: Anatomy of a For Loop (OCR ERL)</h3>
+            <p class="mb-4 text-gray-700">A <code>for</code> loop in OCR Exam Reference Language has specific parts. Drag the labels from the bank below onto the correct components of the pseudocode <code>for</code> loop. This specific loop will print the value of the variable <code>count</code> during each iteration.</p>
+
+            <div class="bg-gray-100 p-4 rounded-md mb-4">
+                <pre class="whitespace-pre-wrap"><code class="language-pseudocode text-sm md:text-base">
+<span id="drop-for" class="drop-zone p-1 border border-dashed border-gray-400 rounded min-w-[60px] inline-block text-center bg-white" data-correct="keyword-for" data-original-text="for">for</span> <span id="drop-loop-var" class="drop-zone p-1 border border-dashed border-gray-400 rounded min-w-[80px] inline-block text-center bg-white" data-correct="loop-variable" data-original-text="count">count</span> = <span id="drop-start-val" class="drop-zone p-1 border border-dashed border-gray-400 rounded min-w-[40px] inline-block text-center bg-white" data-correct="start-value" data-original-text="1">1</span> <span id="drop-to" class="drop-zone p-1 border border-dashed border-gray-400 rounded min-w-[40px] inline-block text-center bg-white" data-correct="keyword-to" data-original-text="to">to</span> <span id="drop-end-val" class="drop-zone p-1 border border-dashed border-gray-400 rounded min-w-[40px] inline-block text-center bg-white" data-correct="end-value" data-original-text="5">5</span>
+    <span id="drop-loop-body" class="drop-zone block my-2 p-2 border border-dashed border-gray-400 rounded min-h-[40px] text-center bg-white" data-correct="loop-body" data-original-text="print(count)">print(count)</span>
+<span id="drop-next" class="drop-zone p-1 border border-dashed border-gray-400 rounded min-w-[80px] inline-block text-center bg-white" data-correct="keyword-next" data-original-text="next count">next count</span>
+                </code></pre>
+            </div>
+
+            <div id="label-bank-task1" class="label-bank bg-yellow-50 p-3 rounded-md flex flex-wrap gap-2 justify-center" ondragover="allowDrop(event)" ondrop="dropLabel(event)">
+                <span class="draggable-label" draggable="true" data-label="loop-variable">Loop Variable</span>
+                <span class="draggable-label" draggable="true" data-label="start-value">Start Value</span>
+                <span class="draggable-label" draggable="true" data-label="end-value">End Value</span>
+                <span class="draggable-label" draggable="true" data-label="loop-body">Loop Body</span>
+                <span class="draggable-label" draggable="true" data-label="keyword-for">Keyword 'for'</span>
+                <span class="draggable-label" draggable="true" data-label="keyword-to">Keyword 'to'</span>
+                <span class="draggable-label" draggable="true" data-label="keyword-next">Keyword 'next' + Variable</span>
+            </div>
+
+            <button class="check-button" onclick="checkTask1ForLoopAnatomy()">Check Labels</button>
+            <button class="reset-button" onclick="resetTask1ForLoopAnatomy()">Reset Task 1</button>
+            <div id="task1-feedback" class="feedback-area"></div>
+        </section>
+
+        <section id="task2-predict-output" class="task-container mb-10">
+            <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-eye mr-2"></i>Task 2: Predicting Loop Output</h3>
+            <p class="mb-4 text-gray-700">Read the following <code>for</code> loops (OCR ERL) and predict their output. Type your answer in the space provided.</p>
+
+            <div class="predict-output-question mb-6 p-4 bg-white rounded border border-gray-200">
+                <p class="font-medium mb-2">Example 1 (OCR ERL):</p>
+                <pre class="code-block"><code class="language-pseudocode">for i = 0 to 3
+    print("Hello")
+next i</code></pre>
+                <label for="predict-q1-output" class="block text-sm font-medium text-gray-700 mt-2">What is the output?</label>
+                <textarea id="predict-q1-output" rows="2" class="mt-1 block w-full p-2 border exam-answer-area border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Type the exact output here..."></textarea>
+                <button class="toggle-answer-btn disabled:opacity-50 disabled:cursor-not-allowed" data-answer-id="predict-q1-answer" disabled>Show Correct Output</button>
+                <div id="predict-q1-answer" class="answer-area hidden">Hello<br>Hello<br>Hello<br>Hello</div>
+            </div>
+
+            <div class="predict-output-question mb-6 p-4 bg-white rounded border border-gray-200">
+                <p class="font-medium mb-2">Example 2 (OCR ERL with step):</p>
+                <pre class="code-block"><code class="language-pseudocode">for num = 10 to 0 step -2
+    print(num)
+next num</code></pre>
+                <label for="predict-q2-output" class="block text-sm font-medium text-gray-700 mt-2">What is the output?</label>
+                <textarea id="predict-q2-output" rows="6" class="mt-1 block w-full p-2 border exam-answer-area border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Each number on a new line..."></textarea>
+                <button class="toggle-answer-btn disabled:opacity-50 disabled:cursor-not-allowed" data-answer-id="predict-q2-answer" disabled>Show Correct Output</button>
+                <div id="predict-q2-answer" class="answer-area hidden">10<br>8<br>6<br>4<br>2<br>0</div>
+            </div>
+
+            <div class="predict-output-question p-4 bg-white rounded border border-gray-200">
+                <p class="font-medium mb-2">Example 3 (Python <code>range</code> - for comparison):</p>
+                <pre class="code-block"><code class="language-python">for x in range(1, 6): # OCR ERL equivalent: for x = 1 to 5
+    print(x * 2)      # OCR ERL equivalent: print(x * 2) next x</code></pre>
+                <label for="predict-q3-output" class="block text-sm font-medium text-gray-700 mt-2">What is printed?</label>
+                <textarea id="predict-q3-output" rows="5" class="mt-1 block w-full p-2 border exam-answer-area border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Each number on a new line..."></textarea>
+                <button class="toggle-answer-btn disabled:opacity-50 disabled:cursor-not-allowed" data-answer-id="predict-q3-answer" disabled>Show Correct Output</button>
+                <div id="predict-q3-answer" class="answer-area hidden">2<br>4<br>6<br>8<br>10</div>
+            </div>
+            <button class="reset-button" onclick="resetTask2PredictOutput()">Reset Task 2</button>
+        </section>
+
+        <section id="task3-loop-simulator" class="task-container mb-10">
+            <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-cogs mr-2"></i>Task 3: For Loop Simulator (OCR ERL & Python)</h3>
+            <p class="mb-4 text-gray-700">Control a simple <code>for</code> loop. Set the start, end, and <span class="keyword">step value<span class="tooltip">Determines how the loop variable changes after each iteration. Default is usually 1. Can be negative for counting down.</span></span>. The simulator will generate the equivalent OCR ERL and Python code, then step through the execution slowly, highlighting the current line and showing the loop variable's value and any output. The loop body will simply print the loop variable.</p>
+            <div class="bg-indigo-50 p-5 rounded-lg border border-indigo-200 space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label for="sim-start" class="block text-sm font-medium text-indigo-700">Start Value:</label>
+                        <input type="number" id="sim-start" value="1" class="mt-1 block w-full p-2 border border-indigo-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="sim-end" class="block text-sm font-medium text-indigo-700">End Value:</label>
+                        <input type="number" id="sim-end" value="3" class="mt-1 block w-full p-2 border border-indigo-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="sim-step" class="block text-sm font-medium text-indigo-700">Step Value:</label>
+                        <input type="number" id="sim-step" value="1" class="mt-1 block w-full p-2 border border-indigo-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+                </div>
+                <button id="run-simulator-btn" class="sim-button bg-green-500 hover:bg-green-600">Run Simulation (Step-by-Step)</button>
+                
+                <div class="code-block-container">
+                    <div>
+                        <h4 class="font-semibold text-indigo-800">OCR ERL Code:</h4>
+                        <pre id="ocr-erl-code-display" class="code-block bg-white p-2 rounded border border-gray-300 text-sm"></pre>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-indigo-800">Python Code:</h4>
+                        <pre id="python-code-display" class="code-block bg-white p-2 rounded border border-gray-300 text-sm"></pre>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <h4 class="font-semibold text-indigo-800">Simulation Trace & Output:</h4>
+                    <div id="simulator-output-area" class="mt-2 p-3 bg-white rounded-md border border-indigo-300 min-h-[150px] whitespace-pre-wrap font-mono text-sm">
+                        Enter values and click "Run Simulation" to see results.
+                    </div>
+                </div>
+                 <p class="text-xs text-gray-600 mt-2">Note: Python's <code>range(start, stop, step)</code> 'stop' value is exclusive. OCR ERL's <code>to endValue</code> is inclusive.</p>
+            </div>
+            <button class="reset-button" onclick="resetTask3LoopSimulator()">Reset Task 3</button>
+        </section>
+
+        <section id="task4-writing-loops" class="task-container mb-10">
+            <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-pencil-alt mr-2"></i>Task 4: Writing For Loops (OCR ERL)</h3>
+            <p class="mb-4 text-gray-700">Complete the <code>for</code> loops below in OCR Exam Reference Language to achieve the desired outcome. Fill in the blanks (<code>____</code>).</p>
+
+            <div class="writing-loops-question mb-6 p-4 bg-white rounded border border-gray-200">
+                <p class="font-medium mb-2">Problem 1: Write an OCR ERL pseudocode loop to print the numbers from 1 to 10.</p>
+                <pre class="code-block-fillable"><code class="language-pseudocode">for <span id="write-q1-var" class="fill-blank" contenteditable="true" data-placeholder="var">____</span> = <span id="write-q1-start" class="fill-blank" contenteditable="true" data-placeholder="start">____</span> to <span id="write-q1-end" class="fill-blank" contenteditable="true" data-placeholder="end">____</span>
+    print(<span id="write-q1-output" class="fill-blank" contenteditable="true" data-placeholder="var">____</span>)
+next <span id="write-q1-nextvar" class="fill-blank" contenteditable="true" data-placeholder="var">____</span></code></pre>
+                <button class="toggle-answer-btn disabled:opacity-50 disabled:cursor-not-allowed" data-answer-id="write-q1-answer" disabled>Show Model Solution</button>
+                <div id="write-q1-answer" class="answer-area hidden"><pre><code class="language-pseudocode">for count = 1 to 10
+    print(count)
+next count</code></pre></div>
+            </div>
+
+            <div class="writing-loops-question mb-6 p-4 bg-white rounded border border-gray-200">
+                <p class="font-medium mb-2">Problem 2: Write a Python loop to print the first 5 even numbers starting from 2 (i.e., 2, 4, 6, 8, 10).</p>
+                <pre class="code-block-fillable"><code class="language-python">for num in range(<span id="write-q2-start" class="fill-blank" contenteditable="true" data-placeholder="start">____</span>, <span id="write-q2-stop" class="fill-blank" contenteditable="true" data-placeholder="stop">____</span>, <span id="write-q2-step" class="fill-blank" contenteditable="true" data-placeholder="step">____</span>):
+    print(num)</code></pre>
+                <button class="toggle-answer-btn disabled:opacity-50 disabled:cursor-not-allowed" data-answer-id="write-q2-answer" disabled>Show Model Solution</button>
+                <div id="write-q2-answer" class="answer-area hidden"><pre><code class="language-python">for num in range(2, 11, 2):
+    print(num)</code></pre>
+                <p class="text-xs italic mt-1">Alternative: <code>range(2, 12, 2)</code> would also work if the upper limit is exclusive and you want to include 10. The key is getting the sequence 2, 4, 6, 8, 10.</p></div>
+            </div>
+
+            <div class="writing-loops-question p-4 bg-white rounded border border-gray-200">
+                <p class="font-medium mb-2">Problem 3: Write an OCR ERL pseudocode loop to ask the user for their name 3 times. (Assume <code>name = input("Prompt")</code> is how you get input).</p>
+                <textarea id="write-q3-code" class="exam-answer-area w-full p-2 border border-gray-300 rounded-md" placeholder="Write your OCR ERL pseudocode FOR loop here..." rows="5"></textarea>
+                <button class="toggle-answer-btn disabled:opacity-50 disabled:cursor-not-allowed" data-answer-id="write-q3-answer" disabled>Show Model Solution</button>
+                <div id="write-q3-answer" class="answer-area hidden"><pre><code class="language-pseudocode">for i = 1 to 3
+    print("Please enter your name:")
+    name = input("Enter name") // Or just: name = input()
+    print("Hello, " + name)
+next i</code></pre>
+                <p class="text-xs italic mt-1">Simpler version just getting input:
+<pre><code class="language-pseudocode">for i = 1 to 3
+    name = input("Enter your name:")
+next i</code></pre></p></div>
+            </div>
+            <button class="reset-button" onclick="resetTask4WritingLoops()">Reset Task 4</button>
+        </section>
+
+        <section id="task5-string-iteration" class="task-container mb-10">
+            <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-font mr-2"></i>Task 5: Iterating Through a String (OCR ERL)</h3>
+            <p class="mb-4 text-gray-700"><code>for</code> loops can also iterate over each character in a string. In OCR ERL, you'd typically use the string length and substring operations. Enter a short word below and see how its characters could be accessed one by one, step-by-step.</p>
+            <div class="bg-teal-50 p-5 rounded-lg border border-teal-200 space-y-4">
+                <div>
+                    <label for="string-input-task5" class="block text-sm font-medium text-teal-700">Enter a word (e.g., HELLO):</label>
+                    <input type="text" id="string-input-task5" value="LOOP" maxlength="10" class="mt-1 block w-full md:w-1/2 p-2 border border-teal-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:text-sm">
+                </div>
+                <button id="run-string-iteration-btn" class="sim-button bg-teal-500 hover:bg-teal-600">Iterate String (Step-by-Step)</button>
+                <div class="code-block-container">
+                    <div>
+                        <h4 class="font-semibold text-teal-800">OCR ERL Logic:</h4>
+                        <pre id="string-erl-code-display" class="code-block text-sm bg-white p-2 rounded border border-gray-300"></pre>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-teal-800">Python Logic (more direct):</h4>
+                        <pre id="string-python-code-display" class="code-block text-sm bg-white p-2 rounded border border-gray-300"></pre>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-teal-800 mt-3">Iteration Trace & Output:</h4>
+                    <div id="string-iteration-output" class="mt-2 p-3 bg-white rounded-md border border-teal-300 min-h-[100px] whitespace-pre-wrap font-mono text-sm">
+                        Enter a word and click "Iterate String" to see results.
+                    </div>
+                </div>
+            </div>
+            <button class="reset-button" onclick="resetTask5StringIteration()">Reset Task 5</button>
+        </section>
+
+        <section id="real-world-forloops" class="mb-10">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-globe-americas mr-2 text-blue-500"></i> Real-World Connection: For Loops in Action</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer read-checkbox">
+                    Read
+                </label>
+            </div>
+            <div class="bg-blue-50 p-5 rounded-lg border border-blue-200 space-y-3">
+                <p class="text-gray-700"><code>for</code> loops are workhorses in programming! They are used for:</p>
+                <ul class="list-disc list-inside space-y-2 text-blue-800 pl-4">
+                    <li><strong class="font-semibold">Processing items in a list or collection:</strong> e.g., calculating the total of items in an online shopping basket, sending a promotional email to every customer on a mailing list, checking each word in a document for spelling errors.</li>
+                    <li><strong class="font-semibold">Graphics and Games:</strong> e.g., drawing multiple similar objects on a screen (like stars in a night sky), updating the position of all enemies in a game a certain number of times per second, animating a character by cycling through a sequence of images.</li>
+                    <li><strong class="font-semibold">Data Analysis and Processing:</strong> e.g., reading through a specific number of lines in a data file, performing the same calculation on multiple data entries in a spreadsheet, generating a report for each month of the year.</li>
+                    <li><strong class="font-semibold">Repeating User Interface tasks:</strong> e.g., creating 10 buttons in a row on a webpage, populating a dropdown menu with a list of countries, displaying a set number of posts on a social media feed.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="mythbusters-forloops" class="mb-10">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-lightbulb-exclamation mr-2 text-red-500"></i> Myth Busters: For Loop Edition</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer read-checkbox">
+                    Read
+                </label>
+            </div>
+            <div class="bg-red-50 p-5 rounded-lg border border-red-200 space-y-4">
+                <div class="myth">
+                    <p><strong class="font-semibold text-red-800">Myth 1:</strong> "<code>for</code> loops can only count upwards."</p>
+                    <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> Not true! By using a <span class="keyword">step value<span class="tooltip">Determines how the loop variable changes after each iteration. Default is usually 1. Can be negative for counting down.</span></span> (e.g., <code>step -1</code> in OCR ERL, or a negative third argument in Python's <code>range()</code> function), <code>for</code> loops can easily count downwards or even skip numbers (e.g., <code>step 2</code> to count in twos).</p>
+                </div>
+                <div class="myth border-t border-red-200 pt-4">
+                    <p><strong class="font-semibold text-red-800">Myth 2:</strong> "The <span class="keyword">loop variable<span class="tooltip">A variable used in a loop to keep track of the current iteration. It often changes its value with each pass through the loop.</span></span> in a <code>for</code> loop must be called <code>i</code> or <code>count</code>."</p>
+                    <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> While <code>i</code>, <code>j</code>, <code>k</code>, or <code>count</code> are common conventions (especially for simple or nested loops), the loop variable can be any valid variable name. It's good practice to choose a descriptive name if it makes the code easier to understand (e.g., <code>for studentNumber = 1 to 30</code>).</p>
+                </div>
+                 <div class="myth border-t border-red-200 pt-4">
+                    <p><strong class="font-semibold text-red-800">Myth 3:</strong> "<code>for</code> loops are the only way to repeat code."</p>
+                    <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> <code>for</code> loops are for *definite* iteration (when you know the number of repeats). For *indefinite* iteration (when the loop continues as long as a condition is true, and you don't necessarily know how many times it will run), programmers use other loop structures like <code>while</code> loops or <code>do...until</code> loops (OCR ERL uses <code>do...until</code>, Python uses <code>while True: ... if condition: break</code> or similar for post-condition checks). We'll cover those in another lesson!</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="common-mistakes-forloops" class="mb-10">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-exclamation-triangle mr-2 text-orange-500"></i> Common Mistakes with For Loops</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer read-checkbox">
+                    Read
+                </label>
+            </div>
+            <div class="bg-orange-50 p-5 rounded-lg border border-orange-200 space-y-4">
+                <div class="mistake">
+                    <p><strong class="font-semibold text-orange-800">Mistake 1: Off-by-One Errors</strong></p>
+                    <p class="text-sm text-orange-700 mt-1 pl-4"><strong>Common Error:</strong> Wanting to loop 5 times and writing <code>for i = 1 to 4</code> (only loops 4 times) or <code>for i = 0 to 5</code> (loops 6 times). In Python, <code>range(5)</code> gives 0,1,2,3,4 (5 iterations), but <code>range(1, 5)</code> gives 1,2,3,4 (4 iterations).</p>
+                    <p class="text-sm text-orange-700 mt-1 pl-4"><strong>Correct Approach/Understanding:</strong> Carefully check your start and end values. OCR ERL's <code>to</code> is inclusive. If you want 5 iterations starting from 1, it's <code>for i = 1 to 5</code>. If starting from 0, it's <code>for i = 0 to 4</code>. Always trace a small example mentally or on paper.</p>
+                </div>
+                <div class="mistake border-t border-orange-200 pt-4">
+                    <p><strong class="font-semibold text-orange-800">Mistake 2: Incorrect Step Value for Counting Down</strong></p>
+                    <p class="text-sm text-orange-700 mt-1 pl-4"><strong>Common Error:</strong> Trying to count down, e.g., from 5 to 1, but forgetting to make the step negative: <code>for x = 5 to 1 step 1</code>. This loop won't run as expected because `x` increments and will never reach 1 by decreasing.</p>
+                    <p class="text-sm text-orange-700 mt-1 pl-4"><strong>Correct Approach/Understanding:</strong> When counting down, the step value must be negative, e.g., <code>for x = 5 to 1 step -1</code>.</p>
+                </div>
+                <div class="mistake border-t border-orange-200 pt-4">
+                    <p><strong class="font-semibold text-orange-800">Mistake 3: Forgetting `next <variable>` in OCR ERL</strong></p>
+                    <p class="text-sm text-orange-700 mt-1 pl-4"><strong>Common Error:</strong> Writing the loop body but omitting the <code>next i</code> (or whatever the loop variable is) at the end of the loop in pseudocode.</p>
+                    <p class="text-sm text-orange-700 mt-1 pl-4"><strong>Correct Approach/Understanding:</strong> OCR ERL requires <code>next <variableName></code> to signify the end of the loop body and to increment/decrement the loop variable. Python uses indentation for this, so it's a common point of confusion when switching between them.</p>
+                </div>
+                 <div class="mistake border-t border-orange-200 pt-4">
+                    <p><strong class="font-semibold text-orange-800">Mistake 4: Confusing Loop Variable with Output</strong></p>
+                    <p class="text-sm text-orange-700 mt-1 pl-4"><strong>Common Error:</strong> Intending to print the loop variable but printing a fixed string instead, or vice-versa. E.g., <code>print("i")</code> instead of <code>print(i)</code>.</p>
+                    <p class="text-sm text-orange-700 mt-1 pl-4"><strong>Correct Approach/Understanding:</strong> Remember that <code>print("text")</code> prints the literal string "text", while <code>print(variableName)</code> prints the current value stored in `variableName`.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="task6-code-tracing" class="task-container mb-10">
+            <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-shoe-prints mr-2"></i>Task 6: Code Tracing Challenge (OCR ERL)</h3>
+            <p class="mb-4 text-gray-700">Carefully trace the execution of the following OCR ERL pseudocode. Fill in the table below with the value of the loop variable `j` and any output produced during each iteration of the loop.</p>
+            <div class="bg-sky-50 p-5 rounded-lg border border-sky-200">
+                <p class="font-medium mb-2 text-sky-800">Pseudocode to Trace:</p>
+                <pre class="code-block"><code class="language-pseudocode">total = 0
+for j = 1 to 4 step 1
+    total = total + j
+    if j MOD 2 == 0 then
+        print("Even iteration: " + j)
+    endif
+    print("Current total: " + total)
+next j
+print("Final total: " + total)</code></pre>
+
+                <h4 class="font-semibold text-sky-800 mt-6 mb-2">Trace Table:</h4>
+                <div class="overflow-x-auto">
+                    <table id="trace-table-task6" class="w-full min-w-[600px] border-collapse border border-sky-300">
+                        <thead>
+                            <tr class="bg-sky-100">
+                                <th class="border border-sky-300 p-2 text-left">Iteration No.</th>
+                                <th class="border border-sky-300 p-2 text-left">Value of `j` (at start of iteration)</th>
+                                <th class="border border-sky-300 p-2 text-left">Value of `total` (after `total = total + j`)</th>
+                                <th class="border border-sky-300 p-2 text-left">Output(s) during this iteration (each on new line)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="border border-sky-300 p-2">1</td>
+                                <td class="border border-sky-300 p-2"><input type="text" class="trace-input w-full p-1 border border-sky-200 rounded" data-col="j_value"></td>
+                                <td class="border border-sky-300 p-2"><input type="text" class="trace-input w-full p-1 border border-sky-200 rounded" data-col="total_value"></td>
+                                <td class="border border-sky-300 p-2"><textarea class="trace-input w-full p-1 border border-sky-200 rounded" rows="2" data-col="output"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td class="border border-sky-300 p-2">2</td>
+                                <td class="border border-sky-300 p-2"><input type="text" class="trace-input w-full p-1 border border-sky-200 rounded" data-col="j_value"></td>
+                                <td class="border border-sky-300 p-2"><input type="text" class="trace-input w-full p-1 border border-sky-200 rounded" data-col="total_value"></td>
+                                <td class="border border-sky-300 p-2"><textarea class="trace-input w-full p-1 border border-sky-200 rounded" rows="2" data-col="output"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td class="border border-sky-300 p-2">3</td>
+                                <td class="border border-sky-300 p-2"><input type="text" class="trace-input w-full p-1 border border-sky-200 rounded" data-col="j_value"></td>
+                                <td class="border border-sky-300 p-2"><input type="text" class="trace-input w-full p-1 border border-sky-200 rounded" data-col="total_value"></td>
+                                <td class="border border-sky-300 p-2"><textarea class="trace-input w-full p-1 border border-sky-200 rounded" rows="2" data-col="output"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td class="border border-sky-300 p-2">4</td>
+                                <td class="border border-sky-300 p-2"><input type="text" class="trace-input w-full p-1 border border-sky-200 rounded" data-col="j_value"></td>
+                                <td class="border border-sky-300 p-2"><input type="text" class="trace-input w-full p-1 border border-sky-200 rounded" data-col="total_value"></td>
+                                <td class="border border-sky-300 p-2"><textarea class="trace-input w-full p-1 border border-sky-200 rounded" rows="2" data-col="output"></textarea></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="font-medium mt-4 text-sky-800">Final output after the loop finishes:</p>
+                <input type="text" id="trace-final-output-task6" class="trace-input w-full md:w-1/2 mt-1 p-1 border border-sky-200 rounded" placeholder="What is the very last line printed?">
+
+                <button class="toggle-answer-btn disabled:opacity-50 disabled:cursor-not-allowed mt-4" data-answer-id="task6-correct-trace" disabled>Show Correct Trace</button>
+                <div id="task6-correct-trace" class="answer-area hidden mt-3">
+                    <h5 class="font-semibold text-sky-700">Correct Trace:</h5>
+                    <p><strong>Iteration 1:</strong> j = 1, total = 1, Output: "Current total: 1"</p>
+                    <p><strong>Iteration 2:</strong> j = 2, total = 3, Output: "Even iteration: 2" (new line) "Current total: 3"</p>
+                    <p><strong>Iteration 3:</strong> j = 3, total = 6, Output: "Current total: 6"</p>
+                    <p><strong>Iteration 4:</strong> j = 4, total = 10, Output: "Even iteration: 4" (new line) "Current total: 10"</p>
+                    <p><strong>Final output after loop:</strong> "Final total: 10"</p>
+                </div>
+            </div>
+            <button class="reset-button" onclick="resetTask6CodeTracing()">Reset Task 6</button>
+        </section>
+
+
+        <section id="task7-exam-practice" class="task-container mb-10">
+             <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-graduation-cap mr-2"></i>Task 7: Exam Practice Questions (OCR ERL)</h3>
+             <p class="mb-4 text-gray-700">Answer these exam-style questions using OCR Exam Reference Language. Use the 'Show Mark Scheme' button to check your understanding *after* you have attempted an answer.</p>
+
+             <div class="exam-question mb-6 p-4 bg-white rounded border border-gray-200" data-marks="3">
+                <h4 class="mb-3 font-medium text-gray-800">1. Write an OCR ERL pseudocode algorithm using a <code>for</code> loop that will print the 7 times table from 1x7 up to 10x7. (<span class="marks-value">3</span> marks)</h4>
+                <textarea id="exam-q1-forloop" class="exam-answer-area w-full p-2 border border-gray-300 rounded-md" placeholder="Write your OCR ERL pseudocode here..." rows="5"></textarea>
+                <div class="exam-controls mt-2 flex items-center space-x-4">
+                    <div>
+                        <label for="self-assess-q1" class="text-sm text-gray-600">My predicted marks:</label>
+                        <input type="number" id="self-assess-q1" class="self-assess-input w-20 p-1 border border-gray-300 rounded" min="0" max="3"/>
+                    </div>
+                    <button class="toggle-mark-scheme-btn px-3 py-1.5 text-sm bg-indigo-600 text-white rounded hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed" data-mark-scheme-id="ms-q1-forloop" disabled>Show Mark Scheme</button>
+                </div>
+                <div id="ms-q1-forloop" class="mark-scheme hidden bg-gray-100 p-3 mt-2 rounded border border-gray-200">
+                    <p><strong>Mark Scheme (7 Times Table):</strong></p>
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Correct <code>for</code> loop structure (e.g., <code>for...to...next</code>) (1 mark)</li>
+                        <li>Correct start and end values for the loop variable (e.g., <code>i = 1 to 10</code>) (1 mark)</li>
+                        <li>Correct output within the loop (e.g., <code>print(i * 7)</code> or <code>print(i + " x 7 = " + (i*7))</code>) (1 mark)</li>
+                    </ul>
+                    <p class="text-xs italic mt-1">Example Solution (OCR ERL):
+<pre><code class="language-pseudocode">for i = 1 to 10
+    print(i * 7)
+next i</code></pre></p>
+                </div>
+            </div>
+
+            <div class="exam-question mb-6 p-4 bg-white rounded border border-gray-200" data-marks="4">
+                <h4 class="mb-3 font-medium text-gray-800">2. Explain what is meant by 'definite iteration' and give an example of a situation where a <code>for</code> loop (in OCR ERL) would be a suitable type of loop to use. (<span class="marks-value">4</span> marks)</h4>
+                 <textarea id="exam-q2-definite-iteration" class="exam-answer-area w-full p-2 border border-gray-300 rounded-md" placeholder="Explain definite iteration and give a suitable example..." rows="4"></textarea>
+                 <div class="exam-controls mt-2 flex items-center space-x-4">
+                    <div>
+                        <label for="self-assess-q2" class="text-sm text-gray-600">My predicted marks:</label>
+                        <input type="number" id="self-assess-q2" class="self-assess-input w-20 p-1 border border-gray-300 rounded" min="0" max="4"/>
+                    </div>
+                    <button class="toggle-mark-scheme-btn px-3 py-1.5 text-sm bg-indigo-600 text-white rounded hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed" data-mark-scheme-id="ms-q2-definite-iteration" disabled>Show Mark Scheme</button>
+                </div>
+                 <div id="ms-q2-definite-iteration" class="mark-scheme hidden bg-gray-100 p-3 mt-2 rounded border border-gray-200">
+                     <p><strong>Mark Scheme (Definite Iteration):</strong></p>
+                     <ul class="list-disc list-inside ml-4">
+                         <li>Definite iteration: repeats a known/fixed number of times / is count-controlled. (1 mark)</li>
+                         <li>The number of repetitions is determined before the loop starts. (1 mark)</li>
+                         <li>Suitable situation example: e.g., processing exactly 10 student scores, printing a welcome message 5 times, iterating through all 12 months of the year. (1 mark for a clear example)</li>
+                         <li>Reason why <code>for</code> loop is suitable for the example: because the number of iterations is known beforehand. (1 mark for linking to the definition)</li>
+                     </ul>
+                 </div>
+            </div>
+
+             <div class="exam-question p-4 bg-white rounded border border-gray-200" data-marks="2">
+                <h4 class="mb-3 font-medium text-gray-800">3. A programmer writes the following OCR ERL pseudocode:
+<pre class="code-block my-2"><code class="language-pseudocode">for x = 5 to 1 step 1
+    print(x)
+next x</code></pre>
+                Identify the error in this loop and state what the output would be, if any. (<span class="marks-value">2</span> marks)</h4>
+                 <textarea id="exam-q3-loop-error" class="exam-answer-area w-full p-2 border border-gray-300 rounded-md" placeholder="Identify the error and predict the output..." rows="3"></textarea>
+                 <div class="exam-controls mt-2 flex items-center space-x-4">
+                     <div>
+                        <label for="self-assess-q3" class="text-sm text-gray-600">My predicted marks:</label>
+                        <input type="number" id="self-assess-q3" class="self-assess-input w-20 p-1 border border-gray-300 rounded" min="0" max="2"/>
+                    </div>
+                    <button class="toggle-mark-scheme-btn px-3 py-1.5 text-sm bg-indigo-600 text-white rounded hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed" data-mark-scheme-id="ms-q3-loop-error" disabled>Show Mark Scheme</button>
+                </div>
+                 <div id="ms-q3-loop-error" class="mark-scheme hidden bg-gray-100 p-3 mt-2 rounded border border-gray-200">
+                     <p><strong>Mark Scheme (Loop Error):</strong></p>
+                     <ul class="list-disc list-inside ml-4">
+                         <li>Error: The <code>step</code> value is 1 (positive), but the loop is trying to count down (start value 5 is greater than end value 1). It should be <code>step -1</code>. (1 mark)</li>
+                         <li>Output: No output / The loop body will not execute. (1 mark) (Accept explanations like "the condition for continuing the loop (x >= 1 implicitly for a countdown) is not met in a way that allows entry with a positive step when start > end").</li>
+                     </ul>
+                 </div>
+            </div>
+            <button class="reset-button mt-4" onclick="resetTaskExamPractice()">Reset Exam Practice</button>
+        </section>
+
+        <section id="related-videos" class="mb-10">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-video mr-2 text-purple-500"></i> Related Videos</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer read-checkbox">
+                    Read
+                </label>
+            </div>
+            <div class="bg-purple-50 p-5 rounded-lg border border-purple-200 space-y-4">
+                <p class="text-gray-700">Watch these videos to reinforce your understanding of <code>for</code> loops:</p>
+                <ul class="list-disc list-inside space-y-3 text-purple-800 pl-4">
+                    <li>
+                        <strong>For Loops Introduction (Conceptual)</strong>
+                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/t0VphK9cWgE?si=5iTQfG9zFvL0K2j4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="rounded-md shadow-lg"></iframe>
+                        <textarea class="w-full p-2 mt-2 border border-purple-300 rounded-md text-sm bg-white" rows="2" placeholder="Optional: Add any notes from this video..."></textarea>
+                    </li>
+                    <li>
+                        <strong>For Loops in Python: <code>range()</code> explained</strong>
+                        <div class="video-placeholder my-2 p-10 bg-gray-200 rounded text-center text-gray-500">Video Placeholder: Link to Python For Loop / range() Video Here</div>
+                        <textarea class="w-full p-2 border border-purple-300 rounded-md text-sm bg-white" rows="2" placeholder="Optional: Add any notes from this video..."></textarea>
+                    </li>
+                    <li>
+                        <strong>Solving Problems with For Loops (OCR ERL & Python)</strong>
+                        <div class="video-placeholder my-2 p-10 bg-gray-200 rounded text-center text-gray-500">Video Placeholder: Link to Problem Solving with For Loops Video Here</div>
+                        <textarea class="w-full p-2 border border-purple-300 rounded-md text-sm bg-white" rows="2" placeholder="Optional: Add any notes from this video..."></textarea>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+         <section id="key-takeaways" class="mb-10">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-key mr-2"></i>Key Takeaways</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer read-checkbox">
+                    Read
+                </label>
+            </div>
+            <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-300 space-y-2 show">
+                <ul class="list-disc list-inside space-y-1 text-yellow-800">
+                    <li><strong class="font-semibold"><code>for</code> loops</strong> (OCR ERL) are used for <span class="keyword">definite iteration<span class="tooltip">Also known as count-controlled iteration. A loop that repeats a specific number of times, known before the loop starts.</span></span> (count-controlled iteration).</li>
+                    <li>Key components include a <span class="keyword">loop variable<span class="tooltip">A variable that controls the iterations of a loop. Its value typically changes with each iteration.</span></span>, a start value, an end value, and an optional <span class="keyword">step value<span class="tooltip">Determines how the loop variable changes after each iteration. Default is usually 1. Can be negative for counting down.</span></span>.</li>
+                    <li><strong class="font-semibold">OCR ERL structure:</strong> <code>for loop_variable = start_value to end_value [step step_value] ... next loop_variable</code>.</li>
+                    <li><strong class="font-semibold">Python structure:</strong> <code>for loop_variable in range(start, stop, step): ...</code> (Note: <code>stop</code> value in Python's <code>range</code> is exclusive).</li>
+                    <li><code>for</code> loops are essential for repeating code a known number of times or for iterating over sequences like characters in a string (using indexing in ERL) or items in a list.</li>
+                </ul>
+            </div>
+        </section>
+
+         <section id="next-steps" class="mb-10">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600">What's Next?</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer read-checkbox">
+                    Read
+                </label>
+            </div>
+            <div class="bg-teal-50 p-5 rounded-lg border border-teal-300">
+                <p class="text-teal-800 font-medium">
+                    You've now explored <code>for</code> loops for definite iteration!
+                </p>
+                <p class="text-teal-700 mt-2">
+                    Next, we'll build on this by looking at:
+                </p>
+                <ul class="list-disc list-inside space-y-1 text-teal-700 mt-3 pl-4">
+                    <li>Indefinite (condition-controlled) iteration using <strong><code>while</code> loops</strong> and <strong><code>do...until</code> loops</strong> (Spec 2.1.1).</li>
+                    <li><strong>Nested loops</strong> (loops inside other loops) to solve more complex problems.</li>
+                    <li>Using loops with <strong>arrays/lists</strong> to process collections of data efficiently (Spec 2.1.3).</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="extension-activities" class="mb-10">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-rocket mr-2 text-orange-500"></i> Extension Activities</h2>
+            <div class="bg-orange-50 p-5 rounded-lg border border-orange-200 space-y-6">
+                <div class="extension-task">
+                    <h3 class="font-semibold text-orange-800 mb-2">1. Nested For Loops (OCR ERL)</h3>
+                    <p class="text-sm text-gray-700 mb-2">Research 'nested for loops'. How do they work? Write an OCR ERL pseudocode example of a nested <code>for</code> loop that prints a 3x3 grid of asterisks (<code>*</code>).</p>
+                    <textarea rows="6" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Your research notes and OCR ERL code example for nested loops..."></textarea>
+                </div>
+                <div class="extension-task border-t border-orange-200 pt-4">
+                    <h3 class="font-semibold text-orange-800 mb-2">2. The <code>break</code> and <code>continue</code> Statements (Python)</h3>
+                    <p class="text-sm text-gray-700 mb-2">In some languages (like Python), <code>for</code> loops can be further controlled with <code>break</code> (to exit the loop entirely) and <code>continue</code> (to skip the rest of the current iteration and move to the next). OCR ERL does not explicitly define these for <code>for</code> loops, but they are common in high-level languages. Research how these work in Python. Give a simple example of when <code>break</code> might be useful in a Python <code>for</code> loop.</p>
+                    <textarea rows="5" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Your research notes and Python examples for break/continue..."></textarea>
+                </div>
+                <div class="extension-task border-t border-orange-200 pt-4">
+                    <h3 class="font-semibold text-orange-800 mb-2">3. List Comprehensions (Python specific)</h3>
+                    <p class="text-sm text-gray-700 mb-2">If you're exploring Python, look up 'list comprehensions'. How do they provide a concise way to create lists using a <code>for</code> loop structure, often within a single line of code? Provide an example.</p>
+                    <textarea rows="5" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Your research notes and Python example for list comprehensions..."></textarea>
+                </div>
+            </div>
+        </section>
+        
+        <div class="mt-10 text-center no-print">
+             <button id="reset-all-btn" class="reset-button" onclick="resetAllTasks()">Reset All Tasks</button>
+             <button id="export-pdf-btn" class="export-pdf-button" onclick="exportToPDF()">Export to PDF</button>
+        </div>
+
+    </div> <script src="js/gcse-prog-for.js"></script>
+    <script src="js/worksheet-common.js"></script>
+</body>
+</html>

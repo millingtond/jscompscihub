@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCSE CS: Testing & Maintainability</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/lucide-static@latest/dist/lucide.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-100 font-inter">
+
+<nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <a href="index.html" class="text-xl font-bold hover:text-gray-300 transition-colors">MGS CS Hub</a>
+        <ul class="flex flex-wrap space-x-2 sm:space-x-3 lg:space-x-4 text-sm sm:text-base">
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 7</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 8</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 9</a></li>
+            <li><a href="gcse.html" class="hover:text-gray-300 transition-colors">GCSE</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">A Level</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Competitions</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">CS News</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Extracurricular</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="max-w-5xl mx-auto bg-white p-6 md:p-10 rounded-lg shadow-xl">
+
+    <a href="gcse-defensive-design.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 group no-print">
+        <i data-lucide="arrow-left" class="w-5 h-5 mr-2 transition-transform duration-200 group-hover:-translate-x-1"></i>
+        Back to Defensive Design
+    </a>
+
+    <header class="mb-8 border-b pb-4">
+        <h1 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-2">Testing and Maintainability</h1>
+        <p class="text-lg text-gray-600">OCR GCSE Computer Science (J277) - Topics 2.3.2 & aspects of 2.3.1</p>
+    </header>
+
+    <section id="starter-activity" class="mb-10 task-container">
+        <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-bug mr-2 text-yellow-500"></i> Starter Activity (5 mins)</h2>
+        <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-200 space-y-4">
+            <p class="font-semibold text-yellow-800">Why Test?</p>
+            <div>
+                <label for="starter-q1" class="block text-sm font-medium text-yellow-700">What are the main reasons why software must be tested thoroughly before it is released to users?</label>
+                <textarea id="starter-q1" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md" rows="3" placeholder="List at least 3 reasons..."></textarea>
+            </div>
+            <div class="mt-4 text-center">
+                <button id="starter-check-answers" class="action-button" disabled>Show Suggested Reasons</button>
+                <button id="starter-reset" class="reset-button ml-2">Reset Starter</button>
+            </div>
+            <div id="starter-answers-feedback" class="mt-4 hidden space-y-3">
+                <div class="p-3 bg-green-50 border border-green-200 rounded-md"><p class="font-semibold text-green-700">Suggested Reasons:</p>
+                <ul class="list-disc pl-5 text-sm text-green-600">
+                    <li>To identify and fix errors (bugs) in the code.</li>
+                    <li>To ensure the software meets the specified requirements.</li>
+                    <li>To check if the software is reliable and performs as expected under various conditions.</li>
+                    <li>To improve the quality and usability of the software for the end-user.</li>
+                    <li>To reduce the risk of costly failures or security breaches after release.</li>
+                </ul></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="lesson-outcomes" class="mb-10 task-container bg-green-50 border-green-200 p-5 rounded-lg border">
+        <div class="flex justify-between items-center mb-2">
+            <h2 class="text-2xl font-semibold text-green-700"><i class="fas fa-bullseye mr-2"></i> Lesson Outcomes</h2>
+            <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print"><input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5"> Read</label>
+        </div>
+        <p class="text-gray-700 mb-3">By the end of this lesson, you should be able to:</p>
+        <ul class="list-disc list-inside space-y-2 text-green-600 pl-4">
+            <li>Explain the purpose of testing.</li>
+            <li>Describe the difference between iterative and final/terminal testing.</li>
+            <li>Identify syntax and logic errors.</li>
+            <li>Select and use suitable test data: normal, boundary, invalid, and erroneous.</li>
+            <li>Understand how testing is used to refine algorithms.</li>
+            <li>Explain the importance of maintainability and how commenting, indentation, naming conventions, and sub-programs contribute to it.</li>
+            <li>Create a simple test plan.</li>
+        </ul>
+    </section>
+
+    <section id="introduction" class="mb-10 task-container bg-indigo-50 border-indigo-200 p-5 rounded-lg border">
+        <div class="flex justify-between items-center mb-2">
+            <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-info-circle mr-2"></i> Introduction to Testing & Maintainability</h2>
+            <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print"><input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5"> Read</label>
+        </div>
+        <ul class="list-disc list-inside text-gray-700 space-y-2 pl-4">
+            <li>Creating software involves more than just writing code that seems to work. Two crucial aspects of good software development are <strong>testing</strong> and <strong>maintainability</strong>.</li>
+            <li><strong>Testing</strong> is the process of systematically checking software to find errors (bugs) and ensure it meets its requirements. It helps build confidence that the software will behave correctly and reliably for its users.</li>
+            <li><strong>Maintainability</strong> refers to how easy it is to understand, modify, fix, and enhance existing software. Well-maintained code saves time and effort in the long run, especially as projects grow or when other developers need to work on the code.</li>
+            <li>In this lesson, we'll explore different types of testing, how to choose appropriate test data, and the practices that make code easier to maintain.</li>
+        </ul>
+    </section>
+
+    <section id="task0-error-identification" class="task-container mb-10 p-5 rounded-lg border border-gray-200 bg-white">
+        <h3 class="task-title text-xl text-indigo-700"><i class="fas fa-search-plus mr-2"></i>Task 0: Identifying Errors - Syntax vs. Logic</h3>
+        
+        <div class="sub-task mt-6 p-4 bg-red-50 rounded-lg border border-red-200">
+            <h4 class="font-semibold text-red-700 mb-2">0a. Spot the Syntax Error</h4>
+            <p class="text-sm text-gray-700 mb-2">Syntax errors are mistakes in the grammar or rules of the programming language. They usually prevent the program from running.</p>
+            <p class="text-sm text-gray-700 mb-1">The Python code below has a syntax error. Can you identify it and explain what's wrong or how to fix it?</p>
+            <pre class="code-block"><code>
+name = "Alice"
+age = 30
+print("Hello, ", name, ". You are ", age, " years old)" # Error here!
+            </code></pre>
+            <label for="syntax-error-desc" class="block text-sm font-medium text-gray-700 mt-3">Describe the syntax error and its fix:</label>
+            <textarea id="syntax-error-desc" class="w-full p-2 border rounded-md border-red-300 mt-1" rows="3" placeholder="The error is on line... because... It can be fixed by..."></textarea>
+            <div class="mt-3 text-center">
+                <button id="show-syntax-answer" class="show-answer-button" disabled>Show Syntax Error Answer</button>
+            </div>
+            <div id="syntax-error-solution" class="solution-code mt-2 p-3 bg-red-100 rounded-md">
+                <p class="font-semibold">Syntax Error Explanation:</p>
+                <p class="text-sm">The error is on the `print` line. There's a mismatched parenthesis. The string concatenation method used also has an extra parenthesis at the end that is not matched at the beginning of the print statement.</p>
+                <p class="text-sm font-semibold">Corrected Code (using concatenation):</p>
+                <pre class="code-block"><code>print("Hello, " + name + ". You are " + str(age) + " years old.")</code></pre>
+                <p class="text-xs italic">Or, using `.format()`:</p>
+                <pre class="code-block"><code>print("Hello, {}. You are {} years old.".format(name, age))</code></pre>
+                <p class="text-xs italic">The original likely intended an f-string, which would be: `print(f"Hello, {name}. You are {age} years old.")`. The error was a missing opening quote for the string literal. The corrected version above uses traditional concatenation for clarity as per your request.</p>
+            </div>
+        </div>
+
+        <div class="sub-task mt-6 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+            <h4 class="font-semibold text-yellow-700 mb-2">0b. Identify the Logic Error</h4>
+            <p class="text-sm text-gray-700 mb-2">Logic errors occur when the code runs without crashing, but produces an incorrect or unexpected result because the program's logic is flawed.</p>
+            <p class="text-sm text-gray-700 mb-1">The Python code below is supposed to calculate the average of two numbers:</p>
+            <pre class="code-block"><code>
+num1 = 10
+num2 = 20
+average = num1 + num2 / 2 # Logic error here!
+print("The average is: ", average)
+            </code></pre>
+            <p class="text-sm text-gray-700 mt-2"><strong>Actual Output:</strong> <code class="code-block text-xs inline-block">The average is:  20.0</code></p>
+            <p class="text-sm text-gray-700"><strong>Expected Output:</strong> <code class="code-block text-xs inline-block">The average is:  15.0</code></p>
+            <label for="logic-error-desc" class="block text-sm font-medium text-gray-700 mt-3">Explain the logic error and how to fix it:</label>
+            <textarea id="logic-error-desc" class="w-full p-2 border rounded-md border-yellow-300 mt-1" rows="3" placeholder="The program calculates... but it should... The error is because... Fix by..."></textarea>
+            <div class="mt-3 text-center">
+                <button id="show-logic-answer" class="show-answer-button" disabled>Show Logic Error Answer</button>
+            </div>
+            <div id="logic-error-solution" class="solution-code mt-2 p-3 bg-yellow-100 rounded-md">
+                <p class="font-semibold">Logic Error Explanation:</p>
+                <p class="text-sm">The error is due to operator precedence. Division (`/`) is performed before addition (`+`). So, `num2 / 2` (which is `20 / 2 = 10.0`) is calculated first, and then `num1` is added to it (`10 + 10.0 = 20.0`).</p>
+                <p class="text-sm font-semibold">Corrected Code:</p>
+                <pre class="code-block"><code>average = <span class="error-highlight">(</span>num1 + num2<span class="error-highlight">)</span> / 2</code></pre>
+                <p class="text-xs italic">By adding parentheses, we ensure the addition is performed first: `(10 + 20) / 2 = 30 / 2 = 15.0`.</p>
+            </div>
+        </div>
+        <div class="mt-6 text-center">
+            <button id="task0-reset" class="reset-button">Reset Task 0</button>
+        </div>
+    </section>
+
+    <section id="task1-types-of-testing" class="task-container mb-10 p-5 rounded-lg border border-gray-200 bg-white">
+        <h3 class="task-title text-xl text-indigo-700"><i class="fas fa-vial mr-2"></i>Task 1: Types of Testing & Simulations</h3>
+        <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+            <h4 class="font-semibold text-blue-700 mb-2">1a. Iterative vs. Final/Terminal Testing</h4>
+            <p class="text-gray-700 mb-2">For the exam, you need to be aware of two main approaches to when testing occurs:</p>
+            <ul class="list-disc pl-5 text-gray-700 mb-3">
+                <li><strong>Iterative Testing:</strong> Testing that occurs regularly *during* the development process.</li>
+                <li><strong>Final/Terminal Testing:</strong> Testing that occurs *at the end* of the development process.</li>
+            </ul>
+            <label for="task1-discussion" class="block text-sm font-medium text-gray-700">Discuss with a partner (or reflect individually) on what you think each of these involves, their pros, and cons. Make some notes below:</label>
+            <textarea id="task1-discussion" class="w-full p-2 border rounded-md border-blue-300 mt-1" rows="6" placeholder="Iterative Testing involves... Pros... Cons... Final/Terminal Testing involves... Pros... Cons..."></textarea>
+        </div>
+
+        <div class="bug-hunter-module mt-6">
+            <h4 class="font-semibold text-indigo-700 mb-2">1b. Iterative Testing in Action: Bug Hunter Simulation</h4>
+            <p class="text-sm text-gray-700 mb-2">Let's simulate iterative testing. We have a simple program to calculate a discount. It's divided into two modules.</p>
+            
+            <div id="bug-hunter-module1" class="p-3 border border-indigo-300 rounded-md mb-4">
+                <h5 class="font-medium text-indigo-600">Module 1: Get Valid Price</h5>
+                <pre class="code-block" id="module1-code-display"><code>
+def get_price():
+    price_str = input("Enter item price: ")
+    price = float(price_str) # Potential bug if not a number
+    if price < 0 # Potential bug: missing colon
+        print("Price cannot be negative.")
+        return -1 # Indicate error
+    return price
+                </code></pre>
+                <p class="text-xs text-gray-600 mt-1">Test Case: Input "50". Expected: 50.0. Input "-5". Expected: Error message, -1.</p>
+                <button id="test-module1-btn" class="action-button text-sm mt-2">Test Module 1</button>
+                <div id="module1-feedback" class="feedback-area mt-2 text-sm"></div>
+                <div id="module1-fix-options" class="mt-2 hidden">
+                    <p class="text-sm font-medium">A bug found! How to fix the `if price < 0` line?</p>
+                    <button class="bug-fix-option action-button text-xs" data-fix="correct">Add a colon: `if price < 0:`</button>
+                    <button class="bug-fix-option action-button text-xs" data-fix="incorrect">Change to: `if price > 0:`</button>
+                </div>
+            </div>
+
+            <div id="bug-hunter-module2" class="p-3 border border-indigo-300 rounded-md mb-4 hidden">
+                <h5 class="font-medium text-indigo-600">Module 2: Calculate Discount (10% for members)</h5>
+                <pre class="code-block" id="module2-code-display"><code>
+def calculate_final_price(original_price, is_member):
+    if is_member == "True": # Potential bug: comparing boolean to string
+        discount = original_price * 0.10
+        return original_price - discount
+    else:
+        return original_price
+                </code></pre>
+                <p class="text-xs text-gray-600 mt-1">Test Case 1: Price 100, Member True. Expected: 90.0.</p>
+                <p class="text-xs text-gray-600">Test Case 2: Price 100, Member False. Expected: 100.0.</p>
+                <button id="test-module2-btn" class="action-button text-sm mt-2">Test Module 2</button>
+                <div id="module2-feedback" class="feedback-area mt-2 text-sm"></div>
+                 <div id="module2-fix-options" class="mt-2 hidden">
+                    <p class="text-sm font-medium">A bug found! How to fix the `if is_member == "True":` line?</p>
+                    <button class="bug-fix-option action-button text-xs" data-fix="correct">Compare to boolean: `if is_member:` or `if is_member == True:`</button>
+                    <button class="bug-fix-option action-button text-xs" data-fix="incorrect">Change to: `if is_member == "Yes":`</button>
+                </div>
+            </div>
+            <div id="bug-hunter-summary" class="p-3 bg-green-100 border border-green-300 rounded-md hidden">
+                <h5 class="font-medium text-green-700">Simulation Complete!</h5>
+                <p class="text-sm text-gray-700">By testing each module iteratively, we found and fixed bugs early. Imagine if we only tested at the end with both bugs present – it would be harder to pinpoint where the issues originated!</p>
+            </div>
+        </div>
+
+        <div class="bg-sky-50 p-4 rounded-lg border border-sky-200 mt-6">
+            <h4 class="font-semibold text-sky-700 mb-2">Task 1 - Extension: Beyond the Spec</h4>
+            <p class="text-gray-700 mb-2">Research the following software testing terms and briefly describe each one.</p>
+            <div class="space-y-3">
+                <div><label for="ext-white-box" class="block text-sm font-medium text-gray-600">White Box Testing:</label><textarea id="ext-white-box" class="w-full p-2 border rounded-md border-sky-300 mt-1" rows="2" placeholder="Description..."></textarea></div>
+                <div><label for="ext-black-box" class="block text-sm font-medium text-gray-600">Black Box Testing:</label><textarea id="ext-black-box" class="w-full p-2 border rounded-md border-sky-300 mt-1" rows="2" placeholder="Description..."></textarea></div>
+                <div><label for="ext-alpha-testing" class="block text-sm font-medium text-gray-600">Alpha Testing:</label><textarea id="ext-alpha-testing" class="w-full p-2 border rounded-md border-sky-300 mt-1" rows="2" placeholder="Description..."></textarea></div>
+                <div><label for="ext-beta-testing" class="block text-sm font-medium text-gray-600">Beta Testing:</label><textarea id="ext-beta-testing" class="w-full p-2 border rounded-md border-sky-300 mt-1" rows="2" placeholder="Description..."></textarea></div>
+            </div>
+            <div class="mt-3 text-center"><button id="show-extension-answers" class="show-answer-button" disabled>Show Suggested Descriptions</button></div>
+            <div id="extension-answers-feedback" class="solution-code mt-2 space-y-2">
+                <div class="p-2 bg-sky-100 rounded-md"><p class="font-semibold text-sm">White Box Testing:</p><p class="text-xs">Testing based on knowledge of the internal structure/design/implementation of the software. Testers examine the code itself to design test cases.</p></div>
+                <div class="p-2 bg-sky-100 rounded-md"><p class="font-semibold text-sm">Black Box Testing:</p><p class="text-xs">Testing based on the software's requirements and functionality without any knowledge of its internal workings. Testers focus on inputs and outputs.</p></div>
+                <div class="p-2 bg-sky-100 rounded-md"><p class="font-semibold text-sm">Alpha Testing:</p><p class="text-xs">A type of acceptance testing performed by internal employees/testers at the developer's site before the software is released to external users.</p></div>
+                <div class="p-2 bg-sky-100 rounded-md"><p class="font-semibold text-sm">Beta Testing:</p><p class="text-xs">A type of acceptance testing performed by a limited number of real end-users in their own environment before the final release. Feedback is collected to identify issues.</p></div>
+            </div>
+        </div>
+         <div class="mt-6 text-center">
+            <button id="task1-reset" class="reset-button">Reset Task 1</button>
+        </div>
+    </section>
+
+    <section id="task2-maintainability" class="task-container mb-10 p-5 rounded-lg border border-gray-200 bg-white">
+        <h3 class="task-title text-xl text-indigo-700"><i class="fas fa-wrench mr-2"></i>Task 2: Code Maintainability</h3>
+        <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
+            <h4 class="font-semibold text-purple-700 mb-2">2a. Making Code Readable</h4>
+            <p class="text-gray-700 mb-2">Consider the two Python code snippets below. Snippet B is much more readable and maintainable than Snippet A.</p>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div><p class="text-sm font-medium text-gray-600">Snippet A (Less Readable):</p><pre class="code-block"><code>
+def calc(x,y):
+  # this func does something
+  z=x*y
+  if z>10:
+    res=z+5
+  else:
+    res=z-2
+  return res
+a=3;b=4;val=calc(a,b);print(val)</code></pre></div>
+                <div><p class="text-sm font-medium text-gray-600">Snippet B (More Readable):</p><pre class="code-block"><code>
+# Constants
+THRESHOLD_VALUE = 10
+ADJUSTMENT_ADD = 5
+ADJUSTMENT_SUBTRACT = 2
+
+def calculate_adjusted_product(number1, number2):
+    """Calculates product and adjusts based on a threshold."""
+    product = number1 * number2
+    if product > THRESHOLD_VALUE:
+        adjusted_result = product + ADJUSTMENT_ADD
+    else:
+        adjusted_result = product - ADJUSTMENT_SUBTRACT
+    return adjusted_result
+
+first_num = 3
+second_num = 4
+final_value = calculate_adjusted_product(first_num, second_num)
+print("The final calculated value is: {}".format(final_value))</code></pre></div>
+            </div>
+            <label for="task2-readability" class="block text-sm font-medium text-gray-700 mt-3">Explain the ways in which Snippet B has been made more readable and maintainable compared to Snippet A (consider naming, comments, indentation, use of constants, sub-programs...):</label>
+            <textarea id="task2-readability" class="w-full p-2 border rounded-md border-purple-300 mt-1" rows="5" placeholder="Focus on specific improvements seen in Snippet B..."></textarea>
+        </div>
+
+        <div class="refactor-challenge-area mt-6">
+            <h4 class="font-semibold text-yellow-700 mb-2">2b. Code Refactor Challenge</h4>
+            <p class="text-sm text-gray-700 mb-2">Below is a piece of Python code that calculates the area and perimeter of a rectangle, but it's not very maintainable. Your challenge is to suggest improvements.</p>
+            <p class="text-sm font-medium text-gray-600">Poorly Written Code:</p>
+            <pre id="refactor-before-code" class="code-block"><code>
+#Rectangle calculations
+w = 10 #width
+h = 5  #height
+a = w*h
+p = 2*w+2*h
+print("Area is")
+print(a)
+print("Perimeter is")
+print(p)
+if a > 50:
+    print("Large rectangle!")
+else:
+    print("Small or medium rectangle.")
+            </code></pre>
+            <div class="mt-4 space-y-3">
+                <div>
+                    <label for="refactor-subprograms" class="block text-sm font-medium text-gray-700">1. Sub-programs: Suggest one or two functions you could create from this code. What would you name them and what would they do?</label>
+                    <textarea id="refactor-subprograms" class="w-full p-2 border rounded-md border-yellow-300 mt-1" rows="3" placeholder="Function 1 Name: ..., Purpose: ..."></textarea>
+                </div>
+                <div>
+                    <label for="refactor-variables" class="block text-sm font-medium text-gray-700">2. Variable Names: Suggest better variable names for `w`, `h`, `a`, `p`.</label>
+                    <textarea id="refactor-variables" class="w-full p-2 border rounded-md border-yellow-300 mt-1" rows="2" placeholder="w -> ..., h -> ..."></textarea>
+                </div>
+                <div>
+                    <label for="refactor-comments" class="block text-sm font-medium text-gray-700">3. Comments: Where would you add comments to explain the code? What would they say?</label>
+                    <textarea id="refactor-comments" class="w-full p-2 border rounded-md border-yellow-300 mt-1" rows="3" placeholder="Before line X: # This comment explains..."></textarea>
+                </div>
+            </div>
+            <div class="mt-3 text-center">
+                <button id="show-refactor-solution" class="show-answer-button" disabled>Show Suggested Refactoring</button>
+            </div>
+            <div id="refactor-solution" class="solution-code mt-2 p-3 bg-yellow-100 rounded-md">
+                <p class="font-semibold">Suggested Refactoring & Explanations:</p>
+                <p class="text-sm"><strong>Sub-programs:</strong></p>
+                <ul class="list-disc pl-5 text-xs">
+                    <li>`calculate_rectangle_area(width, height)`: Takes width and height, returns the area.</li>
+                    <li>`calculate_rectangle_perimeter(width, height)`: Takes width and height, returns the perimeter.</li>
+                    <li>`display_rectangle_details(width, height)`: Calculates and prints area, perimeter, and size message.</li>
+                </ul>
+                 <p class="text-sm mt-2"><strong>Variable Names:</strong></p>
+                <ul class="list-disc pl-5 text-xs">
+                    <li>`w` -> `rectangle_width`</li>
+                    <li>`h` -> `rectangle_height`</li>
+                    <li>`a` -> `area`</li>
+                    <li>`p` -> `perimeter`</li>
+                </ul>
+                <p class="text-sm mt-2"><strong>Comments:</strong> Add comments to explain the purpose of functions, complex logic, or constants.</p>
+                <p class="text-sm font-semibold mt-2">Example Refactored Code:</p>
+                <pre class="code-block"><code>
+# Define a constant for the size threshold
+LARGE_RECTANGLE_THRESHOLD = 50
+
+def calculate_rectangle_area(width, height):
+    """Calculates the area of a rectangle."""
+    return width * height
+
+def calculate_rectangle_perimeter(width, height):
+    """Calculates the perimeter of a rectangle."""
+    return 2 * (width + height) # Corrected perimeter formula
+
+def display_rectangle_details(width, height):
+    """Calculates and displays area, perimeter, and size classification."""
+    area = calculate_rectangle_area(width, height)
+    perimeter = calculate_rectangle_perimeter(width, height)
+
+    print("For a rectangle with width {} and height {}:".format(width, height))
+    print("Area is: {}".format(area))
+    print("Perimeter is: {}".format(perimeter))
+
+    if area > LARGE_RECTANGLE_THRESHOLD:
+        print("This is a large rectangle!")
+    else:
+        print("This is a small or medium rectangle.")
+
+# Main part of the program
+rect_width = 10
+rect_height = 5
+display_rectangle_details(rect_width, rect_height)
+                </code></pre>
+            </div>
+        </div>
+
+        <div class="bg-teal-50 p-4 rounded-lg border border-teal-200 mt-6">
+            <h4 class="font-semibold text-teal-700 mb-2">Importance of Good Practice</h4>
+            <div><label for="task2-comments" class="block text-sm font-medium text-gray-700">Give 2 reasons why commenting on code is important in computer science. (2 marks)</label><textarea id="task2-comments" class="w-full p-2 border rounded-md border-teal-300 mt-1" rows="3" placeholder="Reason 1...\nReason 2..."></textarea></div>
+            <div class="mt-3"><label for="task2-subprograms" class="block text-sm font-medium text-gray-700">Give 2 reasons why programmers use sub-programs (functions/procedures/routines) when coding. (2 marks)</label><textarea id="task2-subprograms" class="w-full p-2 border rounded-md border-teal-300 mt-1" rows="3" placeholder="Reason 1...\nReason 2..."></textarea></div>
+        </div>
+        <div class="mt-6 text-center">
+            <button id="task2-reset" class="reset-button">Reset Task 2</button>
+        </div>
+    </section>
+
+    <section id="task3-test-data" class="task-container mb-10 p-5 rounded-lg border border-gray-200 bg-white">
+        <h3 class="task-title text-xl text-indigo-700"><i class="fas fa-tasks mr-2"></i>Task 3: Test Data & Program Robustness</h3>
+        
+        <div class="bg-orange-50 p-4 rounded-lg border border-orange-200">
+            <h4 class="font-semibold text-orange-700 mb-2">Task 3a: Test Data Helper Tool</h4>
+            <p class="text-gray-700 mb-2">Define a simple input requirement, then suggest test data for it.</p>
+            
+            <div>
+                <label for="test-requirement" class="block text-sm font-medium text-gray-700">Input Requirement (e.g., "Age input, must be 18-65 inclusive"):</label>
+                <input type="text" id="test-requirement" class="w-full p-2 border rounded-md border-orange-300 mt-1" placeholder="Describe the input and its rules...">
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-x-6 gap-y-4 mt-4">
+                <div>
+                    <label for="data-normal-input" class="block text-sm font-medium text-gray-600">Your Normal Data Example(s) (comma-separated):</label>
+                    <input type="text" id="data-normal-input" class="w-full p-2 border rounded-md border-orange-300 mt-1" placeholder="Typical valid inputs">
+                    <div id="feedback-normal" class="feedback-text-sm"></div>
+                </div>
+                <div>
+                    <label for="data-boundary-input" class="block text-sm font-medium text-gray-600">Your Boundary Data Example(s):</label>
+                    <input type="text" id="data-boundary-input" class="w-full p-2 border rounded-md border-orange-300 mt-1" placeholder="Values at the edges of valid/invalid">
+                    <div id="feedback-boundary" class="feedback-text-sm"></div>
+                </div>
+                <div>
+                    <label for="data-invalid-input" class="block text-sm font-medium text-gray-600">Your Invalid Data Example(s) (correct type, wrong value):</label>
+                    <input type="text" id="data-invalid-input" class="w-full p-2 border rounded-md border-orange-300 mt-1" placeholder="Values outside acceptable limits">
+                    <div id="feedback-invalid" class="feedback-text-sm"></div>
+                </div>
+                <div>
+                    <label for="data-erroneous-input" class="block text-sm font-medium text-gray-600">Your Erroneous Data Example(s) (wrong type):</label>
+                    <input type="text" id="data-erroneous-input" class="w-full p-2 border rounded-md border-orange-300 mt-1" placeholder="Inputs of the wrong data type">
+                    <div id="feedback-erroneous" class="feedback-text-sm"></div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <button id="check-my-test-data-btn" class="action-button bg-orange-500 hover:bg-orange-600 text-white" disabled>Check My Test Data</button>
+            </div>
+        </div>
+
+        <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200 mt-6">
+            <h4 class="font-semibold text-yellow-700 mb-2">Task 3b: Improving Program Robustness</h4>
+            <p class="text-gray-700 mb-2">Consider the following simple program idea:</p>
+            <blockquote class="border-l-4 border-yellow-300 pl-4 italic text-sm my-2">
+                "A program asks a student for their first initial (a single character), the first three letters of their surname (a string), the year of their birth (a 4-digit integer), and their current age (an integer). It then concatenates these inputs to form a suggested username."
+            </blockquote>
+            <label for="task3-robustness" class="block text-sm font-medium text-gray-700">Suggest a range of ways this program could be made more robust. Refer to the types of validation (from the previous lesson/Task 2 of this worksheet) and other defensive design principles.</label>
+            <textarea id="task3-robustness" class="w-full p-2 border rounded-md border-yellow-300 mt-1" rows="6" placeholder="For first initial: consider presence, length, type checks..."></textarea>
+        </div>
+         <div class="mt-6 text-center">
+            <button id="task3-reset" class="reset-button">Reset Task 3</button>
+        </div>
+    </section>
+
+    <section id="task4-test-plan" class="task-container mb-10 p-5 rounded-lg border border-gray-200 bg-white">
+        <h3 class="task-title text-xl text-indigo-700"><i class="fas fa-clipboard-list mr-2"></i>Task 4: Creating a Test Plan (Interactive)</h3>
+        <div class="bg-lime-50 p-4 rounded-lg border border-lime-200">
+            <p class="text-gray-700 mb-2">A test plan documents how software will be tested. It includes test cases, each with specific inputs, expected outputs, and space to record actual outputs.</p>
+            <p class="text-gray-700 mb-3">Let's create a few test cases for a simple function: `calculate_discount(price, is_member)`. The function should give a 10% discount if `is_member` is True, otherwise no discount. `price` should be a positive number.</p>
+            
+            <div class="overflow-x-auto">
+                <table id="test-plan-table" class="w-full">
+                    <thead>
+                        <tr class="bg-lime-200">
+                            <th>Test ID</th>
+                            <th>Description / Test Data</th>
+                            <th>Expected Outcome</th>
+                            <th>Actual Outcome</th>
+                            <th>Pass/Fail</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="test-plan-body">
+                        </tbody>
+                </table>
+            </div>
+            <div class="mt-3 text-center">
+                <button id="add-test-case-btn" class="action-button bg-lime-600 hover:bg-lime-700 text-white">Add Test Case</button>
+            </div>
+        </div>
+        <div class="mt-6 text-center">
+            <button id="task4-reset" class="reset-button">Reset Test Plan</button>
+        </div>
+    </section>
+
+    <section id="real-world-context" class="mb-10 task-container bg-sky-50 border-sky-200 p-5 rounded-lg border">
+        <div class="flex justify-between items-center mb-2">
+            <h2 class="text-2xl font-semibold text-sky-600"><i class="fas fa-globe mr-2"></i> Real-World Impact</h2>
+            <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print"><input type="checkbox" class="h-4 w-4 text-indigo-600 rounded mr-1.5"> Read</label>
+        </div>
+        <div class="text-gray-700 space-y-3">
+            <ul class="list-disc list-inside pl-4 space-y-1">
+                <li><strong>Critical Systems:</strong> In aviation, medical devices, and financial systems, rigorous testing is paramount. A software bug could have catastrophic consequences. Iterative and final testing are extensive.</li>
+                <li><strong>Game Development:</strong> Game testers (Alpha and Beta) play through games extensively to find bugs, gameplay issues, and balance problems before release. Iterative testing happens constantly within development teams.</li>
+                <li><strong>Web Applications:</strong> Websites and apps are tested across different browsers and devices (cross-browser/cross-platform testing) using various test data to ensure they work for all users.</li>
+                <li><strong>Large Software Projects:</strong> Maintainability is key for projects with many developers or long lifespans (e.g., operating systems, large business applications). Clear code, comments, and modular design (sub-programs) allow teams to collaborate and update software efficiently over many years.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="myth-busters" class="mb-10 task-container bg-red-50 border-red-200 p-5 rounded-lg border">
+        <div class="flex justify-between items-center mb-2">
+            <h2 class="text-2xl font-semibold text-red-600"><i class="fas fa-comment-slash mr-2"></i> Testing & Maintainability Myths</h2>
+            <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print"><input type="checkbox" class="h-4 w-4 text-indigo-600 rounded mr-1.5"> Read</label>
+        </div>
+        <div class="space-y-4">
+            <div class="myth"><p><strong class="font-semibold text-red-800">Myth:</strong> "Testing is something you only do at the very end."</p><p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> While final testing is important, iterative testing throughout development is more effective for catching bugs early, when they are cheaper and easier to fix.</p></div>
+            <div class="myth border-t border-red-200 pt-4"><p><strong class="font-semibold text-red-800">Myth:</strong> "If my program runs without crashing, it doesn't have any bugs."</p><p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> A program can run but still produce incorrect results (logic errors) or have hidden issues that only appear with specific inputs or under certain conditions. Testing aims to uncover these too.</p></div>
+            <div class="myth border-t border-red-200 pt-4"><p><strong class="font-semibold text-red-800">Myth:</strong> "Writing comments and making code 'pretty' is a waste of time for small projects."</p><p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> Good maintainability practices benefit all projects. Even for personal projects, you'll thank yourself later when you need to understand or modify code you wrote months ago. It also builds good habits for larger collaborations.</p></div>
+        </div>
+    </section>
+
+    <section id="exam-practice" class="task-container mb-10 p-5 rounded-lg border border-gray-200 bg-white">
+        <h3 class="task-title text-xl text-indigo-700"><i class="fas fa-graduation-cap mr-2"></i>Task 5: Exam Practice Questions</h3>
+        <p class="text-gray-700 mb-4">Answer these exam-style questions. Enter your predicted marks before revealing the mark scheme.</p>
+
+        <div class="exam-question mt-4 p-4 bg-white rounded border border-gray-200" data-marks="2">
+            <h4 class="font-medium text-gray-800 mb-3">1. Give two reasons why commenting on code is important in computer science. (2 marks)</h4>
+            <textarea id="exam-q1" class="exam-answer-area w-full p-2 border border-gray-300 rounded-md" placeholder="Type your answer here..." rows="3"></textarea>
+            <div class="exam-controls mt-2 flex items-center space-x-4">
+                <div><label for="self-assess-q1" class="text-sm text-gray-600">My predicted marks:</label><input type="number" id="self-assess-q1" class="self-assess-input w-20 p-1 border" min="0" max="2"/></div>
+                <button class="toggle-mark-scheme-btn" data-mark-scheme-id="ms-q1" disabled>Show Mark Scheme</button>
+            </div>
+            <div id="ms-q1" class="mark-scheme hidden"><p class="font-semibold">Mark Scheme:</p><ul class="list-disc pl-5"><li>To explain the purpose of a section of code / how it works (1 mark).</li><li>To make the code easier for other programmers (or oneself later) to understand / maintain / debug (1 mark).</li><li>To note assumptions or reasons for specific design choices (1 mark). (Award any two distinct reasons)</li></ul></div>
+        </div>
+
+        <div class="exam-question mt-4 p-4 bg-white rounded border border-gray-200" data-marks="2">
+            <h4 class="font-medium text-gray-800 mb-3">2. Give two reasons why programmers use sub-programs (routines/functions/procedures) when coding. (2 marks)</h4>
+            <textarea id="exam-q2" class="exam-answer-area w-full p-2 border border-gray-300 rounded-md" placeholder="Type your answer here..." rows="3"></textarea>
+            <div class="exam-controls mt-2 flex items-center space-x-4">
+                <div><label for="self-assess-q2" class="text-sm text-gray-600">My predicted marks:</label><input type="number" id="self-assess-q2" class="self-assess-input w-20 p-1 border" min="0" max="2"/></div>
+                <button class="toggle-mark-scheme-btn" data-mark-scheme-id="ms-q2" disabled>Show Mark Scheme</button>
+            </div>
+            <div id="ms-q2" class="mark-scheme hidden"><p class="font-semibold">Mark Scheme:</p><ul class="list-disc pl-5"><li>To break down a large problem into smaller, manageable parts (decomposition) (1 mark).</li><li>To allow code to be reused multiple times within a program (or in other programs) (1 mark).</li><li>To make the code easier to test / debug (can test individual sub-programs) (1 mark).</li><li>To improve readability / make the main program logic clearer (1 mark). (Award any two distinct reasons)</li></ul></div>
+        </div>
+        
+        <div class="exam-question mt-4 p-4 bg-white rounded border border-gray-200" data-marks="6">
+            <h4 class="font-medium text-gray-800 mb-3">3. A school is developing a program to generate student usernames. The program asks for: first initial, first three letters of surname, year of birth, and age. It then concatenates these. Describe six different ways this program could be made more robust through defensive design. For each, explain what problem it would help prevent. (6 marks)</h4>
+            <textarea id="exam-q3" class="exam-answer-area w-full p-2 border border-gray-300 rounded-md" placeholder="Type your answer here..." rows="8"></textarea>
+            <div class="exam-controls mt-2 flex items-center space-x-4">
+                <div><label for="self-assess-q3" class="text-sm text-gray-600">My predicted marks:</label><input type="number" id="self-assess-q3" class="self-assess-input w-20 p-1 border" min="0" max="6"/></div>
+                <button class="toggle-mark-scheme-btn" data-mark-scheme-id="ms-q3" disabled>Show Mark Scheme</button>
+            </div>
+            <div id="ms-q3" class="mark-scheme hidden"><p class="font-semibold">Mark Scheme (Examples - award 1 mark for each distinct, valid point with explanation, up to 6):</p>
+                <ul class="list-disc pl-5 text-sm">
+                    <li><strong>Presence Check for First Initial:</strong> Ensure the user enters something. Prevents errors if the initial is missing.</li>
+                    <li><strong>Length Check for First Initial:</strong> Ensure only one character is entered. Prevents issues with multiple characters.</li>
+                    <li><strong>Type Check for First Initial:</strong> Ensure it's a letter (not a number/symbol). Prevents invalid characters in username.</li>
+                    <li><strong>Presence Check for Surname Part:</strong> Ensure user enters data. Prevents errors.</li>
+                    <li><strong>Length Check for Surname Part:</strong> Ensure at least 3 letters are entered (or handle if less than 3). Prevents errors if surname is too short.</li>
+                    <li><strong>Type Check for Surname Part:</strong> Ensure it contains only letters. Prevents numbers/symbols.</li>
+                    <li><strong>Type Check for Year of Birth:</strong> Ensure it's an integer. Prevents non-numeric input.</li>
+                    <li><strong>Range Check for Year of Birth:</strong> Ensure it's a sensible year (e.g., 1900-current year). Prevents unrealistic years.</li>
+                    <li><strong>Length Check for Year of Birth:</strong> Ensure it's 4 digits. Prevents short/long year numbers.</li>
+                    <li><strong>Type Check for Age:</strong> Ensure it's an integer. Prevents non-numeric input.</li>
+                    <li><strong>Range Check for Age:</strong> Ensure it's a sensible age (e.g., 4-19 for a school). Prevents unrealistic ages.</li>
+                    <li><strong>Consistency Check:</strong> Check if (Current Year - Birth Year) approximately equals Age. Helps catch logical inconsistencies.</li>
+                    <li><strong>Sanitisation:</strong> Convert inputs to a consistent case (e.g., uppercase initial, lowercase surname part) for uniformity.</li>
+                    <li><strong>Clear Error Messages:</strong> Provide helpful messages if validation fails, guiding the user. Improves usability.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mt-6 text-center">
+            <button id="task5-exam-reset" class="reset-button">Reset Exam Questions</button>
+        </div>
+    </section>
+
+    <section id="key-takeaways" class="mb-10 task-container bg-yellow-50 border-yellow-300 p-5 rounded-lg border">
+         <div class="flex justify-between items-center mb-2">
+            <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-key mr-2"></i>Key Takeaways</h2>
+            <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print"><input type="checkbox" class="h-4 w-4 text-indigo-600 rounded mr-1.5"> Read</label>
+        </div>
+        <ul class="list-disc list-inside space-y-2 text-yellow-800 pl-4">
+            <li><strong>Purpose of Testing:</strong> To find errors, ensure requirements are met, and improve software quality and reliability.</li>
+            <li><strong>Testing Types:</strong> Iterative (during development) and Final/Terminal (at the end).</li>
+            <li><strong>Error Types:</strong> Syntax errors (break language rules, prevent running) and Logic errors (program runs but gives incorrect/unexpected output).</li>
+            <li><strong>Test Data:</strong> Normal (valid), Boundary (edges of valid), Invalid (wrong value, right type), Erroneous (wrong type).</li>
+            <li><strong>Maintainability:</strong> Achieved by writing clear, understandable code using comments, meaningful names, consistent indentation, and modular sub-programs.</li>
+            <li><strong>Test Plans:</strong> Document test cases with inputs, expected outcomes, and actual results to systematically verify software.</li>
+        </ul>
+    </section>
+
+    <section id="next-steps" class="mb-10 task-container bg-teal-50 border-teal-300 p-5 rounded-lg border">
+        <div class="flex justify-between items-center mb-2">
+            <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-arrow-right mr-2"></i> What's Next?</h2>
+            <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print"><input type="checkbox" class="h-4 w-4 text-indigo-600 rounded mr-1.5"> Read</label>
+        </div>
+        <p class="text-teal-800 font-medium">You've learned the importance of robust testing and writing maintainable code!</p>
+        <p class="text-teal-700 mt-2">These skills are essential as you move on to:</p>
+        <ul class="list-disc list-inside space-y-1 text-teal-700 mt-3 pl-4">
+            <li><span class="keyword">Software Development Lifecycles:</span> Understanding how testing and maintenance fit into structured development processes (e.g., Waterfall, Agile).</li>
+            <li><span class="keyword">More Complex Algorithms:</span> Testing becomes even more critical when dealing with sophisticated algorithms for searching, sorting, etc.</li>
+            <li><span class="keyword">Larger Programming Projects:</span> Maintainability is paramount when working in teams or on projects that will evolve over time.</li>
+            <li><span class="keyword">Ethical, Legal, Cultural, and Environmental Concerns:</span> Ensuring software is not only functional but also responsible often involves thorough testing for biases, security flaws, and unintended consequences.</li>
+        </ul>
+    </section>
+
+    <section id="related-videos" class="mb-10 task-container bg-purple-50 border-purple-200 p-5 rounded-lg border">
+        <div class="flex justify-between items-center mb-2">
+            <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-video mr-2 text-purple-500"></i> Related Videos</h2>
+            <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print"><input type="checkbox" class="h-4 w-4 text-indigo-600 rounded mr-1.5"> Read</label>
+        </div>
+        <div class="space-y-4">
+            <p class="text-gray-700">Watch these videos to reinforce your understanding of Testing and Maintainability:</p>
+            <div class="video-container mb-3">
+                <iframe width="560" height="315" src="https://www.youtube.com/watch?v=ZLASHDj0Kwo" title="YouTube video placeholder for Testing" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <div class="mt-2"><textarea class="w-full p-2 border border-purple-300 rounded-md text-sm bg-white" rows="2" placeholder="Notes on Testing video..."></textarea></div>
+            </div>
+            <div class="video-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/watch?v=R_3u9edOI2s" title="YouTube video placeholder for Maintainability" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <div class="mt-2"><textarea class="w-full p-2 border border-purple-300 rounded-md text-sm bg-white" rows="2" placeholder="Notes on Maintainability video..."></textarea></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="extension-activities" class="mb-10 task-container p-5 rounded-lg border border-gray-200 bg-white">
+        <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-rocket mr-2 text-orange-500"></i> Extension Activities</h2>
+        <div class="bg-orange-50 p-5 rounded-lg border border-orange-200 space-y-6">
+            <div>
+                <h3 class="font-semibold text-orange-800 mb-2">1. Automated Testing</h3>
+                <p class="text-sm text-gray-700 mb-2">Research what automated testing is. What are its benefits and drawbacks compared to manual testing? Look into simple unit testing frameworks available in Python (e.g., `unittest` or `pytest`). Try to write a simple unit test for one of the validation functions you might have designed in the Defensive Design lesson.</p>
+                <textarea rows="5" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Automated testing is... Benefits... Drawbacks... Example unit test idea..."></textarea>
+            </div>
+            <div class="border-t border-orange-200 pt-4">
+                <h3 class="font-semibold text-orange-800 mb-2">2. Code Refactoring</h3>
+                <p class="text-sm text-gray-700 mb-2">Research the term "code refactoring." What is its purpose? How does it relate to maintainability? Find an example of poorly written code (it could be your own from an earlier exercise!) and try to refactor it to improve its structure and readability without changing its external behavior.</p>
+                <textarea rows="5" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Code refactoring means... It improves maintainability by... Example 'before' and 'after' refactoring idea..."></textarea>
+            </div>
+            <div class="border-t border-orange-200 pt-4">
+                <h3 class="font-semibold text-orange-800 mb-2">3. Debugging Techniques</h3>
+                <p class="text-sm text-gray-700 mb-2">Beyond just finding errors, programmers need effective debugging techniques. Research common debugging strategies like using print statements, using a debugger tool (IDEs often have them built-in), and "rubber duck debugging." Explain each briefly.</p>
+                <textarea rows="5" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Print statements: ... Debugger tool: ... Rubber duck debugging: ..."></textarea>
+            </div>
+        </div>
+    </section>
+
+    <section id="final-score-section" class="task-container mb-10 text-center p-5 rounded-lg border border-gray-200 bg-white">
+        <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-trophy mr-2"></i>Lesson Score</h3>
+        <p class="mb-4 text-gray-700">Click the button below to calculate your total score for the interactive tasks that are auto-gradable.</p>
+        <button id="calculate-score-btn" class="final-button no-print">Calculate Final Score</button>
+        <button id="export-pdf-btn" class="export-pdf-button no-print ml-2">Export to PDF</button>
+        <button id="reset-all-btn" class="reset-button no-print ml-2">Reset All Tasks</button>
+        <div id="final-score-area" class="mt-4">
+            <div id="final-score-display" class="text-lg font-semibold"></div>
+            <div id="final-score-feedback" class="text-sm"></div>
+        </div>
+        <p class="text-xs text-gray-500 mt-3">Note: Score calculation is approximate. Open-ended questions and test plan details require manual review.</p>
+    </section>
+
+</div>
+
+<script src="js/worksheet-common.js"></script>
+<script src="js/gcse-robprog-testing.js"></script>
+</body>
+</html>

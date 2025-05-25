@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCSE CS: Boolean Logic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/lucide-static@latest/dist/lucide.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .code-block {
+            background-color: #f0f0f0; padding: 10px; border-radius: 5px; margin-top: 5px;
+            font-family: 'Courier New', Courier, monospace; white-space: pre-wrap; border: 1px solid #ccc;
+        }
+        .solution-code { display: none; }
+        .attempted .check-button, .attempted .show-answer-button, .attempted .action-button {
+            opacity: 1 !important; cursor: pointer !important;
+        }
+        .check-button:disabled, .show-answer-button:disabled, .action-button:disabled {
+            opacity: 0.5; cursor: not-allowed;
+        }
+        .truth-table { width: auto; margin-left: auto; margin-right: auto; border-collapse: collapse; }
+        .truth-table th, .truth-table td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+        .truth-table th { background-color: #e9d5ff; /* purple-200 */ }
+        .truth-table input[type="text"] { width: 40px; text-align: center; border: 1px solid #a78bfa; /* purple-400 */ border-radius: 4px;}
+        .logic-gate-symbol { width: 100px; height: auto; margin: 5px auto; display: block; }
+        .gate-dropzone { border: 2px dashed #ccc; padding: 10px; min-height: 60px; text-align: center; background-color: #f9fafb; }
+        .gate-draggable { cursor: grab; padding: 5px 10px; background-color: #e0e7ff; border: 1px solid #c7d2fe; border-radius: 4px; margin: 5px; display: inline-block;}
+        
+        .interactive-gate-controls button {
+            padding: 0.25rem 0.5rem; margin: 0.25rem; font-size: 0.875rem;
+            border-width: 1px; border-radius: 0.25rem;
+        }
+        .interactive-gate-controls button.active { background-color: #3b82f6; color: white; } /* blue-500 */
+        .interactive-gate-controls button.inactive { background-color: #ef4444; color: white; } /* red-500 */
+
+        .interactive-logic-gate, .interactive-circuit-sim {
+            display: flex; flex-direction: column; align-items: center; margin-bottom: 1rem; padding: 1rem; border: 1px solid #ddd; border-radius: 0.25rem; background-color: #f8fafc; /* slate-50 */
+        }
+        .interactive-logic-gate .gate-inputs label, .interactive-circuit-sim .sim-inputs label { margin-right: 0.5rem; margin-bottom: 0.5rem; display: inline-flex; align-items: center;}
+        .interactive-logic-gate .gate-symbol-container, .interactive-circuit-sim .circuit-display { margin: 1rem 0; text-align: center; }
+        .interactive-logic-gate .gate-output span, .interactive-circuit-sim .sim-output span { font-weight: bold; font-size: 1.1rem; }
+        
+        .logic-circuit-node {
+            width: 25px; height: 25px; border-radius: 50%;
+            display: inline-flex; align-items: center; justify-content: center; font-size: 0.8rem; color: white;
+            margin: 0 5px; border: 1px solid #64748b; /* slate-500 */
+            transition: background-color 0.3s ease;
+        }
+        .logic-circuit-node.active { background-color: #22c55e; /* green-500 */ }
+        .logic-circuit-node.inactive { background-color: #ef4444; /* red-500 */ }
+
+        .alarm-status-safe { color: #16a34a; /* green-600 */ font-weight: bold; font-size: 1.2rem; }
+        .alarm-status-triggered { color: #dc2626; /* red-600 */ font-weight: bold; font-size: 1.2rem; animation: blink 1s linear infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .expression-evaluator input[type="checkbox"] { margin-right: 0.25rem; }
+        .expression-evaluator .eval-output { font-size: 1.1rem; font-weight: bold; margin-left: 0.5rem; }
+    </style>
+</head>
+<body class="bg-gray-100 font-inter">
+
+<nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <a href="index.html" class="text-xl font-bold hover:text-gray-300 transition-colors">MGS CS Hub</a>
+        <ul class="flex flex-wrap space-x-2 sm:space-x-3 lg:space-x-4 text-sm sm:text-base">
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 7</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 8</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 9</a></li>
+            <li><a href="gcse.html" class="hover:text-gray-300 transition-colors">GCSE</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">A Level</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Competitions</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">CS News</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Extracurricular</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="max-w-5xl mx-auto bg-white p-6 md:p-10 rounded-lg shadow-xl">
+
+    <a href="gcse-progfund-arrays.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 group no-print">
+        <i data-lucide="arrow-left" class="w-5 h-5 mr-2 transition-transform duration-200 group-hover:-translate-x-1"></i>
+        Back to 1D & 2D Arrays
+    </a>
+
+    <header class="mb-8 border-b pb-4">
+        <h1 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-2">Boolean Logic</h1>
+        <p class="text-lg text-gray-600">OCR GCSE Computer Science (J277) - Topic 2.4.1</p>
+    </header>
+
+    <section id="starter-activity" class="mb-10 task-container">
+        <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-lightbulb mr-2 text-yellow-500"></i> Starter Activity (10 mins)</h2>
+        <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-200 space-y-4">
+            <p class="font-semibold text-yellow-800">Logic Warm-up:</p>
+            <div class="space-y-3">
+                <div>
+                    <label for="starter-q1" class="block text-sm font-medium text-yellow-700">1. What is a Boolean value? Give the two possible Boolean values.</label>
+                    <textarea id="starter-q1" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md" rows="2" placeholder="Your answer..."></textarea>
+                </div>
+                <div>
+                    <label for="starter-q2" class="block text-sm font-medium text-yellow-700">2. Can you name any logical operators you've encountered in programming or everyday life? (e.g., "If it's raining AND I have an umbrella...")</label>
+                    <textarea id="starter-q2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md" rows="2" placeholder="Your answer..."></textarea>
+                </div>
+                <div>
+                    <label for="starter-q3" class="block text-sm font-medium text-yellow-700">3. Why do you think logic is important in computer systems?</label>
+                    <textarea id="starter-q3" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md" rows="2" placeholder="Your answer..."></textarea>
+                </div>
+            </div>
+            <div class="mt-4 text-center">
+                <button id="starter-check-answers" class="action-button" disabled>Show Suggested Answers</button>
+                <button id="starter-reset" class="reset-button ml-2">Reset Starter</button>
+            </div>
+            <div id="starter-answers-feedback" class="mt-4 hidden space-y-3">
+                <div class="p-3 bg-green-50 border border-green-200 rounded-md"><p class="font-semibold text-green-700">Answer 1:</p><p class="text-sm text-green-600">A Boolean value is a data type that can only have one of two possible values, representing truth or falsehood. The two values are True and False (often represented as 1 and 0).</p></div>
+                <div class="p-3 bg-green-50 border border-green-200 rounded-md"><p class="font-semibold text-green-700">Answer 2:</p><p class="text-sm text-green-600">Common logical operators include AND (both conditions must be true), OR (at least one condition must be true), and NOT (reverses the truth value).</p></div>
+                <div class="p-3 bg-green-50 border border-green-200 rounded-md"><p class="font-semibold text-green-700">Answer 3:</p><p class="text-sm text-green-600">Logic is crucial for computers to make decisions, control program flow (e.g., in IF statements and loops), perform comparisons, and is the foundation of how digital circuits in hardware operate.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="lesson-outcomes" class="mb-10 task-container bg-green-50 border-green-200 p-5 rounded-lg border">
+        <div class="flex justify-between items-center mb-2">
+            <h2 class="text-2xl font-semibold text-green-700"><i class="fas fa-bullseye mr-2"></i> Lesson Outcomes</h2>
+            <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print"><input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5"> Read</label>
+        </div>
+        <p class="text-gray-700 mb-3">By the end of this lesson, you should be able to:</p>
+        <ul class="list-disc list-inside space-y-2 text-green-600 pl-4">
+            <li>Understand and use the logical operators AND, OR, and NOT.</li>
+            <li>Recognise the standard logic gate symbols for AND, OR, and NOT.</li>
+            <li>Construct and interpret truth tables for AND, OR, and NOT.</li>
+            <li>Combine Boolean operators to form more complex logical expressions.</li>
+            <li>Complete and create logic diagrams for given scenarios.</li>
+            <li>Apply logical operators in truth tables to solve problems.</li>
+        </ul>
+    </section>
+
+    <section id="introduction" class="mb-10 task-container bg-indigo-50 border-indigo-200 p-5 rounded-lg border">
+        <div class="flex justify-between items-center mb-2">
+            <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-info-circle mr-2"></i> Introduction to Boolean Logic</h2>
+            <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print"><input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5"> Read</label>
+        </div>
+        <p class="text-gray-700 space-y-3">
+            Boolean logic, named after mathematician George Boole, is a fundamental concept in computer science. It deals with truth values: <strong>True</strong> and <strong>False</strong>. In digital systems, these are often represented as <strong>1</strong> (True) and <strong>0</strong> (False).
+            This system of logic forms the basis for how computers make decisions and process information. It's used in everything from simple IF statements in your programs to the complex circuitry inside a CPU.
+            We use logical operators (like AND, OR, NOT) to combine or modify these Boolean values, and these operations are physically implemented using <strong>logic gates</strong> in electronic circuits. Understanding Boolean logic helps us design algorithms, write efficient code, and comprehend how digital hardware works.
+        </p>
+    </section>
+
+    <section id="task1-basic-gates" class="task-container mb-10 p-5 rounded-lg border border-gray-200 bg-white">
+        <h3 class="task-title text-xl text-indigo-700"><i class="fas fa-microchip mr-2"></i>Task 1: Basic Logic Gates & Truth Tables</h3>
+
+        <div class="sub-task mt-6 p-4 bg-purple-50 rounded-lg border border-purple-200">
+            <h4 class="font-semibold text-purple-700 mb-2">1a. The NOT Gate (Inverter)</h4>
+            <div class="grid md:grid-cols-2 gap-4 items-start">
+                <div>
+                    <p class="text-sm text-gray-700 mb-2">The NOT gate has one input and one output. It <strong>inverts</strong> the input: if the input is True (1), the output is False (0), and vice-versa.</p>
+                    <p class="text-sm text-gray-700"><strong>Symbol:</strong></p>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Not-gate-IEC.svg/100px-Not-gate-IEC.svg.png" alt="NOT Gate Symbol" class="logic-gate-symbol">
+                    <div class="interactive-gate-controls mt-3 text-center">
+                        <p class="text-sm mb-1">Try it: Input A = <span id="not-interactive-input-a" class="font-bold">0</span></p>
+                        <button id="not-toggle-a" data-input="0" class="inactive">Set A to 0</button>
+                        <button id="not-toggle-a-1" data-input="1" class="active">Set A to 1</button>
+                        <p class="text-sm mt-1">Output Q = <span id="not-interactive-output-q" class="font-bold text-lg text-purple-700">1</span></p>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-sm text-gray-700 mb-2"><strong>Truth Table for NOT:</strong> Complete the output (Q) for input A.</p>
+                    <table class="truth-table" id="not-truth-table">
+                        <thead><tr><th>A</th><th>Q (NOT A)</th></tr></thead>
+                        <tbody>
+                            <tr><td>0</td><td><input type="text" data-input-a="0" data-correct="1"></td></tr>
+                            <tr><td>1</td><td><input type="text" data-input-a="1" data-correct="0"></td></tr>
+                        </tbody>
+                    </table>
+                    <div class="mt-2 text-center">
+                         <button id="check-not-table" class="action-button" disabled>Check NOT Table</button>
+                    </div>
+                    <div id="not-table-feedback" class="feedback-area mt-1 text-sm"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sub-task mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <h4 class="font-semibold text-blue-700 mb-2">1b. The AND Gate</h4>
+             <div class="grid md:grid-cols-2 gap-4 items-start">
+                <div>
+                    <p class="text-sm text-gray-700 mb-2">The AND gate has two (or more) inputs and one output. The output is True (1) <strong>only if all</strong> inputs are True (1).</p>
+                    <p class="text-sm text-gray-700"><strong>Symbol:</strong></p>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/And-gate-IEC.svg/100px-And-gate-IEC.svg.png" alt="AND Gate Symbol" class="logic-gate-symbol">
+                    <div class="interactive-gate-controls mt-3 text-center">
+                        <p class="text-sm mb-1">Try it: Input A = <span id="and-interactive-input-a" class="font-bold">0</span>, B = <span id="and-interactive-input-b" class="font-bold">0</span></p>
+                        <button id="and-toggle-a-0" data-input-a="0" class="inactive">A=0</button> <button id="and-toggle-a-1" data-input-a="1" class="active">A=1</button>
+                        <button id="and-toggle-b-0" data-input-b="0" class="inactive ml-2">B=0</button> <button id="and-toggle-b-1" data-input-b="1" class="active">B=1</button>
+                        <p class="text-sm mt-1">Output Q = <span id="and-interactive-output-q" class="font-bold text-lg text-blue-700">0</span></p>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-sm text-gray-700 mb-2"><strong>Truth Table for AND:</strong> Complete the output (Q) for inputs A and B.</p>
+                    <table class="truth-table" id="and-truth-table">
+                        <thead><tr><th>A</th><th>B</th><th>Q (A AND B)</th></tr></thead>
+                        <tbody>
+                            <tr><td>0</td><td>0</td><td><input type="text" data-input-a="0" data-input-b="0" data-correct="0"></td></tr>
+                            <tr><td>0</td><td>1</td><td><input type="text" data-input-a="0" data-input-b="1" data-correct="0"></td></tr>
+                            <tr><td>1</td><td>0</td><td><input type="text" data-input-a="1" data-input-b="0" data-correct="0"></td></tr>
+                            <tr><td>1</td><td>1</td><td><input type="text" data-input-a="1" data-input-b="1" data-correct="1"></td></tr>
+                        </tbody>
+                    </table>
+                    <div class="mt-2 text-center">
+                         <button id="check-and-table" class="action-button" disabled>Check AND Table</button>
+                    </div>
+                    <div id="and-table-feedback" class="feedback-area mt-1 text-sm"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sub-task mt-6 p-4 bg-green-50 rounded-lg border border-green-200">
+            <h4 class="font-semibold text-green-700 mb-2">1c. The OR Gate</h4>
+            <div class="grid md:grid-cols-2 gap-4 items-start">
+                <div>
+                    <p class="text-sm text-gray-700 mb-2">The OR gate has two (or more) inputs and one output. The output is True (1) if <strong>at least one</strong> of its inputs is True (1).</p>
+                    <p class="text-sm text-gray-700"><strong>Symbol:</strong></p>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Or-gate-IEC.svg/100px-Or-gate-IEC.svg.png" alt="OR Gate Symbol" class="logic-gate-symbol">
+                     <div class="interactive-gate-controls mt-3 text-center">
+                        <p class="text-sm mb-1">Try it: Input A = <span id="or-interactive-input-a" class="font-bold">0</span>, B = <span id="or-interactive-input-b" class="font-bold">0</span></p>
+                        <button id="or-toggle-a-0" data-input-a="0" class="inactive">A=0</button> <button id="or-toggle-a-1" data-input-a="1" class="active">A=1</button>
+                        <button id="or-toggle-b-0" data-input-b="0" class="inactive ml-2">B=0</button> <button id="or-toggle-b-1" data-input-b="1" class="active">B=1</button>
+                        <p class="text-sm mt-1">Output Q = <span id="or-interactive-output-q" class="font-bold text-lg text-green-700">0</span></p>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-sm text-gray-700 mb-2"><strong>Truth Table for OR:</strong> Complete the output (Q) for inputs A and B.</p>
+                    <table class="truth-table" id="or-truth-table">
+                        <thead><tr><th>A</th><th>B</th><th>Q (A OR B)</th></tr></thead>
+                        <tbody>
+                            <tr><td>0</td><td>0</td><td><input type="text" data-input-a="0" data-input-b="0" data-correct="0"></td></tr>
+                            <tr><td>0</td><td>1</td><td><input type="text" data-input-a="0" data-input-b="1" data-correct="1"></td></tr>
+                            <tr><td>1</td><td>0</td><td><input type="text" data-input-a="1" data-input-b="0" data-correct="1"></td></tr>
+                            <tr><td>1</td><td>1</td><td><input type="text" data-input-a="1" data-input-b="1" data-correct="1"></td></tr>
+                        </tbody>
+                    </table>
+                    <div class="mt-2 text-center">
+                         <button id="check-or-table" class="action-button" disabled>Check OR Table</button>
+                    </div>
+                    <div id="or-table-feedback" class="feedback-area mt-1 text-sm"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sub-task mt-6 p-4 bg-red-50 rounded-lg border border-red-200">
+            <h4 class="font-semibold text-red-700 mb-2">1d. Gate Symbol Match-up</h4>
+            <p class="text-sm text-gray-700 mb-3">Drag the gate names from the bank to the correct symbol description.</p>
+            <div class="flex flex-wrap justify-around items-start">
+                <div id="gate-name-bank" class="p-3 bg-red-100 rounded-md mb-4 md:mb-0">
+                    <h5 class="font-medium text-sm mb-2">Gate Names (Drag these):</h5>
+                    <span id="drag-and" class="gate-draggable" draggable="true" data-gate="AND">AND</span>
+                    <span id="drag-or" class="gate-draggable" draggable="true" data-gate="OR">OR</span>
+                    <span id="drag-not" class="gate-draggable" draggable="true" data-gate="NOT">NOT</span>
+                </div>
+                <div class="space-y-3">
+                    <div class="gate-match-item flex items-center">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/And-gate-IEC.svg/80px-And-gate-IEC.svg.png" alt="Symbol 1" class="logic-gate-symbol inline-block mr-2 h-10">
+                        <div id="dropzone-and" class="gate-dropzone inline-block w-32" data-correct-gate="AND">Drop AND here</div>
+                    </div>
+                    <div class="gate-match-item flex items-center">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Or-gate-IEC.svg/80px-Or-gate-IEC.svg.png" alt="Symbol 2" class="logic-gate-symbol inline-block mr-2 h-10">
+                        <div id="dropzone-or" class="gate-dropzone inline-block w-32" data-correct-gate="OR">Drop OR here</div>
+                    </div>
+                    <div class="gate-match-item flex items-center">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Not-gate-IEC.svg/80px-Not-gate-IEC.svg.png" alt="Symbol 3" class="logic-gate-symbol inline-block mr-2 h-10">
+                        <div id="dropzone-not" class="gate-dropzone inline-block w-32" data-correct-gate="NOT">Drop NOT here</div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-3 text-center">
+                <button id="check-gate-match" class="action-button" disabled>Check Matches</button>
+            </div>
+            <div id="gate-match-feedback" class="feedback-area mt-2 text-sm"></div>
+        </div>
+
+        <div class="mt-6 text-center">
+            <button id="task1-reset" class="reset-button">Reset Task 1</button>
+        </div>
+    </section>
+
+    <section id="task2-combining-gates" class="task-container mb-10 p-5 rounded-lg border border-gray-200 bg-white">
+        <h3 class="task-title text-xl text-indigo-700"><i class="fas fa-project-diagram mr-2"></i>Task 2: Combining Logic Gates & Expressions</h3>
+        
+        <div class="sub-task mt-6 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+            <h4 class="font-semibold text-yellow-700 mb-2">2a. Logic Diagram to Truth Table & Interactive Circuit</h4>
+            <p class="text-sm text-gray-700 mb-2">Consider the expression: <strong>Q = (A AND B) OR (NOT B)</strong></p>
+            <div class="interactive-circuit-sim mb-4">
+                <div class="sim-inputs mb-3">
+                    <label>A: <input type="checkbox" id="circuit-input-a" class="h-5 w-5"></label>
+                    <label class="ml-4">B: <input type="checkbox" id="circuit-input-b" class="h-5 w-5"></label>
+                </div>
+                <div class="circuit-display text-center">
+                    <div>
+                        <span>A: <span id="node-a" class="logic-circuit-node inactive">0</span></span>
+                        <span class="ml-4">B: <span id="node-b" class="logic-circuit-node inactive">0</span></span>
+                    </div>
+                    <div class="my-2">
+                        <img src="https://placehold.co/40x40/eee/ccc?text=AND" alt="AND gate" class="inline-block h-8 w-8 mx-1">
+                        <span class="mx-1"> (A AND B) = <span id="node-and-ab" class="logic-circuit-node inactive">0</span></span>
+                    </div>
+                    <div class="my-2">
+                         <img src="https://placehold.co/40x40/eee/ccc?text=NOT" alt="NOT gate" class="inline-block h-8 w-8 mx-1">
+                        <span> (NOT B) = <span id="node-not-b" class="logic-circuit-node active">1</span></span>
+                    </div>
+                     <div class="my-2">
+                        <img src="https://placehold.co/40x40/eee/ccc?text=OR" alt="OR gate" class="inline-block h-8 w-8 mx-1">
+                        <span> Q = <span id="node-q-final" class="logic-circuit-node active">1</span></span>
+                    </div>
+                </div>
+            </div>
+            <p class="text-sm text-gray-700 mb-2">Complete the truth table for this expression.</p>
+            <table class="truth-table" id="combo-truth-table">
+                <thead><tr><th>A</th><th>B</th><th>NOT B (X)</th><th>A AND B (Y)</th><th>Q (X OR Y)</th></tr></thead>
+                <tbody>
+                    <tr><td>0</td><td>0</td><td><input type="text" data-col="not_b" data-correct="1"></td><td><input type="text" data-col="a_and_b" data-correct="0"></td><td><input type="text" data-col="q" data-correct="1"></td></tr>
+                    <tr><td>0</td><td>1</td><td><input type="text" data-col="not_b" data-correct="0"></td><td><input type="text" data-col="a_and_b" data-correct="0"></td><td><input type="text" data-col="q" data-correct="0"></td></tr>
+                    <tr><td>1</td><td>0</td><td><input type="text" data-col="not_b" data-correct="1"></td><td><input type="text" data-col="a_and_b" data-correct="0"></td><td><input type="text" data-col="q" data-correct="1"></td></tr>
+                    <tr><td>1</td><td>1</td><td><input type="text" data-col="not_b" data-correct="0"></td><td><input type="text" data-col="a_and_b" data-correct="1"></td><td><input type="text" data-col="q" data-correct="1"></td></tr>
+                </tbody>
+            </table>
+            <div class="mt-3 text-center">
+                 <button id="check-combo-table" class="action-button" disabled>Check Truth Table</button>
+            </div>
+            <div id="combo-table-feedback" class="feedback-area mt-1 text-sm"></div>
+        </div>
+
+        <div class="sub-task mt-6 p-4 bg-purple-50 rounded-lg border border-purple-200">
+            <h4 class="font-semibold text-purple-700 mb-2">2b. Truth Table to Logic Expression</h4>
+            <p class="text-sm text-gray-700 mb-2">Given the following truth table, write the Boolean expression for Q in terms of A and B.</p>
+            <table class="truth-table">
+                <thead><tr><th>A</th><th>B</th><th>Q</th></tr></thead>
+                <tbody>
+                    <tr><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td>0</td><td>1</td><td>1</td></tr>
+                    <tr><td>1</td><td>0</td><td>1</td></tr>
+                    <tr><td>1</td><td>1</td><td>0</td></tr>
+                </tbody>
+            </table>
+            <label for="expr-from-table" class="block text-sm font-medium text-gray-700 mt-3">Your Boolean Expression for Q (e.g., A OR B):</label>
+            <input type="text" id="expr-from-table" class="w-full p-2 border rounded-md border-purple-300 mt-1" placeholder="Q = ...">
+            <div class="mt-3 text-center">
+                <button id="show-expr-answer" class="show-answer-button" disabled>Show Suggested Expression</button>
+            </div>
+            <div id="expr-answer" class="solution-code mt-2 p-3 bg-purple-100 rounded-md">
+                <p class="font-semibold">Suggested Expression (XOR):</p>
+                <p class="text-sm">Q = (A AND (NOT B)) OR ((NOT A) AND B)</p>
+                <p class="text-xs italic">This is also known as the XOR (Exclusive OR) operation. Q is True if A is True OR B is True, but NOT if both are True.</p>
+            </div>
+        </div>
+        
+        <div class="sub-task mt-6 p-4 bg-teal-50 rounded-lg border border-teal-200 expression-evaluator">
+            <h4 class="font-semibold text-teal-700 mb-2">2c. Boolean Expression Evaluator</h4>
+            <p class="text-sm text-gray-700 mb-2">Enter a Boolean expression using A, B, AND, OR, NOT, and parentheses. Then toggle A and B to see the result.</p>
+            <div>
+                <label for="eval-expression" class="block text-sm font-medium text-gray-700">Expression (e.g., A AND (NOT B)):</label>
+                <input type="text" id="eval-expression" class="w-full p-2 border rounded-md border-teal-300 mt-1" value="A AND B">
+            </div>
+            <div class="mt-3">
+                <label><input type="checkbox" id="eval-input-a"> A</label>
+                <label class="ml-4"><input type="checkbox" id="eval-input-b"> B</label>
+            </div>
+            <div class="mt-2">
+                Result: <span id="eval-result" class="eval-output">0</span>
+            </div>
+            <div id="eval-feedback" class="feedback-area mt-1 text-xs text-red-500"></div>
+        </div>
+
+        <div class="mt-6 text-center">
+            <button id="task2-reset" class="reset-button">Reset Task 2</button>
+        </div>
+    </section>
+
+    <section id="task3-applying-logic" class="task-container mb-10 p-5 rounded-lg border border-gray-200 bg-white">
+        <h3 class="task-title text-xl text-indigo-700"><i class="fas fa-cogs mr-2"></i>Task 3: Applying Logic - Problem Solving</h3>
+        <div class="sub-task mt-6 p-4 bg-green-50 rounded-lg border border-green-200">
+            <h4 class="font-semibold text-green-700 mb-2">3a. Security Alarm Scenario & Simulation</h4>
+            <p class="text-sm text-gray-700 mb-2">A house alarm system (output X) should sound if:
+                <ul class="list-disc pl-6 text-sm">
+                    <li>The front door (input A) is opened AND the system is armed (input B).</li>
+                    <li>OR, a window sensor (input C) is triggered AND the system is armed (input B).</li>
+                </ul>
+                 Boolean Expression: <strong>X = (A AND B) OR (C AND B)</strong>
+            </p>
+            <div class="interactive-circuit-sim my-4">
+                <p class="text-sm font-medium mb-2">Alarm System Inputs:</p>
+                <div class="sim-inputs mb-3 space-x-4">
+                    <label>Door (A): <input type="checkbox" id="alarm-input-a" class="h-5 w-5"></label>
+                    <label>Armed (B): <input type="checkbox" id="alarm-input-b" class="h-5 w-5"></label>
+                    <label>Window (C): <input type="checkbox" id="alarm-input-c" class="h-5 w-5"></label>
+                </div>
+                <div class="circuit-display text-center">
+                    <p class="text-sm">A:<span id="alarm-node-a" class="logic-circuit-node inactive">0</span> B:<span id="alarm-node-b" class="logic-circuit-node inactive">0</span> C:<span id="alarm-node-c" class="logic-circuit-node inactive">0</span></p>
+                    <p class="text-sm mt-1">(A AND B): <span id="alarm-node-ab" class="logic-circuit-node inactive">0</span></p>
+                    <p class="text-sm mt-1">(C AND B): <span id="alarm-node-cb" class="logic-circuit-node inactive">0</span></p>
+                    <p class="text-lg mt-2">Alarm Status (X): <span id="alarm-output-x" class="alarm-status-safe">SAFE</span></p>
+                </div>
+            </div>
+            
+            <p class="text-sm text-gray-700 mb-2 mt-3">Complete the truth table for this alarm system (A, B, C are inputs, X is output).</p>
+            <table class="truth-table" id="alarm-truth-table">
+                <thead><tr><th>A (Door)</th><th>B (Armed)</th><th>C (Window)</th><th>X (Alarm)</th></tr></thead>
+                <tbody>
+                    <tr><td>0</td><td>0</td><td>0</td><td><input type="text" data-correct="0"></td></tr>
+                    <tr><td>0</td><td>0</td><td>1</td><td><input type="text" data-correct="0"></td></tr>
+                    <tr><td>0</td><td>1</td><td>0</td><td><input type="text" data-correct="0"></td></tr>
+                    <tr><td>0</td><td>1</td><td>1</td><td><input type="text" data-correct="1"></td></tr>
+                    <tr><td>1</td><td>0</td><td>0</td><td><input type="text" data-correct="0"></td></tr>
+                    <tr><td>1</td><td>0</td><td>1</td><td><input type="text" data-correct="0"></td></tr>
+                    <tr><td>1</td><td>1</td><td>0</td><td><input type="text" data-correct="1"></td></tr>
+                    <tr><td>1</td><td>1</td><td>1</td><td><input type="text" data-correct="1"></td></tr>
+                </tbody>
+            </table>
+            <div class="mt-3 text-center">
+                 <button id="check-alarm-system" class="action-button" disabled>Check Alarm Truth Table</button>
+            </div>
+            <div id="alarm-system-feedback" class="feedback-area mt-1 text-sm"></div>
+        </div>
+         <div class="mt-6 text-center">
+            <button id="task3-reset" class="reset-button">Reset Task 3</button>
+        </div>
+    </section>
+
+    <section id="real-world-context" class="mb-10 task-container bg-sky-50 border-sky-200 p-5 rounded-lg border">
+        <div class="flex justify-between items-center mb-2">
+            <h2 class="text-2xl font-semibold text-sky-600"><i class="fas fa-globe mr-2"></i> Real-World Boolean Logic</h2>
+            <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print"><input type="checkbox" class="h-4 w-4 text-indigo-600 rounded mr-1.5"> Read</label>
+        </div>
+        <div class="text-gray-700 space-y-3">
+            <ul class="list-disc list-inside pl-4 space-y-1">
+                <li><strong>Search Engines:</strong> When you search "cats AND dogs", the engine uses Boolean logic to find pages containing both terms. "cats OR dogs" finds pages with either. "cats NOT dogs" finds pages about cats but excludes those also mentioning dogs.</li>
+                <li><strong>Programming Conditions:</strong> `if (age >= 18 AND has_ticket == True):` in programming languages uses Boolean logic to decide if a block of code should run.</li>
+                <li><strong>Digital Circuits:</strong> The microchips in your phone, computer, and even your washing machine are built from millions or billions of tiny logic gates (AND, OR, NOT, etc.) that perform calculations and control operations based on Boolean logic.</li>
+                <li><strong>Database Queries:</strong> When retrieving data, you might use conditions like `SELECT * FROM Users WHERE country = 'UK' AND last_login_date > '2023-01-01'`.</li>
+                <li><strong>Control Systems:</strong> Automated systems like traffic lights or factory robots use Boolean logic to respond to sensor inputs and control outputs. For example, a traffic light turns green for one direction if (no cross-traffic is detected AND timer has expired).</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="myth-busters" class="mb-10 task-container bg-red-50 border-red-200 p-5 rounded-lg border">
+        <div class="flex justify-between items-center mb-2">
+            <h2 class="text-2xl font-semibold text-red-600"><i class="fas fa-comment-slash mr-2"></i> Logic Myths Busted!</h2>
+            <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print"><input type="checkbox" class="h-4 w-4 text-indigo-600 rounded mr-1.5"> Read</label>
+        </div>
+        <div class="space-y-4">
+            <div class="myth"><p><strong class="font-semibold text-red-800">Myth:</strong> "Boolean logic is just theoretical and not used much in actual programming."</p><p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> Boolean logic is the absolute bedrock of all programming and digital electronics. Every `if` statement, `while` loop condition, and complex decision-making process in software relies on Boolean expressions. Hardware itself is built from logic gates.</p></div>
+            <div class="myth border-t border-red-200 pt-4"><p><strong class="font-semibold text-red-800">Myth:</strong> "Truth tables are only for exams and have no practical use."</p><p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> Truth tables are essential tools for designing, verifying, and simplifying logical systems. Engineers use them to ensure circuits behave as expected, and programmers use them (sometimes implicitly) to understand the outcomes of complex conditional statements.</p></div>
+            <div class="myth border-t border-red-200 pt-4"><p><strong class="font-semibold text-red-800">Myth:</strong> "There are only three logic gates: AND, OR, NOT."</p><p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> AND, OR, and NOT are the fundamental building blocks. However, other important gates like NAND (Not AND), NOR (Not OR), XOR (Exclusive OR), and XNOR (Exclusive NOR) are widely used. Interestingly, NAND and NOR gates are "universal gates," meaning any other logic gate can be constructed using only NAND gates or only NOR gates.</p></div>
+        </div>
+    </section>
+
+    <section id="exam-practice" class="task-container mb-10 p-5 rounded-lg border border-gray-200 bg-white">
+        <h3 class="task-title text-xl text-indigo-700"><i class="fas fa-graduation-cap mr-2"></i>Task 4: Exam Practice Questions</h3>
+        <p class="text-gray-700 mb-4">Answer these exam-style questions. Enter your predicted marks before revealing the mark scheme.</p>
+
+        <div class="exam-question mt-4 p-4 bg-white rounded border border-gray-200" data-marks="2">
+            <h4 class="font-medium text-gray-800 mb-3">1. Draw the logic gate symbol for an AND gate and an OR gate. (2 marks)</h4>
+            <textarea id="exam-q1" class="exam-answer-area w-full p-2 border border-gray-300 rounded-md" placeholder="Describe or sketch (if this were paper). For text, describe key features." rows="3"></textarea>
+            <div class="exam-controls mt-2 flex items-center space-x-4">
+                <div><label for="self-assess-q1" class="text-sm text-gray-600">My predicted marks:</label><input type="number" id="self-assess-q1" class="self-assess-input w-20 p-1 border" min="0" max="2"/></div>
+                <button class="toggle-mark-scheme-btn" data-mark-scheme-id="ms-q1" disabled>Show Mark Scheme</button>
+            </div>
+            <div id="ms-q1" class="mark-scheme hidden"><p class="font-semibold">Mark Scheme:</p><ul class="list-disc pl-5"><li>Correct symbol for AND gate (D-shape with flat input side, rounded output side) (1 mark).</li><li>Correct symbol for OR gate (curved input side, pointed output side) (1 mark).</li></ul>
+            <p class="text-xs italic">(Refer to symbols shown in Task 1 if unsure of text description)</p>
+            </div>
+        </div>
+
+        <div class="exam-question mt-4 p-4 bg-white rounded border border-gray-200" data-marks="4">
+            <h4 class="font-medium text-gray-800 mb-3">2. Complete the truth table for the Boolean expression Q = A OR (NOT B). (4 marks)</h4>
+            <table class="truth-table mx-auto my-2">
+                <thead><tr><th>A</th><th>B</th><th>NOT B</th><th>Q</th></tr></thead>
+                <tbody>
+                    <tr><td>0</td><td>0</td><td><input type="text" id="exam-q2-nb1" class="w-12 text-center border-gray-300"></td><td><input type="text" id="exam-q2-q1" class="w-12 text-center border-gray-300"></td></tr>
+                    <tr><td>0</td><td>1</td><td><input type="text" id="exam-q2-nb2" class="w-12 text-center border-gray-300"></td><td><input type="text" id="exam-q2-q2" class="w-12 text-center border-gray-300"></td></tr>
+                    <tr><td>1</td><td>0</td><td><input type="text" id="exam-q2-nb3" class="w-12 text-center border-gray-300"></td><td><input type="text" id="exam-q2-q3" class="w-12 text-center border-gray-300"></td></tr>
+                    <tr><td>1</td><td>1</td><td><input type="text" id="exam-q2-nb4" class="w-12 text-center border-gray-300"></td><td><input type="text" id="exam-q2-q4" class="w-12 text-center border-gray-300"></td></tr>
+                </tbody>
+            </table>
+            <div class="exam-controls mt-2 flex items-center space-x-4 justify-center">
+                <div><label for="self-assess-q2" class="text-sm text-gray-600">My predicted marks:</label><input type="number" id="self-assess-q2" class="self-assess-input w-20 p-1 border" min="0" max="4"/></div>
+                <button class="toggle-mark-scheme-btn" data-mark-scheme-id="ms-q2" disabled>Show Mark Scheme</button>
+            </div>
+            <div id="ms-q2" class="mark-scheme hidden"><p class="font-semibold">Mark Scheme:</p>
+                <ul class="list-disc pl-5">
+                    <li>Correct values for NOT B column (1, 0, 1, 0) (2 marks - 1 for each pair).</li>
+                    <li>Correct values for Q column (1, 0, 1, 1) based on A OR (NOT B) (2 marks - 1 for each pair).</li>
+                </ul>
+                <table class="truth-table mx-auto my-1 text-xs"><thead><tr><th>A</th><th>B</th><th>NOT B</th><th>Q</th></tr></thead><tbody><tr><td>0</td><td>0</td><td>1</td><td>1</td></tr><tr><td>0</td><td>1</td><td>0</td><td>0</td></tr><tr><td>1</td><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>1</td><td>0</td><td>1</td></tr></tbody></table>
+            </div>
+        </div>
+        <div class="mt-6 text-center">
+            <button id="task4-exam-reset" class="reset-button">Reset Exam Questions</button>
+        </div>
+    </section>
+
+    <section id="key-takeaways" class="mb-10 task-container bg-yellow-50 border-yellow-300 p-5 rounded-lg border">
+         <div class="flex justify-between items-center mb-2">
+            <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-key mr-2"></i>Key Takeaways</h2>
+            <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print"><input type="checkbox" class="h-4 w-4 text-indigo-600 rounded mr-1.5"> Read</label>
+        </div>
+        <ul class="list-disc list-inside space-y-2 text-yellow-800 pl-4">
+            <li>Boolean logic deals with <strong>True (1)</strong> and <strong>False (0)</strong> values.</li>
+            <li>The three basic logical operators are <strong>AND</strong> (output is 1 if all inputs are 1), <strong>OR</strong> (output is 1 if any input is 1), and <strong>NOT</strong> (inverts the input).</li>
+            <li>Each operator has a standard <strong>logic gate symbol</strong> and a defined <strong>truth table</strong> showing all possible input/output combinations.</li>
+            <li>Logic gates can be <strong>combined</strong> to create complex circuits that perform specific logical functions.</li>
+            <li>Truth tables are used to analyze and verify the behavior of these combined logic circuits and expressions.</li>
+        </ul>
+    </section>
+
+    <section id="next-steps" class="mb-10 task-container bg-teal-50 border-teal-300 p-5 rounded-lg border">
+        <div class="flex justify-between items-center mb-2">
+            <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-arrow-right mr-2"></i> What's Next?</h2>
+            <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print"><input type="checkbox" class="h-4 w-4 text-indigo-600 rounded mr-1.5"> Read</label>
+        </div>
+        <p class="text-teal-800 font-medium">You've mastered the fundamentals of Boolean logic and logic gates!</p>
+        <p class="text-teal-700 mt-2">This knowledge directly leads into understanding:</p>
+        <ul class="list-disc list-inside space-y-1 text-teal-700 mt-3 pl-4">
+            <li>How Boolean logic is used to form <span class="keyword">conditions in programming</span> (e.g., `if` statements, `while` loops) (Relates to Spec 2.2).</li>
+            <li>The internal workings of the <span class="keyword">CPU (Central Processing Unit)</span>, which is built from logic gates to perform arithmetic and logical operations (Relates to Spec 1.1).</li>
+            <li>More complex <span class="keyword">digital circuits</span> like adders, multiplexers, and flip-flops (often covered in more depth at A-Level but GCSE provides the foundation).</li>
+            <li>Database query languages like SQL, which use Boolean operators to filter data.</li>
+        </ul>
+    </section>
+
+    <section id="related-videos" class="mb-10 task-container bg-purple-50 border-purple-200 p-5 rounded-lg border">
+        <div class="flex justify-between items-center mb-2">
+            <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-video mr-2 text-purple-500"></i> Related Videos</h2>
+            <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print"><input type="checkbox" class="h-4 w-4 text-indigo-600 rounded mr-1.5"> Read</label>
+        </div>
+        <div class="space-y-4">
+            <p class="text-gray-700">Watch this video to reinforce your understanding of Boolean logic and logic gates:</p>
+            <div class="video-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/watch?v=TcqI4P9SyHE" title="YouTube video placeholder for Boolean Logic" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <div class="mt-2">
+                    <textarea class="w-full p-2 border border-purple-300 rounded-md text-sm bg-white" rows="3" placeholder="Optional: Add any additional notes from this video..."></textarea>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="extension-activities" class="mb-10 task-container p-5 rounded-lg border border-gray-200 bg-white">
+        <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-rocket mr-2 text-orange-500"></i> Extension Activities</h2>
+        <div class="bg-orange-50 p-5 rounded-lg border border-orange-200 space-y-6">
+            <div>
+                <h3 class="font-semibold text-orange-800 mb-2">1. Universal Gates: NAND and NOR</h3>
+                <p class="text-sm text-gray-700 mb-2">Research NAND and NOR gates. Draw their symbols, write their truth tables, and explain why they are called "universal gates." Try to show how you can create an AND gate, an OR gate, and a NOT gate using ONLY NAND gates (or only NOR gates).</p>
+                <textarea rows="6" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Your research and diagrams/explanations..."></textarea>
+            </div>
+            <div class="border-t border-orange-200 pt-4">
+                <h3 class="font-semibold text-orange-800 mb-2">2. XOR and XNOR Gates</h3>
+                <p class="text-sm text-gray-700 mb-2">Research the XOR (Exclusive OR) and XNOR (Exclusive NOR) gates. Draw their symbols, write their truth tables, and describe a scenario where an XOR gate might be particularly useful.</p>
+                <textarea rows="5" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Your research on XOR/XNOR..."></textarea>
+            </div>
+            <div class="border-t border-orange-200 pt-4">
+                <h3 class="font-semibold text-orange-800 mb-2">3. De Morgan's Laws</h3>
+                <p class="text-sm text-gray-700 mb-2">Research De Morgan's Laws in Boolean algebra. State the two laws and try to prove one of them using truth tables. How can these laws be useful for simplifying Boolean expressions or logic circuits?</p>
+                <textarea rows="6" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="De Morgan's Laws and proof..."></textarea>
+            </div>
+        </div>
+    </section>
+
+    <section id="final-score-section" class="task-container mb-10 text-center p-5 rounded-lg border border-gray-200 bg-white">
+        <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-trophy mr-2"></i>Lesson Score</h3>
+        <p class="mb-4 text-gray-700">Click the button below to calculate your total score for the interactive tasks that are auto-gradable.</p>
+        <button id="calculate-score-btn" class="final-button no-print">Calculate Final Score</button>
+        <button id="export-pdf-btn" class="export-pdf-button no-print ml-2">Export to PDF</button>
+        <button id="reset-all-btn" class="reset-button no-print ml-2">Reset All Tasks</button>
+        <div id="final-score-area" class="mt-4">
+            <div id="final-score-display" class="text-lg font-semibold"></div>
+            <div id="final-score-feedback" class="text-sm"></div>
+        </div>
+        <p class="text-xs text-gray-500 mt-3">Note: Score calculation is approximate. Diagram drawing, expression writing, and open-ended questions require manual review.</p>
+    </section>
+
+</div>
+
+<script src="js/worksheet-common.js"></script>
+<script src="js/gcse-boolog-boolog.js"></script>
+</body>
+</html>

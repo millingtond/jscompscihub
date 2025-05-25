@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCSE CS: Data Storage - Hexadecimal & Binary Shifts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    
+<link rel="stylesheet" href="css/style.css">
+</head>
+<nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <a href="home.html" class="text-xl font-bold hover:text-gray-300 transition-colors">MGS CS Hub</a>
+        <ul class="flex space-x-3 lg:space-x-4">
+        </ul>
+        <ul class="flex flex-wrap space-x-2 sm:space-x-3 lg:space-x-4 text-sm sm:text-base">
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 7</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 8</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 9</a></li>
+            <li><a href="gcse.html" class="hover:text-gray-300 transition-colors">GCSE</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">A Level</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Competitions</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">CS News</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Extracurricular</a></li>
+        </ul>
+    </div>
+</nav>
+
+\1
+
+
+
+    <div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-lg shadow-xl">
+
+        <a href="mgsgcse122.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 group">
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left w-5 h-5 mr-2 transition-transform duration-200 group-hover:-translate-x-1"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+            Back to Data Storage
+        </a>
+
+        <header class="mb-8 border-b pb-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-2">Data Storage: Hexadecimal & Binary Shifts</h1>
+            <p class="text-lg text-gray-600">OCR GCSE Computer Science (J277) - Topic 1.2.1: Units, Binary, Hexadecimal, Conversions, Binary Shifts</p>
+        </header>
+
+        <section id="starter-activity" class="mb-10">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-lightbulb mr-2 text-yellow-500"></i> Starter Activity (5 mins)</h2>
+            <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-200 space-y-4">
+                <p class="font-semibold text-yellow-800">What do you already know or what are your best guesses?</p>
+                <div class="space-y-3">
+                    <div>
+                        <label for="starter-q1" class="block text-sm font-medium text-yellow-700">1. What is binary? Why do computers use it?</label>
+                        <input type="text" id="starter-q1" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white">
+                    </div>
+                    <div>
+                        <label for="starter-q2" class="block text-sm font-medium text-yellow-700">2. Have you ever seen numbers/letters like 'A5' or 'FF' used in computing? Where?</label>
+                        <input type="text" id="starter-q2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white">
+                    </div>
+                    <div>
+                        <label for="starter-q3" class="block text-sm font-medium text-yellow-700">3. If you move all the digits of a denary number one place to the left (e.g., 123 becomes 1230), what mathematical operation have you performed?</label>
+                        <input type="text" id="starter-q3" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white">
+                    </div>
+                </div>
+                <button class="check-button" onclick="revealStarterAnswers()">Reveal Example Answers</button>
+                <div id="starter-answers-feedback" class="feedback-area">
+                    <p><strong>Example Answers:</strong></p>
+                    <ul class="list-disc list-inside">
+                        <li>1. Binary is a base-2 number system using only 0s and 1s. Computers use it because electronic circuits can easily represent two states (on/off, high/low voltage).</li>
+                        <li>2. Yes, often in HTML color codes (e.g., #FF0000 for red), MAC addresses, memory addresses, or error messages. These are hexadecimal.</li>
+                        <li>3. You've multiplied the number by 10. (We'll see a similar effect with binary shifts!).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="lesson-outcomes" class="mb-10">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-bullseye mr-2 text-green-500"></i> Lesson Outcomes</h2>
+            <div class="bg-green-50 p-5 rounded-lg border border-green-200">
+                <p class="font-semibold text-green-800 mb-3">By the end of this lesson, you should be able to:</p>
+                <ul class="list-disc list-inside space-y-2 text-green-700 pl-4">
+                    <li>Understand the purpose of hexadecimal as a shorthand for binary.</li>
+                    <li>Know that one hexadecimal digit represents 4 binary bits (a nibble).</li>
+                    <li>Convert between binary, denary, and hexadecimal (up to 2 hex digits / 8 bits).</li>
+                    <li>Understand the effect of a binary shift left (multiplication by powers of 2).</li>
+                    <li>Understand the effect of a binary shift right (division by powers of 2, integer division).</li>
+                    <li>Identify potential issues like overflow with binary shifts.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="mb-10">
+             <div class="flex justify-between items-center mb-4">
+                 <h2 class="text-2xl font-semibold text-indigo-600">Introduction: Why Not Just Binary?</h2>
+             </div>
+             <div class="bg-indigo-50 p-5 rounded-lg border border-indigo-200 space-y-3">
+                <p>We know computers use <span class="keyword">binary<span class="tooltip">A base-2 number system using only 0s and 1s. The fundamental language of computers.</span></span> (0s and 1s) at their core. However, long strings of binary can be difficult for humans to read, write, and remember accurately. For example, the binary number <code>1101010110111100</code> is quite a mouthful!</p>
+                <p><span class="keyword">Hexadecimal<span class="tooltip">A base-16 number system using digits 0-9 and A-F. Often used as a shorthand for binary because 1 hex digit = 4 bits.</span></span> (often shortened to "hex") is a base-16 number system that provides a more human-friendly way to represent binary data. It's widely used in computing for this reason.</p>
+                <p>We'll also explore <span class="keyword">binary shifts<span class="tooltip">An operation that moves all bits in a binary number to the left or right. Used for quick multiplication or division by powers of 2.</span></span>, which are simple operations on binary numbers that have powerful mathematical effects.</p>
+            </div>
+        </section>
+
+        <!-- Task 1: Hexadecimal Basics -->
+        <section id="task1-hex-basics" class="task-container">
+            <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-book-open mr-2"></i>Task 1: Understanding Hexadecimal</h3>
+            <div class="space-y-4">
+                <div>
+                    <p class="mb-1"><strong>a) What is the base of the hexadecimal number system?</strong></p>
+                    <input type="text" id="hex-base-answer" class="p-2 border rounded-md w-1/4">
+                </div>
+                <div>
+                    <p class="mb-1"><strong>b) How many binary bits does one hexadecimal digit represent?</strong></p>
+                    <input type="text" id="hex-bits-answer" class="p-2 border rounded-md w-1/4">
+                </div>
+                <div>
+                    <p class="mb-1"><strong>c) Complete the table for the 16 hexadecimal digits and their denary equivalents:</strong></p>
+                    <div class="grid grid-cols-4 gap-2 mt-2 text-sm">
+                        <span><strong>Hex</strong> | <strong>Denary</strong></span><span><strong>Hex</strong> | <strong>Denary</strong></span><span><strong>Hex</strong> | <strong>Denary</strong></span><span><strong>Hex</strong> | <strong>Denary</strong></span>
+                        <span>0 = 0</span><span>4 = 4</span><span>8 = 8</span><span>C = <input type="text" id="hex-C" class="w-8 p-1 border rounded text-center" maxlength="2"></span>
+                        <span>1 = 1</span><span>5 = 5</span><span>9 = 9</span><span>D = <input type="text" id="hex-D" class="w-8 p-1 border rounded text-center" maxlength="2"></span>
+                        <span>2 = 2</span><span>6 = 6</span><span>A = <input type="text" id="hex-A" class="w-8 p-1 border rounded text-center" maxlength="2"></span><span>E = <input type="text" id="hex-E" class="w-8 p-1 border rounded text-center" maxlength="2"></span>
+                        <span>3 = 3</span><span>7 = 7</span><span>B = <input type="text" id="hex-B" class="w-8 p-1 border rounded text-center" maxlength="2"></span><span>F = <input type="text" id="hex-F" class="w-8 p-1 border rounded text-center" maxlength="2"></span>
+                    </div>
+                </div>
+            </div>
+            <button class="check-button" onclick="checkTask1HexBasics()">Check Task 1</button>
+            <div id="task1-feedback" class="feedback-area"></div>
+        </section>
+
+        <!-- Task 2: Denary to Hex Conversion -->
+        <section id="task2-den-to-hex" class="task-container">
+            <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-calculator mr-2"></i>Task 2: Denary to Hexadecimal Conversion</h3>
+            <p class="mb-2">To convert a denary number to hexadecimal:</p>
+            <ol class="list-decimal list-inside mb-2 text-sm">
+                <li>Divide the denary number by 16.</li>
+                <li>Write down the remainder (this will be a hex digit, 0-9 or A-F).</li>
+                <li>Take the whole number part of the result and divide it by 16 again.</li>
+                <li>Repeat until the whole number part is 0.</li>
+                <li>The hexadecimal result is the remainders read from bottom to top.</li>
+            </ol>
+            <div class="conversion-tool">
+                <label for="den-to-hex-input">Denary Input (0-255):</label>
+                <input type="number" id="den-to-hex-input" min="0" max="255" class="p-2 border rounded-md">
+                <button class="sim-button" onclick="convertDenToHex()">Convert</button>
+                <p class="mt-2">Hexadecimal Output: <strong id="den-to-hex-output" class="text-lg text-blue-600"></strong></p>
+                <div id="den-to-hex-steps" class="conversion-steps"></div>
+            </div>
+        </section>
+
+        <!-- Task 3: Hex to Denary Conversion -->
+        <section id="task3-hex-to-den" class="task-container">
+            <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-calculator mr-2"></i>Task 3: Hexadecimal to Denary Conversion</h3>
+            <p class="mb-2">To convert a 2-digit hexadecimal number (e.g., A5) to denary:</p>
+            <ol class="list-decimal list-inside mb-2 text-sm">
+                <li>Take the first hex digit, convert it to its denary equivalent, and multiply by 16.</li>
+                <li>Take the second hex digit and convert it to its denary equivalent.</li>
+                <li>Add the two results together.</li>
+            </ol>
+            <div class="conversion-tool">
+                <label for="hex-to-den-input">Hex Input (e.g., A5, FF):</label>
+                <input type="text" id="hex-to-den-input" maxlength="2" class="p-2 border rounded-md uppercase w-20">
+                <button class="sim-button" onclick="convertHexToDen()">Convert</button>
+                <p class="mt-2">Denary Output: <strong id="hex-to-den-output" class="text-lg text-blue-600"></strong></p>
+                <div id="hex-to-den-steps" class="conversion-steps"></div>
+            </div>
+        </section>
+
+        <!-- Task 4: Binary to Hex Conversion -->
+        <section id="task4-bin-to-hex" class="task-container">
+            <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-exchange-alt mr-2"></i>Task 4: Binary to Hexadecimal Conversion</h3>
+            <p class="mb-2">To convert an 8-bit binary number to hexadecimal:</p>
+            <ol class="list-decimal list-inside mb-2 text-sm">
+                <li>Split the 8-bit binary number into two 4-bit groups (nibbles).</li>
+                <li>Convert each 4-bit nibble into its equivalent hexadecimal digit.</li>
+            </ol>
+            <div class="conversion-tool">
+                <label for="bin-to-hex-input">8-bit Binary Input:</label>
+                <input type="text" id="bin-to-hex-input" maxlength="8" pattern="[01]{8}" class="p-2 border rounded-md w-40">
+                <button class="sim-button" onclick="convertBinToHex()">Convert</button>
+                <p class="mt-2">Hexadecimal Output: <strong id="bin-to-hex-output" class="text-lg text-blue-600"></strong></p>
+                <div id="bin-to-hex-steps" class="conversion-steps"></div>
+            </div>
+        </section>
+
+        <!-- Task 5: Hex to Binary Conversion -->
+        <section id="task5-hex-to-bin" class="task-container">
+            <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-exchange-alt mr-2"></i>Task 5: Hexadecimal to Binary Conversion</h3>
+            <p class="mb-2">To convert a 2-digit hexadecimal number to an 8-bit binary number:</p>
+            <ol class="list-decimal list-inside mb-2 text-sm">
+                <li>Take the first hexadecimal digit and convert it to its 4-bit binary equivalent.</li>
+                <li>Take the second hexadecimal digit and convert it to its 4-bit binary equivalent.</li>
+                <li>Combine the two 4-bit groups to form an 8-bit binary number.</li>
+            </ol>
+            <div class="conversion-tool">
+                <label for="hex-to-bin-input">2-digit Hex Input:</label>
+                <input type="text" id="hex-to-bin-input" maxlength="2" class="p-2 border rounded-md uppercase w-20">
+                <button class="sim-button" onclick="convertHexToBin()">Convert</button>
+                <p class="mt-2">8-bit Binary Output: <strong id="hex-to-bin-output" class="text-lg text-blue-600"></strong></p>
+                <div id="hex-to-bin-steps" class="conversion-steps"></div>
+            </div>
+        </section>
+
+        <!-- Interactive Hex Color Mixer/Matcher -->
+        <section id="task-hex-color-mixer" class="task-container">
+            <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-palette mr-2"></i>Interactive Hex Color Mixer & Matcher</h3>
+            <p class="mb-4 text-gray-700">Experiment with hexadecimal color codes! Input two hex digits (00-FF) for Red, Green, and Blue to see the color. Then, try to match the target color.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+                <!-- Mixer Part -->
+                <div class="bg-white p-4 rounded border">
+                    <h4 class="font-semibold text-lg mb-3 text-center">Your Color Mixer</h4>
+                    <div class="color-mixer-container justify-center mb-4">
+                        <div class="color-component">
+                            <label for="hex-color-r" class="block text-sm font-medium mb-1">Red (RR)</label>
+                            <input type="text" id="hex-color-r" maxlength="2" value="00" class="p-2 border rounded-md hex-color-input">
+                        </div>
+                        <div class="color-component">
+                            <label for="hex-color-g" class="block text-sm font-medium mb-1">Green (GG)</label>
+                            <input type="text" id="hex-color-g" maxlength="2" value="00" class="p-2 border rounded-md hex-color-input">
+                        </div>
+                        <div class="color-component">
+                            <label for="hex-color-b" class="block text-sm font-medium mb-1">Blue (BB)</label>
+                            <input type="text" id="hex-color-b" maxlength="2" value="00" class="p-2 border rounded-md hex-color-input">
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div id="user-color-swatch" class="color-swatch mx-auto mb-2"></div>
+                        <p class="text-sm">Your Hex: <strong id="user-hex-code-display">#000000</strong></p>
+                    </div>
+                </div>
+
+                <!-- Matcher Part -->
+                <div class="bg-white p-4 rounded border">
+                    <h4 class="font-semibold text-lg mb-3 text-center">Match the Target Color</h4>
+                    <div class="text-center mb-4">
+                        <div id="target-color-swatch" class="color-swatch mx-auto"></div>
+                        <p class="text-sm mt-2">Target Hex: <strong id="target-hex-code-display-visible">(Hidden)</strong></p>
+                        <div id="color-match-game-status" class="text-sm mt-2 font-medium text-indigo-600"></div>
+                    </div>
+                    <button id="start-color-match-game-btn" class="sim-button w-full mb-2" onclick="startColorMatchGame()">Start Color Match Game</button>
+                    <!-- "New Target Color" button is effectively replaced by game flow or "Play Again" -->
+                    <!-- <button class="sim-button w-full mb-2" onclick="generateNewTargetColor()">New Target Color</button> -->
+                    <button class="check-button w-full" onclick="checkColorMatch()">Check My Guess</button>
+                    <div id="color-match-feedback" class="feedback-area mt-3 text-center"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Task 6: Binary Shift Left Simulation -->
+        <section id="task6-shift-left" class="task-container">
+            <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-angle-double-left mr-2"></i>Task 6: Binary Shift Left Simulation</h3>
+            <p class="mb-2">A binary shift left moves all bits in a binary number one or more places to the left. New empty positions on the right are filled with zeros. Each shift left multiplies the denary value by 2.</p>
+            <div class="shift-tool">
+                <label for="shift-left-binary-input">8-bit Binary:</label>
+                <input type="text" id="shift-left-binary-input" maxlength="8" pattern="[01]{8}" value="00011010" class="p-2 border rounded-md w-40">
+                <label for="shift-left-places">Shift Left by:</label>
+                <input type="number" id="shift-left-places" min="1" max="7" value="1" class="p-2 border rounded-md w-16">
+                <button class="sim-button" onclick="simulateShiftLeft()">Shift Left</button>
+                <div class="mt-3">
+                    <p>Original Denary: <strong id="shift-left-original-den" class="text-blue-600"></strong></p>
+                    <p>Shifted Binary: <span id="shift-left-result-binary" class="binary-string-vis"></span></p>
+                    <p>Shifted Denary: <strong id="shift-left-result-den" class="text-blue-600"></strong></p>
+                    <p id="shift-left-overflow" class="text-red-600 font-semibold"></p>
+                </div>
+                <div id="shift-left-steps" class="shift-steps"></div>
+            </div>
+        </section>
+
+        <!-- Task 7: Binary Shift Right Simulation -->
+        <section id="task7-shift-right" class="task-container">
+            <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-angle-double-right mr-2"></i>Task 7: Binary Shift Right Simulation</h3>
+            <p class="mb-2">A binary shift right moves all bits one or more places to the right. Bits shifted off the right end are lost. New empty positions on the left are usually filled with zeros (for unsigned numbers). Each shift right divides the denary value by 2 (integer division).</p>
+            <div class="shift-tool">
+                <label for="shift-right-binary-input">8-bit Binary:</label>
+                <input type="text" id="shift-right-binary-input" maxlength="8" pattern="[01]{8}" value="11010100" class="p-2 border rounded-md w-40">
+                <label for="shift-right-places">Shift Right by:</label>
+                <input type="number" id="shift-right-places" min="1" max="7" value="1" class="p-2 border rounded-md w-16">
+                <button class="sim-button" onclick="simulateShiftRight()">Shift Right</button>
+                <div class="mt-3">
+                    <p>Original Denary: <strong id="shift-right-original-den" class="text-blue-600"></strong></p>
+                    <p>Shifted Binary: <span id="shift-right-result-binary" class="binary-string-vis"></span></p>
+                    <p>Shifted Denary: <strong id="shift-right-result-den" class="text-blue-600"></strong></p>
+                </div>
+                <div id="shift-right-steps" class="shift-steps"></div>
+            </div>
+        </section>
+
+        <!-- Task 8: Binary Shift Quiz/Examples -->
+        <section id="task8-shift-quiz" class="task-container">
+            <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-question-circle mr-2"></i>Task 8: Binary Shift Practice</h3>
+            <div class="space-y-4">
+                <div class="bg-white p-3 rounded border">
+                    <p class="mb-1"><strong>1. Shift <code>00101100</code> left by 2 places.</strong></p>
+                    <label>New Binary: <input type="text" id="shift-q1-bin" class="p-1 border rounded w-32" maxlength="8"></label>
+                    <label class="ml-2">New Denary: <input type="text" id="shift-q1-den" class="p-1 border rounded w-20"></label>
+                </div>
+                <div class="bg-white p-3 rounded border">
+                    <p class="mb-1"><strong>2. Shift <code>11100000</code> right by 3 places.</strong></p>
+                    <label>New Binary: <input type="text" id="shift-q2-bin" class="p-1 border rounded w-32" maxlength="8"></label>
+                    <label class="ml-2">New Denary: <input type="text" id="shift-q2-den" class="p-1 border rounded w-20"></label>
+                </div>
+                <div class="bg-white p-3 rounded border">
+                    <p class="mb-1"><strong>3. What happens if you shift <code>10000001</code> left by 1 place (in an 8-bit register)?</strong></p>
+                    <label>New Binary: <input type="text" id="shift-q3-bin" class="p-1 border rounded w-32" maxlength="8"> </label>
+                    <label class="ml-2">Issue: <input type="text" id="shift-q3-issue" class="p-1 border rounded w-28"> </label>
+                </div>
+            </div>
+            <button class="check-button" onclick="checkTask8ShiftPractice()">Check Task 8</button>
+            <div id="task8-feedback" class="feedback-area"></div>
+        </section>
+
+        <!-- Binary Shift Detective: Spot the Mistake! -->
+        <section id="task-shift-detective-spot-mistake" class="task-container">
+            <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-search-location mr-2"></i>Binary Shift Detective: Spot the Mistake!</h3>
+            <p class="mb-4 text-gray-700">Below are some binary shift operations with incorrect results or explanations. Identify the mistake and explain why it's wrong in the box provided.</p>
+
+            <div class="space-y-6">
+                <!-- Problem 1 -->
+                <div class="detective-problem bg-white p-4 rounded border">
+                    <p class="font-medium">Problem 1:</p>
+                    <p class="ml-4">An 8-bit binary number <code>11001010</code> (denary 202) is shifted <strong>left by 1 place</strong>.</p>
+                    <p class="ml-4 mt-2"><strong>Provided "Solution":</strong></p>
+                    <ul class="list-disc list-inside ml-8 text-sm bg-red-50 p-2 rounded border border-red-200">
+                        <li>Original: <code>11001010</code> (Denary: 202)</li>
+                        <li>Shifted Binary: <code>10010100</code></li>
+                        <li>New Denary: 404 (because 202 * 2 = 404)</li>
+                    </ul>
+                    <label for="detective-q1-explanation" class="block mt-3 mb-1 font-medium text-sm">Your explanation of the mistake:</label>
+                    <textarea id="detective-q1-explanation" class="w-full p-2 border rounded-md" rows="3" placeholder="Explain the error in the provided solution..."></textarea>
+                </div>
+
+                <!-- Problem 2 -->
+                <div class="detective-problem bg-white p-4 rounded border">
+                    <p class="font-medium">Problem 2:</p>
+                    <p class="ml-4">An 8-bit binary number <code>00001101</code> (denary 13) is shifted <strong>right by 1 place</strong>.</p>
+                    <p class="ml-4 mt-2"><strong>Provided "Solution":</strong></p>
+                    <ul class="list-disc list-inside ml-8 text-sm bg-red-50 p-2 rounded border border-red-200">
+                        <li>Original: <code>00001101</code> (Denary: 13)</li>
+                        <li>Shifted Binary: <code>00000110</code></li>
+                        <li>New Denary: 6.5 (because 13 / 2 = 6.5)</li>
+                    </ul>
+                    <label for="detective-q2-explanation" class="block mt-3 mb-1 font-medium text-sm">Your explanation of the mistake:</label>
+                    <textarea id="detective-q2-explanation" class="w-full p-2 border rounded-md" rows="3" placeholder="Explain the error in the provided solution..."></textarea>
+                </div>
+
+            </div>
+            <button class="check-button" onclick="checkShiftDetectiveAnswers()">Check Detective Answers</button>
+            <div id="shift-detective-feedback" class="feedback-area"></div>
+        </section>
+
+        <!-- Task 9: Excel Practice Worksheets -->
+        <section id="task9-excel-practice" class="task-container">
+            <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-file-excel mr-2 text-green-600"></i>Task 9: Practice Worksheets (Excel)</h3>
+            <p class="mb-3 text-gray-700">For more extensive practice, download and complete the following Excel worksheets. They contain many more questions to help you master these conversions and shifts.</p>
+            <div class="space-y-3">
+                <div>
+                    <a href="1.2.7 - Binary-hexadecimal conversion questions.xlsx" target="_blank" class="inline-flex items-center px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition duration-200">
+                        <i class="fas fa-download mr-2"></i> Binary-Hexadecimal Conversion Questions.xlsx
+                    </a>
+                </div>
+                <div>
+                    <a href="1.2.7 - Binary shift questions.xlsx" target="_blank" class="inline-flex items-center px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition duration-200">
+                        <i class="fas fa-download mr-2"></i> Binary Shift Questions.xlsx
+                    </a>
+                </div>
+            </div>
+            <p class="mt-4 text-sm text-gray-600 italic">Note: You will need Microsoft Excel or a compatible spreadsheet program to open these files.</p>
+        </section>
+
+        <section id="real-world-context" class="mb-10">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-globe-europe mr-2"></i> Real-World Context</h2>
+            <div class="bg-blue-50 p-5 rounded-lg border border-blue-200 space-y-3">
+                <p><strong class="font-semibold text-blue-800">Where is Hexadecimal Used?</strong></p>
+                <ul class="list-disc list-inside text-blue-700 pl-4">
+                    <li><strong>HTML/CSS Color Codes:</strong> E.g., <code>#FF0000</code> for red, <code>#00FF00</code> for green. Each pair of hex digits represents the intensity of Red, Green, and Blue.</li>
+                    <li><strong>MAC Addresses:</strong> Unique hardware identifiers for network cards, often shown in hex (e.g., <code>00:1A:2B:3C:4D:5E</code>).</li>
+                    <li><strong>Memory Dumps & Debugging:</strong> Programmers use hex to view the raw contents of computer memory, as it's more compact than binary.</li>
+                    <li><strong>Error Codes:</strong> Some systems display error codes in hexadecimal.</li>
+                </ul>
+                <p class="mt-3"><strong class="font-semibold text-blue-800">Why are Binary Shifts Useful?</strong></p>
+                <ul class="list-disc list-inside text-blue-700 pl-4">
+                    <li><strong>Fast Multiplication/Division:</strong> Shifting is a very fast way for the CPU to multiply or divide by powers of 2, much quicker than complex multiplication/division algorithms.</li>
+                    <li><strong>Low-Level Programming:</strong> In assembly language or systems programming, shifts are used for manipulating individual bits, setting flags, or packing data efficiently.</li>
+                    <li><strong>Graphics & Audio Processing:</strong> Shifts can be used in algorithms for scaling images, adjusting audio volumes, or other signal processing tasks.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="myth-busters" class="mb-10">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-lightbulb-exclamation mr-2 text-red-500"></i> Myth Busters</h2>
+            <div class="bg-red-50 p-5 rounded-lg border border-red-200 space-y-4">
+                <div>
+                    <p><strong class="font-semibold text-red-800">Myth 1:</strong> "Hexadecimal is a different way of storing numbers in a computer."</p>
+                    <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> Computers fundamentally store and process everything in <span class="keyword">binary<span class="tooltip">A base-2 number system using only 0s and 1s. The fundamental language of computers.</span></span>. Hexadecimal is simply a more human-readable <span class="keyword">representation<span class="tooltip">How data is shown or interpreted. Hexadecimal is a representation of binary data.</span></span> of binary data. It's a shorthand, not a different storage method at the hardware level.</p>
+                </div>
+                <div class="border-t border-red-200 pt-4">
+                    <p><strong class="font-semibold text-red-800">Myth 2:</strong> "Binary shifts always give the exact mathematical result for multiplication and division."</p>
+                    <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> While a left shift accurately multiplies by powers of 2 (unless <span class="keyword">overflow<span class="tooltip">An error that occurs when the result of a calculation is too large to fit in the available number of bits.</span></span> occurs), a right shift performs <span class="keyword">integer division<span class="tooltip">Division where any fractional part (remainder) is discarded. E.g., 7 / 2 = 3 in integer division.</span></span>. This means any fractional part of the result is lost (e.g., <code>00000111</code> (7) shifted right by 1 becomes <code>00000011</code> (3), not 3.5). Also, overflow can happen with left shifts if the result is too large for the number of bits available.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="exam-practice" class="task-container">
+            <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-graduation-cap mr-2"></i>Exam Practice Questions</h3>
+            <div class="space-y-6">
+                <div class="exam-question bg-white p-4 rounded border">
+                    <p class="mb-2 font-medium">1. Convert the denary number <strong>173</strong> into hexadecimal. Show your working. [2 marks]</p>
+                    <textarea id="exam-q1-answer" class="w-full p-2 border rounded-md" rows="4"></textarea>
+                    <button class="mark-scheme-button" onclick="toggleMarkScheme('ms-q1')">Show Mark Scheme</button>
+                    <div id="ms-q1" class="mark-scheme">
+                        <p><strong>Mark Scheme:</strong></p>
+                        <ul>
+                            <li>Correctly showing division by 16 and noting remainders (1 mark). E.g., 173 / 16 = 10 remainder 13 (D); 10 / 16 = 0 remainder 10 (A).</li>
+                            <li>Correct final hexadecimal answer: AD (1 mark).</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="exam-question bg-white p-4 rounded border">
+                    <p class="mb-2 font-medium">2. Convert the hexadecimal number <strong>B4</strong> into an 8-bit binary number. [1 mark]</p>
+                    <input type="text" id="exam-q2-answer" class="w-full p-2 border rounded-md">
+                    <button class="mark-scheme-button" onclick="toggleMarkScheme('ms-q2')">Show Mark Scheme</button>
+                    <div id="ms-q2" class="mark-scheme">
+                        <p><strong>Mark Scheme:</strong></p>
+                        <ul>
+                            <li>Correct 8-bit binary: 10110100 (1 mark). (B=1011, 4=0100)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="exam-question bg-white p-4 rounded border">
+                    <p class="mb-2 font-medium">3. An 8-bit binary number <code>00110101</code> is shifted two places to the left.</p>
+                    <p class="mb-1 ml-4"> (i) State the binary number after the shift. [1 mark]</p>
+                    <input type="text" id="exam-q3i-answer" class="w-full p-2 border rounded-md ml-4">
+                    <p class="mb-1 ml-4"> (ii) State the denary equivalent of the original number and the shifted number. [2 marks]</p>
+                    <input type="text" id="exam-q3ii-answer" class="w-full p-2 border rounded-md ml-4">
+                    <p class="mb-1 ml-4"> (iii) Describe the arithmetic effect of this shift. [1 mark]</p>
+                    <input type="text" id="exam-q3iii-answer" class="w-full p-2 border rounded-md ml-4">
+                    <button class="mark-scheme-button" onclick="toggleMarkScheme('ms-q3')">Show Mark Scheme</button>
+                    <div id="ms-q3" class="mark-scheme">
+                        <p><strong>Mark Scheme:</strong></p>
+                        <ul>
+                            <li>(i) Shifted binary: 11010100 (1 mark).</li>
+                            <li>(ii) Original denary: 53. Shifted denary: 212 (1 mark for each correct denary).</li>
+                            <li>(iii) Multiplied the original number by 4 (or by 2 twice) (1 mark).</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="exam-question bg-white p-4 rounded border">
+                    <p class="mb-2 font-medium">4. Convert the denary number <strong>97</strong> into an 8-bit binary number. Show your working or method. [2 marks]</p>
+                    <textarea id="exam-q4-answer" class="w-full p-2 border rounded-md" rows="3"></textarea>
+                    <button class="mark-scheme-button" onclick="toggleMarkScheme('ms-q4')">Show Mark Scheme</button>
+                    <div id="ms-q4" class="mark-scheme">
+                        <p><strong>Mark Scheme:</strong></p>
+                        <ul>
+                            <li>Showing a valid method (e.g., place value subtraction, repeated division by 2 and collecting remainders) (1 mark).</li>
+                            <li>Correct 8-bit binary answer: 01100001 (1 mark).</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="exam-question bg-white p-4 rounded border">
+                    <p class="mb-2 font-medium">5. Convert the 8-bit binary number <strong>11001010</strong> into denary. Show your working. [2 marks]</p>
+                    <textarea id="exam-q5-answer" class="w-full p-2 border rounded-md" rows="3"></textarea>
+                    <button class="mark-scheme-button" onclick="toggleMarkScheme('ms-q5')">Show Mark Scheme</button>
+                    <div id="ms-q5" class="mark-scheme">
+                        <p><strong>Mark Scheme:</strong></p>
+                        <ul>
+                            <li>Showing correct application of place values (e.g., 128+64+0+0+8+0+2+0) (1 mark).</li>
+                            <li>Correct denary answer: 202 (1 mark).</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="exam-question bg-white p-4 rounded border">
+                    <p class="mb-2 font-medium">6. An 8-bit binary number <code>01011000</code> is shifted three places to the right.</p>
+                    <p class="mb-1 ml-4"> (i) State the binary number after the shift. [1 mark]</p>
+                    <input type="text" id="exam-q6i-answer" class="w-full p-2 border rounded-md ml-4">
+                    <p class="mb-1 ml-4"> (ii) Describe the arithmetic effect of this shift on the original number. [1 mark]</p>
+                    <input type="text" id="exam-q6ii-answer" class="w-full p-2 border rounded-md ml-4">
+                    <button class="mark-scheme-button" onclick="toggleMarkScheme('ms-q6')">Show Mark Scheme</button>
+                    <div id="ms-q6" class="mark-scheme">
+                        <p><strong>Mark Scheme:</strong></p>
+                        <ul>
+                            <li>(i) Shifted binary: 00001011 (1 mark).</li>
+                            <li>(ii) Divided the original number by 8 (or by 2 three times) (integer division) (1 mark).</li>
+                        </ul>
+                    </div>
+                </div>
+                 <div class="exam-question bg-white p-4 rounded border">
+                    <p class="mb-2 font-medium">7. Explain one reason why hexadecimal numbers are often used in computer science. [2 marks]</p>
+                    <textarea id="exam-q7-answer" class="w-full p-2 border rounded-md" rows="3"></textarea>
+                    <button class="mark-scheme-button" onclick="toggleMarkScheme('ms-q7')">Show Mark Scheme</button>
+                    <div id="ms-q7" class="mark-scheme">
+                        <p><strong>Mark Scheme:</strong></p>
+                        <ul>
+                            <li>It is a shorthand for binary / more compact than binary / easier for humans to read/understand than binary (1 mark).</li>
+                            <li>Because one hex digit represents 4 binary bits / two hex digits represent one byte (1 mark). OR Example of use e.g. MAC addresses, HTML colours, memory dumps (1 mark).</li>
+                        </ul>
+                         <p class="text-xs italic mt-1">(Max 2 marks)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="final-score-section" class="task-container mb-10 text-center">
+            <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-trophy mr-2"></i>Lesson Score</h3>
+            <p class="mb-4 text-gray-700">Click the button below to calculate your total score for the interactive tasks.</p>
+            <button id="calculate-score-btn" class="final-button" onclick="calculateTotalScore()">Calculate Final Score</button>
+            <button id="export-answers-btn" class="export-pdf-button no-print !bg-blue-600 hover:!bg-blue-700" onclick="exportAnswersToPDF()">Export Answers Summary</button>
+            <button id="reset-all-btn" class="reset-button no-print" onclick="resetAllTasks()">Reset All Tasks</button>
+            <div id="final-score-area" class="mt-4">
+                <div id="final-score-display" class="text-xl font-bold text-indigo-600"></div>
+                <div id="final-score-feedback" class="text-md text-gray-700"></div>
+            </div>
+        </section>
+
+        <section id="related-videos" class="mb-10">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-video mr-2 text-purple-500"></i> Related Videos</h2>
+            <div class="bg-purple-50 p-5 rounded-lg border border-purple-200 space-y-4">
+                <p class="text-gray-700">Watch these videos to reinforce your understanding:</p>
+                <ul class="list-disc list-inside space-y-3 text-purple-800 pl-4">
+                    <li>
+                        <strong>Hexadecimal Explained:</strong>
+                        <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 1: Hexadecimal Basics]</div>
+                    </li>
+                    <li>
+                        <strong>Binary Shifts Explained:</strong>
+                        <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 2: Binary Shifts]</div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="key-takeaways" class="mb-10">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-key mr-2"></i>Key Takeaways</h2>
+            <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-300 space-y-2">
+                <ul class="list-disc list-inside space-y-1 text-yellow-800">
+                    <li><strong class="font-semibold">Hexadecimal (Base-16):</strong> Uses digits 0-9 and A-F (A=10, B=11, C=12, D=13, E=14, F=15).</li>
+                    <li><strong class="font-semibold">Hex & Binary Link:</strong> One hexadecimal digit represents exactly 4 binary bits (a <span class="keyword">nibble<span class="tooltip">A group of 4 binary bits.</span></span>). This makes it a convenient shorthand for binary.</li>
+                    <li><strong class="font-semibold">Conversions:</strong> You need to be able to convert between denary, binary, and hexadecimal (for numbers up to 255 / FF / 11111111).</li>
+                    <li><strong class="font-semibold">Binary Shift Left:</strong> Multiplies the number by 2 for each place shifted. Zeros are added on the right. Watch out for <span class="keyword">overflow<span class="tooltip">An error that occurs when the result of a calculation is too large to fit in the available number of bits.</span></span>!</li>
+                    <li><strong class="font-semibold">Binary Shift Right:</strong> Divides the number by 2 for each place shifted (integer division - fractional parts are lost). Zeros are usually added on the left for unsigned numbers.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="next-steps" class="mb-10">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4">What's Next?</h2>
+            <div class="bg-teal-50 p-5 rounded-lg border border-teal-300">
+                <p class="text-teal-800 font-medium">
+                    You've now explored hexadecimal and binary shifts!
+                </p>
+                <p class="text-teal-700 mt-2">
+                    Next, we'll look at:
+                </p>
+                <ul class="list-disc list-inside space-y-1 text-teal-700 mt-3 pl-4">
+                    <li>Character sets (ASCII, Unicode) and how text is represented (Spec 1.2.2).</li>
+                    <li>Image representation (pixels, colour depth, resolution) (Spec 1.2.3).</li>
+                    <li>Sound representation (sampling, sample rate, bit depth) (Spec 1.2.4).</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="extension-activities" class="mb-10">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-puzzle-piece mr-2 text-orange-500"></i> Extension Activities</h2>
+            <div class="bg-orange-50 p-5 rounded-lg border border-orange-200 space-y-6">
+                <div class="extension-task">
+                    <h3 class="font-semibold text-orange-800 mb-2">1. Hexadecimal Arithmetic</h3>
+                    <p class="text-sm text-gray-700 mb-2">Programmers sometimes need to perform simple addition or subtraction directly in hexadecimal, especially when working with memory addresses.</p>
+                    <p class="text-sm text-gray-700 mb-2">Research Task: How do you add two hexadecimal numbers, for example, <code>A5 + 1B</code>? What happens if a sum in one column exceeds 'F' (15)?</p>
+                    <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white"></textarea>
+                </div>
+                <div class="extension-task border-t border-orange-200 pt-4">
+                    <h3 class="font-semibold text-orange-800 mb-2">2. Logical vs. Arithmetic Shifts</h3>
+                    <p class="text-sm text-gray-700 mb-2">We've looked at logical shifts (filling with zeros). For signed binary numbers (representing positive and negative values, often using Two's Complement), an <strong class="text-orange-700">arithmetic shift right</strong> behaves differently to preserve the sign bit.</p>
+                    <p class="text-sm text-gray-700 mb-2">Research Task: How does an arithmetic shift right differ from a logical shift right, particularly for negative numbers in Two's Complement form? Why is this distinction important?</p>
+                    <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white"></textarea>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    
+    <script src="js/gcse-memstore-datastorage-hexbinshifts.js"></script>
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+</html>

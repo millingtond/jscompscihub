@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCSE CS Lesson: Network Hardware - Connecting the World</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    
+<link rel="stylesheet" href="css/style.css">
+</head>
+<nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <a href="home.html" class="text-xl font-bold hover:text-gray-300 transition-colors">MGS CS Hub</a>
+        <ul class="flex space-x-3 lg:space-x-4">
+        </ul>
+        <ul class="flex flex-wrap space-x-2 sm:space-x-3 lg:space-x-4 text-sm sm:text-base">
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 7</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 8</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 9</a></li>
+            <li><a href="gcse.html" class="hover:text-gray-300 transition-colors">GCSE</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">A Level</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Competitions</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">CS News</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Extracurricular</a></li>
+        </ul>
+    </div>
+</nav>
+
+\1
+
+
+
+    <div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-lg shadow-xl">
+
+        <a href="mgsgcse13.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 group no-print">
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left w-5 h-5 mr-2 transition-transform duration-200 group-hover:-translate-x-1"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+            Back to Network Types & Topologies
+        </a>
+
+        <header class="mb-8 border-b pb-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-2">Network Hardware: The Building Blocks</h1>
+            <p class="text-lg text-gray-600">OCR GCSE Computer Science (J277) - Topic 1.3.1</p>
+        </header>
+
+    <main class="space-y-8 md:space-y-12">
+
+        <section id="starter-activity" class="task-container">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-ethernet mr-2 text-yellow-500"></i> Starter Activity (5 mins)</h2>
+            <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-200 space-y-4">
+                <p class="font-semibold text-yellow-800">Connecting the Dots - Recap!</p>
+                <div class="space-y-3 quiz-item" data-points="0"> 
+                    <p class="mb-1">1. What is the main difference between a <span class="keyword">LAN<span class="tooltip">Local Area Network: Restricted to a small geographical area. Hardware usually owned by the organization.</span></span> and a <span class="keyword">WAN<span class="tooltip">Wide Area Network: Spans a large geographical area. Infrastructure often uses third-party carriers.</span></span>?</p>
+                    <textarea id="starter-q1-lanwan" class="w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" rows="2" placeholder="Think about geographical scope and ownership..."></textarea>
+
+                    <p class="mt-3 mb-1">2. Name two common network topologies you learned about previously.</p>
+                    <input type="text" id="starter-q2-topologies" class="w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" placeholder="e.g., Star, ...">
+
+                    <p class="mt-3 mb-1">3. To connect your computer to your home Wi-Fi, what piece of hardware in your computer is essential?</p>
+                    <input type="text" id="starter-q3-homeconnect" class="w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" placeholder="Hint: It allows network communication...">
+                </div>
+                <button class="reveal-button !bg-yellow-500 hover:!bg-yellow-600 no-print" onclick="toggleReveal('starter-hardware-answers-feedback', this, 'Reveal Example Answers', 'Hide Example Answers')">Reveal Example Answers</button>
+                <div id="starter-hardware-answers-feedback" class="feedback-area !bg-yellow-100 !border-yellow-300 !text-yellow-700">
+                    <p><strong>Example Answers:</strong></p>
+                    <ol class="list-decimal list-inside">
+                        <li>A LAN covers a small geographical area (like a home or office) and the hardware is usually owned by the individual/organization. A WAN covers a large geographical area (like cities or countries) and often uses infrastructure owned by telecommunication companies.</li>
+                        <li>Star topology, Mesh topology. (Bus and Ring are older but also valid if mentioned).</li>
+                        <li>A <span class="keyword">Network Interface Card (NIC)<span class="tooltip">A hardware component that connects a device to a computer network. Every networked device needs one, it has a unique MAC address.</span></span> (often a Wi-Fi adapter for wireless connection).</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section id="lesson-outcomes" class="task-container">
+             <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-bullseye mr-2 text-green-500"></i> Lesson Outcomes</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-green-50 p-5 rounded-lg border border-green-200">
+                <p class="font-semibold text-green-800 mb-3">By the end of this lesson, you should be able to:</p>
+                <ul class="list-disc list-inside space-y-2 text-green-700 pl-4">
+                    <li>Identify the hardware needed to connect stand-alone computers into a Local Area Network (LAN).</li>
+                    <li>Describe the purpose and role of a <span class="keyword">Network Interface Card (NIC)<span class="tooltip">A hardware component that connects a device to a computer network. Every networked device needs one, it has a unique MAC address.</span></span>.</li>
+                    <li>Describe the purpose and role of a <span class="keyword">Switch<span class="tooltip">Connects devices on a LAN, using MAC addresses to forward data packets only to their intended recipient. More efficient than a hub.</span></span>.</li>
+                    <li>Describe the purpose and role of a <span class="keyword">Router<span class="tooltip">Connects different networks together (e.g., a LAN to the Internet/WAN). Directs data packets between networks based on IP addresses.</span></span>.</li>
+                    <li>Describe the purpose and role of a <span class="keyword">Wireless Access Point (WAP)<span class="tooltip">Network component which allows Wi-Fi enabled devices to connect to a network. Usually built into a router, and can be seen on the ceilings of schools and public buildings.</span></span>.</li>
+                    <li>Identify different types of transmission media (e.g., <span class="keyword">Copper Cables<span class="tooltip">Commonly used for Ethernet (e.g., Cat 5e, Cat 6). Data transmitted as electrical signals. Cheaper but more susceptible to interference and shorter distances than fibre.</span></span>, <span class="keyword">Fibre Optic Cables<span class="tooltip">Transmits data as pulses of light. Offers very high bandwidth, low interference, and long distances, but is more expensive.</span></span>) and their characteristics.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="intro-hardware" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-server mr-2"></i> Introduction to Network Hardware</h2>
+                 <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-indigo-50 p-5 rounded-lg border border-indigo-200 space-y-3">
+                <p>To create a network and allow devices to communicate, specialized hardware components are essential. These devices perform different roles, from providing a physical connection point to directing data traffic and enabling wireless access.</p>
+                <p>In this lesson, we'll explore the key pieces of hardware that make up a typical Local Area Network (LAN) and how they work together. Understanding these components is fundamental to understanding how networks function. We'll look at Network Interface Cards (NICs), Switches, Routers, Wireless Access Points (WAPs), and the cables (transmission media) that connect them.</p>
+            </div>
+        </section>
+
+        <section id="task1-hardware-matching" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-700"><i class="fas fa-puzzle-piece mr-2"></i>Task 1: Match the Hardware to its Function <span class="task-completion-indicator" id="task-1-complete"></span><span class="font-bold text-sm text-gray-500 ml-auto">(Max 5 points)</span></h2>
+            <p class="text-gray-600 mb-4">Match the network hardware component on the left with its primary function on the right. Click one item from each list to create a pair.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 quiz-item" data-points="5">
+                <div>
+                    <h4 class="font-semibold mb-2 text-center text-gray-600">Hardware Component</h4>
+                    <ul id="hardware-term-list" class="matching-list">
+                        <li class="matching-item option-button w-full text-left !mt-1" data-match="nic">Network Interface Card (NIC)</li>
+                        <li class="matching-item option-button w-full text-left !mt-1" data-match="switch">Switch</li>
+                        <li class="matching-item option-button w-full text-left !mt-1" data-match="router">Router</li>
+                        <li class="matching-item option-button w-full text-left !mt-1" data-match="wap">Wireless Access Point (WAP)</li>
+                        <li class="matching-item option-button w-full text-left !mt-1" data-match="repeater">Repeater</li>
+                    </ul>
+                </div>
+                <div>
+                     <h4 class="font-semibold mb-2 text-center text-gray-600">Primary Function</h4>
+                     <ul id="hardware-definition-list" class="matching-list">
+                        <li class="matching-item option-button w-full text-left !mt-1" data-match="router">Connects different networks (e.g., LAN to WAN) and forwards data packets based on IP addresses.</li>
+                        <li class="matching-item option-button w-full text-left !mt-1" data-match="switch">Connects devices on a LAN and uses MAC addresses to forward data only to the intended recipient.</li>
+                        <li class="matching-item option-button w-full text-left !mt-1" data-match="repeater">Receives a signal and retransmits it at a higher level or power to cover longer distances.</li>
+                        <li class="matching-item option-button w-full text-left !mt-1" data-match="nic">A hardware component that allows a device to connect to a network; contains a unique MAC address.</li>
+                        <li class="matching-item option-button w-full text-left !mt-1" data-match="wap">Allows wireless devices to connect to a wired network using Wi-Fi.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <button class="check-button no-print" onclick="checkHardwareMatches()">Check Matches</button>
+                <button class="reset-button no-print" onclick="resetHardwareMatches()">Reset Task 1</button>
+            </div>
+            <div id="hardware-matching-feedback" class="feedback-area mt-4"></div>
+        </section>
+
+        <section id="task2-lan-builder" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-700"><i class="fas fa-drafting-compass mr-2"></i>Task 2: LAN Diagram Builder <span class="font-bold text-sm text-gray-500 ml-auto">(Not Scored - Exploration)</span></h2>
+            <p class="text-gray-600 mb-4">Drag the device icons from the palette onto the canvas to build a simple home LAN. Try to connect a desktop PC (wired), a laptop (wireless), and a smartphone (wireless) to the internet via a typical home router (which often combines router, switch, and WAP functions).</p>
+            <div class="lan-builder-container mt-6">
+                <div id="device-palette" class="device-palette no-print">
+                    <h4 class="font-semibold text-sm text-gray-700 mb-2 w-full text-center">Device Palette</h4>
+                    <div class="device-icon" draggable="true" data-type="pc" title="Desktop PC"><i class="fas fa-desktop text-blue-600"></i></div>
+                    <div class="device-icon" draggable="true" data-type="laptop" title="Laptop"><i class="fas fa-laptop text-green-600"></i></div>
+                    <div class="device-icon" draggable="true" data-type="phone" title="Smartphone"><i class="fas fa-mobile-alt text-purple-600"></i></div>
+                    <div class="device-icon" draggable="true" data-type="router" title="Router/WAP/Switch Combo"><i class="fas fa-wifi text-red-600"></i> <i class="fas fa-route text-red-500 text-xs"></i> <i class="fas fa-exchange-alt text-red-400 text-xs"></i></div>
+                    <div class="device-icon" draggable="true" data-type="internet" title="Internet Cloud"><i class="fas fa-cloud text-gray-500"></i></div>
+                </div>
+                <div id="lan-canvas" class="lan-canvas-area">
+                    </div>
+            </div>
+            <p id="diagram-instructions" class="no-print">Drag devices. Click a device on canvas, then another to draw a connection line. Click line type to toggle.</p>
+            <div class="text-center mt-2 no-print">
+                <button id="connection-type-toggle" class="sim-button !py-1 !px-2 !text-xs">Line: Wired (Solid)</button>
+                <button class="reset-button !py-1 !px-2 !text-xs" onclick="resetLANDiagram()">Reset Diagram</button>
+            </div>
+        </section>
+
+        <section id="task3-transmission-media" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-700"><i class="fas fa-project-diagram mr-2"></i>Task 3: Transmission Media Comparison <span class="task-completion-indicator" id="task-3-complete"></span><span class="font-bold text-sm text-gray-500 ml-auto">(Max 4 points)</span></h2>
+            <p class="text-gray-600 mb-4">Compare <span class="keyword">Copper Cables<span class="tooltip">Commonly used for Ethernet (e.g., Cat 5e, Cat 6). Data transmitted as electrical signals. Cheaper but more susceptible to interference and shorter distances than fibre.</span></span> (like Ethernet Twisted Pair) and <span class="keyword">Fibre Optic Cables<span class="tooltip">Transmits data as pulses of light. Offers very high bandwidth, low interference, and long distances, but is more expensive.</span></span>. For each, list one advantage and one disadvantage.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="quiz-item" data-points="2">
+                    <h3 class="font-semibold text-blue-700 mb-2">Copper Cables (e.g., Ethernet)</h3>
+                    <label for="copper-adv" class="text-sm block">Advantage:</label>
+                    <input type="text" id="copper-adv" class="fill-blank w-full mb-2" placeholder="One advantage...">
+                    <label for="copper-disadv" class="text-sm block">Disadvantage:</label>
+                    <input type="text" id="copper-disadv" class="fill-blank w-full" placeholder="One disadvantage...">
+                </div>
+                <div class="quiz-item" data-points="2">
+                    <h3 class="font-semibold text-green-700 mb-2">Fibre Optic Cables</h3>
+                    <label for="fibre-adv" class="text-sm block">Advantage:</label>
+                    <input type="text" id="fibre-adv" class="fill-blank w-full mb-2" placeholder="One advantage...">
+                    <label for="fibre-disadv" class="text-sm block">Disadvantage:</label>
+                    <input type="text" id="fibre-disadv" class="fill-blank w-full" placeholder="One disadvantage...">
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <button class="check-button no-print" onclick="checkTransmissionMedia()">Check Comparison</button>
+                <button class="reset-button no-print" onclick="resetTransmissionMedia()">Reset Task 3</button>
+            </div>
+            <div id="transmission-media-feedback" class="feedback-area mt-4"></div>
+        </section>
+
+        <section id="task4-hardware-quiz" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-700"><i class="fas fa-question-circle mr-2"></i>Task 4: Hardware Roles Quiz <span class="task-completion-indicator" id="task-4-complete"></span><span class="font-bold text-sm text-gray-500 ml-auto">(Max 4 points)</span></h2>
+            <p class="text-gray-600 mb-4">Test your knowledge of what each hardware component does.</p>
+            <div class="space-y-4">
+                <div class="quiz-item" data-points="1" data-correct="nic_connects_device">
+                    <p class="font-medium text-gray-800 mb-1">1. What is the primary purpose of a <span class="keyword">Network Interface Card (NIC)<span class="tooltip">A hardware component that connects a device to a computer network. Every networked device needs one, it has a unique MAC address.</span></span>?</p>
+                    <div class="flex flex-wrap gap-2">
+                        <button class="option-button" data-answer="nic_routes_internet">Routes traffic between networks</button>
+                        <button class="option-button" data-answer="nic_connects_device">Connects a device to the network</button>
+                        <button class="option-button" data-answer="nic_boosts_signal">Boosts Wi-Fi signal strength</button>
+                    </div><div class="feedback mt-1"></div>
+                </div>
+                <div class="quiz-item" data-points="1" data-correct="wap_wireless_access">
+                    <p class="font-medium text-gray-800 mb-1">2. What does a <span class="keyword">Wireless Access Point (WAP)<span class="tooltip">Network component which allows Wi-Fi enabled devices to connect to a network. Usually built into a router, and can be seen on the ceilings of schools and public buildings.</span></span> primarily provide?</p>
+                    <div class="flex flex-wrap gap-2">
+                        <button class="option-button" data-answer="wap_wired_ports">Additional wired Ethernet ports</button>
+                        <button class="option-button" data-answer="wap_internet_connection">The main internet connection from the ISP</button>
+                        <button class="option-button" data-answer="wap_wireless_access">Wireless network access for devices</button>
+                    </div><div class="feedback mt-1"></div>
+                </div>
+                <div class="quiz-item" data-points="1" data-correct="switch_mac_lan">
+                    <p class="font-medium text-gray-800 mb-1">3. A <span class="keyword">Switch<span class="tooltip">Connects devices on a LAN, using MAC addresses to forward data packets only to their intended recipient. More efficient than a hub.</span></span> operates primarily within a LAN and uses what type of address to forward data to the correct device?</p>
+                    <div class="flex flex-wrap gap-2">
+                        <button class="option-button" data-answer="switch_ip_wan">IP Address (for WANs)</button>
+                        <button class="option-button" data-answer="switch_mac_lan">MAC Address (for LAN devices)</button>
+                        <button class="option-button" data-answer="switch_hostname_lan">Hostname (for LAN devices)</button>
+                    </div><div class="feedback mt-1"></div>
+                </div>
+                <div class="quiz-item" data-points="1" data-correct="router_connects_networks">
+                    <p class="font-medium text-gray-800 mb-1">4. Which device is essential for connecting your home LAN to the wider internet (a WAN)?</p>
+                    <div class="flex flex-wrap gap-2">
+                        <button class="option-button" data-answer="router_connects_networks">Router</button>
+                        <button class="option-button" data-answer="hub_lan_only">Hub</button>
+                        <button class="option-button" data-answer="nic_in_pc">NIC</button>
+                    </div><div class="feedback mt-1"></div>
+                </div>
+            </div>
+            <button class="reset-button no-print !ml-0" onclick="resetTask4Quiz()">Reset Task 4</button>
+        </section>
+
+        <section id="real-world-context" class="task-container">
+             <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-building mr-2"></i> Real-World Context</h2>
+                 <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-blue-50 p-5 rounded-lg border border-blue-200 space-y-3">
+                <ul class="list-disc list-inside text-blue-700 pl-4">
+                    <li><strong>Home Networks:</strong> Your home router is a multi-function device, often combining a router, switch, WAP, and modem. Every device (PC, phone, smart TV) has a NIC (wired or wireless) to connect.</li>
+                    <li><strong>School/Office Networks:</strong> Larger networks use dedicated, powerful switches to connect many computers within departments, and routers to connect these departmental LANs and provide internet access. WAPs are distributed for wireless coverage.</li>
+                    <li><strong>Data Centres:</strong> Massive data centres rely on high-speed switches and routers to handle vast amounts of traffic between thousands of servers. Fibre optic cables are essential for their high bandwidth needs.</li>
+                    <li><strong>Internet Backbone:</strong> The internet itself is a huge network of interconnected routers that direct traffic globally, largely using fibre optic cables for long-distance transmission.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="myth-busters" class="task-container">
+             <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-tools mr-2 text-red-500"></i> Hardware Myth Busters!</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-red-50 p-5 rounded-lg border border-red-200 space-y-4">
+                <div>
+                    <p><strong class="font-semibold text-red-800">Myth:</strong> "A <span class="keyword">Hub<span class="tooltip">This dumb network device has no means of storing MAC addresses so it sends all packets to all devices connected to it.</span></span> and a <span class="keyword">Switch<span class="tooltip">Connects devices on a LAN, using MAC addresses to forward data packets only to their intended recipient. More efficient than a hub.</span></span> do the same thing."</p>
+                    <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> While both connect multiple devices on a LAN, a hub is a "dumb" device. It broadcasts any data it receives to ALL connected devices. A switch is "intelligent"; it learns the <span class="keyword">MAC addresses<span class="tooltip">Unique identifier assigned to every NIC by the manufacturer. Switches use this to route packets. Short for Media Access Control Address. It can't be changed. Consists of six bytes written in hex, like this: A1:9E:13:7C:FF:04.</span></span> of connected devices and sends data only to the intended recipient. This makes switches much more efficient and reduces network collisions.</p>
+                </div>
+                <div class="border-t border-red-200 pt-4">
+                    <p><strong class="font-semibold text-red-800">Myth:</strong> "You only need a <span class="keyword">Router<span class="tooltip">Connects different networks (e.g., a LAN to the Internet/WAN). Directs data packets between networks based on IP addresses.</span></span> if you want to connect to the internet."</p>
+                    <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> While connecting to the internet is a primary function of a router (connecting your LAN to the ISP's WAN), routers are fundamentally devices that connect *different networks*. You could use a router to connect two separate private LANs within an organization, even if neither had internet access.</p>
+                </div>
+                 <div class="border-t border-red-200 pt-4">
+                    <p><strong class="font-semibold text-red-800">Myth:</strong> "<span class="keyword">Fibre Optic<span class="tooltip">This transmission media is a cable that has a glass core. Data is sent as pulses of light. Higher bandwidth than copper. Suffer less interference than copper. More expensive.</span></span> cables are made of a special type of copper."</p>
+                    <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> Fibre optic cables are made of very thin strands of glass or plastic. They transmit data as pulses of light, not electrical signals like copper cables. This is why they can achieve much higher speeds and are immune to electromagnetic interference.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="exam-practice" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-700"><i class="fas fa-pencil-alt mr-2"></i> Exam Practice Questions</h2>
+             <div class="exam-question-item mb-6 pb-4 border-b">
+                <p class="font-medium text-gray-800 mb-2">1. What is the purpose of a Network Interface Card (NIC)? [1 mark]</p>
+                <textarea id="exam-q1-hardware" class="w-full p-2 border border-gray-300 rounded-md mt-1" rows="2" placeholder="Purpose of a NIC..."></textarea>
+                <button class="mark-scheme-button no-print" onclick="checkThenToggleMarkScheme('exam-q1-hardware', 'ms-exam-q1-hardware', this, 10)">Show Mark Scheme</button>
+                <div id="ms-exam-q1-hardware" class="mark-scheme">
+                    <p><strong>Mark Scheme:</strong></p>
+                    <ul>
+                        <li>To allow a device to connect to a network / Provides a physical connection point to the network. (1 mark)</li>
+                        <li>(Allow: Contains the MAC address for the device.)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="exam-question-item mb-6 pb-4 border-b">
+                <p class="font-medium text-gray-800 mb-2">2. Explain the difference between a hub and a switch in terms of how they handle data packets. [2 marks]</p>
+                <textarea id="exam-q2-hardware" class="w-full p-2 border border-gray-300 rounded-md mt-1" rows="3" placeholder="Hub vs. Switch..."></textarea>
+                <button class="mark-scheme-button no-print" onclick="checkThenToggleMarkScheme('exam-q2-hardware', 'ms-exam-q2-hardware', this, 15)">Show Mark Scheme</button>
+                <div id="ms-exam-q2-hardware" class="mark-scheme">
+                    <p><strong>Mark Scheme:</strong></p>
+                    <ul>
+                        <li>A hub broadcasts data packets to all connected devices. (1 mark)</li>
+                        <li>A switch sends data packets only to the intended recipient device (using MAC addresses). (1 mark)</li>
+                        <li>(Allow: Switch is more efficient / reduces collisions compared to a hub.)</li>
+                    </ul>
+                </div>
+            </div>
+             <div class="exam-question-item">
+                <p class="font-medium text-gray-800 mb-2">3. Give two advantages of using fibre optic cables over copper cables for network transmission. [2 marks]</p>
+                <textarea id="exam-q3-hardware" class="w-full p-2 border border-gray-300 rounded-md mt-1" rows="3" placeholder="Advantages of fibre optic..."></textarea>
+                <button class="mark-scheme-button no-print" onclick="checkThenToggleMarkScheme('exam-q3-hardware', 'ms-exam-q3-hardware', this, 10)">Show Mark Scheme</button>
+                <div id="ms-exam-q3-hardware" class="mark-scheme">
+                    <p><strong>Mark Scheme (Any two from):</strong></p>
+                    <ul>
+                        <li>Higher bandwidth / faster data transmission speeds. (1 mark)</li>
+                        <li>Less susceptible to interference (electromagnetic interference). (1 mark)</li>
+                        <li>Can transmit data over longer distances without signal degradation / less need for repeaters. (1 mark)</li>
+                        <li>More secure / harder to tap into. (1 mark)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="related-videos" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-video mr-2 text-purple-500"></i> Related Videos</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-purple-50 p-5 rounded-lg border border-purple-200 space-y-4">
+                <p class="text-gray-700">Watch these videos to reinforce your understanding:</p>
+                <ul class="list-disc list-inside space-y-3 text-purple-800 pl-4">
+                    <li>
+                        <strong>Video 1: Basic Network Hardware Explained</strong>
+                        <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Placeholder: Link to a general network hardware video]</div>
+                    </li>
+                    <li>
+                        <strong>Video 2: OCR GCSE (J277) 1.3 Hardware to connect a LAN</strong>
+                        <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1"><a href="https://manchestergrammarschool.sharepoint.com/sites/StudentSharedArea/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FStudentSharedArea%2FShared%20Documents%2FComputer%20Science%2FVideos%2FOCR%20GCSE%2FTheory%2F1%2E3%20%E2%80%93%20Computer%20networks%2C%20connections%20and%20protocols%2FOCR%20GCSE%20%28J277%29%201%2E3%20Hardware%20to%20connect%20a%20LAN%2Emp4&parent=%2Fsites%2FStudentSharedArea%2FShared%20Documents%2FComputer%20Science%2FVideos%2FOCR%20GCSE%2FTheory%2F1%2E3%20%E2%80%93%20Computer%20networks%2C%20connections%20and%20protocols" target="_blank" class="text-purple-700 hover:underline">Watch on MGS SharePoint (Craig'n'Dave)</a></div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="key-takeaways" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-key mr-2"></i>Key Takeaways</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-300 space-y-2">
+                <ul class="list-disc list-inside space-y-1 text-yellow-800">
+                    <li><strong class="keyword">NIC (Network Interface Card)<span class="tooltip">A hardware component that connects a device to a computer network. Every networked device needs one, it has a unique MAC address.</span></strong>: Allows a device to connect to a network; has a unique MAC address.</li>
+                    <li><strong class="keyword">Switch<span class="tooltip">Connects devices on a LAN, using MAC addresses to forward data packets only to their intended recipient. More efficient than a hub.</span></strong>: Connects devices on a LAN, intelligently forwards data to the correct device using MAC addresses.</li>
+                    <li><strong class="keyword">Router<span class="tooltip">Connects different networks (e.g., a LAN to the Internet/WAN). Directs data packets between networks based on IP addresses.</span></strong>: Connects different networks (e.g., LAN to WAN/Internet) and directs traffic between them using IP addresses.</li>
+                    <li><strong class="keyword">WAP (Wireless Access Point)<span class="tooltip">Network component which allows Wi-Fi enabled devices to connect to a network. Usually built into a router, and can be seen on the ceilings of schools and public buildings.</span></strong>: Allows wireless devices to connect to a wired network.</li>
+                    <li><strong class="keyword">Transmission Media<span class="tooltip">The physical path between transmitter and receiver in a data transmission system, e.g., copper cables, fibre optic cables, wireless signals.</span></strong>: The physical means by which data is transmitted (e.g., Copper cables - Ethernet, Fibre Optic cables).</li>
+                    <li><strong class="keyword">Repeater<span class="tooltip">Receives and repeats a signal to extend its attenuation or range.</span></strong>: Amplifies or regenerates a signal to extend its transmission distance.</li>
+                    <li>Fibre optic offers higher speed and less interference than copper but is more expensive.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="next-steps" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-indigo-600">What's Next?</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-teal-50 p-5 rounded-lg border border-teal-300">
+                <p class="text-teal-800 font-medium">You've explored the essential hardware for building networks!</p>
+                <p class="text-teal-700 mt-2">Next in "1.3 Computer networks, connections and protocols", we will look at:</p>
+                <ul class="list-disc list-inside space-y-1 text-teal-700 mt-3 pl-4">
+                    <li>Wired and wireless connections in more detail (Ethernet, Wi-Fi, Bluetooth).</li>
+                    <li>The importance of Encryption, IP Addressing, MAC Addressing, and Standards.</li>
+                    <li>Common communication Protocols (TCP/IP, HTTP(S), FTP, etc.) and the concept of Layers.</li>
+                </ul>
+                 <p class="mt-3"><a href="gcse-net-clientserver-p2p.html" class="font-semibold text-teal-900 hover:underline">← Previously: Client-Server vs Peer-to-Peer Networks</a></p>
+                 <p class="mt-1"><a href="gcse-net-connections-protocols.html" class="font-semibold text-teal-900 hover:underline">Next: Wired/Wireless, Protocols & Layers →</a></p>
+            </div>
+        </section>
+
+        <section id="extension-activities" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-broadcast-tower mr-2 text-orange-500"></i> Extension Activities</h2>
+            <div class="bg-orange-50 p-5 rounded-lg border border-orange-200 space-y-6">
+                <div class="extension-task">
+                    <h3 class="font-semibold text-orange-800 mb-2">1. Hubs vs. Switches Deep Dive</h3>
+                    <p class="text-sm text-gray-700 mb-2">We mentioned that switches are more intelligent than hubs. Hubs are older technology.</p>
+                    <p class="text-sm text-gray-700 mb-2">Research Task: How does a <span class="keyword">hub<span class="tooltip">This dumb network device has no means of storing MAC addresses so it sends all packets to all devices connected to it.</span></span> handle incoming data packets compared to a switch? Why does this difference lead to more network collisions and less efficiency with a hub, especially as more devices are added?</p>
+                    <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Hub data handling vs. Switch? Impact on collisions/efficiency?"></textarea>
+                </div>
+                <div class="extension-task border-t border-orange-200 pt-4">
+                    <h3 class="font-semibold text-orange-800 mb-2">2. Modems (Modulator-Demodulator)</h3>
+                    <p class="text-sm text-gray-700 mb-2">While routers connect networks, a <span class="keyword">modem<span class="tooltip">Modulator-Demodulator: Converts digital signals from a computer to analogue signals for transmission over telephone lines, and vice-versa. Essential for DSL/cable internet.</span></span> plays a crucial role in connecting your home network to your Internet Service Provider (ISP), especially for technologies like DSL or cable internet.</p>
+                    <p class="text-sm text-gray-700 mb-2">Research Task: What is the primary function of a modem? Why is it necessary for certain types of internet connections?</p>
+                    <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Modem's function? Why is it needed?"></textarea>
+                </div>
+                 <div class="extension-task border-t border-orange-200 pt-4">
+                    <h3 class="font-semibold text-orange-800 mb-2">3. Power over Ethernet (PoE)</h3>
+                    <p class="text-sm text-gray-700 mb-2">Some network devices, like WAPs or IP cameras, can be powered directly through their Ethernet cable, eliminating the need for a separate power adapter.</p>
+                    <p class="text-sm text-gray-700 mb-2">Research Task: What is Power over Ethernet (PoE)? What are the advantages of using PoE for certain network devices? Are there different PoE standards?</p>
+                    <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="What is PoE? Advantages? Standards?"></textarea>
+                </div>
+            </div>
+        </section>
+
+        <footer class="mt-12 text-center no-print">
+            <div id="final-score-area" class="task-container bg-purple-100 border-purple-300 mb-6">
+                <h2 class="task-title text-2xl text-purple-700">Worksheet Score</h2>
+                <p id="final-score-display-text" class="text-3xl font-bold text-purple-800">Your score: <span id="current-score-value">0</span> / <span id="total-possible-score-value">0</span></p>
+                <p id="final-score-feedback" class="text-purple-600"></p>
+            </div>
+            <button id="calculate-final-score" class="final-button">Calculate Final Score</button>
+            <button id="reset-all-tasks" class="reset-button">Reset All Tasks</button>
+            <button id="export-pdf" class="export-pdf-button">Export to PDF</button>
+        </footer>
+
+    </main>
+    </div>
+
+    
+    <script src="js/gcse-net-types-topologies-Hardware.js"></script>
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+</html>

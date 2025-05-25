@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCSE CS Lesson: Visualising Systems with Structure Diagrams</title>    <script src="https://cdn.tailwindcss.com"></script> <!-- Keep Tailwind CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Link to the combined CSS file, adjusting path as necessary -->
+    <link rel="stylesheet" type="text/css" href="css/style.css"> 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+</head>
+<nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <a href="home.html" class="text-xl font-bold hover:text-gray-300 transition-colors">MGS CS Hub</a>
+        <ul class="flex space-x-3 lg:space-x-4">
+        </ul>
+        <ul class="flex flex-wrap space-x-2 sm:space-x-3 lg:space-x-4 text-sm sm:text-base">
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 7</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 8</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 9</a></li>
+            <li><a href="gcse.html" class="hover:text-gray-300 transition-colors">GCSE</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">A Level</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Competitions</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">CS News</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Extracurricular</a></li>
+        </ul>
+    </div>
+</nav>
+
+\1
+
+
+
+    
+
+    <div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-lg shadow-xl">
+        <nav aria-label="breadcrumb" class="text-sm text-gray-500 mb-4 no-print">
+            <ol class="list-none p-0 inline-flex">
+                <li class="flex items-center"><a href="home.html" class="text-blue-600 hover:underline">Home</a><svg class="fill-current w-3 h-3 mx-2 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></li>
+                <li class="flex items-center"><a href="gcse.html" class="text-blue-600 hover:underline">GCSE</a><svg class="fill-current w-3 h-3 mx-2 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></li>
+                <li class="flex items-center"><a href="mgsgcse21.html" class="text-blue-600 hover:underline">Algorithms</a><svg class="fill-current w-3 h-3 mx-2 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></li>
+                <li class="text-gray-700" aria-current="page">Structure Diagrams</li>
+            </ol>
+        </nav>
+
+        <header class="mb-8 border-b pb-4">
+        <h1 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-2">Visualising Systems with Structure Diagrams</h1>
+            <p class="text-lg text-gray-600">OCR GCSE Computer Science (J277)</p>
+        </header>
+
+        <main class="space-y-8 md:space-y-12">
+
+            <section id="starter-activity" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-sitemap mr-2 text-yellow-500"></i> Starter Activity (5 mins)</h2>
+                <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-200 space-y-4">
+                    <p class="font-semibold text-yellow-800">Breaking Things Down...</p>
+                    <div class="space-y-3">
+                        <div>
+                            <label for="starter-q1-event" class="block text-sm font-medium text-yellow-700">1. Imagine you're organizing a school sports day. What are the main high-level tasks or areas you'd need to manage?</label>
+                            <textarea id="starter-q1-event" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" placeholder="e.g., Event Planning, Participant Management..."></textarea>
+                        </div>
+                        <div>
+                            <label for="starter-q2-subtasks" class="block text-sm font-medium text-yellow-700">2. Pick one of your main tasks from Q1 (e.g., "Event Planning"). What smaller sub-tasks would fall under that main task?</label>
+                            <textarea id="starter-q2-subtasks" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" placeholder="e.g., Booking venue, Arranging equipment..."></textarea>
+                        </div>
+                    </div>
+                    <button class="reveal-button !bg-yellow-500 hover:!bg-yellow-600 no-print" onclick="toggleReveal('starter-answers-feedback', this, 'Reveal Example Answers', 'Hide Example Answers')">Reveal Example Answers</button>
+                    <div id="starter-answers-feedback" class="feedback-area !bg-yellow-100 !border-yellow-300 !text-yellow-700">
+                        <p><strong>Example Answers:</strong></p>
+                        <ul class="list-disc list-inside">
+                            <li>1. Main tasks for sports day: Event Scheduling, Athlete Registration, Equipment Management, Volunteer Coordination, Results & Awards.</li>
+                            <li>2. Sub-tasks for "Event Scheduling": Define events, Create timetable, Allocate locations for events, Plan for weather contingencies.</li>
+                            <li>This process of breaking a large system (Sports Day) into main parts, and then those parts into smaller parts, is exactly what <span class="keyword">Decomposition<span class="tooltip">Breaking a problem down into smaller, more manageable parts. A key principle in computational thinking and system design.</span></span> is about, and it's what structure diagrams help us visualize!</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="lesson-outcomes" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-bullseye mr-2 text-green-500"></i> Lesson Outcomes</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-green-50 p-5 rounded-lg border border-green-200">
+                    <p class="font-semibold text-green-800 mb-3">By the end of this lesson, you should be able to:</p>
+                    <ul class="list-disc list-inside space-y-2 text-green-700 pl-4">
+                        <li>Define what a <span class="keyword">structure diagram<span class="tooltip">A diagram that shows how a system or program is broken down into smaller, hierarchical modules or sub-systems.</span></span> is and explain its purpose in system design.</li>
+                        <li>Identify the key components and conventions used in structure diagrams.</li>
+                        <li>Interpret given structure diagrams to understand the <span class="keyword">hierarchy<span class="tooltip">The arrangement of modules in a system from the most general (top) to the most specific (bottom), showing levels of decomposition.</span></span> and <span class="keyword">decomposition<span class="tooltip">Breaking a problem down into smaller, more manageable parts. A key principle in computational thinking and system design.</span></span> of a system.</li>
+                        <li>Create simple structure diagrams for given scenarios to represent system modules.</li>
+                        <li>Explain how structure diagrams illustrate the principle of <span class="keyword">top-down design<span class="tooltip">A design approach where a system is broken down from a high-level overview into progressively smaller and more detailed sub-systems or modules.</span></span>.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="intro-structure-diagrams" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-project-diagram mr-2"></i> What are Structure Diagrams?</h2>
+                     <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-indigo-50 p-5 rounded-lg border border-indigo-200 space-y-3">
+                    <p>A <strong class="keyword">structure diagram<span class="tooltip">A diagram that shows how a system or program is broken down into smaller, hierarchical modules or sub-systems.</span></strong> (also known as a structure chart or hierarchy chart) is a design tool used in software development and system analysis. It visually represents the breakdown of a system into its major components or <span class="keyword">modules<span class="tooltip">A distinct part of a larger system or program that performs a specific function or set of related functions.</span></span>, and the hierarchical relationships between them.</p>
+                    <p><strong>Purpose:</strong></p>
+                    <ul class="list-disc list-inside ml-5 text-sm">
+                        <li>To illustrate <strong class="keyword">top-down design<span class="tooltip">A design approach where a system is broken down from a high-level overview into progressively smaller and more detailed sub-systems or modules.</span></span> by showing how a complex system is decomposed into simpler, manageable parts.</li>
+                        <li>To show the overall architecture or organization of a program or system.</li>
+                        <li>To help developers understand the different parts of a system and how they fit together.</li>
+                        <li>To aid in planning and allocating development work.</li>
+                    </ul>
+                    <p>Structure diagrams are a key part of <strong class="keyword">decomposition<span class="tooltip">Breaking a problem down into smaller, more manageable parts. A key principle in computational thinking and system design.</span></strong>, a fundamental principle of computational thinking. They help us manage complexity by focusing on smaller pieces of a problem one at a time.</p>
+                    <p>The diagrams typically consist of rectangular boxes representing modules, with lines connecting them to show that a higher-level module is composed of the lower-level modules connected to it. Hover over <span class="keyword">keywords<span class="tooltip">This is an example tooltip!</span></span> for definitions.</p>
+                </div>
+            </section>
+
+            <section id="task1-satnav" class="task-container quiz-item" data-points="2">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-map-marked-alt mr-2 text-blue-500"></i>Task 1: Satellite Navigation System (Max 2 points)</h2>
+                <p class="text-gray-600 mb-4">The following structure diagram shows some sub-systems of a satellite navigation system. Complete the diagram by filling in the empty boxes based on the description: <em>"A satellite navigation system works using destination details entered by the user, either a new destination or chosen from previously saved destinations. The satellite navigation system will then output directions to the destination in the form of either a visual map or a list of directions."</em></p>
+                
+                <div class="diagram-image-container">
+                    <img src="../images/SD1.jpg" alt="Satellite Navigation System Structure Diagram with empty boxes" onerror="this.alt='Image ../images/SD1.jpg (Sat Nav Diagram) not found. Please check the path.'; this.src='https://placehold.co/600x300/e0e0e0/757575?text=Sat+Nav+Diagram+(../images/SD1.jpg)+Placeholder';">
+                </div>
+                <div class="image-task-inputs grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label for="satnav-box1">Top-Right Empty Box (Output Type):</label>
+                        <select id="satnav-box1" class="m-0">
+                            <option value="">Select Output Type...</option>
+                            <option value="output directions">Output Directions</option>
+                            <option value="calculate route">Calculate Route</option>
+                            <option value="process user input">Process User Input</option>
+                            <option value="display settings">Display Settings</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="satnav-box2">Bottom-Left Empty Box (Input Method 1):</label>
+                        <select id="satnav-box2" class="m-0">
+                            <option value="">Select Input Method...</option>
+                            <option value="new destination">New Destination</option>
+                            <option value="voice input">Voice Input</option>
+                            <option value="select map style">Select Map Style</option>
+                            <option value="check gps status">Check GPS Status</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="satnav-box3">Second Bottom-Left Empty Box (Input Method 2):</label>
+                        <select id="satnav-box3" class="m-0">
+                            <option value="">Select Input Method...</option>
+                            <option value="saved destinations">Saved Destinations</option>
+                            <option value="recent trips">Recent Trips</option>
+                            <option value="adjust volume">Adjust Volume</option>
+                            <option value="traffic information">Traffic Information</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button class="check-button mt-4" onclick="checkSatNavDiagram()">Check Sat Nav Answers</button>
+                    <div class="feedback mt-2"></div>
+                </div>
+            </section>
+
+            <section id="task2-mobileapp" class="task-container quiz-item" data-points="4">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-mobile-alt mr-2 text-green-500"></i>Task 2: Mobile App Appointments (Max 4 points)</h2>
+                <p class="text-gray-600 mb-4">A school uses a mobile phone app for parents' evenings. Parents log in, then can book new appointments, view existing ones, or update personal details. Viewing appointments can be on-screen or printed. Complete the structure diagram by selecting the correct task for each empty box from the dropdown lists (refer to the image for box positions).</p>
+                
+                <div class="diagram-image-container">
+                     <img src="../images/SD2.png" alt="Mobile App Structure Diagram with empty boxes" onerror="this.alt='Image ../images/SD2.png (Mobile App Diagram) not found. Please check the path.'; this.src='https://placehold.co/600x400/e0e0e0/757575?text=Mobile+App+Diagram+(../images/SD2.png)+Placeholder';">
+                </div>
+                <p class="text-sm text-gray-500 my-2 text-center">Use the image above to identify the boxes for your answers below.</p>
+                <div class="image-task-inputs grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="mobile-box1">Top-Right Empty Box (Level 2):</label>
+                        <select id="mobile-box1" class="m-0">
+                            <option value="">Select Task...</option>
+                            <option value="A">Book new appointment</option>
+                            <option value="B">Check attendance of child</option>
+                            <option value="C">Update personal details</option>
+                            <option value="D">View appointments on-screen</option>
+                            <option value="E">Log out of the system</option>
+                            <option value="F">Print a paper copy of appointments</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="mobile-box2">Middle-Left Empty Box (Level 3, under Manage App.):</label>
+                         <select id="mobile-box2" class="m-0">
+                            <option value="">Select Task...</option>
+                            <option value="A">Book new appointment</option>
+                            <option value="B">Check attendance of child</option>
+                            <option value="C">Update personal details</option>
+                            <option value="D">View appointments on-screen</option>
+                            <option value="E">Log out of the system</option>
+                            <option value="F">Print a paper copy of appointments</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="mobile-box3">Bottom-Left Empty Box (Level 4, under View App.):</label>
+                        <select id="mobile-box3" class="m-0">
+                            <option value="">Select Task...</option>
+                            <option value="A">Book new appointment</option>
+                            <option value="B">Check attendance of child</option>
+                            <option value="C">Update personal details</option>
+                            <option value="D">View appointments on-screen</option>
+                            <option value="E">Log out of the system</option>
+                            <option value="F">Print a paper copy of appointments</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="mobile-box4">Bottom-Right Empty Box (Level 4, under View App.):</label>
+                        <select id="mobile-box4" class="m-0">
+                            <option value="">Select Task...</option>
+                            <option value="A">Book new appointment</option>
+                            <option value="B">Check attendance of child</option>
+                            <option value="C">Update personal details</option>
+                            <option value="D">View appointments on-screen</option>
+                            <option value="E">Log out of the system</option>
+                            <option value="F">Print a paper copy of appointments</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button class="check-button mt-4" onclick="checkMobileAppDiagram()">Check Mobile App Answers</button>
+                    <div class="feedback mt-2"></div>
+                </div>
+            </section>
+
+            <section id="task3-truefalse" class="task-container quiz-item" data-points="2">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-check-circle mr-2 text-teal-500"></i>Task 3: True or False? (Max 2 points)</h2>
+                <p class="text-gray-600 mb-4">Tick one box in each row to identify if the statement about structure diagrams is true or false.</p>
+                <div class="space-y-3">
+                    <div class="p-3 border rounded-md bg-white" data-correct="false" data-id="tf1">
+                        <p class="font-medium">A structure diagram is a piece of code that is available throughout the structure of a program.</p>
+                        <button class="option-button text-xs !mt-1" data-answer="true">True</button> <button class="option-button text-xs !mt-1" data-answer="false">False</button> <span class="feedback ml-2"></span>
+                    </div>
+                    <div class="p-3 border rounded-md bg-white" data-correct="true" data-id="tf2">
+                        <p class="font-medium">A structure diagram shows the hierarchy of a system.</p>
+                        <button class="option-button text-xs !mt-1" data-answer="true">True</button> <button class="option-button text-xs !mt-1" data-answer="false">False</button> <span class="feedback ml-2"></span>
+                    </div>
+                    <div class="p-3 border rounded-md bg-white" data-correct="false" data-id="tf3">
+                        <p class="font-medium">A structure diagram is another name for an array.</p>
+                        <button class="option-button text-xs !mt-1" data-answer="true">True</button> <button class="option-button text-xs !mt-1" data-answer="false">False</button> <span class="feedback ml-2"></span>
+                    </div>
+                    <div class="p-3 border rounded-md bg-white" data-correct="true" data-id="tf4">
+                        <p class="font-medium">A structure diagram shows the relationship between different components of a system.</p>
+                        <button class="option-button text-xs !mt-1" data-answer="true">True</button> <button class="option-button text-xs !mt-1" data-answer="false">False</button> <span class="feedback ml-2"></span>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button class="check-button mt-4" onclick="checkTrueFalseStructure()">Check True/False Answers</button>
+                </div>
+            </section>
+
+            <section id="task4-vendingmachine" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-cash-register mr-2 text-cyan-500"></i>Task 4: Design a Vending Machine</h2>
+                <p class="text-gray-600 mb-4">Consider a simple vending machine that: accepts coins, allows item selection, dispenses the item, and gives change if necessary. Try to sketch or list the main modules and sub-modules you would include in a structure diagram for this system.</p>
+                <textarea id="vending-design-input" class="exam-answer-textarea" rows="6" placeholder="Main Module: Vending Machine\n  Sub-module 1: Accept Payment\n    Sub-sub-module: Validate Coin\n  Sub-module 2: Process Selection\n    ...\n"></textarea>
+                <button class="reveal-button no-print !mt-1" onclick="toggleReveal('vending-example-diagram', this, 'Show Example Diagram', 'Hide Example Diagram')">Show Example Diagram</button>
+                <div id="vending-example-diagram" class="feedback-area !bg-cyan-50 !border-cyan-200 !text-cyan-700">
+                    <p><strong>Example Vending Machine Structure:</strong></p>
+                    <div class="structure-diagram mx-auto max-w-md text-xs">
+                        <div class="sd-level"><div class="sd-module">Vending Machine System</div></div>
+                        <div class="w-px h-5 bg-gray-400 mx-auto"></div>
+                        <div class="flex justify-center w-full mb-5 relative">
+                             <div class="absolute top-0 left-[10%] w-[80%] h-px bg-gray-400"></div>
+                             <div class="absolute top-0 left-[10%] w-px h-5 bg-gray-400"></div>
+                             <div class="absolute top-0 left-1/3 w-px h-5 bg-gray-400"></div>
+                             <div class="absolute top-0 right-1/3 w-px h-5 bg-gray-400"></div>
+                             <div class="absolute top-0 right-[10%] w-px h-5 bg-gray-400"></div>
+                        </div>
+                        <div class="sd-level">
+                            <div class="sd-module">Manage Payment</div>
+                            <div class="sd-module">Handle Item Selection</div>
+                            <div class="sd-module">Dispense Products</div>
+                            <div class="sd-module">Manage Inventory</div>
+                        </div>
+                         <div class="flex w-full justify-around mb-5 relative">
+                            <div class="absolute top-0 left-[5%] w-[10%] h-px bg-gray-400"></div>
+                            <div class="absolute top-0 left-[5%] w-px h-5 bg-gray-400"></div>
+                            <div class="absolute top-0 left-[15%] w-px h-5 bg-gray-400"></div>
+                        </div>
+                        <div class="sd-level">
+                            <div class="sd-module ml-[calc(0%)]">Accept Coins</div>
+                            <div class="sd-module">Calculate Change</div>
+                            {/* Further breakdowns for other modules can be added */}
+                        </div>
+                    </div>
+                    <p class="mt-2 text-xs italic">This is one possible structure. Yours might differ but should show logical decomposition.</p>
+                </div>
+            </section>
+
+            <section id="interpreting-creating-sd" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-pencil-ruler mr-2 text-lime-500"></i>Interpreting & Creating Structure Diagrams</h2>
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-semibold text-lime-700">From Scenario to Diagram</h3>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-lime-50 p-4 rounded-lg border border-lime-200 mb-6 space-y-4">
+                    <p>When faced with a scenario, start by identifying the main overall system. Then, think about the major functions or parts that make up that system. These become your first level of modules. Each of these can then be further broken down if they are complex enough.</p>
+                    
+                    <div>
+                        <h4 class="font-medium text-lime-800">Example 1: Pac-Man Game (from PDF Task 4)</h4>
+                        <p class="text-sm mb-2">Consider the classic Pac-Man game. What would be the main modules in a structure diagram for it?</p>
+                        <textarea id="pacman-modules-input" class="exam-answer-textarea" rows="4" placeholder="List main modules like: Game Setup, Player Control, Ghost Logic..."></textarea>
+                        <button class="reveal-button !bg-lime-500 hover:!bg-lime-600 no-print !mt-1" onclick="toggleReveal('pacman-example-sd', this, 'Show Example Pac-Man Structure', 'Hide Example Pac-Man Structure')">Show Example Pac-Man Structure</button>
+                        <div id="pacman-example-sd" class="feedback-area !bg-lime-100 !border-lime-300 !text-lime-700">
+                            <p><strong>Example Pac-Man Structure:</strong></p>
+                            <ul class="list-disc list-inside text-sm">
+                                <li>Pac-Man Game
+                                    <ul>
+                                        <li>Game Initialization (Setup Level, Scores)</li>
+                                        <li>Player Control (Input Handling, Pac-Man Movement)</li>
+                                        <li>Ghost AI (Movement Logic for each ghost, Chase/Scatter modes)</li>
+                                        <li>Collision Detection (Pac-Man vs Ghosts, Pac-Man vs Pellets/Fruit)</li>
+                                        <li>Score Management (Update Score, Lives)</li>
+                                        <li>Game Display (Render Maze, Characters, UI)</li>
+                                        <li>Game State Management (Start, Playing, Game Over, Next Level)</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <p class="text-xs italic mt-1">This could be drawn with "Pac-Man Game" at the top, and the bullet points as connected sub-modules.</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="font-medium text-lime-800">Example 2: School Pupil Management System (from PDF Task 5)</h4>
+                        <p class="text-sm mb-2">A school program needs to manage pupil details (add, remove, amend, application info) and daily attendance. Outline the main modules.</p>
+                        <textarea id="pupil-system-modules-input" class="exam-answer-textarea" rows="5" placeholder="Main System: School Pupil Management\n  Module 1: Pupil Record Management\n    Sub-module: Add New Pupil\n    ...\n  Module 2: Attendance Tracking\n    Sub-module: Record Daily Attendance\n    ..."></textarea>
+                        <button class="reveal-button !bg-lime-500 hover:!bg-lime-600 no-print !mt-1" onclick="toggleReveal('pupil-system-example-sd', this, 'Show Example Pupil System Structure', 'Hide Example Pupil System Structure')">Show Example Pupil System Structure</button>
+                        <div id="pupil-system-example-sd" class="feedback-area !bg-lime-100 !border-lime-300 !text-lime-700">
+                            <p><strong>Example Pupil Management System Structure:</strong></p>
+                            <ul class="list-disc list-inside text-sm">
+                                <li>School Pupil Management System
+                                    <ul>
+                                        <li>Pupil Records Module
+                                            <ul>
+                                                <li>Add New Student</li>
+                                                <li>Remove Student</li>
+                                                <li>Amend Student Details</li>
+                                                <li>Manage Application Info</li>
+                                                <li>Search/View Student Details</li>
+                                            </ul>
+                                        </li>
+                                        <li>Attendance Module
+                                            <ul>
+                                                <li>Record Daily Attendance (by class/student)</li>
+                                                <li>View Attendance Records (by student/class/date range)</li>
+                                                <li>Generate Attendance Reports</li>
+                                                <li>Manage Absence Reasons</li>
+                                            </ul>
+                                        </li>
+                                        <li>User Authentication Module (Login/Permissions)</li>
+                                        <li>Reporting Module (General school reports)</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="real-world-context-sd" class="task-container">
+                <div class="flex justify-between items-center mb-4">
+                   <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-building mr-2 text-blue-500"></i> Real-World Context</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                       <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                   </label>
+               </div>
+               <div class="bg-blue-50 p-5 rounded-lg border border-blue-200 space-y-3">
+                   <p class="text-gray-700">Structure diagrams, or the principles behind them, are widely used:</p>
+                   <ul class="list-disc list-inside space-y-2 text-blue-800 pl-4">
+                       <li><strong>Software Development:</strong> Large applications are almost always built as a collection of modules, classes, or functions. Structure diagrams help plan this modular architecture.</li>
+                       <li><strong>Website Design:</strong> A site map is a type of structure diagram, showing the hierarchy of pages on a website.</li>
+                       <li><strong>Project Management:</strong> Work Breakdown Structures (WBS) decompose a project into smaller tasks and sub-tasks, similar to a structure diagram.</li>
+                       <li><strong>Organizational Charts:</strong> These show the hierarchical structure of a company, with departments and roles.</li>
+                       <li><strong>Database Design:</strong> Entity-Relationship Diagrams (ERDs) show the structure of a database, though they focus more on data relationships than functional decomposition.</li>
+                   </ul>
+               </div>
+           </section>
+
+           <section id="myth-busters-sd" class="task-container">
+                <div class="flex justify-between items-center mb-4">
+                   <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-comment-slash mr-2 text-red-500"></i> Structure Diagram Myth Busters!</h2>
+                   <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                       <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                   </label>
+               </div>
+               <div class="bg-red-50 p-5 rounded-lg border border-red-200 space-y-4">
+                   <div>
+                       <p><strong class="font-semibold text-red-800">Myth 1:</strong> "Structure diagrams show the order in which tasks are performed."</p>
+                       <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> False. Structure diagrams show the <span class="keyword">hierarchy<span class="tooltip">The arrangement of modules in a system from the most general (top) to the most specific (bottom), showing levels of decomposition.</span></span> and <span class="keyword">decomposition<span class="tooltip">Breaking a problem down into smaller, more manageable parts. A key principle in computational thinking and system design.</span></span> of a system into its component parts (modules). They show *what* the parts are, not the sequence of execution. <span class="keyword">Flowcharts<span class="tooltip">A diagram that represents an algorithm, workflow or process, showing the steps as boxes of various kinds, and their order by connecting them with arrows.</span></span> or <span class="keyword">pseudocode<span class="tooltip">A plain language description of the steps in an algorithm or another system. Pseudocode often uses structural conventions of a normal programming language, but is intended for human reading rather than machine reading.</span></span> are used to show the order of operations or logic flow.</p>
+                   </div>
+                   <div class="border-t border-red-200 pt-4">
+                       <p><strong class="font-semibold text-red-800">Myth 2:</strong> "A module in a structure diagram can only be broken down one more level."</p>
+                       <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> False. Modules can be decomposed into sub-modules, and those sub-modules can be further decomposed into even smaller sub-sub-modules, and so on, for as many levels as necessary to represent the system's complexity clearly.</p>
+                   </div>
+                    <div class="border-t border-red-200 pt-4">
+                       <p><strong class="font-semibold text-red-800">Myth 3:</strong> "Structure diagrams are only useful for really big, complex software systems."</p>
+                       <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> False. While they are essential for large systems, the principle of decomposition and visualizing structure is helpful even for smaller programs or tasks. It promotes clear thinking and organized design, regardless of scale.</p>
+                   </div>
+               </div>
+           </section>
+
+            <section id="exam-practice-sd" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-user-graduate mr-2"></i>Task 5: Exam Practice Questions</h2>
+                <p class="text-gray-600 mb-6">Apply your knowledge to these exam-style questions.</p>
+                <div class="space-y-6">
+                    <div class="exam-question-item">
+                        <p class="font-medium text-gray-800 mb-2">1. A program is being designed to manage a simple online quiz. The main functions are: User Login, Present Quiz Questions, Mark Answers, and Display Score. Draw a simple structure diagram for this quiz program. [4 marks]</p>
+                        <textarea id="exam-q1-sd" class="exam-answer-textarea" placeholder="Describe or sketch the structure diagram here. Main module at the top, then sub-modules..."></textarea>
+                        <button class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q1-sd', 'exam-q1-sd', 20)">Show Mark Scheme</button>
+                        <div id="ms-exam-q1-sd" class="mark-scheme">
+                            <p><strong>Mark Scheme:</strong></p>
+                            <ul>
+                                <li>Top-level module: "Online Quiz Program" (or similar). (1 mark)</li>
+                                <li>At least three distinct sub-modules clearly linked to the main module, representing the given functions (e.g., "User Login", "Quiz Presentation", "Answer Marking", "Score Display"). (1 mark for each correct distinct sub-module, up to 3 marks).</li>
+                                <li>Clear hierarchical structure shown with lines connecting modules appropriately. (Implicitly covered if modules are linked correctly).</li>
+                                <li>(Optional further breakdown for higher marks if question was more complex, e.g., "Quiz Presentation" -> "Load Question", "Get User Answer").</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="exam-question-item">
+                        <p class="font-medium text-gray-800 mb-2">2. Explain one benefit of using a structure diagram during the design phase of a software project. [2 marks]</p>
+                        <textarea id="exam-q2-sd" class="exam-answer-textarea" placeholder="Benefit..."></textarea>
+                        <button class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q2-sd', 'exam-q2-sd', 10)">Show Mark Scheme</button>
+                        <div id="ms-exam-q2-sd" class="mark-scheme">
+                            <p><strong>Mark Scheme (any one benefit with explanation, 2 marks):</strong></p>
+                            <ul>
+                                <li>Helps to break down a complex problem/system into smaller, more manageable parts/modules (1 mark), making it easier to understand and develop (1 mark).</li>
+                                <li>Clearly shows the hierarchy and relationships between different modules (1 mark), which aids in understanding the overall system architecture (1 mark).</li>
+                                <li>Facilitates top-down design (1 mark), allowing developers to focus on high-level structure before diving into detailed implementation (1 mark).</li>
+                                <li>Can help in allocating tasks to different developers or teams (1 mark), as modules can often be developed independently (1 mark).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="related-videos-sd" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-video mr-2 text-purple-500"></i> Related Videos</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-purple-50 p-5 rounded-lg border border-purple-200 space-y-4">
+                    <p class="text-gray-700">Watch these videos to learn more about structure diagrams:</p>
+                    <ul class="list-disc list-inside space-y-3 text-purple-800 pl-4">
+                        <li>
+                            <strong>Video 1: Introduction to Structure Diagrams</strong>
+                            <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 1: Structure Diagram Basics]</div>
+                        </li>
+                        <li>
+                            <strong>Video 2: Creating Structure Diagrams - Examples</strong>
+                            <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 2: Structure Diagram Examples]</div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="key-takeaways-sd" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-key mr-2"></i>Key Takeaways</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-300 space-y-2 show">
+                    <ul class="list-disc list-inside space-y-1 text-yellow-800">
+                        <li><strong class="keyword">Structure diagrams<span class="tooltip">A diagram that shows how a system or program is broken down into smaller, hierarchical modules or sub-systems.</span></strong> visually represent how a system is broken down into <span class="keyword">modules<span class="tooltip">A distinct part of a larger system or program that performs a specific function or set of related functions.</span></span>.</li>
+                        <li>They show the <span class="keyword">hierarchy<span class="tooltip">The arrangement of modules in a system from the most general (top) to the most specific (bottom), showing levels of decomposition.</span></span> of these modules, illustrating <span class="keyword">top-down design<span class="tooltip">A design approach where a system is broken down from a high-level overview into progressively smaller and more detailed sub-systems or modules.</span></span> and <span class="keyword">decomposition<span class="tooltip">Breaking a problem down into smaller, more manageable parts. A key principle in computational thinking and system design.</span></span>.</li>
+                        <li>They consist of boxes (modules) and lines (showing decomposition).</li>
+                        <li>They help in planning, understanding, and communicating system architecture.</li>
+                        <li>They do NOT show the order of execution (that's for flowcharts/pseudocode).</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="next-steps-sd" class="task-container">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600">What's Next?</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-teal-50 p-5 rounded-lg border border-teal-300">
+                    <p class="text-teal-800 font-medium">You've learned how to interpret and create structure diagrams!</p>
+                    <p class="text-teal-700 mt-2">Next, you might explore other design tools or programming concepts:</p>
+                    <ul class="list-disc list-inside space-y-1 text-teal-700 mt-3 pl-4">
+                        <li><span class="keyword">Flowcharts<span class="tooltip">A diagram that represents an algorithm, workflow or process, showing the steps as boxes of various kinds, and their order by connecting them with arrows.</span></span>: For showing the sequence of operations and decisions in an algorithm.</li>
+                        <li><span class="keyword">Pseudocode<span class="tooltip">A plain language description of the steps in an algorithm or another system. Pseudocode often uses structural conventions of a normal programming language, but is intended for human reading rather than machine reading.</span></span>: Writing algorithms in a human-readable, structured way before coding.</li>
+                        <li>Modular Programming: How the modules identified in structure diagrams translate into functions, procedures, or classes in actual code.</li>
+                    </ul>
+                    <p class="mt-3"><a href="mgsgcse21.html" class="font-semibold text-teal-900 hover:underline">← Back to Algorithms Overview</a></p>
+                </div>
+            </section>
+
+            <section id="extension-activities-sd" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-drafting-compass mr-2 text-orange-500"></i> Extension Activities</h2>
+                <div class="bg-orange-50 p-5 rounded-lg border border-orange-200 space-y-6">
+                    <div class="extension-task">
+                        <h3 class="font-semibold text-orange-800 mb-2">1. Library Management System (from PDF)</h3>
+                        <p class="text-sm text-gray-700 mb-2">Attempt to draw a detailed structure diagram for a library management program (like your school library). Include at least four main modules and try to break down one or two of those main modules into sub-modules.</p>
+                        <textarea rows="5" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Describe or sketch your library system structure diagram here..."></textarea>
+                    </div>
+                    <div class="extension-task border-t border-orange-200 pt-4">
+                        <h3 class="font-semibold text-orange-800 mb-2">2. Structure Diagram for a Website</h3>
+                        <p class="text-sm text-gray-700 mb-2">Think about a moderately complex website you use often (e.g., a news website, an online learning platform, a simple e-commerce site). Sketch a structure diagram representing its main sections and key sub-sections/features.</p>
+                        <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Website Name: ...\nMain Sections: ...\nSub-sections for one main section: ..."></textarea>
+                    </div>
+                </div>
+            </section>
+            
+            <footer class="mt-12 text-center no-print">
+                <div id="final-score-area" class="task-container bg-purple-100 border-purple-300 mb-6">
+                    <h2 class="task-title text-2xl text-purple-700">Worksheet Score</h2>
+                    <p id="final-score-display" class="text-3xl font-bold text-purple-800">Your score: 0 / 0</p>
+                    <p id="final-score-feedback" class="text-purple-600"></p>
+                </div>
+                <button id="calculate-final-score" class="final-button">Calculate Final Score</button>
+                <button id="reset-all-tasks" class="reset-button">Reset All Tasks</button>
+                <button id="export-pdf-button" class="export-pdf-button">Export to PDF</button>
+            </footer>
+
+        </main>
+    </div>
+
+    
+    <script src="js/gcse-algo-design-SD.js"></script>
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+
+</html>

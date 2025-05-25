@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCSE CS Lesson: Merge Sort - Divide, Conquer, Combine!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    
+<link rel="stylesheet" href="css/style.css">
+</head>
+<nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <a href="home.html" class="text-xl font-bold hover:text-gray-300 transition-colors">MGS CS Hub</a>
+        <ul class="flex space-x-3 lg:space-x-4">
+        </ul>
+        <ul class="flex flex-wrap space-x-2 sm:space-x-3 lg:space-x-4 text-sm sm:text-base">
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 7</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 8</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 9</a></li>
+            <li><a href="gcse.html" class="hover:text-gray-300 transition-colors">GCSE</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">A Level</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Competitions</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">CS News</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Extracurricular</a></li>
+        </ul>
+    </div>
+</nav>
+
+\1
+
+
+
+    <div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-lg shadow-xl">
+
+        <a href="gcse-algo-searchsort-menu.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 group no-print">
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left w-5 h-5 mr-2 transition-transform duration-200 group-hover:-translate-x-1"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+            Back to Searching & Sorting Menu
+        </a>
+
+        <header class="mb-8 border-b pb-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-2">Sorting Things Out: The Merge Sort Algorithm</h1>
+            <p class="text-lg text-gray-600">OCR GCSE Computer Science (J277) - Topic 2.1.3 (d)</p>
+        </header>
+
+        <main class="space-y-8 md:space-y-12">
+
+            <section id="starter-activity" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-random mr-2 text-yellow-500"></i> Starter Activity (5 mins)</h2>
+                <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-200 space-y-4">
+                    <p class="font-semibold text-yellow-800">Organizing Chaos...</p>
+                    <div class="space-y-3">
+                        <div>
+                            <label for="starter-q1-sort" class="block text-sm font-medium text-yellow-700">1. Imagine you have a deck of 52 playing cards, completely shuffled. What's the first thing you might do to make it easier to find a specific card or to see if you have certain combinations?</label>
+                            <textarea id="starter-q1-sort" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" placeholder="Your strategy for organizing cards..."></textarea>
+                        </div>
+                        <div>
+                            <label for="starter-q2-why-sort" class="block text-sm font-medium text-yellow-700">2. Why is having data in a sorted order generally useful in computing (and everyday life)? Give one reason.</label>
+                            <textarea id="starter-q2-why-sort" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" placeholder="e.g., Makes searching faster..."></textarea>
+                        </div>
+                         <div>
+                            <label for="starter-q3-divide" class="block text-sm font-medium text-yellow-700">3. If you had a very large, difficult task (like writing a long research paper), would you try to do it all at once, or would you break it into smaller parts? Why?</label>
+                            <textarea id="starter-q3-divide" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" placeholder="All at once or smaller chunks?"></textarea>
+                        </div>
+                    </div>
+                    <button class="reveal-button !bg-yellow-500 hover:!bg-yellow-600 no-print" onclick="toggleReveal('starter-answers-feedback', this, 'Reveal Example Answers', 'Hide Example Answers')">Reveal Example Answers</button>
+                    <div id="starter-answers-feedback" class="feedback-area !bg-yellow-100 !border-yellow-300 !text-yellow-700">
+                        <p><strong>Example Answers:</strong></p>
+                        <ul class="list-disc list-inside">
+                            <li>1. You might sort them by suit (hearts, diamonds, clubs, spades) and then by rank (Ace, 2, 3... King) within each suit. Or just by rank.</li>
+                            <li>2. Sorted data is useful because it makes searching for specific items much faster (e.g., using <span class="keyword">Binary Search<span class="tooltip">A searching algorithm that divides the search space in half each time until it finds the target. Requires the array to be sorted.</span></span>), it's easier to identify duplicates, find minimum/maximum values, or see patterns.</li>
+                            <li>3. Most people would break a large task into smaller, more manageable parts. This makes the overall task less daunting, easier to plan, and progress can be tracked more effectively. This is a key idea in <span class="keyword">Decomposition<span class="tooltip">Breaking a problem down into smaller steps in order to solve it. A CT skill.</span></span> and also in the <span class="keyword">Divide and Conquer<span class="tooltip">An algorithmic paradigm where a problem is recursively broken down into two or more sub-problems of the same or related type, until these become simple enough to be solved directly. The solutions to the sub-problems are then combined to give a solution to the original problem.</span></span> strategy used by Merge Sort!</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="lesson-outcomes" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-bullseye mr-2 text-green-500"></i> Lesson Outcomes</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-green-50 p-5 rounded-lg border border-green-200">
+                    <p class="font-semibold text-green-800 mb-3">By the end of this lesson, you should be able to:</p>
+                    <ul class="list-disc list-inside space-y-2 text-green-700 pl-4">
+                        <li>Describe the <span class="keyword">Merge Sort<span class="tooltip">A divide and conquer sorting algorithm that recursively divides a list into smaller sub-lists, sorts them, and then merges them back together.</span></span> algorithm.</li>
+                        <li>Explain the "Divide and Conquer" strategy used by Merge Sort.</li>
+                        <li>Trace the execution of a Merge Sort algorithm on a given list of data.</li>
+                        <li>Understand the process of splitting lists and merging sorted <span class="keyword">sub-lists<span class="tooltip">A smaller list created by dividing a larger list during the merge sort process.</span></span>.</li>
+                        <li>Identify the advantages and disadvantages of Merge Sort.</li>
+                        <li>Conceptually understand its <span class="keyword">time complexity<span class="tooltip">A measure of how the runtime of an algorithm scales with the input size. Merge Sort has an average and worst-case time complexity of O(n log n).</span></span> (O(n log n)) and <span class="keyword">space complexity<span class="tooltip">A measure of the amount of memory an algorithm uses. Merge Sort typically requires O(n) auxiliary space.</span></span>.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="intro-mergesort" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-code-branch mr-2"></i> Introduction to Merge Sort</h2>
+                     <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-indigo-50 p-5 rounded-lg border border-indigo-200 space-y-3">
+                    <p><strong class="keyword">Merge Sort<span class="tooltip">A divide and conquer sorting algorithm that recursively divides a list into smaller sub-lists, sorts them, and then merges them back together.</span></strong> is an efficient, comparison-based sorting algorithm. It's a classic example of the <strong class="keyword">Divide and Conquer<span class="tooltip">An algorithmic paradigm where a problem is recursively broken down into two or more sub-problems of the same or related type, until these become simple enough to be solved directly. The solutions to the sub-problems are then combined to give a solution to the original problem.</span></strong> strategy.</p>
+                    <p>The basic idea is to:</p>
+                    <ol class="list-decimal list-inside ml-5">
+                        <li><strong>Divide:</strong> If the list has more than one element, split it into two (approximately) equal halves.</li>
+                        <li><strong>Conquer:</strong> Recursively sort each half. If a half has only one element, it's considered sorted.</li>
+                        <li><strong>Combine (Merge):</strong> <span class="keyword">Merge<span class="tooltip">The process of combining two sorted sub-lists into a single sorted list.</span></span> the two sorted halves back into a single, sorted list.</li>
+                    </ol>
+                    <p>This process continues until the entire list is sorted. Merge Sort is known for its consistent performance. Hover over <span class="keyword">keywords<span class="tooltip">This is an example tooltip!</span></span> for definitions.</p>
+                </div>
+            </section>
+
+            <section id="mergesort-simulation-section" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-cogs mr-2 text-purple-500"></i>Merge Sort in Action</h2>
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-semibold text-purple-700">Interactive Simulation</h3>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-purple-50 p-4 rounded-lg border border-purple-200 mb-6">
+                    <p class="text-sm text-purple-700 mb-2">Enter a list of numbers (comma-separated, e.g., 5,2,8,1,9,4) or use the default. Then, step through the Merge Sort process.</p>
+                    <div class="merge-sort-controls flex flex-wrap items-center gap-2 mb-4">
+                        <label for="merge-sort-input" class="text-sm font-medium">List:</label>
+                        <input type="text" id="merge-sort-input" class="p-1 border rounded-md flex-grow" value="7, 2, 9, 1, 5, 3, 8, 4">
+                        <button class="sim-button !mt-0" onclick="setupMergeSortVisual()">Load List & Start</button>
+                        <button class="sim-button !mt-0" id="merge-sort-step-btn" disabled>Next Step</button>
+                        <button class="reset-button !mt-0" onclick="resetMergeSortVisual()">Reset Sim</button>
+                    </div>
+                    <div id="merge-sort-status" class="text-sm text-indigo-600 min-h-[2em] bg-purple-100 p-2 rounded">Load a list to begin.</div>
+                    <div id="merge-sort-visualization-area" class="merge-sort-container mt-4">
+                        </div>
+                </div>
+
+                 <div id="task-mergesort-trace" class="quiz-item mt-6" data-points="4">
+                    <h3 class="text-lg font-medium text-gray-700 mb-2">Task 1: Tracing Merge Sort (Max 4 points)</h3>
+                    <p class="text-sm text-gray-600 mb-2">Consider the list: <strong>[6, 1, 7, 3]</strong>. Describe the main steps Merge Sort would take. Focus on the splitting and the first two merge operations.</p>
+                    <textarea id="mergesort-trace-answer" class="exam-answer-textarea" rows="5" placeholder="Step 1: Split... Step 2: Split... Step 3: Merge... Step 4: Merge..."></textarea>
+                    <button class="reveal-button no-print !mt-1" onclick="toggleReveal('mergesort-trace-guidance', this, 'Show Example Trace', 'Hide Example Trace')">Show Example Trace</button>
+                    <div id="mergesort-trace-guidance" class="feedback-area !bg-purple-100 !border-purple-300 !text-purple-700">
+                        <p><strong>Example Trace Steps:</strong></p>
+                        <ol class="list-decimal list-inside">
+                            <li><strong>Split 1:</strong> [6, 1, 7, 3] is split into [6, 1] and [7, 3].</li>
+                            <li><strong>Split 2 (Left):</strong> [6, 1] is split into [6] and [1]. (These are now sorted sub-lists of size 1).</li>
+                            <li><strong>Split 2 (Right):</strong> [7, 3] is split into [7] and [3]. (These are now sorted sub-lists of size 1).</li>
+                            <li><strong>Merge 1 (Left):</strong> Merge [6] and [1]. Compare 6 and 1. 1 is smaller. Result: [1, 6].</li>
+                            <li><strong>Merge 1 (Right):</strong> Merge [7] and [3]. Compare 7 and 3. 3 is smaller. Result: [3, 7].</li>
+                            <li><strong>Merge 2 (Final):</strong> Merge [1, 6] and [3, 7].
+                                <ul class="list-disc list-inside ml-4">
+                                    <li>Compare 1 and 3. 1 is smaller. Merged: [1]</li>
+                                    <li>Compare 6 and 3. 3 is smaller. Merged: [1, 3]</li>
+                                    <li>Compare 6 and 7. 6 is smaller. Merged: [1, 3, 6]</li>
+                                    <li>Add remaining 7. Merged: [1, 3, 6, 7]</li>
+                                </ul>
+                            </li>
+                        </ol>
+                        <p class="text-xs italic mt-1">(For 4 marks, focus on the initial splits and the first two merge operations clearly showing comparisons and resulting sub-lists.)</p>
+                    </div>
+                    <div class="feedback mt-1"></div>
+                     <button class="check-button no-print !mt-2" onclick="checkMergeSortTrace()">Check Trace Description</button>
+                </div>
+            </section>
+
+            <section id="mergesort-adv-disadv" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-balance-scale-right mr-2 text-red-500"></i>Advantages & Disadvantages of Merge Sort</h2>
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-semibold text-red-700">Weighing the Options</h3>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-red-50 p-3 rounded-lg border border-red-200">
+                        <h4 class="font-semibold text-red-700 mb-1">Advantages:</h4>
+                        <ul class="list-disc list-inside text-sm text-red-600 space-y-0.5">
+                            <li>Very <span class="keyword">efficient<span class="tooltip">A measure of how well an algorithm performs in terms of time (speed) and space (memory usage). Binary search is generally more efficient than linear search for large, sorted lists.</span></span> for large lists, with a consistent <span class="keyword">time complexity<span class="tooltip">A measure of how the runtime of an algorithm scales with the input size. Merge Sort has an average and worst-case time complexity of O(n log n).</span></span> of O(n log n).</li>
+                            <li>It's a <span class="keyword">stable sort<span class="tooltip">A sorting algorithm where two objects with equal keys appear in the same order in the sorted output as they appear in the input array to be sorted. Merge sort is stable.</span></span>, meaning it preserves the relative order of equal elements.</li>
+                            <li>Performance is not significantly affected by the initial order of the list (unlike some other sorts like Bubble Sort or Insertion Sort which can be very fast on nearly sorted data).</li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-50 p-3 rounded-lg border border-red-200">
+                        <h4 class="font-semibold text-red-700 mb-1">Disadvantages:</h4>
+                        <ul class="list-disc list-inside text-sm text-red-600 space-y-0.5">
+                            <li>Requires extra <span class="keyword">space complexity<span class="tooltip">A measure of the amount of memory an algorithm uses. Merge Sort typically requires O(n) auxiliary space.</span></span> (typically O(n)) because it usually needs a temporary array or list to merge the sub-lists. This can be an issue for very large datasets if memory is limited.</li>
+                            <li>Can be slower than other algorithms (like Insertion Sort) for very small lists due to the overhead of <span class="keyword">recursion<span class="tooltip">A process where a function calls itself directly or indirectly. Merge sort is often implemented recursively for the splitting phase.</span></span> or iterative setup.</li>
+                            <li>The recursive implementation can lead to stack overflow errors for extremely large lists if not handled carefully (though iterative versions exist).</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="real-world-context-merge" class="task-container">
+                <div class="flex justify-between items-center mb-4">
+                   <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-globe-europe mr-2 text-blue-500"></i> Real-World Context for Merge Sort</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                       <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                   </label>
+               </div>
+               <div class="bg-blue-50 p-5 rounded-lg border border-blue-200 space-y-3">
+                   <p class="text-gray-700">Merge Sort's efficiency and stability make it useful in various real-world applications:</p>
+                   <ul class="list-disc list-inside space-y-2 text-blue-800 pl-4">
+                       <li><strong>External Sorting:</strong> When data is too large to fit into RAM (e.g., sorting massive database files stored on disk), Merge Sort is effective because it can work with chunks of data, sort them in memory, and then merge the sorted chunks from disk.</li>
+                       <li><strong>Standard Library Sort Functions:</strong> Many programming languages' built-in sort functions (or variations like Timsort, which combines Merge Sort and Insertion Sort) use Merge Sort due to its O(n log n) guarantee and stability. For example, Python's `list.sort()` and `sorted()` use Timsort.</li>
+                       <li><strong>Counting Inversions in a List:</strong> Merge Sort can be adapted to count the number of inversions (pairs of elements that are out of order) in a list efficiently.</li>
+                       <li><strong>Parallel Sorting:</strong> The divide-and-conquer nature of Merge Sort makes it suitable for parallelization, where different sub-lists can be sorted concurrently on multiple processors.</li>
+                   </ul>
+               </div>
+           </section>
+
+           <section id="myth-busters-merge" class="task-container">
+                <div class="flex justify-between items-center mb-4">
+                   <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-question-circle mr-2 text-red-500"></i> Merge Sort Myth Busters!</h2>
+                   <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                       <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                   </label>
+               </div>
+               <div class="bg-red-50 p-5 rounded-lg border border-red-200 space-y-4">
+                   <div>
+                       <p><strong class="font-semibold text-red-800">Myth 1:</strong> "Merge Sort is always the fastest sorting algorithm."</p>
+                       <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> While Merge Sort has an excellent worst-case and average-case <span class="keyword">time complexity<span class="tooltip">A measure of how the runtime of an algorithm scales with the input size. Merge Sort has an average and worst-case time complexity of O(n log n).</span></span> of O(n log n), it's not always the absolute fastest for *all* situations. For very small lists, simpler algorithms like Insertion Sort can be faster due to less overhead. Also, algorithms like Quicksort can have a better average-case constant factor, making them faster in practice for many datasets (though Quicksort's worst-case is O(n<sup>2</sup>)).</p>
+                   </div>
+                   <div class="border-t border-red-200 pt-4">
+                       <p><strong class="font-semibold text-red-800">Myth 2:</strong> "Merge Sort sorts the list 'in-place' without needing extra memory."</p>
+                       <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> The standard implementation of Merge Sort is NOT in-place. It typically requires auxiliary (extra) memory space proportional to the size of the input list (O(n) <span class="keyword">space complexity<span class="tooltip">A measure of the amount of memory an algorithm uses. Merge Sort typically requires O(n) auxiliary space.</span></span>) to hold the <span class="keyword">sub-lists<span class="tooltip">A smaller list created by dividing a larger list during the merge sort process.</span></span> during the <span class="keyword">merge<span class="tooltip">The process of combining two sorted sub-lists into a single sorted list.</span></span> step. While in-place versions of Merge Sort exist, they are much more complex and often less efficient in practice.</p>
+                   </div>
+               </div>
+           </section>
+
+            <section id="exam-practice-mergesort" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-graduation-cap mr-2"></i>Task 2: Exam Practice Questions</h2>
+                <p class="text-gray-600 mb-6">Apply your knowledge to these exam-style questions.</p>
+                <div class="space-y-6">
+                    <div class="exam-question-item">
+                        <p class="font-medium text-gray-800 mb-2">1. Describe the 'divide' step and the 'merge' step of the Merge Sort algorithm. [4 marks]</p>
+                        <textarea id="exam-q1-mergesort" class="exam-answer-textarea" placeholder="Divide step... Merge step..."></textarea>
+                        <button class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q1-mergesort', 'exam-q1-mergesort', 25)">Show Mark Scheme</button>
+                        <div id="ms-exam-q1-mergesort" class="mark-scheme">
+                            <p><strong>Mark Scheme:</strong></p>
+                            <ul>
+                                <li><strong>Divide Step:</strong> The list is repeatedly split/divided into two halves (1 mark). This process continues recursively until each sub-list contains only one element (which is considered sorted) (1 mark).</li>
+                                <li><strong>Merge Step:</strong> Pairs of sorted sub-lists are combined/merged (1 mark). Elements are compared from the two sub-lists and placed into a new temporary list in sorted order, until all elements from both sub-lists are in the new merged list (1 mark).</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="exam-question-item">
+                        <p class="font-medium text-gray-800 mb-2">2. State one advantage and one disadvantage of using Merge Sort. [2 marks]</p>
+                        <textarea id="exam-q2-mergesort" class="exam-answer-textarea" placeholder="Advantage... Disadvantage..."></textarea>
+                        <button class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q2-mergesort', 'exam-q2-mergesort', 15)">Show Mark Scheme</button>
+                        <div id="ms-exam-q2-mergesort" class="mark-scheme">
+                            <p><strong>Mark Scheme:</strong></p>
+                            <ul>
+                                <li>Advantage: Efficient for large lists / O(n log n) time complexity / Stable sort. (1 mark for one valid advantage)</li>
+                                <li>Disadvantage: Requires extra memory space (O(n)) / Not in-place / Can be slower than other sorts for small lists due to overhead. (1 mark for one valid disadvantage)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="related-videos-mergesort" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-video mr-2 text-purple-500"></i> Related Videos</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-purple-50 p-5 rounded-lg border border-purple-200 space-y-4">
+                    <p class="text-gray-700">Watch these videos to see Merge Sort visually explained:</p>
+                    <ul class="list-disc list-inside space-y-3 text-purple-800 pl-4">
+                        <li>
+                            <strong>Video 1: Merge Sort Algorithm Visualization</strong>
+                            <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 1: Merge Sort Visual]</div>
+                        </li>
+                        <li>
+                            <strong>Video 2: Merge Sort Step-by-Step Example</strong>
+                            <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 2: Merge Sort Example Walkthrough]</div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="key-takeaways-mergesort" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-key mr-2"></i>Key Takeaways</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-300 space-y-2 show">
+                    <ul class="list-disc list-inside space-y-1 text-yellow-800">
+                        <li><strong class="keyword">Merge Sort<span class="tooltip">A divide and conquer sorting algorithm that recursively divides a list into smaller sub-lists, sorts them, and then merges them back together.</span></strong> uses a <strong class="keyword">Divide and Conquer<span class="tooltip">An algorithmic paradigm where a problem is recursively broken down into two or more sub-problems of the same or related type, until these become simple enough to be solved directly. The solutions to the sub-problems are then combined to give a solution to the original problem.</span></strong> strategy: recursively splitting the list, then merging sorted <span class="keyword">sub-lists<span class="tooltip">A smaller list created by dividing a larger list during the merge sort process.</span></span>.</li>
+                        <li>The <strong>Divide</strong> step breaks the list into halves until sub-lists have one (or zero) elements.</li>
+                        <li>The <strong>Merge</strong> step combines two sorted sub-lists into a single larger sorted list by comparing elements.</li>
+                        <li>Advantages: Efficient (O(n log n) time complexity), stable.</li>
+                        <li>Disadvantages: Requires extra O(n) space, can be slower for very small lists.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="next-steps-mergesort" class="task-container">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600">What's Next?</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-teal-50 p-5 rounded-lg border border-teal-300">
+                    <p class="text-teal-800 font-medium">You've explored the Merge Sort algorithm!</p>
+                    <p class="text-teal-700 mt-2">Continue learning about other sorting algorithms in J277 Topic 2.1.3:</p>
+                    <ul class="list-disc list-inside space-y-1 text-teal-700 mt-3 pl-4">
+                        <li>Bubble Sort</li>
+                        <li>Insertion Sort</li>
+                    </ul>
+                    <p class="text-teal-700 mt-2">Comparing these different sorting methods will help you understand their trade-offs.</p>
+                    <p class="mt-3"><a href="gcse-algo-searchsort-menu.html" class="font-semibold text-teal-900 hover:underline">← Back to Searching & Sorting Menu</a></p>
+                </div>
+            </section>
+
+            <section id="extension-activities-mergesort" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-rocket mr-2 text-orange-500"></i> Extension Activities</h2>
+                <div class="bg-orange-50 p-5 rounded-lg border border-orange-200 space-y-6">
+                    <div class="extension-task">
+                        <h3 class="font-semibold text-orange-800 mb-2">1. Iterative Merge Sort</h3>
+                        <p class="text-sm text-gray-700 mb-2">Merge Sort is often explained and implemented using <span class="keyword">recursion<span class="tooltip">A process where a function calls itself directly or indirectly. Merge sort is often implemented recursively for the splitting phase.</span></span>. However, it can also be implemented iteratively (using loops).</p>
+                        <p class="text-sm text-gray-700 mb-2">Research Task: What is the general approach for an iterative (bottom-up) Merge Sort? How does it manage the merging of sub-lists without recursive calls?</p>
+                        <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Iterative Merge Sort approach..."></textarea>
+                    </div>
+                    <div class="extension-task border-t border-orange-200 pt-4">
+                        <h3 class="font-semibold text-orange-800 mb-2">2. Timsort</h3>
+                        <p class="text-sm text-gray-700 mb-2">Timsort is a hybrid stable sorting algorithm, derived from Merge Sort and Insertion Sort, designed to perform well on many kinds of real-world data. It's used in Python and Java, among others.</p>
+                        <p class="text-sm text-gray-700 mb-2">Research Task: Why was Timsort developed? What are "runs" in Timsort, and how does it combine the strengths of Merge Sort and Insertion Sort?</p>
+                        <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Why Timsort? What are runs? How it combines Merge/Insertion?"></textarea>
+                    </div>
+                </div>
+            </section>
+            
+            <footer class="mt-12 text-center no-print">
+                <div id="final-score-area" class="task-container bg-purple-100 border-purple-300 mb-6">
+                    <h2 class="task-title text-2xl text-purple-700">Worksheet Score</h2>
+                    <p id="final-score-display" class="text-3xl font-bold text-purple-800">Your score: 0 / 0</p>
+                    <p id="final-score-feedback" class="text-purple-600"></p>
+                </div>
+                <button id="calculate-final-score" class="final-button">Calculate Final Score</button>
+                <button id="reset-all-tasks" class="reset-button">Reset All Tasks</button>
+                <button id="export-pdf-button" class="export-pdf-button">Export to PDF</button>
+            </footer>
+
+        </main>
+    </div>
+
+    
+    <script src="js/gcse-algo-searchsort-merge.js"></script>
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+</html>

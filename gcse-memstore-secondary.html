@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCSE CS: Secondary Storage Worksheet (Activity-Focused)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-100 font-inter">
+<nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <a href="home.html" class="text-xl font-bold hover:text-gray-300 transition-colors">MGS CS Hub</a>
+        <ul class="flex flex-wrap space-x-2 sm:space-x-3 lg:space-x-4 text-sm sm:text-base">
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 7</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 8</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 9</a></li>
+            <li><a href="gcse.html" class="hover:text-gray-300 transition-colors">GCSE</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">A Level</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Competitions</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">CS News</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Extracurricular</a></li>
+        </ul>
+    </div>
+</nav>
+
+    <div class="max-w-5xl mx-auto bg-white p-6 md:p-10 rounded-lg shadow-xl">
+
+        <header class="text-center mb-8 md:mb-12 border-b pb-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-black mb-2">GCSE Computer Science: Secondary Storage</h1>
+            <p class="text-lg text-black mt-2">Topic 1.2.2 Interactive Worksheet</p>
+        </header>
+
+        <section id="starter-activity" class="mb-10">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-lightbulb mr-2 text-yellow-500"></i> Starter Activity (5 mins)</h2>
+            <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-200 space-y-4">
+                <p class="font-semibold text-yellow-800">Everyday Storage:</p>
+                <p class="text-yellow-700">Think about how you use computers and digital devices every day. Where is data being stored? Jot down your initial thoughts for the scenarios below. We'll explore the different types of storage in this lesson!</p>
+                <div class="space-y-3">
+                    <div class="starter-question">
+                        <label for="starter-scenario1" class="block text-sm font-medium text-yellow-700"><strong>Scenario 1: Saving your homework document.</strong> Where does it go when you click 'Save'? What kind of storage do you think your computer uses for this?</label>
+                        <input type="text" id="starter-scenario1" name="starter-scenario1" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white text-black" placeholder="Your thoughts...">
+                    </div>
+                    <div class="starter-question">
+                        <label for="starter-scenario2" class="block text-sm font-medium text-yellow-700"><strong>Scenario 2: Taking a photo on your smartphone.</strong> Where is that photo stored immediately? What about if you back it up?</label>
+                        <input type="text" id="starter-scenario2" name="starter-scenario2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white text-black" placeholder="Your thoughts...">
+                    </div>
+                    <div class="starter-question">
+                        <label for="starter-scenario3" class="block text-sm font-medium text-yellow-700"><strong>Scenario 3: Installing a new game on a console or PC.</strong> Games can be very large. What kind of storage is needed for this, and why?</label>
+                        <input type="text" id="starter-scenario3" name="starter-scenario3" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white text-black" placeholder="Your thoughts...">
+                    </div>
+                    <div class="starter-question">
+                        <label for="starter-scenario4" class="block text-sm font-medium text-yellow-700"><strong>Scenario 4: Buying a movie on Blu-ray disc.</strong> What type of storage is a Blu-ray disc? Why is it suitable for movies?</label>
+                        <input type="text" id="starter-scenario4" name="starter-scenario4" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white text-black" placeholder="Your thoughts...">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="lesson-outcomes" class="mb-10 task-container bg-green-50 border-green-200 p-5 rounded-lg border">
+            <h2 class="text-xl task-title text-green-700"><i class="fas fa-bullseye mr-2"></i>Lesson Outcomes</h2>
+            <p class="text-black mb-4">By the end of this worksheet, you should be able to:</p>
+            <ul class="list-disc list-inside text-green-700 space-y-1 pl-4">
+                <li>Explain the need for secondary storage.</li>
+                <li>Identify the three main types of secondary storage: Optical, Magnetic, and Solid State.</li>
+                <li>Give examples of devices for each storage type (e.g., HDD, SSD, CD, USB Stick).</li>
+                <li>Describe the key characteristics used to compare storage devices: Capacity, Speed, Portability, Durability, Reliability, and Cost.</li>
+                <li>Compare the advantages and disadvantages of different storage types based on these characteristics.</li>
+            </ul>
+        </section>
+
+        <main class="space-y-8 md:space-y-12">
+            <section id="task1-basics" class="task-container p-5 rounded-lg border border-gray-200 bg-white mb-6">
+                <h2 class="task-title text-2xl text-indigo-700">Task 1: Secondary Storage Basics <span class="font-bold">(Max 4 points)</span></h2>
+                <p class="text-black mb-4">Let's check your understanding of why we need secondary storage and its key properties. Hover over keywords for hints.</p>
+                <div class="space-y-4">
+                    <div class="quiz-item" data-correct="true" data-points="1">
+                        <p class="font-medium text-black mb-1">1. Secondary storage is needed because RAM is volatile.</p>
+                        <div class="flex flex-wrap gap-2"> <button class="option-button px-3 py-1" data-answer="true">True</button> <button class="option-button px-3 py-1" data-answer="false">False</button> </div> <div class="feedback mt-1"></div>
+                    </div>
+                    <div class="quiz-item" data-correct="true" data-points="1">
+                        <p class="font-medium text-black mb-1">2. Data on secondary storage is kept even when the computer is turned off.</p>
+                        <div class="flex flex-wrap gap-2"> <button class="option-button px-3 py-1" data-answer="true">True</button> <button class="option-button px-3 py-1" data-answer="false">False</button> </div> <div class="feedback mt-1"></div>
+                    </div>
+                    <div class="quiz-item" data-correct="non_volatile" data-points="1">
+                        <p class="font-medium text-black mb-1">3. The term describing memory that retains data without power is:</p>
+                        <div class="flex flex-wrap gap-2">
+                            <button class="option-button px-3 py-1" data-answer="volatile">Volatile</button>
+                            <button class="option-button px-3 py-1" data-answer="temporary">Temporary</button>
+                            <button class="option-button px-3 py-1" data-answer="non_volatile">Non-volatile</button>
+                            <button class="option-button px-3 py-1" data-answer="primary">Primary</button>
+                        </div> <div class="feedback mt-1"></div>
+                    </div>
+                    <div class="quiz-item" data-correct="false" data-points="1">
+                        <p class="font-medium text-black mb-1">4. The CPU can directly read data from a Hard Disk Drive without it going through RAM first.</p>
+                        <div class="flex flex-wrap gap-2"> <button class="option-button px-3 py-1" data-answer="true">True</button> <button class="option-button px-3 py-1" data-answer="false">False</button> </div> <div class="feedback mt-1"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="task2-types" class="task-container p-5 rounded-lg border border-gray-200 bg-white mb-6">
+                <h2 class="task-title text-2xl text-indigo-700">Task 2: Identifying Storage Types <span class="font-bold">(Max 6 points)</span></h2>
+                <p class="text-black mb-4">Match the storage device/medium to its main type: Optical, Magnetic, or Solid State.</p>
+                <div class="grid md:grid-cols-2 gap-x-8 gap-y-4">
+                    <div class="quiz-item" data-correct="solid_state" data-points="1">
+                        <p class="font-medium text-black mb-1">1. SSD (Solid State Drive)</p>
+                        <div class="flex flex-wrap gap-2"> <button class="option-button px-3 py-1" data-answer="optical">Optical</button> <button class="option-button px-3 py-1" data-answer="magnetic">Magnetic</button> <button class="option-button px-3 py-1" data-answer="solid_state">Solid State</button> </div> <div class="feedback mt-1"></div>
+                    </div>
+                    <div class="quiz-item" data-correct="optical" data-points="1">
+                        <p class="font-medium text-black mb-1">2. CD / DVD</p>
+                        <div class="flex flex-wrap gap-2"> <button class="option-button px-3 py-1" data-answer="optical">Optical</button> <button class="option-button px-3 py-1" data-answer="magnetic">Magnetic</button> <button class="option-button px-3 py-1" data-answer="solid_state">Solid State</button> </div> <div class="feedback mt-1"></div>
+                    </div>
+                    <div class="quiz-item" data-correct="magnetic" data-points="1">
+                        <p class="font-medium text-black mb-1">3. Hard Disk Drive (HDD)</p>
+                        <div class="flex flex-wrap gap-2"> <button class="option-button px-3 py-1" data-answer="optical">Optical</button> <button class="option-button px-3 py-1" data-answer="magnetic">Magnetic</button> <button class="option-button px-3 py-1" data-answer="solid_state">Solid State</button> </div> <div class="feedback mt-1"></div>
+                    </div>
+                    <div class="quiz-item" data-correct="solid_state" data-points="1">
+                        <p class="font-medium text-black mb-1">4. USB Memory Stick</p>
+                        <div class="flex flex-wrap gap-2"> <button class="option-button px-3 py-1" data-answer="optical">Optical</button> <button class="option-button px-3 py-1" data-answer="magnetic">Magnetic</button> <button class="option-button px-3 py-1" data-answer="solid_state">Solid State</button> </div> <div class="feedback mt-1"></div>
+                    </div>
+                    <div class="quiz-item" data-correct="optical" data-points="1">
+                        <p class="font-medium text-black mb-1">5. Blu-Ray Disc</p>
+                        <div class="flex flex-wrap gap-2"> <button class="option-button px-3 py-1" data-answer="optical">Optical</button> <button class="option-button px-3 py-1" data-answer="magnetic">Magnetic</button> <button class="option-button px-3 py-1" data-answer="solid_state">Solid State</button> </div> <div class="feedback mt-1"></div>
+                    </div>
+                    <div class="quiz-item" data-correct="solid_state" data-points="1">
+                        <p class="font-medium text-black mb-1">6. SD Memory Card</p>
+                        <div class="flex flex-wrap gap-2"> <button class="option-button px-3 py-1" data-answer="optical">Optical</button> <button class="option-button px-3 py-1" data-answer="magnetic">Magnetic</button> <button class="option-button px-3 py-1" data-answer="solid_state">Solid State</button> </div> <div class="feedback mt-1"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="characteristics-sort" class="task-container p-5 rounded-lg border border-gray-200 bg-white mb-6">
+                <h2 class="task-title text-2xl text-indigo-700">Task 3: Sorting Storage Characteristics <span class="font-bold">(Max 6 points)</span></h2>
+                <p class="text-black mb-4">When choosing storage, we consider several factors (Secondary storage considerations). Drag each definition from the pool to match the correct characteristic term.</p>
+                <div class="comparison-container"> <div id="characteristics-pool" class="characteristics-pool dropzone bg-slate-50 p-4 rounded-md border border-slate-200 flex flex-col space-y-3"> <h4 class="text-lg font-semibold text-black mb-1">Definitions Pool (Drag these)</h4>
+                        <div class="characteristics-item draggable bg-white p-3 rounded shadow-sm border border-gray-200 cursor-move text-sm hover:shadow-md transition-shadow text-black" draggable="true" id="def1" data-type="capacity">The amount of data that can be stored.</div>
+                        <div class="characteristics-item draggable bg-white p-3 rounded shadow-sm border border-gray-200 cursor-move text-sm hover:shadow-md transition-shadow text-black" draggable="true" id="def2" data-type="speed">How quickly data can be read from or written to the device.</div>
+                        <div class="characteristics-item draggable bg-white p-3 rounded shadow-sm border border-gray-200 cursor-move text-sm hover:shadow-md transition-shadow text-black" draggable="true" id="def3" data-type="cost">The price per unit of storage (e.g., per GB).</div>
+                        <div class="characteristics-item draggable bg-white p-3 rounded shadow-sm border border-gray-200 cursor-move text-sm hover:shadow-md transition-shadow text-black" draggable="true" id="def4" data-type="durability">How resistant the storage is to physical damage or wear and tear.</div>
+                        <div class="characteristics-item draggable bg-white p-3 rounded shadow-sm border border-gray-200 cursor-move text-sm hover:shadow-md transition-shadow text-black" draggable="true" id="def5" data-type="portability">How easy it is to move the storage device from one computer to another.</div>
+                        <div class="characteristics-item draggable bg-white p-3 rounded shadow-sm border border-gray-200 cursor-move text-sm hover:shadow-md transition-shadow text-black" draggable="true" id="def6" data-type="reliability">How consistently the storage device performs without errors or failure over time.</div>
+                    </div>
+                    <div class="characteristics-columns">
+                        <div class="characteristics-column dropzone quiz-item" id="char-capacity" data-accept="capacity" data-points="1">
+                            <h4 class="text-purple-700">Capacity</h4>
+                            <div class="feedback" id="char-capacity-feedback"></div>
+                        </div>
+                        <div class="characteristics-column dropzone quiz-item" id="char-speed" data-accept="speed" data-points="1">
+                            <h4 class="text-blue-700">Speed</h4>
+                            <div class="feedback" id="char-speed-feedback"></div>
+                        </div>
+                        <div class="characteristics-column dropzone quiz-item" id="char-portability" data-accept="portability" data-points="1">
+                            <h4 class="text-green-700">Portability</h4>
+                            <div class="feedback" id="char-portability-feedback"></div>
+                        </div>
+                        <div class="characteristics-column dropzone quiz-item" id="char-durability" data-accept="durability" data-points="1">
+                            <h4 class="text-yellow-700">Durability</h4>
+                            <div class="feedback" id="char-durability-feedback"></div>
+                        </div>
+                        <div class="characteristics-column dropzone quiz-item" id="char-reliability" data-accept="reliability" data-points="1">
+                            <h4 class="text-red-700">Reliability</h4>
+                            <div class="feedback" id="char-reliability-feedback"></div>
+                        </div>
+                        <div class="characteristics-column dropzone quiz-item" id="char-cost" data-accept="cost" data-points="1">
+                            <h4 class="text-gray-700">Cost</h4>
+                            <div class="feedback" id="char-cost-feedback"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-6">
+                    <button onclick="checkCharacteristicsSort()" class="action-button">Check Definitions</button>
+                    <button onclick="resetCharacteristicsSort()" class="reset-button ml-2">Reset Definitions</button>
+                </div>
+            </section>
+
+            <section id="capacity-sort" class="task-container p-5 rounded-lg border border-gray-200 bg-white mb-6">
+                <h2 class="task-title text-2xl text-indigo-700">Task 4: Device Capacity Sorting <span class="font-bold">(Max 6 points)</span></h2>
+                <p class="text-black mb-4">Drag the storage media from the pool and arrange them in the drop slots below, ordered by their <strong>typical general storage capacity</strong> from smallest (slot 1) to largest (slot 6).</p>
+                <div class="quiz-item" data-points="6">
+                    <div id="capacity-pool" class="capacity-pool dropzone mb-6 p-4 bg-slate-50 border border-slate-200 rounded-md">
+                        <h4 class="text-lg font-semibold text-black mb-3">Devices Pool (Drag these)</h4>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                            <div class="capacity-item draggable bg-white p-3 rounded shadow-md border border-gray-300 cursor-move text-center text-base hover:shadow-lg transition-shadow text-black" draggable="true" id="cap-hdd" data-sort-order="5">HDD</div>
+                            <div class="capacity-item draggable bg-white p-3 rounded shadow-md border border-gray-300 cursor-move text-center text-base hover:shadow-lg transition-shadow text-black" draggable="true" id="cap-cd" data-sort-order="0">CD</div>
+                            <div class="capacity-item draggable bg-white p-3 rounded shadow-md border border-gray-300 cursor-move text-center text-base hover:shadow-lg transition-shadow text-black" draggable="true" id="cap-ssd" data-sort-order="4">SSD</div>
+                            <div class="capacity-item draggable bg-white p-3 rounded shadow-md border border-gray-300 cursor-move text-center text-base hover:shadow-lg transition-shadow text-black" draggable="true" id="cap-dvd" data-sort-order="1">DVD</div>
+                            <div class="capacity-item draggable bg-white p-3 rounded shadow-md border border-gray-300 cursor-move text-center text-base hover:shadow-lg transition-shadow text-black" draggable="true" id="cap-usb" data-sort-order="3">USB Stick</div>
+                            <div class="capacity-item draggable bg-white p-3 rounded shadow-md border border-gray-300 cursor-move text-center text-base hover:shadow-lg transition-shadow text-black" draggable="true" id="cap-bluray" data-sort-order="2">Blu-Ray</div>
+                        </div>
+                    </div>
+                    <div id="capacity-order-container" class="capacity-order-container">
+                        <div class="capacity-slot dropzone" data-expected-order="0"><span class="capacity-slot-label">1</span></div>
+                        <div class="capacity-slot dropzone" data-expected-order="1"><span class="capacity-slot-label">2</span></div>
+                        <div class="capacity-slot dropzone" data-expected-order="2"><span class="capacity-slot-label">3</span></div>
+                        <div class="capacity-slot dropzone" data-expected-order="3"><span class="capacity-slot-label">4</span></div>
+                        <div class="capacity-slot dropzone" data-expected-order="4"><span class="capacity-slot-label">5</span></div>
+                        <div class="capacity-slot dropzone" data-expected-order="5"><span class="capacity-slot-label">6</span></div>
+                    </div>
+                    <div class="feedback text-center" id="capacity-sort-feedback"></div>
+                    <div class="text-center mt-6">
+                        <button onclick="checkCapacitySort()" class="action-button">Check Order</button>
+                        <button onclick="resetCapacitySort()" class="reset-button ml-2">Reset Order</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="speed-simulation" class="task-container p-5 rounded-lg border border-gray-200 bg-white mb-6">
+                <h2 class="task-title text-2xl text-indigo-700">Task 5: Visualising Access Speed</h2>
+                <p class="text-black mb-4">Click the buttons below to see a simplified animation representing how quickly data might move from different storage types to RAM. (Note: This is conceptual, not to scale!)</p>
+                <div class="sim-container mb-4">
+                    <div class="sim-icon-group flex flex-col space-y-4 items-center">
+                        <div class="sim-icon sim-optical-icon" id="icon-optical"><i class="fas fa-compact-disc"></i><span>Optical</span></div>
+                        <div class="sim-icon sim-magnetic-icon" id="icon-magnetic"><i class="fas fa-hdd"></i><span>Magnetic</span></div>
+                        <div class="sim-icon sim-ssd-icon" id="icon-ssd"><i class="fas fa-memory"></i><span>Solid State</span></div>
+                    </div>
+                    <div class="data-stream" id="data-stream"></div>
+                    <div class="sim-icon sim-ram-icon"><i class="fas fa-microchip"></i><span>RAM</span></div>
+                </div>
+                <div class="text-center space-x-2">
+                    <button id="btn-optical" class="option-button bg-amber-100 border-amber-300 hover:bg-amber-200">Optical Speed</button>
+                    <button id="btn-magnetic" class="option-button bg-rose-100 border-rose-300 hover:bg-rose-200">Magnetic Speed</button>
+                    <button id="btn-ssd" class="option-button bg-green-100 border-green-300 hover:bg-green-200">Solid State Speed</button>
+                </div>
+                <div id="speed-sim-feedback" class="feedback text-center mt-2">Click a button to start the simulation.</div>
+            </section>
+
+            <section id="task-benefits-drawbacks" class="task-container p-5 rounded-lg border border-gray-200 bg-white mb-6">
+                <h2 class="task-title text-2xl text-indigo-700">Task 6: Benefits and Drawbacks <span class="font-bold">(Max 12 points)</span></h2>
+                <p class="text-black mb-4">Complete the sentences about the pros and cons of each storage type using the terms: <code class="word-list-item">durability</code>, <code class="word-list-item">cost per GB</code>, <code class="word-list-item">speed</code>, <code class="word-list-item">capacity</code>, <code class="word-list-item">portable</code>, <code class="word-list-item">moving parts</code>, <code class="word-list-item">non-volatile</code>, <code class="word-list-item">reliability</code>.</p>
+                <div id="benefits-drawbacks-container" class="space-y-6">
+                    <div class="quiz-item fill-blanks-item" data-points="4">
+                        <h4 class="font-medium text-lg text-blue-700 mb-2">Optical Storage:</h4>
+                        <p class="text-black">Optical discs like CDs/DVDs are cheap per GB, very <input type="text" id="bd-blank1" data-answer="portable" class="fill-blank text-black">, but suffer from low <input type="text" id="bd-blank2" data-answer="capacity" class="fill-blank text-black"> and slow write <input type="text" id="bd-blank3" data-answer="speed" class="fill-blank text-black">. They are also easily damaged, affecting their <input type="text" id="bd-blank4" data-answer="durability" class="fill-blank text-black">.</p>
+                        <div class="feedback-container">
+                            <span class="feedback inline-feedback" id="bd-feedback-1"></span>
+                            <span class="feedback inline-feedback" id="bd-feedback-2"></span>
+                            <span class="feedback inline-feedback" id="bd-feedback-3"></span>
+                            <span class="feedback inline-feedback" id="bd-feedback-4"></span>
+                        </div>
+                    </div>
+                    <div class="quiz-item fill-blanks-item" data-points="3">
+                        <h4 class="font-medium text-lg text-red-700 mb-2">Magnetic Storage:</h4>
+                        <p class="text-black">Magnetic HDDs offer the lowest <input type="text" id="bd-blank5" data-answer="cost per GB" class="fill-blank text-black"> for high <input type="text" id="bd-blank6" data-answer="capacity" class="fill-blank text-black"> storage. However, their <input type="text" id="bd-blank7" data-answer="moving parts" class="fill-blank text-black"> make them less durable and slower than SSDs.</p>
+                        <div class="feedback-container">
+                            <span class="feedback inline-feedback" id="bd-feedback-5"></span>
+                            <span class="feedback inline-feedback" id="bd-feedback-6"></span>
+                            <span class="feedback inline-feedback" id="bd-feedback-7"></span>
+                        </div>
+                    </div>
+                    <div class="quiz-item fill-blanks-item" data-points="5">
+                        <h4 class="font-medium text-lg text-green-700 mb-2">Solid State Storage:</h4>
+                        <p class="text-black">Solid State storage has no <input type="text" id="bd-blank8" data-answer="moving parts" class="fill-blank text-black">, leading to excellent <input type="text" id="bd-blank9" data-answer="durability" class="fill-blank text-black"> and fast read/write <input type="text" id="bd-blank10" data-answer="speed" class="fill-blank text-black">, although long-term <input type="text" id="bd-blank12" data-answer="reliability" class="fill-blank text-black"> can be reduced by excessive read/write cycles causing cell degradation. Like all secondary storage, it is <input type="text" id="bd-blank11" data-answer="non-volatile" class="fill-blank text-black">.</p>
+                        <div class="feedback-container">
+                            <span class="feedback inline-feedback" id="bd-feedback-8"></span>
+                            <span class="feedback inline-feedback" id="bd-feedback-9"></span>
+                            <span class="feedback inline-feedback" id="bd-feedback-10"></span>
+                            <span class="feedback inline-feedback" id="bd-feedback-12"></span>
+                            <span class="feedback inline-feedback" id="bd-feedback-11"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-6 space-x-2">
+                    <button onclick="checkBenefitsDrawbacks()" class="action-button">Check Benefits/Drawbacks</button>
+                    <button onclick="resetBenefitsDrawbacks()" class="reset-button">Reset Blanks</button>
+                </div>
+                <div id="benefits-drawbacks-feedback" class="mt-3 text-center feedback"></div>
+            </section>
+
+            <section id="exam-practice" class="task-container p-5 rounded-lg border border-gray-200 bg-white mb-6">
+                <h2 class="task-title text-2xl text-indigo-700">Task 7: Exam Practice Questions</h2>
+                <p class="text-black mb-6">Apply your knowledge to these exam-style questions.</p>
+
+                <div class="exam-question mb-6 p-4 bg-white rounded border border-gray-200" data-marks="2">
+                    <h4 class="font-medium text-black mb-3"><strong>Question 1:</strong> Explain why secondary storage is needed in a computer system. (<span class="marks-value">2</span> marks)</h4>
+                    <textarea id="examq1_answer" class="exam-answer-area w-full p-2 border border-gray-300 rounded-md text-black" placeholder="Your answer..." rows="3"></textarea>
+                    <div class="exam-controls mt-2 flex items-center space-x-4">
+                        <div>
+                            <label for="self-assess-q1" class="text-sm text-gray-700">My predicted marks:</label>
+                            <input type="number" id="self-assess-q1" class="self-assess-input w-20 p-1 border border-gray-300 rounded text-black" min="0" max="2"/>
+                        </div>
+                        <button class="toggle-mark-scheme-btn px-3 py-1.5 text-sm bg-indigo-600 text-white rounded hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed" data-mark-scheme-id="ms-q1" disabled>Show Mark Scheme</button>
+                    </div>
+                    <div id="ms-q1" class="mark-scheme hidden bg-gray-100 p-3 mt-2 rounded border border-gray-200">
+                        <p class="text-black font-semibold">Mark Scheme Points:</p>
+                        <ul class="list-disc list-inside ml-4 text-sm text-black">
+                            <li class="text-black">For long term storage of files/data/OS/applications (1m).</li>
+                            <li class="text-black">Because it is non-volatile / retains data when power is off (unlike RAM) (1m).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exam-question mb-6 p-4 bg-white rounded border border-gray-200" data-marks="2">
+                    <h4 class="font-medium text-black mb-3"><strong>Question 2:</strong> State two advantages of using a Solid State Drive (SSD) compared to a Hard Disk Drive (HDD) in a laptop. (<span class="marks-value">2</span> marks)</h4>
+                    <textarea id="examq2_answer" class="exam-answer-area w-full p-2 border border-gray-300 rounded-md text-black" placeholder="Your answer..." rows="3"></textarea>
+                    <div class="exam-controls mt-2 flex items-center space-x-4">
+                        <div>
+                            <label for="self-assess-q2" class="text-sm text-gray-700">My predicted marks:</label>
+                            <input type="number" id="self-assess-q2" class="self-assess-input w-20 p-1 border border-gray-300 rounded text-black" min="0" max="2"/>
+                        </div>
+                        <button class="toggle-mark-scheme-btn px-3 py-1.5 text-sm bg-indigo-600 text-white rounded hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed" data-mark-scheme-id="ms-q2" disabled>Show Mark Scheme</button>
+                    </div>
+                    <div id="ms-q2" class="mark-scheme hidden bg-gray-100 p-3 mt-2 rounded border border-gray-200">
+                        <p class="text-black font-semibold">Mark Scheme Points (Any 2):</p>
+                        <ul class="list-disc list-inside ml-4 text-sm text-black">
+                            <li class="text-black">Faster data access / No latency / Don't need to 'get up to speed' (1m).</li>
+                            <li class="text-black">Lower power consumption / More energy efficient (1m).</li>
+                            <li class="text-black">Runs cooler / Quieter (1m).</li>
+                            <li class="text-black">Occupies less physical space / More compact / Lighter / More portable (1m).</li>
+                            <li class="text-black">No moving parts so more reliable / more durable (1m).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exam-question p-4 bg-white rounded border border-gray-200" data-marks="3">
+                    <h4 class="font-medium text-black mb-3"><strong>Question 3:</strong> A student needs to back up large video projects (50GB each) cheaply for long-term archiving. They don't need frequent or fast access.</h4>
+                    <h4 class="font-medium text-black mb-3">a) Name one suitable *type* of storage media. (<span class="marks-value">1</span> mark)</h4>
+                    <h4 class="font-medium text-black mb-3">b) Justify your choice by referring to two characteristics of secondary storage. (<span class="marks-value">2</span> marks)</h4>
+                    <textarea id="examq3_answer" class="exam-answer-area w-full p-2 border border-gray-300 rounded-md text-black" placeholder="Your answer for a) and b)..." rows="4"></textarea>
+                    <div class="exam-controls mt-2 flex items-center space-x-4">
+                        <div>
+                            <label for="self-assess-q3" class="text-sm text-gray-700">My predicted marks:</label>
+                            <input type="number" id="self-assess-q3" class="self-assess-input w-20 p-1 border border-gray-300 rounded text-black" min="0" max="3"/>
+                        </div>
+                        <button class="toggle-mark-scheme-btn px-3 py-1.5 text-sm bg-indigo-600 text-white rounded hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed" data-mark-scheme-id="ms-q3" disabled>Show Mark Scheme</button>
+                    </div>
+                    <div id="ms-q3" class="mark-scheme hidden bg-gray-100 p-3 mt-2 rounded border border-gray-200">
+                        <p class="text-black font-semibold">Mark Scheme Points:</p>
+                        <ul class="list-disc list-inside ml-4 text-sm text-black">
+                            <li class="text-black">a) Optical (e.g., Blu-Ray) OR Magnetic (e.g., External HDD / Tape) (1m).</li>
+                            <li class="text-black">b) Justification (linked to choice in a):</li>
+                            <li class="text-black ml-4">  If Optical: Cheap cost per byte / cheap to manufacture (1m); Good for archiving (1m); Good portability (1m).</li>
+                            <li class="text-black ml-4">  If Magnetic (HDD/Tape): Cheap cost per byte/GB (especially for large amounts) (1m); High capacity (1m); Good reliability for read/write longevity (1m). (Max 2 marks for justification)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="key-takeaways" class="mb-10 p-5 rounded-lg border border-yellow-300 bg-yellow-50">
+                <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-key mr-2"></i>Key Takeaways</h2>
+                <div class="space-y-2 show">
+                    <ul class="list-disc list-inside space-y-1 text-yellow-800 pl-4">
+                        <li><strong class="font-semibold">Purpose:</strong> Secondary storage is needed for long-term, non-volatile storage of the OS, applications, and user files.</li>
+                        <li><strong class="font-semibold">Main Types:</strong>
+                            <ul class="list-circle list-inside ml-4">
+                                <li>Optical (CD, DVD, Blu-Ray): Uses lasers, cheap media, slow, low capacity, easily damaged.</li>
+                                <li>Magnetic (HDD, Tape): Uses magnetism, very high capacity, low cost per GB, has moving parts (less durable/slower access than SSD).</li>
+                                <li>Solid State (SSD, USB Stick, SD Card): Uses flash memory (no moving parts), fast, durable, portable, quiet, but higher cost per GB.</li>
+                            </ul>
+                        </li>
+                        <li><strong class="font-semibold">Considerations:</strong> When choosing storage, consider Capacity, Speed, Portability, Durability, Reliability, and Cost.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="progress-summary" class="task-container p-5 rounded-lg border border-gray-200 bg-white mb-6">
+                <h2 class="task-title text-2xl text-black">Task 8: Your Progress</h2>
+                <p class="text-black mb-4">Check your score based on the interactive quiz questions and activities.</p>
+                <div class="text-center p-4 bg-indigo-50 rounded-md border border-indigo-200">
+                    <p class="text-lg font-semibold text-indigo-800">Your Score: <span id="current-score" class="text-2xl">0</span> / <span id="total-possible-score">0</span></p>
+                    <button id="calculate-score-btn" class="mt-3 action-button">Calculate My Score</button>
+                </div>
+                <p class="text-xs text-gray-700 mt-3 text-center">Note: Score based on Tasks 1, 2, 3, 4, 6. Simulation, Extension & Exam practice are not auto-scored.</p>
+            </section>
+
+            <section id="related-videos" class="mb-10 p-5 rounded-lg border border-purple-200 bg-purple-50">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-video mr-2 text-purple-500"></i> Related Videos</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer">
+                        Read
+                    </label>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-black">Watch this video to reinforce your understanding: </p>
+                    <div class="video-container">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/FNwA-h_tfPo?si=p5iuSYubCh9Wjx-w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <div class="mt-2">
+                            <textarea class="w-full p-2 border border-purple-300 rounded-md text-sm bg-white text-black" rows="3" placeholder="Optional: Add any additional notes from this video..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="extension-activities" class="task-container p-5 rounded-lg border border-gray-200 bg-white mb-6">
+                <h2 class="task-title text-2xl text-indigo-700">Task 9: Extension Activities</h2>
+                <p class="text-black mb-6">Challenge yourself further with these optional activities. These are not automatically scored.</p>
+
+                <div id="pc-build-strategy" class="mb-8">
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-3">Extension 9.1: PC Build Storage Strategy</h3>
+                    <p class="text-black mb-4">Imagine you are building two different computers. Decide on the secondary storage combination (types and typical capacities) you would use for each. Justify your choices based on cost, speed, and capacity requirements.</p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <article class="build-scenario">
+                            <h4 class="text-black">a) Budget Office PC</h4>
+                            <p class="text-sm text-gray-700">Needs: Basic office work (documents, spreadsheets), web Browse, email. Budget is the main priority.</p>
+                            <div>
+                                <label for="budget-pc-storage" class="text-black">Recommended Storage:</label>
+                                <textarea id="budget-pc-storage" placeholder="Describe storage type(s) and capacity..." class="text-black w-full p-2 border rounded-md border-gray-300"></textarea>
+                            </div>
+                            <div>
+                                <label for="budget-pc-justification" class="text-black">Justification:</label>
+                                <textarea id="budget-pc-justification" placeholder="Explain why based on cost, speed, capacity..." class="text-black w-full p-2 border rounded-md border-gray-300"></textarea>
+                            </div>
+                        </article>
+                        <article class="build-scenario">
+                            <h4 class="text-black">b) High-End Gaming/Video Editing PC</h4>
+                            <p class="text-sm text-gray-700">Needs: Fast loading for OS and large games/editing software, large capacity for storing video files and game installs. Performance is key.</p>
+                            <div>
+                                <label for="highend-pc-storage" class="text-black">Recommended Storage:</label>
+                                <textarea id="highend-pc-storage" placeholder="Describe storage type(s) and capacity..." class="text-black w-full p-2 border rounded-md border-gray-300"></textarea>
+                            </div>
+                            <div>
+                                <label for="highend-pc-justification" class="text-black">Justification:</label>
+                                <textarea id="highend-pc-justification" placeholder="Explain why based on cost, speed, capacity..." class="text-black w-full p-2 border rounded-md border-gray-300"></textarea>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <div id="deep-dive-factfile" class="mb-8 pt-6 border-t border-gray-200">
+                    <h3 class="text-xl font-semibold text-teal-700 mb-3 mt-0">Extension 9.2: Specific Device Deep Dive</h3>
+                    <p class="text-black mb-4">Choose a specific, less common storage device (e.g., LTO Tape Drive, NVMe SSD, Blu-Ray XL, SD Express card). Create a fact file detailing its technology type, typical capacity, speed, primary use case, and approximate cost. Compare its key characteristics to a more common alternative.</p>
+                    <div>
+                        <label for="deep-dive-device" class="text-black">Device Chosen:</label>
+                        <input type="text" id="deep-dive-device" class="w-full p-2 border rounded text-black border-gray-300" placeholder="e.g., LTO Tape Drive">
+                    </div>
+                    <div>
+                        <label for="deep-dive-details" class="text-black">Fact File & Comparison:</label>
+                        <textarea id="deep-dive-details" placeholder="Technology Type: ...
+Typical Capacity: ...
+Speed: ...
+Use Case: ...
+Approx. Cost: ...
+
+Comparison with [Common Alternative]: ..." class="text-black w-full p-2 border rounded-md border-gray-300" rows="6"></textarea>
+                    </div>
+                </div>
+
+                <div id="cloud-local-storage" class="mb-8 pt-6 border-t border-gray-200">
+                    <h3 class="text-xl font-semibold text-purple-700 mb-3 mt-0">Extension 9.3: Cloud vs. Local Storage Analysis</h3>
+                    <p class="text-black mb-4">Think about services like Google Drive, iCloud, or Dropbox versus using external HDDs or USB sticks. Compare Cloud Storage and Local Secondary Storage based on the key characteristics below. Then write a concluding sentence on which you think is better for personal photo backups and why.</p>
+                    <div id="cloud-local-table" class="overflow-x-auto">
+                        <table class="text-black w-full">
+                            <thead>
+                                <tr>
+                                    <th class="text-black p-2 border border-gray-300">Characteristic</th>
+                                    <th class="text-black p-2 border border-gray-300">Cloud Storage</th>
+                                    <th class="text-black p-2 border border-gray-300">Local Storage (e.g., Ext. HDD/SSD)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td class="p-2 border border-gray-300">Capacity</td><td class="p-1 border border-gray-300"><textarea placeholder="Scalability? Cost per GB?" class="text-black w-full p-1 border-none rounded"></textarea></td><td class="p-1 border border-gray-300"><textarea placeholder="Typical sizes? Cost per GB?" class="text-black w-full p-1 border-none rounded"></textarea></td></tr>
+                                <tr><td class="p-2 border border-gray-300">Speed</td><td class="p-1 border border-gray-300"><textarea placeholder="Factors affecting speed?" class="text-black w-full p-1 border-none rounded"></textarea></td><td class="p-1 border border-gray-300"><textarea placeholder="Factors affecting speed?" class="text-black w-full p-1 border-none rounded"></textarea></td></tr>
+                                <tr><td class="p-2 border border-gray-300">Portability</td><td class="p-1 border border-gray-300"><textarea placeholder="How portable is the data?" class="text-black w-full p-1 border-none rounded"></textarea></td><td class="p-1 border border-gray-300"><textarea placeholder="How portable is the device?" class="text-black w-full p-1 border-none rounded"></textarea></td></tr>
+                                <tr><td class="p-2 border border-gray-300">Durability</td><td class="p-1 border border-gray-300"><textarea placeholder="Who manages this? Risks?" class="text-black w-full p-1 border-none rounded"></textarea></td><td class="p-1 border border-gray-300"><textarea placeholder="Risks? Differences between types?" class="text-black w-full p-1 border-none rounded"></textarea></td></tr>
+                                <tr><td class="p-2 border border-gray-300">Reliability</td><td class="p-1 border border-gray-300"><textarea placeholder="Provider dependent? Backup?" class="text-black w-full p-1 border-none rounded"></textarea></td><td class="p-1 border border-gray-300"><textarea placeholder="Device lifespan? Backup needed?" class="text-black w-full p-1 border-none rounded"></textarea></td></tr>
+                                <tr><td class="p-2 border border-gray-300">Cost</td><td class="p-1 border border-gray-300"><textarea placeholder="Subscription vs. upfront?" class="text-black w-full p-1 border-none rounded"></textarea></td><td class="p-1 border border-gray-300"><textarea placeholder="Upfront cost? Per GB?" class="text-black w-full p-1 border-none rounded"></textarea></td></tr>
+                                <tr><td class="p-2 border border-gray-300">Accessibility</td><td class="p-1 border border-gray-300"><textarea placeholder="Where can you access data? Requirements?" class="text-black w-full p-1 border-none rounded"></textarea></td><td class="p-1 border border-gray-300"><textarea placeholder="Where can you access data? Requirements?" class="text-black w-full p-1 border-none rounded"></textarea></td></tr>
+                                <tr><td class="p-2 border border-gray-300">Security/Privacy</td><td class="p-1 border border-gray-300"><textarea placeholder="Concerns? Encryption?" class="text-black w-full p-1 border-none rounded"></textarea></td><td class="p-1 border border-gray-300"><textarea placeholder="Concerns? Physical security?" class="text-black w-full p-1 border-none rounded"></textarea></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <label for="cloud-local-conclusion" class="text-black">Conclusion for Photo Backups:</label>
+                        <textarea id="cloud-local-conclusion" placeholder="Which is better for personal photo backups and why?" class="text-black w-full p-2 border rounded-md border-gray-300"></textarea>
+                    </div>
+                </div>
+
+                <div id="raid-explanation" class="pt-6 border-t border-gray-200">
+                    <h3 class="text-xl font-semibold text-orange-700 mb-3 mt-0">Extension 9.4: RAID Introduction</h3>
+                    <p class="text-black mb-4">Briefly research RAID 0 and RAID 1.</p>
+                    <div>
+                        <label for="raid0-exp" class="text-black">RAID 0 Explanation:</label>
+                        <textarea id="raid0-exp" placeholder="What is its main goal and how does it use multiple drives?" class="text-black w-full p-2 border rounded-md border-gray-300"></textarea>
+                    </div>
+                    <div>
+                        <label for="raid1-exp" class="text-black">RAID 1 Explanation:</label>
+                        <textarea id="raid1-exp" placeholder="What is its main goal and how does it use multiple drives?" class="text-black w-full p-2 border rounded-md border-gray-300"></textarea>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <footer class="text-center mt-8 md:mt-12 text-gray-500 text-sm">
+        Interactive Worksheet | GCSE Computer Science J277 | Secondary Storage (1.2.2)
+    </footer>
+    <script src="js/gcse-memstore-secondary.js"></script>
+    <script src="js/worksheet-common.js"></script>
+</body>
+</html>

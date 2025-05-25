@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPU Performance Explained (GCSE J27)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    
+    
+<link rel="stylesheet" href="css/style.css">
+</head>
+<nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <a href="home.html" class="text-xl font-bold hover:text-gray-300 transition-colors">MGS CS Hub</a>
+        <ul class="flex space-x-3 lg:space-x-4">
+        </ul>
+        <ul class="flex flex-wrap space-x-2 sm:space-x-3 lg:space-x-4 text-sm sm:text-base">
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 7</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 8</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 9</a></li>
+            <li><a href="gcse.html" class="hover:text-gray-300 transition-colors">GCSE</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">A Level</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Competitions</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">CS News</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Extracurricular</a></li>
+        </ul>
+    </div>
+</nav>
+
+\1
+
+
+
+    <div class="max-w-4xl mx-auto bg-white p-6 md:p-8 rounded-lg shadow-md">
+
+        <div id="basicView">
+             <div class="flex justify-between items-center mb-4">
+                 <h1 class="text-2xl md:text-3xl font-bold text-gray-800">CPU Performance Explained</h1>
+                 <button id="showAdvancedBtn" class="btn btn-blue">Advanced Specs</button>
+            </div>
+            <p class="text-gray-600 mb-6 text-center">Adjust the sliders below to see how different CPU characteristics can affect overall performance and find a similar example CPU model.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                    <label for="clockSpeed" class="block text-lg font-semibold text-gray-700 mb-2">Clock Speed (GHz)</label>
+                    <input type="range" id="clockSpeed" name="clockSpeed" min="1" max="5.5" value="3.0" step="0.1" class="w-full mb-2 cursor-pointer">
+                    <div class="text-center text-blue-600 font-medium mb-3"> <span id="clockSpeedValue">3.0</span> GHz </div>
+                    <p class="text-sm text-gray-600"> <span class="font-semibold">What it is:</span> Speed of CPU cycles. Higher is generally faster for single tasks. </p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                    <label for="cacheSize" class="block text-lg font-semibold text-gray-700 mb-2">L3 Cache Size (MB)</label>
+                    <input type="range" id="cacheSize" name="cacheSize" min="1" max="32" value="8" step="1" class="w-full mb-2 cursor-pointer">
+                    <div class="text-center text-blue-600 font-medium mb-3"> <span id="cacheSizeValue">8</span> MB </div>
+                    <p class="text-sm text-gray-600"> <span class="font-semibold">What it is:</span> Fast memory on CPU. Larger cache reduces waiting for RAM. </p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                    <label for="cores" class="block text-lg font-semibold text-gray-700 mb-2">Number of Cores</label>
+                    <input type="range" id="cores" name="cores" min="1" max="16" value="4" step="1" class="w-full mb-2 cursor-pointer">
+                    <div class="text-center text-blue-600 font-medium mb-3"> <span id="coresValue">4</span> Cores </div>
+                    <p class="text-sm text-gray-600"> <span class="font-semibold">What it is:</span> Processing units. More cores help multitasking. </p>
+                </div>
+            </div>
+
+            <div class="bg-blue-50 p-6 rounded-lg border border-blue-200 mb-8">
+                <h2 class="text-xl font-semibold text-gray-800 mb-3 text-center">Simulated Performance Impact</h2>
+                <div class="performance-bar-bg mb-4"> <div id="performanceBar" class="performance-bar-fill">50%</div> </div>
+                <p id="performanceExplanation" class="text-center text-gray-700"> Adjust sliders to see how performance changes. </p>
+            </div>
+
+            <div class="bg-green-50 p-6 rounded-lg border border-green-200">
+                <h2 class="text-xl font-semibold text-gray-800 mb-3 text-center">Example Matching CPU Model</h2>
+                <p id="cpuSuggestion" class="text-center text-green-800 font-semibold text-lg mt-2"> Adjust sliders to see a suggestion. </p>
+                <p id="cpuSuggestionSpecs" class="text-center text-sm text-gray-600 mt-1"> </p>
+                <p class="text-center text-xs text-gray-500 mt-3"> (Note: Illustrative suggestion from a predefined list.) </p>
+            </div>
+        </div> <div id="advancedView" class="hidden">
+             <div class="flex justify-between items-center mb-4">
+                 <h1 class="text-2xl md:text-3xl font-bold text-gray-800">Advanced CPU Specifications</h1>
+                 <button id="showBasicBtn" class="btn btn-gray">Back to Basic</button>
+            </div>
+            <p class="text-gray-600 mb-6">Explore these more detailed CPU characteristics and their roles with interactive visuals.</p>
+
+            <details class="mb-4">
+                <summary>Cache Hierarchy (L1, L2, L3)</summary>
+                <div>
+                    <p class="mb-2">CPUs use multiple levels of cache, each faster but smaller than the next:</p>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-700 mb-3">
+                         <li><strong>L1 Cache:</strong> Smallest & fastest (e.g., 64-128KB/core). Holds immediate instructions/data. Critical speed.</li>
+                         <li><strong>L2 Cache:</strong> Larger & slower than L1 (e.g., 256KB-2MB/core). Holds likely upcoming data.</li>
+                         <li><strong>L3 Cache:</strong> Largest & slowest cache (e.g., 4-64MB+), often shared. Buffers before RAM access.</li>
+                    </ul>
+                    <p class="text-sm text-gray-600"><strong>Impact:</strong> Better cache reduces waiting (latency), boosting performance, especially for reused data.</p>
+                </div>
+            </details>
+
+            <details class="mb-4">
+                 <summary>Instruction Set Architecture (ISA)</summary>
+                 <div>
+                     <p class="mb-2">The CPU's command language (e.g., x86-64 for PC, ARM for mobile). Defines compatibility.</p>
+                     <ul class="list-disc list-inside space-y-1 text-sm text-gray-700 mb-3">
+                         <li><strong>Types:</strong> CISC (x86 - complex instructions) vs RISC (ARM - simple, fast instructions).</li>
+                         <li><strong>Extensions:</strong> Add specific functions (e.g., AVX for math/media, AES-NI for encryption) speeding up compatible software.</li>
+                     </ul>
+                     <p class="text-sm text-gray-600"><strong>Impact:</strong> Determines software compatibility. Extensions boost specific tasks.</p>
+                 </div>
+            </details>
+
+            <details class="mb-4">
+                <summary>Clock Speed (Base vs. Boost)</summary>
+                <div>
+                    <p class="mb-2">Clock speed isn't always constant:</p>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-700 mb-3">
+                        <li><strong>Base Clock:</strong> The guaranteed minimum operating frequency.</li>
+                        <li><strong>Boost Clock:</strong> The maximum frequency reachable automatically under certain conditions.</li>
+                    </ul>
+                     <label for="clockTypeSelect" class="block text-sm font-medium text-gray-700 mb-1">Select to see typical ranges:</label>
+                     <select id="clockTypeSelect" class="mb-3">
+                         <option value="base">Base Clock</option>
+                         <option value="boost">Boost Clock</option>
+                     </select>
+                     <p id="clockRangeInfo" class="text-sm text-gray-600 p-2 bg-gray-50 rounded-md">Typical Base Clock: 2.0 - 4.0 GHz. Determines sustained performance.</p>
+                    <p class="text-sm text-gray-600 mt-2"><strong>Impact:</strong> Boost gives responsiveness, Base indicates sustained speed.</p>
+                </div>
+            </details>
+
+             <details class="mb-4">
+                <summary>Lithography (Manufacturing Process)</summary>
+                <div>
+                    <p class="mb-2">Size of transistors (nm). Smaller = more advanced. Select node:</p>
+                    <select id="lithoSelect" class="mb-3">
+                        <option value="14">14nm / 12nm</option>
+                        <option value="10">10nm</option>
+                        <option value="7">7nm</option>
+                        <option value="5">5nm / 4nm</option>
+                        <option value="3">3nm (Emerging)</option>
+                    </select>
+                    <div class="litho-vis-container">
+                        <div id="lithoDensitySquare" class="litho-square">
+                            </div>
+                        <div class="litho-indicators">
+                            <p class="font-semibold mb-1">Potential:</p>
+                            <span id="lithoPerfIndicator" class="indicator bg-yellow-200 text-yellow-800">Performance</span>
+                            <span id="lithoEffIndicator" class="indicator bg-green-200 text-green-800">Efficiency</span>
+                        </div>
+                    </div>
+                    <p id="lithoInfo" class="text-sm text-gray-600 p-2 bg-gray-50 rounded-md"></p> <p class="text-sm text-gray-600 mt-2"><strong>Impact:</strong> Smaller nodes allow more transistors = better performance/efficiency.</p>
+                </div>
+            </details>
+
+             <details class="mb-4">
+                <summary>Thermal Design Power (TDP)</summary>
+                <div>
+                    <p class="mb-2">Maximum expected heat output (Watts). Indicates cooling needs. Select range:</p>
+                    <select id="tdpSelect" class="mb-3">
+                        <option value="low">Low Power (~5-15W)</option>
+                        <option value="mobile">Mobile (~15-45W)</option>
+                        <option value="desktop">Desktop (~65-125W)</option>
+                        <option value="high">High-End (~150W+)</option>
+                    </select>
+                    <div class="tdp-vis-container">
+                        <div id="tdpCpuVisual" class="tdp-cpu">CPU</div>
+                        <div class="tdp-cooler">
+                            <i id="tdpCoolerIcon" class="fas fa-fan cooler-icon"></i> <p id="tdpCoolerText" class="text-xs font-medium text-gray-600 mt-1">Basic Cooling</p>
+                        </div>
+                    </div>
+                    <p id="tdpInfo" class="text-sm text-gray-600 p-2 bg-gray-50 rounded-md"></p>
+                    <p class="text-sm text-gray-600 mt-2"><strong>Impact:</strong> Higher TDP often means higher performance potential but needs better cooling.</p>
+                </div>
+            </details>
+
+             <details class="mb-4">
+                <summary>Integrated Graphics (iGPU)</summary>
+                 <div>
+                     <p class="mb-2">Basic graphics processor on the CPU die (e.g., Intel UHD/Iris Xe, AMD Radeon). Avoids needing a separate card for display/light tasks.</p>
+                     <ul class="list-disc list-inside space-y-1 text-sm text-gray-700 mb-3">
+                         <li>Performance varies greatly. Some only handle display output, others allow light gaming.</li>
+                         <li>Not always present (e.g., Intel 'F' CPUs). Requires dedicated GPU then.</li>
+                     </ul>
+                     <p class="text-sm text-gray-600"><strong>Impact:</strong> Essential if no dedicated GPU. Performance matters for visuals, multimedia, casual gaming.</p>
+                 </div>
+            </details>
+
+             <details class="mb-4">
+                <summary>Memory Controller</summary>
+                <div>
+                    <p class="mb-2">Manages CPU-RAM communication. Select RAM type:</p>
+                     <select id="ramTypeSelect" class="mb-3">
+                        <option value="ddr4" data-speed="3200" data-channels="2">DDR4 (Dual Channel)</option>
+                        <option value="ddr5" data-speed="5200" data-channels="2">DDR5 (Dual Channel)</option>
+                         <option value="ddr4-single" data-speed="2666" data-channels="1">DDR4 (Single Channel)</option>
+                    </select>
+                    <div class="bandwidth-vis-container">
+                        <div id="ramPipe" class="bandwidth-pipe"></div>
+                        <span id="ramBandwidthText" class="bandwidth-text">~51.2 GB/s</span>
+                     </div>
+                    <p id="ramInfo" class="text-sm text-gray-600 p-2 bg-gray-50 rounded-md"></p>
+                    <p class="text-sm text-gray-600 mt-2"><strong>Impact:</strong> Faster RAM (DDR5) & more channels increase bandwidth, boosting memory-heavy tasks & iGPU.</p>
+                </div>
+            </details>
+
+             <details class="mb-4">
+                <summary>PCI Express (PCIe)</summary>
+                <div>
+                    <p class="mb-2">High-speed connection for GPUs, SSDs etc. Select version:</p>
+                    <select id="pcieSelect" class="mb-3">
+                        <option value="3" data-bw="1">PCIe 3.0</option>
+                        <option value="4" data-bw="2">PCIe 4.0</option>
+                        <option value="5" data-bw="4">PCIe 5.0</option>
+                    </select>
+                     <div class="bandwidth-vis-container">
+                        <div id="pciePipe" class="bandwidth-pipe"></div>
+                        <span id="pcieBandwidthText" class="bandwidth-text">~1 GB/s per lane</span>
+                     </div>
+                    <p id="pcieInfo" class="text-sm text-gray-600 p-2 bg-gray-50 rounded-md"></p>
+                    <p class="text-sm text-gray-600 mt-2"><strong>Impact:</strong> Newer versions double bandwidth per lane, preventing bottlenecks for fast GPUs/SSDs.</p>
+                </div>
+            </details>
+
+             <details>
+                <summary>Specialized Features</summary>
+                 <div>
+                     <p class="mb-2">Hardware support for specific tasks:</p>
+                     <ul class="list-disc list-inside space-y-1 text-sm text-gray-700">
+                         <li><strong>Virtualization (VT-x/AMD-V):</strong> Efficiently running virtual machines.</li>
+                         <li><strong>Security (SGX/SEV):</strong> Hardware data/code protection.</li>
+                         <li><strong>AI Acceleration (NPU/DL Boost):</strong> Speeding up AI/ML tasks.</li>
+                     </ul>
+                     <p class="text-sm text-gray-600 mt-2"><strong>Impact:</strong> Crucial for specific uses, less impact on general tasks.</p>
+                 </div>
+            </details>
+
+        </div> </div>
+
+    
+    <script src="js/gcse-sysarch-performance-cputool.js"></script>
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+</html>

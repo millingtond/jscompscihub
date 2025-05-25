@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCSE CS Lesson: Bubble Sort - Simple Swapping!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <a href="home.html" class="text-xl font-bold hover:text-gray-300 transition-colors">MGS CS Hub</a>
+        <ul class="flex space-x-3 lg:space-x-4">
+        </ul>
+        <ul class="flex flex-wrap space-x-2 sm:space-x-3 lg:space-x-4 text-sm sm:text-base">
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 7</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 8</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 9</a></li>
+            <li><a href="gcse.html" class="hover:text-gray-300 transition-colors">GCSE</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">A Level</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Competitions</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">CS News</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Extracurricular</a></li>
+        </ul>
+    </div>
+</nav>
+
+\1
+
+
+
+    
+
+    <div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-lg shadow-xl">
+        <nav aria-label="breadcrumb" class="text-sm text-gray-500 mb-4 no-print">
+            <ol class="list-none p-0 inline-flex">
+                <li class="flex items-center"><a href="home.html" class="text-blue-600 hover:underline">Home</a><svg class="fill-current w-3 h-3 mx-2 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></li>
+                <li class="flex items-center"><a href="gcse.html" class="text-blue-600 hover:underline">GCSE</a><svg class="fill-current w-3 h-3 mx-2 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></li>
+                <li class="flex items-center"><a href="mgsgcse21.html" class="text-blue-600 hover:underline">Algorithms</a><svg class="fill-current w-3 h-3 mx-2 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></li>
+                <li class="flex items-center"><a href="gcse-algo-searchsort.html" class="text-blue-600 hover:underline">Searching & Sorting</a><svg class="fill-current w-3 h-3 mx-2 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></li>
+                <li class="text-gray-700" aria-current="page">Bubble Sort</li>
+            </ol>
+        </nav>
+
+        <header class="mb-8 border-b pb-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-2">Sorting Things Out: The Bubble Sort Algorithm</h1>
+            <p class="text-lg text-gray-600">OCR GCSE Computer Science (J277) - Topic 2.1.3 (c)</p>
+        </header>
+
+        <main class="space-y-8 md:space-y-12">
+
+            <section id="starter-activity" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-sort-amount-down mr-2 text-yellow-500"></i> Starter Activity (5 mins)</h2>
+                <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-200 space-y-4">
+                    <p class="font-semibold text-yellow-800">Let's Get Sorting!</p>
+                    <div class="space-y-3">
+                        <div>
+                            <label for="starter-q1-manual-sort" class="block text-sm font-medium text-yellow-700">1. You have a small hand of 5 playing cards: [7, 2, 9, 5, Ace (treat as 1)]. How would you manually sort them into ascending order (lowest to highest)? Describe your steps simply.</label>
+                            <textarea id="starter-q1-manual-sort" rows="3" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" placeholder="e.g., I'd look for the smallest, put it first, then..."></textarea>
+                        </div>
+                        <div>
+                            <label for="starter-q2-compare-swap" class="block text-sm font-medium text-yellow-700">2. In your method for question 1, did you compare cards? Did you swap their positions? How many times do you think you looked through the cards?</label>
+                            <textarea id="starter-q2-compare-swap" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" placeholder="Comparisons? Swaps? Passes?"></textarea>
+                        </div>
+                    </div>
+                    <button class="reveal-button !bg-yellow-500 hover:!bg-yellow-600 no-print" onclick="toggleReveal('starter-answers-feedback', this, 'Reveal Example Answers', 'Hide Example Answers')">Reveal Example Answers</button>
+                    <div id="starter-answers-feedback" class="feedback-area !bg-yellow-100 !border-yellow-300 !text-yellow-700">
+                        <p><strong>Example Answers & Discussion Points:</strong></p>
+                        <ul class="list-disc list-inside">
+                            <li>1. Many methods! Some might find the smallest (Ace) and put it aside, then find the next smallest (2), and so on. Others might compare adjacent cards and swap them if they're in the wrong order, repeating this process.</li>
+                            <li>2. Yes, comparisons are almost always involved. Swapping positions is also common. The number of "passes" or times you look through depends on the method. Some methods might feel like one pass for each card placed correctly.</li>
+                            <li>This leads us to think about different strategies (algorithms!) for sorting. Today, we'll look at one called Bubble Sort.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="lesson-outcomes" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-bullseye mr-2 text-green-500"></i> Lesson Outcomes</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-green-50 p-5 rounded-lg border border-green-200">
+                    <p class="font-semibold text-green-800 mb-3">By the end of this lesson, you should be able to:</p>
+                    <ul class="list-disc list-inside space-y-2 text-green-700 pl-4">
+                        <li>Describe the <span class="keyword">Bubble Sort<span class="tooltip">A simple comparison-based sorting algorithm that repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order. The passes through the list are repeated until no swaps are needed.</span></span> algorithm.</li>
+                        <li>Explain how Bubble Sort works using terms like <span class="keyword">pass<span class="tooltip">One full iteration through the list (or the unsorted portion of the list) during a bubble sort, where adjacent elements are compared and potentially swapped.</span></span>, <span class="keyword">comparison (sorting)<span class="tooltip">The act of comparing two adjacent elements in a list to determine if they are in the correct order.</span></span>, and <span class="keyword">swap<span class="tooltip">Exchanging the positions of two elements in a list if they are found to be in the wrong order during a comparison.</span></span>.</li>
+                        <li>Trace the execution of a Bubble Sort algorithm on a given list of data.</li>
+                        <li>Identify the advantages and disadvantages of Bubble Sort.</li>
+                        <li>Understand that Bubble Sort is generally inefficient for large lists.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="intro-bubblesort" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-water mr-2"></i> Introduction to Bubble Sort</h2>
+                     <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-indigo-50 p-5 rounded-lg border border-indigo-200 space-y-3">
+                    <p><strong class="keyword">Bubble Sort<span class="tooltip">A simple comparison-based sorting algorithm that repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order. The passes through the list are repeated until no swaps are needed.</span></strong> is one ofthe simplest sorting algorithms. It works by repeatedly stepping through the list to be sorted, comparing each pair of adjacent items, and swapping them if they are in the wrong order (e.g., if sorting in ascending order, the larger item "bubbles up" towards the end of the list).</p>
+                    <p>The algorithm gets its name because smaller or larger elements "bubble" to their correct position in the list with each <span class="keyword">pass<span class="tooltip">One full iteration through the list (or the unsorted portion of the list) during a bubble sort, where adjacent elements are compared and potentially swapped.</span></span>. Multiple passes are made through the list until no <span class="keyword">swaps<span class="tooltip">Exchanging the positions of two elements in a list if they are found to be in the wrong order during a comparison.</span></span> are needed, which indicates that the list is sorted.</p>
+                    <p>While simple to understand, Bubble Sort is not very efficient for large lists. Hover over <span class="keyword">keywords<span class="tooltip">This is an example tooltip!</span></span> for definitions.</p>
+                </div>
+            </section>
+
+            <section id="bubblesort-simulation-section" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-sort-numeric-up-alt mr-2 text-purple-500"></i>Bubble Sort in Action</h2>
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-semibold text-purple-700">Interactive Simulation</h3>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-purple-50 p-4 rounded-lg border border-purple-200 mb-6">
+                    <p class="text-sm text-purple-700 mb-2">Enter a list of numbers (comma-separated, e.g., 5,2,8,1,9) or use the default. Then, step through the Bubble Sort process.</p>
+                    <div class="sort-controls flex flex-wrap items-center gap-2 mb-4">
+                        <label for="bubble-sort-input" class="text-sm font-medium">List:</label>
+                        <input type="text" id="bubble-sort-input" class="p-1 border rounded-md flex-grow" value="5, 1, 4, 2, 8">
+                        <button class="sim-button !mt-0" onclick="setupBubbleSortVisual()">Load List & Start</button>
+                        <button class="sim-button !mt-0" id="bubble-sort-step-btn" disabled>Next Step (Pass/Comparison)</button>
+                        <button class="reset-button !mt-0" onclick="resetBubbleSortVisual()">Reset Sim</button>
+                    </div>
+                    <div id="bubble-sort-status" class="text-sm text-indigo-600 min-h-[2em] bg-purple-100 p-2 rounded">Load a list to begin.</div>
+                    <div id="bubble-sort-visualization-area" class="sort-array-container mt-4">
+                        </div>
+                </div>
+
+                 <div id="task-bubblesort-trace" class="quiz-item mt-6" data-points="4">
+                    <h3 class="text-lg font-medium text-gray-700 mb-2">Task 1: Tracing Bubble Sort (Max 4 points)</h3>
+                    <p class="text-sm text-gray-600 mb-2">Consider the list: <strong>[4, 1, 3, 2]</strong>. Show the state of the list after each <span class="keyword">comparison<span class="tooltip">The act of comparing two adjacent elements in a list to determine if they are in the correct order.</span></span> and <span class="keyword">swap<span class="tooltip">Exchanging the positions of two elements in a list if they are found to be in the wrong order during a comparison.</span></span> (if any) during the <strong>first full pass</strong> of Bubble Sort (ascending order).</p>
+                    <textarea id="bubblesort-trace-answer" class="exam-answer-textarea" rows="6" placeholder="Initial: [4, 1, 3, 2]\nCompare 4 and 1. Swap. List: [1, 4, 3, 2]\nCompare 4 and 3. Swap. List: ..."></textarea>
+                    <button class="reveal-button no-print !mt-1" onclick="toggleReveal('bubblesort-trace-guidance', this, 'Show Example Trace', 'Hide Example Trace')">Show Example Trace</button>
+                    <div id="bubblesort-trace-guidance" class="feedback-area !bg-purple-100 !border-purple-300 !text-purple-700">
+                        <p><strong>Example Trace for First Pass of [4, 1, 3, 2]:</strong></p>
+                        <ol class="list-decimal list-inside">
+                            <li>Initial list: <strong>[4, 1, 3, 2]</strong></li>
+                            <li>Compare 4 and 1. Swap. List becomes: <strong>[1, 4, 3, 2]</strong></li>
+                            <li>Compare 4 and 3. Swap. List becomes: <strong>[1, 3, 4, 2]</strong></li>
+                            <li>Compare 4 and 2. Swap. List becomes: <strong>[1, 3, 2, 4]</strong></li>
+                            <li>End of first pass. The largest element (4) is now in its correct final position.</li>
+                        </ol>
+                        <p class="text-xs italic mt-1">(For 4 marks, clearly show each comparison, state if a swap occurs, and show the list state after each potential swap for the entire first pass.)</p>
+                    </div>
+                    <div class="feedback mt-1"></div>
+                     <button class="check-button no-print !mt-2" onclick="checkBubbleSortTrace()">Check Trace Description</button>
+                </div>
+            </section>
+
+            <section id="bubblesort-adv-disadv" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-balance-scale-right mr-2 text-red-500"></i>Advantages & Disadvantages of Bubble Sort</h2>
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-semibold text-red-700">Is it Always the Best Choice?</h3>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-red-50 p-3 rounded-lg border border-red-200">
+                        <h4 class="font-semibold text-red-700 mb-1">Advantages:</h4>
+                        <ul class="list-disc list-inside text-sm text-red-600 space-y-0.5">
+                            <li>Simple to understand and implement. Good for learning basic sorting concepts.</li>
+                            <li>Efficient for very small lists.</li>
+                            <li>Can detect if a list is already sorted (if an optimization is added to stop after a pass with no swaps), making its best-case time complexity O(n).</li>
+                            <li>It's an <span class="keyword">in-place sort<span class="tooltip">A sorting algorithm that sorts the elements within the original array or list, using only a constant amount of extra storage space (or a very small, logarithmic amount).</span></span>, meaning it requires minimal extra memory (O(1) space complexity).</li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-50 p-3 rounded-lg border border-red-200">
+                        <h4 class="font-semibold text-red-700 mb-1">Disadvantages:</h4>
+                        <ul class="list-disc list-inside text-sm text-red-600 space-y-0.5">
+                            <li>Very inefficient for large lists. Its average and worst-case <span class="keyword">time complexity (Bubble Sort)<span class="tooltip">Worst-case and average-case O(n²), best-case O(n) if the list is already sorted and an optimization is used to stop early.</span></span> is O(n²), which means the time it takes grows quadratically with the number of items.</li>
+                            <li>Makes many swaps, which can be slow if swapping items is an expensive operation.</li>
+                            <li>Generally outperformed by other simple sorts like Insertion Sort, and significantly by more advanced sorts like Merge Sort or Quick Sort for larger datasets.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="real-world-context-bubble" class="task-container">
+                <div class="flex justify-between items-center mb-4">
+                   <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-globe-europe mr-2 text-blue-500"></i> Real-World Context for Bubble Sort</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                       <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                   </label>
+               </div>
+               <div class="bg-blue-50 p-5 rounded-lg border border-blue-200 space-y-3">
+                   <p class="text-gray-700">While Bubble Sort is rarely the most efficient choice for large-scale, real-world applications, its simplicity makes it:</p>
+                   <ul class="list-disc list-inside space-y-2 text-blue-800 pl-4">
+                       <li><strong>A good educational tool:</strong> Excellent for teaching fundamental concepts of sorting, comparisons, and swaps.</li>
+                       <li><strong>Useful for very small datasets:</strong> If you only have a handful of items to sort, the overhead of more complex algorithms might not be worth it, and Bubble Sort's simplicity can be an advantage.</li>
+                       <li><strong>Detecting nearly sorted lists:</strong> With an optimization to stop if no swaps occur in a pass, it can efficiently verify if a list is already sorted or nearly sorted.</li>
+                       <li><strong>Component in more complex algorithms:</strong> Sometimes, parts of more sophisticated algorithms might use Bubble Sort-like passes for specific, small-scale tasks or optimizations.</li>
+                   </ul>
+                   <p class="text-gray-700">However, for most practical applications involving sorting moderate to large amounts of data, more efficient algorithms like Merge Sort, Quick Sort, or even Insertion Sort (for moderately sized lists) are preferred.</p>
+               </div>
+           </section>
+
+           <section id="myth-busters-bubble" class="task-container">
+                <div class="flex justify-between items-center mb-4">
+                   <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-question-circle mr-2 text-red-500"></i> Bubble Sort Myth Busters!</h2>
+                   <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                       <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                   </label>
+               </div>
+               <div class="bg-red-50 p-5 rounded-lg border border-red-200 space-y-4">
+                   <div>
+                       <p><strong class="font-semibold text-red-800">Myth 1:</strong> "Bubble Sort is called 'bubble' because it's light and fast."</p>
+                       <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> It's called Bubble Sort because, during each <span class="keyword">pass<span class="tooltip">One full iteration through the list (or the unsorted portion of the list) during a bubble sort, where adjacent elements are compared and potentially swapped.</span></span>, the largest (or smallest, depending on sort order) unsorted elements "bubble up" to their correct position at the end of the unsorted part of the list. Unfortunately, it's generally not very fast for most datasets!</p>
+                   </div>
+                   <div class="border-t border-red-200 pt-4">
+                       <p><strong class="font-semibold text-red-800">Myth 2:</strong> "Bubble Sort always requires n-1 passes to sort n items."</p>
+                       <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> In its basic form, yes, it might make up to n-1 passes. However, an optimized Bubble Sort includes a flag to check if any <span class="keyword">swaps<span class="tooltip">Exchanging the positions of two elements in a list if they are found to be in the wrong order during a comparison.</span></span> were made during a pass. If a pass completes with no swaps, the list is sorted, and the algorithm can terminate early. This means for an already sorted list, it might only take one pass (best case O(n)).</p>
+                   </div>
+               </div>
+           </section>
+
+            <section id="exam-practice-bubblesort" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-graduation-cap mr-2"></i>Task 2: Exam Practice Questions</h2>
+                <p class="text-gray-600 mb-6">Apply your knowledge to these exam-style questions.</p>
+                <div class="space-y-6">
+                    <div class="exam-question-item">
+                        <p class="font-medium text-gray-800 mb-2">1. Describe how a bubble sort algorithm works. [3 marks]</p>
+                        <textarea id="exam-q1-bubblesort" class="exam-answer-textarea" placeholder="Explain the steps of bubble sort..."></textarea>
+                        <button class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q1-bubblesort', 'exam-q1-bubblesort', 20)">Show Mark Scheme</button>
+                        <div id="ms-exam-q1-bubblesort" class="mark-scheme">
+                            <p><strong>Mark Scheme:</strong></p>
+                            <ul>
+                                <li>It repeatedly steps through the list / makes multiple passes. (1 mark)</li>
+                                <li>Compares adjacent pairs of elements. (1 mark)</li>
+                                <li>Swaps them if they are in the wrong order (e.g., if the first is greater than the second for ascending sort). (1 mark)</li>
+                                <li>(Allow: This process is repeated until a pass is made with no swaps / until the list is sorted.)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="exam-question-item">
+                        <p class="font-medium text-gray-800 mb-2">2. State one advantage and one disadvantage of using Bubble Sort. [2 marks]</p>
+                        <textarea id="exam-q2-bubblesort" class="exam-answer-textarea" placeholder="Advantage... Disadvantage..."></textarea>
+                        <button class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q2-bubblesort', 'exam-q2-bubblesort', 15)">Show Mark Scheme</button>
+                        <div id="ms-exam-q2-bubblesort" class="mark-scheme">
+                            <p><strong>Mark Scheme:</strong></p>
+                            <ul>
+                                <li>Advantage: Simple to understand/implement OR Efficient for small lists OR Can detect an already sorted list quickly (with optimization) OR Requires little extra memory (in-place). (1 mark for one valid advantage)</li>
+                                <li>Disadvantage: Inefficient for large lists (O(n²)) OR Slow compared to other algorithms OR Makes many swaps. (1 mark for one valid disadvantage)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="related-videos-bubblesort" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-video mr-2 text-purple-500"></i> Related Videos</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-purple-50 p-5 rounded-lg border border-purple-200 space-y-4">
+                    <p class="text-gray-700">Watch these videos to see Bubble Sort visually explained:</p>
+                    <ul class="list-disc list-inside space-y-3 text-purple-800 pl-4">
+                        <li>
+                            <strong>Video 1: Bubble Sort Algorithm Visualization</strong>
+                            <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 1: Bubble Sort Visual]</div>
+                        </li>
+                        <li>
+                            <strong>Video 2: Bubble Sort Step-by-Step Example</strong>
+                            <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 2: Bubble Sort Example Walkthrough]</div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="key-takeaways-bubblesort" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-key mr-2"></i>Key Takeaways</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-300 space-y-2 show">
+                    <ul class="list-disc list-inside space-y-1 text-yellow-800">
+                        <li><strong class="keyword">Bubble Sort<span class="tooltip">A simple comparison-based sorting algorithm that repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order. The passes through the list are repeated until no swaps are needed.</span></strong> works by repeatedly comparing adjacent elements and swapping them if they are in the wrong order.</li>
+                        <li>Each <span class="keyword">pass<span class="tooltip">One full iteration through the list (or the unsorted portion of the list) during a bubble sort, where adjacent elements are compared and potentially swapped.</span></span> "bubbles" the next largest (or smallest) unsorted element to its correct position in the <span class="keyword">sorted portion<span class="tooltip">The part of the list (usually at the end after each pass of bubble sort) that contains elements that are in their final sorted positions.</span></span> of the list.</li>
+                        <li>The algorithm stops when a full pass is made with no <span class="keyword">swaps<span class="tooltip">Exchanging the positions of two elements in a list if they are found to be in the wrong order during a comparison.</span></span>.</li>
+                        <li>Advantages: Simple to understand and implement, efficient for small lists, good for checking if a list is nearly sorted (with optimization).</li>
+                        <li>Disadvantages: Very inefficient for large lists (O(n²) <span class="keyword">time complexity (Bubble Sort)<span class="tooltip">Worst-case and average-case O(n²), best-case O(n) if the list is already sorted and an optimization is used to stop early.</span></span>).</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="next-steps-bubblesort" class="task-container">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600">What's Next?</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-teal-50 p-5 rounded-lg border border-teal-300">
+                    <p class="text-teal-800 font-medium">You've now learned about the Bubble Sort algorithm!</p>
+                    <p class="text-teal-700 mt-2">Continue exploring other sorting algorithms in J277 Topic 2.1.3:</p>
+                    <ul class="list-disc list-inside space-y-1 text-teal-700 mt-3 pl-4">
+                        <li>Merge Sort (which you've just covered or will cover soon)</li>
+                        <li>Insertion Sort</li>
+                    </ul>
+                    <p class="text-teal-700 mt-2">Comparing these algorithms will help you understand their different approaches and efficiencies.</p>
+                    <p class="mt-3"><a href="gcse-algo-searchsort-menu.html" class="font-semibold text-teal-900 hover:underline">← Back to Searching & Sorting Menu</a></p>
+                </div>
+            </section>
+
+            <section id="extension-activities-bubblesort" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-cogs mr-2 text-orange-500"></i> Extension Activities</h2>
+                <div class="bg-orange-50 p-5 rounded-lg border border-orange-200 space-y-6">
+                    <div class="extension-task">
+                        <h3 class="font-semibold text-orange-800 mb-2">1. Optimized Bubble Sort</h3>
+                        <p class="text-sm text-gray-700 mb-2">A common optimization for Bubble Sort is to stop the algorithm early if a pass is completed with no swaps made, as this indicates the list is already sorted.</p>
+                        <p class="text-sm text-gray-700 mb-2">Research Task: How would you modify the pseudocode or steps of a Bubble Sort to include this optimization? How does this affect its best-case time complexity?</p>
+                        <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Modified steps/pseudocode... Best-case complexity impact..."></textarea>
+                    </div>
+                    <div class="extension-task border-t border-orange-200 pt-4">
+                        <h3 class="font-semibold text-orange-800 mb-2">2. Cocktail Shaker Sort (Bidirectional Bubble Sort)</h3>
+                        <p class="text-sm text-gray-700 mb-2">Cocktail Shaker Sort is a variation of Bubble Sort that sorts in both directions on each pass (left-to-right, then right-to-left).</p>
+                        <p class="text-sm text-gray-700 mb-2">Research Task: How does Cocktail Shaker Sort work? What is its main advantage over the standard Bubble Sort, especially for lists that are nearly sorted or have small elements near the end?</p>
+                        <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="How Cocktail Shaker Sort works? Its advantages?"></textarea>
+                    </div>
+                </div>
+            </section>
+            
+            <footer class="mt-12 text-center no-print">
+                <div id="final-score-area" class="task-container bg-purple-100 border-purple-300 mb-6">
+                    <h2 class="task-title text-2xl text-purple-700">Worksheet Score</h2>
+                    <p id="final-score-display" class="text-3xl font-bold text-purple-800">Your score: 0 / 0</p>
+                    <p id="final-score-feedback" class="text-purple-600"></p>
+                </div>
+                <button id="calculate-final-score" class="final-button">Calculate Final Score</button>
+                <button id="reset-all-tasks" class="reset-button">Reset All Tasks</button>
+                <button id="export-pdf-button" class="export-pdf-button">Export to PDF</button>
+            </footer>
+
+        </main>
+    </div>
+
+    <script src="js/gcse-algo-searchsort-bubble.js"></script>
+
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+</html>

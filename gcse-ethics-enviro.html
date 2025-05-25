@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCSE CS Lesson: The Environmental Impact of Computer Science</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    
+<link rel="stylesheet" href="css/style.css">
+</head>
+<nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <a href="home.html" class="text-xl font-bold hover:text-gray-300 transition-colors">MGS CS Hub</a>
+        <ul class="flex space-x-3 lg:space-x-4">
+        </ul>
+        <ul class="flex flex-wrap space-x-2 sm:space-x-3 lg:space-x-4 text-sm sm:text-base">
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 7</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 8</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 9</a></li>
+            <li><a href="gcse.html" class="hover:text-gray-300 transition-colors">GCSE</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">A Level</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Competitions</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">CS News</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Extracurricular</a></li>
+        </ul>
+    </div>
+</nav>
+
+\1
+
+
+
+    <div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-lg shadow-xl">
+
+        <a href="mgsgcse16.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 group no-print">
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left w-5 h-5 mr-2 transition-transform duration-200 group-hover:-translate-x-1"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+            Back to Ethical, Legal, Cultural & Environmental Concerns
+        </a>
+
+        <header class="mb-8 border-b pb-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-2">Our Digital Footprint: The Environmental Impact of Computer Science</h1>
+            <p class="text-lg text-gray-600">OCR GCSE Computer Science (J277) - Component 1.6: Environmental Concerns</p>
+        </header>
+
+        <main class="space-y-8 md:space-y-12">
+
+            <section id="starter-activity" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-leaf mr-2 text-yellow-500"></i> Starter Activity (5 mins)</h2>
+                <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-200 space-y-4">
+                    <p class="font-semibold text-yellow-800">Thinking Green (or not so green)...</p>
+                    <div class="space-y-3">
+                        <div>
+                            <label for="starter-q1-devices" class="block text-sm font-medium text-yellow-700">1. List three electronic devices you use regularly. What do you think happens to them when they are no longer useful or broken?</label>
+                            <textarea id="starter-q1-devices" rows="3" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white"></textarea>
+                        </div>
+                        <div>
+                            <label for="starter-q2-energy" class="block text-sm font-medium text-yellow-700">2. Where does the electricity that powers your computer and the internet mostly come from? (Think about energy sources).</label>
+                            <textarea id="starter-q2-energy" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white"></textarea>
+                        </div>
+                         <div>
+                            <label for="starter-q3-cloud" class="block text-sm font-medium text-yellow-700">3. When you store files "in the cloud" (like Google Drive or iCloud), where do you think those files are physically stored?</label>
+                            <textarea id="starter-q3-cloud" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white"></textarea>
+                        </div>
+                    </div>
+                    <div id="starter-answers-feedback" class="feedback-area !bg-yellow-100 !border-yellow-300 !text-yellow-700">
+                        <p><strong>Example Answers:</strong></p>
+                        <ul class="list-disc list-inside">
+                            <li>1. Phone, laptop, games console. They might be thrown in the bin (ending up in landfill), taken to a recycling centre, sold, or passed on.</li>
+                            <li>2. Electricity often comes from a mix of sources: fossil fuels (coal, gas), nuclear power, and renewable sources (wind, solar, hydro). The exact mix varies by region.</li>
+                            <li>3. Files "in the cloud" are physically stored on powerful computers called servers, located in large buildings called <span class="keyword">data centres<span class="tooltip">Facilities used to house computer systems and associated components, such as telecommunications and storage systems. They consume vast amounts of energy for power and cooling.</span></span>, which can be anywhere in the world.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="lesson-outcomes" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-bullseye mr-2 text-green-500"></i> Lesson Outcomes</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-green-50 p-5 rounded-lg border border-green-200">
+                    <p class="font-semibold text-green-800 mb-3">By the end of this lesson, you should be able to:</p>
+                    <ul class="list-disc list-inside space-y-2 text-green-700 pl-4">
+                        <li>Identify key environmental impacts associated with computer science and digital technologies.</li>
+                        <li>Explain the problem of <span class="keyword">electronic waste (e-waste)<span class="tooltip">Discarded electrical or electronic devices. Contains toxic materials like lead, mercury, cadmium, which can leach into soil and water if not disposed of properly.</span></span> and its consequences.</li>
+                        <li>Describe how <span class="keyword">energy consumption<span class="tooltip">The use of energy or power. Computing devices and data centres consume significant amounts of electricity, contributing to greenhouse gas emissions if sourced from fossil fuels.</span></span> by devices and <span class="keyword">data centres<span class="tooltip">Facilities used to house computer systems and associated components, such as telecommunications and storage systems. They consume vast amounts of energy for power and cooling.</span></span> contributes to environmental issues.</li>
+                        <li>Understand the concept of a <span class="keyword">carbon footprint<span class="tooltip">The total amount of greenhouse gases (including carbon dioxide and methane) that are generated by our actions. The tech industry has a significant carbon footprint from manufacturing, transportation,and energy use.</span></span> in relation to technology.</li>
+                        <li>Recognize the environmental concerns related to mining <span class="keyword">rare earth materials<span class="tooltip">A set of seventeen chemical elements in the periodic table. Essential for many electronic components. Mining them can be environmentally destructive and resource-intensive.</span></span> and <span class="keyword">water consumption<span class="tooltip">The manufacturing of semiconductors and other electronic components requires large quantities of water, potentially contributing to water scarcity in some regions.</span></span> in hardware production.</li>
+                        <li>Discuss potential solutions and responsible practices to mitigate these environmental impacts.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="intro-environmental" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-seedling mr-2"></i> Introduction: Technology's Environmental Price Tag</h2>
+                     <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-indigo-50 p-5 rounded-lg border border-indigo-200 space-y-3">
+                    <p>Digital technology has brought incredible advancements and conveniences to our lives. However, this progress comes with an environmental cost. From the resources used to manufacture our devices to the energy they consume and what happens to them at the end of their life, the impact on our planet is significant.</p>
+                    <p>It's crucial for us, as users and future creators of technology, to understand these environmental concerns. This awareness can help us make more responsible choices and contribute to more sustainable technological practices.</p>
+                    <p>This lesson will explore the main environmental issues linked to computer science. Hover over <span class="keyword">keywords<span class="tooltip">This is an example tooltip!</span></span> for definitions.</p>
+                </div>
+            </section>
+
+            <section id="task1-impact-matching" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-recycle mr-2"></i>Task 1: Match the Impact to its Description <span class="font-bold text-sm text-gray-500 ml-auto">(Max 6 points)</span></h2>
+                <p class="text-gray-600 mb-4">Match the environmental impact on the left with its correct description on the right. Click one item from each list to create a pair.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 quiz-item" data-points="6">
+                    <div>
+                        <h4 class="font-semibold mb-2 text-center text-gray-600">Environmental Impact</h4>
+                        <ul id="impact-term-list" class="matching-list">
+                            <li class="matching-item option-button w-full text-left !mt-1" data-match="ewaste">Electronic Waste (E-waste)</li>
+                            <li class="matching-item option-button w-full text-left !mt-1" data-match="energy">Energy Consumption</li>
+                            <li class="matching-item option-button w-full text-left !mt-1" data-match="carbon">Carbon Footprint</li>
+                            <li class="matching-item option-button w-full text-left !mt-1" data-match="datacentre">Data Centres</li>
+                            <li class="matching-item option-button w-full text-left !mt-1" data-match="mining">Mining Rare Earth Materials</li>
+                            <li class="matching-item option-button w-full text-left !mt-1" data-match="water">Water Consumption</li>
+                        </ul>
+                    </div>
+                    <div>
+                         <h4 class="font-semibold mb-2 text-center text-gray-600">Description</h4>
+                         <ul id="impact-definition-list" class="matching-list">
+                            <li class="matching-item option-button w-full text-left !mt-1" data-match="energy">The electricity used by devices and infrastructure, often leading to greenhouse gas emissions if from non-renewable sources.</li>
+                            <li class="matching-item option-button w-full text-left !mt-1" data-match="mining">Extraction of specific elements needed for electronic components, which can be destructive to landscapes and resource-intensive.</li>
+                            <li class="matching-item option-button w-full text-left !mt-1" data-match="ewaste">Discarded devices containing harmful chemicals that can pollute soil and water if not disposed of properly.</li>
+                            <li class="matching-item option-button w-full text-left !mt-1" data-match="water">Significant amounts are used in the manufacturing of computer hardware, potentially leading to scarcity.</li>
+                            <li class="matching-item option-button w-full text-left !mt-1" data-match="datacentre">Large facilities housing servers that consume vast amounts of power for operation and cooling systems.</li>
+                            <li class="matching-item option-button w-full text-left !mt-1" data-match="carbon">The total greenhouse gas emissions caused directly and indirectly by an individual, organization, event or product (including tech).</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="text-center mt-4">
+                    <button class="check-button no-print" onclick="checkImpactMatches()">Check Matches</button>
+                    <button class="reset-button no-print" onclick="resetImpactMatches()">Reset Task 1</button>
+                </div>
+                <div id="impact-matching-feedback" class="feedback-area mt-4"></div>
+            </section>
+
+<section id="task2-ewaste-lifecycle" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-dumpster mr-2"></i>Task 2: The Lifecycle of E-Waste <span class="font-bold text-sm text-gray-500 ml-auto">(Max 5 points)</span></h2>
+                <p class="text-gray-600 mb-4">Drag the stages into the correct order to show a simplified lifecycle of an electronic device that becomes <span class="keyword">e-waste<span class="tooltip">Discarded electrical or electronic devices. Contains toxic materials like lead, mercury, cadmium, which can leach into soil and water if not disposed of properly.</span></span>.</p>
+                <div class="quiz-item" data-points="5">
+                    <div id="ewaste-steps-pool" class="ewaste-dropzone mb-6 flex-row justify-around flex-wrap">
+                        <h4 class="font-semibold text-sm text-gray-700 mb-2 w-full text-center">Lifecycle Stages (Drag these)</h4>
+                        <div class="ewaste-step" draggable="true" id="ewaste-step-disposal">Disposal (potentially improper, leading to pollution)</div>
+                        <div class="ewaste-step" draggable="true" id="ewaste-step-manufacturing">Manufacturing (using resources and energy)</div>
+                        <div class="ewaste-step" draggable="true" id="ewaste-step-obsolescence">Use & Obsolescence (device becomes old or unwanted)</div>
+                        <div class="ewaste-step" draggable="true" id="ewaste-step-extraction">Raw Material Extraction (mining)</div>
+                        <div class="ewaste-step" draggable="true" id="ewaste-step-recycling">Recycling/Recovery (if done correctly)</div>
+                    </div>
+                    <h4 class="font-semibold text-gray-700 mb-2">Device Lifecycle Order:</h4>
+                    <div id="ewaste-ordered-steps"> 
+                        <div id="ewaste-slot-0" class="ewaste-slot h-10 border-2 border-dashed border-gray-300 rounded-md"></div>
+                        <div id="ewaste-slot-1" class="ewaste-slot h-10 border-2 border-dashed border-gray-300 rounded-md"></div>
+                        <div id="ewaste-slot-2" class="ewaste-slot h-10 border-2 border-dashed border-gray-300 rounded-md"></div>
+                        <div id="ewaste-slot-3" class="ewaste-slot h-10 border-2 border-dashed border-gray-300 rounded-md"></div>
+                        <div id="ewaste-slot-4" class="ewaste-slot h-10 border-2 border-dashed border-gray-300 rounded-md"></div>
+                    </div> 
+                </div>
+                <div class="text-center mt-4">
+                    <button class="check-button no-print" onclick="checkEwasteLifecycle()">Check Order</button>
+                    <button class="reset-button no-print" onclick="resetEwasteLifecycle()">Reset Task 2</button>
+                </div>
+                <div id="ewaste-lifecycle-feedback" class="feedback-area mt-4"></div>
+            </section>
+
+            <section id="task3-datacenter-sim" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-server mr-2"></i>Task 3: Data Centre Energy Conceptual Sim <span class="font-bold text-sm text-gray-500 ml-auto">(Max 2 points for questions)</span></h2>
+                <p class="text-gray-600 mb-4"><span class="keyword">Data centres<span class="tooltip">Facilities used to house computer systems and associated components, such as telecommunications and storage systems. They consume vast amounts of energy for power and cooling.</span></span> consume huge amounts of energy for powering servers and for cooling. Adjust the sliders to see a conceptual representation of load and cooling effort.</p>
+                <div class="datacenter-sim-container">
+                    <div class="w-full md:w-1/2 space-y-4 mb-4 md:mb-0">
+                        <div>
+                            <label for="server-load-slider" class="block text-sm font-medium text-gray-700">Server Load (%): <span id="server-load-value" class="font-semibold">50</span>%</label>
+                            <input type="range" id="server-load-slider" min="0" max="100" value="50" class="w-full">
+                        </div>
+                        <div>
+                            <label for="cooling-slider" class="block text-sm font-medium text-gray-700">Cooling Efficiency (1=Low, 5=High): <span id="cooling-value" class="font-semibold">3</span></label>
+                            <input type="range" id="cooling-slider" min="1" max="5" value="3" class="w-full">
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 flex flex-col items-center">
+                        <div id="datacenter-visual" class="datacenter-visual">
+                            </div>
+                        <div id="cooling-visual" class="cooling-visual mt-2">Cooling System</div>
+                        <p id="datacenter-energy-status" class="text-sm text-center mt-2 font-medium text-indigo-700"></p>
+                    </div>
+                </div>
+                <div class="mt-6 space-y-3 quiz-item" data-points="2">
+                    <div>
+                        <label for="datacenter-q1" class="block text-sm font-medium text-gray-700">1. What are the two main reasons data centres consume large amounts of energy? (2 marks)</label>
+                        <input type="text" id="datacenter-q1" class="mt-1 block w-full p-2 border border-gray-300 rounded-md bg-white" placeholder="Reason 1, Reason 2">
+                    </div>
+                </div>
+                <button class="check-button no-print" onclick="checkDatacenterAnswers()">Check Answer</button>
+                <button class="reset-button no-print" onclick="resetDatacenterTask()">Reset Task 3</button>
+                <div id="task3-feedback" class="feedback-area"></div>
+            </section>
+
+            <section id="task4-solutions-brainstorm" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-lightbulb-idea mr-2"></i>Task 4: Brainstorming Solutions <span class="font-bold text-sm text-gray-500 ml-auto">(Self-Assessment)</span></h2>
+                <p class="text-gray-600 mb-4">For each environmental impact listed below, suggest one practical way individuals or the tech industry could help reduce it.</p>
+                <div class="space-y-4">
+                    <div>
+                        <label for="solution-ewaste" class="block text-sm font-medium text-gray-700"><strong>E-waste:</strong></label>
+                        <textarea id="solution-ewaste" rows="2" class="mt-1 block w-full p-2 border border-gray-300 rounded-md bg-white"></textarea>
+                    </div>
+                    <div>
+                        <label for="solution-energy" class="block text-sm font-medium text-gray-700"><strong>Energy Consumption (Devices & Data Centres):</strong></label>
+                        <textarea id="solution-energy" rows="2" class="mt-1 block w-full p-2 border border-gray-300 rounded-md bg-white"></textarea>
+                    </div>
+                    <div>
+                        <label for="solution-materials" class="block text-sm font-medium text-gray-700"><strong>Mining Rare Earth Materials & Water Use:</strong></label>
+                        <textarea id="solution-materials" rows="2" class="mt-1 block w-full p-2 border border-gray-300 rounded-md bg-white"></textarea>
+                    </div>
+                </div>
+                <div class="text-center mt-4">
+                    <!-- Added the Check button, initially disabled -->
+                    <button id="check-task4-solutions-btn" class="check-button no-print" onclick="checkTask4Solutions()" disabled>Check My Answers</button>
+                    <button class="reset-button no-print" onclick="resetTask4Solutions()">Reset Task 4</button>
+                </div>
+                <div id="task4-feedback" class="feedback-area mt-4"></div> <!-- Added a feedback area -->
+                <div id="solutions-guidance" class="feedback-area !bg-green-50 !border-green-200 !text-green-700 hidden"> <!-- Added hidden class -->
+                    <p><strong>Example Solutions / Discussion Points:</strong></p>
+                    <ul>
+                        <li><strong>E-waste:</strong> Proper recycling through certified facilities, designing products for easier disassembly and repair (right to repair), extending device lifespan, donating or selling used electronics.</li>
+                        <li><strong>Energy Consumption:</strong> Using energy-efficient modes on devices, choosing energy-star rated appliances, data centres using renewable energy sources, more efficient cooling technologies for data centres, developing lower-power processors.</li>
+                        <li><strong>Mining & Water Use:</strong> Designing products with fewer rare earth materials, increasing recycling of these materials from old devices, companies investing in sustainable mining practices, developing alternative materials, water-efficient manufacturing processes. Adopting principles of a <span class="keyword">circular economy<span class="tooltip">An economic model focused on minimizing waste and making the most of resources by keeping products and materials in use for as long as possible, through repairing, reusing, refurbishing, and recycling.</span></span>.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="real-world-environmental" class="task-container">
+                <div class="flex justify-between items-center mb-4">
+                   <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-industry mr-2 text-blue-500"></i> Real-World Context: Tech's Green Efforts & Challenges</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                       <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                   </label>
+               </div>
+               <div class="bg-blue-50 p-5 rounded-lg border border-blue-200 space-y-3">
+                   <p class="text-gray-700">The technology industry is increasingly aware of its environmental responsibilities, though challenges remain:</p>
+                   <ul class="list-disc list-inside space-y-2 text-blue-800 pl-4">
+                       <li><strong>Renewable Energy for Data Centres:</strong> Companies like Google, Apple, and Microsoft are investing heavily in powering their data centres with renewable energy sources (solar, wind) to reduce their <span class="keyword">carbon footprint<span class="tooltip">The total amount of greenhouse gases (including carbon dioxide and methane) that are generated by our actions. The tech industry has a significant carbon footprint from manufacturing, transportation,and energy use.</span></span>.</li>
+                       <li><strong>E-waste Recycling Initiatives:</strong> Many manufacturers now offer take-back or recycling programs for old devices. However, global e-waste recycling rates are still relatively low, and much e-waste is shipped to developing countries with unsafe processing methods.</li>
+                       <li><strong>Product Design for Sustainability:</strong> Some companies are focusing on using more recycled materials in new products, designing for easier repair (e.g., Fairphone), and reducing packaging. The "Right to Repair" movement advocates for this.</li>
+                       <li><strong>Green Computing:</strong> This field focuses on designing, manufacturing, using, and disposing of computers and associated subsystems efficiently and effectively with minimal or no impact on the environment. This includes energy-efficient hardware and software design.</li>
+                       <li><strong>Challenges:</strong> The rapid pace of technological advancement leads to shorter device lifecycles. The global supply chain for electronics is complex, making it hard to ensure sustainable practices at every stage. Consumer demand for the latest gadgets also drives production.</li>
+                   </ul>
+               </div>
+           </section>
+
+           <section id="myth-busters-environmental" class="task-container">
+                <div class="flex justify-between items-center mb-4">
+                   <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-question-circle mr-2 text-red-500"></i> Environmental Myth Busters!</h2>
+                   <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                       <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                   </label>
+               </div>
+               <div class="bg-red-50 p-5 rounded-lg border border-red-200 space-y-4">
+                   <div>
+                       <p><strong class="font-semibold text-red-800">Myth 1:</strong> "Recycling my old phone solves the e-waste problem completely."</p>
+                       <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> While recycling is much better than landfill, it's not a perfect solution. Recycling processes themselves consume energy, and not all materials in a device can be recovered or recycled efficiently. Reducing consumption (buying fewer devices, using them longer) and repairing devices are often more impactful first steps in the "Reduce, Reuse, Recycle" hierarchy.</p>
+                   </div>
+                   <div class="border-t border-red-200 pt-4">
+                       <p><strong class="font-semibold text-red-800">Myth 2:</strong> "Cloud computing is perfectly 'green' because I don't see the servers."</p>
+                       <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> "The Cloud" relies on massive, energy-intensive <span class="keyword">data centres<span class="tooltip">Facilities used to house computer systems and associated components, such as telecommunications and storage systems. They consume vast amounts of energy for power and cooling.</span></span>. While many cloud providers are moving towards renewable energy, the overall energy demand of data centres is huge and growing. Using cloud services still has an environmental footprint associated with that energy use and the manufacturing of server hardware.</p>
+                   </div>
+                   <div class="border-t border-red-200 pt-4">
+                       <p><strong class="font-semibold text-red-800">Myth 3:</strong> "Turning off my computer when I'm not using it doesn't really save much energy."</p>
+                       <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> While modern computers are more energy-efficient, they still consume power even when idle or in sleep mode (often called "vampire power"). Turning off your computer and monitor completely when not in use for extended periods can make a noticeable difference to your personal <span class="keyword">energy consumption<span class="tooltip">The use of energy or power. Computing devices and data centres consume significant amounts of electricity, contributing to greenhouse gas emissions if sourced from fossil fuels.</span></span> and, collectively, can reduce overall demand.</p>
+                   </div>
+               </div>
+           </section>
+
+            <section id="exam-practice-environmental" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-graduation-cap mr-2"></i>Task 5: Exam Practice Questions</h2>
+                <p class="text-gray-600 mb-6">Apply your knowledge to these exam-style questions.</p>
+                <div class="space-y-6">
+                    <div class="exam-question-item">
+                        <p class="font-medium text-gray-800 mb-2">1. Describe two environmental concerns associated with the disposal of old computer equipment. [2 marks]</p>
+                        <textarea id="exam-q1-env" class="exam-answer-textarea" placeholder="Two concerns about e-waste disposal..."></textarea>
+                        <button class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q1-env', 'exam-q1-env', 15)">Show Mark Scheme</button>
+                        <div id="ms-exam-q1-env" class="mark-scheme">
+                            <p><strong>Mark Scheme (Any two from):</strong></p>
+                            <ul>
+                                <li>Harmful chemicals/toxic materials (e.g., lead, mercury) can leach into soil/waterways from landfill. (1 mark)</li>
+                                <li>Non-biodegradable materials take up landfill space for a very long time. (1 mark)</li>
+                                <li>Improper recycling processes can release pollutants into the atmosphere. (1 mark)</li>
+                                <li>Loss of valuable resources (rare earth metals) that could have been recovered. (1 mark)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="exam-question-item">
+                        <p class="font-medium text-gray-800 mb-2">2. Explain how the energy consumption of data centres can contribute to climate change. [2 marks]</p>
+                        <textarea id="exam-q2-env" class="exam-answer-textarea" placeholder="Link data centre energy to climate change..."></textarea>
+                        <button class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q2-env', 'exam-q2-env', 15)">Show Mark Scheme</button>
+                        <div id="ms-exam-q2-env" class="mark-scheme">
+                            <p><strong>Mark Scheme:</strong></p>
+                            <ul>
+                                <li>Data centres consume large amounts of electricity (for powering servers and cooling). (1 mark)</li>
+                                <li>If this electricity is generated from fossil fuels, it leads to increased greenhouse gas emissions (e.g., CO2), which contribute to global warming/climate change. (1 mark)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="exam-question-item">
+                        <p class="font-medium text-gray-800 mb-2">3. Suggest one way a computer user can reduce the environmental impact of their technology use. [1 mark]</p>
+                        <textarea id="exam-q3-env" class="exam-answer-textarea" placeholder="One individual action..."></textarea>
+                        <button class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q3-env', 'exam-q3-env', 10)">Show Mark Scheme</button>
+                        <div id="ms-exam-q3-env" class="mark-scheme">
+                            <p><strong>Mark Scheme (Any one from):</strong></p>
+                            <ul>
+                                <li>Recycle old devices responsibly.</li>
+                                <li>Use devices for longer before replacing them / repair devices instead of buying new.</li>
+                                <li>Turn off devices when not in use / use energy-saving modes.</li>
+                                <li>Choose energy-efficient devices when purchasing.</li>
+                                <li>Reduce unnecessary printing.</li>
+                                <li>Dispose of batteries correctly.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="related-videos-environmental" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-video mr-2 text-purple-500"></i> Related Videos</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-purple-50 p-5 rounded-lg border border-purple-200 space-y-4">
+                    <p class="text-gray-700">Watch these videos to learn more about the environmental impact of technology:</p>
+                    <ul class="list-disc list-inside space-y-3 text-purple-800 pl-4">
+                        <li>
+                            <strong>Video 1: The Problem with E-Waste</strong>
+                            <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 1: E-Waste Explained]</div>
+                        </li>
+                        <li>
+                            <strong>Video 2: Data Centers and Energy Consumption</strong>
+                            <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 2: Data Centre Energy]</div>
+                        </li>
+                         <li>
+                            <strong>Video 3: Green Computing Initiatives</strong>
+                            <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 3: Solutions & Green IT]</div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="key-takeaways-environmental" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-key mr-2"></i>Key Takeaways</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-300 space-y-2 show">
+                    <ul class="list-disc list-inside space-y-1 text-yellow-800">
+                        <li><strong class="keyword">E-waste<span class="tooltip">Discarded electrical or electronic devices. Contains toxic materials like lead, mercury, cadmium, which can leach into soil and water if not disposed of properly.</span></strong>: Discarded electronics can pollute soil and water with harmful chemicals if not managed properly.</li>
+                        <li><strong class="keyword">Energy Consumption<span class="tooltip">The use of energy or power. Computing devices and data centres consume significant amounts of electricity, contributing to greenhouse gas emissions if sourced from fossil fuels.</span></strong>: Manufacturing and using tech devices, especially <span class="keyword">data centres<span class="tooltip">Facilities used to house computer systems and associated components, such as telecommunications and storage systems. They consume vast amounts of energy for power and cooling.</span></span>, requires significant energy, contributing to greenhouse gas emissions and climate change if reliant on fossil fuels.</li>
+                        <li><strong class="keyword">Carbon Footprint<span class="tooltip">The total amount of greenhouse gases (including carbon dioxide and methane) that are generated by our actions. The tech industry has a significant carbon footprint from manufacturing, transportation,and energy use.</span></strong>: The tech industry has a considerable carbon footprint from raw material extraction, manufacturing, transport, use, and disposal.</li>
+                        <li><strong>Resource Depletion:</strong> Manufacturing electronics requires <span class="keyword">rare earth materials<span class="tooltip">A set of seventeen chemical elements in the periodic table. Essential for many electronic components. Mining them can be environmentally destructive and resource-intensive.</span></span> and significant <span class="keyword">water consumption<span class="tooltip">The manufacturing of semiconductors and other electronic components requires large quantities of water, potentially contributing to water scarcity in some regions.</span></span>, leading to environmental damage from mining and potential water scarcity.</li>
+                        <li><strong>Solutions:</strong> Include responsible recycling, designing for durability and repairability (circular economy), using renewable energy, energy-efficient practices, and mindful consumption.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="next-steps-environmental" class="task-container">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600">What's Next?</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-teal-50 p-5 rounded-lg border border-teal-300">
+                    <p class="text-teal-800 font-medium">You've explored the significant environmental impacts of computer science.</p>
+                    <p class="text-teal-700 mt-2">This is a crucial part of Topic 1.6 "Ethical, Legal, Cultural and Environmental concerns." Next, you might explore:</p>
+                    <ul class="list-disc list-inside space-y-1 text-teal-700 mt-3 pl-4">
+                        <li>The ethical implications of AI and autonomous systems.</li>
+                        <li>Data privacy and security laws (like GDPR and the Data Protection Act).</li>
+                        <li>The Computer Misuse Act and cybercrime.</li>
+                        <li>Copyright, patents, and intellectual property in software.</li>
+                        <li>The cultural impact of technology (e.g., digital divide, social media effects).</li>
+                    </ul>
+                     <p class="mt-3"><a href="mgsgcse16.html" class="font-semibold text-teal-900 hover:underline">← Back to Ethical, Legal, Cultural & Environmental Concerns Overview</a></p>
+                </div>
+            </section>
+
+            <section id="extension-activities-environmental" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-recycle mr-2 text-orange-500"></i> Extension Activities</h2>
+                <div class="bg-orange-50 p-5 rounded-lg border border-orange-200 space-y-6">
+                    <div class="extension-task">
+                        <h3 class="font-semibold text-orange-800 mb-2">1. The Circular Economy in Tech</h3>
+                        <p class="text-sm text-gray-700 mb-2">The concept of a <span class="keyword">circular economy<span class="tooltip">An economic model focused on minimizing waste and making the most of resources by keeping products and materials in use for as long as possible, through repairing, reusing, refurbishing, and recycling.</span></span> aims to move away from a "take-make-dispose" model.</p>
+                        <p class="text-sm text-gray-700 mb-2">Research Task: How can the principles of a circular economy be applied to the lifecycle of electronic devices? Find one example of a company or initiative that is promoting a more circular approach to electronics.</p>
+                        <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Circular economy principles for tech? Company example?"></textarea>
+                    </div>
+                    <div class="extension-task border-t border-orange-200 pt-4">
+                        <h3 class="font-semibold text-orange-800 mb-2">2. Green Computing & Sustainable Software</h3>
+                        <p class="text-sm text-gray-700 mb-2"><span class="keyword">Green computing<span class="tooltip">The environmentally responsible and eco-friendly use of computers and their resources. Includes practices like energy efficiency, e-waste reduction, and use of sustainable materials.</span></span> involves designing, manufacturing, using, and disposing of computing resources in an environmentally friendly way. This also extends to software.</p>
+                        <p class="text-sm text-gray-700 mb-2">Research Task: What are some principles of "sustainable software engineering"? How can the way software is written and run impact energy consumption?</p>
+                        <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Principles of sustainable software? Software's impact on energy?"></textarea>
+                    </div>
+                    <div class="extension-task border-t border-orange-200 pt-4">
+                        <h3 class="font-semibold text-orange-800 mb-2">3. The Human Cost of Mining</h3>
+                        <p class="text-sm text-gray-700 mb-2">The extraction of <span class="keyword">rare earth materials<span class="tooltip">A set of seventeen chemical elements in the periodic table. Essential for many electronic components. Mining them can be environmentally destructive and resource-intensive.</span></span> and other minerals like cobalt and coltan (used in batteries and electronics) often has significant social and ethical implications in the regions where they are mined, beyond just the environmental damage.</p>
+                        <p class="text-sm text-gray-700 mb-2">Research Task: Briefly investigate the social or ethical issues associated with the mining of one specific material used in electronic devices (e.g., cobalt in the DRC, tin, tantalum, tungsten - "conflict minerals").</p>
+                        <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Material chosen? Associated social/ethical issues?"></textarea>
+                    </div>
+                </div>
+            </section>
+            
+            <footer class="mt-12 text-center no-print">
+                <div id="final-score-area" class="task-container bg-purple-100 border-purple-300 mb-6">
+                    <h2 class="task-title text-2xl text-purple-700">Worksheet Score</h2>
+                    <p id="final-score-display" class="text-3xl font-bold text-purple-800">Your score: 0 / 0</p>
+                    <p id="final-score-feedback" class="text-purple-600"></p>
+                </div>
+                <button id="calculate-final-score" class="final-button">Calculate Final Score</button>
+                <button id="reset-all-tasks" class="reset-button">Reset All Tasks</button>
+                <button id="export-pdf-button" class="export-pdf-button">Export to PDF</button>
+            </footer>
+
+        </main>
+    </div>
+
+    
+    <script src="js/gcse-ethics-enviro.js"></script>
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCSE CS Lesson: Data Representation - Digital Sound</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    
+<link rel="stylesheet" href="css/style.css">
+</head>
+<nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <a href="home.html" class="text-xl font-bold hover:text-gray-300 transition-colors">MGS CS Hub</a>
+        <ul class="flex space-x-3 lg:space-x-4">
+        </ul>
+        <ul class="flex flex-wrap space-x-2 sm:space-x-3 lg:space-x-4 text-sm sm:text-base">
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 7</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 8</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 9</a></li>
+            <li><a href="gcse.html" class="hover:text-gray-300 transition-colors">GCSE</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">A Level</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Competitions</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">CS News</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Extracurricular</a></li>
+        </ul>
+    </div>
+</nav>
+
+\1
+
+
+
+    <div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-lg shadow-xl">
+
+        <a href="mgsgcse122.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 group no-print">
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left w-5 h-5 mr-2 transition-transform duration-200 group-hover:-translate-x-1"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+            Back to Data Storage 
+        </a>
+
+        <header class="mb-8 border-b pb-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-2">Data Representation: Digital Sound</h1>
+            <p class="text-lg text-gray-600">OCR GCSE Computer Science (J277) - Topic 1.2.4 (Sound)</p>
+        </header>
+
+    <main class="space-y-8 md:space-y-12">
+
+        <section id="starter-activity" class="task-container">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-volume-up mr-2 text-yellow-500"></i> Starter Activity (5 mins)</h2>
+            <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-200 space-y-4">
+                <p class="font-semibold text-yellow-800">Let's tune into sound!</p>
+                <div class="space-y-3 quiz-item" data-points="0">
+                    <p class="mb-1">1. Sound in the real world (like your voice or music) is an <span class="keyword">analogue<span class="tooltip">A signal that is continuous and can take any value within a range. Sound waves are analogue.</span></span> signal. What do you think "analogue" means in this context?</p>
+                    <textarea id="starter-q1-sound" class="w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" rows="2" placeholder="Your understanding of analogue..."></textarea>
+
+                    <p class="mt-3 mb-1">2. Computers work with <span class="keyword">digital<span class="tooltip">A signal that is discrete, meaning it can only take on specific, separate values (usually represented by binary 0s and 1s).</span></span> data (binary). How might a computer capture and store a continuous sound wave as digital data?</p>
+                    <textarea id="starter-q2-sound" class="w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" rows="2" placeholder="Any initial ideas on converting sound?"></textarea>
+
+                    <p class="mt-3 mb-1">3. What factors do you think might affect the quality of a digital sound recording (e.g., making it sound clear vs. muffled)?</p>
+                    <textarea id="starter-q3-sound" class="w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" rows="2" placeholder="e.g., microphone quality, ..."></textarea>
+                </div>
+                <button class="reveal-button !bg-yellow-500 hover:!bg-yellow-600 no-print" onclick="toggleReveal('starter-sound-answers-feedback', this, 'Reveal Example Answers', 'Hide Example Answers')">Reveal Example Answers</button>
+                <div id="starter-sound-answers-feedback" class="feedback-area !bg-yellow-100 !border-yellow-300 !text-yellow-700">
+                    <p><strong>Example Answers:</strong></p>
+                    <ol class="list-decimal list-inside">
+                        <li>Analogue means the signal is continuous and can have any value within a range, like a smooth wave.</li>
+                        <li>Computers might take lots of quick measurements (samples) of the sound wave's height at different points in time and store these measurements as numbers.</li>
+                        <li>Factors affecting quality could include: how often the sound is measured (sample rate), how precisely each measurement is stored (bit depth), the quality of the microphone, and background noise.</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section id="lesson-outcomes" class="task-container">
+             <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-bullseye mr-2 text-green-500"></i> Lesson Outcomes</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-green-50 p-5 rounded-lg border border-green-200">
+                <p class="font-semibold text-green-800 mb-3">By the end of this lesson, you should be able to:</p>
+                <ul class="list-disc list-inside space-y-2 text-green-700 pl-4">
+                    <li>Explain how sound is <span class="keyword">sampled<span class="tooltip">Recording the amplitude (height) of a sound wave at regular intervals.</span></span> and stored in digital form.</li>
+                    <li>Define <span class="keyword">sample rate<span class="tooltip">The frequency (rate) at which samples are measured per second. Sample rate is usually measured in Hertz (Hz). 1Hz = 1 sample per second.</span></span> and explain its effect on sound quality and file size.</li>
+                    <li>Define <span class="keyword">bit depth<span class="tooltip">Also known as sample resolution. The number of bits used to record each measurement (sample). More bits allow for more accurate representation of the amplitude.</span></span> (sample resolution) and explain its effect on sound quality and file size.</li>
+                    <li>Understand the role of duration in sound file size.</li>
+                    <li>Calculate sound file sizes (File size = Sample Rate × Duration × Bit Depth).</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="intro-sound" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-music mr-2"></i> Introduction to Digital Sound</h2>
+                 <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-indigo-50 p-5 rounded-lg border border-indigo-200 space-y-3">
+                <p>Sound waves in the real world are <strong class="keyword">analogue<span class="tooltip">A signal that is continuous and can take any value within a range. Sound waves are analogue.</span></strong> signals – they are continuous and vary smoothly over time. Computers, however, work with <strong class="keyword">digital<span class="tooltip">A signal that is discrete, meaning it can only take on specific, separate values (usually represented by binary 0s and 1s).</span></strong> data (binary 0s and 1s).</p>
+                <p>To store sound digitally, the analogue sound wave must be converted. This process is called <strong class="keyword">sampling<span class="tooltip">Recording the amplitude (height) of a sound wave at regular intervals.</span></strong>. The amplitude (height or loudness) of the sound wave is measured at regular time intervals. Each measurement (or "sample") is then converted into a binary number and stored.</p>
+                <p>The more frequently we take samples (<span class="keyword">sample rate<span class="tooltip">The frequency (rate) at which samples are measured per second. Sample rate is usually measured in Hertz (Hz). 1Hz = 1 sample per second.</span></span>) and the more bits we use to store each sample (<span class="keyword">bit depth<span class="tooltip">Also known as sample resolution. The number of bits used to record each measurement (sample). More bits allow for more accurate representation of the amplitude.</span></span>), the closer the digital representation will be to the original analogue sound, resulting in higher quality but also a larger file size.</p>
+            </div>
+        </section>
+
+        <section id="task1-key-concepts" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-700"><i class="fas fa-question-circle mr-2"></i>Task 1: Key Sound Concepts <span class="task-completion-indicator" id="task-1-complete"></span><span class="font-bold text-sm text-gray-500 ml-auto">(Max 6 points)</span></h2>
+            <p class="text-gray-600 mb-4">Answer the following questions about the key concepts in digital sound.</p>
+            <div class="space-y-4">
+                <div class="quiz-item" data-points="2">
+                    <p class="font-medium text-gray-800 mb-1">1. Describe what <span class="keyword">sample rate<span class="tooltip">The frequency (rate) at which samples are measured per second. Sample rate is usually measured in Hertz (Hz). 1Hz = 1 sample per second.</span></span> refers to in digital audio and state the unit it's measured in.</p>
+                    <textarea id="q1-samplerate" class="w-full p-2 border rounded-md" rows="2" placeholder="Definition and unit..."></textarea>
+                    <div id="feedback-q1-samplerate" class="feedback-area"></div>
+                </div>
+                <div class="quiz-item" data-points="2">
+                    <p class="font-medium text-gray-800 mb-1">2. The audio represented below uses a <span class="keyword">bit depth<span class="tooltip">Also known as sample resolution. The number of bits used to record each measurement (sample). More bits allow for more accurate representation of the amplitude.</span></span> of 4 bits. Describe what that means.</p>
+                    <textarea id="q2-bitdepth-desc" class="w-full p-2 border rounded-md" rows="2" placeholder="What does 4-bit bit depth mean?"></textarea>
+                    <div id="feedback-q2-bitdepth-desc" class="feedback-area"></div>
+                </div>
+                <div class="quiz-item" data-points="1">
+                    <p class="font-medium text-gray-800 mb-1">3. If we increase the bit depth of the audio to 6 bits, what is the total number of possible amplitude levels that a sample can be approximated to?</p>
+                    <input type="number" id="q3-bitdepth-6bit" class="fill-blank w-24 p-2 border rounded-md text-center">
+                    <div id="feedback-q3-bitdepth-6bit" class="feedback-area"></div>
+                </div>
+                 <div class="quiz-item" data-points="1">
+                    <p class="font-medium text-gray-800 mb-1">4. Describe the effect that increasing the bit depth has on the <span class="keyword">quality<span class="tooltip">Increasing the colour depth or resolution will make this better</span></span> of the audio AND the <span class="keyword">file size<span class="tooltip">This goes up if we make the quality better by increasing the colour depth or resolution, meaning we need more storage</span></span>.</p>
+                    <textarea id="q4-bitdepth-effect" class="w-full p-2 border rounded-md" rows="2" placeholder="Effect on quality and file size..."></textarea>
+                    <div id="feedback-q4-bitdepth-effect" class="feedback-area"></div>
+                </div>
+            </div>
+            <button class="check-button no-print" onclick="checkTask1SoundConcepts()">Check Task 1 Answers</button>
+            <button class="reset-button no-print" onclick="resetTask1SoundConcepts()">Reset Task 1</button>
+        </section>
+
+        <section id="task2-waveform-sim" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-700"><i class="fas fa-wave-square mr-2"></i>Task 2: Interactive Waveform Simulator <span class="font-bold text-sm text-gray-500 ml-auto">(Not Scored)</span></h2>
+            <p class="text-gray-600 mb-4">Adjust the <span class="keyword">Sample Rate<span class="tooltip">The frequency (rate) at which samples are measured per second. Sample rate is usually measured in Hertz (Hz). 1Hz = 1 sample per second.</span></span> and <span class="keyword">Bit Depth<span class="tooltip">Also known as sample resolution. The number of bits used to record each measurement (sample). More bits allow for more accurate representation of the amplitude.</span></span> to see how they affect the digital representation of an analogue sound wave. Observe how the sampled wave (blue steps) tries to approximate the original analogue wave (red curve).</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+                <div class="md:col-span-2">
+                    <canvas id="waveform-canvas" width="500" height="300"></canvas>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <label for="sample-rate-slider" class="slider-label">Sample Rate: <span id="sample-rate-value" class="slider-value">10 Hz</span></label>
+                        <input type="range" id="sample-rate-slider" min="2" max="50" value="10" class="w-full">
+                    </div>
+                    <div>
+                        <label for="bit-depth-slider" class="slider-label">Bit Depth: <span id="bit-depth-value" class="slider-value">2 bits</span> (<span id="levels-value">4</span> levels)</label>
+                        <input type="range" id="bit-depth-slider" min="1" max="8" value="2" class="w-full">
+                    </div>
+                    <p class="text-sm text-gray-600">Conceptual File Size: <strong id="sound-file-size-sim" class="text-indigo-600">0 bits</strong></p>
+                    <button class="sim-button !w-full" onclick="redrawWaveform()">Redraw Waveform</button>
+                </div>
+            </div>
+            <p class="text-xs text-gray-500 mt-3 italic">Note: The "analogue" wave is a simple sine wave for demonstration. Higher sample rates take more "snapshots" per second. Higher bit depth provides more precise levels to represent the wave's amplitude at each snapshot.</p>
+        </section>
+
+        <section id="task3-file-size-calc" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-700"><i class="fas fa-calculator mr-2"></i>Task 3: Sound File Size Calculation <span class="task-completion-indicator" id="task-3-complete"></span><span class="font-bold text-sm text-gray-500 ml-auto">(Max 3 points per calculation)</span></h2>
+            <p class="text-gray-600 mb-4">Calculate the file size for the following audio files. Remember the formula: <br>
+                <strong>File Size (bits) = <span class="keyword">Sample Rate<span class="tooltip">The frequency (rate) at which samples are measured per second. Sample rate is usually measured in Hertz (Hz). 1Hz = 1 sample per second.</span></span> (Hz) × Duration (seconds) × <span class="keyword">Bit Depth<span class="tooltip">Also known as sample resolution. The number of bits used to record each measurement (sample). More bits allow for more accurate representation of the amplitude.</span></span> (bits)</strong>. <br>
+                Convert your final answer to a suitable unit (e.g., Bytes, KB, MB). Show your working for one question.
+            </p>
+            <div id="sound-file-size-questions" class="space-y-6">
+                </div>
+            <button class="check-button no-print" onclick="checkAllSoundCalculations()">Check All Calculations</button>
+            <button class="reset-button no-print" onclick="resetAllSoundCalculations()">Reset Calculations</button>
+            <div id="sound-file-size-overall-feedback" class="feedback-area mt-4"></div>
+        </section>
+
+        <section id="real-world-context" class="task-container">
+             <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-headphones-alt mr-2"></i> Real-World Context: Digital Audio</h2>
+                 <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-blue-50 p-5 rounded-lg border border-blue-200 space-y-3">
+                <p>Understanding digital sound representation is key to many technologies we use daily:</p>
+                <ul class="list-disc list-inside text-blue-700 pl-4">
+                    <li><strong>Music Streaming (Spotify, Apple Music):</strong> These services deliver compressed audio files. The quality settings often relate to the original sample rate and bit depth before compression. Higher quality means larger files and more data usage.</li>
+                    <li><strong>CDs:</strong> Standard CD quality audio is typically sampled at 44.1 kHz (44,100 samples per second) with a 16-bit depth.</li>
+                    <li><strong>Digital Voice Assistants (Alexa, Siri):</strong> Your voice commands are sampled, digitized, and sent to servers for processing.</li>
+                    <li><strong>Phone Calls (VoIP):</strong> Voice over IP services digitize your voice for transmission over the internet. Sample rate and bit depth are balanced for clarity and bandwidth efficiency.</li>
+                    <li><strong>Video Games & Movies:</strong> High-quality sound effects and music in games and films are created and stored using digital audio principles, often at high sample rates and bit depths for immersion.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="myth-busters" class="task-container">
+             <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-microphone-slash mr-2 text-red-500"></i> Sound Myth Busters!</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-red-50 p-5 rounded-lg border border-red-200 space-y-4">
+                <div>
+                    <p><strong class="font-semibold text-red-800">Myth:</strong> "A higher sample rate ALWAYS means the sound will be noticeably better to human ears."</p>
+                    <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> While higher sample rates capture more information, human hearing has limits (typically up to ~20 kHz). The Nyquist-Shannon sampling theorem states that the sample rate needs to be at least twice the highest frequency you want to capture. CD quality (44.1 kHz) already captures frequencies beyond typical human hearing. Extremely high sample rates (e.g., 192 kHz) might offer theoretical benefits for audio processing but often don't result in a perceptible difference for most listeners, while significantly increasing file size.</p>
+                </div>
+                <div class="border-t border-red-200 pt-4">
+                    <p><strong class="font-semibold text-red-800">Myth:</strong> "Bit depth only affects how loud the sound is."</p>
+                    <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> <span class="keyword">Bit depth<span class="tooltip">Also known as sample resolution. The number of bits used to record each measurement (sample). More bits allow for more accurate representation of the amplitude.</span></span> determines the number of possible amplitude levels for each sample. While this relates to the dynamic range (difference between loudest and quietest sounds), it more directly impacts the precision of each sample. Higher bit depth reduces quantization noise (the error introduced when approximating an analogue value with a digital one), leading to a cleaner, more detailed sound with a lower noise floor, not just overall loudness.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="exam-practice" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-700"><i class="fas fa-pencil-alt mr-2"></i> Exam Practice Questions</h2>
+             <div class="exam-question-item mb-6 pb-4 border-b">
+                <p class="font-medium text-gray-800 mb-2">1. Explain how an analogue sound wave is converted into a digital sound file. [3 marks]</p>
+                <textarea id="exam-q1-sound" class="w-full p-2 border border-gray-300 rounded-md mt-1" rows="3" placeholder="Describe the sampling process..."></textarea>
+                <button class="mark-scheme-button no-print" onclick="checkThenToggleMarkScheme('exam-q1-sound', 'ms-exam-q1-sound', this, 20)">Show Mark Scheme</button>
+                <div id="ms-exam-q1-sound" class="mark-scheme">
+                    <p><strong>Mark Scheme:</strong></p>
+                    <ul>
+                        <li>The amplitude/height of the analogue sound wave is measured/taken at regular/set intervals. (1 mark) - This is <span class="keyword">sampling<span class="tooltip">Recording the amplitude (height) of a sound wave at regular intervals.</span></span>.</li>
+                        <li>Each sample/measurement is converted into/stored as a binary number / digital value. (1 mark)</li>
+                        <li>These binary numbers/samples are stored in sequence (to represent the sound). (1 mark)</li>
+                        <li>(Allow: The digital representation is an approximation of the original analogue wave.)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="exam-question-item">
+                <p class="font-medium text-gray-800 mb-2">2. A sound file is recorded for 10 seconds at a sample rate of 22,050 Hz using a bit depth of 8 bits. Calculate the file size in Kilobytes (KB). Show your working. (Assume 1 KB = 1000 Bytes). [3 marks]</p>
+                <textarea id="exam-q2-sound" class="w-full p-2 border border-gray-300 rounded-md mt-1" rows="4" placeholder="Show your calculation steps..."></textarea>
+                <button class="mark-scheme-button no-print" onclick="checkThenToggleMarkScheme('exam-q2-sound', 'ms-exam-q2-sound', this, 20)">Show Mark Scheme</button>
+                <div id="ms-exam-q2-sound" class="mark-scheme">
+                    <p><strong>Mark Scheme:</strong></p>
+                    <ul>
+                        <li>File size in bits = Sample Rate × Duration × Bit Depth = 22050 × 10 × 8 (1 mark for correct formula/values).</li>
+                        <li>File size in bits = 1,764,000 bits (1 mark for correct calculation in bits).</li>
+                        <li>File size in Bytes = 1,764,000 / 8 = 220,500 Bytes.</li>
+                        <li>File size in KB = 220,500 / 1000 = 220.5 KB (1 mark for correct final answer in KB with unit).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="related-videos" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-video mr-2 text-purple-500"></i> Related Videos</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-purple-50 p-5 rounded-lg border border-purple-200 space-y-4">
+                <p class="text-gray-700">Watch these videos to reinforce your understanding of digital sound:</p>
+                <ul class="list-disc list-inside space-y-3 text-purple-800 pl-4">
+                    <li>
+                        <strong>Video 1: How Digital Audio Works (Sampling, Bit Depth)</strong>
+                        <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Placeholder: Link to a video about digital audio basics]</div>
+                    </li>
+                    <li>
+                        <strong>Video 2: OCR GCSE (J277) 1.2 Representing sound</strong>
+                        <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1"><a href="https://www.youtube.com/watch?v=7Up7DIPkTzo&list=PLCiOXwirraUAEhj4TUjMxYm4593B2dUPF" target="_blank" class="text-purple-700 hover:underline">Watch on YouTube (Craig'n'Dave)</a></div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="key-takeaways" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-key mr-2"></i>Key Takeaways</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-300 space-y-2">
+                <ul class="list-disc list-inside space-y-1 text-yellow-800">
+                    <li>Sound is an <strong class="keyword">analogue<span class="tooltip">A signal that is continuous and can take any value within a range. Sound waves are analogue.</span></strong> wave; computers store it digitally.</li>
+                    <li><strong class="keyword">Sampling<span class="tooltip">Recording the amplitude (height) of a sound wave at regular intervals.</span></strong> is measuring the sound wave's amplitude at regular intervals.</li>
+                    <li><strong class="keyword">Sample Rate<span class="tooltip">The frequency (rate) at which samples are measured per second. Sample rate is usually measured in Hertz (Hz). 1Hz = 1 sample per second.</span></strong> (Hz): How many samples are taken per second. Higher rate = better quality, larger file.</li>
+                    <li><strong class="keyword">Bit Depth<span class="tooltip">Also known as sample resolution. The number of bits used to record each measurement (sample). More bits allow for more accurate representation of the amplitude.</span></strong> (bits): Number of bits used to store each sample's amplitude. Higher depth = more amplitude levels, better quality, larger file.</li>
+                    <li>File Size (bits) = Sample Rate × Duration (s) × Bit Depth.</li>
+                    <li>Higher sample rate and bit depth generally improve sound <span class="keyword">quality<span class="tooltip">Increasing the colour depth or resolution will make this better</span></span> but increase <span class="keyword">file size<span class="tooltip">This goes up if we make the quality better by increasing the colour depth or resolution, meaning we need more storage</span></span>.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="next-steps" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-indigo-600">What's Next?</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-teal-50 p-5 rounded-lg border border-teal-300">
+                <p class="text-teal-800 font-medium">You've now covered the fundamentals of how sound is represented digitally!</p>
+                <p class="text-teal-700 mt-2">This completes the "Data Storage" sub-topic (1.2.4) within "Memory and Storage". The next topic in the specification is:</p>
+                <ul class="list-disc list-inside space-y-1 text-teal-700 mt-3 pl-4">
+                    <li><a href="gcse-memstore-compression.html" class="font-semibold text-teal-900 hover:underline">Compression (Lossy & Lossless)</a> (Spec 1.2.5)</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="extension-activities" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-flask mr-2 text-orange-500"></i> Extension Activities</h2>
+            <div class="bg-orange-50 p-5 rounded-lg border border-orange-200 space-y-6">
+                <div class="extension-task">
+                    <h3 class="font-semibold text-orange-800 mb-2">1. Nyquist-Shannon Sampling Theorem</h3>
+                    <p class="text-sm text-gray-700 mb-2">The quality of a digital audio recording is heavily influenced by the sample rate. There's a famous theorem related to this.</p>
+                    <p class="text-sm text-gray-700 mb-2">Research Task: What is the Nyquist-Shannon sampling theorem? How does it relate to the minimum sample rate needed to accurately capture a sound of a certain frequency (e.g., human speech or music)?</p>
+                    <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="What is the theorem? Its implication for sample rates?"></textarea>
+                </div>
+                <div class="extension-task border-t border-orange-200 pt-4">
+                    <h3 class="font-semibold text-orange-800 mb-2">2. Audio File Formats (WAV, MP3, FLAC)</h3>
+                    <p class="text-sm text-gray-700 mb-2">Digital audio is stored in various file formats. Some are uncompressed, some use lossless compression, and others use lossy compression.</p>
+                    <p class="text-sm text-gray-700 mb-2">Research Task: Compare WAV, MP3, and FLAC audio file formats. For each, state whether it's typically uncompressed, lossy, or lossless. What are the typical use cases or advantages/disadvantages of each?</p>
+                    <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="WAV: Type? Use? MP3: Type? Use? FLAC: Type? Use?"></textarea>
+                </div>
+            </div>
+        </section>
+
+        <footer class="mt-12 text-center no-print">
+            <div id="final-score-area" class="task-container bg-purple-100 border-purple-300 mb-6">
+                <h2 class="task-title text-2xl text-purple-700">Worksheet Score</h2>
+                <p id="final-score-display-text" class="text-3xl font-bold text-purple-800">Your score: <span id="current-score-value">0</span> / <span id="total-possible-score-value">0</span></p>
+                <p id="final-score-feedback" class="text-purple-600"></p>
+            </div>
+            <button id="calculate-final-score" class="final-button">Calculate Final Score</button>
+            <button id="reset-all-tasks" class="reset-button">Reset All Tasks</button>
+            <button id="export-pdf" class="export-pdf-button">Export to PDF</button>
+        </footer>
+
+    </main>
+    </div>
+
+    
+    <script src="js/gcse-memstore-datastorage-sounds.js"></script>
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+</html>

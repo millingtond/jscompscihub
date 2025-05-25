@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCSE CS Lesson: Understanding Subroutines (OCR ERL & Python)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" xintegrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .code-line { transition: background-color 0.3s ease-in-out; padding: 2px 0; }
+        .highlight-line { background-color: #fdffa3; /* Light yellow highlight */ }
+        .code-block-container { display: flex; flex-wrap: wrap; gap: 20px; margin-top:10px; }
+        .code-block-container > div { flex: 1; min-width: 280px; }
+        .draggable-label.correct { background-color: #a7f3d0; border-color: #059669;}
+        .draggable-label.incorrect { background-color: #fecaca; border-color: #dc2626;}
+        .drop-zone.drag-over { background-color: #e0e7ff; }
+        .parameter, .argument { font-style: italic; color: #7c3aed; /* purple-700 */ }
+        .scope-global { color: #2563eb; /* blue-600 */ font-weight: bold; }
+        .scope-local { color: #16a34a; /* green-600 */ font-weight: bold; }
+        .python-keyword { color: #c026d3; /* fuchsia-600 */ font-weight: bold;}
+        .python-comment { color: #52525b; /* zinc-600 */ font-style: italic;}
+    </style>
+</head>
+<nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <a href="index.html" class="text-xl font-bold hover:text-gray-300 transition-colors">MGS CS Hub</a>
+        <ul class="flex flex-wrap space-x-2 sm:space-x-3 lg:space-x-4 text-sm sm:text-base">
+            <li><a href="y7.html" class="hover:text-gray-300 transition-colors">Year 7</a></li>
+            <li><a href="y8.html" class="hover:text-gray-300 transition-colors">Year 8</a></li>
+            <li><a href="y9.html" class="hover:text-gray-300 transition-colors">Year 9</a></li>
+            <li><a href="gcse.html" class="hover:text-gray-300 transition-colors">GCSE</a></li>
+            <li><a href="alevel.html" class="hover:text-gray-300 transition-colors">A Level</a></li>
+            <li><a href="competitions.html" class="hover:text-gray-300 transition-colors">Competitions</a></li>
+            <li><a href="news.html" class="hover:text-gray-300 transition-colors">CS News</a></li>
+            <li><a href="extracurricular.html" class="hover:text-gray-300 transition-colors">Extracurricular</a></li>
+        </ul>
+    </div>
+</nav>
+
+    <div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-lg shadow-xl">
+
+        <a href="gcse-programming-techniques.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 group">
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left w-5 h-5 mr-2 transition-transform duration-200 group-hover:-translate-x-1"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+            Back to Programming Techniques
+        </a>
+
+        <header class="mb-8 border-b pb-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-2">Programming Fundamentals: Understanding Subroutines</h1>
+            <p class="text-lg text-gray-600">OCR GCSE Computer Science (J277) - Topic 2.2.1: Subprograms (with Python comparisons)</p>
+        </header>
+
+        <section id="starter-recap" class="mb-10">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-cogs mr-2 text-yellow-500"></i> Starter Activity: Breaking Down Tasks (5 mins)</h2>
+            <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-200 space-y-4">
+                <p class="font-semibold text-yellow-800">Think about these questions:</p>
+                <div class="space-y-3">
+                    <div class="starter-question">
+                        <label for="starter-big-task" class="block text-sm font-medium text-yellow-700"><strong>1. Imagine you're building a complex LEGO model. Do you build it all at once, or do you build smaller sections first? Why?</strong></label>
+                        <input type="text" id="starter-big-task" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" placeholder="Your thoughts on breaking down tasks...">
+                    </div>
+                    <div class="starter-question">
+                        <label for="starter-reuse-instructions" class="block text-sm font-medium text-yellow-700"><strong>2. If you had to give someone instructions to make a cup of tea AND a cup of coffee, what parts of the instructions might be very similar or reusable?</strong></label>
+                        <input type="text" id="starter-reuse-instructions" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" placeholder="Reusable instruction parts...">
+                    </div>
+                    <div class="starter-question">
+                        <label for="starter-subroutine-guess" class="block text-sm font-medium text-yellow-700"><strong>3. What do you think a "subroutine" or "subprogram" might be in computer programming?</strong></label>
+                        <input type="text" id="starter-subroutine-guess" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" placeholder="Your initial guess...">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="lesson-outcomes" class="mb-10">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-bullseye mr-2 text-green-500"></i> Lesson Outcomes</h2>
+            <div class="bg-green-50 p-5 rounded-lg border border-green-200">
+                <p class="font-semibold text-green-800 mb-3">By the end of this lesson, you should be able to:</p>
+                <ul class="list-disc list-inside space-y-2 text-green-700 pl-4">
+                    <li>Define a <span class="keyword">subroutine<span class="tooltip">A named block of code designed to perform a specific task. Can be called multiple times.</span></span> and explain its purpose.</li>
+                    <li>Distinguish between a <span class="keyword">procedure<span class="tooltip">A type of subroutine that performs a task but does not return a value.</span></span> and a <span class="keyword">function<span class="tooltip">A type of subroutine that performs a task and returns a value to the part of the program that called it.</span></span> in both OCR ERL and Python.</li>
+                    <li>Understand and use <span class="keyword">parameters<span class="tooltip">Variables listed in a subroutine's definition that receive values when the subroutine is called.</span></span> to pass data into subroutines.</li>
+                    <li>Understand how functions use <span class="keyword">return values<span class="tooltip">A value sent back by a function to the part of the program that called it.</span></span>.</li>
+                    <li>Explain variable <span class="keyword">scope<span class="tooltip">The region of a program where a variable is accessible.</span></span> (<span class="keyword">local<span class="tooltip">Variables declared inside a subroutine, only accessible within that subroutine.</span></span> vs. <span class="keyword">global<span class="tooltip">Variables declared outside of any subroutine, accessible from anywhere in the program (use with caution!).</span></span>) in OCR ERL and Python.</li>
+                    <li>Describe the advantages of using subroutines.</li>
+                    <li>Write and call simple procedures and functions in OCR Exam Reference Language and Python.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="mb-10">
+             <div class="flex justify-between items-center mb-4">
+                 <h2 class="text-2xl font-semibold text-indigo-600">Introduction to Subroutines</h2>
+                 <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                     <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer read-checkbox">
+                     Read
+                 </label>
+             </div>
+             <div class="bg-indigo-50 p-5 rounded-lg border border-indigo-200 space-y-3">
+                <p>In programming, we often need to perform the same set of actions multiple times, or we want to break down large, complex problems into smaller, more manageable pieces. This is where <span class="keyword">subroutines<span class="tooltip">A named block of code designed to perform a specific task. Can be called multiple times.</span></span> (also known as subprograms, methods, or functions in different languages) come in!</p>
+                <p>A subroutine is a named block of code that performs a specific task. Once defined, it can be <span class="keyword">called<span class="tooltip">To execute a subroutine by using its name.</span></span> (executed) from other parts of the program. This helps in <span class="keyword">decomposition<span class="tooltip">Breaking down a complex problem into smaller, more manageable sub-problems, often implemented as subroutines.</span></span> – making our programs easier to write, understand, test, and maintain.</p>
+                <p>In OCR Exam Reference Language (ERL), we distinguish between:
+                    <ul class="list-disc list-inside ml-6">
+                        <li><strong>Procedures:</strong> Perform a task but do not send a value back (e.g., <code>procedure greet(name) ... endprocedure</code>).</li>
+                        <li><strong>Functions:</strong> Perform a task and <span class="keyword">return a value<span class="tooltip">A value sent back by a function to the part of the program that called it.</span></span> (e.g., <code>function add(a,b) ... return result ... endfunction</code>).</li>
+                    </ul>
+                </p>
+                <p>In <span class="python-keyword">Python</span>, both are defined using the <code class="python-keyword">def</code> keyword. A Python function implicitly returns <code>None</code> if no explicit <code>return</code> statement is used, behaving like a procedure. If it has a <code>return</code> statement with a value, it acts like an ERL function.</p>
+                <p>Subroutines accept data via <span class="keyword">parameters<span class="tooltip">Variables listed in a subroutine's definition that receive values when the subroutine is called.</span></span> (placeholders in the definition) when called with <span class="keyword">arguments<span class="tooltip">The actual values passed to a subroutine's parameters when it is called.</span></span> (the actual values). We'll also explore variable <span class="keyword">scope<span class="tooltip">The region of a program where a variable is accessible.</span></span> (<span class="keyword">local<span class="tooltip">Variables declared inside a subroutine, only accessible within that subroutine.</span></span> vs. <span class="keyword">global<span class="tooltip">Variables declared outside of any subroutine, accessible from anywhere in the program (use with caution!).</span></span>).</p>
+            </div>
+        </section>
+
+        <section id="task1-subroutine-type" class="task-container mb-10">
+            <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-question-circle mr-2"></i>Task 1: Procedure or Function? (OCR ERL & Python)</h3>
+            <p class="mb-4 text-gray-700">Look at the code examples below. For each, identify if it's primarily acting as a <strong>procedure</strong> (does a task, no return value used) or a <strong>function</strong> (does a task, returns a value that's typically used), and briefly explain why.</p>
+            
+            <div class="subroutine-id-question mb-6 p-4 bg-white rounded border border-gray-200">
+                <p class="font-medium mb-1">Example A1 (OCR ERL):</p>
+                <pre class="code-block"><code class="language-pseudocode">procedure greet(name)
+    print("Hello, " + name)
+endprocedure</code></pre>
+                <p class="font-medium mt-3 mb-1">Example A2 (Python equivalent):</p>
+                <pre class="code-block"><code class="language-python"><span class="python-keyword">def</span> greet(name):
+    print(f"Hello, {name}")</code></pre>
+                <label for="type-a" class="block text-sm font-medium text-gray-700 mt-2">Are Examples A1 & A2 acting as a procedure or a function?</label>
+                <select id="type-a" class="mt-1 block w-full p-2 border exam-answer-area border-gray-300 rounded-md shadow-sm">
+                    <option value="">Select...</option>
+                    <option value="procedure">Procedure</option>
+                    <option value="function">Function</option>
+                </select>
+                <label for="reason-a" class="block text-sm font-medium text-gray-700 mt-2">Why?</label>
+                <input type="text" id="reason-a" class="mt-1 block w-full p-2 border exam-answer-area border-gray-300 rounded-md shadow-sm" placeholder="Brief explanation (consider both ERL & Python)...">
+                <button class="toggle-answer-btn disabled:opacity-50 disabled:cursor-not-allowed mt-2" data-answer-id="answer-a" disabled>Show Answer</button>
+                <div id="answer-a" class="answer-area hidden mt-2">
+                    <p><strong>Answer:</strong> Procedure</p>
+                    <p><strong>Reason:</strong> They perform an action (print a greeting). The OCR ERL version is explicitly a <code>procedure</code>. The Python version has no <code>return</code> statement that provides a value back to the caller (it implicitly returns <code>None</code>).</p>
+                </div>
+            </div>
+
+            <div class="subroutine-id-question p-4 bg-white rounded border border-gray-200">
+                <p class="font-medium mb-1">Example B1 (OCR ERL):</p>
+                <pre class="code-block"><code class="language-pseudocode">function addNumbers(num1, num2)
+    sum = num1 + num2
+    return sum
+endfunction</code></pre>
+                <p class="font-medium mt-3 mb-1">Example B2 (Python equivalent):</p>
+                <pre class="code-block"><code class="language-python"><span class="python-keyword">def</span> add_numbers(num1, num2):
+    total = num1 + num2
+    <span class="python-keyword">return</span> total</code></pre>
+                <label for="type-b" class="block text-sm font-medium text-gray-700 mt-2">Are Examples B1 & B2 acting as a procedure or a function?</label>
+                <select id="type-b" class="mt-1 block w-full p-2 border exam-answer-area border-gray-300 rounded-md shadow-sm">
+                    <option value="">Select...</option>
+                    <option value="procedure">Procedure</option>
+                    <option value="function">Function</option>
+                </select>
+                <label for="reason-b" class="block text-sm font-medium text-gray-700 mt-2">Why?</label>
+                <input type="text" id="reason-b" class="mt-1 block w-full p-2 border exam-answer-area border-gray-300 rounded-md shadow-sm" placeholder="Brief explanation (consider both ERL & Python)...">
+                <button class="toggle-answer-btn disabled:opacity-50 disabled:cursor-not-allowed mt-2" data-answer-id="answer-b" disabled>Show Answer</button>
+                <div id="answer-b" class="answer-area hidden mt-2">
+                    <p><strong>Answer:</strong> Function</p>
+                    <p><strong>Reason:</strong> Both use a <code>return</code> statement to send a calculated value back to the part of the program that called them.</p>
+                </div>
+            </div>
+            <button class="reset-button" onclick="resetTask1SubroutineType()">Reset Task 1</button>
+        </section>
+
+        <section id="task2-subroutine-anatomy" class="task-container mb-10">
+            <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-puzzle-piece mr-2"></i>Task 2: Anatomy of a Subroutine</h3>
+            <p class="mb-4 text-gray-700"><strong>Part A (OCR ERL):</strong> Drag the labels to the correct parts of the OCR ERL procedure and function definitions.</p>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h4 class="font-semibold text-center mb-2">Procedure Example (OCR ERL):</h4>
+                    <div class="bg-gray-100 p-3 rounded">
+                        <pre class="whitespace-pre-wrap"><code class="language-pseudocode text-sm">
+<span id="drop-proc-keyword" class="drop-zone" data-correct="proc-keyword" data-original-text="procedure">procedure</span> <span id="drop-proc-name" class="drop-zone" data-correct="proc-name" data-original-text="displayMessage">displayMessage</span>(<span id="drop-proc-param" class="drop-zone" data-correct="proc-param" data-original-text="message">message</span>)
+    print(<span id="drop-proc-param-use" class="drop-zone" data-correct="proc-param-use" data-original-text="message">message</span>)
+<span id="drop-proc-end" class="drop-zone" data-correct="proc-end" data-original-text="endprocedure">endprocedure</span>
+
+<span id="drop-proc-call" class="drop-zone mt-2" data-correct="proc-call" data-original-text='displayMessage("Hi!")'>displayMessage("Hi!")</span>
+                        </code></pre>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-center mb-2">Function Example (OCR ERL):</h4>
+                    <div class="bg-gray-100 p-3 rounded">
+                        <pre class="whitespace-pre-wrap"><code class="language-pseudocode text-sm">
+<span id="drop-func-keyword" class="drop-zone" data-correct="func-keyword" data-original-text="function">function</span> <span id="drop-func-name" class="drop-zone" data-correct="func-name" data-original-text="calculateArea">calculateArea</span>(<span id="drop-func-param1" class="drop-zone" data-correct="func-param" data-original-text="length">length</span>, <span id="drop-func-param2" class="drop-zone" data-correct="func-param" data-original-text="width">width</span>)
+    area = <span id="drop-func-param1-use" class="drop-zone" data-correct="func-param-use" data-original-text="length">length</span> * <span id="drop-func-param2-use" class="drop-zone" data-correct="func-param-use" data-original-text="width">width</span>
+    <span id="drop-func-return" class="drop-zone" data-correct="func-return" data-original-text="return area">return area</span>
+<span id="drop-func-end" class="drop-zone" data-correct="func-end" data-original-text="endfunction">endfunction</span>
+
+result = <span id="drop-func-call" class="drop-zone mt-2" data-correct="func-call" data-original-text="calculateArea(5, 3)">calculateArea(5, 3)</span>
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+            <div id="label-bank-task2" class="label-bank mt-4">
+                <span class="draggable-label" draggable="true" data-label="proc-keyword">Procedure Keyword</span>
+                <span class="draggable-label" draggable="true" data-label="func-keyword">Function Keyword</span>
+                <span class="draggable-label" draggable="true" data-label="proc-name">Subroutine Name (Procedure)</span>
+                <span class="draggable-label" draggable="true" data-label="func-name">Subroutine Name (Function)</span>
+                <span class="draggable-label" draggable="true" data-label="proc-param">Parameter</span>
+                <span class="draggable-label" draggable="true" data-label="func-param">Parameter(s)</span>
+                <span class="draggable-label" draggable="true" data-label="proc-param-use">Using a Parameter</span>
+                <span class="draggable-label" draggable="true" data-label="func-param-use">Using Parameter(s)</span>
+                <span class="draggable-label" draggable="true" data-label="func-return">Return Statement</span>
+                <span class="draggable-label" draggable="true" data-label="proc-end">End Procedure</span>
+                <span class="draggable-label" draggable="true" data-label="func-end">End Function</span>
+                <span class="draggable-label" draggable="true" data-label="proc-call">Procedure Call with Argument</span>
+                <span class="draggable-label" draggable="true" data-label="func-call">Function Call with Arguments</span>
+            </div>
+            <button class="check-button" onclick="checkTask2SubroutineAnatomy()">Check Labels (Part A)</button>
+            <div id="task2-feedback" class="feedback-area"></div>
+
+            <p class="mt-8 mb-4 text-gray-700"><strong>Part B (Python):</strong> Identify the key components in the Python function definition below by typing the correct term from the list.</p>
+            <div class="bg-gray-100 p-4 rounded-md">
+                <pre class="code-block"><code class="language-python">
+<span class="python-keyword">def</span> <span class="text-blue-700 font-semibold">calculate_vat</span>(<span class="parameter">price</span>, <span class="parameter">vat_rate</span>): <span class="python-comment"># Line 1</span>
+    <span class="python-comment">"""Calculates VAT for a given price and rate."""</span> <span class="python-comment"># Line 2 (Docstring - good practice!)</span>
+    vat_amount = <span class="parameter">price</span> * <span class="parameter">vat_rate</span> <span class="python-comment"># Line 3</span>
+    <span class="python-keyword">return</span> vat_amount <span class="python-comment"># Line 4</span>
+
+final_price = calculate_vat(<span class="argument">100</span>, <span class="argument">0.20</span>) <span class="python-comment"># Line 5</span>
+                </code></pre>
+            </div>
+            <div class="mt-4 space-y-3">
+                <p class="text-sm"><strong>Terms to use:</strong> Function Definition Keyword, Function Name, Parameter(s), Function Body, Return Statement, Argument(s), Function Call</p>
+                <div>
+                    <label for="python-anatomy-1" class="block text-sm font-medium text-gray-700"><code>def</code> (Line 1):</label>
+                    <input type="text" id="python-anatomy-1" class="exam-answer-area mt-1 p-2 w-full border rounded-md" placeholder="Identify this part...">
+                </div>
+                <div>
+                    <label for="python-anatomy-2" class="block text-sm font-medium text-gray-700"><code>calculate_vat</code> (Line 1):</label>
+                    <input type="text" id="python-anatomy-2" class="exam-answer-area mt-1 p-2 w-full border rounded-md" placeholder="Identify this part...">
+                </div>
+                <div>
+                    <label for="python-anatomy-3" class="block text-sm font-medium text-gray-700"><code>(price, vat_rate)</code> (Line 1):</label>
+                    <input type="text" id="python-anatomy-3" class="exam-answer-area mt-1 p-2 w-full border rounded-md" placeholder="Identify this part...">
+                </div>
+                <div>
+                    <label for="python-anatomy-4" class="block text-sm font-medium text-gray-700">The indented lines (Line 3-4):</label>
+                    <input type="text" id="python-anatomy-4" class="exam-answer-area mt-1 p-2 w-full border rounded-md" placeholder="Identify this part...">
+                </div>
+                <div>
+                    <label for="python-anatomy-5" class="block text-sm font-medium text-gray-700"><code>return vat_amount</code> (Line 4):</label>
+                    <input type="text" id="python-anatomy-5" class="exam-answer-area mt-1 p-2 w-full border rounded-md" placeholder="Identify this part...">
+                </div>
+                 <div>
+                    <label for="python-anatomy-6" class="block text-sm font-medium text-gray-700"><code>calculate_vat(100, 0.20)</code> (Line 5):</label>
+                    <input type="text" id="python-anatomy-6" class="exam-answer-area mt-1 p-2 w-full border rounded-md" placeholder="Identify this part...">
+                </div>
+                <div>
+                    <label for="python-anatomy-7" class="block text-sm font-medium text-gray-700"><code>100, 0.20</code> (in the call on Line 5):</label>
+                    <input type="text" id="python-anatomy-7" class="exam-answer-area mt-1 p-2 w-full border rounded-md" placeholder="Identify this part...">
+                </div>
+            </div>
+            <button class="check-button mt-3" onclick="checkTask2PythonAnatomy()">Check Python Anatomy</button>
+            <div id="task2-python-feedback" class="feedback-area"></div>
+            <button class="reset-button mt-3" onclick="resetTask2SubroutineAnatomy()">Reset Task 2</button>
+        </section>
+
+        <section id="task3-parameter-passing" class="task-container mb-10">
+            <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-exchange-alt mr-2"></i>Task 3: Parameter Passing Simulator (OCR ERL & Python)</h3>
+            <p class="mb-4 text-gray-700">Let's see how values (<span class="argument">arguments</span>) are passed to <span class="parameter">parameters</span>. We'll use a simple subroutine that takes two numbers, adds them, and outputs the result. Enter two numbers as arguments.</p>
+            <div class="bg-indigo-50 p-5 rounded-lg border border-indigo-200 space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="param-arg1" class="block text-sm font-medium text-indigo-700">Argument 1 (for <span class="parameter">numA</span> / <span class="parameter">a</span>):</label>
+                        <input type="number" id="param-arg1" value="10" class="mt-1 block w-full p-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label for="param-arg2" class="block text-sm font-medium text-indigo-700">Argument 2 (for <span class="parameter">numB</span> / <span class="parameter">b</span>):</label>
+                        <input type="number" id="param-arg2" value="5" class="mt-1 block w-full p-2 border rounded-md">
+                    </div>
+                </div>
+                <button id="run-param-sim-btn" class="sim-button bg-green-500 hover:bg-green-600">Run Parameter Demo (Step-by-Step)</button>
+                
+                <div class="code-block-container">
+                    <div>
+                        <h4 class="font-semibold text-indigo-800">OCR ERL Code:</h4>
+                        <pre id="param-sim-erl-code" class="code-block bg-white p-2 rounded border text-sm min-h-[120px]"></pre>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-indigo-800">Python Code:</h4>
+                        <pre id="param-sim-python-code" class="code-block bg-white p-2 rounded border text-sm min-h-[120px]"></pre>
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <h4 class="font-semibold text-indigo-800">Simulation Steps & Output:</h4>
+                    <div id="param-sim-output" class="mt-1 p-3 bg-white rounded-md border min-h-[150px] whitespace-pre-wrap font-mono text-sm">
+                        Enter arguments and click "Run Parameter Demo".
+                    </div>
+                </div>
+            </div>
+            <button class="reset-button" onclick="resetTask3ParameterPassing()">Reset Task 3</button>
+        </section>
+
+        <section id="task4-variable-scope" class="task-container mb-10">
+            <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-search-location mr-2"></i>Task 4: Spot the Scope!</h3>
+            <p class="mb-4 text-gray-700">Variables can be <span class="scope-global">global</span> or <span class="scope-local">local</span>. Predict the output for each <code>print</code> statement in both the OCR ERL and Python examples.</p>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-sky-50 p-5 rounded-lg border border-sky-200">
+                    <h4 class="font-semibold text-sky-800 mb-2">Part A: OCR ERL</h4>
+                    <pre class="code-block"><code class="language-pseudocode">
+<span class="scope-global">globalVarERL</span> = 100
+
+procedure alphaERL()
+    <span class="scope-local">localVarA</span> = 10
+    print(<span class="scope-local">localVarA</span>) <span class="python-comment">// ERL Output 1</span>
+    print(<span class="scope-global">globalVarERL</span>) <span class="python-comment">// ERL Output 2</span>
+    <span class="scope-global">globalVarERL</span> = <span class="scope-global">globalVarERL</span> + <span class="scope-local">localVarA</span>
+endprocedure
+
+// Main Program (ERL)
+print(<span class="scope-global">globalVarERL</span>) <span class="python-comment">// ERL Output 3</span>
+alphaERL()
+print(<span class="scope-global">globalVarERL</span>) <span class="python-comment">// ERL Output 4</span>
+                    </code></pre>
+                    <div class="mt-4 space-y-2">
+                        <div><label for="erl-scope-output1">ERL Output 1:</label><input type="text" id="erl-scope-output1" class="exam-answer-area scope-input mt-1 p-1 w-full border rounded"></div>
+                        <div><label for="erl-scope-output2">ERL Output 2:</label><input type="text" id="erl-scope-output2" class="exam-answer-area scope-input mt-1 p-1 w-full border rounded"></div>
+                        <div><label for="erl-scope-output3">ERL Output 3:</label><input type="text" id="erl-scope-output3" class="exam-answer-area scope-input mt-1 p-1 w-full border rounded"></div>
+                        <div><label for="erl-scope-output4">ERL Output 4:</label><input type="text" id="erl-scope-output4" class="exam-answer-area scope-input mt-1 p-1 w-full border rounded"></div>
+                    </div>
+                    <button class="toggle-answer-btn disabled:opacity-50 disabled:cursor-not-allowed mt-3" data-answer-id="erl-scope-answers" disabled>Show ERL Predictions</button>
+                    <div id="erl-scope-answers" class="answer-area hidden mt-2">
+                        <p><strong>ERL Output 1:</strong> 10</p>
+                        <p><strong>ERL Output 2:</strong> 100</p>
+                        <p><strong>ERL Output 3:</strong> 100</p>
+                        <p><strong>ERL Output 4:</strong> 110</p>
+                    </div>
+                </div>
+
+                <div class="bg-lime-50 p-5 rounded-lg border border-lime-200">
+                    <h4 class="font-semibold text-lime-800 mb-2">Part B: Python</h4>
+                    <pre class="code-block"><code class="language-python">
+<span class="scope-global">global_var_py</span> = 200
+
+<span class="python-keyword">def</span> alpha_py():
+    <span class="scope-local">local_var_a</span> = 20
+    print(<span class="scope-local">local_var_a</span>) <span class="python-comment"># Python Output 1</span>
+    print(<span class="scope-global">global_var_py</span>) <span class="python-comment"># Python Output 2</span>
+    <span class="python-comment"># To modify global_var_py, we'd need 'global global_var_py' here</span>
+    <span class="python-comment"># For this example, let's assume we create a new local if we assign:</span>
+    <span class="scope-local">temp_global</span> = <span class="scope-global">global_var_py</span> + <span class="scope-local">local_var_a</span> 
+    print(f"Temp global inside alpha_py: {<span class="scope-local">temp_global</span>}") <span class="python-comment"># Python Output X (extra)</span>
+
+
+<span class="python-comment"># Main Program (Python)</span>
+print(<span class="scope-global">global_var_py</span>) <span class="python-comment"># Python Output 3</span>
+alpha_py()
+print(<span class="scope-global">global_var_py</span>) <span class="python-comment"># Python Output 4</span>
+                    </code></pre>
+                     <div class="mt-4 space-y-2">
+                        <div><label for="py-scope-output1">Python Output 1:</label><input type="text" id="py-scope-output1" class="exam-answer-area scope-input mt-1 p-1 w-full border rounded"></div>
+                        <div><label for="py-scope-output2">Python Output 2:</label><input type="text" id="py-scope-output2" class="exam-answer-area scope-input mt-1 p-1 w-full border rounded"></div>
+                        <div><label for="py-scope-outputX">Python Output X:</label><input type="text" id="py-scope-outputX" class="exam-answer-area scope-input mt-1 p-1 w-full border rounded"></div>
+                        <div><label for="py-scope-output3">Python Output 3:</label><input type="text" id="py-scope-output3" class="exam-answer-area scope-input mt-1 p-1 w-full border rounded"></div>
+                        <div><label for="py-scope-output4">Python Output 4:</label><input type="text" id="py-scope-output4" class="exam-answer-area scope-input mt-1 p-1 w-full border rounded"></div>
+                    </div>
+                    <button class="toggle-answer-btn disabled:opacity-50 disabled:cursor-not-allowed mt-3" data-answer-id="py-scope-answers" disabled>Show Python Predictions</button>
+                    <div id="py-scope-answers" class="answer-area hidden mt-2">
+                        <p><strong>Python Output 1:</strong> 20</p>
+                        <p><strong>Python Output 2:</strong> 200</p>
+                        <p><strong>Python Output X:</strong> Temp global inside alpha_py: 220</p>
+                        <p><strong>Python Output 3:</strong> 200</p>
+                        <p><strong>Python Output 4:</strong> 200 (global_var_py was not modified by alpha_py without the 'global' keyword)</p>
+                    </div>
+                </div>
+            </div>
+            <button class="reset-button mt-4" onclick="resetTask4VariableScope()">Reset Task 4</button>
+        </section>
+
+        <section id="task5-writing-subroutines" class="task-container mb-10">
+            <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-pencil-ruler mr-2"></i>Task 5: Writing Subroutines (OCR ERL & Python)</h3>
+            <p class="mb-4 text-gray-700">Now it's your turn! Write the pseudocode/code for the following subroutines.</p>
+
+            <div class="writing-sub-question mb-6 p-4 bg-white rounded border">
+                <p class="font-medium mb-2">Problem 1: A <strong>procedure</strong> called <code>displayWelcome</code> that takes one <span class="parameter">parameter</span> (<code>userName</code>) and prints "Welcome, [userName]!". Also show a call to it with "Ada".</p>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700">OCR ERL:</label>
+                        <textarea id="write-proc1-erl" class="exam-answer-area w-full p-2 border rounded-md mt-1" rows="5" placeholder="procedure displayWelcome..."></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700">Python:</label>
+                        <textarea id="write-proc1-py" class="exam-answer-area w-full p-2 border rounded-md mt-1" rows="5" placeholder="def display_welcome..."></textarea>
+                    </div>
+                </div>
+                <button class="toggle-answer-btn disabled:opacity-50 disabled:cursor-not-allowed mt-2" data-answer-id="write-proc1-answer" disabled>Show Model Solutions</button>
+                <div id="write-proc1-answer" class="answer-area hidden mt-2 grid md:grid-cols-2 gap-4">
+                    <div><p class="font-semibold">OCR ERL:</p><pre><code class="language-pseudocode">procedure displayWelcome(userName)
+    print("Welcome, " + userName + "!")
+endprocedure
+
+displayWelcome("Ada")</code></pre></div>
+                    <div><p class="font-semibold">Python:</p><pre><code class="language-python"><span class="python-keyword">def</span> display_welcome(user_name):
+    print(f"Welcome, {user_name}!")
+
+display_welcome("Ada")</code></pre></div>
+                </div>
+            </div>
+
+            <div class="writing-sub-question p-4 bg-white rounded border">
+                <p class="font-medium mb-2">Problem 2: A <strong>function</strong> called <code>multiplyNumbers</code> that takes two numbers, multiplies them, and <span class="keyword">returns</span> the result. Show a call storing the result of multiplying 7 and 6 in <code>product</code>.</p>
+                 <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700">OCR ERL:</label>
+                        <textarea id="write-func1-erl" class="exam-answer-area w-full p-2 border rounded-md mt-1" rows="6" placeholder="function multiplyNumbers..."></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700">Python:</label>
+                        <textarea id="write-func1-py" class="exam-answer-area w-full p-2 border rounded-md mt-1" rows="6" placeholder="def multiply_numbers..."></textarea>
+                    </div>
+                </div>
+                <button class="toggle-answer-btn disabled:opacity-50 disabled:cursor-not-allowed mt-2" data-answer-id="write-func1-answer" disabled>Show Model Solutions</button>
+                <div id="write-func1-answer" class="answer-area hidden mt-2 grid md:grid-cols-2 gap-4">
+                    <div><p class="font-semibold">OCR ERL:</p><pre><code class="language-pseudocode">function multiplyNumbers(val1, val2)
+    result = val1 * val2
+    return result
+endfunction
+
+product = multiplyNumbers(7, 6)
+// print(product) // Optional</code></pre></div>
+                    <div><p class="font-semibold">Python:</p><pre><code class="language-python"><span class="python-keyword">def</span> multiply_numbers(val1, val2):
+    result = val1 * val2
+    <span class="python-keyword">return</span> result
+
+product = multiply_numbers(7, 6)
+<span class="python-comment"># print(product) # Optional</span></code></pre></div>
+                </div>
+            </div>
+            <button class="reset-button" onclick="resetTask5WritingSubroutines()">Reset Task 5</button>
+        </section>
+
+        <section id="task6-python-challenge" class="task-container mb-10">
+            <h3 class="text-xl task-title text-indigo-700"><i class="fab fa-python mr-2"></i>Task 6: Python Subroutine Challenge</h3>
+            <p class="mb-4 text-gray-700">Let's focus on Python. Write the Python code for the following challenges.</p>
+
+            <div class="python-challenge-question mb-6 p-4 bg-white rounded border">
+                <p class="font-medium mb-2">Challenge 1: Write a Python function called <code>get_greeting</code> that takes one parameter, <code>name</code>. If a name is provided, it should return "Hello, [name]!". If no name is provided (or an empty string), it should return "Hello, Guest!".</p>
+                <textarea id="python-chal1-code" class="exam-answer-area w-full p-2 border rounded-md font-mono text-sm" placeholder="def get_greeting(name): ..." rows="7"></textarea>
+                <button class="toggle-answer-btn disabled:opacity-50 disabled:cursor-not-allowed mt-2" data-answer-id="python-chal1-answer" disabled>Show Model Solution</button>
+                <div id="python-chal1-answer" class="answer-area hidden mt-2"><pre><code class="language-python"><span class="python-keyword">def</span> get_greeting(name):
+    <span class="python-keyword">if</span> name: <span class="python-comment"># Checks if name is not empty</span>
+        <span class="python-keyword">return</span> f"Hello, {name}!"
+    <span class="python-keyword">else</span>:
+        <span class="python-keyword">return</span> "Hello, Guest!"
+
+<span class="python-comment"># Example calls:</span>
+<span class="python-comment"># print(get_greeting("Alice"))</span>
+<span class="python-comment"># print(get_greeting(""))</span></code></pre></div>
+            </div>
+
+            <div class="python-challenge-question p-4 bg-white rounded border">
+                <p class="font-medium mb-2">Challenge 2: Write a Python function called <code>calculate_average</code> that takes a list of numbers as a parameter and returns their average. If the list is empty, it should return 0.</p>
+                <textarea id="python-chal2-code" class="exam-answer-area w-full p-2 border rounded-md font-mono text-sm" placeholder="def calculate_average(numbers_list): ..." rows="8"></textarea>
+                <button class="toggle-answer-btn disabled:opacity-50 disabled:cursor-not-allowed mt-2" data-answer-id="python-chal2-answer" disabled>Show Model Solution</button>
+                <div id="python-chal2-answer" class="answer-area hidden mt-2"><pre><code class="language-python"><span class="python-keyword">def</span> calculate_average(numbers_list):
+    <span class="python-keyword">if not</span> numbers_list: <span class="python-comment"># Checks if the list is empty</span>
+        <span class="python-keyword">return</span> 0
+    total = sum(numbers_list)
+    <span class="python-keyword">return</span> total / len(numbers_list)
+
+<span class="python-comment"># Example calls:</span>
+<span class="python-comment"># print(calculate_average([10, 20, 30])) # Output: 20.0</span>
+<span class="python-comment"># print(calculate_average([]))           # Output: 0</span></code></pre></div>
+            </div>
+            <button class="reset-button" onclick="resetTask6PythonChallenge()">Reset Task 6</button>
+        </section>
+
+
+        <section id="task7-benefits-subroutines" class="task-container mb-10">
+            <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-thumbs-up mr-2"></i>Task 7: Why Use Subroutines?</h3>
+            <p class="mb-4 text-gray-700">Match the benefit of using subroutines on the left with its correct description on the right. Click one item from each list to create a pair.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <h4 class="font-semibold mb-2 text-center text-gray-600">Benefit</h4>
+                    <ul id="matching-benefits-names" class="matching-list">
+                        <li class="matching-item" data-match="decomposition">Decomposition</li>
+                        <li class="matching-item" data-match="reusability">Reusability</li>
+                        <li class="matching-item" data-match="readability">Readability & Maintainability</li>
+                        <li class="matching-item" data-match="testing">Easier Testing & Debugging</li>
+                    </ul>
+                </div>
+                <div>
+                     <h4 class="font-semibold mb-2 text-center text-gray-600">Description</h4>
+                     <ul id="matching-benefits-descs" class="matching-list">
+                        <li class="matching-item" data-match="reusability">The same block of code can be used multiple times in different parts of the program without rewriting it.</li>
+                        <li class="matching-item" data-match="readability">Programs become easier to understand and modify because complex tasks are broken into logical, named chunks.</li>
+                        <li class="matching-item" data-match="testing">Smaller, independent blocks of code can be tested individually, making it simpler to find and fix errors.</li>
+                        <li class="matching-item" data-match="decomposition">Large, complex problems can be broken down into smaller, simpler, more manageable sub-problems.</li>
+                    </ul>
+                </div>
+            </div>
+             <button class="check-button" onclick="checkBenefitsMatching()">Check Matches</button>
+              <button class="reset-button" onclick="resetBenefitsMatching()">Reset Task 7</button>
+             <div id="benefits-matching-feedback" class="feedback-area"></div>
+        </section>
+
+
+        <section id="real-world-subroutines" class="mb-10">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-building mr-2 text-blue-500"></i> Real-World Connection: Subroutines Everywhere!</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer read-checkbox">
+                    Read
+                </label>
+            </div>
+            <div class="bg-blue-50 p-5 rounded-lg border border-blue-200 space-y-3">
+                <p class="text-gray-700">Subroutines are fundamental to almost all programming. Think about:</p>
+                <ul class="list-disc list-inside space-y-2 text-blue-800 pl-4">
+                    <li><strong>Game Development:</strong> A game might have a <code>draw_player()</code> procedure, an <code>update_enemy_ai()</code> procedure, and a <code>calculate_score()</code> function. Each handles a specific part of the game logic.</li>
+                    <li><strong>Web Applications:</strong> A website might use a <code>validate_form_data()</code> function before submitting user input, a <code>get_user_profile()</code> function to fetch data, or a <code>display_error_message()</code> procedure.</li>
+                    <li><strong>Operating Systems:</strong> Actions like opening a file, saving data, or printing a document are all handled by complex subroutines built into the OS.</li>
+                    <li><strong>Mathematical Libraries:</strong> Functions like <code>math.sin(angle)</code>, <code>math.sqrt(number)</code>, or <code>random.randint(min, max)</code> in Python are pre-written subroutines that programmers can use.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="common-mistakes-subroutines" class="mb-10">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-exclamation-triangle mr-2 text-orange-500"></i> Common Mistakes with Subroutines</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer read-checkbox">
+                    Read
+                </label>
+            </div>
+            <div class="bg-orange-50 p-5 rounded-lg border border-orange-200 space-y-4">
+                <div class="mistake">
+                    <p><strong class="font-semibold text-orange-800">Mistake 1: Forgetting to Call a Subroutine</strong></p>
+                    <p class="text-sm text-orange-700 mt-1 pl-4">Defining a subroutine is only half the job; you must call it by its name for its code to execute.</p>
+                </div>
+                <div class="mistake border-t border-orange-200 pt-4">
+                    <p><strong class="font-semibold text-orange-800">Mistake 2: Parameter vs. Argument Mismatch</strong></p>
+                    <p class="text-sm text-orange-700 mt-1 pl-4">The number and often the type of arguments in a call must match the parameters in the subroutine definition.</p>
+                </div>
+                <div class="mistake border-t border-orange-200 pt-4">
+                    <p><strong class="font-semibold text-orange-800">Mistake 3: Functions Not Returning / Not Using Return Value</strong></p>
+                    <p class="text-sm text-orange-700 mt-1 pl-4">A function must have a <code>return</code> statement if it's meant to send a value back. When calling a function, you usually need to assign its returned value to a variable or use it directly.</p>
+                </div>
+                 <div class="mistake border-t border-orange-200 pt-4">
+                    <p><strong class="font-semibold text-orange-800">Mistake 4: Scope Confusion</strong></p>
+                    <p class="text-sm text-orange-700 mt-1 pl-4">Trying to use a local variable outside its subroutine will cause an error. Modifying global variables inside functions in Python requires the <code>global</code> keyword.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="exam-practice-subroutines" class="task-container mb-10">
+             <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-graduation-cap mr-2"></i>Exam Practice Questions (OCR ERL)</h3>
+             <p class="mb-4 text-gray-700">Answer these exam-style questions using OCR Exam Reference Language.</p>
+
+             <div class="exam-question mb-6 p-4 bg-white rounded border" data-marks="3">
+                <h4 class="mb-3 font-medium">1. Write an OCR ERL <strong>procedure</strong> called <code>showDetails</code> that takes two parameters, <code>itemName</code> (a string) and <code>itemPrice</code> (a real number), and prints them in the format: "Item: [itemName], Price: £[itemPrice]". (<span class="marks-value">3</span> marks)</h4>
+                <textarea id="exam-q1-sub" class="exam-answer-area w-full p-2 border rounded-md" rows="4"></textarea>
+                <button class="toggle-mark-scheme-btn disabled:opacity-50 disabled:cursor-not-allowed mt-2" data-mark-scheme-id="ms-q1-sub" disabled>Show Mark Scheme</button>
+                <div id="ms-q1-sub" class="mark-scheme hidden mt-2"><pre><code class="language-pseudocode">procedure showDetails(itemName, itemPrice)
+    print("Item: " + itemName + ", Price: £" + str(itemPrice))
+endprocedure
+
+// Example call (not required by question but good for testing):
+// showDetails("Laptop", 799.99)</code></pre>
+                <p class="text-xs italic mt-1">Marks: 1 for correct procedure definition (name, parameters). 1 for correct print statement. 1 for correct concatenation and use of parameters (and `str()` if converting price).</p></div>
+            </div>
+
+            <div class="exam-question mb-6 p-4 bg-white rounded border" data-marks="4">
+                <h4 class="mb-3 font-medium">2. Explain the difference between a local variable and a global variable in the context of subroutines. Give an example of where each might be used. (<span class="marks-value">4</span> marks)</h4>
+                 <textarea id="exam-q2-sub" class="exam-answer-area w-full p-2 border rounded-md" rows="5"></textarea>
+                 <button class="toggle-mark-scheme-btn disabled:opacity-50 disabled:cursor-not-allowed mt-2" data-mark-scheme-id="ms-q2-sub" disabled>Show Mark Scheme</button>
+                 <div id="ms-q2-sub" class="mark-scheme hidden mt-2">
+                     <p><strong>Local Variable:</strong> (1 mark) Defined inside a subroutine and can only be accessed/used within that subroutine. (1 mark) Example: A counter variable inside a loop within a subroutine, or a temporary variable to hold an intermediate calculation within a function.</p>
+                     <p><strong>Global Variable:</strong> (1 mark) Defined outside of any subroutine and can be accessed/used from any part of the program (including inside subroutines, though this should be done with care). (1 mark) Example: A program-wide setting like a maximum score, or a player's name that needs to be displayed by multiple different procedures.</p>
+                 </div>
+            </div>
+
+             <div class="exam-question p-4 bg-white rounded border" data-marks="5">
+                <h4 class="mb-3 font-medium">3. A programmer wants to create a subroutine to calculate the area of a rectangle.
+                    <br>a) Should they use a procedure or a function? Justify your answer. (2 marks)
+                    <br>b) Write the OCR ERL pseudocode for this subroutine. It should take length and width as parameters. (3 marks)</h4>
+                 <textarea id="exam-q3-sub" class="exam-answer-area w-full p-2 border rounded-md" rows="7"></textarea>
+                 <button class="toggle-mark-scheme-btn disabled:opacity-50 disabled:cursor-not-allowed mt-2" data-mark-scheme-id="ms-q3-sub" disabled>Show Mark Scheme</button>
+                 <div id="ms-q3-sub" class="mark-scheme hidden mt-2">
+                     <p><strong>a) (2 marks)</strong></p>
+                     <ul class="list-disc list-inside ml-4">
+                        <li>They should use a <strong>function</strong>. (1 mark)</li>
+                        <li>Justification: Because the purpose is to calculate a value (the area) and this value needs to be sent back / returned to the part of the program that needs it. (1 mark)</li>
+                     </ul>
+                     <p><strong>b) (3 marks)</strong></p>
+<pre><code class="language-pseudocode">function calculateRectangleArea(length, width)
+    area = length * width
+    return area
+endfunction</code></pre>
+                    <p class="text-xs italic mt-1">Marks: 1 for correct function definition (name, parameters). 1 for correct calculation. 1 for correct return statement.</p>
+                 </div>
+            </div>
+            <button class="reset-button mt-4" onclick="resetExamPracticeSubroutines()">Reset Exam Practice</button>
+        </section>
+
+        <section id="related-videos" class="mb-10">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-video mr-2 text-purple-500"></i> Related Videos</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer read-checkbox">
+                    Read
+                </label>
+            </div>
+            <div class="bg-purple-50 p-5 rounded-lg border border-purple-200 space-y-4">
+                <p class="text-gray-700">Watch these videos to reinforce your understanding of subroutines:</p>
+                <ul class="list-disc list-inside space-y-3 text-purple-800 pl-4">
+                    <li>
+                        <strong>Introduction to Procedures and Functions (OCR ERL & Python)</strong>
+                        <div class="video-placeholder my-2 p-10 bg-gray-200 rounded text-center text-gray-500">Video Placeholder: Link to OCR ERL & Python Subroutines Video Here</div>
+                        <textarea class="w-full p-2 mt-2 border border-purple-300 rounded-md text-sm bg-white" rows="2" placeholder="Optional: Add any notes from this video..."></textarea>
+                    </li>
+                    <li>
+                        <strong>Parameters, Arguments, and Return Values Explained (Python Focus)</strong>
+                        <div class="video-placeholder my-2 p-10 bg-gray-200 rounded text-center text-gray-500">Video Placeholder: Link to Python Parameters & Return Values Video Here</div>
+                        <textarea class="w-full p-2 border border-purple-300 rounded-md text-sm bg-white" rows="2" placeholder="Optional: Add any notes from this video..."></textarea>
+                    </li>
+                    <li>
+                        <strong>Understanding Variable Scope (Local vs. Global) in Python</strong>
+                        <div class="video-placeholder my-2 p-10 bg-gray-200 rounded text-center text-gray-500">Video Placeholder: Link to Python Variable Scope Video Here</div>
+                        <textarea class="w-full p-2 border border-purple-300 rounded-md text-sm bg-white" rows="2" placeholder="Optional: Add any notes from this video..."></textarea>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+         <section id="key-takeaways" class="mb-10">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-key mr-2"></i>Key Takeaways</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer read-checkbox">
+                    Read
+                </label>
+            </div>
+            <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-300 space-y-2 show">
+                <ul class="list-disc list-inside space-y-1 text-yellow-800">
+                    <li><strong class="font-semibold">Subroutines</strong> are named blocks of reusable code.</li>
+                    <li><strong>OCR ERL:</strong> <strong class="font-semibold">Procedures</strong> (<code>procedure ... endprocedure</code>) don't return values. <strong class="font-semibold">Functions</strong> (<code>function ... return ... endfunction</code>) do.</li>
+                    <li><strong>Python:</strong> Both are defined with <code class="python-keyword">def</code>. A function without an explicit <code>return value</code> acts like a procedure (returns <code>None</code>).</li>
+                    <li>Data is passed via <strong class="font-semibold">parameters</strong> (in definition) using <strong class="font-semibold">arguments</strong> (in call).</li>
+                    <li><strong class="font-semibold">Local variables</strong> exist only inside a subroutine. <strong class="font-semibold">Global variables</strong> exist throughout (Python needs <code>global</code> keyword to modify globals inside functions).</li>
+                    <li>Benefits: <strong class="font-semibold">Decomposition</strong>, <strong class="font-semibold">reusability</strong>, <strong class="font-semibold">readability</strong>, easier <strong class="font-semibold">testing</strong>.</li>
+                </ul>
+            </div>
+        </section>
+
+         <section id="next-steps" class="mb-10">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600">What's Next?</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer read-checkbox">
+                    Read
+                </label>
+            </div>
+            <div class="bg-teal-50 p-5 rounded-lg border border-teal-300">
+                <p class="text-teal-800 font-medium">
+                    You've now got a solid understanding of subroutines!
+                </p>
+                <p class="text-teal-700 mt-2">
+                    Next, you might explore:
+                </p>
+                <ul class="list-disc list-inside space-y-1 text-teal-700 mt-3 pl-4">
+                    <li>Using subroutines with arrays/lists and other data structures.</li>
+                    <li>How subroutines are used in event-driven programming.</li>
+                    <li>The concept of program libraries and modules in Python.</li>
+                    <li>More advanced Python function features (default arguments, `*args`, `**kwargs`).</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="extension-activities" class="mb-10">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-rocket mr-2 text-orange-500"></i> Extension Activities</h2>
+            <div class="bg-orange-50 p-5 rounded-lg border border-orange-200 space-y-6">
+                <div class="extension-task">
+                    <h3 class="font-semibold text-orange-800 mb-2">1. Recursion (Python & Conceptual)</h3>
+                    <p class="text-sm text-gray-700 mb-2">A subroutine that calls itself is recursive. Research recursion. Write a simple Python recursive function (e.g., to calculate factorial or a Fibonacci number). What is a "base case" in recursion, and why is it crucial?</p>
+                    <textarea rows="5" class="w-full p-2 border border-orange-300 rounded-md bg-white font-mono text-sm" placeholder="Your research notes and Python recursive function..."></textarea>
+                </div>
+                <div class="extension-task border-t border-orange-200 pt-4">
+                    <h3 class="font-semibold text-orange-800 mb-2">2. Python's Built-in Functions & Modules</h3>
+                    <p class="text-sm text-gray-700 mb-2">Python has many useful built-in functions (e.g., <code>len()</code>, <code>print()</code>, <code>input()</code>, <code>int()</code>). It also has modules (libraries) like <code>math</code> or <code>random</code> that provide more functions. Choose two built-in functions and one function from the <code>math</code> module. Describe what they do and provide a small Python code snippet showing how to use each.</p>
+                    <textarea rows="6" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Built-in function 1, example...\nBuilt-in function 2, example...\nMath module function, example..."></textarea>
+                </div>
+                 <div class="extension-task border-t border-orange-200 pt-4">
+                    <h3 class="font-semibold text-orange-800 mb-2">3. Python: Default Parameter Values</h3>
+                    <p class="text-sm text-gray-700 mb-2">Python functions can have default values for parameters. Research this. Write a simple Python function called <code>power</code> that takes two parameters, <code>base</code> and <code>exponent</code>, where <code>exponent</code> has a default value of 2. The function should return <code>base</code> raised to the power of <code>exponent</code>.</p>
+                    <textarea rows="5" class="w-full p-2 border border-orange-300 rounded-md bg-white font-mono text-sm" placeholder="def power(base, exponent=2): ..."></textarea>
+                </div>
+            </div>
+        </section>
+        
+        <div class="mt-10 text-center no-print">
+             <button id="reset-all-btn" class="reset-button" onclick="resetAllTasks()">Reset All Tasks</button>
+             <button id="export-pdf-btn" class="export-pdf-button" onclick="exportToPDF()">Export to PDF</button>
+        </div>
+
+    </div> <script src="js/gcse-prog-sub.js"></script>
+    <script src="js/worksheet-common.js"></script>
+</body>
+</html>

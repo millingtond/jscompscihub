@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCSE CS Lesson: Computational Thinking - Abstraction, Decomposition, Algorithmic Thinking</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <a href="home.html" class="text-xl font-bold hover:text-gray-300 transition-colors">MGS CS Hub</a>
+        <ul class="flex space-x-3 lg:space-x-4">
+        </ul>
+        <ul class="flex flex-wrap space-x-2 sm:space-x-3 lg:space-x-4 text-sm sm:text-base">
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 7</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 8</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 9</a></li>
+            <li><a href="gcse.html" class="hover:text-gray-300 transition-colors">GCSE</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">A Level</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Competitions</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">CS News</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Extracurricular</a></li>
+        </ul>
+    </div>
+</nav>
+
+\1
+
+
+    
+
+    <div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-lg shadow-xl">
+        <nav aria-label="breadcrumb" class="text-sm text-gray-500 mb-4 no-print">
+            <ol class="list-none p-0 inline-flex">
+                <li class="flex items-center"><a href="home.html" class="text-blue-600 hover:underline">Home</a><svg class="fill-current w-3 h-3 mx-2 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></li>
+                <li class="flex items-center"><a href="gcse.html" class="text-blue-600 hover:underline">GCSE</a><svg class="fill-current w-3 h-3 mx-2 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></li>
+                <li class="flex items-center"><a href="mgsgcse21.html" class="text-blue-600 hover:underline">Algorithms</a><svg class="fill-current w-3 h-3 mx-2 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></li>
+                <li class="text-gray-700" aria-current="page">Computational Thinking</li>
+            </ol>
+        </nav>
+
+        <header class="mb-8 border-b pb-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-2">Thinking Like a Computer: Principles of Computational Thinking</h1>
+            <p class="text-lg text-gray-600">OCR GCSE Computer Science (J277) - Topic 2.1.1: Computational Thinking</p>
+        </header>
+
+        <main class="space-y-8 md:space-y-12">
+
+            <section id="starter-activity" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-puzzle-piece mr-2 text-yellow-500"></i> Starter Activity (5 mins)</h2>
+                <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-200 space-y-4">
+                    <p class="font-semibold text-yellow-800">Problem Solving Puzzles...</p>
+                    <div class="space-y-3">
+                        <div>
+                            <label for="starter-q1-problem" class="block text-sm font-medium text-yellow-700">1. Think about a complex task you've done recently (e.g., planning an event, learning a new skill, cooking a complicated meal). What made it complex?</label>
+                            <textarea id="starter-q1-problem" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" placeholder="e.g., Many steps, lots of information..."></textarea>
+                        </div>
+                        <div>
+                            <label for="starter-q2-simplify" class="block text-sm font-medium text-yellow-700">2. How did you (or could you) make that complex task simpler to manage or understand?</label>
+                            <textarea id="starter-q2-simplify" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" placeholder="e.g., Broke it down, focused on key parts..."></textarea>
+                        </div>
+                         <div>
+                            <label for="starter-q3-instructions" class="block text-sm font-medium text-yellow-700">3. If you had to explain to someone else how to do that task, what kind of instructions would you give them? Would they be very detailed or more general?</label>
+                            <textarea id="starter-q3-instructions" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" placeholder="Step-by-step? Overview first?"></textarea>
+                        </div>
+                    </div>
+                    <button class="reveal-button !bg-yellow-500 hover:!bg-yellow-600 no-print" onclick="toggleReveal('starter-answers-feedback', this, 'Reveal Discussion Points', 'Hide Discussion Points')">Reveal Discussion Points</button>
+                    <div id="starter-answers-feedback" class="feedback-area !bg-yellow-100 !border-yellow-300 !text-yellow-700">
+                        <p><strong>Discussion Points:</strong></p>
+                        <ul class="list-disc list-inside">
+                            <li>1. Complexity often arises from having many steps, lots of details to remember, dependencies between parts, or unclear goals.</li>
+                            <li>2. Simplification often involves breaking the task into smaller, manageable parts (decomposition), focusing only on the essential details at each stage (abstraction), or following a clear plan (algorithmic thinking).</li>
+                            <li>3. Good instructions are usually clear, step-by-step, and unambiguous. Sometimes an overview is helpful first, then detailed steps. The level of detail might depend on the other person's existing knowledge.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="lesson-outcomes" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-bullseye mr-2 text-green-500"></i> Lesson Outcomes</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-green-50 p-5 rounded-lg border border-green-200">
+                    <p class="font-semibold text-green-800 mb-3">By the end of this lesson, you should be able to:</p>
+                    <ul class="list-disc list-inside space-y-2 text-green-700 pl-4">
+                        <li>Define <span class="keyword">Computational Thinking<span class="tooltip">A problem solving process using abstraction, decomposition and algorithmic thinking. Results in an algorithm we can code for a computer.</span></span> and its core principles.</li>
+                        <li>Explain <span class="keyword">Abstraction<span class="tooltip">Removing/hiding unnecessary detail and focusing on the important details that are necessary to solve a problem. Simplifies the problem and reduces complexity making it easier to solve/understand.</span></span> and provide examples of its use in problem-solving.</li>
+                        <li>Explain <span class="keyword">Decomposition<span class="tooltip">Breaking a problem down into smaller steps in order to solve it. A CT skill.</span></span> and describe its benefits.</li>
+                        <li>Explain <span class="keyword">Algorithmic Thinking<span class="tooltip">Defining the steps needed to solve a problem using sequence, selection and iteration. A CT skill.</span></span> and how it relates to creating algorithms.</li>
+                        <li>Apply these principles to define and refine problems.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="intro-ct" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-brain mr-2"></i> Introduction: What is Computational Thinking?</h2>
+                     <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-indigo-50 p-5 rounded-lg border border-indigo-200 space-y-3">
+                    <p><strong class="keyword">Computational Thinking (CT)<span class="tooltip">A problem solving process using abstraction, decomposition and algorithmic thinking. Results in an algorithm we can code for a computer.</span></strong> is not about thinking *like* a computer in a literal sense, but rather a set of problem-solving skills and techniques that computer scientists (and many others!) use to understand complex problems and design solutions that can often be implemented by a computer.</p>
+                    <p>It's a way of breaking down large, complex problems into smaller, more manageable parts, identifying what's important and ignoring irrelevant details, and then developing step-by-step instructions (algorithms) to solve them.</p>
+                    <p>The three core principles of Computational Thinking we will explore are:</p>
+                    <ul class="list-disc list-inside ml-5">
+                        <li><strong><span class="keyword">Abstraction<span class="tooltip">Removing/hiding unnecessary detail and focusing on the important details that are necessary to solve a problem. Simplifies the problem and reduces complexity making it easier to solve/understand.</span></span></strong></li>
+                        <li><strong><span class="keyword">Decomposition<span class="tooltip">Breaking a problem down into smaller steps in order to solve it. A CT skill.</span></span></strong></li>
+                        <li><strong><span class="keyword">Algorithmic Thinking<span class="tooltip">Defining the steps needed to solve a problem using sequence, selection and iteration. A CT skill.</span></span></strong></li>
+                    </ul>
+                    <p>Mastering these skills is fundamental to computer science and programming, but they are also incredibly useful in many other areas of life! Hover over <span class="keyword">keywords<span class="tooltip">This is an example tooltip!</span></span> for definitions.</p>
+                </div>
+            </section>
+
+            <section id="abstraction-section" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-filter mr-2 text-sky-500"></i>Abstraction</h2>
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-semibold text-sky-700">Focusing on the Essentials</h3>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-sky-50 p-4 rounded-lg border border-sky-200 mb-6">
+                    <p><strong class="keyword">Abstraction<span class="tooltip">Removing/hiding unnecessary detail and focusing on the important details that are necessary to solve a problem. Simplifies the problem and reduces complexity making it easier to solve/understand.</span></span> is the process of removing or hiding unnecessary detail and focusing on the important details that are necessary to solve a problem. It simplifies the problem and reduces complexity, making it easier to understand and solve.</p>
+                    <p class="mt-2">Think of it like a map: a London Underground map is an abstraction. It shows the stations and lines (essential details for navigating the tube) but hides the actual geographical twists and turns of the tunnels, street layouts above ground, or distances between stations (unnecessary details for its purpose).</p>
+                    <p class="mt-2"><strong>Examples in Computing:</strong></p>
+                    <ul class="list-disc list-inside ml-4 space-y-1 text-sm">
+                        <li>Calling built-in functions in Python (e.g., `randint()`). You don't need to know *how* `randint()` generates a random number, just that it does and how to use it.</li>
+                        <li>Accessing a website via a URL (e.g., `www.google.com`). You don't need to manually find the IP address from a DNS server; the browser handles that complexity.</li>
+                        <li>Using a calendar widget to pick a date. The complex logic of calendars (leap years, days in a month) is hidden; you just click a date.</li>
+                        <li>Variables in programming: A variable name like `userScore` abstracts away the memory location where the score is actually stored.</li>
+                    </ul>
+                </div>
+
+                <div id="task-abstraction-examples" class="quiz-item mb-6" data-points="3">
+                    <h3 class="text-lg font-medium text-gray-700 mb-2">Task 1.1: Spot the Abstraction (Max 3 points)</h3>
+                    <p class="text-sm text-gray-600 mb-2">For each scenario, identify what key detail or complexity is being hidden or simplified by abstraction.</p>
+                    <div class="space-y-3">
+                        <div>
+                            <label for="abs-q1" class="block text-sm font-medium text-gray-700">1. Using a sat-nav (GPS) to get directions:</label>
+                            <input type="text" id="abs-q1" class="mt-1 block w-full p-2 border border-gray-300 rounded-md bg-white" placeholder="What complex process is hidden?">
+                        </div>
+                        <div>
+                            <label for="abs-q2" class="block text-sm font-medium text-gray-700">2. Clicking the "Play" button on a music streaming app:</label>
+                            <input type="text" id="abs-q2" class="mt-1 block w-full p-2 border border-gray-300 rounded-md bg-white" placeholder="What details of music playback are hidden?">
+                        </div>
+                        <div>
+                            <label for="abs-q3" class="block text-sm font-medium text-gray-700">3. A car's steering wheel:</label>
+                            <input type="text" id="abs-q3" class="mt-1 block w-full p-2 border border-gray-300 rounded-md bg-white" placeholder="What mechanical complexities are abstracted away?">
+                        </div>
+                    </div>
+                    <button class="check-button no-print !mt-2" onclick="checkAbstractionExamples()">Check Examples</button>
+                    <div class="feedback mt-1"></div>
+                </div>
+            </section>
+
+            <section id="decomposition-section" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-sitemap mr-2 text-red-500"></i>Decomposition</h2>
+                 <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-semibold text-red-700">Breaking Down Problems</h3>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-red-50 p-4 rounded-lg border border-red-200 mb-6">
+                    <p><strong class="keyword">Decomposition<span class="tooltip">Breaking a problem down into smaller steps in order to solve it. A CT skill.</span></span> is the process of breaking down a complex problem or system into smaller, more manageable sub-problems. Each sub-problem can then be solved individually, and the solutions combined to solve the original complex problem.</p>
+                    <p class="mt-2">Imagine trying to build a car. You wouldn't just start welding metal randomly! You'd decompose the task into building the engine, the chassis, the electronics, the interior, etc. Each of these can be further decomposed.</p>
+                    <p class="mt-2"><strong>Example: Developing a Chess Game</strong></p>
+                    <ul class="list-disc list-inside ml-4 space-y-1 text-sm">
+                        <li>Display the chess board.</li>
+                        <li>Allow a player to input a move.</li>
+                        <li>Validate if the move is legal.</li>
+                        <li>Update the board state.</li>
+                        <li>Check for win/draw conditions.</li>
+                        <li>(If playing against AI) Develop the AI's logic to choose its own move.</li>
+                    </ul>
+                    <p class="mt-3 font-semibold">Benefits of Decomposition:</p>
+                     <ul class="list-disc list-inside ml-4 space-y-1 text-sm">
+                        <li>Makes complex problems easier to understand and solve.</li>
+                        <li>Allows different people or teams to work on different parts of a problem simultaneously.</li>
+                        <li>Reduces development time.</li>
+                        <li>Program components (modules/functions) developed for one sub-problem can often be reused.</li>
+                        <li>Easier to test and debug smaller, individual components.</li>
+                        <li>Programs are less prone to errors during development.</li>
+                        <li>Easier to manage changes if requirements evolve.</li>
+                        <li>Simplifies program maintenance.</li>
+                    </ul>
+                </div>
+
+                <div id="task-decomposition-problem" class="quiz-item mb-6" data-points="3">
+                    <h3 class="text-lg font-medium text-gray-700 mb-2">Task 2.1: Decompose a Daily Task (Max 3 points)</h3>
+                    <p class="text-sm text-gray-600 mb-2">Think about the task of "Making a cup of tea." Decompose this into at least 3-5 smaller, distinct sub-tasks or steps. Write one sub-task per box.</p>
+                    <div class="space-y-2">
+                        <div class="decomposition-task-item"><label for="decomp-step1" class="text-xs font-medium">Step 1:</label><input type="text" id="decomp-step1" placeholder="e.g., Boil water"></div>
+                        <div class="decomposition-task-item"><label for="decomp-step2" class="text-xs font-medium">Step 2:</label><input type="text" id="decomp-step2" placeholder="e.g., Prepare cup and teabag"></div>
+                        <div class="decomposition-task-item"><label for="decomp-step3" class="text-xs font-medium">Step 3:</label><input type="text" id="decomp-step3" placeholder="..."></div>
+                        <div class="decomposition-task-item"><label for="decomp-step4" class="text-xs font-medium">Step 4 (Optional):</label><input type="text" id="decomp-step4" placeholder="..."></div>
+                        <div class="decomposition-task-item"><label for="decomp-step5" class="text-xs font-medium">Step 5 (Optional):</label><input type="text" id="decomp-step5" placeholder="..."></div>
+                    </div>
+                    <button class="check-button no-print !mt-2" onclick="checkDecompositionTask()">Check Decomposition</button>
+                    <div class="feedback mt-1"></div>
+                </div>
+            </section>
+
+            <section id="algorithmic-thinking-section" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-shoe-prints mr-2 text-emerald-500"></i>Algorithmic Thinking</h2>
+                 <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-semibold text-emerald-700">Creating Step-by-Step Solutions</h3>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-emerald-50 p-4 rounded-lg border border-emerald-200 mb-6">
+                    <p><strong class="keyword">Algorithmic Thinking<span class="tooltip">Defining the steps needed to solve a problem using sequence, selection and iteration. A CT skill.</span></span> is the process of developing a step-by-step solution to a problem, or the rules to follow to solve a problem. It involves defining a precise sequence of instructions that can be followed to achieve a desired outcome.</p>
+                    <p class="mt-2">An <span class="keyword">algorithm<span class="tooltip">A finite sequence of well-defined, computer-implementable instructions, typically to solve a class of specific problems or to perform a computation.</span></span> is the result of algorithmic thinking. Algorithms must be unambiguous (clear and not open to interpretation) and finite (they must eventually end).</p>
+                    <p class="mt-2">Key components of algorithmic thinking often involve:</p>
+                    <ul class="list-disc list-inside ml-4 space-y-1 text-sm">
+                        <li><strong>Sequence:</strong> Performing instructions in a specific order.</li>
+                        <li><strong>Selection:</strong> Making decisions and choosing different paths based on conditions (e.g., using IF...THEN...ELSE statements).</li>
+                        <li><strong>Iteration (Repetition):</strong> Repeating a set of instructions a certain number of times or until a condition is met (e.g., using loops like FOR or WHILE).</li>
+                    </ul>
+                    <p class="mt-2"><strong>Example: Algorithmic thinking for a chess AI</strong></p>
+                    <ol class="list-decimal list-inside ml-4 space-y-1 text-sm">
+                        <li>List all possible legal moves for the current board state.</li>
+                        <li>For each possible move, evaluate its outcome (e.g., how good is the resulting board position?).</li>
+                        <li>Select the move that leads to the best evaluated outcome.</li>
+                        <li>Make that move.</li>
+                        <li>Repeat for the next turn.</li>
+                    </ol>
+                </div>
+
+                <div id="task-algorithmic-order" class="quiz-item mb-6" data-points="3">
+                    <h3 class="text-lg font-medium text-gray-700 mb-2">Task 3.1: Order the Algorithm - Making Toast (Max 3 points)</h3>
+                    <p class="text-sm text-gray-600 mb-2">Drag the steps into the correct logical order to make toast.</p>
+                    <div id="algo-steps-pool" class="algo-dropzone mb-6 flex-row justify-around flex-wrap">
+                        <h4 class="font-semibold text-sm text-gray-700 mb-2 w-full text-center">Algorithm Steps (Drag these)</h4>
+                        <div class="algo-step" draggable="true" id="toast-step-butter">Butter the toast (if desired).</div>
+                        <div class="algo-step" draggable="true" id="toast-step-insert">Insert bread slices into toaster.</div>
+                        <div class="algo-step" draggable="true" id="toast-step-start">Start the toaster.</div>
+                        <div class="algo-step" draggable="true" id="toast-step-wait">Wait for toast to pop up.</div>
+                        <div class="algo-step" draggable="true" id="toast-step-remove">Remove toast from toaster.</div>
+                    </div>
+                    <h4 class="font-semibold text-gray-700 mb-2">Making Toast - Algorithm:</h4>
+                    <div id="algo-ordered-steps" class="algo-dropzone space-y-2">
+                        <div class="h-10 text-gray-400 italic flex items-center justify-center">1. First...</div>
+                        <div class="h-10 text-gray-400 italic flex items-center justify-center">2. Then...</div>
+                        <div class="h-10 text-gray-400 italic flex items-center justify-center">3. Then...</div>
+                        <div class="h-10 text-gray-400 italic flex items-center justify-center">4. Then...</div>
+                        <div class="h-10 text-gray-400 italic flex items-center justify-center">5. Finally...</div>
+                    </div>
+                    <button class="check-button no-print !mt-2" onclick="checkAlgorithmOrder()">Check Order</button>
+                    <div class="feedback mt-1"></div>
+                </div>
+            </section>
+            
+            <section id="real-world-ct" class="task-container">
+                <div class="flex justify-between items-center mb-4">
+                   <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-globe-europe mr-2 text-blue-500"></i> Real-World Computational Thinking</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                       <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                   </label>
+               </div>
+               <div class="bg-blue-50 p-5 rounded-lg border border-blue-200 space-y-3">
+                   <p class="text-gray-700">Computational Thinking isn't just for programmers! These skills are valuable in many fields and everyday situations:</p>
+                   <ul class="list-disc list-inside space-y-2 text-blue-800 pl-4">
+                       <li><strong>Scientists:</strong> Decompose complex experiments into manageable steps, abstract data to find patterns, and develop algorithms for analysis.</li>
+                       <li><strong>Doctors:</strong> Use decomposition to diagnose illnesses by considering different systems of the body. They abstract symptoms to identify underlying causes and follow algorithmic diagnostic procedures.</li>
+                       <li><strong>Chefs:</strong> Decompose recipes into steps (algorithmic thinking). They abstract ingredients (e.g., "a pinch of salt" rather than an exact gram measurement for home cooking) and might abstract techniques (e.g., "sauté" implies a set of hidden detailed actions).</li>
+                       <li><strong>Project Managers:</strong> Decompose large projects into tasks, abstract key milestones, and create timelines (algorithms) for completion.</li>
+                       <li><strong>Everyday Problem Solving:</strong> Planning a journey (decomposition, abstraction of map details, algorithmic route planning), organizing your study schedule, or even tidying your room can benefit from CT principles.</li>
+                   </ul>
+               </div>
+           </section>
+
+           <section id="myth-busters-ct" class="task-container">
+                <div class="flex justify-between items-center mb-4">
+                   <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-question-circle mr-2 text-red-500"></i> Computational Thinking Myth Busters!</h2>
+                   <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                       <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                   </label>
+               </div>
+               <div class="bg-red-50 p-5 rounded-lg border border-red-200 space-y-4">
+                   <div>
+                       <p><strong class="font-semibold text-red-800">Myth 1:</strong> "Computational Thinking is only for people who want to be programmers."</p>
+                       <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> While CT is fundamental to programming, its principles (abstraction, decomposition, algorithmic thinking) are powerful problem-solving tools applicable across many disciplines and in everyday life, as seen in the real-world examples.</p>
+                   </div>
+                   <div class="border-t border-red-200 pt-4">
+                       <p><strong class="font-semibold text-red-800">Myth 2:</strong> "Abstraction means making things vague or less precise."</p>
+                       <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> Good abstraction isn't about being vague; it's about being precise about what's important for a particular purpose and deliberately ignoring what's not. It's about managing complexity by focusing on the relevant level of detail. A well-abstracted model is clear and useful, not fuzzy.</p>
+                   </div>
+                   <div class="border-t border-red-200 pt-4">
+                       <p><strong class="font-semibold text-red-800">Myth 3:</strong> "Decomposition means you have to break a problem down into the tiniest possible pieces."</p>
+                       <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> Decomposition is about breaking a problem into *manageable* sub-problems. The appropriate level of decomposition depends on the complexity of the problem and the context. Breaking it down too far can sometimes create more work than necessary if the sub-problems become trivial or too numerous to coordinate effectively.</p>
+                   </div>
+               </div>
+           </section>
+
+            <section id="exam-practice-ct" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-graduation-cap mr-2"></i>Task 4: Exam Practice Questions</h2>
+                <p class="text-gray-600 mb-6">Apply your knowledge to these exam-style questions.</p>
+                <div class="space-y-6">
+                    <div class="exam-question-item">
+                        <p class="font-medium text-gray-800 mb-2">1. Define abstraction in the context of computational thinking. Give one example of abstraction in everyday life (not computing related). [3 marks]</p>
+                        <textarea id="exam-q1-ct" class="exam-answer-textarea" placeholder="Definition of abstraction... Everyday example..."></textarea>
+                        <button class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q1-ct', 'exam-q1-ct', 20)">Show Mark Scheme</button>
+                        <div id="ms-exam-q1-ct" class="mark-scheme">
+                            <p><strong>Mark Scheme:</strong></p>
+                            <ul>
+                                <li>Definition: Removing/hiding unnecessary detail (1) and focusing on the important details/essentials to solve a problem / simplify complexity (1).</li>
+                                <li>Everyday Example: A map (hides terrain details, shows roads/landmarks) / A car dashboard (hides engine mechanics, shows speed/fuel) / A recipe (hides chemical reactions, shows ingredients/steps). (1 mark for a suitable example with brief explanation of what's hidden/focused on).</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="exam-question-item">
+                        <p class="font-medium text-gray-800 mb-2">2. A team is developing a new video game. Explain how decomposition would be used in this project and state two benefits of using decomposition. [4 marks]</p>
+                        <textarea id="exam-q2-ct" class="exam-answer-textarea" placeholder="How decomposition is used... Two benefits..."></textarea>
+                        <button class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q2-ct', 'exam-q2-ct', 25)">Show Mark Scheme</button>
+                        <div id="ms-exam-q2-ct" class="mark-scheme">
+                            <p><strong>Mark Scheme:</strong></p>
+                            <ul>
+                                <li>How used: The overall game development would be broken down into smaller, manageable modules/parts (1). Examples: graphics engine, physics engine, character design, level design, sound design, user interface, AI for opponents (1 mark for specific examples of game components).</li>
+                                <li>Benefit 1: Makes the complex problem of game development easier to solve/manage (1). OR Different teams/people can work on different parts concurrently, reducing development time (1).</li>
+                                <li>Benefit 2: Modules can be tested independently, making debugging easier (1). OR Components can be reused in other games or projects (1). OR Easier to maintain/update specific parts (1).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="related-videos-ct" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-video mr-2 text-purple-500"></i> Related Videos</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-purple-50 p-5 rounded-lg border border-purple-200 space-y-4">
+                    <p class="text-gray-700">Watch these videos to learn more about Computational Thinking:</p>
+                    <ul class="list-disc list-inside space-y-3 text-purple-800 pl-4">
+                        <li>
+                            <strong>Video 1: Introduction to Computational Thinking (Overview)</strong>
+                            <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 1: General CT]</div>
+                        </li>
+                        <li>
+                            <strong>Video 2: Abstraction and Decomposition Explained with Examples</strong>
+                            <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 2: Abstraction & Decomposition]</div>
+                        </li>
+                         <li>
+                            <strong>Video 3: Algorithmic Thinking in Action</strong>
+                            <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 3: Algorithmic Thinking]</div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="key-takeaways-ct" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-key mr-2"></i>Key Takeaways</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-300 space-y-2 show">
+                    <ul class="list-disc list-inside space-y-1 text-yellow-800">
+                        <li><strong class="keyword">Computational Thinking (CT)<span class="tooltip">A problem solving process using abstraction, decomposition and algorithmic thinking. Results in an algorithm we can code for a computer.</span></strong> is a problem-solving approach using <span class="keyword">Abstraction<span class="tooltip">Removing/hiding unnecessary detail and focusing on the important details that are necessary to solve a problem. Simplifies the problem and reduces complexity making it easier to solve/understand.</span></span>, <span class="keyword">Decomposition<span class="tooltip">Breaking a problem down into smaller steps in order to solve it. A CT skill.</span></span>, and <span class="keyword">Algorithmic Thinking<span class="tooltip">Defining the steps needed to solve a problem using sequence, selection and iteration. A CT skill.</span></span>.</li>
+                        <li><strong>Abstraction</strong> involves hiding unnecessary details to focus on essentials, simplifying complexity.</li>
+                        <li><strong>Decomposition</strong> means breaking complex problems into smaller, manageable sub-problems, making them easier to solve and manage.</li>
+                        <li><strong>Algorithmic Thinking</strong> is about developing precise, step-by-step instructions (an <span class="keyword">algorithm<span class="tooltip">A finite sequence of well-defined, computer-implementable instructions, typically to solve a class of specific problems or to perform a computation.</span></span>) using sequence, selection, and iteration to solve a problem.</li>
+                        <li>These principles are used to define, refine, and ultimately solve problems, often leading to solutions that can be implemented by computers.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="next-steps-ct" class="task-container">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600">What's Next?</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-teal-50 p-5 rounded-lg border border-teal-300">
+                    <p class="text-teal-800 font-medium">You've now learned the core principles of Computational Thinking!</p>
+                    <p class="text-teal-700 mt-2">The next steps in Topic 2.1 (Algorithms) involve applying these skills to specific types of algorithms:</p>
+                    <ul class="list-disc list-inside space-y-1 text-teal-700 mt-3 pl-4">
+                        <li><a href="mgsgcse22.html" class="font-semibold text-teal-900 hover:underline">2.1.2 Standard searching algorithms</a> (Linear search, Binary search)</li>
+                        <li><a href="mgsgcse23.html" class="font-semibold text-teal-900 hover:underline">2.1.3 Standard sorting algorithms</a> (Bubble sort, Merge sort, Insertion sort)</li>
+                        <li>Understanding how to represent algorithms (e.g., pseudocode, flowcharts).</li>
+                    </ul>
+                     <p class="mt-3"><a href="mgsgcse21.html" class="font-semibold text-teal-900 hover:underline">← Back to Algorithms Overview</a></p>
+                </div>
+            </section>
+
+            <section id="extension-activities-ct" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-lightbulb-on mr-2 text-orange-500"></i> Extension Activities</h2>
+                <div class="bg-orange-50 p-5 rounded-lg border border-orange-200 space-y-6">
+                    <div class="extension-task">
+                        <h3 class="font-semibold text-orange-800 mb-2">1. Levels of Abstraction in a Computer System</h3>
+                        <p class="text-sm text-gray-700 mb-2">Computer systems themselves are built with many layers of abstraction, from the physical hardware up to the applications you use.</p>
+                        <p class="text-sm text-gray-700 mb-2">Research Task: Describe at least three different levels of abstraction in a typical computer system (e.g., hardware level, operating system level, application level). For each level, explain what details are hidden from the level above it.</p>
+                        <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Level 1: Details hidden... Level 2: Details hidden..."></textarea>
+                    </div>
+                    <div class="extension-task border-t border-orange-200 pt-4">
+                        <h3 class="font-semibold text-orange-800 mb-2">2. Decomposing a Complex Real-World Problem</h3>
+                        <p class="text-sm text-gray-700 mb-2">Choose a complex real-world problem (e.g., reducing traffic congestion in a city, organizing a large charity event, designing a sustainable food production system).</p>
+                        <p class="text-sm text-gray-700 mb-2">Task: Apply decomposition to this problem. Identify at least 5-7 major sub-problems or components that would need to be addressed to solve the overall problem.</p>
+                        <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Chosen Problem: ... Sub-problem 1: ... Sub-problem 2: ..."></textarea>
+                    </div>
+                    <div class="extension-task border-t border-orange-200 pt-4">
+                        <h3 class="font-semibold text-orange-800 mb-2">3. Pattern Recognition - The "Fourth Pillar"?</h3>
+                        <p class="text-sm text-gray-700 mb-2">Some models of Computational Thinking include "Pattern Recognition" as a fourth core principle alongside Abstraction, Decomposition, and Algorithmic Thinking. Pattern recognition involves finding similarities or trends within problems or data.</p>
+                        <p class="text-sm text-gray-700 mb-2">Research Task: What is pattern recognition in the context of CT? How might it help in solving problems or designing algorithms? Give an example.</p>
+                        <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Pattern recognition definition? How it helps? Example?"></textarea>
+                    </div>
+                </div>
+            </section>
+            
+            <footer class="mt-12 text-center no-print">
+                <div id="final-score-area" class="task-container bg-purple-100 border-purple-300 mb-6" style="display: none;">
+                    <h2 class="task-title text-2xl text-purple-700">Worksheet Score</h2>
+                    <p id="final-score-display" class="text-3xl font-bold text-purple-800">Your score: 0 / 0</p>
+                    <p id="final-score-feedback" class="text-purple-600"></p>
+                </div>
+                <button id="calculate-final-score" class="final-button">Calculate Final Score</button>
+                <button id="reset-all-tasks" class="reset-button">Reset All Tasks</button>
+                <button id="export-pdf-button" class="export-pdf-button">Export to PDF</button>
+            </footer>
+
+        </main>
+    </div>
+
+    <script src="js/gcse-algo-thinking.js"></script>
+
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+</html>

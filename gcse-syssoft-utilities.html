@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCSE CS Lesson: Utility Programs - Keeping Your System Healthy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    
+<link rel="stylesheet" href="css/style.css">
+</head>
+<nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <a href="home.html" class="text-xl font-bold hover:text-gray-300 transition-colors">MGS CS Hub</a>
+        <ul class="flex space-x-3 lg:space-x-4">
+        </ul>
+        <ul class="flex flex-wrap space-x-2 sm:space-x-3 lg:space-x-4 text-sm sm:text-base">
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 7</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 8</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 9</a></li>
+            <li><a href="gcse.html" class="hover:text-gray-300 transition-colors">GCSE</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">A Level</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Competitions</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">CS News</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Extracurricular</a></li>
+        </ul>
+    </div>
+</nav>
+
+\1
+
+
+
+    <div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-lg shadow-xl">
+
+        <a href="mgsgcse15.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 group no-print">
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left w-5 h-5 mr-2 transition-transform duration-200 group-hover:-translate-x-1"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+            Back to Systems Software
+        </a>
+
+        <header class="mb-8 border-b pb-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-2">Utility Programs: Keeping Your System Healthy</h1>
+            <p class="text-lg text-gray-600">OCR GCSE Computer Science (J277) - Topic 1.5.2: Utility Software</p>
+        </header>
+
+        <main class="space-y-8 md:space-y-12">
+
+            <section id="starter-activity" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-tools mr-2 text-yellow-500"></i> Starter Activity (5 mins)</h2>
+                <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-200 space-y-4">
+                    <p class="font-semibold text-yellow-800">Let's warm up! What do you know about tools for your computer?</p>
+                    <div class="space-y-3">
+                        <div>
+                            <label for="starter-q1-utility" class="block text-sm font-medium text-yellow-700">1. In your own words, what do you think a "utility program" is designed to do for a computer?</label>
+                            <textarea id="starter-q1-utility" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" placeholder="e.g., Helps with maintenance, specific jobs..."></textarea>
+                        </div>
+                        <div>
+                            <label for="starter-q2-examples" class="block text-sm font-medium text-yellow-700">2. Can you name any software tools or programs you (or someone you know) might have used to keep a computer running well, or to manage files?</label>
+                            <textarea id="starter-q2-examples" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" placeholder="e.g., Antivirus, Disk Cleanup..."></textarea>
+                        </div>
+                         <div>
+                            <label for="starter-q3-why" class="block text-sm font-medium text-yellow-700">3. Why do you think such utility programs are needed, if we already have an Operating System?</label>
+                            <textarea id="starter-q3-why" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" placeholder="What extra help might they provide?"></textarea>
+                        </div>
+                    </div>
+                    <button class="reveal-button !bg-yellow-500 hover:!bg-yellow-600 no-print" onclick="toggleReveal('starter-answers-feedback', this, 'Reveal Example Answers', 'Hide Example Answers')">Reveal Example Answers</button>
+                    <div id="starter-answers-feedback" class="feedback-area !bg-yellow-100 !border-yellow-300 !text-yellow-700">
+                        <p><strong>Example Answers:</strong></p>
+                        <ul class="list-disc list-inside">
+                            <li>1. Utility programs are tools that help maintain, configure, optimise, or protect a computer system. They perform specific tasks to keep it running smoothly.</li>
+                            <li>2. Examples: Antivirus software, disk defragmenter, backup tools, file compression (like WinZip/7-Zip), disk cleanup utilities, encryption tools.</li>
+                            <li>3. While the OS provides core functionality, utility programs offer more specialized tools for specific maintenance, security, or optimisation tasks that the OS might not cover in detail or as efficiently. They extend the OS's capabilities.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="lesson-outcomes" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-bullseye mr-2 text-green-500"></i> Lesson Outcomes</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-green-50 p-5 rounded-lg border border-green-200">
+                    <p class="font-semibold text-green-800 mb-3">By the end of this lesson, you should be able to:</p>
+                    <ul class="list-disc list-inside space-y-2 text-green-700 pl-4">
+                        <li>Define <span class="keyword">utility program<span class="tooltip">A program that performs a specific task required for the operation of a computer system.</span></span> and its role as <span class="keyword">Systems Software<span class="tooltip">Software designed to provide a platform for other software (includes OS and Utility Programs).</span></span>.</li>
+                        <li>Explain the need for and functioning of <span class="keyword">Defragmentation software<span class="tooltip">A utility that reduces the amount of separation of files and free space on disk by physically organising the contents of the disk to store the pieces of each file and free space together. This improves the speed of retrieval of files from the disk as the read/write head does not have to travel as far.</span></span>.</li>
+                        <li>Explain the need for and functioning of <span class="keyword">Encryption software<span class="tooltip">Software that uses an algorithm to scramble plaintext data into unreadable ciphertext, requiring a key for decryption. Protects data confidentiality.</span></span>.</li>
+                        <li>Explain the need for and functioning of <span class="keyword">Compression software<span class="tooltip">Software that reduces the size of files so they take up less disk space and are quicker to download/transmit. Can be lossy or lossless.</span></span> (briefly touching on lossy/lossless).</li>
+                        <li>Explain the need for and functioning of <span class="keyword">Backup software<span class="tooltip">Software that creates copies of data that can be used to restore the original after a data loss event (e.g., hardware failure, deletion, malware).</span></span> (full and incremental).</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="intro-utilities" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-wrench mr-2"></i> Introduction: What Are Utility Programs?</h2>
+                     <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-indigo-50 p-5 rounded-lg border border-indigo-200 space-y-3">
+                    <p>While the Operating System is the main manager of your computer, <strong class="keyword">Utility Programs<span class="tooltip">A program that performs a specific task required for the operation of a computer system.</span></strong> are a type of <strong class="keyword">Systems Software<span class="tooltip">Software designed to provide a platform for other software (includes OS and Utility Programs).</span></strong> designed to help analyse, configure, optimise, or maintain a computer. They perform specific tasks that assist the OS or the user in keeping the system running efficiently and securely.</p>
+                    <p>Think of them as the specialized tools in a mechanic's toolkit. The OS is the chief mechanic, but it uses these tools for particular jobs. Common utilities include tools for disk defragmentation, data encryption, file compression, and creating backups.</p>
+                    <p>In this lesson, we'll explore some of the most important utility programs. Hover over <span class="keyword">keywords<span class="tooltip">This is an example tooltip!</span></span> for definitions.</p>
+                </div>
+            </section>
+
+            <section id="task1-defragmentation" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-hdd mr-2"></i>Task 1: Disk Defragmentation <span class="font-bold text-sm text-gray-500 ml-auto">(Max 4 points for questions + Sim)</span></h2>
+                <div class="bg-blue-50 p-4 rounded-lg border border-blue-200 mb-4">
+                    <p class="mb-2">Over time, as files are saved, modified, and deleted, they can become <strong class="keyword">fragmented<span class="tooltip">When a single file is stored in non-contiguous (separate) blocks on a storage disk.</span></strong>. This means parts of a single file are stored in different, non-adjacent locations on a magnetic hard disk drive (HDD).</p>
+                    <p class="mb-2"><strong class="keyword">Defragmentation software<span class="tooltip">A utility that reduces the amount of separation of files and free space on disk by physically organising the contents of the disk to store the pieces of each file and free space together. This improves the speed of retrieval of files from the disk as the read/write head does not have to travel as far.</span></strong> reorganizes these fragmented files, placing all parts of each file together in contiguous blocks. It also consolidates free space.</p>
+                    <p class="mb-2"><strong>Why it helps (on HDDs):</strong> When a file is defragmented, the disk's read/write head doesn't have to move around as much to access all parts of the file. This <strong class="keyword">improves file access speed<span class="tooltip">Defragmentation makes reading files faster because the read/write head on an HDD doesn't need to move as much.</span></strong>.</p>
+                </div>
+
+                <h3 class="font-semibold text-gray-700 mb-2">Interactive Defragmentation Simulation:</h3>
+                <p class="text-sm text-gray-600 mb-2">The grid below represents sectors on a hard disk. Files are numbered. Empty sectors are gray.</p>
+                <div id="defrag-disk-grid" class="defrag-grid mb-4"></div>
+                <div class="text-sm text-gray-600 mb-2">
+                    <strong>Instructions:</strong>
+                    <ol class="list-decimal list-inside ml-4">
+                        <li>Observe the initial fragmented state.</li>
+                        <li>Click "Add File 6 (Orange - 11 sectors)" and "Add File 7 (Green - 8 sectors)". Try to place them contiguously if possible by clicking on empty gray sectors. Notice how they might get split up.</li>
+                        <li>Then, click "Run Defragmenter".</li>
+                    </ol>
+                </div>
+                <div class="mb-4 space-x-2">
+                    <button class="sim-button !py-1 !px-2 text-xs" onclick="addFileToDefragGrid(6, 11, 'file-6', 'Orange')">Add File 6 (Orange - 11 sectors)</button>
+                    <button class="sim-button !py-1 !px-2 text-xs" onclick="addFileToDefragGrid(7, 8, 'file-7', 'Green')">Add File 7 (Green - 8 sectors)</button>
+                    <button class="sim-button !py-1 !px-2 text-xs !bg-emerald-500 hover:!bg-emerald-600" onclick="runDefragmenter()">Run Defragmenter</button>
+                    <button class="reset-button !py-1 !px-2 text-xs" onclick="initializeDefragGrid()">Reset Grid</button>
+                </div>
+                <p id="defrag-message" class="text-sm text-indigo-600 font-medium min-h-[1.5em]"></p>
+
+                <div class="mt-6 space-y-4 quiz-item" data-points="4">
+                    <div>
+                        <label for="defrag-q1" class="block text-sm font-medium text-gray-700">1. After adding File 6 and File 7, what did you notice about how they were stored if you tried to place them contiguously? Why did this happen? (1 mark)</label>
+                        <textarea id="defrag-q1" rows="2" class="mt-1 block w-full p-2 border border-gray-300 rounded-md bg-white"></textarea>
+                    </div>
+                    <div>
+                        <label for="defrag-q2" class="block text-sm font-medium text-gray-700">2. Why does fragmentation make it slower to read a file from an HDD? (1 mark)</label>
+                        <textarea id="defrag-q2" rows="2" class="mt-1 block w-full p-2 border border-gray-300 rounded-md bg-white"></textarea>
+                    </div>
+                    <div>
+                        <label for="defrag-q3" class="block text-sm font-medium text-gray-700">3. Will defragmenting an HDD give you significantly more free disk space? Explain. (1 mark)</label>
+                        <textarea id="defrag-q3" rows="2" class="mt-1 block w-full p-2 border border-gray-300 rounded-md bg-white"></textarea>
+                    </div>
+                    <div>
+                        <label for="defrag-q4" class="block text-sm font-medium text-gray-700">4. Should you defragment an SSD (Solid State Drive)? Explain why or why not. (1 mark)</label>
+                        <textarea id="defrag-q4" rows="2" class="mt-1 block w-full p-2 border border-gray-300 rounded-md bg-white"></textarea>
+                    </div>
+                </div>
+                <button class="check-button no-print" onclick="checkDefragAnswers()">Check Answers</button>
+                <button class="reset-button no-print" onclick="resetDefragTask()">Reset Task 1</button>
+                <div id="task1-feedback" class="feedback-area"></div>
+            </section>
+
+            <section id="task2-encryption" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-lock mr-2"></i>Task 2: Encryption Software <span class="font-bold text-sm text-gray-500 ml-auto">(Max 3 points for fill-blanks + 2 for explanation)</span></h2>
+                <div class="bg-purple-50 p-4 rounded-lg border border-purple-200 mb-4">
+                    <p><span class="keyword">Encryption software<span class="tooltip">Software that uses an algorithm to scramble plaintext data into unreadable ciphertext, requiring a key for decryption. Protects data confidentiality.</span></span> is a utility that transforms data into an unreadable format (<span class="keyword">ciphertext<span class="tooltip">Data that has been encrypted and is unreadable without the correct decryption key.</span></span>) to protect it from unauthorized access. Only someone with the correct <span class="keyword">key<span class="tooltip">A piece of secret information (e.g., a password or a digital certificate) used by an encryption algorithm to transform plaintext into ciphertext and vice-versa.</span></span> can decrypt the data back into its original readable form (<span class="keyword">plaintext<span class="tooltip">Original, readable data before it is encrypted.</span></span>). This is done using a specific <span class="keyword">algorithm<span class="tooltip">A set of rules or steps followed to perform a calculation or solve a problem. In encryption, it defines how plaintext is transformed into ciphertext using a key.</span></span>.</p>
+                </div>
+
+                <h3 class="font-semibold text-gray-700 mb-2">Caesar Cipher Simulation:</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label for="caesar-plaintext" class="block text-sm font-medium text-gray-700">Plaintext (A-Z only, uppercase):</label>
+                        <input type="text" id="caesar-plaintext" class="mt-1 block w-full p-2 border border-gray-300 rounded-md bg-white uppercase" placeholder="HELLO">
+                        <label for="caesar-key" class="block text-sm font-medium text-gray-700 mt-2">Shift Key (1-25):</label>
+                        <input type="number" id="caesar-key" min="1" max="25" value="3" class="mt-1 block w-20 p-2 border border-gray-300 rounded-md bg-white">
+                        <button class="sim-button !py-1 !px-2 text-xs !mt-1" onclick="runCaesarCipher('encrypt')">Encrypt</button>
+                    </div>
+                    <div>
+                        <label for="caesar-ciphertext" class="block text-sm font-medium text-gray-700">Ciphertext:</label>
+                        <input type="text" id="caesar-ciphertext" class="mt-1 block w-full p-2 border border-gray-300 rounded-md bg-gray-100" readonly>
+                        <button class="sim-button !py-1 !px-2 text-xs !mt-3" onclick="runCaesarCipher('decrypt')">Decrypt (uses same key)</button>
+                    </div>
+                </div>
+                <p id="caesar-output" class="text-sm text-indigo-600 font-medium min-h-[1.5em]"></p>
+
+                <div class="mt-6 quiz-item" data-points="3">
+                    <p class="font-medium text-gray-700 mb-2">Fill in the blanks for Hamish's scenario: <br>Hamish wants to protect his confidential documents. Encryption software helps by transforming his original <input type="text" id="enc-blank1" class="fill-blank" data-answer="plaintext"> documents into an unreadable format called <input type="text" id="enc-blank2" class="fill-blank" data-answer="ciphertext">. This process uses a mathematical <input type="text" id="enc-blank3" class="fill-blank" data-answer="algorithm"> and a secret <input type="text" id="enc-blank4" class="fill-blank" data-answer="key">. Without the correct key, anyone who accesses the files will not be able to understand the information. (1 mark for 2 correct, 2 for 3, 3 for all 4)</p>
+                </div>
+                 <div class="mt-4 quiz-item" data-points="2">
+                    <label for="encryption-explanation" class="block text-sm font-medium text-gray-700">Explain how encryption helps to protect Hamish’s documents in your own words. [2 marks]</label>
+                    <textarea id="encryption-explanation" rows="3" class="mt-1 block w-full p-2 border border-gray-300 rounded-md bg-white"></textarea>
+                </div>
+                <button class="check-button no-print" onclick="checkEncryptionAnswers()">Check Answers</button>
+                <button class="reset-button no-print" onclick="resetEncryptionTask()">Reset Task 2</button>
+                <div id="task2-feedback" class="feedback-area"></div>
+            </section>
+
+            <section id="task3-compression" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-compress-arrows-alt mr-2"></i>Task 3: Compression Software <span class="font-bold text-sm text-gray-500 ml-auto">(Max 3 points)</span></h2>
+                <div class="bg-teal-50 p-4 rounded-lg border border-teal-200 mb-4">
+                    <p><span class="keyword">Compression software<span class="tooltip">Software that reduces the size of files so they take up less disk space and are quicker to download/transmit. Can be lossy or lossless.</span></span> reduces file sizes. <span class="keyword">Lossless compression<span class="tooltip">Every bit of the original data can be recovered from the compressed file. The uncompressed image will be the same as the original with no loss of data. Works by looking for patterns in the data. Larger compressed file sizes than lossy. e.g. Run-length encoding.</span></span> allows perfect reconstruction of the original data. <span class="keyword">Run Length Encoding (RLE)<span class="tooltip">Lossless compression technique that summarises consecutive patterns of the same data. Works well with image and sound data where data could be repeated many times.</span></span> is a simple lossless method.</p>
+                </div>
+                <h3 class="font-semibold text-gray-700 mb-2">Run Length Encoding (RLE) Example:</h3>
+                <p class="text-sm text-gray-600 mb-1">Original data: <code>WWWWBBBAAAAAAAACCC</code></p>
+                <p class="text-sm text-gray-600 mb-2">RLE Encoded: <code class="font-mono bg-gray-200 p-1 rounded">4W3B8A3C</code> (Count followed by character)</p>
+
+                <div class="quiz-item" data-points="3">
+                    <div class="mb-4">
+                        <label for="rle-input" class="block text-sm font-medium text-gray-700">Enter a string to compress with RLE (e.g., AAAAABBBCC):</label>
+                        <input type="text" id="rle-input" class="mt-1 block w-full p-2 border border-gray-300 rounded-md bg-white" placeholder="AAAAABBBCC">
+                        <button class="sim-button !py-1 !px-2 text-xs !mt-1" onclick="runRLECompression()">Compress</button>
+                        <p class="text-sm mt-1">Compressed: <strong id="rle-output" class="text-indigo-600 font-mono"></strong></p>
+                    </div>
+                    <div class="mt-4">
+                        <label for="compression-q1" class="block text-sm font-medium text-gray-700">1. What type of compression (lossy or lossless) is RLE? (1 mark)</label>
+                        <input type="text" id="compression-q1" class="fill-blank" data-answer="lossless">
+                    </div>
+                    <div class="mt-2">
+                        <label for="compression-q2" class="block text-sm font-medium text-gray-700">2. For what type of data is RLE most effective? (1 mark)</label>
+                        <input type="text" id="compression-q2" class="fill-blank" data-answer="repeating data">
+                    </div>
+                     <div class="mt-2">
+                        <label for="compression-q3" class="block text-sm font-medium text-gray-700">3. State one benefit of compressing image files. (1 mark)</label>
+                        <input type="text" id="compression-q3" class="fill-blank" data-answer="smaller file size">
+                    </div>
+                </div>
+                <button class="check-button no-print" onclick="checkCompressionAnswers()">Check Answers</button>
+                <button class="reset-button no-print" onclick="resetCompressionTask()">Reset Task 3</button>
+                <div id="task3-feedback" class="feedback-area"></div>
+            </section>
+
+            <section id="task4-backup" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-save mr-2"></i>Task 4: Backup Software <span class="font-bold text-sm text-gray-500 ml-auto">(Max 4 points)</span></h2>
+                <div class="bg-cyan-50 p-4 rounded-lg border border-cyan-200 mb-4">
+                    <p><span class="keyword">Backup software<span class="tooltip">Software that creates copies of data that can be used to restore the original after a data loss event (e.g., hardware failure, deletion, malware).</span></span> creates copies of data to protect against data loss (e.g., from hardware failure, accidental deletion, malware).</p>
+                    <ul class="list-disc list-inside text-sm text-cyan-700 mt-2">
+                        <li><strong>Full Backup:</strong> Copies all selected data. Slowest to create, but fastest to restore.</li>
+                        <li><strong>Incremental Backup:</strong> Copies only data changed since the *last backup* (full or incremental). Fastest to create, but slowest to restore (needs last full + all incrementals).</li>
+                    </ul>
+                </div>
+                <div class="quiz-item" data-points="4">
+                    <p class="font-medium text-gray-700 mb-2">Choose the best backup type for each scenario:</p>
+                    <div class="space-y-3">
+                        <div>
+                            <p class="text-sm">1. A company needs to back up its entire server data (10TB) once a week, with the fastest possible restore time being critical.</p>
+                            <label><input type="radio" name="backup-s1" value="full" class="form-radio text-cyan-600"> Full Backup</label>
+                            <label class="ml-4"><input type="radio" name="backup-s1" value="incremental" class="form-radio text-cyan-600"> Incremental Backup</label>
+                        </div>
+                        <div>
+                            <p class="text-sm">2. A student wants to quickly back up only the few documents they worked on each day to a USB stick.</p>
+                            <label><input type="radio" name="backup-s2" value="full" class="form-radio text-cyan-600"> Full Backup</label>
+                            <label class="ml-4"><input type="radio" name="backup-s2" value="incremental" class="form-radio text-cyan-600"> Incremental Backup</label>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <label for="backup-q1" class="block text-sm font-medium text-gray-700">3. State one reason why regular backups are important. (1 mark)</label>
+                        <input type="text" id="backup-q1" class="fill-blank" data-answer="prevent data loss">
+                    </div>
+                    <div class="mt-2">
+                        <label for="backup-q2" class="block text-sm font-medium text-gray-700">4. What is a major disadvantage of only performing incremental backups without ever doing a full backup? (1 mark)</label>
+                        <input type="text" id="backup-q2" class="fill-blank" data-answer="restore needs all">
+                    </div>
+                </div>
+                <button class="check-button no-print" onclick="checkBackupAnswers()">Check Answers</button>
+                <button class="reset-button no-print" onclick="resetBackupTask()">Reset Task 4</button>
+                <div id="task4-feedback" class="feedback-area"></div>
+            </section>
+
+            <section id="real-world-utilities" class="task-container">
+                <div class="flex justify-between items-center mb-4">
+                   <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-globe-europe mr-2 text-blue-500"></i> Real-World Utility Use</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                       <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                   </label>
+               </div>
+               <div class="bg-blue-50 p-5 rounded-lg border border-blue-200 space-y-3">
+                   <p class="text-gray-700">Utility programs are vital for everyday computer use and specific professional tasks:</p>
+                   <ul class="list-disc list-inside space-y-2 text-blue-800 pl-4">
+                       <li><strong>Defragmentation:</strong> While less critical for modern SSDs, it was essential for maintaining performance on older systems with HDDs, especially those handling large files like video editing suites or large databases.</li>
+                       <li><strong>Encryption:</strong> Used for securing online banking (HTTPS), messaging apps (end-to-end encryption like WhatsApp), protecting sensitive files on laptops (BitLocker/FileVault), and securing wireless networks (WPA2/3).</li>
+                       <li><strong>Compression:</strong> Creating ZIP files to email multiple documents, JPEG for photos on websites and social media, MP3/AAC for music streaming services, and MP4/H.264 for video services like YouTube and Netflix.</li>
+                       <li><strong>Backup:</strong> Cloud services like iCloud, Google Drive, and OneDrive offer backup capabilities. Businesses use robust backup solutions to protect critical data against hardware failure, cyberattacks (ransomware), or disasters. Operating systems also have built-in backup tools (e.g., Windows File History, macOS Time Machine).</li>
+                   </ul>
+               </div>
+           </section>
+
+           <section id="myth-busters-utilities" class="task-container">
+                <div class="flex justify-between items-center mb-4">
+                   <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-lightbulb-exclamation mr-2 text-red-500"></i> Utility Myth Busters!</h2>
+                   <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                       <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                   </label>
+               </div>
+               <div class="bg-red-50 p-5 rounded-lg border border-red-200 space-y-4">
+                   <div>
+                       <p><strong class="font-semibold text-red-800">Myth 1:</strong> "Defragmenting an SSD (Solid State Drive) will make it much faster."</p>
+                       <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> SSDs access data electronically without moving parts, so file fragmentation doesn't cause the same performance slowdown as on HDDs. In fact, defragmenting an SSD is generally unnecessary and can even slightly reduce its lifespan due to the extra write cycles. SSDs have their own maintenance routines like TRIM.</p>
+                   </div>
+                   <div class="border-t border-red-200 pt-4">
+                       <p><strong class="font-semibold text-red-800">Myth 2:</strong> "Encryption makes your computer incredibly slow for everything."</p>
+                       <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> While encryption and decryption do require processing power, modern CPUs often have dedicated hardware instructions (like AES-NI) to accelerate these tasks. For everyday use like full-disk encryption or HTTPS browsing, the performance impact is usually negligible for most users. The security benefits far outweigh the minimal overhead.</p>
+                   </div>
+                   <div class="border-t border-red-200 pt-4">
+                       <p><strong class="font-semibold text-red-800">Myth 3:</strong> "Lossless compression can make any file much smaller."</p>
+                       <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> Lossless compression relies on finding and reducing redundancy (repeating patterns) in data. If a file is already highly random or has very little repetition (like an already compressed file or an encrypted file), lossless compression might offer very little size reduction, or could even slightly increase the file size due to overhead.</p>
+                   </div>
+                   <div class="border-t border-red-200 pt-4">
+                       <p><strong class="font-semibold text-red-800">Myth 4:</strong> "Having one backup of my important files on an external hard drive kept next to my computer is perfectly safe."</p>
+                       <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> While better than no backup, this strategy doesn't protect against local disasters like fire, flood, or theft that could affect both the computer and the nearby backup drive. A good backup strategy (like the 3-2-1 rule: 3 copies, 2 different media, 1 off-site) is crucial for robust data protection.</p>
+                   </div>
+               </div>
+           </section>
+
+            <section id="exam-practice-utilities" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-graduation-cap mr-2"></i>Task 5: Exam Practice Questions</h2>
+                <p class="text-gray-600 mb-6">Apply your knowledge to these exam-style questions.</p>
+                <div class="space-y-6">
+                    <div class="exam-question-item">
+                        <p class="font-medium text-gray-800 mb-2">1. Explain why defragmentation software would be used on a computer with a magnetic hard disk drive (HDD). [2 marks]</p>
+                        <textarea id="exam-q1-util" class="exam-answer-textarea" placeholder="Explain the purpose and benefit..."></textarea>
+                        <button class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q1-util', 'exam-q1-util', 20)">Show Mark Scheme</button>
+                        <div id="ms-exam-q1-util" class="mark-scheme">
+                            <p><strong>Mark Scheme:</strong></p>
+                            <ul>
+                                <li>Files on an HDD can become fragmented / parts of a file stored in non-contiguous blocks. (1 mark)</li>
+                                <li>Defragmentation reorganises files so they are stored contiguously / reduces read/write head movement. (1 mark)</li>
+                                <li>This improves file access speed / makes the disk run more efficiently. (1 mark for consequence)</li>
+                            </ul>
+                             <p class="text-xs italic mt-1">(Max 2 marks)</p>
+                        </div>
+                    </div>
+                    <div class="exam-question-item">
+                        <p class="font-medium text-gray-800 mb-2">2. Describe the difference between lossy and lossless compression. Give one example file type for each. [4 marks]</p>
+                        <textarea id="exam-q2-util" class="exam-answer-textarea" placeholder="Differences and examples..."></textarea>
+                        <button class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q2-util', 'exam-q2-util', 25)">Show Mark Scheme</button>
+                        <div id="ms-exam-q2-util" class="mark-scheme">
+                            <p><strong>Mark Scheme:</strong></p>
+                            <ul>
+                                <li>Lossy compression permanently removes some data from the file (1) vs. Lossless compression removes no data / allows perfect reconstruction (1).</li>
+                                <li>Lossy generally results in smaller file sizes (1) vs. Lossless results in larger compressed files than lossy (but smaller than original) (1). (Accept quality difference)</li>
+                                <li>Example Lossy: JPEG / MP3 / MPEG / AAC (1).</li>
+                                <li>Example Lossless: PNG / GIF / ZIP / FLAC / RLE (1).</li>
+                            </ul>
+                             <p class="text-xs italic mt-1">(Max 4 marks - need points covering difference and examples)</p>
+                        </div>
+                    </div>
+                    <div class="exam-question-item">
+                        <p class="font-medium text-gray-800 mb-2">3. A school performs a full backup of its server every Sunday night and incremental backups every weeknight (Monday-Friday). If the server fails on a Wednesday afternoon, describe the steps needed to restore the data. [3 marks]</p>
+                        <textarea id="exam-q3-util" class="exam-answer-textarea" placeholder="Describe the restore process..."></textarea>
+                        <button class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q3-util', 'exam-q3-util', 20)">Show Mark Scheme</button>
+                        <div id="ms-exam-q3-util" class="mark-scheme">
+                            <p><strong>Mark Scheme:</strong></p>
+                            <ul>
+                                <li>First, restore the last full backup (from Sunday night). (1 mark)</li>
+                                <li>Then, restore Monday night's incremental backup. (1 mark)</li>
+                                <li>Finally, restore Tuesday night's incremental backup. (1 mark)</li>
+                                <li>(Order is important. Mentioning all three in correct sequence gets the marks.)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="related-videos-utilities" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-video mr-2 text-purple-500"></i> Related Videos</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-purple-50 p-5 rounded-lg border border-purple-200 space-y-4">
+                    <p class="text-gray-700">Watch these videos to reinforce your understanding of Utility Programs:</p>
+                    <ul class="list-disc list-inside space-y-3 text-purple-800 pl-4">
+                        <li>
+                            <strong>Video 1: GCSE Computer Science - Utility Software (Overview)</strong>
+                            <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 1: General Utility Software]</div>
+                        </li>
+                        <li>
+                            <strong>Video 2: Defragmentation and Compression Explained Visually</strong>
+                            <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 2: Defrag & Compression Focus]</div>
+                        </li>
+                         <li>
+                            <strong>Video 3: Backup Strategies and Encryption Basics</strong>
+                            <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 3: Backup & Encryption Focus]</div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="key-takeaways-utilities" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-key mr-2"></i>Key Takeaways</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-300 space-y-2 show">
+                    <ul class="list-disc list-inside space-y-1 text-yellow-800">
+                        <li><strong class="keyword">Utility Programs<span class="tooltip">A program that performs a specific task required for the operation of a computer system.</span></strong> help maintain, optimize, and secure computer systems.</li>
+                        <li><strong class="keyword">Defragmentation<span class="tooltip">A utility that reduces the amount of separation of files and free space on disk by physically organising the contents of the disk to store the pieces of each file and free space together. This improves the speed of retrieval of files from the disk as the read/write head does not have to travel as far.</span></strong> (for HDDs) rearranges fragmented files to improve access speed. Not needed/harmful for SSDs.</li>
+                        <li><strong class="keyword">Encryption Software<span class="tooltip">Software that uses an algorithm to scramble plaintext data into unreadable ciphertext, requiring a key for decryption. Protects data confidentiality.</span></strong> scrambles data (plaintext to ciphertext) using an algorithm and key to protect confidentiality.</li>
+                        <li><strong class="keyword">Compression Software<span class="tooltip">Software that reduces the size of files so they take up less disk space and are quicker to download/transmit. Can be lossy or lossless.</span></strong> reduces file sizes:
+                            <ul>
+                                <li><strong class="keyword">Lossy<span class="tooltip">Reduction of file size by removing certain, redundant information from the file. The eliminated data is unrecoverable. Tries to recreate a file without the omitted data. Much smaller file sizes but there will be some loss of quality.</span></strong>: Permanently removes data (e.g., JPEG, MP3). Smaller files, some quality loss.</li>
+                                <li><strong class="keyword">Lossless<span class="tooltip">Every bit of the original data can be recovered from the compressed file. The uncompressed image will be the same as the original with no loss of data. Works by looking for patterns in the data. Larger compressed file sizes than lossy. e.g. Run-length encoding.</span></strong>: No data lost, original can be perfectly restored (e.g., ZIP, RLE).</li>
+                            </ul>
+                        </li>
+                        <li><strong class="keyword">Backup Software<span class="tooltip">Software that creates copies of data that can be used to restore the original after a data loss event (e.g., hardware failure, deletion, malware).</span></strong> creates copies of data for recovery:
+                            <ul>
+                                <li><strong class="keyword">Full Backup<span class="tooltip">A backup that copies all selected data, regardless of when it was last backed up. Slow to create, fast to restore.</span></strong>: Copies everything.</li>
+                                <li><strong class="keyword">Incremental Backup<span class="tooltip">A backup that copies only the data that has changed since the last backup (either full or incremental). Fast to create, potentially slow to restore as it requires the last full backup and all subsequent incrementals.</span></strong>: Copies changes since the last backup.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="next-steps-utilities" class="task-container">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600">What's Next?</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-teal-50 p-5 rounded-lg border border-teal-300">
+                    <p class="text-teal-800 font-medium">You've now explored key utility programs that help manage and protect computer systems!</p>
+                    <p class="text-teal-700 mt-2">This concludes Topic 1.5 (Systems Software). The next major topic in Component 01 of the OCR J277 specification is:</p>
+                    <ul class="list-disc list-inside space-y-1 text-teal-700 mt-3 pl-4">
+                        <li><a href="mgsgcse16.html" class="font-semibold text-teal-900 hover:underline">1.6 Ethical, Legal, Cultural and Environmental concerns</a></li>
+                    </ul>
+                    <p class="text-teal-700 mt-2">Alternatively, you might be moving on to Component 02: Computational Thinking, Algorithms and Programming, starting with <a href="mgsgcse21.html" class="font-semibold text-teal-900 hover:underline">2.1 Algorithms</a>.</p>
+                </div>
+            </section>
+
+            <section id="extension-activities-utilities" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-cogs mr-2 text-orange-500"></i> Extension Activities</h2>
+                <div class="bg-orange-50 p-5 rounded-lg border border-orange-200 space-y-6">
+                    <div class="extension-task">
+                        <h3 class="font-semibold text-orange-800 mb-2">1. Disk Formatter & Disk Repair Utilities</h3>
+                        <p class="text-sm text-gray-700 mb-2">Beyond defragmentation, other disk utilities exist.</p>
+                        <p class="text-sm text-gray-700 mb-2">Research Task: What does a <strong>disk formatter</strong> utility do, and when might you use one (be careful!)? What kind of issues can <strong>disk repair</strong> utilities (like CHKDSK on Windows or Disk Utility on macOS) attempt to fix?</p>
+                        <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Disk Formatter: Purpose? Use cases? Disk Repair: What it fixes?"></textarea>
+                    </div>
+                    <div class="extension-task border-t border-orange-200 pt-4">
+                        <h3 class="font-semibold text-orange-800 mb-2">2. Advanced Backup Strategies: Differential Backups & The 3-2-1 Rule</h3>
+                        <p class="text-sm text-gray-700 mb-2">We covered full and incremental backups. Another type is a <strong>differential backup</strong>.</p>
+                        <p class="text-sm text-gray-700 mb-2">Research Task: How does a differential backup work? Compare it to incremental backups in terms of backup speed, restore speed, and storage space used. Also, research the "3-2-1 Backup Rule" and explain its importance for data safety.</p>
+                        <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Differential backup: How it works? Comparison? 3-2-1 Rule: What is it? Importance?"></textarea>
+                    </div>
+                    <div class="extension-task border-t border-orange-200 pt-4">
+                        <h3 class="font-semibold text-orange-800 mb-2">3. File System Checkers (CHKDSK / fsck)</h3>
+                        <p class="text-sm text-gray-700 mb-2">Operating systems include utilities to check the integrity of the file system on a storage device.</p>
+                        <p class="text-sm text-gray-700 mb-2">Research Task: What is the purpose of utilities like <code>CHKDSK</code> (Windows) or <code>fsck</code> (Linux/macOS)? What kind of errors can they detect and potentially repair on a disk?</p>
+                        <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Purpose of CHKDSK/fsck? Types of errors fixed?"></textarea>
+                    </div>
+                </div>
+            </section>
+            
+            <footer class="mt-12 text-center no-print">
+                <div id="final-score-area" class="task-container bg-purple-100 border-purple-300 mb-6">
+                    <h2 class="task-title text-2xl text-purple-700">Worksheet Score</h2>
+                    <p id="final-score-display" class="text-3xl font-bold text-purple-800">Your score: 0 / 0</p>
+                    <p id="final-score-feedback" class="text-purple-600"></p>
+                </div>
+                <button id="calculate-final-score" class="final-button">Calculate Final Score</button>
+                <button id="reset-all-tasks" class="reset-button">Reset All Tasks</button>
+                <button id="export-pdf-button" class="export-pdf-button">Export to PDF</button>
+            </footer>
+
+        </main>
+    </div>
+
+    
+    <script src="js/gcse-syssoft-utilities.js"></script>
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+</html>

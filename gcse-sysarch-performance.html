@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCSE CS Lesson: The Purpose of the CPU</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    
+<link rel="stylesheet" href="css/style.css">
+</head>
+<nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <a href="home.html" class="text-xl font-bold hover:text-gray-300 transition-colors">MGS CS Hub</a>
+        <ul class="flex space-x-3 lg:space-x-4">
+        </ul>
+        <ul class="flex flex-wrap space-x-2 sm:space-x-3 lg:space-x-4 text-sm sm:text-base">
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 7</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 8</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 9</a></li>
+            <li><a href="gcse.html" class="hover:text-gray-300 transition-colors">GCSE</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">A Level</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Competitions</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">CS News</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Extracurricular</a></li>
+        </ul>
+    </div>
+</nav>
+
+\1
+
+
+
+    <div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-lg shadow-xl">
+
+        <a href="mgsgcse11.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 group">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left w-5 h-5 mr-2 transition-transform duration-200 group-hover:-translate-x-1"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+            Back to Systems Architecture
+        </a>
+
+        <header class="mb-8 border-b pb-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-2">The Brain of the Computer: Understanding the CPU</h1>
+            <p class="text-lg text-gray-600">OCR GCSE Computer Science (J277) - Topic 1.1.1: The Purpose of the CPU</p>
+        </header>
+
+        <section id="starter-recap" class="mb-10">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-cogs mr-2 text-yellow-500"></i> Starter Activity: How Components Interact (5 mins)</h2>
+            <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-200 space-y-4">
+                <p class="font-semibold text-yellow-800">Quick Recall - How do components work together?</p>
+                <p>Before focusing on the CPU, let's recall how different parts of a computer system interact. Answer the questions below:</p>
+                <div class="space-y-3">
+                    <div class="starter-question">
+                        <label for="starter-ram-use" class="block text-sm font-medium text-yellow-700">1. Where does the CPU get instructions/data from *during* processing?</label>
+                        <input type="text" id="starter-ram-use" name="starter-ram-use" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white" placeholder="Component name...">
+                    </div>
+                    <div class="starter-question">
+                        <label for="starter-storage-use" class="block text-sm font-medium text-yellow-700">2. Where are programs/data stored when the power is off?</label>
+                        <input type="text" id="starter-storage-use" name="starter-storage-use" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white" placeholder="Component type...">
+                    </div>
+                    <div class="starter-question">
+                        <label for="starter-input-use" class="block text-sm font-medium text-yellow-700">3. How does the user give commands or data *to* the computer?</label>
+                        <input type="text" id="starter-input-use" name="starter-input-use" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white" placeholder="Using which devices?">
+                    </div>
+                    <div class="starter-question">
+                        <label for="starter-output-use" class="block text-sm font-medium text-yellow-700">4. How does the computer show results *to* the user?</label>
+                        <input type="text" id="starter-output-use" name="starter-output-use" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white" placeholder="Using which devices?">
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <div id="starter-encourage-msg" class="text-sm text-orange-600 font-medium mb-2 h-5"></div> <button id="reveal-starter-btn" onclick="toggleStarterAnswers('starter-answers', this, 'Reveal Answers', 'Hide Answers')" class="px-4 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition duration-200 text-sm">
+                        Reveal Answers
+                    </button>
+                    <div id="starter-answers" class="reveal-content border-t border-yellow-200">
+                        <h4 class="font-semibold text-yellow-700 mb-2">Example Answers:</h4>
+                        <ul class="list-disc list-inside space-y-1 text-yellow-700 text-sm">
+                            <li>1. From <strong>RAM</strong> (Main Memory) - It holds currently running programs/data.</li>
+                            <li>2. In <strong>Secondary Storage</strong> (e.g., Hard Drive, SSD) - It's non-volatile.</li>
+                            <li>3. Using <strong>Input Devices</strong> (e.g., Keyboard, Mouse).</li>
+                            <li>4. Using <strong>Output Devices</strong> (e.g., Monitor, Printer).</li>
+                        </ul>
+                         <p class="text-xs text-gray-500 mt-2 italic">Understanding this flow helps see why the CPU needs RAM!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="lesson-outcomes" class="mb-10">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-bullseye mr-2 text-green-500"></i> Lesson Outcomes</h2>
+            <div class="bg-green-50 p-5 rounded-lg border border-green-200">
+                <p class="font-semibold text-green-800 mb-3">By the end of this lesson, you should be able to:</p>
+                <ul class="list-disc list-inside space-y-2 text-green-700 pl-4">
+                    <li>Describe the purpose of the CPU in a computer system.</li>
+                    <li>Explain the role of the CPU in the Fetch-Decode-Execute (FDE) cycle.</li>
+                    <li>Understand the concept of the Von Neumann architecture and the stored program concept.</li>
+                    <li>Identify key factors that affect CPU performance: clock speed, number of cores, and cache size.</li>
+                    <li>Explain *how* each of these factors influences the speed and efficiency of the CPU.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="what-is-cpu" class="mb-10">
+            <div class="flex justify-between items-center mb-4">
+                 <h2 class="text-2xl font-semibold text-indigo-600">What is the CPU?</h2>
+                 <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                     <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer">
+                     Read
+                 </label>
+            </div>
+            <div class="bg-indigo-50 p-5 rounded-lg border border-indigo-200 space-y-4">
+                <p>
+                    The <strong class="font-semibold text-indigo-800">Central Processing Unit (CPU)</strong> is often called the "brain" of the computer. It's the core component responsible for carrying out, or <strong class="font-semibold">executing</strong>, instructions from programs.
+                </p>
+                 <p>
+                    Most computers use the <strong class="font-semibold text-indigo-800">Von Neumann architecture</strong>. A key idea here is the <strong class="font-semibold">stored program concept</strong>: both the program instructions and the data they use are stored together in the computer's main memory (RAM). The CPU fetches both from RAM as needed.
+                 </p>
+                <div class="mt-4 text-center bg-white p-4 rounded border border-gray-300">
+                     <h3 class="text-md font-medium text-gray-700 mb-3">Basic Computer Model</h3>
+                     <svg width="250" height="60" viewBox="0 0 250 60" class="mx-auto">
+                         <defs>
+                             <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+                             <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280" />
+                             </marker>
+                         </defs>
+                         <rect x="10" y="15" width="60" height="30" rx="5" class="diagram-box"></rect>
+                         <text x="40" y="35" class="diagram-text">Input</text>
+                         <line x1="70" y1="30" x2="100" y2="30" class="diagram-arrow"></line>
+                         <rect x="100" y="5" width="50" height="50" rx="8" class="diagram-box diagram-cpu"></rect>
+                         <text x="125" y="30" class="diagram-text">CPU</text>
+                         <text x="125" y="45" class="diagram-text">(Process)</text>
+                         <line x1="150" y1="30" x2="180" y2="30" class="diagram-arrow"></line>
+                         <rect x="180" y="15" width="60" height="30" rx="5" class="diagram-box"></rect>
+                         <text x="210" y="35" class="diagram-text">Output</text>
+                     </svg>
+                </div>
+            </div>
+        </section>
+
+        <section id="performance-analogy" class="mb-10">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><span class="text-indigo-600 font-bold mr-2">Task 1:</span> Thinking About Performance: An Analogy</h2>
+            <div class="bg-orange-50 p-5 rounded-lg border border-orange-200 space-y-4">
+                <p>We know the CPU processes instructions, but how <em class="italic">fast</em> does it do it? What affects its performance?</p>
+                <p>Let's think about a different kind of performance machine:</p>
+                <div class="my-4 text-center">
+                    <img src="https://placehold.co/400x200/f97316/ffffff?text=Imagine+a+Formula+1+Car" alt="Placeholder image of a Formula 1 car" class="mx-auto rounded-lg shadow-md" onerror="this.onerror=null; this.src='https://placehold.co/400x200/cccccc/ffffff?text=Image+Not+Available';">
+                     <p class="text-xs text-gray-500 mt-1">Image based on Task 2 from lesson 1.1.1 worksheet.</p>
+                </div>
+                <p class="font-semibold text-orange-800">Activity: Imagine this Formula 1 car. What things affect its speed and overall performance on the track?</p>
+                <div>
+                    <label for="f1-factors" class="block text-sm font-medium text-gray-700 mb-1">Jot down your ideas here:</label>
+                    <textarea id="f1-factors" name="f1-factors" rows="3" class="w-full p-2 border border-orange-300 rounded-md focus:ring-orange-500 focus:border-orange-500" placeholder="Your ideas here..."></textarea>
+                </div>
+                <div class="mt-3">
+                    <button id="reveal-analogy-btn" onclick="toggleReveal('analogy-reveal-content', this, 'Reveal Some Ideas', 'Hide Ideas')" class="px-4 py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition duration-200" data-input-ids="f1-factors" data-min-length="30" disabled>
+                        Reveal Some Ideas
+                    </button>
+                    <div id="analogy-reveal-content" class="reveal-content border-t border-orange-200">
+                        <h4 class="font-semibold text-orange-700 mb-2">Some Factors Affecting F1 Car Performance:</h4>
+                        <ul class="list-disc list-inside space-y-1 text-orange-700">
+                            <li><strong>Engine Power & Size:</strong> How powerful the engine is.</li>
+                            <li><strong>Aerodynamics:</strong> How the car cuts through the air.</li>
+                            <li><strong>Tyres:</strong> The type and condition of the tyres.</li>
+                            <li><strong>Weight:</strong> How heavy the car is.</li>
+                            <li><strong>Driver Skill:</strong> How well the driver controls the car.</li>
+                            <li><strong>Fuel Load:</strong> How much fuel it's carrying.</li>
+                            <li><strong>Team Strategy:</strong> Pit stops, race plan.</li>
+                        </ul>
+                        <p class="mt-4 text-gray-700 font-medium">
+                            <i class="fas fa-link mr-1 text-indigo-600"></i><strong>The Link to CPUs:</strong> Just like the F1 car, a CPU's performance isn't just about one thing. Several factors determine how fast and efficiently it can process instructions. We'll explore these CPU-specific factors (like clock speed, cores, and cache) later in this lesson and in more detail next time!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cpu-factors-research" class="mb-10">
+             <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><span class="text-indigo-600 font-bold mr-2">Task 2:</span> Exploring CPU Specifications: A Case Study</h2>
+            <div class="bg-sky-50 p-5 rounded-lg border border-sky-200 space-y-4">
+                <p>Following the F1 analogy, let's look at a real CPU and see what specifications are listed. These relate directly to the performance factors we'll discuss.</p>
+                <p class="font-semibold text-sky-800">Activity: Research the <strong class="text-sky-900">AMD Ryzen 7 5700G</strong> processor using the link below (opens in new tab). Find the 'Specifications' section/tab on the page and answer the questions.</p>
+                <p>
+                    <a href="https://www.amd.com/en/products/apu/amd-ryzen-7-5700g" target="_blank" rel="noopener noreferrer" class="text-sky-600 hover:text-sky-800 underline font-medium">
+                        Research Link: AMD Ryzen 7 5700G Specs <i class="fas fa-external-link-alt text-xs ml-1"></i>
+                    </a>
+                </p>
+                <p class="text-sm text-gray-600 italic">Note: Website content can change. Look for sections like "Specifications", "General Specifications", or similar.</p>
+
+                <div class="mt-4 space-y-3">
+                    <div class="research-question">
+                        <label for="cores">How many CPU cores does it have?</label>
+                        <input type="text" id="cores" name="cores" placeholder="e.g., 4">
+                    </div>
+                    <div class="research-question">
+                        <label for="threads">How many threads does it have?</label>
+                        <input type="text" id="threads" name="threads" placeholder="e.g., 8">
+                    </div>
+                     <div class="research-question">
+                        <label for="base-clock">What is the base clock speed of the CPU?</label>
+                        <input type="text" id="base-clock" name="base-clock" placeholder="e.g., 3.0GHz">
+                    </div>
+                     <div class="research-question">
+                        <label for="boost-clock">What clock speed can it boost to?</label>
+                        <input type="text" id="boost-clock" name="boost-clock" placeholder="e.g., 4.2GHz">
+                    </div>
+                     <div class="research-question">
+                        <label for="cache">How big is the L2 and L3 cache?</label>
+                        <input type="text" id="cache" name="cache" placeholder="e.g., L2: 2MB, L3: 8MB">
+                    </div>
+                     <div class="research-question">
+                        <label for="unlocked">What does it mean by 'unlocked'?</label>
+                        <input type="text" id="unlocked" name="unlocked" placeholder="Your understanding...">
+                    </div>
+                     <div class="research-question">
+                        <label for="tdp">What does TDP refer to?</label>
+                        <input type="text" id="tdp" name="tdp" placeholder="Your understanding...">
+                    </div>
+                </div>
+
+                 <div class="mt-5">
+                    <div id="research-encourage-msg" class="text-sm text-orange-600 font-medium mb-2 h-5"></div> <button id="reveal-research-btn" onclick="toggleReveal('research-answers', this, 'Reveal Answers', 'Hide Answers')" class="px-4 py-2 bg-sky-500 text-white rounded-md hover:bg-sky-600 transition duration-200" data-input-group="research-inputs" data-min-filled="3" disabled>
+                        Reveal Answers
+                    </button>
+
+                    <div id="research-answers" class="reveal-content border-t border-sky-200">
+                        <h4 class="font-semibold text-sky-700 mb-2">Answers (based on typical specs):</h4>
+                        <ul class="list-none space-y-1 text-sky-700">
+                            <li><strong>Cores:</strong> 8</li>
+                            <li><strong>Threads:</strong> 16 (Threads often allow a core to work on multiple tasks simultaneously)</li>
+                            <li><strong>Base Clock Speed:</strong> 3.8GHz</li>
+                            <li><strong>Max. Boost Clock Speed:</strong> Up to 4.6GHz</li>
+                            <li><strong>Cache:</strong> Total L2 Cache: 4MB, Total L3 Cache: 16MB</li>
+                            <li><strong>Unlocked:</strong> Yes (Means it's designed to allow users to potentially increase the clock speed beyond the standard settings - known as overclocking. Requires compatible motherboard and cooling).</li>
+                            <li><strong>TDP (Thermal Design Power):</strong> 65W (Indicates the maximum amount of heat the processor is expected to generate under typical load, measured in Watts. It helps determine cooling needs).</li>
+                        </ul>
+                         <p class="text-sm text-gray-500 mt-3 italic">Note: Exact specifications can sometimes vary slightly or be presented differently on the manufacturer's website.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="fde-cycle-animation" class="mb-10">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><span class="text-indigo-600 font-bold mr-2">Task 3:</span> The Fetch-Decode-Execute Cycle Simulation</h2>
+            <p class="mb-5 text-gray-700">Let's visualise the basic FDE cycle step-by-step. This shows an instruction moving from RAM to the CPU for processing.</p>
+
+            <div class="bg-blue-50 p-5 rounded-lg border border-blue-200">
+                <div class="fde-animation-container">
+                    <div id="fde-ram-simple" class="fde-component fde-ram">
+                        RAM
+                         <div id="fde-instruction-simple" class="fde-instruction">Instruction</div>
+                    </div>
+                    <div id="fde-cpu-simple" class="fde-component fde-cpu">
+                         CPU
+                    </div>
+                </div>
+
+                <div class="fde-controls">
+                    <button id="fde-next-btn-simple" class="check-button !mt-0" onclick="nextSimpleFdeStep()"><i class="fas fa-play mr-2"></i>Next Step</button>
+                    <button id="fde-reset-btn-simple" class="reset-button !mt-0" onclick="resetSimpleFdeAnimation()"><i class="fas fa-undo mr-2"></i>Reset</button>
+                </div>
+
+                <div id="fde-description-simple">
+                    Click 'Next Step' to begin the Fetch-Decode-Execute cycle.
+                </div>
+            </div>
+        </section>
+
+
+        <section id="quiz" class="mb-10">
+             <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><span class="text-indigo-600 font-bold mr-2">Task 4:</span> Check Your Understanding</h2>
+            <div class="bg-purple-50 p-6 rounded-lg border border-purple-200">
+                 <div class="flex justify-between items-center mb-4">
+                    <p class="text-lg font-medium text-purple-800">Quiz Time!</p>
+                    <p class="text-lg font-semibold text-purple-800">Score: <span id="score">0</span> / <span id="total-questions">0</span></p>
+                </div>
+                <div id="quiz-questions">
+                    </div>
+                <button id="reset-quiz-btn" class="mt-6 px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition duration-200 hidden">Try Again</button>
+            </div>
+        </section>
+
+        <section id="performance-factors" class="mb-10">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><span class="text-indigo-600 font-bold mr-2">Task 5:</span> How CPU Features Affect Performance (Visualised)</h2>
+            <div class="bg-green-50 p-5 rounded-lg border border-green-200 space-y-6">
+                <p>Let's visualise how these key factors impact CPU speed.</p>
+
+                <div class="perf-factor-box">
+                    <h3 class="text-xl font-semibold text-green-800 mb-2">Clock Speed (The Race)</h3>
+                    <p class="text-gray-700 mb-3">Higher clock speed (GHz) means more FDE cycles per second.</p>
+                    <div class="perf-vis-container">
+                        <div class="progress-bar-container">
+                            <span class="progress-bar-label">3.0 GHz</span>
+                            <div class="progress-bar-bg"><div id="bar-30" class="progress-bar-fill"></div></div>
+                        </div>
+                        <div class="progress-bar-container">
+                            <span class="progress-bar-label">3.5 GHz</span>
+                            <div class="progress-bar-bg"><div id="bar-35" class="progress-bar-fill faster"></div></div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-3">
+                        <button onclick="startClockRace()" class="px-3 py-1 bg-green-600 text-white text-sm rounded hover:bg-green-700 transition">Start Race!</button>
+                    </div>
+                    <div class="perf-explanation mt-4">
+                        <label for="clock-explanation" class="block text-sm font-medium text-gray-700 mb-1">Explain why higher clock speed is generally faster:</label>
+                        <textarea id="clock-explanation" data-button-id="check-clock-explanation" placeholder="Mention cycles per second..." rows="2"></textarea>
+                        <button id="check-clock-explanation" onclick="checkPerfExplanation('clock-explanation-feedback', 'clock-explanation', ['cycle', 'second', 'faster', 'more instruction', 'ghz'])" class="mt-2 px-3 py-1 bg-green-600 text-white text-sm rounded hover:bg-green-700 transition" disabled>Check Explanation</button>
+                        <div id="clock-explanation-feedback" class="explanation-feedback"></div>
+                    </div>
+                </div>
+
+                <div class="perf-factor-box">
+                    <h3 class="text-xl font-semibold text-green-800 mb-2">Number of Cores (Handling Tasks)</h3>
+                    <p class="text-gray-700 mb-3">More cores allow the CPU to perform multiple tasks simultaneously (multitasking/parallel processing).</p>
+                    <div class="perf-vis-container core-sim-area">
+                        <div class="text-center">
+                            <div class="core-cpu-vis">Single Core</div>
+                            <div id="single-core-tasks" class="core-tasks">
+                                <div class="task-block">Task 1</div>
+                                <div class="task-block">Task 2</div>
+                                <div class="task-block">Task 3</div>
+                                <div class="task-block">Task 4</div>
+                            </div>
+                            <button onclick="simulateCores('single')" class="mt-3 px-3 py-1 bg-green-600 text-white text-sm rounded hover:bg-green-700 transition">Simulate</button>
+                        </div>
+                        <div class="text-center">
+                            <div class="core-cpu-vis">Quad Core</div>
+                            <div id="quad-core-tasks" class="core-tasks">
+                                <div class="task-block">Task 1</div>
+                                <div class="task-block">Task 2</div>
+                                <div class="task-block">Task 3</div>
+                                <div class="task-block">Task 4</div>
+                            </div>
+                             <button onclick="simulateCores('quad')" class="mt-3 px-3 py-1 bg-green-600 text-white text-sm rounded hover:bg-green-700 transition">Simulate</button>
+                        </div>
+                    </div>
+                     <div class="perf-explanation mt-4">
+                        <label for="cores-explanation" data-button-id="check-cores-explanation" class="block text-sm font-medium text-gray-700 mb-1">Explain why more cores improve performance for multitasking:</label>
+                        <textarea id="cores-explanation" placeholder="Mention tasks at the same time..." rows="2"></textarea>
+                         <button id="check-cores-explanation" onclick="checkPerfExplanation('cores-explanation-feedback', 'cores-explanation', ['multiple', 'tasks', 'same time', 'simultaneous', 'parallel', 'multitasking'])" class="mt-2 px-3 py-1 bg-green-600 text-white text-sm rounded hover:bg-green-700 transition" disabled>Check Explanation</button>
+                        <div id="cores-explanation-feedback" class="explanation-feedback"></div>
+                    </div>
+                     <p class="text-sm text-gray-600 mt-3 italic">Note: Doubling cores doesn't always double speed, as some tasks can't be easily split, and software needs to be designed to use multiple cores effectively.</p>
+                </div>
+
+                <div class="perf-factor-box">
+                    <h3 class="text-xl font-semibold text-green-800 mb-2">Cache Size (Quick Access Memory)</h3>
+                    <p class="text-gray-700 mb-3">Cache is small, fast memory near the CPU. Accessing cache is much faster than accessing RAM.</p>
+                    <div class="perf-vis-container cache-sim-area">
+                        <div class="cache-cpu">CPU</div>
+                        <div class="cache-cache">Cache</div>
+                        <div class="cache-ram">RAM</div>
+                        <div id="cache-data-packet" class="cache-data"></div>
+                    </div>
+                     <div class="text-center mt-3 space-x-2">
+                        <button onclick="simulateCache('miss')" class="px-3 py-1 bg-green-600 text-white text-sm rounded hover:bg-green-700 transition">Request Data (Cache Miss)</button>
+                         <button onclick="simulateCache('hit')" class="px-3 py-1 bg-green-600 text-white text-sm rounded hover:bg-green-700 transition">Request Same Data (Cache Hit)</button>
+                    </div>
+                    <div id="cache-sim-explanation" class="mt-3 text-sm text-center text-gray-600 min-h-[20px]">
+                        </div>
+
+                    <div class="perf-explanation mt-4">
+                        <label for="cache-explanation" data-button-id="check-cache-explanation" class="block text-sm font-medium text-gray-700 mb-1">Explain how cache improves performance:</label>
+                        <textarea id="cache-explanation" placeholder="Mention speed or RAM..." rows="2"></textarea>
+                         <button id="check-cache-explanation" onclick="checkPerfExplanation('cache-explanation-feedback', 'cache-explanation', ['faster', 'frequently', 'ram', 'access', 'speed', 'store more', 'fetch'])" class="mt-2 px-3 py-1 bg-green-600 text-white text-sm rounded hover:bg-green-700 transition" disabled>Check Explanation</button>
+                        <div id="cache-explanation-feedback" class="explanation-feedback"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="common-misconceptions" class="mb-10">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-lightbulb-exclamation mr-2 text-red-500"></i> Myth Busters: Performance Misconceptions</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer">
+                    Read
+                </label>
+            </div>
+            <div class="bg-red-50 p-5 rounded-lg border border-red-200 space-y-4">
+                <div class="myth">
+                    <p><strong class="font-semibold text-red-800">Myth 1:</strong> "Doubling the clock speed always doubles the performance."</p>
+                    <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> While a higher <span class="keyword">clock speed <span class="tooltip">The number of FDE cycles a CPU can perform per second (measured in Hz, typically GHz).</span></span> helps, overall performance depends on many factors. If the CPU is waiting for data from slow RAM, or if a task cannot be sped up further, increasing clock speed alone has a limited effect. Other bottlenecks matter!</p>
+                </div>
+                <div class="myth border-t border-red-200 pt-4">
+                    <p><strong class="font-semibold text-red-800">Myth 2:</strong> "More cores are always better, no matter what."</p>
+                    <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> More <span class="keyword">cores <span class="tooltip">An individual processing unit within a CPU. Multi-core CPUs have more than one.</span></span> are great for multitasking or software designed for parallel processing (like video rendering). However, for tasks that can only run on one core at a time (single-threaded), clock speed might be more important. Additionally, the software must be written to take advantage of multiple cores.</p>
+                </div>
+                 <div class="myth border-t border-red-200 pt-4">
+                    <p><strong class="font-semibold text-red-800">Myth 3:</strong> "Cache is just a small amount of faster RAM."</p>
+                    <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> <span class="keyword">Cache is <span class="tooltip">Small, fast memory located on or near the CPU to store frequently accessed data/instructions and</span></span> uses a different, much faster (and more expensive) type of memory technology (SRAM) compared to <span class="keyword">RAM <span class="tooltip">Random Access Memory (Main memory). Volatile storage where currently running programs and data are held for the CPU.</span></span> (DRAM). It is integrated directly onto or very close to the CPU die for minimal delay, unlike RAM, which is separate and accessed via buses.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="real-world-performance" class="mb-10">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-globe-europe mr-2 text-blue-500"></i> Real-World Connection: Why Performance Matters</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer">
+                    Read
+                </label>
+            </div>
+            <div class="bg-blue-50 p-5 rounded-lg border border-blue-200 space-y-3">
+                <p class="text-gray-700">Understanding CPU performance factors isn't just theoretical. It directly impacts how well computers handle different tasks:</p>
+                <ul class="list-disc list-inside space-y-2 text-blue-800 pl-4">
+                    <li><strong class="font-semibold">Gaming:</strong> High-end gaming often requires high <span class="keyword">clock speeds<span class="tooltip">The number of FDE cycles a CPU can perform per second (measured in Hz, typically GHz).</span></span> for smooth frame rates and multiple <span class="keyword">cores<span class="tooltip">An individual processing unit within a CPU. Multi-core CPUs have more than one.</span></span> to handle complex game logic, physics, and background tasks simultaneously. A larger <span class="keyword">cache<span class="tooltip">Small, fast memory located on or near the CPU to store frequently accessed data/instructions.</span></span> helps load game assets quickly.</li>
+                    <li><strong class="font-semibold">Video Editing/Rendering:</strong> These tasks heavily benefit from many <span class="keyword">cores<span class="tooltip">An individual processing unit within a CPU. Multi-core CPUs have more than one.</span></span>, as the workload can often be split (parallelized) across them. Faster clock speed and large cache also reduce processing time.</li>
+                    <li><strong class="font-semibold">General Use (Web Browsing, Office Apps):</strong> While less demanding, responsiveness still improves with decent clock speed and multiple cores (especially with many tabs or apps open). Cache helps apps load faster.</li>
+                    <li><strong class="font-semibold">Mobile Devices (Phones/Tablets):</strong> Performance is balanced with power efficiency. CPUs might have a mix of high-performance and low-power cores, and clock speeds might adjust dynamically to save battery.</li>
+                </ul>
+                <p class="text-sm text-gray-600 mt-3 italic">
+                    Choosing a CPU often involves balancing these factors based on the intended use and budget. There's no single "best" CPU for everyone!
+                </p>
+            </div>
+        </section>
+
+        <section id="cpu-tool-link" class="mb-10">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-tools mr-2 text-teal-500"></i> Explore with the CPU Tool</h2>
+            <div class="bg-teal-50 p-5 rounded-lg border border-teal-200 text-center">
+                <p class="mb-4 text-gray-700">Want to experiment more with how CPU specs affect performance and see example models?</p>
+                <a href="gcse-sysarch-performance-cputool.html" target="_blank" class="inline-block px-6 py-3 bg-teal-600 text-white font-semibold rounded-lg shadow hover:bg-teal-700 transition duration-200">
+                    Open CPU Performance Tool <i class="fas fa-external-link-alt ml-2 text-xs"></i>
+                </a>
+                <p class="text-sm text-gray-600 mt-3 italic">(Opens in a new tab)</p>
+            </div>
+        </section>
+
+
+
+        <section id="related-videos" class="mb-10">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-video mr-2 text-purple-500"></i> Related Videos</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer">
+                    Read
+                </label>
+            </div>
+            <div class="bg-purple-50 p-5 rounded-lg border border-purple-200 space-y-4">
+                <p class="text-gray-700">Watch these videos to reinforce your understanding of CPU purpose and performance factors:</p>
+                <ul class="list-disc list-inside space-y-3 text-purple-800 pl-4">
+                    <li>
+                        <strong>CPU Performance Factors Explained</strong>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/pZs_jfoxNLA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <div class="mt-2">
+                            <textarea class="w-full p-2 border border-purple-300 rounded-md text-sm bg-white" rows="3" placeholder="Optional: Add any additional notes from this video..."></textarea>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="key-terms" class="mb-6">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600">Key Terms Glossary</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer">
+                    Read
+                </label>
+            </div>
+            <div class="bg-gray-100 p-5 rounded-lg border border-gray-300">
+                <ul class="list-none space-y-3 text-gray-700">
+                    <li><strong class="font-semibold text-gray-900">CPU (Central Processing Unit):</strong> The primary component of a computer that executes instructions. The 'brain'.</li>
+                    <li><strong class="font-semibold text-gray-900">Von Neumann Architecture:</strong> Computer design where program instructions and data are stored in the same memory space (RAM).</li>
+                     <li><strong class="font-semibold text-gray-900">Stored Program Concept:</strong> The idea that instructions (programs) can be stored in memory just like data, allowing computers to be reprogrammable.</li>
+                    <li><strong class="font-semibold text-gray-900">Fetch-Decode-Execute Cycle:</strong> The fundamental three-step cycle the CPU repeats to process instructions.</li>
+                    <li><strong class="font-semibold text-gray-900">Fetch:</strong> The stage where the CPU gets the next instruction from RAM.</li>
+                    <li><strong class="font-semibold text-gray-900">Decode:</strong> The stage where the CPU interprets the fetched instruction to understand what needs to be done.</li>
+                    <li><strong class="font-semibold text-gray-900">Execute:</strong> The stage where the CPU performs the action defined by the instruction.</li>
+                    <li><strong class="font-semibold text-gray-900">Instruction:</strong> A single command or operation for the CPU to perform (e.g., ADD, LOAD, STORE).</li>
+                    <li><strong class="font-semibold text-gray-900">RAM (Random Access Memory):</strong> The computer's main (primary), volatile memory where currently running programs and their data are held for quick access by the CPU.</li>
+                    <li><strong class="font-semibold text-gray-900">Clock Speed:</strong> The number of FDE cycles a CPU can perform per second (measured in Hz, typically GHz).</li>
+                    <li><strong class="font-semibold text-gray-900">Core:</strong> An individual processing unit within a CPU. Multi-core CPUs have more than one.</li>
+                    <li><strong class="font-semibold text-gray-900">Cache:</strong> Small, fast memory located on or near the CPU to store frequently accessed data/instructions.</li>
+                     </ul>
+            </div>
+        </section>
+
+        <section id="key-takeaways" class="mb-10">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600">Key Takeaways</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer">
+                    Read
+                </label>
+            </div>
+            <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-300 space-y-2 show"> <ul class="list-disc list-inside space-y-1 text-yellow-800">
+                    <li><strong class="font-semibold">CPU Purpose:</strong> The CPU is the 'brain', executing instructions via the <span class="keyword">Fetch-Decode-Execute Cycle<span class="tooltip">Also known as the instruction cycle, the complete process of retrieving an instruction from store, decoding it and carrying it out.</span></span>.</li>
+                    <li><strong class="font-semibold">Von Neumann Architecture:</strong> Uses the <span class="keyword">Stored Program Concept<span class="tooltip">The idea that instructions (programs) can be stored in memory just like data, allowing computers to be reprogrammable.</span></span>, where instructions and data share the same <span class="keyword">RAM<span class="tooltip">Random Access Memory (Main memory). Volatile storage where currently running programs and data are held for the CPU.</span></span>.</li>
+                    <li><strong class="font-semibold">Clock Speed:</strong> Measured in GHz, it determines how many FDE cycles the CPU can perform per second. Higher generally means faster processing.</li>
+                    <li><strong class="font-semibold">Number of Cores:</strong> Multiple <span class="keyword">cores<span class="tooltip">An individual processing unit within a CPU. Multi-core CPUs have more than one.</span></span> allow for parallel processing, improving performance on multitasking or specially designed software.</li>
+                    <li><strong class="font-semibold">Cache Memory:</strong> Small, fast memory on/near the CPU. Larger/faster <span class="keyword">cache<span class="tooltip">Small, fast memory located on or near the CPU to store frequently accessed data/instructions.</span></span> reduces the time spent fetching data from slower RAM.</li>
+                    <li><strong class="font-semibold">Performance Balance:</strong> CPU performance depends on a combination of clock speed, cores, and cache size; improving one factor doesn't guarantee overall improvement.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="next-steps" class="mb-10">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600">What's Next?</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer">
+                    Read
+                </label>
+            </div>
+            <div class="bg-teal-50 p-5 rounded-lg border border-teal-300">
+                <p class="text-teal-800 font-medium">
+                    Great job understanding the basics and the factors affecting performance!
+                </p>
+                <p class="text-teal-700 mt-2">
+                    In the next lesson, we'll look at:
+                </p>
+                <ul class="list-disc list-inside space-y-1 text-teal-700 mt-3 pl-4">
+                     <li><strong class="font-semibold">Embedded Systems (J277 spec point 1.1.3):</strong> Special computers designed for one specific task, often built into larger devices.</li>
+                </ul>
+                 <p class="text-teal-700 mt-3 italic">Keep building your knowledge – you're doing great!</p>
+            </div>
+        </section>
+
+        <section id="exam-practice">
+             <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><span class="text-indigo-600 font-bold mr-2">Task 6:</span> Exam Practice Questions</h2>
+            <div class="bg-gray-100 p-6 rounded-lg border border-gray-300 space-y-6">
+                <p class="text-sm text-gray-600">These questions are based on typical exam formats. Try writing your answers in the spaces provided.</p>
+                
+                <div class="exam-question bg-white p-4 rounded border border-gray-200 shadow-sm" data-marks="3">
+                    <p class="mb-3 text-gray-800">Kerry wants to buy a new computer, but she does not understand what the different parts of a computer do.</p>
+                    <p class="mb-3 text-gray-800">Kerry has heard of a CPU but does not know what it is.</p>
+                    <p class="mb-4 font-semibold text-gray-800">i. The following sentences describe the purpose of a CPU. Complete the sentences by filling in the missing words.</p>
+                    <div id="exam-q1-inputs" data-button-id="check-exam-q1-btn" data-min-filled="2"> <!-- Added ID for easier JS targeting if needed -->
+                        <p class="mb-3">CPU stands for <span id="blank-1" class="fill-blank" contenteditable="true">[Type here]</span>.</p>
+                        <p class="mb-3">It is the part of the computer that fetches and executes the <span id="blank-2" class="fill-blank" contenteditable="true">[Type here]</span> that are stored in <span id="blank-3" class="fill-blank" contenteditable="true">[Type here]</span>.</p>
+                    </div>
+                    <div class="flex justify-between items-center mt-2">
+                        <div>
+                            <label for="self-assess-exam-q1" class="text-xs text-gray-600">My predicted marks:</label>
+                            <input type="number" id="self-assess-exam-q1" class="self-assess-input w-16 p-1 border border-gray-300 rounded text-sm" min="0" />
+                        </div>
+                        <p class="text-right text-sm text-gray-500">[3 marks]</p>
+                    </div>
+                    <button id="check-exam-q1-btn" onclick="checkFillBlanks(['blank-1', 'blank-2', 'blank-3'], 'exam-feedback-1')" class="mt-2 px-3 py-1 bg-red-600 text-white text-sm rounded hover:bg-red-700 transition" disabled>Check Fill-in-the-Blanks</button>
+                     <div id="exam-feedback-1" class="exam-feedback mt-3"></div>
+                </div>
+
+                 <div class="exam-question bg-white p-4 rounded border border-gray-200 shadow-sm" data-marks="2">
+                     <p class="mb-3 text-gray-800">ii. Kerry is looking at two computers; one has a single core processor and the other has a dual core processor.</p>
+                    <p class="mb-4 font-semibold text-gray-800">Explain why having a dual core processor might improve the performance of the computer.</p>
+                    <textarea id="exam-q2-answer" data-button-id="check-exam-q2-long-btn" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Type your explanation here..." rows="4"></textarea>
+                     <div class="flex justify-between items-center mt-2">
+                        <div>
+                            <label for="self-assess-exam-q2" class="text-xs text-gray-600">My predicted marks:</label>
+                            <input type="number" id="self-assess-exam-q2" class="self-assess-input w-16 p-1 border border-gray-300 rounded text-sm" min="0" />
+                        </div>
+                        <p class="text-right text-sm text-gray-500">[2 marks]</p>
+                    </div>
+                     <button id="check-exam-q2-long-btn" onclick="checkLongAnswer('exam-q2-answer', 'exam-feedback-2', ['core', 'multiple', 'tasks', 'same time', 'simultaneous', 'parallel', 'multitasking'])" class="mt-2 px-3 py-1 bg-red-600 text-white text-sm rounded hover:bg-red-700 transition" disabled>Check Answer</button>
+                     <div id="exam-feedback-2" class="exam-feedback mt-3"></div>
+                </div>
+
+                <div class="exam-question bg-white p-4 rounded border border-gray-200 shadow-sm" data-marks="2">
+                    <p class="mb-3 text-gray-800">iii. One computer has 64 kilobytes of cache and the other has 512 kilobytes of cache.</p>
+                    <p class="mb-4 font-semibold text-gray-800">Explain how the cache size can affect the performance of the CPU.</p>
+                    <textarea id="exam-q3-answer" data-button-id="check-exam-q3-long-btn" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Type your explanation here..." rows="4"></textarea>
+                     <div class="flex justify-between items-center mt-2">
+                        <div>
+                            <label for="self-assess-exam-q3" class="text-xs text-gray-600">My predicted marks:</label>
+                            <input type="number" id="self-assess-exam-q3" class="self-assess-input w-16 p-1 border border-gray-300 rounded text-sm" min="0" />
+                        </div>
+                        <p class="text-right text-sm text-gray-500">[2 marks]</p>
+                    </div>
+                     <button id="check-exam-q3-long-btn" onclick="checkLongAnswer('exam-q3-answer', 'exam-feedback-3', ['faster', 'frequently', 'ram', 'access', 'speed', 'store more', 'fetch', 'instructions', 'data'])" class="mt-2 px-3 py-1 bg-red-600 text-white text-sm rounded hover:bg-red-700 transition" disabled>Check Answer</button>
+                     <div id="exam-feedback-3" class="exam-feedback mt-3"></div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="extension-overclocking" class="mb-10">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-rocket mr-2 text-yellow-500"></i> Extension Activity: Overclocking Investigation</h2>
+            <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-300 space-y-4">
+                <p class="font-semibold text-yellow-800">Task:</p>
+                <p>Research "CPU overclocking". What does it mean? What are the potential benefits (e.g., increased performance)? What are the risks involved (e.g., heat, instability, voiding warranty)? What kind of hardware is typically needed?</p>
+                <div>
+                    <label for="overclocking-research" class="block text-sm font-medium text-gray-700 mb-1">Write your findings here:</label>
+                    <textarea id="overclocking-research" name="overclocking-research" rows="5" class="w-full p-2 border border-yellow-300 rounded-md focus:ring-yellow-500 focus:border-yellow-500 bg-white" placeholder="What is overclocking? Benefits? Risks? Hardware needed?"></textarea>
+                </div>
+                <p class="text-sm text-yellow-700 italic">
+                    <strong class="font-semibold">Why this is useful:</strong> This connects the concept of clock speed to user modification and introduces important ideas like thermal management (heat) and system stability.
+                </p>
+
+                <div class="bg-yellow-100 p-4 rounded-lg border border-yellow-300 mt-4">
+                    <h4 class="font-semibold text-yellow-800 mb-3 text-center">Simple Overclocking Simulation</h4>
+                    <div class="cooler-selector mb-4">
+                         <label>
+                             <input type="radio" name="cooler" value="stock" checked onchange="setCooler(this.value)"> Stock Cooler
+                         </label>
+                         <label>
+                             <input type="radio" name="cooler" value="air" onchange="setCooler(this.value)"> Air Cooler
+                         </label>
+                         <label>
+                             <input type="radio" name="cooler" value="liquid" onchange="setCooler(this.value)"> Liquid Cooler
+                         </label>
+                    </div>
+                    <div class="overclock-sim-container">
+                        <div class="overclock-display">
+                            <div class="overclock-label">Speed</div>
+                            <div id="oc-speed-value" class="overclock-value">3.8 GHz</div>
+                        </div>
+                        <div class="overclock-display">
+                            <div class="overclock-label">Voltage</div>
+                            <div id="oc-voltage-value" class="overclock-value">1.20 V</div>
+                        </div>
+                        <div class="overclock-display">
+                            <div class="overclock-label">Heat</div>
+                            <div class="thermometer-gauge">
+                                <div id="thermometer-mercury" class="thermometer-mercury"></div>
+                            </div>
+                        </div>
+                        <div class="overclock-display">
+                            <div class="overclock-label">Stability</div>
+                            <div id="oc-stability-indicator" class="overclock-stability"><i class="fas fa-check-circle"></i></div>
+                        </div>
+                         <div class="overclock-display col-span-2 sm:col-span-2"> <div class="overclock-label">Power Draw</div>
+                            <div id="oc-power-value" class="overclock-value">65 W</div>
+                        </div>
+                        <div class="overclock-display col-span-2 sm:col-span-2"> <div class="overclock-label">Benchmark Score</div>
+                            <div id="oc-benchmark-score" class="overclock-benchmark-score">1000</div>
+                        </div>
+                    </div>
+                    <div class="overclock-controls text-center mt-4">
+                        <button id="overclock-btn" onclick="overclock()">Overclock!</button>
+                        <button id="reset-overclock-btn" onclick="resetOverclockSim()">Reset Sim</button>
+                    </div>
+                    <div id="oc-status" class="text-center text-sm text-yellow-700 mt-3 min-h-[20px]"></div>
+               </div>
+            </div>
+        </section>
+
+        <section id="worksheet-actions" class="task-container mb-10 text-center">
+             <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-cog mr-2"></i>Worksheet Actions</h3>
+             <p class="mb-4 text-gray-700">Use the buttons below to manage or export your worksheet.</p>
+             <button id="export-answers-btn" class="export-pdf-button no-print !bg-blue-600 hover:!bg-blue-700" onclick="exportAnswersToPDF()">Export Answers Summary</button>
+             <button id="reset-all-btn" class="reset-button no-print" onclick="resetAllPerformanceTasks()">Reset All Tasks</button>
+             <div id="actions-feedback-area" class="mt-4">
+                 <!-- Feedback for actions can go here if needed -->
+             </div>
+        </section>
+    </div>
+
+    
+    <script src="js/gcse-sysarch-performance.js"></script>
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+</html>

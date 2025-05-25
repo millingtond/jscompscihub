@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCSE CS Lesson: Defensive Design</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" xintegrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css"> </head>
+<body class="gcse-robprog-defensivedesign">
+    <nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <a href="../home.html" class="text-xl font-bold hover:text-gray-300 transition-colors">MGS CS Hub</a>
+            <ul class="flex flex-wrap space-x-2 sm:space-x-3 lg:space-x-4 text-sm sm:text-base">
+                <li><a href="#" class="hover:text-gray-300 transition-colors">Year 7</a></li>
+                <li><a href="#" class="hover:text-gray-300 transition-colors">Year 8</a></li>
+                <li><a href="#" class="hover:text-gray-300 transition-colors">Year 9</a></li>
+                <li><a href="../gcse.html" class="hover:text-gray-300 transition-colors">GCSE</a></li>
+                <li><a href="#" class="hover:text-gray-300 transition-colors">A Level</a></li>
+                <li><a href="#" class="hover:text-gray-300 transition-colors">Competitions</a></li>
+                <li><a href="#" class="hover:text-gray-300 transition-colors">CS News</a></li>
+                <li><a href="#" class="hover:text-gray-300 transition-colors">Extracurricular</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-lg shadow-xl">
+
+        <a href="../mgsgcse23.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 group no-print">
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left w-5 h-5 mr-2 transition-transform duration-200 group-hover:-translate-x-1"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+            Back to Robust Programs
+        </a>
+
+        <header class="mb-8 border-b pb-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-2">Defensive Design: Building Robust Programs</h1>
+            <p class="text-lg text-gray-600">OCR GCSE Computer Science (J277) - Topic 2.3.1: Defensive Design</p>
+        </header>
+
+        <section id="starter-recap" class="mb-10">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-lightbulb mr-2 text-yellow-500"></i> Starter Activity (5 mins)</h2>
+            <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-200 space-y-4">
+                <p class="font-semibold text-yellow-800">Initial Thoughts:</p>
+                <p>Before we dive in, let's think about why programs sometimes go wrong or don't behave as expected. Jot down your initial ideas.</p>
+                <div class="space-y-3">
+                    <div>
+                        <label for="starter-misuse" class="block text-sm font-medium text-yellow-700"><strong>Anticipating Misuse:</strong> Why is it important for programmers to think about how users might misuse a program?</label>
+                        <textarea id="starter-misuse" name="starter-misuse" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white" placeholder="Enter your thoughts here..."></textarea>
+                    </div>
+                    <div>
+                        <label for="starter-validation" class="block text-sm font-medium text-yellow-700"><strong>Input Validation:</strong> What do you think "input validation" means in programming?</label>
+                        <textarea id="starter-validation" name="starter-validation" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white" placeholder="Enter your thoughts here..."></textarea>
+                    </div>
+                    <div>
+                        <label for="starter-auth" class="block text-sm font-medium text-yellow-700"><strong>Authentication:</strong> How do websites or apps check you are who you say you are?</label>
+                        <textarea id="starter-auth" name="starter-auth" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white" placeholder="Enter your thoughts here..."></textarea>
+                    </div>
+                    <div>
+                        <label for="starter-maintain" class="block text-sm font-medium text-yellow-700"><strong>Maintainability:</strong> Why is it important that code is easy to read and understand, even after it's written?</label>
+                        <textarea id="starter-maintain" name="starter-maintain" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white" placeholder="Enter your thoughts here..."></textarea>
+                    </div>
+                </div>
+                <div class="mt-4 flex space-x-2">
+                    <button id="starter-reset-btn" class="reset-button">Reset Starter</button>
+                </div>
+                <div id="starter-feedback" class="feedback-area hidden mt-4">
+                    </div>
+            </div>
+        </section>
+
+        <section id="lesson-outcomes" class="mb-10">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-bullseye mr-2 text-green-500"></i> Lesson Outcomes</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer read-checkbox"> Read
+                </label>
+            </div>
+            <div class="bg-green-50 p-5 rounded-lg border border-green-200">
+                <p class="font-semibold text-green-800 mb-3">By the end of this lesson, you should be able to:</p>
+                <ul class="list-disc list-inside space-y-2 text-green-700 pl-4">
+                    <li>Understand the defensive design considerations of anticipating misuse and authentication.</li>
+                    <li>Explain the purpose and types of input validation (e.g., type, range, presence, format, length checks).</li>
+                    <li>Understand how to deal with invalid data in a program.</li>
+                    <li>Describe methods of authentication to confirm a user's identity.</li>
+                    <li>Appreciate the importance of maintainability in programming (use of sub-programs, naming conventions, indentation, commenting).</li>
+                    <li>Have practical experience in designing input validation and simple authentication.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="mb-10">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600">Introduction to Defensive Design</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer read-checkbox"> Read
+                </label>
+            </div>
+            <div class="bg-indigo-50 p-5 rounded-lg border border-indigo-200 space-y-3">
+               <p>Imagine building a house. You wouldn't just build it to stand up on a sunny day; you'd build it to withstand storms, high winds, and maybe even an earthquake! <span class="keyword">Defensive Design<span class="tooltip">A set of principles used in software development to ensure that a program continues to function or fails gracefully, even when faced with unforeseen circumstances or misuse.</span></span> in programming is similar. It's about creating software that is robust, reliable, and secure by anticipating potential problems and building in safeguards.</p>
+               <p>This involves thinking about how users might accidentally (or intentionally!) misuse the program, what kinds of incorrect data they might enter, and how to protect sensitive information. It also means writing code that is easy to understand, fix, and update in the future – this is called <span class="keyword">maintainability<span class="tooltip">The ease with which software can be modified to correct faults, improve performance, or adapt to a changed environment.</span></span>. Let's explore these crucial concepts!</p>
+            </div>
+        </section>
+
+        <section id="task1-misuse" class="task-container mb-10">
+            <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-user-secret mr-2"></i>Task 1: Anticipating Misuse - "What Could Go Wrong?"</h3>
+            <p class="mb-4 text-gray-700">Users don't always follow instructions! For each scenario, describe what could go wrong and a simple way a programmer could try to prevent or handle the issue.</p>
+            <div class="space-y-4">
+                <div class="misuse-scenario p-4 bg-white rounded border border-gray-200">
+                    <p class="font-medium mb-1">Scenario 1: A program asks for the user's age (expecting a number like 16) but the user types "sixteen" or leaves it blank.</p>
+                    <label for="misuse1-problem" class="block text-sm font-medium text-gray-600 mt-2">Potential Problem:</label>
+                    <textarea id="misuse1-problem" rows="2" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Describe the potential problem..."></textarea>
+                    <label for="misuse1-solution" class="block text-sm font-medium text-gray-600 mt-2">Defensive Solution:</label>
+                    <textarea id="misuse1-solution" rows="2" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Describe a defensive solution..."></textarea>
+                </div>
+                <div class="misuse-scenario p-4 bg-white rounded border border-gray-200">
+                    <p class="font-medium mb-1">Scenario 2: A file uploading website expects images (JPEG, PNG), but a user tries to upload a very large video file or a document.</p>
+                    <label for="misuse2-problem" class="block text-sm font-medium text-gray-600 mt-2">Potential Problem:</label>
+                    <textarea id="misuse2-problem" rows="2" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Describe the potential problem..."></textarea>
+                    <label for="misuse2-solution" class="block text-sm font-medium text-gray-600 mt-2">Defensive Solution:</label>
+                    <textarea id="misuse2-solution" rows="2" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Describe a defensive solution..."></textarea>
+                </div>
+                 <div class="misuse-scenario p-4 bg-white rounded border border-gray-200">
+                    <p class="font-medium mb-1">Scenario 3: A user is creating a username and the program expects it to be between 6 and 15 characters long. The user enters "abc".</p>
+                    <label for="misuse3-problem" class="block text-sm font-medium text-gray-600 mt-2">Potential Problem:</label>
+                    <textarea id="misuse3-problem" rows="2" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Describe the potential problem..."></textarea>
+                    <label for="misuse3-solution" class="block text-sm font-medium text-gray-600 mt-2">Defensive Solution:</label>
+                    <textarea id="misuse3-solution" rows="2" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Describe a defensive solution..."></textarea>
+                </div>
+            </div>
+            <button id="task1-reset-btn" class="reset-button">Reset Task 1</button>
+            <div id="task1-feedback" class="feedback-area hidden">Example feedback for Task 1 will appear here.</div>
+        </section>
+
+        <section id="task2-validation-sim" class="task-container mb-10">
+            <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-shield-alt mr-2"></i>Task 2: Input Validation Simulator</h3>
+            <p class="mb-4 text-gray-700">Let's see different types of <span class="keyword">input validation<span class="tooltip">Checks performed on data entered by the user to ensure it is acceptable and won't cause errors.</span></span> in action. Enter data and see if it passes the selected validation rule!</p>
+            <div class="validation-simulator grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-50 p-4 rounded">
+                <div>
+                    <label for="validation-data" class="block text-sm font-medium text-gray-700">Data to Validate:</label>
+                    <input type="text" id="validation-data" name="validation-data" class="mt-1 block w-full p-2 border-gray-300 rounded-md shadow-sm" placeholder="Enter some data">
+
+                    <label for="validation-type" class="block text-sm font-medium text-gray-700 mt-4">Validation Type:</label>
+                    <select id="validation-type" name="validation-type" class="mt-1 block w-full p-2 border-gray-300 rounded-md shadow-sm">
+                        <option value="presence">Presence Check</option>
+                        <option value="type">Type Check (Number)</option>
+                        <option value="range">Range Check (Number)</option>
+                        <option value="length">Length Check (Text)</option>
+                        <option value="format">Format Check (e.g., Email Stub)</option>
+                    </select>
+                </div>
+                <div id="validation-params" class="space-y-3">
+                    </div>
+            </div>
+            <div class="text-center mt-4">
+                <button id="run-validation-sim-btn" class="action-button">Test Validation</button>
+                <button id="reset-validation-sim-btn" class="reset-button">Reset Simulator</button>
+            </div>
+            <div id="validation-sim-output" class="mt-4 p-3 bg-indigo-100 rounded border border-indigo-200 text-center min-h-[50px]">
+                Validation result will appear here.
+            </div>
+        </section>
+
+        <section id="task3-authentication" class="task-container mb-10">
+            <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-key mr-2"></i>Task 3: Authentication Exploration</h3>
+            <p class="mb-4 text-gray-700"><span class="keyword">Authentication<span class="tooltip">The process of verifying the identity of a user, process, or device, often as a prerequisite to allowing access to resources in an information system.</span></span> is about proving you are who you say you are. Let's explore some common methods.</p>
+
+            <h4 class="task-subtitle">Part A: Match the Method</h4>
+            <p class="mb-4 text-gray-700">Match the authentication method on the left with its description on the right. Click one from each column to pair them.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <h5 class="font-semibold mb-2 text-center text-gray-600">Authentication Method</h5>
+                    <ul id="auth-methods" class="matching-list">
+                        <li class="matching-item" data-match="password">Password/PIN</li>
+                        <li class="matching-item" data-match="biometric">Biometric (Fingerprint/Face ID)</li>
+                        <li class="matching-item" data-match="2fa">Two-Factor Authentication (2FA)</li>
+                        <li class="matching-item" data-match="token">Security Token/Key Fob</li>
+                    </ul>
+                </div>
+                <div>
+                     <h5 class="font-semibold mb-2 text-center text-gray-600">Description</h5>
+                     <ul id="auth-descs" class="matching-list">
+                        <li class="matching-item" data-match="biometric">Uses unique physical characteristics of the user.</li>
+                        <li class="matching-item" data-match="2fa">Requires two different ways of proving identity (e.g., password + code from phone).</li>
+                        <li class="matching-item" data-match="token">A small hardware device that generates a one-time code.</li>
+                        <li class="matching-item" data-match="password">A secret word, phrase, or sequence of numbers known only to the user.</li>
+                    </ul>
+                </div>
+            </div>
+            <button id="check-auth-matching-btn" class="check-button" disabled>Check Matches</button>
+            <button id="reset-auth-matching-btn" class="reset-button">Reset Part A</button>
+            <div id="auth-matching-feedback" class="feedback-area hidden">Feedback for matching will appear here.</div>
+
+            <h4 class="task-subtitle mt-6">Part B: Authentication Scenarios</h4>
+             <div class="space-y-3">
+                <div>
+                    <label for="auth-q1" class="block text-sm font-medium text-gray-700">1. What typically happens if a user forgets their password for an online service? Describe one common recovery method.</label>
+                    <textarea id="auth-q1" name="auth-q1" rows="2" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm" placeholder="Describe a recovery method..."></textarea>
+                </div>
+                <div>
+                    <label for="auth-q2" class="block text-sm font-medium text-gray-700">2. When a new user registers for an online service, how is their identity typically authenticated for the first time (to ensure they control the email address, for example)?</label>
+                    <textarea id="auth-q2" name="auth-q2" rows="2" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm" placeholder="Describe an initial authentication method..."></textarea>
+                </div>
+            </div>
+            <button id="reset-auth-scenarios-btn" class="reset-button">Reset Part B</button>
+            <div id="auth-scenarios-feedback" class="feedback-area hidden">Feedback for scenarios will appear here.</div>
+        </section>
+
+        <section id="task4-maintainability" class="task-container mb-10">
+            <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-wrench mr-2"></i>Task 4: Code Maintainability Matters</h3>
+            <p class="mb-4 text-gray-700">Good quality code isn't just about working; it also needs to be easy to understand, debug, and update by yourself or others later. This is called <span class="keyword">maintainability<span class="tooltip">The ease with which software can be modified to correct faults, improve performance, or adapt to a changed environment. Good maintainability practices include using comments, sensible variable names, indentation, and sub-programs.</span></span>.</p>
+
+            <h4 class="task-subtitle">Part A: Spot the Bad Habits!</h4>
+            <p class="mb-2 text-gray-700">Look at the Python code snippet below. It works, but it's not very maintainable. Identify at least <strong>three</strong> issues related to maintainability and suggest how to improve them.</p>
+            <div class="code-block bg-gray-800 text-white p-4 rounded-md mb-4">
+                <pre>
+def proc(d):
+  x = 0
+  for i in d:
+    x = x + i
+  r = x / len(d)
+  return r
+
+# This gets data
+data1=[10,20,30,40,50]
+# Process it
+res = proc(data1)
+print(res) # Output
+                </pre>
+            </div>
+            <div>
+                <label for="maintain-issue1" class="block text-sm font-medium text-gray-600">Issue 1 & Improvement:</label>
+                <textarea id="maintain-issue1" rows="2" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Identify an issue and suggest an improvement."></textarea>
+            </div>
+            <div>
+                <label for="maintain-issue2" class="block text-sm font-medium text-gray-600 mt-2">Issue 2 & Improvement:</label>
+                <textarea id="maintain-issue2" rows="2" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Identify another issue and its improvement."></textarea>
+            </div>
+            <div>
+                <label for="maintain-issue3" class="block text-sm font-medium text-gray-600 mt-2">Issue 3 & Improvement:</label>
+                <textarea id="maintain-issue3" rows="2" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Identify a third issue and its improvement."></textarea>
+            </div>
+            <button id="reset-maintainability-a-btn" class="reset-button">Reset Part A</button>
+            <div id="maintainability-feedback-a" class="feedback-area hidden">Example issues and improvements will appear here.</div>
+
+            <h4 class="task-subtitle mt-6">Part B: Why Bother?</h4>
+            <p class="mb-2 text-gray-700">Explain why each of the following helps improve code maintainability:</p>
+            <div class="space-y-3">
+                <div>
+                    <label for="maintain-b1" class="block text-sm font-medium text-gray-700">1. Using meaningful variable and sub-program names (e.g., `calculate_average` instead of `calc_avg` or `fn1`):</label>
+                    <textarea id="maintain-b1" name="maintain-b1" rows="2" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm" placeholder="Explain the benefit..."></textarea>
+                </div>
+                <div>
+                    <label for="maintain-b2" class="block text-sm font-medium text-gray-700">2. Adding comments to explain complex parts of code or the purpose of a sub-program:</label>
+                    <textarea id="maintain-b2" name="maintain-b2" rows="2" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm" placeholder="Explain the benefit..."></textarea>
+                </div>
+                <div>
+                    <label for="maintain-b3" class="block text-sm font-medium text-gray-700">3. Using consistent indentation to show the structure of the code (e.g., loops, if statements):</label>
+                    <textarea id="maintain-b3" name="maintain-b3" rows="2" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm" placeholder="Explain the benefit..."></textarea>
+                </div>
+                <div>
+                    <label for="maintain-b4" class="block text-sm font-medium text-gray-700">4. Breaking down a large program into smaller, self-contained <span class="keyword">sub-programs<span class="tooltip">A named block of code designed to perform a specific task. Also known as functions or procedures. Using them improves modularity and reusability.</span></span> (functions/procedures):</label>
+                    <textarea id="maintain-b4" name="maintain-b4" rows="2" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm" placeholder="Explain the benefit..."></textarea>
+                </div>
+            </div>
+             <button id="reset-maintainability-b-btn" class="reset-button">Reset Part B</button>
+             <div id="maintainability-feedback-b" class="feedback-area hidden">Explanations will appear here.</div>
+        </section>
+
+        <section id="task5-coding-challenge" class="task-container mb-10">
+            <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-code mr-2"></i>Task 5: Email Validator Coding Challenge</h3>
+            <p class="mb-2 text-gray-700">Time to write some Python code! Your task is to write a function `is_valid_email(email_string)` that validates an email address based on the following simplified rules:</p>
+            <ul class="list-disc list-inside text-gray-600 mb-4 pl-4">
+                <li>It must contain exactly one "@" symbol.</li>
+                <li>The "@" symbol cannot be the first or last character.</li>
+                <li>It must contain at least one "." (dot) after the "@" symbol.</li>
+                <li>The dot cannot be immediately after the "@" symbol (e.g., `name@.com` is invalid).</li>
+                <li>The dot cannot be the last character of the email.</li>
+                <li>(Optional Challenge): No double dots ".." are permitted anywhere.</li>
+            </ul>
+            <p class="mb-4 text-gray-700">Use the textarea below to write your Python function. You can then "test" it against some examples (this is a conceptual test, the code isn't run here).</p>
+            <textarea id="email-validator-code" class="w-full p-2 border border-gray-300 rounded-md bg-gray-50 font-mono text-sm min-h-[200px]" placeholder="def is_valid_email(email_string):
+    # Your Python code here
+    return False # Placeholder"></textarea>
+            <div class="mt-4">
+                <button id="task5-coding-reset-btn" class="reset-button">Reset Task 5</button>
+            </div>
+            <div id="email-validator-feedback" class="feedback-area mt-4">
+                <p><strong>Test Cases:</strong></p>
+                <ul class="list-disc list-inside">
+                    <li><code>test@example.com</code> (Expected: Valid)</li>
+                    <li><code>test.user@sub.example.com</code> (Expected: Valid)</li>
+                    <li><code>@example.com</code> (Expected: Invalid - @ at start)</li>
+                    <li><code>test@examplecom</code> (Expected: Invalid - no dot after @)</li>
+                    <li><code>test@.com</code> (Expected: Invalid - dot immediately after @)</li>
+                    <li><code>test@example.</code> (Expected: Invalid - dot at end)</li>
+                    <li><code>testexample.com</code> (Expected: Invalid - no @)</li>
+                    <li><code>test@@example.com</code> (Expected: Invalid - multiple @)</li>
+                    <li><code>test@example..com</code> (Optional Challenge Expected: Invalid - double dot)</li>
+                </ul>
+                <p class="mt-2">Review the test cases above against your Python logic. This task does not run your code, but allows you to compare your logic to an example solution.</p>
+            </div>
+             <div id="email-validator-solution" class="feedback-area solution-code mt-4" style="display:none;">
+                <p><strong>Example Python Solution (Hidden by default, was shown by removed button):</strong></p>
+                <div class="code-block bg-gray-800 text-white p-4 rounded-md">
+                <pre>
+def is_valid_email(email_string):
+    if not isinstance(email_string, str): # Basic type check
+        return False
+        
+    # Rule: Must contain exactly one "@" symbol.
+    if email_string.count('@') != 1:
+        return False
+    
+    parts = email_string.split('@')
+    local_part = parts[0]
+    domain_part = parts[1]
+
+    # Rule: "@" symbol cannot be the first or last character.
+    if not local_part or not domain_part: 
+        return False
+
+    # Rule: Must contain at least one "." (dot) after the "@" symbol.
+    if '.' not in domain_part:
+        return False
+    
+    # Rule: Dot cannot be the first character of the domain part (immediately after @)
+    if domain_part.startswith('.'):
+        return False
+        
+    # Rule: Dot cannot be the last character of the email (i.e., last char of domain part).
+    if domain_part.endswith('.'):
+        return False
+
+    # Optional Rule: No double dots ".." are permitted anywhere.
+    if ".." in email_string: 
+        return False
+        
+    return True
+                </pre></div>
+            </div>
+        </section>
+
+        <section id="real-world-connection" class="mb-10">
+            <div class="flex justify-between items-center mb-4">
+                 <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-globe-americas mr-2 text-blue-500"></i> Real-World Connection</h2>
+                 <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                     <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer read-checkbox"> Read
+                 </label>
+            </div>
+            <div class="bg-blue-50 p-5 rounded-lg border border-blue-200 space-y-3">
+                <p class="text-gray-700">Defensive design isn't just an academic exercise; it's critical in the real world:</p>
+                <ul class="list-disc list-inside space-y-2 text-blue-800 pl-4">
+                    <li><strong class="font-semibold">Online Banking & E-commerce:</strong> Strong <span class="keyword">authentication</span> (like 2FA) and rigorous <span class="keyword">input validation</span> on payment forms are essential to prevent fraud and protect financial data. Imagine if a banking site didn't check if an account number was the right length!</li>
+                    <li><strong class="font-semibold">Healthcare Systems:</strong> Patient data is extremely sensitive. Defensive design ensures that only authorized personnel can access records (authentication) and that data entered (e.g., dosages, patient IDs) is validated to prevent life-threatening errors.</li>
+                    <li><strong class="font-semibold">Social Media Platforms:</strong> These platforms handle massive amounts of user data and interactions. Defensive design helps prevent account takeovers, validates user inputs (e.g., preventing malicious code in posts), and ensures the platform remains stable despite potentially millions of concurrent users.</li>
+                    <li><strong class="font-semibold">Operating Systems:</strong> Your computer's OS uses defensive design to manage resources, prevent programs from crashing the entire system, and authenticate users to protect their files.</li>
+                </ul>
+                <p class="text-gray-700 mt-3 italic">
+                    Essentially, any software that handles important data, interacts with many users, or could cause significant problems if it fails, relies heavily on defensive design principles. Well-maintained code also means these complex systems can be updated and fixed more easily over time.
+                </p>
+            </div>
+        </section>
+
+        <section id="common-misconceptions" class="mb-10">
+             <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-lightbulb-exclamation mr-2 text-red-500"></i> Myth Busters: Common Misconceptions</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer read-checkbox"> Read
+                </label>
+            </div>
+            <div class="bg-red-50 p-5 rounded-lg border border-red-200 space-y-4">
+                <div class="myth">
+                    <p><strong class="font-semibold text-red-800">Myth 1:</strong> "If my code works correctly for the normal inputs I test, it's good enough."</p>
+                    <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> Programs need to handle unexpected or invalid inputs gracefully. Users might make mistakes, misunderstand instructions, or even try to break the system. <span class="keyword">Defensive design</span> means anticipating these edge cases and unusual inputs, not just the "happy path."</p>
+                </div>
+                <div class="myth border-t border-red-200 pt-4">
+                    <p><strong class="font-semibold text-red-800">Myth 2:</strong> "Adding lots of comments explaining every single line of code makes it highly maintainable."</p>
+                    <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> While <span class="keyword">comments<span class="tooltip">Explanatory notes added to source code that are ignored by the compiler or interpreter. They help make code more understandable for humans.</span></span> are vital for maintainability, over-commenting simple, self-explanatory code can make it cluttered and harder to read. Good comments explain the 'why' behind complex logic, the purpose of functions/sub-programs, or pre/post conditions, rather than just translating code into English. Well-named variables and clear structure can reduce the need for excessive comments. </p>
+                </div>
+                 <div class="myth border-t border-red-200 pt-4">
+                    <p><strong class="font-semibold text-red-800">Myth 3:</strong> "Input validation is only about stopping hackers."</p>
+                    <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> While <span class="keyword">input validation</span> is a crucial part of security, it's also about ensuring data integrity and preventing accidental errors that could crash the program or lead to incorrect processing. For example, a range check on an age input prevents both malicious attempts to enter negative ages and simple typos like entering 150 instead of 15.</p>
+                </div>
+                <div class="myth border-t border-red-200 pt-4">
+                    <p><strong class="font-semibold text-red-800">Myth 4:</strong> "Once I've written and tested my sub-programs, I don't need to worry about how they are used elsewhere in the main program."</p>
+                    <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> <span class="keyword">Sub-programs<span class="tooltip">A named block of code designed to perform a specific task. Using sub-programs improves modularity, reusability, and maintainability.</span></span> are great for maintainability, but their interaction with the rest of the program is key. Defensive design includes ensuring that data passed to sub-programs is valid and that data returned is handled correctly by the calling code. Anticipating misuse also applies to how different parts of your own program interact.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="task6-exam-practice" class="task-container mb-10">
+             <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-graduation-cap mr-2"></i>Task 6: Exam Practice Questions</h3>
+             <p class="mb-4 text-gray-700">Answer these exam-style questions. Use the 'Show Mark Scheme' button to check your understanding against the key points. Ensure you attempt an answer before viewing the mark scheme!</p>
+
+            <div class="exam-question mb-6 p-4 bg-white rounded border border-gray-200" data-marks="2">
+                <h4 class="mb-3 font-medium text-gray-800">1. Describe two ways a programmer can anticipate the misuse of a program. (2 marks)</h4>
+                <textarea id="exam-q1" class="exam-answer-area w-full p-2 border border-gray-300 rounded-md" placeholder="Describe two ways..." rows="3"></textarea>
+                <div class="exam-controls mt-2 flex items-center space-x-4">
+                    <div>
+                        <label for="self-assess-q1" class="text-sm text-gray-600">My predicted marks:</label>
+                        <input type="number" id="self-assess-q1" class="self-assess-input w-20 p-1 border border-gray-300 rounded" min="0" max="2" />
+                    </div>
+                    <button class="toggle-mark-scheme-btn px-3 py-1.5 text-sm bg-indigo-600 text-white rounded hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed" data-mark-scheme-id="ms-q1" disabled>Show Mark Scheme</button>
+                </div>
+                <div id="ms-q1" class="mark-scheme hidden bg-gray-100 p-3 mt-2 rounded border border-gray-200">
+                    <p><strong>Mark Scheme:</strong></p>
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Implementing input validation to catch incorrect data types/formats. (1 mark)</li>
+                        <li>Providing clear error messages or guidance when misuse occurs. (1 mark)</li>
+                        <li>Restricting user privileges/access to certain features (authentication). (1 mark)</li>
+                        <li>Testing with unusual or extreme data values. (1 mark)</li>
+                    </ul>
+                    <p class="text-xs italic mt-1">(Max 2 marks for any two distinct points)</p>
+                </div>
+            </div>
+
+            <div class="exam-question mb-6 p-4 bg-white rounded border border-gray-200" data-marks="4">
+                <h4 class="mb-3 font-medium text-gray-800">2. Explain what is meant by authentication and describe two different methods of authentication. (4 marks)</h4>
+                 <textarea id="exam-q2" class="exam-answer-area w-full p-2 border border-gray-300 rounded-md" placeholder="Explain and describe..." rows="4"></textarea>
+                 <div class="exam-controls mt-2 flex items-center space-x-4">
+                    <div>
+                        <label for="self-assess-q2" class="text-sm text-gray-600">My predicted marks:</label>
+                        <input type="number" id="self-assess-q2" class="self-assess-input w-20 p-1 border border-gray-300 rounded" min="0" max="4"/>
+                    </div>
+                    <button class="toggle-mark-scheme-btn px-3 py-1.5 text-sm bg-indigo-600 text-white rounded hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed" data-mark-scheme-id="ms-q2" disabled>Show Mark Scheme</button>
+                </div>
+                 <div id="ms-q2" class="mark-scheme hidden bg-gray-100 p-3 mt-2 rounded border border-gray-200">
+                     <p><strong>Mark Scheme:</strong></p>
+                     <ul class="list-disc list-inside ml-4">
+                         <li>Authentication is the process of verifying the identity of a user (or system). (1 mark) To ensure they are who they claim to be. (1 mark)</li>
+                         <li>Method 1: Username and Password - User provides a secret password known only to them, associated with their username. (1 mark for description of method)</li>
+                         <li>Method 2: Biometrics - Uses unique physical characteristics like fingerprint, face recognition, or iris scan. (1 mark for description of method)</li>
+                         <li>Other valid methods: Two-Factor Authentication (2FA), Security Tokens, Smart Cards. (1 mark for description of an alternative method)</li>
+                     </ul>
+                      <p class="text-xs italic mt-1">(Max 4 marks. Up to 2 for explanation, 1 for each described method up to 2 methods.)</p>
+                 </div>
+            </div>
+
+             <div class="exam-question mb-6 p-4 bg-white rounded border border-gray-200" data-marks="3">
+                <h4 class="mb-3 font-medium text-gray-800">3. A program asks a user to enter a discount code which should be exactly 8 characters long and contain only uppercase letters and numbers. Describe three types of input validation that could be used for this discount code. (3 marks)</h4>
+                 <textarea id="exam-q3" class="exam-answer-area w-full p-2 border border-gray-300 rounded-md" placeholder="Describe three types..." rows="4"></textarea>
+                 <div class="exam-controls mt-2 flex items-center space-x-4">
+                     <div>
+                        <label for="self-assess-q3" class="text-sm text-gray-600">My predicted marks:</label>
+                        <input type="number" id="self-assess-q3" class="self-assess-input w-20 p-1 border border-gray-300 rounded" min="0" max="3"/>
+                    </div>
+                    <button class="toggle-mark-scheme-btn px-3 py-1.5 text-sm bg-indigo-600 text-white rounded hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed" data-mark-scheme-id="ms-q3" disabled>Show Mark Scheme</button>
+                </div>
+                 <div id="ms-q3" class="mark-scheme hidden bg-gray-100 p-3 mt-2 rounded border border-gray-200">
+                     <p><strong>Mark Scheme:</strong></p>
+                     <ul class="list-disc list-inside ml-4">
+                         <li><strong>Length Check:</strong> To ensure the input is exactly 8 characters long. (1 mark)</li>
+                         <li><strong>Format Check (or Type Check/Character Check):</strong> To ensure each character is either an uppercase letter or a digit (e.g., using a regular expression or character-by-character check). (1 mark)</li>
+                         <li><strong>Presence Check:</strong> To ensure the user has entered something and not left the field blank (though length check might cover this if blank is length 0). (1 mark)</li>
+                     </ul>
+                      <p class="text-xs italic mt-1">(Max 3 marks, 1 for each distinct and appropriate validation type described)</p>
+                 </div>
+            </div>
+
+            <div class="exam-question p-4 bg-white rounded border border-gray-200" data-marks="4">
+                <h4 class="mb-3 font-medium text-gray-800">4. Explain two ways that using sub-programs (procedures/functions) can improve the maintainability of code. (4 marks)</h4>
+                 <textarea id="exam-q4" class="exam-answer-area w-full p-2 border border-gray-300 rounded-md" placeholder="Explain two ways..." rows="4"></textarea>
+                 <div class="exam-controls mt-2 flex items-center space-x-4">
+                     <div>
+                        <label for="self-assess-q4" class="text-sm text-gray-600">My predicted marks:</label>
+                        <input type="number" id="self-assess-q4" class="self-assess-input w-20 p-1 border border-gray-300 rounded" min="0" max="4"/>
+                    </div>
+                    <button class="toggle-mark-scheme-btn px-3 py-1.5 text-sm bg-indigo-600 text-white rounded hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed" data-mark-scheme-id="ms-q4" disabled>Show Mark Scheme</button>
+                </div>
+                 <div id="ms-q4" class="mark-scheme hidden bg-gray-100 p-3 mt-2 rounded border border-gray-200">
+                     <p><strong>Mark Scheme:</strong></p>
+                     <ul class="list-disc list-inside ml-4">
+                         <li><strong>Improved Readability/Simplicity:</strong> Breaks down complex problems into smaller, manageable chunks of code. (1 mark) This makes the overall program structure easier to understand. (1 mark)</li>
+                         <li><strong>Easier Debugging/Testing:</strong> Individual sub-programs can be tested in isolation. (1 mark) This makes it easier to locate and fix errors within a specific part of the code without affecting others. (1 mark)</li>
+                         <li><strong>Code Reusability:</strong> A sub-program can be called multiple times from different parts of the program. (1 mark) This reduces code duplication, meaning if a change is needed, it only has to be made in one place. (1 mark)</li>
+                         <li><strong>Easier Collaboration:</strong> Different programmers can work on different sub-programs independently. (1 mark) (This point is less directly about "maintainability" by a single person later, but contributes to overall project maintainability).</li>
+                     </ul>
+                      <p class="text-xs italic mt-1">(Max 4 marks. Award 2 marks for each distinct way clearly explained, or 1 mark for identification and 1 for explanation for each way.)</p>
+                 </div>
+            </div>
+            <button id="task6-exam-reset-btn" class="reset-button mt-4">Reset Task 6</button>
+        </section>
+
+        <section id="final-actions-section" class="task-container mb-10 text-center">
+             <h3 class="text-xl task-title text-indigo-700"><i class="fas fa-check-circle mr-2"></i>Lesson Completion</h3>
+             <p class="mb-4 text-gray-700">You've reached the end of the interactive lesson. You can export your work or reset the page.</p>
+             <button id="export-pdf-btn" class="export-pdf-button no-print">Export to PDF</button>
+             <button id="reset-all-btn" class="reset-button no-print" onclick="resetAllTasks()">Reset All Tasks</button>
+         </section>
+
+        <section id="related-videos" class="mb-10">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-video mr-2 text-purple-500"></i> Related Videos</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer read-checkbox"> Read
+                </label>
+            </div>
+            <div class="bg-purple-50 p-5 rounded-lg border border-purple-200 space-y-4">
+                <p class="text-gray-700">Watch these videos to reinforce your understanding of defensive design:</p>
+                <ul class="list-disc list-inside space-y-3 text-purple-800 pl-4">
+                    <li>
+                        <strong>Defensive Design - Input Validation Explained</strong>
+                        <div class="aspect-video">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/2IIF4Infdf4?si=P3kAZjRjAzgT26WX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                        <div class="mt-2">
+                            <textarea class="w-full p-2 border border-purple-300 rounded-md text-sm bg-white" rows="3" placeholder="Optional notes from this video..."></textarea>
+                        </div>
+                    </li>
+                    <li>
+                        <strong>Authentication Methods in Computer Science</strong>
+                        <div class="aspect-video">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/8I0il6GQbTo?si=a7v8zBxMhubjNqeC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                        <div class="mt-2">
+                            <textarea class="w-full p-2 border border-purple-300 rounded-md text-sm bg-white" rows="3" placeholder="Optional notes from this video..."></textarea>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="key-takeaways" class="mb-10">
+            <div class="flex justify-between items-center mb-4">
+                 <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-key mr-2"></i>Key Takeaways</h2>
+                 <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                     <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer read-checkbox"> Read
+                 </label>
+            </div>
+            <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-300 space-y-2 show">
+                <ul class="list-disc list-inside space-y-1 text-yellow-800">
+                    <li><strong class="font-semibold">Defensive Design:</strong> Creating programs that can handle unexpected situations and inputs, making them robust and reliable.</li>
+                    <li><strong class="font-semibold">Anticipating Misuse:</strong> Thinking ahead about how users might accidentally or intentionally use the program incorrectly.</li>
+                    <li><strong class="font-semibold">Input Validation:</strong> Essential checks on data entered by users to ensure it's the correct <span class="keyword">type</span>, within an acceptable <span class="keyword">range</span>, of the right <span class="keyword">length</span>, in the correct <span class="keyword">format</span>, and actually <span class="keyword">present</span> if required.</li>
+                    <li><strong class="font-semibold">Authentication:</strong> Verifying a user's identity (e.g., passwords, biometrics, 2FA) to control access to systems and data.</li>
+                    <li><strong class="font-semibold">Maintainability:</strong> Writing code that is easy to read, understand, modify, and debug. Key practices include:
+                        <ul class="list-circle list-inside ml-4">
+                            <li>Using clear <span class="keyword">naming conventions</span> for variables and sub-programs.</li>
+                            <li>Consistent <span class="keyword">indentation</span> to show code structure.</li>
+                            <li>Helpful <span class="keyword">commenting</span> to explain logic.</li>
+                            <li>Using <span class="keyword">sub-programs</span> (functions/procedures) to break down tasks and promote reusability.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="next-steps">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600">What's Next?</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer read-checkbox"> Read
+                </label>
+            </div>
+            <div class="bg-teal-50 p-5 rounded-lg border border-teal-300">
+                <p class="text-teal-800 font-medium">
+                    You've learned how to design programs more defensively! This is a crucial skill for any programmer.
+                </p>
+                <p class="text-teal-700 mt-2">
+                    Next, we'll explore how to ensure our programs actually work as intended:
+                </p>
+                <ul class="list-disc list-inside space-y-1 text-teal-700 mt-3 pl-4">
+                    <li><a href="gcse-robprog-testing.html" class="text-teal-600 hover:text-teal-800 font-semibold underline">Program Testing (Spec 2.3.2)</a>: Discover different testing strategies and how to create effective test plans.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="extension-activities" class="mb-10">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-puzzle-piece mr-2 text-orange-500"></i> Extension Activities</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer read-checkbox"> Read
+                </label>
+            </div>
+            <div class="bg-orange-50 p-5 rounded-lg border border-orange-200 space-y-6">
+                <div class="extension-task">
+                    <h3 class="font-semibold text-orange-800 mb-2">1. Password Security Deep Dive</h3>
+                    <p class="text-sm text-gray-700 mb-2">Storing passwords directly is a huge security risk. Websites often store a <span class="keyword">hash<span class="tooltip">A one-way function that converts an input (like a password) into a fixed-size string of characters. It's computationally difficult to reverse.</span></span> of the password instead. Even better, they use "salting".</p>
+                    <p class="text-sm text-gray-700 mb-2"><strong>Research Task:</strong> What is password hashing? What is "salting" in the context of password storage, and why is it important for security, especially against attacks like rainbow tables?</p>
+                    <textarea id="extension-q1" name="extension-q1" rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Explain hashing, salting, and its benefits..."></textarea>
+                </div>
+                <div class="extension-task border-t border-orange-200 pt-4">
+                    <h3 class="font-semibold text-orange-800 mb-2">2. Design Test Cases for a Complex Form</h3>
+                    <p class="text-sm text-gray-700 mb-2">Imagine you are designing the test plan for a new online holiday booking form. The form has fields for: Destination (text), Number of Adults (1-10), Number of Children (0-5), Departure Date (must be in the future), Return Date (must be after departure date), and Email Address.</p>
+                    <p class="text-sm text-gray-700 mb-2"><strong>Task:</strong> List at least 5 different test cases for this form, specifying the input data for each field and the expected outcome. Think about valid, invalid, boundary, and erroneous data.</p>
+                    <textarea id="extension-q2" name="extension-q2" rows="5" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Test Case 1: Data: ..., Expected: ..."></textarea>
+                </div>
+                 <div class="extension-task border-t border-orange-200 pt-4">
+                    <h3 class="font-semibold text-orange-800 mb-2">3. Common Web Vulnerabilities from Poor Defensive Design</h3>
+                    <p class="text-sm text-gray-700 mb-2">Many common web security vulnerabilities arise from a lack of defensive design, particularly in how user input is handled on the server-side.</p>
+                    <p class="text-sm text-gray-700 mb-2"><strong>Research Task:</strong> Briefly explain what <span class="keyword">SQL Injection (SQLi)<span class="tooltip">A code injection technique used to attack data-driven applications, in which malicious SQL statements are inserted into an entry field for execution.</span></span> and <span class="keyword">Cross-Site Scripting (XSS)<span class="tooltip">A type of security vulnerability typically found in web applications. XSS enables attackers to inject client-side scripts into web pages viewed by other users.</span></span> are. How do defensive coding practices (like input sanitization and parameterized queries) help mitigate these threats?</p>
+                    <textarea id="extension-q3" name="extension-q3" rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Explain SQLi and XSS, and how defensive design helps..."></textarea>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="../js/worksheet-common.js"></script>
+    <script src="../js/gcse-robprog-defdes.js"></script> </body>
+</html>

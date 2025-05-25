@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCSE CS Lesson: Operating Systems - The Conductor of the Orchestra (Part 1)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    
+<link rel="stylesheet" href="css/style.css">
+</head>
+<nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <a href="home.html" class="text-xl font-bold hover:text-gray-300 transition-colors">MGS CS Hub</a>
+        <ul class="flex space-x-3 lg:space-x-4">
+        </ul>
+        <ul class="flex flex-wrap space-x-2 sm:space-x-3 lg:space-x-4 text-sm sm:text-base">
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 7</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 8</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 9</a></li>
+            <li><a href="gcse.html" class="hover:text-gray-300 transition-colors">GCSE</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">A Level</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Competitions</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">CS News</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Extracurricular</a></li>
+        </ul>
+    </div>
+</nav>
+
+\1
+
+
+
+    <div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-lg shadow-xl">
+
+        <a href="gcse.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 group no-print">
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left w-5 h-5 mr-2 transition-transform duration-200 group-hover:-translate-x-1"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+            Back to GCSE Topics
+        </a>
+
+        <header class="mb-8 border-b pb-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-2">Operating Systems: The Conductor (Part 1)</h1>
+            <p class="text-lg text-gray-600">OCR GCSE Computer Science (J277) - Topic 1.5.1: The Purpose and Functionality of Operating Systems</p>
+        </header>
+
+        <main class="space-y-8 md:space-y-12">
+
+            <section id="starter-activity" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-rocket mr-2 text-yellow-500"></i> Starter Activity (5 mins)</h2>
+                <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-200 space-y-4">
+                    <p class="font-semibold text-yellow-800">Let's get started! What do you already know?</p>
+                    <div class="space-y-3">
+                        <div>
+                            <label for="starter-q1" class="block text-sm font-medium text-yellow-700">1. List any <span class="keyword">Operating Systems (OS)<span class="tooltip">Software that manages computer hardware and software resources, and provides common services for computer programs.</span></span> you have heard of or used:</label>
+                            <input type="text" id="starter-q1" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" placeholder="e.g., Windows, macOS, Android...">
+                        </div>
+                        <div>
+                            <label for="starter-q2" class="block text-sm font-medium text-yellow-700">2. What do you think are the main jobs or responsibilities of an Operating System? (Don't use the internet yet!)</label>
+                            <textarea id="starter-q2" rows="3" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" placeholder="e.g., Helps run programs, manages files..."></textarea>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-yellow-700">3. Operating System software falls under which main category of software?</p>
+                            <div class="mt-1 space-x-4">
+                                <label class="inline-flex items-center"><input type="radio" name="software-category" value="application" class="form-radio text-yellow-600"> <span class="ml-2">Application Software</span></label>
+                                <label class="inline-flex items-center"><input type="radio" name="software-category" value="system" class="form-radio text-yellow-600"> <span class="ml-2">System Software</span></label>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="starter-q4" class="block text-sm font-medium text-yellow-700">4. The other main type of software that also falls under this category is <input type="text" id="starter-q4" class="fill-blank w-32 p-1 border-yellow-300 rounded-md shadow-sm bg-white text-center" placeholder="U _ _ _ _ _ _ _"> software.</label>
+                        </div>
+                    </div>
+                    <button class="reveal-button !bg-yellow-500 hover:!bg-yellow-600 no-print" onclick="toggleReveal('starter-answers-feedback', this, 'Reveal Example Answers', 'Hide Example Answers')">Reveal Example Answers</button>
+                    <div id="starter-answers-feedback" class="feedback-area !bg-yellow-100 !border-yellow-300 !text-yellow-700">
+                        <p><strong>Example Answers:</strong></p>
+                        <ul class="list-disc list-inside">
+                            <li>1. Windows, macOS, Linux, Android, iOS, ChromeOS, etc.</li>
+                            <li>2. Managing hardware (like printers, keyboard), running software applications, managing files and folders, providing a user interface, security.</li>
+                            <li>3. System Software.</li>
+                            <li>4. Utility Software.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="lesson-outcomes" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-bullseye mr-2 text-green-500"></i> Lesson Outcomes</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-green-50 p-5 rounded-lg border border-green-200">
+                    <p class="font-semibold text-green-800 mb-3">By the end of this lesson (Part 1), you should be able to:</p>
+                    <ul class="list-disc list-inside space-y-2 text-green-700 pl-4">
+                        <li>Define what an <span class="keyword">Operating System (OS)<span class="tooltip">Software that manages computer hardware and software resources, and provides common services for computer programs.</span></span> is and its role as <span class="keyword">Systems Software<span class="tooltip">Software designed to provide a platform for other software (includes OS and Utility Programs).</span></span>.</li>
+                        <li>Describe the main functions of an Operating System, including:
+                            <ul>
+                                <li>Providing a <span class="keyword">User Interface (UI)<span class="tooltip">The means by which the user and a computer system interact, in particular the use of input devices and software.</span></span></li>
+                                <li><span class="keyword">Memory Management<span class="tooltip">The process of controlling and coordinating computer memory, assigning portions called blocks to various running programs to optimize overall system performance.</span></span> / <span class="keyword">Multitasking<span class="tooltip">The ability of an operating system to allow multiple software processes to run concurrently.</span></span></li>
+                                <li><span class="keyword">Peripheral Management<span class="tooltip">The OS process of controlling communication between the computer and its connected peripheral devices (e.g., printers, keyboards, mice).</span></span> (and the role of <span class="keyword">Drivers<span class="tooltip">A software program that enables the operating system to communicate with and control a specific hardware device.</span></span>)</li>
+                                <li><span class="keyword">User Management<span class="tooltip">The OS function of creating/managing user accounts, setting permissions, and ensuring security between different users.</span></span></li>
+                                <li><span class="keyword">File Management<span class="tooltip">The OS process of organizing and keeping track of files and folders, including their storage, retrieval, naming, sharing, and protection.</span></span></li>
+                            </ul>
+                        </li>
+                        <li>Identify and compare different types of User Interfaces (GUI, CLI, Menu-driven, Natural Language).</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="intro-os" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-cogs mr-2"></i> Introduction: What is an Operating System?</h2>
+                     <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-indigo-50 p-5 rounded-lg border border-indigo-200 space-y-3">
+                    <p>Imagine an orchestra without a conductor. The musicians might all be talented, but without someone to coordinate them, guide their timing, and ensure they play together, the result would be chaos! An <strong class="keyword">Operating System (OS)<span class="tooltip">Software that manages computer hardware and software resources, and provides common services for computer programs.</span></strong> is like the conductor for a computer.</p>
+                    <p>It's a crucial piece of <strong class="keyword">Systems Software<span class="tooltip">Software designed to provide a platform for other software (includes OS and Utility Programs).</span></strong> that manages all the computer's hardware resources (like the CPU, memory, storage devices, and peripherals) and provides a platform for application software (like your web browser or word processor) to run. Without an OS, your computer would be a collection of unusable electronic parts.</p>
+                    <p>In this lesson, we'll explore the many important jobs the OS performs to keep your computer running smoothly and efficiently. Hover over <span class="keyword">keywords<span class="tooltip">This is an example tooltip!</span></span> for definitions.</p>
+                </div>
+            </section>
+
+            <section id="task1-fill-blanks" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-edit mr-2"></i>Task 1: OS Fundamentals - Fill in the Blanks <span class="font-bold text-sm text-gray-500 ml-auto">(Max 3 points)</span></h2>
+                <p class="text-gray-600 mb-4">Complete the sentences below using the keywords provided or your own knowledge.</p>
+                <div class="space-y-3 quiz-item" data-points="3">
+                    <p>1. An Operating System is a type of <input type="text" id="blank-os-type" class="fill-blank" data-answer="system software"> software that manages computer <input type="text" id="blank-os-manages" class="fill-blank" data-answer="hardware"> and software resources.</p>
+                    <p>2. One of the main jobs of an OS is to provide a <input type="text" id="blank-os-interface" class="fill-blank" data-answer="user interface"> for the user to interact with the computer.</p>
+                </div>
+                <button class="check-button no-print" onclick="checkTask1FillBlanks()">Check Answers</button>
+                <button class="reset-button no-print" onclick="resetTask1FillBlanks()">Reset Task 1</button>
+                <div id="task1-feedback" class="feedback-area"></div>
+            </section>
+
+            <section id="task2-os-functions-match" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-tasks mr-2"></i>Task 2: OS Functions - Match Up! <span class="font-bold text-sm text-gray-500 ml-auto">(Max 5 points)</span></h2>
+                <p class="text-gray-600 mb-4">Drag the OS functions from the pool to match their correct descriptions below.</p>
+                <div class="quiz-item" data-points="5">
+                    <div id="function-pool" class="function-pool grid grid-cols-2 md:grid-cols-3 gap-2 mb-6">
+                        <div class="os-function-item" draggable="true" id="func-ui" data-function="ui">User Interface</div>
+                        <div class="os-function-item" draggable="true" id="func-memory" data-function="memory">Memory Management</div>
+                        <div class="os-function-item" draggable="true" id="func-peripheral" data-function="peripheral">Peripheral Management</div>
+                        <div class="os-function-item" draggable="true" id="func-user" data-function="user">User Management</div>
+                        <div class="os-function-item" draggable="true" id="func-file" data-function="file">File Management</div>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-2">
+                            <div class="function-dropzone w-1/3" data-accept="ui"></div>
+                            <p class="w-2/3 text-sm">Allows the user to interact with the computer (e.g., through icons, menus, or commands).</p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="function-dropzone w-1/3" data-accept="memory"></div>
+                            <p class="w-2/3 text-sm">Controls and allocates the computer's main memory to running programs, enabling multitasking.</p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="function-dropzone w-1/3" data-accept="peripheral"></div>
+                            <p class="w-2/3 text-sm">Manages communication between the computer and connected devices like printers and keyboards, often using drivers.</p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="function-dropzone w-1/3" data-accept="user"></div>
+                            <p class="w-2/3 text-sm">Handles user accounts, login authentication, and access permissions to files and resources.</p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="function-dropzone w-1/3" data-accept="file"></div>
+                            <p class="w-2/3 text-sm">Organizes files and folders on storage devices, handling their creation, deletion, copying, and retrieval.</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="check-button no-print" onclick="checkOSFunctionsMatch()">Check Matches</button>
+                <button class="reset-button no-print" onclick="resetOSFunctionsMatch()">Reset Task 2</button>
+                <div id="task2-feedback" class="feedback-area"></div>
+            </section>
+
+            <section id="task3-ui-deep-dive" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-desktop mr-2"></i>Task 3: User Interface Deep Dive <span class="font-bold text-sm text-gray-500 ml-auto">(Self-Assessment)</span></h2>
+                <p class="text-gray-600 mb-4">Operating Systems provide different ways for users to interact. For each <span class="keyword">User Interface (UI)<span class="tooltip">The means by which the user and a computer system interact, in particular the use of input devices and software.</span></span> type below, briefly describe its main features and list one advantage and one disadvantage.</p>
+                <div class="ui-comparison-table overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr>
+                                <th>Interface Type</th>
+                                <th>Main Features / How it Works</th>
+                                <th>One Advantage</th>
+                                <th>One Disadvantage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong class="keyword">Graphical User Interface (GUI)<span class="tooltip">A type of user interface that allows users to interact with electronic devices through graphical icons and visual indicators. Uses WIMP (Windows, Icons, Menus, Pointers).</span></strong><br><img src="https://placehold.co/100x60/a5b4fc/ffffff?text=GUI+Example" alt="GUI Example" class="mx-auto my-1 rounded"></td>
+                                <td><textarea id="gui-features" rows="3" placeholder="Visual elements like icons, windows, menus, pointer..."></textarea></td>
+                                <td><textarea id="gui-adv" rows="3" placeholder="e.g., Easy to learn..."></textarea></td>
+                                <td><textarea id="gui-disadv" rows="3" placeholder="e.g., Uses more memory..."></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong class="keyword">Command Line Interface (CLI)<span class="tooltip">A text-based user interface used to view and manage computer files and run programs by typing commands.</span></strong><br><img src="https://placehold.co/100x60/718096/ffffff?text=CLI+Example" alt="CLI Example" class="mx-auto my-1 rounded"></td>
+                                <td><textarea id="cli-features" rows="3" placeholder="Text-based, user types commands..."></textarea></td>
+                                <td><textarea id="cli-adv" rows="3" placeholder="e.g., Powerful for experts..."></textarea></td>
+                                <td><textarea id="cli-disadv" rows="3" placeholder="e.g., Hard for novices..."></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong class="keyword">Menu-Driven Interface<span class="tooltip">A user interface that presents a series of predefined options (menus) to the user to navigate and make selections.</span></strong><br><img src="https://placehold.co/100x60/6ee7b7/1f2937?text=Menu+Example" alt="Menu Example" class="mx-auto my-1 rounded"></td>
+                                <td><textarea id="menu-features" rows="3" placeholder="Presents options in lists/menus..."></textarea></td>
+                                <td><textarea id="menu-adv" rows="3" placeholder="e.g., No need to remember commands..."></textarea></td>
+                                <td><textarea id="menu-disadv" rows="3" placeholder="e.g., Can be slow to navigate..."></textarea></td>
+                            </tr>
+                             <tr>
+                                <td><strong class="keyword">Natural Language Interface<span class="tooltip">A user interface that allows users to interact with a computer using everyday human language (spoken or typed).</span></strong><br><img src="https://placehold.co/100x60/fbcfe8/831843?text=Voice+Example" alt="Voice Example" class="mx-auto my-1 rounded"></td>
+                                <td><textarea id="nli-features" rows="3" placeholder="User speaks or types in everyday language..."></textarea></td>
+                                <td><textarea id="nli-adv" rows="3" placeholder="e.g., Very intuitive..."></textarea></td>
+                                <td><textarea id="nli-disadv" rows="3" placeholder="e.g., Can misunderstand..."></textarea></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <button class="reveal-button no-print" onclick="toggleReveal('task3-guidance', this, 'Show Guidance Points', 'Hide Guidance Points')">Show Guidance Points</button>
+                <div id="task3-guidance" class="feedback-area !bg-blue-50 !border-blue-200 !text-blue-700">
+                    <p><strong>Guidance for UI Comparison:</strong></p>
+                    <ul>
+                        <li><strong>GUI:</strong> Features: WIMP (Windows, Icons, Menus, Pointer), visual, intuitive. Adv: Easy for beginners, no complex commands. Disadv: Resource-heavy (RAM/CPU), can be slower for experts.</li>
+                        <li><strong>CLI:</strong> Features: Text commands, keyboard input, precise control. Adv: Fast for experts, uses few resources, good for automation/scripting. Disadv: Steep learning curve, commands must be exact.</li>
+                        <li><strong>Menu-Driven:</strong> Features: Series of on-screen options, user selects choices. Adv: Easy to learn, no commands to memorize, good for limited option devices (ATMs, ticket machines). Disadv: Can be slow if many menus, inflexible.</li>
+                        <li><strong>Natural Language:</strong> Features: Spoken or typed human language (e.g., voice assistants). Adv: Very intuitive, hands-free operation. Disadv: Can misunderstand complex queries or accents, relies on AI, privacy concerns.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="task4-memory-management-sim" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-memory mr-2"></i>Task 4: Conceptual Memory Management <span class="font-bold text-sm text-gray-500 ml-auto">(Not Scored)</span></h2>
+                <p class="text-gray-600 mb-4">An OS manages how <span class="keyword">RAM<span class="tooltip">Random Access Memory: Volatile memory that stores currently running programs and data.</span></span> is shared between running programs. This allows for <span class="keyword">multitasking<span class="tooltip">The ability of an operating system to allow multiple software processes to run concurrently.</span></span>. Click to "load" and "close" programs to see a simplified visual of memory allocation.</p>
+                <div class="memory-sim-container">
+                    <div class="process-list space-y-2 mr-4">
+                        <h4 class="font-semibold text-center text-gray-700">Programs</h4>
+                        <button class="sim-button w-full !mt-0" onclick="toggleProgram('word-processor', 3, '#3b82f6')">Word Processor (3MB)</button>
+                        <button class="sim-button w-full !mt-0" onclick="toggleProgram('web-browser', 4, '#10b981')">Web Browser (4MB)</button>
+                        <button class="sim-button w-full !mt-0" onclick="toggleProgram('music-player', 2, '#f59e0b')">Music Player (2MB)</button>
+                        <button class="sim-button w-full !mt-0" onclick="toggleProgram('game', 5, '#ef4444')">Game (5MB)</button>
+                    </div>
+                    <div class="ram-visual" id="ram-display">
+                        </div>
+                </div>
+                <p id="memory-status" class="text-center text-sm text-gray-600 mt-3">Total RAM: 10MB. Available: 10MB.</p>
+                <div class="text-center">
+                     <button class="reset-button no-print" onclick="resetMemorySim()">Reset Simulation</button>
+                </div>
+            </section>
+
+            <section id="task5-os-roles-quiz" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-question-circle mr-2"></i>Task 5: OS Roles - Quick Quiz <span class="font-bold text-sm text-gray-500 ml-auto">(Max 4 points)</span></h2>
+                <p class="text-gray-600 mb-4">Which OS function is primarily responsible for each scenario?</p>
+                <div class="space-y-4 quiz-item" data-points="4">
+                    <div class="quiz-question">
+                        <p class="font-medium text-gray-800 mb-1">1. Ensuring your new printer works with your computer.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <button class="option-button" data-answer="file">File Management</button>
+                            <button class="option-button" data-answer="peripheral">Peripheral Management</button>
+                            <button class="option-button" data-answer="user">User Management</button>
+                        </div><div class="feedback"></div>
+                    </div>
+                    <div class="quiz-question">
+                        <p class="font-medium text-gray-800 mb-1">2. Allowing you to save your essay in a folder called "Homework".</p>
+                        <div class="flex flex-wrap gap-2">
+                            <button class="option-button" data-answer="file">File Management</button>
+                            <button class="option-button" data-answer="memory">Memory Management</button>
+                            <button class="option-button" data-answer="ui">User Interface</button>
+                        </div><div class="feedback"></div>
+                    </div>
+                    <div class="quiz-question">
+                        <p class="font-medium text-gray-800 mb-1">3. Preventing one user from accessing another user's private files on a shared computer.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <button class="option-button" data-answer="peripheral">Peripheral Management</button>
+                            <button class="option-button" data-answer="user">User Management</button>
+                            <button class="option-button" data-answer="memory">Memory Management</button>
+                        </div><div class="feedback"></div>
+                    </div>
+                    <div class="quiz-question">
+                        <p class="font-medium text-gray-800 mb-1">4. Allowing you to run a web browser, a word processor, and listen to music all at the same time.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <button class="option-button" data-answer="ui">User Interface</button>
+                            <button class="option-button" data-answer="file">File Management</button>
+                            <button class="option-button" data-answer="memory">Memory Management / Multitasking</button>
+                        </div><div class="feedback"></div>
+                    </div>
+                </div>
+                 <button class="check-button no-print" onclick="checkTask5OSRoles()">Check Answers</button>
+                 <button class="reset-button no-print" onclick="resetTask5OSRoles()">Reset Task 5</button>
+            </section>
+
+            <section id="real-world-os" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-globe-europe mr-2 text-blue-500"></i> Real-World OS Examples</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-blue-50 p-5 rounded-lg border border-blue-200 space-y-3">
+                    <p class="text-gray-700">Operating systems are everywhere, not just on your desktop or laptop:</p>
+                    <ul class="list-disc list-inside space-y-2 text-blue-800 pl-4">
+                        <li><strong>Desktop/Laptop Computers:</strong> Microsoft Windows, Apple macOS, Linux distributions (like Ubuntu). These provide rich GUIs and manage a wide range of applications and hardware.</li>
+                        <li><strong>Mobile Devices (Smartphones/Tablets):</strong> Google Android, Apple iOS. These are optimized for touch interfaces, power management, and mobile connectivity.</li>
+                        <li><strong>Servers:</strong> Often run specialized versions of Linux or Windows Server. They are designed for stability, security, and handling many simultaneous requests (e.g., web servers, database servers).</li>
+                        <li><strong>Embedded Systems:</strong> Many devices like smart TVs, car infotainment systems, ATMs, and even washing machines have their own (often simplified) operating systems tailored for their specific tasks. These are called Real-Time Operating Systems (RTOS) if they need to respond to inputs within a guaranteed time.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="myth-busters-os" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-ghost mr-2 text-red-500"></i> OS Myth Busters!</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-red-50 p-5 rounded-lg border border-red-200 space-y-4">
+                    <div>
+                        <p><strong class="font-semibold text-red-800">Myth 1:</strong> "You don't really need an Operating System if you only run one program."</p>
+                        <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> Even to run one program, an OS is essential. It handles fundamental tasks like loading the program into memory, managing CPU time for that program, interacting with hardware (keyboard input, screen output), and managing files if the program needs to read or write data. Without an OS, the program would need to include code for all these low-level tasks, making it incredibly complex.</p>
+                    </div>
+                    <div class="border-t border-red-200 pt-4">
+                        <p><strong class="font-semibold text-red-800">Myth 2:</strong> "A Command Line Interface (CLI) is old-fashioned and useless now that we have GUIs."</p>
+                        <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> While GUIs are user-friendly for most tasks, CLIs are still very powerful and widely used by programmers, system administrators, and technical users. CLIs can be faster for certain operations, allow for automation through scripting, and often provide more direct control over system functions. They also use fewer system resources than GUIs.</p>
+                    </div>
+                    <div class="border-t border-red-200 pt-4">
+                        <p><strong class="font-semibold text-red-800">Myth 3:</strong> "Memory management just means making sure you have enough RAM."</p>
+                        <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> While having enough RAM is important, <span class="keyword">Memory Management<span class="tooltip">The process of controlling and coordinating computer memory, assigning portions called blocks to various running programs to optimize overall system performance.</span></span> by the OS is much more complex. It involves allocating specific memory portions to each running process, ensuring processes don't interfere with each other's memory, keeping track of free and used memory, and managing virtual memory (swapping data to disk when RAM is full).</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="exam-practice-os" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-graduation-cap mr-2"></i>Task 6: Exam Practice Questions</h2>
+                <p class="text-gray-600 mb-6">Apply your knowledge to these exam-style questions. Use the "Show Mark Scheme" button to check your answers.</p>
+                <div class="space-y-6">
+                    <div class="exam-question-item">
+                        <p class="font-medium text-gray-800 mb-2">1. Other than File management, give three other functions of an operating system. [3 marks]</p>
+                        <textarea id="exam-q1-os" class="w-full p-2 border border-gray-300 rounded-md" rows="3" placeholder="List three functions..."></textarea>
+                        <button class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q1-os', 'exam-q1-os', 20)">Show Mark Scheme</button>
+                        <div id="ms-exam-q1-os" class="mark-scheme">
+                            <p><strong>Mark Scheme (Any three from):</strong></p>
+                            <ul>
+                                <li>User Interface (1)</li>
+                                <li>Memory Management / Multitasking (1)</li>
+                                <li>Peripheral Management / Managing Hardware / Drivers (1)</li>
+                                <li>User Management / Security (1)</li>
+                                <li>Error Handling (1)</li>
+                                <li>Processor Management / Scheduling (1)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="exam-question-item">
+                        <p class="font-medium text-gray-800 mb-2">2. Explain how memory management enables multitasking in an operating system. [2 marks]</p>
+                        <textarea id="exam-q2-os" class="w-full p-2 border border-gray-300 rounded-md" rows="3" placeholder="Explain the link between memory management and multitasking..."></textarea>
+                        <button class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q2-os', 'exam-q2-os', 20)">Show Mark Scheme</button>
+                        <div id="ms-exam-q2-os" class="mark-scheme">
+                            <p><strong>Mark Scheme:</strong></p>
+                            <ul>
+                                <li>The OS allocates portions/partitions of memory to each running program/process. (1 mark)</li>
+                                <li>This allows multiple programs to reside in memory simultaneously, so the CPU can switch between them, giving the appearance of running at the same time. (1 mark)</li>
+                                <li>(Allow: Prevents programs from interfering with each other's memory space.)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="exam-question-item">
+                        <p class="font-medium text-gray-800 mb-2">3. What are two user management functions in an operating system? [2 marks]</p>
+                        <textarea id="exam-q3-os" class="w-full p-2 border border-gray-300 rounded-md" rows="3" placeholder="List two user management functions..."></textarea>
+                        <button class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q3-os', 'exam-q3-os', 15)">Show Mark Scheme</button>
+                        <div id="ms-exam-q3-os" class="mark-scheme">
+                            <p><strong>Mark Scheme (Any two from):</strong></p>
+                            <ul>
+                                <li>Creating / deleting user accounts (1)</li>
+                                <li>Managing user login / authentication / passwords (1)</li>
+                                <li>Setting / managing access rights / permissions for files or resources (1)</li>
+                                <li>Providing private storage areas for users (1)</li>
+                                <li>Auditing user actions / logging (1)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="related-videos-os" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-video mr-2 text-purple-500"></i> Related Videos</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-purple-50 p-5 rounded-lg border border-purple-200 space-y-4">
+                    <p class="text-gray-700">Watch these videos to reinforce your understanding of Operating Systems:</p>
+                    <ul class="list-disc list-inside space-y-3 text-purple-800 pl-4">
+                        <li>
+                            <strong>Video 1: What is an Operating System? (General Overview)</strong>
+                            <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 1]</div>
+                        </li>
+                        <li>
+                            <strong>Video 2: OS Functions Explained (Craig'n'Dave or similar)</strong>
+                            <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 2 - OCR GCSE Specific]</div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="key-takeaways-os" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-key mr-2"></i>Key Takeaways</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-300 space-y-2 show">
+                    <ul class="list-disc list-inside space-y-1 text-yellow-800">
+                        <li>The <strong class="keyword">Operating System (OS)<span class="tooltip">Software that manages computer hardware and software resources, and provides common services for computer programs.</span></strong> is essential system software that manages hardware and software resources.</li>
+                        <li>Key OS functions include: <strong class="keyword">User Interface<span class="tooltip">The means by which the user and a computer system interact, in particular the use of input devices and software.</span></strong> provision, <strong class="keyword">Memory Management<span class="tooltip">The process of controlling and coordinating computer memory, assigning portions called blocks to various running programs to optimize overall system performance.</span></strong> (for <span class="keyword">multitasking<span class="tooltip">The ability of an operating system to allow multiple software processes to run concurrently.</span></span>), <strong class="keyword">Peripheral Management<span class="tooltip">The OS process of controlling communication between the computer and its connected peripheral devices (e.g., printers, keyboards, mice).</span></span> (using <span class="keyword">drivers<span class="tooltip">A software program that enables the operating system to communicate with and control a specific hardware device.</span></span>), <strong class="keyword">User Management<span class="tooltip">The OS function of creating/managing user accounts, setting permissions, and ensuring security between different users.</span></span>, and <strong class="keyword">File Management<span class="tooltip">The OS process of organizing and keeping track of files and folders, including their storage, retrieval, naming, sharing, and protection.</span></strong>.</li>
+                        <li>Common User Interfaces are <strong class="keyword">GUI<span class="tooltip">A type of user interface that allows users to interact with electronic devices through graphical icons and visual indicators. Uses WIMP (Windows, Icons, Menus, Pointers).</span></strong> (visual, intuitive), <strong class="keyword">CLI<span class="tooltip">A text-based user interface used to view and manage computer files and run programs by typing commands.</span></strong> (text commands, powerful), <strong class="keyword">Menu-Driven<span class="tooltip">A user interface that presents a series of predefined options (menus) to the user to navigate and make selections.</span></strong> (options in lists), and <strong class="keyword">Natural Language<span class="tooltip">A user interface that allows users to interact with a computer using everyday human language (spoken or typed).</span></strong> (voice/typed human language).</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="next-steps-os" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600">What's Next?</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-teal-50 p-5 rounded-lg border border-teal-300">
+                    <p class="text-teal-800 font-medium">You've covered the core functions of an Operating System!</p>
+                    <p class="text-teal-700 mt-2">In "Operating Systems - Part 2" (or the next lesson on Systems Software), we will explore:</p>
+                    <ul class="list-disc list-inside space-y-1 text-teal-700 mt-3 pl-4">
+                        <li><strong class="keyword">Utility Software<span class="tooltip">System software designed to help analyse, configure, optimise or maintain a computer.</span></strong>: Programs that perform specific maintenance tasks (e.g., disk defragmentation, backup, encryption, compression).</li>
+                        <li>More detail on specific OS processes like scheduling and interrupt handling (if covered by your spec).</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="extension-activities-os" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-rocket mr-2 text-orange-500"></i> Extension Activities</h2>
+                <div class="bg-orange-50 p-5 rounded-lg border border-orange-200 space-y-6">
+                    <div class="extension-task">
+                        <h3 class="font-semibold text-orange-800 mb-2">1. Real-Time Operating Systems (RTOS)</h3>
+                        <p class="text-sm text-gray-700 mb-2">Some systems require the OS to respond to events within a strict, guaranteed timeframe (e.g., car engine control, medical life-support). These use Real-Time Operating Systems (RTOS).</p>
+                        <p class="text-sm text-gray-700 mb-2">Research Task: What are the key characteristics of an RTOS that differentiate it from a general-purpose OS like Windows? Find one example of where an RTOS is used.</p>
+                        <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="RTOS characteristics? Example application?"></textarea>
+                    </div>
+                    <div class="extension-task border-t border-orange-200 pt-4">
+                        <h3 class="font-semibold text-orange-800 mb-2">2. The Linux Kernel and Distributions</h3>
+                        <p class="text-sm text-gray-700 mb-2">Linux is a famous open-source OS kernel. However, most people use a "Linux Distribution" (like Ubuntu, Mint, Fedora).</p>
+                        <p class="text-sm text-gray-700 mb-2">Research Task: What is the difference between the Linux kernel and a Linux distribution? What extra components does a distribution typically include?</p>
+                        <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Kernel vs. Distribution? What's added?"></textarea>
+                    </div>
+                    <div class="extension-task border-t border-orange-200 pt-4">
+                        <h3 class="font-semibold text-orange-800 mb-2">3. Windows 1.0 Emulator</h3>
+                        <p class="text-sm text-gray-700 mb-2">Experience a piece of computing history! Try out an emulator for Windows 1.0, one of the earliest versions of Windows.</p>
+                        <a href="https://copy.sh/v86/?profile=windows1" target="_blank" class="inline-block sim-button !bg-orange-600 hover:!bg-orange-700">
+                            <i class="fas fa-external-link-alt mr-2"></i>Try Windows 1.0 Emulator
+                        </a>
+                        <p class="text-sm text-gray-700 mt-2">Reflection: How does its user interface and functionality compare to modern operating systems? What key features are missing or very different?</p>
+                        <textarea rows="3" class="w-full p-2 border border-orange-300 rounded-md bg-white mt-2" placeholder="Your reflections on Windows 1.0..."></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="mt-12 text-center no-print">
+                <div id="final-score-area" class="task-container bg-purple-100 border-purple-300 mb-6">
+                    <h2 class="task-title text-2xl text-purple-700">Worksheet Score</h2>
+                    <p id="final-score-display" class="text-3xl font-bold text-purple-800">Your score: 0 / 0</p>
+                    <p id="final-score-feedback" class="text-purple-600"></p>
+                </div>
+                <button id="calculate-final-score" class="final-button">Calculate Final Score</button>
+                <button id="reset-all-tasks" class="reset-button">Reset All Tasks</button>
+                <button id="export-pdf-button" class="export-pdf-button">Export to PDF</button>
+            </footer>
+
+        </main>
+    </div>
+
+    
+    <script src="js/gcse-syssoft-opsys1.js"></script>
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+</html>

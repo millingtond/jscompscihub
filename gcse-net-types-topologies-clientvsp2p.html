@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCSE CS Lesson: Network Models - Client-Server vs. Peer-to-Peer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    
+<link rel="stylesheet" href="css/style.css">
+</head>
+<nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <a href="home.html" class="text-xl font-bold hover:text-gray-300 transition-colors">MGS CS Hub</a>
+        <ul class="flex space-x-3 lg:space-x-4">
+        </ul>
+        <ul class="flex flex-wrap space-x-2 sm:space-x-3 lg:space-x-4 text-sm sm:text-base">
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 7</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 8</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 9</a></li>
+            <li><a href="gcse.html" class="hover:text-gray-300 transition-colors">GCSE</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">A Level</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Competitions</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">CS News</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Extracurricular</a></li>
+        </ul>
+    </div>
+</nav>
+
+\1
+
+
+
+    <div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-lg shadow-xl">
+
+        <a href="mgsgcse131.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 group no-print">
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left w-5 h-5 mr-2 transition-transform duration-200 group-hover:-translate-x-1"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+            Back to Network Types & Topologies
+        </a>
+
+        <header class="mb-8 border-b pb-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-2">Network Models: Client-Server vs. Peer-to-Peer</h1>
+            <p class="text-lg text-gray-600">OCR GCSE Computer Science (J277) - Topic 1.3.1</p>
+        </header>
+
+    <main class="space-y-8 md:space-y-12">
+
+        <section id="starter-activity" class="task-container">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-plug mr-2 text-yellow-500"></i> Starter Activity (5 mins)</h2>
+            <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-200 space-y-4">
+                <p class="font-semibold text-yellow-800">Let's refresh our network basics!</p>
+                <div class="space-y-3 quiz-item" data-points="0"> <p class="mb-1">1. What do the acronyms <span class="keyword">LAN<span class="tooltip">Local Area Network: Computers are connected to each other and use MAC addresses to communicate. Restricted to a small geographical area / site / other suitable example. Hardware (routers,WAPs, switch) owned by the company/home owners.</span></span> and <span class="keyword">WAN<span class="tooltip">Wide Area Network: Network that spans a large geographical area. Communication medium (cables that connect networks together) is owned by telecommunications companies e.g. BT.</span></span> stand for?</p>
+                    <label for="starter-lan" class="text-sm">LAN:</label> <input type="text" id="starter-lan" class="p-1 border border-yellow-300 rounded-md shadow-sm bg-white w-2/3 mb-2">
+                    <label for="starter-wan" class="text-sm">WAN:</label> <input type="text" id="starter-wan" class="p-1 border border-yellow-300 rounded-md shadow-sm bg-white w-2/3">
+
+                    <p class="mt-3 mb-1">2. Give one key difference between a LAN and a WAN in terms of geographical area.</p>
+                    <textarea id="starter-q2-area" class="w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" rows="2" placeholder="Think about size..."></textarea>
+
+                    <p class="mt-3 mb-1">3. Why might computers be networked together? List two benefits.</p>
+                    <textarea id="starter-q3-benefits" class="w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" rows="2" placeholder="e.g., sharing files, ..."></textarea>
+                </div>
+                <button class="reveal-button !bg-yellow-500 hover:!bg-yellow-600 no-print" onclick="toggleReveal('starter-networkmodels-answers-feedback', this, 'Reveal Example Answers', 'Hide Example Answers')">Reveal Example Answers</button>
+                <div id="starter-networkmodels-answers-feedback" class="feedback-area !bg-yellow-100 !border-yellow-300 !text-yellow-700">
+                    <p><strong>Example Answers:</strong></p>
+                    <ol class="list-decimal list-inside">
+                        <li>LAN: Local Area Network. WAN: Wide Area Network.</li>
+                        <li>A LAN covers a small geographical area (like a school or home), while a WAN covers a large geographical area (like a country or the internet).</li>
+                        <li>Benefits of networking: Sharing files, sharing peripherals (like printers), central backups, easier communication (email/messaging), central software updates, internet access sharing.</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section id="lesson-outcomes" class="task-container">
+             <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-bullseye mr-2 text-green-500"></i> Lesson Outcomes</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-green-50 p-5 rounded-lg border border-green-200">
+                <p class="font-semibold text-green-800 mb-3">By the end of this lesson, you should be able to:</p>
+                <ul class="list-disc list-inside space-y-2 text-green-700 pl-4">
+                    <li>Describe the characteristics of a <span class="keyword">LAN<span class="tooltip">Local Area Network: Computers are connected to each other and use MAC addresses to communicate. Restricted to a small geographical area / site / other suitable example. Hardware (routers,WAPs, switch) owned by the company/home owners.</span></span> (Local Area Network) and a <span class="keyword">WAN<span class="tooltip">Wide Area Network: Network that spans a large geographical area. Communication medium (cables that connect networks together) is owned by telecommunications companies e.g. BT.</span></span> (Wide Area Network).</li>
+                    <li>Explain the different roles of computers in a <span class="keyword">client-server<span class="tooltip">A network model where client computers request services/resources from a central server computer.</span></span> network.</li>
+                    <li>Explain the different roles of computers in a <span class="keyword">peer-to-peer<span class="tooltip">A network model where all computers have equal status and can share resources directly with each other without a central server.</span></span> (P2P) network.</li>
+                    <li>Compare the benefits and drawbacks of client-server and peer-to-peer networks.</li>
+                    <li>Identify suitable network models for given scenarios.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="intro-models" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-sitemap mr-2"></i> Introduction to Network Models</h2>
+                 <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-indigo-50 p-5 rounded-lg border border-indigo-200 space-y-3">
+                <p>Beyond just connecting computers, how those computers interact and share resources is defined by the network model. The two main models we'll look at are <strong class="keyword">Client-Server<span class="tooltip">A network model where client computers request services/resources from a central server computer.</span></strong> and <strong class="keyword">Peer-to-Peer (P2P)<span class="tooltip">A network model where all computers have equal status and can share resources directly with each other without a central server.</span></strong>.</p>
+                <p>A <strong class="keyword">LAN (Local Area Network)<span class="tooltip">Computers are connected to each other and use MAC addresses to communicate. Restricted to a small geographical area / site / other suitable example. Hardware (routers,WAPs, switch) owned by the company/home owners.</span></strong> typically covers a small geographical area, like a single building or campus (e.g., your school network). The organization usually owns the network hardware.</p>
+                <p>A <strong class="keyword">WAN (Wide Area Network)<span class="tooltip">Network that spans a large geographical area. Communication medium (cables that connect networks together) is owned by telecommunications companies e.g. BT.</span></strong> spans a large geographical area, often connecting multiple LANs together (e.g., the internet, or a company's network connecting offices in different cities). The infrastructure (like undersea cables) is often owned by telecommunications companies.</p>
+                <p>Both LANs and WANs can be structured using either the client-server or peer-to-peer model, though client-server is more common for larger, managed networks.</p>
+            </div>
+        </section>
+
+        <section id="task1-lan-wan-quiz" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-700"><i class="fas fa-network-wired mr-2"></i>Task 1: LAN vs. WAN Quick Quiz <span class="task-completion-indicator" id="task-1-complete"></span><span class="font-bold text-sm text-gray-500 ml-auto">(Max 3 points)</span></h2>
+            <p class="text-gray-600 mb-4">Test your understanding of LANs and WANs.</p>
+            <div class="space-y-4">
+                <div class="quiz-item" data-points="1" data-correct="small_area">
+                    <p class="font-medium text-gray-800 mb-1">1. Which type of network typically covers a single school building or office?</p>
+                    <div class="flex flex-wrap gap-2">
+                        <button class="option-button" data-answer="small_area">LAN</button>
+                        <button class="option-button" data-answer="large_area">WAN</button>
+                    </div>
+                    <div class="feedback mt-1"></div>
+                </div>
+                <div class="quiz-item" data-points="1" data-correct="company_owned">
+                    <p class="font-medium text-gray-800 mb-1">2. Who typically owns the networking hardware (cables, switches) for a LAN within a company?</p>
+                    <div class="flex flex-wrap gap-2">
+                        <button class="option-button" data-answer="isp">Internet Service Provider</button>
+                        <button class="option-button" data-answer="company_owned">The company itself</button>
+                        <button class="option-button" data-answer="government">The government</button>
+                    </div>
+                    <div class="feedback mt-1"></div>
+                </div>
+                <div class="quiz-item" data-points="1" data-correct="internet">
+                    <p class="font-medium text-gray-800 mb-1">3. The Internet is the largest example of which type of network?</p>
+                    <div class="flex flex-wrap gap-2">
+                        <button class="option-button" data-answer="lan">LAN</button>
+                        <button class="option-button" data-answer="pan">PAN (Personal Area Network)</button>
+                        <button class="option-button" data-answer="internet">WAN</button>
+                    </div>
+                    <div class="feedback mt-1"></div>
+                </div>
+            </div>
+            <button class="reset-button no-print !ml-0" onclick="resetTask1Quiz()">Reset Task 1</button>
+        </section>
+
+        <section id="task2-model-sorter" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-700"><i class="fas fa-sort-alpha-down mr-2"></i>Task 2: Network Model Characteristics Sorter <span class="task-completion-indicator" id="task-2-complete"></span><span class="font-bold text-sm text-gray-500 ml-auto">(Max 6 points)</span></h2>
+            <p class="text-gray-600 mb-4">Drag each characteristic from the bank to the correct network model: <strong class="keyword">Client-Server<span class="tooltip">A network that uses central computers, known as servers to enable resource sharing and to facilitate communication between the other computers on the network.</span></strong> or <strong class="keyword">Peer-to-Peer<span class="tooltip">No server. Computers are directly connected to each other. Computers are independent. Computers will have software installed/updated individually (no central installation/updates). Computers will need own security // no central security. Computers will have their own files // no central file storage.</span></strong>.</p>
+            <div class="quiz-item" data-points="6">
+                <div id="model-bank" class="model-bank">
+                    <span class="model-characteristic" draggable="true" id="char-central">Central server manages resources</span>
+                    <span class="model-characteristic" draggable="true" id="char-equal">All computers have equal status</span>
+                    <span class="model-characteristic" draggable="true" id="char-backup">Centralised backup and security</span>
+                    <span class="model-characteristic" draggable="true" id="char-direct">Files shared directly between computers</span>
+                    <span class="model-characteristic" draggable="true" id="char-scalable">Easier to manage and scale for many users</span>
+                    <span class="model-characteristic" draggable="true" id="char-cheaper">Cheaper and simpler to set up for small networks</span>
+                </div>
+                <div class="model-sorter-container mt-6">
+                    <div class="model-column">
+                        <h4 class="text-blue-700">Client-Server Model</h4>
+                        <div id="drop-client-server" class="model-dropzone" data-model="client-server"></div>
+                    </div>
+                    <div class="model-column">
+                        <h4 class="text-green-700">Peer-to-Peer (P2P) Model</h4>
+                        <div id="drop-p2p" class="model-dropzone" data-model="p2p"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <button class="check-button no-print" onclick="checkModelSort()">Check Sorter</button>
+                <button class="reset-button no-print" onclick="resetModelSort()">Reset Task 2</button>
+            </div>
+            <div id="model-sort-feedback" class="feedback-area mt-4"></div>
+        </section>
+
+        <section id="task3-network-simulation" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-700"><i class="fas fa-project-diagram mr-2"></i>Task 3: Visualising Network Models <span class="font-bold text-sm text-gray-500 ml-auto">(Not Scored)</span></h2>
+            <p class="text-gray-600 mb-4">Click the buttons to see a simplified animation of data flow in each model.</p>
+            <div class="network-sim-container mb-4">
+                </div>
+            <div class="text-center space-x-2">
+                <button class="sim-button" onclick="simulateNetwork('client-server')">Client-Server Request</button>
+                <button class="sim-button" onclick="simulateNetwork('p2p')">Peer-to-Peer Share</button>
+                <button class="reset-button" onclick="resetNetworkSimulation()">Reset Simulation</button>
+            </div>
+            <p id="sim-description" class="text-center text-sm text-gray-600 mt-3 min-h-[1.2em]"></p>
+        </section>
+
+        <section id="task4-benefits-drawbacks" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-700"><i class="fas fa-balance-scale mr-2"></i>Task 4: Benefits & Drawbacks <span class="task-completion-indicator" id="task-4-complete"></span><span class="font-bold text-sm text-gray-500 ml-auto">(Max 8 points)</span></h2>
+            <p class="text-gray-600 mb-4">For each network model, list two benefits and two drawbacks. (1 point per valid item)</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="quiz-item" data-points="4">
+                    <h3 class="font-semibold text-blue-700 mb-2">Client-Server Model</h3>
+                    <label for="cs-benefit1" class="text-sm block">Benefit 1:</label>
+                    <input type="text" id="cs-benefit1" class="fill-blank w-full mb-2" placeholder="e.g., Centralised...">
+                    <label for="cs-benefit2" class="text-sm block">Benefit 2:</label>
+                    <input type="text" id="cs-benefit2" class="fill-blank w-full mb-2" placeholder="Another benefit...">
+                    <label for="cs-drawback1" class="text-sm block">Drawback 1:</label>
+                    <input type="text" id="cs-drawback1" class="fill-blank w-full mb-2" placeholder="e.g., If server fails...">
+                    <label for="cs-drawback2" class="text-sm block">Drawback 2:</label>
+                    <input type="text" id="cs-drawback2" class="fill-blank w-full" placeholder="Another drawback...">
+                </div>
+                <div class="quiz-item" data-points="4">
+                    <h3 class="font-semibold text-green-700 mb-2">Peer-to-Peer Model</h3>
+                    <label for="p2p-benefit1" class="text-sm block">Benefit 1:</label>
+                    <input type="text" id="p2p-benefit1" class="fill-blank w-full mb-2" placeholder="e.g., Easy to set up...">
+                    <label for="p2p-benefit2" class="text-sm block">Benefit 2:</label>
+                    <input type="text" id="p2p-benefit2" class="fill-blank w-full mb-2" placeholder="Another benefit...">
+                    <label for="p2p-drawback1" class="text-sm block">Drawback 1:</label>
+                    <input type="text" id="p2p-drawback1" class="fill-blank w-full mb-2" placeholder="e.g., Security can be...">
+                    <label for="p2p-drawback2" class="text-sm block">Drawback 2:</label>
+                    <input type="text" id="p2p-drawback2" class="fill-blank w-full" placeholder="Another drawback...">
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <button class="check-button no-print" onclick="checkBenefitsDrawbacks()">Check Answers</button>
+                <button class="reset-button no-print" onclick="resetBenefitsDrawbacks()">Reset Task 4</button>
+            </div>
+            <div id="benefits-drawbacks-feedback" class="feedback-area mt-4"></div>
+        </section>
+
+        <section id="task5-scenario-choice" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-700"><i class="fas fa-question-circle mr-2"></i>Task 5: Which Model is Best? <span class="task-completion-indicator" id="task-5-complete"></span><span class="font-bold text-sm text-gray-500 ml-auto">(Max 2 points per scenario)</span></h2>
+            <p class="text-gray-600 mb-4">For each scenario, choose the most suitable network model and briefly justify your choice.</p>
+            <div class="space-y-6">
+                <div class="quiz-item bg-white p-4 rounded border" data-points="2" data-correct-model="p2p">
+                    <p class="font-medium text-gray-800 mb-2">Scenario 1: A small home office with 3 computers needing to share a printer and occasionally files.</p>
+                    <div class="flex flex-wrap gap-2 mb-2">
+                        <button class="option-button" data-answer="client-server">Client-Server</button>
+                        <button class="option-button" data-answer="p2p">Peer-to-Peer</button>
+                    </div>
+                    <textarea class="w-full p-2 border rounded-md text-sm" rows="2" placeholder="Justify your choice..."></textarea>
+                    <div class="feedback mt-1"></div>
+                </div>
+                <div class="quiz-item bg-white p-4 rounded border" data-points="2" data-correct-model="client-server">
+                    <p class="font-medium text-gray-800 mb-2">Scenario 2: A large school with 500 computers, needing central file storage, user login authentication, and internet filtering.</p>
+                    <div class="flex flex-wrap gap-2 mb-2">
+                        <button class="option-button" data-answer="client-server">Client-Server</button>
+                        <button class="option-button" data-answer="p2p">Peer-to-Peer</button>
+                    </div>
+                    <textarea class="w-full p-2 border rounded-md text-sm" rows="2" placeholder="Justify your choice..."></textarea>
+                    <div class="feedback mt-1"></div>
+                </div>
+            </div>
+             <button class="check-button no-print !ml-0 mt-4" onclick="checkAllScenarios()">Check All Scenarios</button>
+            <button class="reset-button no-print !ml-0" onclick="resetScenarioChoice()">Reset Task 5</button>
+        </section>
+
+        <section id="real-world-context" class="task-container">
+             <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-building mr-2"></i> Real-World Context</h2>
+                 <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-blue-50 p-5 rounded-lg border border-blue-200 space-y-3">
+                <ul class="list-disc list-inside text-blue-700 pl-4">
+                    <li><strong>Client-Server Networks:</strong> Common in businesses, schools, and organizations. Examples include web servers hosting websites, file servers storing shared documents, email servers, and database servers. The internet itself largely operates on a client-server model (your browser is a client requesting pages from web servers).</li>
+                    <li><strong>Peer-to-Peer (P2P) Networks:</strong> Used in small office/home office (SOHO) setups for simple file and printer sharing. Also known for file-sharing applications (like BitTorrent, though these have legal implications if used for copyrighted material). Some modern communication apps might use P2P for direct connections once established.</li>
+                    <li><strong>LANs:</strong> Your home Wi-Fi network, the network in your school's computer lab, or a small office network.</li>
+                    <li><strong>WANs:</strong> The internet is the ultimate WAN. Companies with multiple branches across different cities or countries use WANs to connect their LANs.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="myth-busters" class="task-container">
+             <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-ghost mr-2 text-red-500"></i> Network Model Myth Busters!</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-red-50 p-5 rounded-lg border border-red-200 space-y-4">
+                <div>
+                    <p><strong class="font-semibold text-red-800">Myth:</strong> "Peer-to-Peer networks are completely insecure and only used for illegal activities."</p>
+                    <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> While some P2P file-sharing applications have been associated with copyright infringement, the P2P model itself is a legitimate network architecture. It can be very useful for simple, direct sharing in trusted environments (like a home network). Security is managed by individual peers, which can be a drawback in larger or less trusted settings, but it's not inherently illegal.</p>
+                </div>
+                <div class="border-t border-red-200 pt-4">
+                    <p><strong class="font-semibold text-red-800">Myth:</strong> "You always need an expensive, dedicated server machine for a client-server network."</p>
+                    <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> While large organizations use powerful, dedicated server hardware, a "server" is fundamentally defined by its role – providing services. In a very small setup, a regular desktop computer could be configured to act as a simple file or print server for a few clients. However, for reliability and performance with many users, dedicated server hardware and software are recommended.</p>
+                </div>
+                 <div class="border-t border-red-200 pt-4">
+                    <p><strong class="font-semibold text-red-800">Myth:</strong> "LANs can't connect to the internet."</p>
+                    <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> Most LANs are connected to the internet (a WAN) via a router. The router acts as a gateway, allowing devices on the LAN to access resources on the WAN and vice-versa, while also often providing security features like a firewall.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="exam-practice" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-700"><i class="fas fa-pencil-alt mr-2"></i> Exam Practice Questions</h2>
+             <div class="exam-question-item mb-6 pb-4 border-b">
+                <p class="font-medium text-gray-800 mb-2">1. Describe two differences between a LAN and a WAN. [2 marks]</p>
+                <textarea id="exam-q1-lanwan" class="w-full p-2 border border-gray-300 rounded-md mt-1" rows="3" placeholder="Focus on key distinguishing features..."></textarea>
+                <button class="mark-scheme-button no-print" onclick="checkThenToggleMarkScheme('exam-q1-lanwan', 'ms-exam-q1-lanwan', this, 15)">Show Mark Scheme</button>
+                <div id="ms-exam-q1-lanwan" class="mark-scheme">
+                    <p><strong>Mark Scheme (Any two from):</strong></p>
+                    <ul>
+                        <li>LAN covers a small geographical area (e.g., single site/building) (1) vs. WAN covers a large geographical area (e.g., countries) (1).</li>
+                        <li>LAN infrastructure is typically owned by the organization (1) vs. WAN infrastructure often uses third-party carriers (e.g., telecommunication companies) (1).</li>
+                        <li>LANs usually have higher data transfer speeds / lower latency than WANs (due to shorter distances and dedicated infrastructure) (1).</li>
+                        <li>(Allow other valid differences like connection methods typically used, scale of users etc.)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="exam-question-item">
+                <p class="font-medium text-gray-800 mb-2">2. A small business has 10 employees who need to share files and a central printer. They are considering setting up a network.</p>
+                <p class="font-medium text-gray-800 ml-4 mb-1">(a) Identify which network model, client-server or peer-to-peer, would be more suitable. [1 mark]</p>
+                <input type="text" id="exam-q2a-model" class="w-1/2 p-2 border border-gray-300 rounded-md mt-1 ml-4" placeholder="Client-Server or Peer-to-Peer?">
+                <p class="font-medium text-gray-800 ml-4 mt-3 mb-1">(b) Justify your choice for part (a), giving two reasons. [2 marks]</p>
+                <textarea id="exam-q2b-justify" class="w-full p-2 border border-gray-300 rounded-md mt-1 ml-4" rows="3" placeholder="Explain why your chosen model is better..."></textarea>
+                <button class="mark-scheme-button no-print ml-4" onclick="checkThenToggleMarkScheme('exam-q2b-justify', 'ms-exam-q2-models', this, 15)">Show Mark Scheme</button> <div id="ms-exam-q2-models" class="mark-scheme ml-4">
+                    <p><strong>Mark Scheme:</strong></p>
+                    <p>(a) Client-Server (1 mark). (Allow Peer-to-Peer if well justified in part b, though Client-Server is generally better for this size with central needs).</p>
+                    <p>(b) Justification for Client-Server (any two from):</p>
+                    <ul>
+                        <li>Centralised file storage is easier to manage and back up. (1)</li>
+                        <li>Centralised printer management is simpler. (1)</li>
+                        <li>Easier to implement central security policies / user authentication. (1)</li>
+                        <li>More scalable if the business grows. (1)</li>
+                    </ul>
+                    <p>OR Justification for Peer-to-Peer (if chosen, needs strong argument for a business context):</p>
+                     <ul>
+                        <li>Lower initial cost / no need for a dedicated server. (1)</li>
+                        <li>Simpler to set up for a very small number of users if technical expertise is limited. (1)</li>
+                        <li>Less reliant on a single server (if server fails in C-S, network services stop). (1)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="related-videos" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-video mr-2 text-purple-500"></i> Related Videos</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-purple-50 p-5 rounded-lg border border-purple-200 space-y-4">
+                <p class="text-gray-700">Watch these videos to reinforce your understanding:</p>
+                <ul class="list-disc list-inside space-y-3 text-purple-800 pl-4">
+                    <li>
+                        <strong>Video 1: LANs vs WANs Explained</strong>
+                        <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Placeholder: Link to a video about LANs and WANs]</div>
+                    </li>
+                    <li>
+                        <strong>Video 2: OCR GCSE (J277) 1.3 Client-server and peer-to-peer networks</strong>
+                        <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1"><a href="https://manchestergrammarschool.sharepoint.com/:v:/r/sites/StudentSharedArea/Shared%20Documents/Computer%20Science/Videos/OCR%20GCSE/Theory/1.3%20%E2%80%93%20Computer%20networks,%20connections%20and%20protocols/OCR%20GCSE%20(J277)%201.3%20Client-server%20and%20peer-to-peer%20networks.mp4?csf=1&web=1&e=aKStDH" target="_blank" class="text-purple-700 hover:underline">Watch on MGS SharePoint (Craig'n'Dave)</a></div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="key-takeaways" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-key mr-2"></i>Key Takeaways</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-300 space-y-2">
+                <ul class="list-disc list-inside space-y-1 text-yellow-800">
+                    <li><strong class="keyword">LAN (Local Area Network)<span class="tooltip">Computers are connected to each other and use MAC addresses to communicate. Restricted to a small geographical area / site / other suitable example. Hardware (routers,WAPs, switch) owned by the company/home owners.</span></strong>: Covers a small geographical area (e.g., building). Typically owned by the organization.</li>
+                    <li><strong class="keyword">WAN (Wide Area Network)<span class="tooltip">Network that spans a large geographical area. Communication medium (cables that connect networks together) is owned by telecommunications companies e.g. BT.</span></strong>: Spans a large area (e.g., cities, countries). Often uses third-party infrastructure. The Internet is a WAN.</li>
+                    <li><strong class="keyword">Client-Server Model<span class="tooltip">A network that uses central computers, known as servers to enable resource sharing and to facilitate communication between the other computers on the network.</span></strong>: Clients request services from a central server. Benefits: centralized management, security, backups. Drawbacks: server dependency, higher cost.</li>
+                    <li><strong class="keyword">Peer-to-Peer (P2P) Model<span class="tooltip">No server. Computers are directly connected to each other. Computers are independent. Computers will have software installed/updated individually (no central installation/updates). Computers will need own security // no central security. Computers will have their own files // no central file storage.</span></strong>: All devices (peers) have equal status and share resources directly. Benefits: easy setup, lower cost, no single point of failure. Drawbacks: decentralized security and backups, can be slower with many users.</li>
+                    <li>The choice of model depends on the network's size, budget, security needs, and required services.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="next-steps" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-indigo-600">What's Next?</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-teal-50 p-5 rounded-lg border border-teal-300">
+                <p class="text-teal-800 font-medium">You've learned about LANs, WANs, and the Client-Server & Peer-to-Peer network models!</p>
+                <p class="text-teal-700 mt-2">The next specific sub-topic in "1.3 Computer networks, connections and protocols" is understanding factors affecting network performance. After that, we'll delve into:</p>
+                <ul class="list-disc list-inside space-y-1 text-teal-700 mt-3 pl-4">
+                    <li>Different modes of connection (Wired: Ethernet; Wireless: Wi-Fi, Bluetooth) (Spec 1.3.2).</li>
+                    <li>Understanding Encryption, IP addressing, MAC addressing, and Standards (Spec 1.3.2).</li>
+                    <li>Common network protocols (TCP/IP, HTTP, HTTPS, FTP, POP, IMAP, SMTP) and the concept of layers (Spec 1.3.2).</li>
+                </ul>
+                 <p class="mt-3"><a href="gcse-net-performance-factors.html" class="font-semibold text-teal-900 hover:underline">Previously: Factors Affecting Network Performance →</a></p> <p class="mt-1"><a href="gcse-net-connections-protocols.html" class="font-semibold text-teal-900 hover:underline">Next: Wired/Wireless, Protocols & Layers →</a></p>
+            </div>
+        </section>
+
+        <section id="extension-activities" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-cogs mr-2 text-orange-500"></i> Extension Activities</h2>
+            <div class="bg-orange-50 p-5 rounded-lg border border-orange-200 space-y-6">
+                <div class="extension-task">
+                    <h3 class="font-semibold text-orange-800 mb-2">1. Hybrid Network Models</h3>
+                    <p class="text-sm text-gray-700 mb-2">While client-server and P2P are the main models, some real-world applications use a hybrid approach, combining elements of both.</p>
+                    <p class="text-sm text-gray-700 mb-2">Research Task: Can you find an example of a system or application that might use a hybrid network model (e.g., some online games, certain messaging apps)? Describe how it combines client-server and P2P functionalities.</p>
+                    <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Example of a hybrid model and its features..."></textarea>
+                </div>
+                <div class="extension-task border-t border-orange-200 pt-4">
+                    <h3 class="font-semibold text-orange-800 mb-2">2. Dedicated Servers vs. Non-Dedicated Servers</h3>
+                    <p class="text-sm text-gray-700 mb-2">In a client-server model, the server can be a "dedicated" machine (its only job is to be a server) or "non-dedicated" (it might also be used as a regular workstation).</p>
+                    <p class="text-sm text-gray-700 mb-2">Research Task: What are the advantages and disadvantages of using a dedicated server compared to a non-dedicated server in a client-server network?</p>
+                    <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Pros and cons of dedicated vs. non-dedicated servers..."></textarea>
+                </div>
+            </div>
+        </section>
+
+        <footer class="mt-12 text-center no-print">
+            <div id="final-score-area" class="task-container bg-purple-100 border-purple-300 mb-6">
+                <h2 class="task-title text-2xl text-purple-700">Worksheet Score</h2>
+                <p id="final-score-display-text" class="text-3xl font-bold text-purple-800">Your score: <span id="current-score-value">0</span> / <span id="total-possible-score-value">0</span></p>
+                <p id="final-score-feedback" class="text-purple-600"></p>
+            </div>
+            <button id="calculate-final-score" class="final-button">Calculate Final Score</button>
+            <button id="reset-all-tasks" class="reset-button">Reset All Tasks</button>
+            <button id="export-pdf" class="export-pdf-button">Export to PDF</button>
+        </footer>
+
+    </main>
+    </div>
+
+    
+    <script src="js/gcse-net-types-topologies-clientvsp2p.js"></script>
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+</html>

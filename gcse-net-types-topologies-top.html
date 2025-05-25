@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCSE CS Lesson: Network Types & Topologies</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    
+<link rel="stylesheet" href="css/style.css">
+</head>
+<nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <a href="home.html" class="text-xl font-bold hover:text-gray-300 transition-colors">MGS CS Hub</a>
+        <ul class="flex space-x-3 lg:space-x-4">
+        </ul>
+        <ul class="flex flex-wrap space-x-2 sm:space-x-3 lg:space-x-4 text-sm sm:text-base">
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 7</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 8</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 9</a></li>
+            <li><a href="gcse.html" class="hover:text-gray-300 transition-colors">GCSE</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">A Level</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Competitions</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">CS News</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Extracurricular</a></li>
+        </ul>
+    </div>
+</nav>
+
+\1
+
+
+
+    <div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-lg shadow-xl">
+
+        <a href="mgsgcse131.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 group no-print">
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left w-5 h-5 mr-2 transition-transform duration-200 group-hover:-translate-x-1"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+            Back to Networks Overview
+        </a>
+
+        <header class="mb-8 border-b pb-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-2">Network Types & Topologies</h1>
+            <p class="text-lg text-gray-600">OCR GCSE Computer Science (J277) - Topic 1.3.1</p>
+        </header>
+
+    <main class="space-y-8 md:space-y-12">
+
+        <section id="starter-activity" class="task-container">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-project-diagram mr-2 text-yellow-500"></i> Starter Activity (5 mins)</h2>
+            <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-200 space-y-4">
+                <p class="font-semibold text-yellow-800">Let's map out our knowledge!</p>
+                <div class="space-y-3 quiz-item" data-points="0"> 
+                    <p class="mb-1">1. What is a <span class="keyword">network topology<span class="tooltip">The physical or logical arrangement of nodes and connections within a network.</span></span>?</p>
+                    <textarea id="starter-q1-topology" class="w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" rows="2" placeholder="Your definition..."></textarea>
+
+                    <p class="mt-3 mb-1">2. Why do you think different network topologies exist? Why not just use one type for all networks?</p>
+                    <textarea id="starter-q2-why-different" class="w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" rows="2" placeholder="Consider cost, reliability, performance..."></textarea>
+
+                    <p class="mt-3 mb-1">3. Can you name one network topology you might have heard of?</p>
+                    <input type="text" id="starter-q3-name-one" class="w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" placeholder="e.g., Star, ...">
+                </div>
+                <button class="reveal-button !bg-yellow-500 hover:!bg-yellow-600 no-print" onclick="toggleReveal('starter-topology-answers-feedback', this, 'Reveal Example Answers', 'Hide Example Answers')">Reveal Example Answers</button>
+                <div id="starter-topology-answers-feedback" class="feedback-area !bg-yellow-100 !border-yellow-300 !text-yellow-700">
+                    <p><strong>Example Answers:</strong></p>
+                    <ol class="list-decimal list-inside">
+                        <li>A network topology is the physical or logical arrangement of how computers and other devices (nodes) are connected in a network.</li>
+                        <li>Different topologies exist because they offer different trade-offs in terms of cost, ease of installation, reliability, performance, and scalability. No single topology is best for all situations.</li>
+                        <li>Star, Mesh, Bus, Ring.</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section id="lesson-outcomes" class="task-container">
+             <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-bullseye mr-2 text-green-500"></i> Lesson Outcomes</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-green-50 p-5 rounded-lg border border-green-200">
+                <p class="font-semibold text-green-800 mb-3">By the end of this lesson, you should be able to:</p>
+                <ul class="list-disc list-inside space-y-2 text-green-700 pl-4">
+                    <li>Describe the characteristics of a <span class="keyword">Star topology<span class="tooltip">A LAN configuration in which a central node (e.g., a switch or hub) controls all message traffic. All devices connect directly to this central node.</span></span>.</li>
+                    <li>Discuss the advantages and disadvantages of a Star topology.</li>
+                    <li>Describe the characteristics of a <span class="keyword">Mesh topology<span class="tooltip">A network setup where devices are interconnected with many redundant interconnections between network nodes. In a full mesh, every node is connected to every other node.</span></span> (full and partial).</li>
+                    <li>Discuss the advantages and disadvantages of a Mesh topology.</li>
+                    <li>Identify suitable topologies for given scenarios.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="intro-topologies" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-network-wired mr-2"></i> Introduction to Network Topologies</h2>
+                 <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-indigo-50 p-5 rounded-lg border border-indigo-200 space-y-3">
+                <p>A <strong class="keyword">network topology<span class="tooltip">The physical or logical arrangement of nodes and connections within a network.</span></strong> refers to the layout or arrangement of the different devices (nodes) and connections on a network. It defines how devices are connected and how data flows between them.</p>
+                <p>There are several common topologies, each with its own strengths and weaknesses. The choice of topology depends on factors like the size of the network, budget, reliability requirements, and ease of management. In this lesson, we will focus primarily on two important topologies: <strong class="keyword">Star<span class="tooltip">A LAN configuration in which a central node (e.g., a switch or hub) controls all message traffic. All devices connect directly to this central node.</span></strong> and <strong class="keyword">Mesh<span class="tooltip">A network setup where devices are interconnected with many redundant interconnections between network nodes. In a full mesh, every node is connected to every other node.</span></strong>.</p>
+            </div>
+        </section>
+
+        <section id="task1-star-topology" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-700"><i class="fas fa-star mr-2"></i>Task 1: Understanding Star Topology <span class="task-completion-indicator" id="task-1-complete"></span><span class="font-bold text-sm text-gray-500 ml-auto">(Max 5 points)</span></h2>
+            <div class="quiz-item" data-points="2">
+                <p class="font-medium text-gray-800 mb-2">1. Describe how a <span class="keyword">Star topology<span class="tooltip">A LAN configuration in which a central node (e.g., a switch or hub) controls all message traffic. All devices connect directly to this central node.</span></span> works. Use keywords like: Node/device, switch/hub, cable, central point, connect.</p>
+                <textarea id="star-desc" class="w-full p-2 border rounded-md" rows="3" placeholder="Explain the Star topology..."></textarea>
+                <button class="reveal-button !mt-1 no-print" onclick="toggleReveal('star-desc-answer', this, 'Show Example Answer', 'Hide Example Answer')">Show Example Answer</button>
+                <div id="star-desc-answer" class="feedback-area !bg-blue-100 !border-blue-300 !text-blue-700">
+                    <p><strong>Example Answer:</strong> In a Star topology, all <span class="keyword">nodes<span class="tooltip">A device connected to a network, such as a computer, printer, or server.</span></span> (devices) are individually <span class="keyword">connected<span class="tooltip">Linked together to allow communication.</span></span> by a <span class="keyword">cable<span class="tooltip">The physical medium used to transmit data, e.g., Ethernet cable.</span></span> to a <span class="keyword">central<span class="tooltip">Located in the middle or acting as a main point.</span></span> device, typically a <span class="keyword">switch<span class="tooltip">A network device that connects devices on a LAN and uses MAC addresses to forward data intelligently to the intended recipient.</span></span> (or older hub). All data traffic passes through this central point. If a device wants to send data to another, it sends it to the switch, which then forwards it to the destination device.</p>
+                </div>
+            </div>
+            <div class="quiz-item mt-4" data-points="3">
+                <p class="font-medium text-gray-800 mb-2">2. Select THREE advantages of a Star topology:</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <button class="option-button multi-select w-full text-left" data-correct="true">Easy to add new nodes/devices.</button>
+                    <button class="option-button multi-select w-full text-left" data-correct="false">Cheapest topology to implement due to less cabling.</button>
+                    <button class="option-button multi-select w-full text-left" data-correct="true">If one cable or node fails, only that node is affected; the rest of the network remains operational.</button>
+                    <button class="option-button multi-select w-full text-left" data-correct="false">Data is broadcast to all computers, ensuring everyone receives it.</button>
+                    <button class="option-button multi-select w-full text-left" data-correct="true">Fewer data collisions compared to a bus topology (especially with a switch).</button>
+                    <button class="option-button multi-select w-full text-left" data-correct="false">No central point of failure.</button>
+                </div>
+                <div class="feedback mt-2"></div>
+            </div>
+            <button class="check-button no-print" onclick="checkStarTopology()">Check Task 1</button>
+            <button class="reset-button no-print" onclick="resetStarTopology()">Reset Task 1</button>
+        </section>
+
+        <section id="task2-mesh-topology" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-700"><i class="fas fa-project-diagram mr-2"></i>Task 2: Understanding Mesh Topology <span class="task-completion-indicator" id="task-2-complete"></span><span class="font-bold text-sm text-gray-500 ml-auto">(Max 5 points)</span></h2>
+            <div class="quiz-item" data-points="2">
+                <p class="font-medium text-gray-800 mb-2">1. Describe how a <span class="keyword">Mesh topology<span class="tooltip">A network setup where devices are interconnected with many redundant interconnections between network nodes. In a full mesh, every node is connected to every other node.</span></span> (specifically a full mesh) works. How do nodes communicate?</p>
+                <textarea id="mesh-desc" class="w-full p-2 border rounded-md" rows="3" placeholder="Explain the Mesh topology..."></textarea>
+                <button class="reveal-button !mt-1 no-print" onclick="toggleReveal('mesh-desc-answer', this, 'Show Example Answer', 'Hide Example Answer')">Show Example Answer</button>
+                <div id="mesh-desc-answer" class="feedback-area !bg-blue-100 !border-blue-300 !text-blue-700">
+                    <p><strong>Example Answer:</strong> In a full <span class="keyword">Mesh topology<span class="tooltip">A network setup where devices are interconnected with many redundant interconnections between network nodes. In a full mesh, every node is connected to every other node.</span></span>, every <span class="keyword">node<span class="tooltip">A device connected to a network, such as a computer, printer, or server.</span></span> is directly connected to every other node on the network. Nodes can communicate directly with each other without needing to go through a central device. Data can take multiple paths to its destination, which provides high reliability.</p>
+                </div>
+            </div>
+            <div class="quiz-item mt-4" data-points="3">
+                <p class="font-medium text-gray-800 mb-2">2. Select THREE advantages of a Mesh topology:</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <button class="option-button multi-select w-full text-left" data-correct="true">Highly resilient; if one connection or node fails, data can be rerouted.</button>
+                    <button class="option-button multi-select w-full text-left" data-correct="false">Very easy and cheap to install and add new nodes.</button>
+                    <button class="option-button multi-select w-full text-left" data-correct="true">Can handle high amounts of traffic as multiple devices can transmit simultaneously.</button>
+                    <button class="option-button multi-select w-full text-left" data-correct="false">Requires a central server for management.</button>
+                    <button class="option-button multi-select w-full text-left" data-correct="true">Adding new devices is possible without disrupting the network for others (though cabling can be complex for full mesh).</button>
+                    <button class="option-button multi-select w-full text-left" data-correct="false">Uses the least amount of cabling.</button>
+                </div>
+                <div class="feedback mt-2"></div>
+            </div>
+            <button class="check-button no-print" onclick="checkMeshTopology()">Check Task 2</button>
+            <button class="reset-button no-print" onclick="resetMeshTopology()">Reset Task 2</button>
+        </section>
+
+        <section id="task3-topology-diagram" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-700"><i class="fas fa-sitemap mr-2"></i>Task 3: Identify the Topology Device <span class="task-completion-indicator" id="task-3-complete"></span><span class="font-bold text-sm text-gray-500 ml-auto">(Max 1 point)</span></h2>
+            <p class="text-gray-600 mb-4">In a <span class="keyword">Star topology<span class="tooltip">A LAN configuration in which a central node (e.g., a switch or hub) controls all message traffic. All devices connect directly to this central node.</span></span>, what is the name of the central device to which all other nodes are typically connected?</p>
+            <div class="topology-diagram-container quiz-item" data-points="1">
+                <div id="topology-device-palette" class="topology-device-palette no-print">
+                    <div class="topology-device-icon" id="device-router" draggable="true" data-device="router"><i class="fas fa-route mr-1"></i>Router</div>
+                    <div class="topology-device-icon" id="device-switch" draggable="true" data-device="switch"><i class="fas fa-exchange-alt mr-1"></i>Switch</div>
+                    <div class="topology-device-icon" id="device-pc" draggable="true" data-device="pc"><i class="fas fa-desktop mr-1"></i>PC</div>
+                </div>
+                <div class="topology-canvas-area !grid-cols-1 !grid-rows-1">
+                    <div id="star-center-dropzone" class="topology-dropzone" data-accept="switch">
+                        <span class="text-xs text-gray-400">Drop Central Device Here</span>
+                    </div>
+                </div>
+            </div>
+            <button class="check-button no-print" onclick="checkTopologyDevice()">Check Device</button>
+            <button class="reset-button no-print" onclick="resetTopologyDevice()">Reset Task 3</button>
+            <div id="topology-device-feedback" class="feedback-area mt-2"></div>
+        </section>
+
+        <section id="task4-scenario-challenge" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-700"><i class="fas fa-clipboard-check mr-2"></i>Task 4: Scenario Challenge <span class="task-completion-indicator" id="task-4-complete"></span><span class="font-bold text-sm text-gray-500 ml-auto">(Max 4 points)</span></h2>
+            <p class="text-gray-600 mb-4">For each scenario, choose the most suitable topology (Star or Mesh) and briefly state one reason for your choice.</p>
+            <div class="space-y-6">
+                <div class="quiz-item bg-white p-4 rounded border" data-points="2" data-correct-topology="star">
+                    <p class="font-medium text-gray-800 mb-2">Scenario 1: A small office with 10 computers needs a reliable way to share a central printer and access a file server. Easy addition of new computers is important.</p>
+                    <div class="flex flex-wrap gap-2 mb-2">
+                        <button class="option-button" data-answer="star">Star Topology</button>
+                        <button class="option-button" data-answer="mesh">Mesh Topology</button>
+                    </div>
+                    <textarea class="w-full p-2 border rounded-md text-sm" rows="2" placeholder="One reason for your choice..."></textarea>
+                    <div class="feedback mt-1"></div>
+                </div>
+                <div class="quiz-item bg-white p-4 rounded border" data-points="2" data-correct-topology="mesh">
+                    <p class="font-medium text-gray-800 mb-2">Scenario 2: A critical military communication network where failure of any single device or connection must not disrupt the entire network. Data must have multiple paths to its destination.</p>
+                    <div class="flex flex-wrap gap-2 mb-2">
+                        <button class="option-button" data-answer="star">Star Topology</button>
+                        <button class="option-button" data-answer="mesh">Mesh Topology</button>
+                    </div>
+                    <textarea class="w-full p-2 border rounded-md text-sm" rows="2" placeholder="One reason for your choice..."></textarea>
+                    <div class="feedback mt-1"></div>
+                </div>
+            </div>
+            <button class="check-button no-print !ml-0 mt-4" onclick="checkAllTopologyScenarios()">Check Scenarios</button>
+            <button class="reset-button no-print !ml-0" onclick="resetTopologyScenarios()">Reset Task 4</button>
+        </section>
+
+        <section id="real-world-context" class="task-container">
+             <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-building mr-2"></i> Real-World Topologies</h2>
+                 <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-blue-50 p-5 rounded-lg border border-blue-200 space-y-3">
+                <ul class="list-disc list-inside text-blue-700 pl-4">
+                    <li><strong>Star Topology:</strong> Very common in modern LANs. Most home and office networks use a star topology with a central switch or router. Ethernet LANs are typically implemented as star topologies.</li>
+                    <li><strong>Mesh Topology:</strong>
+                        <ul>
+                            <li><strong>Full Mesh:</strong> Rarely used for entire LANs due to cost and complexity, but might be used for critical backbone connections between important servers or routers.</li>
+                            <li><strong>Partial Mesh:</strong> More common. Some important devices might have multiple connections for redundancy, while less critical devices have fewer. The internet itself can be seen as a massive partial mesh network of routers.</li>
+                            <li><strong>Wireless Mesh Networks (WMNs):</strong> Increasingly popular for providing Wi-Fi coverage over large areas (e.g., city-wide Wi-Fi, large outdoor events, smart home devices). Nodes relay data for each other.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Bus and Ring Topologies (Older):</strong> While less common now for new LAN installations, understanding them provides historical context. Bus topologies were used in older Ethernet versions (e.g., 10BASE2 with coaxial cable). Ring topologies were used in systems like Token Ring.</li>
+                </ul>
+            </div>
+        </section>
+        <section id="myth-busters" class="task-container">
+             <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-exclamation-triangle mr-2 text-red-500"></i> Topology Myth Busters!</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-red-50 p-5 rounded-lg border border-red-200 space-y-4">
+                <div>
+                    <p><strong class="font-semibold text-red-800">Myth:</strong> "A Star topology always uses a hub as its central device."</p>
+                    <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> While older Star networks might have used hubs, modern Star networks almost exclusively use <span class="keyword">switches<span class="tooltip">A network device that connects devices on a LAN and uses MAC addresses to forward data intelligently to the intended recipient.</span></span> as the central device. Switches are more efficient as they send data only to the intended recipient, unlike hubs which broadcast to all connected devices.</p>
+                </div>
+                <div class="border-t border-red-200 pt-4">
+                    <p><strong class="font-semibold text-red-800">Myth:</strong> "Mesh networks are always wireless."</p>
+                    <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> <span class="keyword">Mesh topologies<span class="tooltip">A network setup where devices are interconnected with many redundant interconnections between network nodes.</span></span> can be implemented with wired or wireless connections. While wireless mesh networks (WMNs) are becoming popular for extending Wi-Fi coverage, wired mesh networks are also used, especially for critical infrastructure requiring high reliability (e.g., connecting core routers in an ISP's network).</p>
+                </div>
+                 <div class="border-t border-red-200 pt-4">
+                    <p><strong class="font-semibold text-red-800">Myth:</strong> "In a Star network, if the central switch fails, devices can still communicate directly with each other."</p>
+                    <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> This is false. The central device (switch or hub) in a <span class="keyword">Star topology<span class="tooltip">A LAN configuration in which a central node (e.g., a switch or hub) controls all message traffic. All devices connect directly to this central node.</span></span> is a single point of failure. If it fails, all communication between the connected nodes stops. Devices in a Star network do not have direct connections to each other.</p>
+                </div>
+            </div>
+        </section>
+        <section id="exam-practice" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-700"><i class="fas fa-pencil-alt mr-2"></i> Exam Practice Questions</h2>
+             <div class="exam-question-item mb-6 pb-4 border-b">
+                <p class="font-medium text-gray-800 mb-2">1. Describe one advantage of using a star network topology compared to a bus topology. [1 mark]</p>
+                <textarea id="exam-q1-topologies" class="w-full p-2 border border-gray-300 rounded-md mt-1" rows="2" placeholder="Advantage of Star over Bus..."></textarea>
+                <button class="mark-scheme-button no-print" onclick="checkThenToggleMarkScheme('exam-q1-topologies', 'ms-exam-q1-topologies', this, 10)">Show Mark Scheme</button>
+                <div id="ms-exam-q1-topologies" class="mark-scheme">
+                    <p><strong>Mark Scheme (Any one from):</strong></p>
+                    <ul>
+                        <li>If one cable fails (in a star), only that single node is affected (not the whole network).</li>
+                        <li>It is easier to add new nodes/devices (without disrupting the network).</li>
+                        <li>Fewer data collisions (especially if a switch is used at the center).</li>
+                        <li>Easier to identify faults.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="exam-question-item">
+                <p class="font-medium text-gray-800 mb-2">2. Explain why a mesh network topology might be chosen for a network that requires high reliability. [2 marks]</p>
+                <textarea id="exam-q2-topologies" class="w-full p-2 border border-gray-300 rounded-md mt-1" rows="3" placeholder="Why is Mesh reliable?"></textarea>
+                <button class="mark-scheme-button no-print" onclick="checkThenToggleMarkScheme('exam-q2-topologies', 'ms-exam-q2-topologies', this, 15)">Show Mark Scheme</button>
+                <div id="ms-exam-q2-topologies" class="mark-scheme">
+                    <p><strong>Mark Scheme:</strong></p>
+                    <ul>
+                        <li>A mesh network has multiple paths between nodes / redundant connections. (1 mark)</li>
+                        <li>If one path or node fails, data can be rerouted through alternative paths, so the network can continue to operate. (1 mark)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section id="related-videos" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-video mr-2 text-purple-500"></i> Related Videos</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-purple-50 p-5 rounded-lg border border-purple-200 space-y-4">
+                <p class="text-gray-700">Watch these videos to reinforce your understanding:</p>
+                <ul class="list-disc list-inside space-y-3 text-purple-800 pl-4">
+                    <li>
+                        <strong>Video 1: Network Topologies Explained (Star, Mesh, Bus, Ring)</strong>
+                        <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Placeholder: Link to a general network topologies video]</div>
+                    </li>
+                    <li>
+                        <strong>Video 2: OCR GCSE (J277) 1.3 Star and mesh network topologies</strong>
+                        <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1"><a href="[PLACEHOLDER_VIDEO_LINK_CRAIGNDAVE_TOPOLOGIES]" target="_blank" class="text-purple-700 hover:underline">Watch on YouTube (Craig'n'Dave)</a></div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section id="key-takeaways" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-key mr-2"></i>Key Takeaways</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-300 space-y-2">
+                <ul class="list-disc list-inside space-y-1 text-yellow-800">
+                    <li>A <strong class="keyword">network topology<span class="tooltip">The physical or logical arrangement of nodes and connections within a network.</span></strong> is the layout of a network.</li>
+                    <li><strong class="keyword">Star Topology<span class="tooltip">A LAN configuration in which a central node (e.g., a switch or hub) controls all message traffic. All devices connect directly to this central node.</span></strong>: All devices connect to a central hub or switch. Easy to add devices and troubleshoot. Failure of a cable/node affects only that node, but failure of the central device affects the whole network.</li>
+                    <li><strong class="keyword">Mesh Topology<span class="tooltip">A network setup where devices are interconnected with many redundant interconnections between network nodes. In a full mesh, every node is connected to every other node.</span></strong>: Devices are interconnected. Full mesh connects every device to every other device. Partial mesh has some redundant connections. Highly reliable due to multiple paths, but can be expensive and complex to cable (especially full mesh).</li>
+                    <li>Choice of topology depends on cost, reliability, scalability, and ease of management needs.</li>
+                </ul>
+            </div>
+        </section>
+        <section id="next-steps" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-indigo-600">What's Next?</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-teal-50 p-5 rounded-lg border border-teal-300">
+                <p class="text-teal-800 font-medium">You've now covered the key network topologies: Star and Mesh!</p>
+                <p class="text-teal-700 mt-2">Having understood how networks can be arranged, the next logical step within "1.3 Computer networks, connections and protocols" is to look at different network models:</p>
+                <ul class="list-disc list-inside space-y-1 text-teal-700 mt-3 pl-4">
+                    <li>Client-Server and Peer-to-Peer network models.</li>
+                </ul>
+                 <p class="mt-3"><a href="mgsgcse13.html" class="font-semibold text-teal-900 hover:underline">← Back to Networks Overview</a></p>
+                 <p class="mt-1"><a href="gcse-net-clientserver-p2p.html" class="font-semibold text-teal-900 hover:underline">Next: Client-Server vs Peer-to-Peer Networks →</a></p>
+            </div>
+        </section>
+        <section id="extension-activities" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-route mr-2 text-orange-500"></i> Extension Activities</h2>
+            <div class="bg-orange-50 p-5 rounded-lg border border-orange-200 space-y-6">
+                <div class="extension-task">
+                    <h3 class="font-semibold text-orange-800 mb-2">1. Bus and Ring Topologies</h3>
+                    <p class="text-sm text-gray-700 mb-2">Star and Mesh are common modern topologies. However, older topologies like Bus and Ring were historically important.</p>
+                    <p class="text-sm text-gray-700 mb-2">Research Task: How do Bus and Ring topologies work? What are their main advantages and disadvantages? Why are they less common in new LAN installations today compared to Star?</p>
+                    <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Bus: How it works? Pros/Cons? Ring: How it works? Pros/Cons? Why less common?"></textarea>
+                </div>
+                <div class="extension-task border-t border-orange-200 pt-4">
+                    <h3 class="font-semibold text-orange-800 mb-2">2. Hybrid Topologies</h3>
+                    <p class="text-sm text-gray-700 mb-2">In practice, many large networks are not a single pure topology but combine elements of different topologies.</p>
+                    <p class="text-sm text-gray-700 mb-2">Research Task: What is a hybrid topology? Can you find an example (e.g., Star-Bus or Star-Ring)? Draw a simple diagram of such a hybrid topology and explain a scenario where it might be used.</p>
+                    <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="What is a hybrid topology? Example? Scenario?"></textarea>
+                </div>
+            </div>
+        </section>
+
+        <footer class="mt-12 text-center no-print">
+            <div id="final-score-area" class="task-container bg-purple-100 border-purple-300 mb-6">
+                <h2 class="task-title text-2xl text-purple-700">Worksheet Score</h2>
+                <p id="final-score-display-text" class="text-3xl font-bold text-purple-800">Your score: <span id="current-score-value">0</span> / <span id="total-possible-score-value">0</span></p>
+                <p id="final-score-feedback" class="text-purple-600"></p>
+            </div>
+            <button id="calculate-final-score" class="final-button">Calculate Final Score</button>
+            <button id="reset-all-tasks" class="reset-button">Reset All Tasks</button>
+            <button id="export-pdf" class="export-pdf-button">Export to PDF</button>
+        </footer>
+
+    </main>
+    </div>
+
+    
+    <script src="js/gcse-net-types-topologies-top.js"></script>
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+</html>

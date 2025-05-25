@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCSE CS Lesson: Ethical Dilemmas - AI & Facial Recognition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    
+<link rel="stylesheet" href="css/style.css">
+</head>
+<nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <a href="home.html" class="text-xl font-bold hover:text-gray-300 transition-colors">MGS CS Hub</a>
+        <ul class="flex space-x-3 lg:space-x-4">
+        </ul>
+        <ul class="flex flex-wrap space-x-2 sm:space-x-3 lg:space-x-4 text-sm sm:text-base">
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 7</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 8</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 9</a></li>
+            <li><a href="gcse.html" class="hover:text-gray-300 transition-colors">GCSE</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">A Level</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Competitions</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">CS News</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Extracurricular</a></li>
+        </ul>
+    </div>
+</nav>
+
+\1
+
+
+
+    <div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-lg shadow-xl">
+
+        <a href="mgsgcse16.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 group no-print">
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left w-5 h-5 mr-2 transition-transform duration-200 group-hover:-translate-x-1"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+            Back to Ethical, Legal, Cultural & Environmental Concerns
+        </a>
+
+        <header class="mb-8 border-b pb-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-2">Ethical Dilemmas in Modern Technology: AI & Facial Recognition</h1>
+            <p class="text-lg text-gray-600">OCR GCSE Computer Science (J277) - Component 1.6: Ethical Concerns</p>
+        </header>
+
+        <main class="space-y-8 md:space-y-12">
+
+            <section id="starter-activity" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-user-secret mr-2 text-yellow-500"></i> Starter Activity (5 mins)</h2>
+                <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-200 space-y-4">
+                    <p class="font-semibold text-yellow-800">Technology's Double Edge...</p>
+                    <div class="space-y-3">
+                        <div>
+                            <label for="starter-q1-facial" class="block text-sm font-medium text-yellow-700">1. Have you ever used facial recognition (e.g., to unlock your phone, tag photos)? What was your experience like? Did you have any concerns?</label>
+                            <textarea id="starter-q1-facial" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" placeholder="Your experience and thoughts..."></textarea>
+                        </div>
+                        <div>
+                            <label for="starter-q2-ai" class="block text-sm font-medium text-yellow-700">2. What's one example of Artificial Intelligence (AI) you've encountered or heard about? What do you think is a potential benefit and a potential risk of that AI?</label>
+                            <textarea id="starter-q2-ai" rows="3" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" placeholder="AI example, one benefit, one risk..."></textarea>
+                        </div>
+                    </div>
+                    <button class="reveal-button !bg-yellow-500 hover:!bg-yellow-600 no-print" onclick="toggleReveal('starter-answers-feedback', this, 'Reveal Discussion Points', 'Hide Discussion Points')">Reveal Discussion Points</button>
+                    <div id="starter-answers-feedback" class="feedback-area !bg-yellow-100 !border-yellow-300 !text-yellow-700">
+                        <p><strong>Discussion Points:</strong></p>
+                        <ul class="list-disc list-inside">
+                            <li>1. Facial recognition experiences vary. Some find it convenient (phone unlock), others might be concerned about privacy if used in public spaces or for tagging without consent. Accuracy can also be a concern.</li>
+                            <li>2. AI examples: Voice assistants (Siri, Alexa) - Benefit: convenience, hands-free operation. Risk: privacy concerns, misinterpretation. Self-driving cars - Benefit: potential for fewer accidents, accessibility. Risk: safety in complex situations, job displacement for drivers, ethical decision-making in accidents. Recommendation algorithms (Netflix, YouTube) - Benefit: discovering new content. Risk: filter bubbles, manipulation.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="lesson-outcomes" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-bullseye mr-2 text-green-500"></i> Lesson Outcomes</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-green-50 p-5 rounded-lg border border-green-200">
+                    <p class="font-semibold text-green-800 mb-3">By the end of this lesson, you should be able to:</p>
+                    <ul class="list-disc list-inside space-y-2 text-green-700 pl-4">
+                        <li>Describe common uses of <span class="keyword">Facial Recognition Technology (FRT)<span class="tooltip">Technology capable of identifying or verifying a person from a digital image or a video frame from a video source.</span></span> on the internet and in society.</li>
+                        <li>Discuss the ethical implications of FRT, including <span class="keyword">privacy<span class="tooltip">The right of individuals to keep their personal information from being disclosed. FRT can enable mass surveillance, eroding privacy.</span></span>, <span class="keyword">bias<span class="tooltip">Systematic error in AI systems, often stemming from biased training data, leading to unfair or inaccurate outcomes for certain demographic groups.</span></span>, consent, and potential for misuse.</li>
+                        <li>Identify various applications of <span class="keyword">Artificial Intelligence (AI)<span class="tooltip">The theory and development of computer systems able to perform tasks normally requiring human intelligence, such as visual perception, speech recognition, decision-making, and translation between languages.</span></span> across different fields.</li>
+                        <li>Discuss key ethical concerns related to AI, such as job displacement, algorithmic bias, accountability, and <span class="keyword">transparency<span class="tooltip">In AI, the extent to which the decision-making process of an AI system can be understood by humans. Lack of transparency (black box problem) can make it hard to identify or correct errors and biases.</span></span>.</li>
+                        <li>Analyse scenarios involving FRT and AI to identify ethical dilemmas and stakeholder impacts.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="intro-ethics-emerging-tech" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-balance-scale mr-2"></i> Introduction: The Ethics of Emerging Technologies</h2>
+                     <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-indigo-50 p-5 rounded-lg border border-indigo-200 space-y-3">
+                    <p>New technologies like Facial Recognition and Artificial Intelligence offer incredible potential to solve problems and improve our lives. However, they also bring complex ethical questions and challenges that society must grapple with.</p>
+                    <p>Ethical considerations involve thinking about what is right and wrong, fair and unfair, and the potential impact of these technologies on individuals, groups, and society as a whole. It's not just about what technology *can* do, but what it *should* do, and under what conditions.</p>
+                    <p>In these case studies, we will explore some of the key ethical issues surrounding FRT and AI. Hover over <span class="keyword">keywords<span class="tooltip">This is an example tooltip!</span></span> for definitions.</p>
+                </div>
+            </section>
+
+            <section id="case-study-frt" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-eye mr-2 text-sky-500"></i>Case Study 1: Facial Recognition Technology (FRT)</h2>
+                
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-semibold text-sky-700">What is FRT?</h3>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-sky-50 p-4 rounded-lg border border-sky-200 mb-6">
+                    <p><span class="keyword">Facial Recognition Technology (FRT)<span class="tooltip">Technology capable of identifying or verifying a person from a digital image or a video frame from a video source.</span></span> uses biometric software to map facial features from a photograph or video. It compares this information with a database of known faces to find a match. FRT can be used for <span class="keyword">identification<span class="tooltip">Determining who a person is (one-to-many matching against a database).</span></span> (who is this person?) or <span class="keyword">verification<span class="tooltip">Confirming a person's claimed identity (one-to-one matching).</span></span> (is this person who they claim to be?).</p>
+                    <p class="mt-2"><strong>Common Uses:</strong> Unlocking smartphones, tagging people in social media photos, airport security checks, helping law enforcement identify suspects, retail stores identifying known shoplifters.</p>
+                </div>
+
+                <div id="task-frt-uses-quiz" class="quiz-item mb-6" data-points="2">
+                    <h3 class="text-lg font-medium text-gray-700 mb-2">Task 1.1: FRT Uses - Quick Check (Max 2 points)</h3>
+                    <p class="text-sm text-gray-600 mb-2">Which two of the following are common and established uses of Facial Recognition Technology?</p>
+                    <div class="space-y-1">
+                        <button class="option-button w-full text-left multi-select" data-correct="true">Unlocking a personal smartphone.</button>
+                        <button class="option-button w-full text-left multi-select" data-correct="false">Predicting future criminal behavior.</button>
+                        <button class="option-button w-full text-left multi-select" data-correct="true">Automated border control at airports.</button>
+                        <button class="option-button w-full text-left multi-select" data-correct="false">Diagnosing medical illnesses from facial features.</button>
+                    </div>
+                    <button class="check-button no-print !mt-2" onclick="checkFRTUsesQuiz()">Check Uses</button>
+                    <div class="feedback mt-1"></div>
+                </div>
+
+                <div class="flex justify-between items-center mb-4 mt-6">
+                    <h3 class="text-xl font-semibold text-sky-700">Ethical Concerns of FRT</h3>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-sky-50 p-4 rounded-lg border border-sky-200 mb-6 space-y-2">
+                    <p><strong><span class="keyword">Privacy<span class="tooltip">The right of individuals to keep their personal information from being disclosed. FRT can enable mass surveillance, eroding privacy.</span></span>:</strong> Mass surveillance without consent, tracking individuals' movements and associations.</p>
+                    <p><strong><span class="keyword">Bias and Accuracy<span class="tooltip">FRT systems can be less accurate for certain demographic groups (e.g., based on race or gender) due to unrepresentative training data, leading to misidentification.</span></span>:</strong> Systems may be less accurate for certain ethnic groups or genders, leading to misidentification and potential false accusations or denial of services.</p>
+                    <p><strong>Lack of Consent:</strong> Collection and use of facial data often happens without individuals' explicit knowledge or permission.</p>
+                    <p><strong>Misuse:</strong> Potential for use by authoritarian regimes for oppression, or by individuals for stalking or harassment.</p>
+                    <p><strong>Errors and Consequences:</strong> False positives (misidentifying an innocent person) or false negatives (failing to identify a target) can have serious real-world consequences.</p>
+                    <p><strong>Chilling Effect:</strong> Constant surveillance can discourage people from participating in protests or expressing dissenting opinions.</p>
+                </div>
+
+                <div id="task-frt-scenario" class="quiz-item mb-6" data-points="3">
+                    <h3 class="text-lg font-medium text-gray-700 mb-2">Task 1.2: FRT Scenario Analysis - Music Festival (Max 3 points)</h3>
+                    <p class="text-sm text-gray-600 mb-2">A city police force plans to use live Facial Recognition Technology to scan crowds at a large music festival. The stated aim is to identify known pickpockets and individuals on a watchlist for public safety concerns. However, the system will scan everyone attending.</p>
+                    <p class="text-sm text-gray-700 mb-2">Discuss <strong>one ethical benefit</strong> and <strong>two ethical concerns</strong> of this use of FRT.</p>
+                    <textarea id="frt-scenario-answer" class="exam-answer-textarea" rows="4" placeholder="One benefit... Two concerns..."></textarea>
+                    <button class="reveal-button no-print !mt-1" onclick="toggleReveal('frt-scenario-guidance', this, 'Show Guidance', 'Hide Guidance')">Show Guidance</button>
+                    <div id="frt-scenario-guidance" class="feedback-area !bg-sky-100 !border-sky-300 !text-sky-700">
+                        <p><strong>Guidance Points:</strong></p>
+                        <ul>
+                            <li><strong>Potential Benefit:</strong> Enhanced public safety, deterrence of crime, quick identification of wanted individuals.</li>
+                            <li><strong>Potential Concerns:</strong> Mass surveillance of innocent people without consent, risk of misidentification (false positives) leading to wrongful stops/detention, data storage and security of collected facial data, potential for bias in the FRT system affecting certain groups more, chilling effect on attendees' freedom.</li>
+                        </ul>
+                    </div>
+                    <div class="feedback mt-1"></div>
+                     <button class="check-button no-print !mt-2" onclick="checkFRTScenario()">Check Analysis</button>
+                </div>
+            </section>
+
+            <section id="case-study-ai" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-brain mr-2 text-purple-500"></i>Case Study 2: Artificial Intelligence (AI) in Society</h2>
+
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-semibold text-purple-700">What is AI?</h3>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-purple-50 p-4 rounded-lg border border-purple-200 mb-6">
+                    <p><span class="keyword">Artificial Intelligence (AI)<span class="tooltip">The theory and development of computer systems able to perform tasks normally requiring human intelligence, such as visual perception, speech recognition, decision-making, and translation between languages.</span></span> refers to computer systems that can perform tasks that typically require human intelligence. This includes learning, problem-solving, decision-making, understanding language, and perceiving environments.</p>
+                    <p class="mt-2"><strong>Common Applications:</strong> Voice assistants (Siri, Alexa), recommendation systems (Netflix, Amazon), chatbots, medical diagnosis tools, self-driving cars, fraud detection, AI-generated art and music.</p>
+                </div>
+
+                <div id="task-ai-applications-quiz" class="quiz-item mb-6" data-points="3">
+                    <h3 class="text-lg font-medium text-gray-700 mb-2">Task 2.1: AI Applications - Quick Match (Max 3 points)</h3>
+                    <p class="text-sm text-gray-600 mb-2">Match the AI application area to a common example.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <h4 class="font-semibold text-sm text-center text-gray-600">Application Area</h4>
+                            <ul id="ai-app-term-list" class="matching-list">
+                                <li class="matching-item option-button w-full text-left !mt-1" data-match="healthcare">Healthcare</li>
+                                <li class="matching-item option-button w-full text-left !mt-1" data-match="transport">Transportation</li>
+                                <li class="matching-item option-button w-full text-left !mt-1" data-match="customer_service">Customer Service</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-sm text-center text-gray-600">Common Example</h4>
+                            <ul id="ai-app-definition-list" class="matching-list">
+                                <li class="matching-item option-button w-full text-left !mt-1" data-match="transport">Self-driving cars</li>
+                                <li class="matching-item option-button w-full text-left !mt-1" data-match="customer_service">Automated chatbots for support</li>
+                                <li class="matching-item option-button w-full text-left !mt-1" data-match="healthcare">AI-assisted medical image analysis (e.g., X-rays)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button class="check-button no-print !mt-2" onclick="checkAIApplicationsMatch()">Check Matches</button>
+                    <div class="feedback mt-1"></div>
+                </div>
+                
+                <div class="flex justify-between items-center mb-4 mt-6">
+                    <h3 class="text-xl font-semibold text-purple-700">Ethical Concerns of AI</h3>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-purple-50 p-4 rounded-lg border border-purple-200 mb-6 space-y-2">
+                    <p><strong><span class="keyword">Job Displacement<span class="tooltip">The loss of jobs due to automation or technological advancements, where AI or robots can perform tasks previously done by humans.</span></span>:</strong> Automation of tasks previously done by humans can lead to unemployment in certain sectors.</p>
+                    <p><strong><span class="keyword">Algorithmic Bias<span class="tooltip">When an AI system reflects the implicit values of the humans who created it or the data it was trained on, leading to unfair or discriminatory outcomes.</span></span>:</strong> AI systems trained on biased data can perpetuate and even amplify existing societal biases, leading to unfair outcomes in areas like hiring, loan applications, or criminal justice.</p>
+                    <p><strong>Accountability & Responsibility:</strong> Determining who is responsible when an AI system makes a mistake or causes harm (e.g., an accident involving a self-driving car).</p>
+                    <p><strong>Privacy:</strong> AI often requires large datasets for training, raising concerns about how personal data is collected, used, and protected.</p>
+                    <p><strong><span class="keyword">Transparency and Explainability (Black Box AI)<span class="tooltip">The difficulty in understanding how complex AI models, like deep neural networks, arrive at their decisions, making them a 'black box'.</span></span>:</strong> The decision-making processes of complex AI models can be opaque, making it hard to understand why a particular decision was made or to identify errors.</p>
+                    <p><strong>Misuse:</strong> Potential for AI to be used for malicious purposes, such as creating autonomous weapons, generating deepfakes for misinformation, or for widespread surveillance and social control.</p>
+                    <p><strong>Impact on Human Autonomy:</strong> Over-reliance on AI for decision-making could diminish human skills and critical thinking.</p>
+                </div>
+
+                <div id="task-ai-dilemma" class="quiz-item mb-6" data-points="3">
+                    <h3 class="text-lg font-medium text-gray-700 mb-2">Task 2.2: AI Ethical Dilemma - Automated Hiring (Max 3 points)</h3>
+                    <p class="text-sm text-gray-600 mb-2">A company uses an AI system to screen job applications and shortlist candidates for interviews. The AI was trained on historical hiring data from the company.</p>
+                    <p class="text-sm text-gray-600 mb-2">Identify <strong>three potential ethical issues</strong> with using this AI for hiring.</p>
+                    <textarea id="ai-hiring-dilemma-answer" class="exam-answer-textarea" rows="4" placeholder="Issue 1, Issue 2, Issue 3..."></textarea>
+                    <button class="reveal-button no-print !mt-1" onclick="toggleReveal('ai-hiring-dilemma-guidance', this, 'Show Guidance', 'Hide Guidance')">Show Guidance</button>
+                    <div id="ai-hiring-dilemma-guidance" class="feedback-area !bg-purple-100 !border-purple-300 !text-purple-700">
+                        <p><strong>Guidance Points (Consider these):</strong></p>
+                        <ul>
+                            <li><strong>Bias:</strong> If historical data reflects past biases (e.g., gender, race), the AI might learn and perpetuate these, unfairly disadvantaging certain groups.</li>
+                            <li><strong>Lack of Transparency:</strong> Candidates might not know why they were rejected if the AI's decision process is a "black box."</li>
+                            <li><strong>Accountability:</strong> Who is responsible if the AI makes a discriminatory decision – the developers, the company, or the AI itself?</li>
+                            <li><strong>Dehumanization:</strong> Reducing candidates to data points, potentially missing nuances a human reviewer might catch.</li>
+                            <li><strong>Accuracy/Errors:</strong> The AI might incorrectly filter out qualified candidates or shortlist unqualified ones.</li>
+                        </ul>
+                    </div>
+                    <div class="feedback mt-1"></div>
+                    <button class="check-button no-print !mt-2" onclick="checkAIHiringDilemma()">Check Dilemma</button>
+                </div>
+            </section>
+            
+            <section id="exam-practice-ethics" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-graduation-cap mr-2"></i>Task 3: Exam Practice Questions</h2>
+                <p class="text-gray-600 mb-6">Apply your knowledge to these exam-style questions.</p>
+                <div class="space-y-6">
+                    <div class="exam-question-item">
+                        <p class="font-medium text-gray-800 mb-2">1. Describe one ethical issue associated with the use of facial recognition technology by law enforcement. [2 marks]</p>
+                        <textarea id="exam-q1-ethics" class="exam-answer-textarea" placeholder="One ethical issue of FRT in policing..."></textarea>
+                        <button class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q1-ethics', 'exam-q1-ethics', 15)">Show Mark Scheme</button>
+                        <div id="ms-exam-q1-ethics" class="mark-scheme">
+                            <p><strong>Mark Scheme (Example):</strong></p>
+                            <ul>
+                                <li>Issue: Risk of misidentification / false positives (1 mark). Consequence: Leading to wrongful arrest or suspicion of innocent individuals (1 mark).</li>
+                                <li>OR Issue: Mass surveillance / invasion of privacy (1 mark). Consequence: Tracking citizens without their consent / chilling effect on public assembly (1 mark).</li>
+                                <li>OR Issue: Algorithmic bias (1 mark). Consequence: Disproportionately affecting/misidentifying certain demographic groups (1 mark).</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="exam-question-item">
+                        <p class="font-medium text-gray-800 mb-2">2. Explain how algorithmic bias in AI systems can lead to unfair outcomes. Give an example. [3 marks]</p>
+                        <textarea id="exam-q2-ethics" class="exam-answer-textarea" placeholder="Explain algorithmic bias and give an example..."></textarea>
+                        <button class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q2-ethics', 'exam-q2-ethics', 20)">Show Mark Scheme</button>
+                        <div id="ms-exam-q2-ethics" class="mark-scheme">
+                            <p><strong>Mark Scheme:</strong></p>
+                            <ul>
+                                <li>Algorithmic bias occurs when an AI system produces results that are systematically prejudiced due to flawed assumptions in the machine learning process or biased training data. (1 mark for definition/cause)</li>
+                                <li>This can lead to unfair/discriminatory outcomes because the AI's decisions reflect and may amplify existing societal biases. (1 mark for explaining unfair outcome link)</li>
+                                <li>Example: An AI used for loan applications, trained on historical data showing fewer loans to a certain demographic, might unfairly deny loans to qualified applicants from that group. OR An AI for hiring trained on data from a male-dominated field might unfairly screen out female candidates. (1 mark for a valid example clearly linked to an unfair outcome).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="related-videos-ethics" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-video mr-2 text-purple-500"></i> Related Videos</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-purple-50 p-5 rounded-lg border border-purple-200 space-y-4">
+                    <p class="text-gray-700">Watch these videos to explore ethical issues in FRT and AI further:</p>
+                    <ul class="list-disc list-inside space-y-3 text-purple-800 pl-4">
+                        <li>
+                            <strong>Video 1: The Ethics of Facial Recognition</strong>
+                            <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 1: FRT Ethics Overview]</div>
+                        </li>
+                        <li>
+                            <strong>Video 2: Bias in Artificial Intelligence Explained</strong>
+                            <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 2: AI Bias Focus]</div>
+                        </li>
+                         <li>
+                            <strong>Video 3: Real-World AI Ethical Dilemmas</strong>
+                            <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 3: AI Case Studies/Dilemmas]</div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="key-takeaways-ethics" class="task-container">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-key mr-2"></i>Key Takeaways</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-300 space-y-2 show">
+                    <ul class="list-disc list-inside space-y-1 text-yellow-800">
+                        <li><strong>Facial Recognition (FRT)</strong> uses biometrics for identification/verification, raising concerns about <span class="keyword">privacy<span class="tooltip">The right of individuals to keep their personal information from being disclosed. FRT can enable mass surveillance, eroding privacy.</span></span>, <span class="keyword">bias<span class="tooltip">Systematic error in AI systems, often stemming from biased training data, leading to unfair or inaccurate outcomes for certain demographic groups.</span></span> (especially against certain demographics), lack of consent, and potential for misuse in surveillance.</li>
+                        <li><strong>Artificial Intelligence (AI)</strong> mimics human intelligence for tasks like decision-making and learning. Ethical issues include <span class="keyword">job displacement<span class="tooltip">The loss of jobs due to automation or technological advancements, where AI or robots can perform tasks previously done by humans.</span></span> due to automation, <span class="keyword">algorithmic bias<span class="tooltip">When an AI system reflects the implicit values of the humans who created it or the data it was trained on, leading to unfair or discriminatory outcomes.</span></span> leading to discrimination, lack of <span class="keyword">transparency<span class="tooltip">In AI, the extent to which the decision-making process of an AI system can be understood by humans. Lack of transparency (black box problem) can make it hard to identify or correct errors and biases.</span></span> ("black box" problem), accountability for AI errors, and data privacy concerns.</li>
+                        <li>Both technologies require careful consideration of their societal impact, potential for harm, and the need for regulation and ethical guidelines.</li>
+                        <li>Stakeholders (users, developers, governments, society) often have differing perspectives on the benefits and risks.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="next-steps-ethics" class="task-container">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl task-title text-indigo-600">What's Next?</h2>
+                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                    </label>
+                </div>
+                <div class="bg-teal-50 p-5 rounded-lg border border-teal-300">
+                    <p class="text-teal-800 font-medium">You've now explored some key ethical dilemmas related to AI and Facial Recognition.</p>
+                    <p class="text-teal-700 mt-2">Further areas within Topic 1.6 "Ethical, Legal, Cultural and Environmental concerns" include:</p>
+                    <ul class="list-disc list-inside space-y-1 text-teal-700 mt-3 pl-4">
+                        <li>Specific legislation: Data Protection Act, Computer Misuse Act, Copyright Designs and Patents Act.</li>
+                        <li>Cultural implications of technology (e.g., digital divide, social media).</li>
+                        <li>Open source vs. proprietary software.</li>
+                    </ul>
+                     <p class="mt-3"><a href="mgsgcse16.html" class="font-semibold text-teal-900 hover:underline">← Back to Ethical, Legal, Cultural & Environmental Concerns Overview</a></p>
+                </div>
+            </section>
+
+            <section id="extension-activities-ethics" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-microscope mr-2 text-orange-500"></i> Extension Activities</h2>
+                <div class="bg-orange-50 p-5 rounded-lg border border-orange-200 space-y-6">
+                    <div class="extension-task">
+                        <h3 class="font-semibold text-orange-800 mb-2">1. Deepfakes and Misinformation</h3>
+                        <p class="text-sm text-gray-700 mb-2"><span class="keyword">Deepfakes<span class="tooltip">Synthetic media in which a person in an existing image or video is replaced with someone else's likeness using AI, often for malicious purposes or misinformation.</span></span> are AI-generated videos or images that can realistically depict someone saying or doing something they never did.</p>
+                        <p class="text-sm text-gray-700 mb-2">Research Task: What are the primary ethical and societal dangers posed by deepfake technology? How might they be used to spread misinformation or cause harm?</p>
+                        <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Dangers of deepfakes..."></textarea>
+                    </div>
+                    <div class="extension-task border-t border-orange-200 pt-4">
+                        <h3 class="font-semibold text-orange-800 mb-2">2. AI in Creative Arts</h3>
+                        <p class="text-sm text-gray-700 mb-2">AI is increasingly used to generate art, music, and writing. This raises questions about authorship, copyright, and the role of human creativity.</p>
+                        <p class="text-sm text-gray-700 mb-2">Research Task: If an AI creates a piece of music, who owns the copyright – the AI, its programmer, or the user who prompted it? What are some arguments for and against AI-generated art being considered "true" art?</p>
+                        <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Copyright of AI art? Is it 'true' art?"></textarea>
+                    </div>
+                    <div class="extension-task border-t border-orange-200 pt-4">
+                        <h3 class="font-semibold text-orange-800 mb-2">3. Regulating FRT</h3>
+                        <p class="text-sm text-gray-700 mb-2">Governments and organizations worldwide are debating how to regulate the use of Facial Recognition Technology to balance its benefits with the risks to privacy and civil liberties.</p>
+                        <p class="text-sm text-gray-700 mb-2">Research Task: Find one example of a proposed or enacted regulation regarding FRT (e.g., in the EU, a specific US state, or a company's policy). What are its main aims or restrictions?</p>
+                        <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Example of FRT regulation and its aims..."></textarea>
+                    </div>
+                </div>
+            </section>
+            
+            <footer class="mt-12 text-center no-print">
+                <div id="final-score-area" class="task-container bg-purple-100 border-purple-300 mb-6">
+                    <h2 class="task-title text-2xl text-purple-700">Worksheet Score</h2>
+                    <p id="final-score-display" class="text-3xl font-bold text-purple-800">Your score: 0 / 0</p>
+                    <p id="final-score-feedback" class="text-purple-600"></p>
+                </div>
+                <button id="calculate-final-score" class="final-button">Calculate Final Score</button>
+                <button id="reset-all-tasks" class="reset-button">Reset All Tasks</button>
+                <button id="export-pdf-button" class="export-pdf-button">Export to PDF</button>
+            </footer>
+
+        </main>
+    </div>
+
+    
+    <script src="js/gcse-ethics-AIFac.js"></script>
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCSE CS Lesson: The Internet - DNS, Hosting, Web Servers & Cloud</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    
+<link rel="stylesheet" href="css/style.css">
+</head>
+<nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <a href="home.html" class="text-xl font-bold hover:text-gray-300 transition-colors">MGS CS Hub</a>
+        <ul class="flex space-x-3 lg:space-x-4">
+        </ul>
+        <ul class="flex flex-wrap space-x-2 sm:space-x-3 lg:space-x-4 text-sm sm:text-base">
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 7</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 8</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 9</a></li>
+            <li><a href="gcse.html" class="hover:text-gray-300 transition-colors">GCSE</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">A Level</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Competitions</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">CS News</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Extracurricular</a></li>
+        </ul>
+    </div>
+</nav>
+
+\1
+
+
+
+    <div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-lg shadow-xl">
+
+        <a href="mgsgcse131.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 group no-print">
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left w-5 h-5 mr-2 transition-transform duration-200 group-hover:-translate-x-1"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+            Back to Network Types & Topologies
+        </a>
+
+        <header class="mb-8 border-b pb-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-2">The Internet: DNS, Hosting, Servers & The Cloud</h1>
+            <p class="text-lg text-gray-600">OCR GCSE Computer Science (J277) - Topic 1.3.1</p>
+        </header>
+
+    <main class="space-y-8 md:space-y-12">
+
+        <section id="starter-activity" class="task-container">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4"><i class="fas fa-globe mr-2 text-yellow-500"></i> Starter Activity (5 mins)</h2>
+            <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-200 space-y-4">
+                <p class="font-semibold text-yellow-800">Let's surf some prior knowledge!</p>
+                <div class="space-y-3 quiz-item" data-points="0"> 
+                    <p class="mb-1">1. In your own words, what is the <span class="keyword">Internet<span class="tooltip">A global network of interconnected networks connecting millions of computers, making it possible to exchange information. It is an example of a WAN.</span></span>?</p>
+                    <textarea id="starter-q1-internet" class="w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" rows="2" placeholder="Your definition..."></textarea>
+
+                    <p class="mt-3 mb-1">2. What is the difference between the <span class="keyword">Internet<span class="tooltip">A global network of interconnected networks connecting millions of computers, making it possible to exchange information. It is an example of a WAN.</span></span> and the <span class="keyword">World Wide Web (WWW)<span class="tooltip">Consists of a collection of resources (like web pages, images, videos) accessible over the internet using protocols like HTTP.</span></span>?</p>
+                    <textarea id="starter-q2-www" class="w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" rows="2" placeholder="Are they the same? Different? How?"></textarea>
+
+                    <p class="mt-3 mb-1">3. When you type a website address like "www.google.com" into your browser, what do you think happens behind the scenes to show you the webpage?</p>
+                    <textarea id="starter-q3-webprocess" class="w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" rows="3" placeholder="List a few steps or ideas..."></textarea>
+                </div>
+                <button class="reveal-button !bg-yellow-500 hover:!bg-yellow-600 no-print" onclick="toggleReveal('starter-internet-answers-feedback', this, 'Reveal Example Answers', 'Hide Example Answers')">Reveal Example Answers</button>
+                <div id="starter-internet-answers-feedback" class="feedback-area !bg-yellow-100 !border-yellow-300 !text-yellow-700">
+                    <p><strong>Example Answers:</strong></p>
+                    <ol class="list-decimal list-inside">
+                        <li>The Internet is a massive global network of interconnected computer networks that allows devices to communicate with each other.</li>
+                        <li>The Internet is the physical infrastructure (networks, cables, routers). The World Wide Web is a service that runs *on* the Internet, consisting of web pages, websites, and resources linked by hyperlinks and accessed via URLs.</li>
+                        <li>Your computer needs to find the server hosting "google.com" (using its IP address). Your browser then requests the webpage from that server, and the server sends back the files (HTML, CSS, images) for your browser to display. (DNS is a key part of finding the IP address!).</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section id="lesson-outcomes" class="task-container">
+             <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-bullseye mr-2 text-green-500"></i> Lesson Outcomes</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-green-50 p-5 rounded-lg border border-green-200">
+                <p class="font-semibold text-green-800 mb-3">By the end of this lesson, you should be able to:</p>
+                <ul class="list-disc list-inside space-y-2 text-green-700 pl-4">
+                    <li>Understand the concept of the <span class="keyword">Internet<span class="tooltip">A global network of interconnected networks connecting millions of computers, making it possible to exchange information. It is an example of a WAN.</span></span> as a worldwide collection of computer networks.</li>
+                    <li>Explain the role of a <span class="keyword">DNS (Domain Name Server)<span class="tooltip">A server that translates human-readable domain names (e.g., www.google.com) into numerical IP addresses that computers use to locate each other.</span></span> in converting URLs to IP addresses.</li>
+                    <li>Describe the concept of <span class="keyword">hosting<span class="tooltip">Storing website files on a web server, making them accessible via the Internet.</span></span>.</li>
+                    <li>Explain the roles of <span class="keyword">web servers<span class="tooltip">A computer that stores website files and serves them to clients (browsers) upon request.</span></span> and <span class="keyword">clients<span class="tooltip">A device (e.g., computer, smartphone) or software (e.g., web browser) that requests services or resources from a server.</span></span> in accessing web pages.</li>
+                    <li>Understand the concept of <span class="keyword">The Cloud<span class="tooltip">Remote servers and data storage accessed over the Internet, providing services like file storage, software applications, and processing power.</span></span> and its common uses (e.g., storage, software, processing).</li>
+                    <li>Discuss the advantages and disadvantages of using cloud services.</li>
+                    <li>Identify the components of a <span class="keyword">URL (Uniform Resource Locator)<span class="tooltip">A location or address identifying where documents can be found on the Internet; a Web address. It includes the protocol and the domain name.</span></span>.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="intro-internet" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-cloud-sun-rain mr-2"></i> The Internet, WWW, and How We Access It</h2>
+                 <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-indigo-50 p-5 rounded-lg border border-indigo-200 space-y-3">
+                <p>The <strong class="keyword">Internet<span class="tooltip">A global network of interconnected networks connecting millions of computers, making it possible to exchange information. It is an example of a WAN.</span></strong> is a vast, global network of interconnected computer networks. It's the underlying infrastructure that allows computers all over the world to communicate with each other.</p>
+                <p>The <strong class="keyword">World Wide Web (WWW)<span class="tooltip">Consists of a collection of resources (like web pages, images, videos) accessible over the internet using protocols like HTTP.</span></strong>, often just called "the web," is one of the many services that run on the Internet. It's a collection of websites, web pages, and online resources that are linked together by hyperlinks and accessed using <span class="keyword">URLs<span class="tooltip">A location or address identifying where documents can be found on the Internet; a Web address. It includes the protocol and the domain name.</span></span> (web addresses).</p>
+                <p>When you want to visit a website, your computer (the <strong class="keyword">client<span class="tooltip">A device (e.g., computer, smartphone) or software (e.g., web browser) that requests services or resources from a server.</span></strong>) needs to find the <strong class="keyword">web server<span class="tooltip">A computer that stores website files and serves them to clients (browsers) upon request.</span></strong> where that website's files are stored (<strong class="keyword">hosted<span class="tooltip">Storing website files on a web server, making them accessible via the Internet.</span></strong>). This process involves several key technologies, including the <strong class="keyword">Domain Name System (DNS)<span class="tooltip">A server that translates human-readable domain names (e.g., www.google.com) into numerical IP addresses that computers use to locate each other.</span></span>.</p>
+            </div>
+        </section>
+
+        <section id="task1-definitions" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-700"><i class="fas fa-book mr-2"></i>Task 1: Define Key Internet Terms <span class="task-completion-indicator" id="task-1-complete"></span><span class="font-bold text-sm text-gray-500 ml-auto">(Max 4 points)</span></h2>
+            <p class="text-gray-600 mb-4">In your own words, or by recalling from the introduction, define the following terms. (1 point for each reasonable definition).</p>
+            <div class="space-y-4">
+                <div class="quiz-item" data-points="1">
+                    <label for="def-isp" class="font-medium text-gray-800">1. ISP (Internet Service Provider):</label>
+                    <textarea id="def-isp" class="w-full p-2 border rounded-md" rows="2" placeholder="What does an ISP do?"></textarea>
+                </div>
+                <div class="quiz-item" data-points="1">
+                    <label for="def-webserver" class="font-medium text-gray-800">2. Web Server:</label>
+                    <textarea id="def-webserver" class="w-full p-2 border rounded-md" rows="2" placeholder="What is its main role?"></textarea>
+                </div>
+                <div class="quiz-item" data-points="1">
+                    <label for="def-dns" class="font-medium text-gray-800">3. DNS (Domain Name System):</label>
+                    <textarea id="def-dns" class="w-full p-2 border rounded-md" rows="2" placeholder="What problem does DNS solve?"></textarea>
+                </div>
+                <div class="quiz-item" data-points="1">
+                    <label for="def-cloud" class="font-medium text-gray-800">4. The Cloud:</label>
+                    <textarea id="def-cloud" class="w-full p-2 border rounded-md" rows="2" placeholder="What is it, in simple terms?"></textarea>
+                </div>
+            </div>
+            <button class="check-button no-print" onclick="checkTask1Definitions()">Check Definitions</button>
+            <button class="reset-button no-print" onclick="resetTask1Definitions()">Reset Task 1</button>
+            <div id="task1-feedback" class="feedback-area mt-4"></div>
+        </section>
+
+        <section id="task2-webpage-journey" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-700"><i class="fas fa-route mr-2"></i>Task 2: The Journey of a Web Request <span class="task-completion-indicator" id="task-2-complete"></span><span class="font-bold text-sm text-gray-500 ml-auto">(Max 7 points)</span></h2>
+            <p class="text-gray-600 mb-4">When you type a website address and hit Enter, a series of steps occur to bring the webpage to your screen. Drag the steps from the "Steps Pool" into the "Correct Order" box below, arranging them in the sequence they happen.</p>
+            <div class="quiz-item" data-points="7">
+                <div id="dns-steps-pool" class="dns-dropzone mb-6 flex-row justify-around flex-wrap">
+                    <h4 class="font-semibold text-sm text-gray-700 mb-2 w-full text-center">Steps Pool (Drag these)</h4>
+                    <div class="dns-step" draggable="true" id="step-dns-lookup">Browser sends domain name to a <span class="keyword">DNS<span class="tooltip">A server that translates human-readable domain names (e.g., www.google.com) into numerical IP addresses that computers use to locate each other.</span></span> server.</div>
+                    <div class="dns-step" draggable="true" id="step-type-url">User types a <span class="keyword">URL<span class="tooltip">A location or address identifying where documents can be found on the Internet; a Web address. It includes the protocol and the domain name.</span></span> into the web browser.</div>
+                    <div class="dns-step" draggable="true" id="step-server-sends">Web server sends the webpage files (HTML, CSS, JS) back to the browser.</div>
+                    <div class="dns-step" draggable="true" id="step-browser-requests">Browser sends an HTTP request to the web server's IP address.</div>
+                    <div class="dns-step" draggable="true" id="step-dns-returns-ip">DNS server looks up the domain name and returns the corresponding IP address to the browser.</div>
+                    <div class="dns-step" draggable="true" id="step-browser-renders">Browser receives the files and renders (displays) the webpage.</div>
+                    <div class="dns-step" draggable="true" id="step-server-processes">Web server processes the request and retrieves the requested webpage files.</div>
+                </div>
+                <h4 class="font-semibold text-gray-700 mb-2">Correct Order:</h4>
+                <div id="dns-ordered-steps" class="dns-dropzone space-y-2">
+                    <div class="h-10 text-gray-400 italic flex items-center justify-center">Drop Step 1 here</div>
+                    <div class="h-10 text-gray-400 italic flex items-center justify-center">Drop Step 2 here</div>
+                    <div class="h-10 text-gray-400 italic flex items-center justify-center">Drop Step 3 here</div>
+                    <div class="h-10 text-gray-400 italic flex items-center justify-center">Drop Step 4 here</div>
+                    <div class="h-10 text-gray-400 italic flex items-center justify-center">Drop Step 5 here</div>
+                    <div class="h-10 text-gray-400 italic flex items-center justify-center">Drop Step 6 here</div>
+                    <div class="h-10 text-gray-400 italic flex items-center justify-center">Drop Step 7 here</div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <button class="check-button no-print" onclick="checkDnsJourney()">Check Order</button>
+                <button class="reset-button no-print" onclick="resetDnsJourney()">Reset Task 2</button>
+            </div>
+            <div id="dns-journey-feedback" class="feedback-area mt-4"></div>
+        </section>
+
+        <section id="task3-url-anatomy" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-700"><i class="fas fa-link mr-2"></i>Task 3: Anatomy of a URL <span class="task-completion-indicator" id="task-3-complete"></span><span class="font-bold text-sm text-gray-500 ml-auto">(Max 3 points)</span></h2>
+            <p class="text-gray-600 mb-4">A <span class="keyword">URL (Uniform Resource Locator)<span class="tooltip">A location or address identifying where documents can be found on the Internet; a Web address. It includes the protocol and the domain name.</span></span> is the address of a resource on the internet. It has several parts. Label the components of the following URL:</p>
+            <div class="text-center my-4 p-3 bg-gray-100 rounded border">
+                <span id="url-protocol" class="url-part protocol">http://</span><span id="url-domain" class="url-part domain">www.example.com</span><span id="url-path" class="url-part path">/path/to/page.html</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 quiz-item" data-points="3">
+                <div>
+                    <label for="label-protocol" class="block text-sm font-medium text-gray-700 text-center">Part 1 (Red)</label>
+                    <input type="text" id="label-protocol" class="fill-blank w-full" placeholder="e.g., Protocol">
+                </div>
+                <div>
+                    <label for="label-domain" class="block text-sm font-medium text-gray-700 text-center">Part 2 (Green)</label>
+                    <input type="text" id="label-domain" class="fill-blank w-full" placeholder="e.g., Domain Name">
+                </div>
+                <div>
+                    <label for="label-path" class="block text-sm font-medium text-gray-700 text-center">Part 3 (Blue)</label>
+                    <input type="text" id="label-path" class="fill-blank w-full" placeholder="e.g., Path to Resource">
+                </div>
+            </div>
+            <button class="check-button no-print" onclick="checkURLAnatomy()">Check Labels</button>
+            <button class="reset-button no-print" onclick="resetURLAnatomy()">Reset Task 3</button>
+            <div id="url-anatomy-feedback" class="feedback-area mt-4"></div>
+        </section>
+
+        <section id="task4-webpage-components" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-700"><i class="fab fa-html5 mr-2"></i>Task 4: Web Page Components <span class="task-completion-indicator" id="task-4-complete"></span><span class="font-bold text-sm text-gray-500 ml-auto">(Max 3 points)</span></h2>
+            <p class="text-gray-600 mb-4">Web pages are typically built using three core technologies. Match each technology to its primary role.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 quiz-item" data-points="3">
+                <div>
+                    <h4 class="font-semibold mb-2 text-center text-gray-600">Technology</h4>
+                    <ul id="webtech-term-list" class="matching-list">
+                        <li class="matching-item option-button w-full text-left !mt-1" data-match="html"><span class="keyword">HTML<span class="tooltip">Hypertext Markup Language: Used to create/develop webpages. Uses (opening and closing) tags to display/format content. Defines the structure.</span></span></li>
+                        <li class="matching-item option-button w-full text-left !mt-1" data-match="css">CSS</li>
+                        <li class="matching-item option-button w-full text-left !mt-1" data-match="js">JavaScript</li>
+                    </ul>
+                </div>
+                <div>
+                     <h4 class="font-semibold mb-2 text-center text-gray-600">Primary Role</h4>
+                     <ul id="webtech-definition-list" class="matching-list">
+                        <li class="matching-item option-button w-full text-left !mt-1" data-match="css">Styling and presentation (colours, fonts, layout).</li>
+                        <li class="matching-item option-button w-full text-left !mt-1" data-match="js">Interactivity and dynamic content (e.g., animations, form validation).</li>
+                        <li class="matching-item option-button w-full text-left !mt-1" data-match="html">Structure and content of the webpage (headings, paragraphs, images).</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <button class="check-button no-print" onclick="checkWebTechMatches()">Check Matches</button>
+                <button class="reset-button no-print" onclick="resetWebTechMatches()">Reset Task 4</button>
+            </div>
+            <div id="webtech-matching-feedback" class="feedback-area mt-4"></div>
+        </section>
+
+        <section id="task5-cloud-services" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-700"><i class="fas fa-cloud-upload-alt mr-2"></i>Task 5: The Cloud - Pros & Cons <span class="task-completion-indicator" id="task-5-complete"></span><span class="font-bold text-sm text-gray-500 ml-auto">(Max 4 points)</span></h2>
+            <p class="text-gray-600 mb-4"><span class="keyword">The Cloud<span class="tooltip">Remote servers and data storage accessed over the Internet, providing services like file storage, software applications, and processing power.</span></span> refers to services (like storage, software, or processing power) delivered over the internet. For each statement, decide if it's primarily an advantage or a disadvantage of using cloud services.</p>
+            <div class="space-y-4">
+                <div class="quiz-item" data-points="1" data-correct="advantage">
+                    <p class="font-medium text-gray-800 mb-1">1. Files can be accessed from any device with an internet connection.</p>
+                    <div class="flex flex-wrap gap-2"> <button class="option-button" data-answer="advantage">Advantage</button> <button class="option-button" data-answer="disadvantage">Disadvantage</button> </div><div class="feedback mt-1"></div>
+                </div>
+                <div class="quiz-item" data-points="1" data-correct="disadvantage">
+                    <p class="font-medium text-gray-800 mb-1">2. Requires a constant internet connection to access files/services.</p>
+                    <div class="flex flex-wrap gap-2"> <button class="option-button" data-answer="advantage">Advantage</button> <button class="option-button" data-answer="disadvantage">Disadvantage</button> </div><div class="feedback mt-1"></div>
+                </div>
+                <div class="quiz-item" data-points="1" data-correct="advantage">
+                    <p class="font-medium text-gray-800 mb-1">3. Automatic backups are often handled by the service provider.</p>
+                    <div class="flex flex-wrap gap-2"> <button class="option-button" data-answer="advantage">Advantage</button> <button class="option-button" data-answer="disadvantage">Disadvantage</button> </div><div class="feedback mt-1"></div>
+                </div>
+                <div class="quiz-item" data-points="1" data-correct="disadvantage">
+                    <p class="font-medium text-gray-800 mb-1">4. Security and privacy of data depend on the cloud provider's measures.</p>
+                    <div class="flex flex-wrap gap-2"> <button class="option-button" data-answer="advantage">Advantage</button> <button class="option-button" data-answer="disadvantage">Disadvantage</button> </div><div class="feedback mt-1"></div>
+                </div>
+            </div>
+            <button class="reset-button no-print !ml-0" onclick="resetCloudProsCons()">Reset Task 5</button>
+        </section>
+
+        <section id="real-world-context" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-city mr-2"></i> Real-World Internet Applications</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-blue-50 p-5 rounded-lg border border-blue-200 space-y-3">
+                <ul class="list-disc list-inside text-blue-700 pl-4">
+                    <li><strong>E-commerce:</strong> Online shopping websites (Amazon, eBay) are hosted on web servers, use DNS for access, and often leverage cloud services for scalability and data storage.</li>
+                    <li><strong>Social Media:</strong> Platforms like Instagram and TikTok rely heavily on web servers to deliver content, DNS for user access, and massive cloud infrastructure to store user data, photos, and videos.</li>
+                    <li><strong>Online Banking:</strong> Secure web servers, DNS, and robust cloud or private server infrastructure are essential for providing safe online banking services.</li>
+                    <li><strong>Streaming Services (Netflix, Spotify):</strong> These use a global network of web servers (often Content Delivery Networks - CDNs, a form of distributed hosting) to stream media to users, all accessed via DNS and the internet.</li>
+                    <li><strong>Collaborative Tools (Google Docs, Microsoft 365):</strong> These are cloud-based applications, allowing multiple users to work on documents stored and processed on remote servers.</li>
+                </ul>
+            </div>
+        </section>
+        <section id="myth-busters" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-user-secret mr-2 text-red-500"></i> Internet & Cloud Myth Busters!</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-red-50 p-5 rounded-lg border border-red-200 space-y-4">
+                <div>
+                    <p><strong class="font-semibold text-red-800">Myth:</strong> "The Internet and the World Wide Web are the same thing."</p>
+                    <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> The <span class="keyword">Internet<span class="tooltip">A global network of interconnected networks connecting millions of computers, making it possible to exchange information. It is an example of a WAN.</span></span> is the global network infrastructure. The <span class="keyword">World Wide Web<span class="tooltip">Consists of a collection of resources (like web pages, images, videos) accessible over the internet using protocols like HTTP.</span></span> is a service that runs *on* the Internet, allowing access to web pages and other resources via URLs and protocols like HTTP.</p>
+                </div>
+                <div class="border-t border-red-200 pt-4">
+                    <p><strong class="font-semibold text-red-800">Myth:</strong> "DNS servers always know every IP address for every website."</p>
+                    <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> <span class="keyword">DNS<span class="tooltip">A server that translates human-readable domain names (e.g., www.google.com) into numerical IP addresses that computers use to locate each other.</span></span> is a hierarchical system. If your local DNS server doesn't know an IP address, it queries other DNS servers higher up in the hierarchy until the address is found or it's determined not to exist. They also cache results for a period to speed up future requests.</p>
+                </div>
+                 <div class="border-t border-red-200 pt-4">
+                    <p><strong class="font-semibold text-red-800">Myth:</strong> "Data stored in <span class="keyword">The Cloud<span class="tooltip">Remote servers and data storage accessed over the Internet, providing services like file storage, software applications, and processing power.</span></span> is floating in the sky."</p>
+                    <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> "The Cloud" refers to a network of powerful physical servers located in data centers around the world. When you store data "in the cloud," it's actually being saved on these remote hard drives, accessible via the internet.</p>
+                </div>
+            </div>
+        </section>
+        <section id="exam-practice" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-700"><i class="fas fa-pencil-alt mr-2"></i> Exam Practice Questions</h2>
+             <div class="exam-question-item mb-6 pb-4 border-b">
+                <p class="font-medium text-gray-800 mb-2">1. Describe the main purpose of a Domain Name Server (DNS). [2 marks]</p>
+                <textarea id="exam-q1-internet" class="w-full p-2 border border-gray-300 rounded-md mt-1" rows="3" placeholder="What does DNS do and why is it needed?"></textarea>
+                <button class="mark-scheme-button no-print" onclick="checkThenToggleMarkScheme('exam-q1-internet', 'ms-exam-q1-internet', this, 15)">Show Mark Scheme</button>
+                <div id="ms-exam-q1-internet" class="mark-scheme">
+                    <p><strong>Mark Scheme:</strong></p>
+                    <ul>
+                        <li>To translate / convert human-readable domain names (e.g., www.example.com) into numerical IP addresses. (1 mark)</li>
+                        <li>Computers use IP addresses to locate and communicate with each other on a network / the internet. (1 mark)</li>
+                        <li>(Allow: Acts like a phonebook for the internet.)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="exam-question-item">
+                <p class="font-medium text-gray-800 mb-2">2. Explain two advantages of using cloud storage compared to storing files on a local hard drive. [2 marks]</p>
+                <textarea id="exam-q2-internet" class="w-full p-2 border border-gray-300 rounded-md mt-1" rows="3" placeholder="Two advantages of cloud storage..."></textarea>
+                <button class="mark-scheme-button no-print" onclick="checkThenToggleMarkScheme('exam-q2-internet', 'ms-exam-q2-internet', this, 15)">Show Mark Scheme</button>
+                <div id="ms-exam-q2-internet" class="mark-scheme">
+                    <p><strong>Mark Scheme (Any two from):</strong></p>
+                    <ul>
+                        <li><strong>Accessibility:</strong> Files can be accessed from any device with an internet connection. (1 mark)</li>
+                        <li><strong>Backup:</strong> Data is often automatically backed up by the provider, reducing risk of local data loss. (1 mark)</li>
+                        <li><strong>Collaboration:</strong> Easier to share files and collaborate with others in real-time. (1 mark)</li>
+                        <li><strong>Scalability:</strong> Storage capacity can often be easily increased or decreased as needed. (1 mark)</li>
+                        <li><strong>Cost (potentially):</strong> Can be cheaper for individuals/small businesses than buying and maintaining local storage hardware. (1 mark)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section id="related-videos" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-video mr-2 text-purple-500"></i> Related Videos</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-purple-50 p-5 rounded-lg border border-purple-200 space-y-4">
+                <p class="text-gray-700">Watch these videos to reinforce your understanding:</p>
+                <ul class="list-disc list-inside space-y-3 text-purple-800 pl-4">
+                    <li>
+                        <strong>Video 1: How the Internet Works (Simplified)</strong>
+                        <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Placeholder: Link to a general "How the Internet Works" video]</div>
+                    </li>
+                    <li>
+                        <strong>Video 2: OCR GCSE (J277) 1.3 The internet</strong>
+                        <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1"><a href="[PLACEHOLDER_VIDEO_LINK_CRAIGNDAVE_INTERNET]" target="_blank" class="text-purple-700 hover:underline">Watch on YouTube (Craig'n'Dave)</a></div>
+                    </li>
+                     <li>
+                        <strong>Video 3: What is the Cloud?</strong>
+                        <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Placeholder: Link to a "What is Cloud Computing" video]</div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section id="key-takeaways" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-key mr-2"></i>Key Takeaways</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-300 space-y-2">
+                <ul class="list-disc list-inside space-y-1 text-yellow-800">
+                    <li>The <strong class="keyword">Internet<span class="tooltip">A global network of interconnected networks connecting millions of computers, making it possible to exchange information. It is an example of a WAN.</span></strong> is the global network of networks; the <strong class="keyword">WWW<span class="tooltip">Consists of a collection of resources (like web pages, images, videos) accessible over the internet using protocols like HTTP.</span></strong> is a service on the Internet.</li>
+                    <li><strong class="keyword">DNS<span class="tooltip">A server that translates human-readable domain names (e.g., www.google.com) into numerical IP addresses that computers use to locate each other.</span></strong> translates human-friendly domain names into computer-friendly IP addresses.</li>
+                    <li>Websites are <strong class="keyword">hosted<span class="tooltip">Storing website files on a web server, making them accessible via the Internet.</span></strong> on <strong class="keyword">web servers<span class="tooltip">A computer that stores website files and serves them to clients (browsers) upon request.</span></strong>, which deliver content to <strong class="keyword">clients<span class="tooltip">A device (e.g., computer, smartphone) or software (e.g., web browser) that requests services or resources from a server.</span></strong> (browsers).</li>
+                    <li>A <strong class="keyword">URL<span class="tooltip">A location or address identifying where documents can be found on the Internet; a Web address. It includes the protocol and the domain name.</span></strong> consists of a protocol, domain name, and often a path to a specific resource.</li>
+                    <li>Web pages are built with <span class="keyword">HTML<span class="tooltip">Hypertext Markup Language: Used to create/develop webpages. Uses (opening and closing) tags to display/format content. Defines the structure.</span></span> (structure), CSS (style), and JavaScript (interactivity).</li>
+                    <li><strong class="keyword">The Cloud<span class="tooltip">Remote servers and data storage accessed over the Internet, providing services like file storage, software applications, and processing power.</span></strong> provides remote services like storage, software, and processing power over the Internet, offering benefits like accessibility and scalability, but also drawbacks like internet dependency and security reliance on the provider.</li>
+                </ul>
+            </div>
+        </section>
+        <section id="next-steps" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-indigo-600">What's Next?</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-teal-50 p-5 rounded-lg border border-teal-300">
+                <p class="text-teal-800 font-medium">You've explored the core concepts of the Internet and how we access its resources!</p>
+                <p class="text-teal-700 mt-2">The next lesson in "1.3 Computer networks, connections and protocols" will focus on the hardware that makes these connections possible:</p>
+                <ul class="list-disc list-inside space-y-1 text-teal-700 mt-3 pl-4">
+                    <li>Network Interface Cards (NICs), Switches, Routers, Wireless Access Points (WAPs), and Transmission Media.</li>
+                </ul>
+                 <p class="mt-3"><a href="gcse-net-clientserver-p2p.html" class="font-semibold text-teal-900 hover:underline">← Previously: Client-Server vs Peer-to-Peer Networks</a></p>
+                 <p class="mt-1"><a href="gcse-net-hardware.html" class="font-semibold text-teal-900 hover:underline">Next: Network Hardware →</a></p>
+            </div>
+        </section>
+        <section id="extension-activities" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-satellite-dish mr-2 text-orange-500"></i> Extension Activities</h2>
+            <div class="bg-orange-50 p-5 rounded-lg border border-orange-200 space-y-6">
+                <div class="extension-task">
+                    <h3 class="font-semibold text-orange-800 mb-2">1. IP Addresses: IPv4 vs. IPv6</h3>
+                    <p class="text-sm text-gray-700 mb-2">Every device connected to the internet needs an IP address. There are two main versions: IPv4 and IPv6.</p>
+                    <p class="text-sm text-gray-700 mb-2">Research Task: What is the main difference between IPv4 and IPv6 in terms of the number of available addresses? Why was IPv6 developed?</p>
+                    <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="IPv4 vs IPv6 address space? Reason for IPv6?"></textarea>
+                </div>
+                <div class="extension-task border-t border-orange-200 pt-4">
+                    <h3 class="font-semibold text-orange-800 mb-2">2. Content Delivery Networks (CDNs)</h3>
+                    <p class="text-sm text-gray-700 mb-2">Large websites and streaming services often use CDNs to improve performance and reliability for users around the world.</p>
+                    <p class="text-sm text-gray-700 mb-2">Research Task: What is a CDN? How does it work to deliver web content faster to users in different geographical locations?</p>
+                    <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="What is a CDN? How does it improve performance?"></textarea>
+                </div>
+                 <div class="extension-task border-t border-orange-200 pt-4">
+                    <h3 class="font-semibold text-orange-800 mb-2">3. Types of Cloud Services (IaaS, PaaS, SaaS)</h3>
+                    <p class="text-sm text-gray-700 mb-2">Cloud computing offers different service models.</p>
+                    <p class="text-sm text-gray-700 mb-2">Research Task: Briefly describe what IaaS (Infrastructure as a Service), PaaS (Platform as a Service), and SaaS (Software as a Service) mean. Give one example of each.</p>
+                    <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="IaaS: ?, Example: ? PaaS: ?, Example: ? SaaS: ?, Example: ?"></textarea>
+                </div>
+            </div>
+        </section>
+
+        <footer class="mt-12 text-center no-print">
+            <div id="final-score-area" class="task-container bg-purple-100 border-purple-300 mb-6">
+                <h2 class="task-title text-2xl text-purple-700">Worksheet Score</h2>
+                <p id="final-score-display-text" class="text-3xl font-bold text-purple-800">Your score: <span id="current-score-value">0</span> / <span id="total-possible-score-value">0</span></p>
+                <p id="final-score-feedback" class="text-purple-600"></p>
+            </div>
+            <button id="calculate-final-score" class="final-button">Calculate Final Score</button>
+            <button id="reset-all-tasks" class="reset-button">Reset All Tasks</button>
+            <button id="export-pdf" class="export-pdf-button">Export to PDF</button>
+        </footer>
+
+    </main>
+    </div>
+
+    
+    <script src="js/gcse-net-types-topologies-Internet.js"></script>
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+</html>

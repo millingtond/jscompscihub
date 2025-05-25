@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCSE Computer Science - Character Sets (ASCII & Unicode)</title>
+    <script src="https://cdn.tailwindcss.com"></script> <!-- Added Tailwind CSS CDN -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- <link rel="stylesheet" href="css/styles.css"> Link to your shared CSS file -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+    
+    
+<link rel="stylesheet" href="css/style.css">
+</head>
+<nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <a href="home.html" class="text-xl font-bold hover:text-gray-300 transition-colors">MGS CS Hub</a>
+        <ul class="flex space-x-3 lg:space-x-4">
+        </ul>
+        <ul class="flex flex-wrap space-x-2 sm:space-x-3 lg:space-x-4 text-sm sm:text-base">
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 7</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 8</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 9</a></li>
+            <li><a href="gcse.html" class="hover:text-gray-300 transition-colors">GCSE</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">A Level</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Competitions</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">CS News</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Extracurricular</a></li>
+        </ul>
+    </div>
+</nav>
+
+\1
+
+
+
+
+
+    <div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-lg shadow-xl"> <!-- Added Main Content Wrapper -->
+        <a href="mgsgcse122.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 group no-print">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left w-5 h-5 mr-2 transition-transform duration-200 group-hover:-translate-x-1"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+           Back to Data Storage
+       </a>
+
+    <header class="mb-8 text-center border-b pb-4"> <!-- Moved header inside and added border -->
+        <h1 class="text-3xl md:text-4xl font-bold text-indigo-700">Understanding Character Sets: ASCII & Unicode</h1>
+        <p class="text-lg text-gray-600 mt-1">How computers represent text and symbols.</p>
+    </header>
+    <!-- Introduction and Lesson Outcomes -->
+    <section id="intro" class="task-container">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="task-title text-2xl">Welcome!</h2>
+            <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer read-checkbox">
+                Mark as Read
+            </label>
+        </div>
+        <p class="mb-4">Computers, at their core, only understand binary - 0s and 1s. So, how do they store and display the text you're reading right now, or your name, or even emojis? The answer lies in <strong class="keyword">character sets<span class="tooltip">A defined list of characters recognised by the computer hardware and software. Each character is assigned a unique numerical code.</span></strong>!</p>
+        <p class="mb-4">This lesson will explore how computers use character sets, focusing on two important ones: ASCII and Unicode.</p>
+        
+        <div class="mt-4">
+            <h3 class="task-subtitle text-xl">Lesson Outcomes:</h3>
+            <ul class="list-disc list-inside text-gray-700 space-y-1">
+                <li>Define what a 'character set' is.</li>
+                <li>Explain how <strong class="keyword">ASCII<span class="tooltip">American Standard Code for Information Interchange. An early character set standard, typically using 7 or 8 bits per character.</span></strong> is used to represent text and discuss its limitations.</li>
+                <li>Explain how <strong class="keyword">Unicode<span class="tooltip">A universal character encoding standard designed to support text in most of the world's writing systems, including emojis.</span></strong> is used to represent text and its advantages over ASCII.</li>
+                <li>Compare the key features of ASCII and Unicode.</li>
+                <li>Understand how character codes (binary numbers) are used to represent individual characters.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Starter Activity -->
+    <section id="starter-activity" class="task-container">
+        <h2 class="task-title text-2xl">Starter Activity: Warm-up Your Brain!</h2>
+        <div class="space-y-4">
+            <div>
+                <p class="font-semibold mb-1">1. In your own words, what do you think a "character set" means in the context of computers?</p>
+                <textarea id="starter-q1" rows="2" class="w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" placeholder="Your thoughts..."></textarea>
+            </div>
+            <div>
+                <p class="font-semibold mb-1">2. How many different, unique things can you represent with:</p>
+                <ul class="list-disc list-inside ml-4">
+                    <li>1 bit? <input type="text" id="starter-q2a" class="p-1 border border-gray-300 rounded-md w-16 text-center fill-blank"></li>
+                    <li>2 bits? <input type="text" id="starter-q2b" class="p-1 border border-gray-300 rounded-md w-16 text-center fill-blank"></li>
+                    <li>3 bits? <input type="text" id="starter-q2c" class="p-1 border border-gray-300 rounded-md w-16 text-center fill-blank"></li>
+                </ul>
+            </div>
+            <div>
+                <p class="font-semibold mb-1">3. Have you ever seen strange symbols like "" or "▯" when text doesn't display correctly on a website or in a document? What do you think might cause this?</p>
+                <textarea id="starter-q3" rows="2" class="w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" placeholder="Any ideas?"></textarea>
+            </div>
+            <button id="check-starter" class="check-button">Check Answers</button>
+            <div id="starter-feedback" class="feedback-area mt-2"></div>
+        </div>
+    </section>
+
+    <!-- Task 1: What is a Character Set? -->
+    <section id="task1" class="task-container">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="task-title text-2xl">Task 1: Defining "Character Set"</h2>
+            <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer read-checkbox">
+                Mark as Read
+            </label>
+        </div>
+        <p class="mb-2">Based on the introduction and the starter activity, try to write your own definition of a "character set" in the context of computers:</p>
+        <textarea id="user-def-charset" rows="2" class="w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 mb-3" placeholder="Your definition..."></textarea>
+        
+        <button id="reveal-formal-def-charset" class="reveal-button text-sm py-2 px-3">Reveal Formal Definition</button>
+
+        <div id="formal-def-charset-area" class="feedback-area mt-3">
+            <p class="mb-2">Here's a more formal way to think about it:</p>
+            <p class="mb-2">A <strong class="keyword">character set<span class="tooltip">A defined list of characters recognised by the computer hardware and software. Each character is assigned a unique numerical code.</span></strong> is essentially a dictionary that computers use. It's a defined list of characters (like letters, numbers, punctuation marks, symbols, and even control characters like 'newline' or 'tab') that a computer system can recognize and work with.</p>
+            <p>Crucially, each character in the set is assigned a unique numerical value, called a <strong class="keyword">character code<span class="tooltip">The unique numerical value assigned to a character within a character set. This code is often represented in binary.</span></strong>. This code is what the computer actually stores and processes.</p>
+            <p class="font-semibold text-blue-700">Key Definition:</p>
+            <p class="text-blue-600">A <strong class="keyword">Character Set<span class="tooltip">A defined list of characters recognised by the computer hardware and software.</span></strong> is a defined list of characters recognised by the computer hardware and software.</p>
+        </div>
+    </section>
+
+    <!-- Task 2: ASCII - The American Standard -->
+    <section id="task2" class="task-container">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="task-title text-2xl">Task 2: ASCII (American Standard Code for Information Interchange)</h2>
+            <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer read-checkbox">
+                Mark as Read
+            </label>
+        </div>
+        <p class="mb-2">One of the earliest and most influential character sets is ASCII. Originally, it used 7 bits to represent characters, allowing for 2<sup>7</sup> = 128 different characters. This included uppercase and lowercase English letters, digits 0-9, punctuation marks, and control characters.</p>
+        <p class="mb-2">Later, <strong class="keyword">Extended ASCII<span class="tooltip">Versions of ASCII that use 8 bits, allowing for 256 characters. The additional characters often include accented letters and graphical symbols.</span></strong> became common, using 8 bits (1 byte) per character. This allowed for 2<sup>8</sup> = <span class="font-bold text-indigo-600">256 distinct characters</span>. The extra characters were often used for accented letters (like é, ü), special symbols, and box-drawing characters.</p>
+        
+        <div class="bg-green-50 p-3 rounded-md border border-green-200 mb-4">
+            <p class="font-semibold text-green-700">ASCII Facts:</p>
+            <ul class="list-disc list-inside text-green-600">
+                <li>Typically uses <strong class="keyword">8 bits<span class="tooltip">An 8-bit ASCII can represent 2<sup>8</sup> = 256 different characters.</span></strong> (1 byte) per character in its extended form.</li>
+                <li>Can represent 256 distinct characters.</li>
+                <li>Contains characters for English and some other Western European languages.</li>
+                <li>Each character is assigned a unique character code (a binary number). For example, 'A' is 65 (binary 01000001), 'B' is 66 (01000010), 'a' is 97 (01100001).</li>
+            </ul>
+        </div>
+
+        <h3 class="task-subtitle">Interactive: ASCII Lookup & Text to Binary</h3>
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-white p-4 rounded-lg shadow">
+                <label for="char-input" class="block font-medium text-gray-700">Enter a single character (A-Z, a-z, 0-9):</label>
+                <input type="text" id="char-input" maxlength="1" class="mt-1 p-2 border border-gray-300 rounded-md w-20 text-center">
+                <button id="lookup-ascii" class="sim-button ml-2">Lookup</button>
+                <div id="ascii-result" class="mt-2 text-sm"></div>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow">
+                <label for="text-to-binary-input" class="block font-medium text-gray-700">Enter short text (e.g., CAT):</label>
+                <input type="text" id="text-to-binary-input" maxlength="5" class="mt-1 p-2 border border-gray-300 rounded-md w-full">
+                <button id="convert-to-binary" class="sim-button mt-2">Convert</button>
+                <div id="text-to-binary-result" class="mt-2 text-sm break-all"></div>
+            </div>
+        </div>
+
+        <div class="mt-6">
+            <h3 class="task-subtitle">Challenge: How ASCII Represents Text</h3>
+            <p class="mb-2">Given that in ASCII, 'A' is decimal 65 (binary <code class="font-mono bg-gray-200 p-0.5 rounded">01000001</code>) and 'B' is decimal 66 (binary <code class="font-mono bg-gray-200 p-0.5 rounded">01000010</code>), how do you think the computer would store the word "CAB" using 8-bit ASCII?</p>
+            <input type="text" id="ascii-cab-guess" class="w-full md:w-1/2 p-2 border border-gray-300 rounded-md font-mono" placeholder="Your 8-bit binary guess for C, A, then B...">
+            <button id="reveal-ascii-cab" class="reveal-button text-sm py-2 px-3 mt-2">Reveal Explanation</button>
+            <div id="ascii-cab-explanation" class="feedback-area mt-2">
+                <p>When you type text, each character is converted into its corresponding ASCII character code. This code, which is a binary number, is what the computer stores.</p>
+                <ul class="list-disc list-inside text-gray-700 space-y-1 my-2">
+                    <li>Each character is assigned a unique character code.</li>
+                    <li>Each letter/symbol is converted to its character code (which is a binary number).</li>
+                </ul>
+                <p class="italic">Example: The word "CAB" would be stored as:</p>
+                <p class="font-mono bg-gray-200 p-2 rounded inline-block">
+                    C (67) = 01000011 <br>
+                    A (65) = 01000001 <br>
+                    B (66) = 01000010
+                </p>
+            </div>
+        </div>
+
+        <div class="mt-6">
+            <h3 class="task-subtitle">Brainstorm: Limitations of ASCII</h3>
+            <p class="mb-2">ASCII, with its 256 character limit, was great for English. But think about global communication and all the symbols we use today. What are some potential limitations of only having 256 characters?</p>
+            <textarea id="ascii-limitations-guess" rows="2" class="w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 mb-3" placeholder="Your thoughts on ASCII's limitations..."></textarea>
+            <button id="reveal-ascii-limitations" class="reveal-button text-sm py-2 px-3">Reveal Limitations</button>
+            <div id="ascii-limitations-explanation" class="feedback-area mt-2">
+                <p>You're right to think about it! 256 characters are not nearly enough to represent all characters from all languages around the world (e.g., Chinese, Japanese, Arabic, Cyrillic alphabets) or the vast array of symbols and emojis we use today. This is where Unicode comes in!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Task 3: Unicode - The Universal Standard -->
+    <section id="task3" class="task-container">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="task-title text-2xl">Task 3: Unicode - A Universal Solution</h2>
+            <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer read-checkbox">
+                Mark as Read
+            </label>
+        </div>
+        <p class="mb-2">To address the limitations of ASCII and other character sets, <strong class="keyword">Unicode<span class="tooltip">A universal character encoding standard designed to support text in most of the world's writing systems.</span></strong> was developed. Its goal is to provide a unique number for every character, no matter what the platform, no matter what the program, no matter what the language.</p>
+        
+        <div class="bg-purple-50 p-3 rounded-md border border-purple-200 mb-4">
+            <p class="font-semibold text-purple-700">Unicode Facts:</p>
+            <ul class="list-disc list-inside text-purple-600">
+                <li>Can use <strong class="keyword">16, 24, or 32 bits<span class="tooltip">Unicode encodings like UTF-16 use 16 bits (2 bytes), UTF-32 uses 32 bits (4 bytes). UTF-8 is variable width.</span></strong> (or more) per character, allowing for a massive number of characters.
+                    <ul class="list-circle list-inside ml-4">
+                        <li>e.g., 16-bit Unicode (like basic UTF-16) can represent 2<sup>16</sup> = <span class="font-bold">65,536</span> characters.</li>
+                        <li>Modern Unicode can represent over a million characters!</li>
+                    </ul>
+                </li>
+                <li>Designed to be a <strong class="keyword">superset of ASCII<span class="tooltip">The first 128 characters of Unicode are identical to the ASCII character set, ensuring compatibility.</span></strong>. This means the first 128 characters of Unicode are the same as ASCII, making transition easier.</li>
+                <li>Can represent characters from virtually <strong class="keyword">all known writing systems<span class="tooltip">Includes scripts like Latin, Greek, Cyrillic, Arabic, Hebrew, Chinese, Japanese, Korean, and many more.</span></strong>, plus a vast collection of symbols and <strong class="keyword">emojis<span class="tooltip">Yes, emojis are part of the Unicode standard! Each emoji has its own unique Unicode code point.</span></strong>. 👍🎉😊</li>
+            </ul>
+        </div>
+
+        <div>
+            <h3 class="task-subtitle">Why Different Unicode Encodings? (UTF-8, UTF-16, UTF-32)</h3>
+            <p class="mb-2">Unicode defines a unique number (a "code point") for every character. But if every character has a number, why do we have different "encodings" like UTF-8, UTF-16, and UTF-32? What problem might these different encodings be trying to solve?</p>
+            <textarea id="unicode-encoding-guess" rows="2" class="w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 mb-3" placeholder="Your thoughts on why different encodings exist..."></textarea>
+            <button id="reveal-unicode-encodings" class="reveal-button text-sm py-2 px-3">Reveal Explanation</button>
+            <div id="unicode-encodings-explanation" class="feedback-area mt-2">
+                <p class="mb-2">That's a great question! The main reason for different encodings is <strong>efficiency and compatibility</strong>. How these code points are stored in bytes is determined by an <strong class="keyword">encoding scheme<span class="tooltip">A method for converting Unicode code points into sequences of bytes for storage or transmission. Examples: UTF-8, UTF-16, UTF-32.</span></strong>. Common ones include:</p>
+                <ul class="list-disc list-inside text-gray-700 space-y-1">
+                    <li><strong>UTF-8:</strong> Variable-width encoding. Uses 1 byte for ASCII characters, and up to 4 bytes for other characters. Very common on the web due to its efficiency for English-heavy text and ASCII compatibility.</li>
+                    <li><strong>UTF-16:</strong> Uses 2 bytes (16 bits) for most common characters (the Basic Multilingual Plane), and 4 bytes for less common ones.</li>
+                    <li><strong>UTF-32:</strong> Uses 4 bytes (32 bits) for every character. Simple, but can be less space-efficient.</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3 class="task-subtitle mt-4">Interactive: Character Representation</h3>
+        <p class="mb-2">Let's see how a character might be represented:</p>
+        <div class="bg-white p-4 rounded-lg shadow">
+            <p>Character: <span class="font-bold text-2xl">A</span></p>
+            <p>ASCII (8-bit): <code class="font-mono bg-gray-200 p-1 rounded">01000001</code> (Decimal: 65)</p>
+            <p>Unicode (UTF-16, as U+0041): <code class="font-mono bg-gray-200 p-1 rounded">00000000 01000001</code> (Hex: 0041)</p>
+            <hr class="my-2">
+            <p>Character: <span class="font-bold text-2xl">€</span> (Euro Sign)</p>
+            <p>ASCII (8-bit): <span class="text-red-600">Not directly representable in standard 7-bit or common 8-bit ASCII. Some extended ASCII versions might include it at a specific code.</span></p>
+            <p>Unicode (UTF-16, as U+20AC): <code class="font-mono bg-gray-200 p-1 rounded">00100000 10101100</code> (Hex: 20AC)</p>
+             <hr class="my-2">
+            <p>Character: <span class="font-bold text-2xl">😊</span> (Smiling Face Emoji)</p>
+            <p>ASCII (8-bit): <span class="text-red-600">Definitely not representable!</span></p>
+            <p>Unicode (UTF-16, as U+1F60A): <code class="font-mono bg-gray-200 p-1 rounded">1101100000111101 1101111000001010</code> (Hex: D83D DE0A - this is a surrogate pair in UTF-16)</p>
+        </div>
+    </section>
+
+    <!-- Task 4: ASCII vs. Unicode Quiz -->
+    <section id="task4" class="task-container">
+        <h2 class="task-title text-2xl">Task 4: ASCII vs. Unicode - Quick Quiz!</h2>
+        <p class="mb-4">Test your understanding of the differences between ASCII and Unicode.</p>
+        <div class="space-y-3">
+            <div class="quiz-question">
+                <p class="font-semibold">1. Which character set typically uses 8 bits and can represent up to 256 characters?</p>
+                <div id="q1-options">
+                    <button class="option-button" data-question="1" data-answer="ASCII">ASCII</button>
+                    <button class="option-button" data-question="1" data-answer="Unicode">Unicode</button>
+                </div>
+                <div id="q1-feedback" class="quiz-feedback"></div>
+            </div>
+            <div class="quiz-question">
+                <p class="font-semibold">2. Which character set is designed to represent characters from almost all writing systems in the world, including emojis?</p>
+                <div id="q2-options">
+                    <button class="option-button" data-question="2" data-answer="ASCII">ASCII</button>
+                    <button class="option-button" data-question="2" data-answer="Unicode">Unicode</button>
+                </div>
+                <div id="q2-feedback" class="quiz-feedback"></div>
+            </div>
+            <div class="quiz-question">
+                <p class="font-semibold">3. If a character set uses 16 bits for each character, how many unique characters can it represent?</p>
+                <div id="q3-options">
+                    <button class="option-button" data-question="3" data-answer="256">256</button>
+                    <button class="option-button" data-question="3" data-answer="1024">1024</button>
+                    <button class="option-button" data-question="3" data-answer="65536">65,536</button>
+                </div>
+                <div id="q3-feedback" class="quiz-feedback"></div>
+            </div>
+             <div class="quiz-question">
+                <p class="font-semibold">4. Is Unicode a superset of ASCII (meaning it includes all ASCII characters)?</p>
+                <div id="q4-options">
+                    <button class="option-button" data-question="4" data-answer="Yes">Yes</button>
+                    <button class="option-button" data-question="4" data-answer="No">No</button>
+                </div>
+                <div id="q4-feedback" class="quiz-feedback"></div>
+            </div>
+        </div>
+        <button id="check-quiz-charsets" class="check-button mt-4">Submit Answers</button>
+        <div id="quiz-overall-feedback" class="feedback-area mt-2"></div>
+    </section>
+
+    <!-- New Task 5: Binary to ASCII Character -->
+    <section id="task5" class="task-container">
+        <h2 class="task-title text-2xl">Task 5: Binary to ASCII Character</h2>
+        <p class="mb-2">Remember that each ASCII character has a unique 8-bit binary code. Try inputting an 8-bit binary number below to see which character it represents!</p>
+        <div class="bg-white p-4 rounded-lg shadow">
+            <label for="binary-to-char-input" class="block font-medium text-gray-700">Enter an 8-bit binary number (e.g., 01000001):</label>
+            <input type="text" id="binary-to-char-input" maxlength="8" class="mt-1 p-2 border border-gray-300 rounded-md w-full md:w-1/2 font-mono" placeholder="00000000">
+            <button id="convert-binary-to-char" class="sim-button mt-2">Convert to Character</button>
+            <div id="binary-to-char-result" class="mt-2 text-lg"></div>
+        </div>
+    </section>
+
+    <!-- New Task 6: Which Character Set is Needed? -->
+    <section id="task6" class="task-container">
+        <h2 class="task-title text-2xl">Task 6: Which Character Set is Needed?</h2>
+        <p class="mb-4">Look at the text snippets below. For each one, decide if it could be fully represented by <strong>standard 8-bit ASCII</strong>, or if <strong>Unicode</strong> would be necessary.</p>
+        <div class="space-y-4">
+            <!-- Snippet 1 -->
+            <div class="snippet-question bg-white p-3 rounded-md border border-gray-200">
+                <p class="font-mono text-lg p-2 bg-gray-100 rounded mb-2">Hello World!</p>
+                <p class="font-semibold mb-1">Can this be represented by 8-bit ASCII?</p>
+                <div id="snippet1-options">
+                    <button class="option-button" data-snippet="1" data-answer="ASCII">Yes, ASCII is enough</button>
+                    <button class="option-button" data-snippet="1" data-answer="Unicode">No, Unicode is needed</button>
+                </div>
+                <div id="snippet1-feedback" class="quiz-feedback"></div>
+            </div>
+            <!-- Snippet 2 -->
+            <div class="snippet-question bg-white p-3 rounded-md border border-gray-200">
+                <p class="font-mono text-lg p-2 bg-gray-100 rounded mb-2">Résumé & Café</p>
+                <p class="font-semibold mb-1">Can this be represented by 8-bit ASCII?</p>
+                <div id="snippet2-options">
+                    <button class="option-button" data-snippet="2" data-answer="Unicode">Yes, ASCII is enough</button> 
+                    <button class="option-button" data-snippet="2" data-answer="Unicode">No, Unicode is needed</button> 
+                    <!-- Note: While some *extended* ASCII might have é/è, standard ASCII doesn't. Unicode is the safer, universal answer. -->
+                </div>
+                <div id="snippet2-feedback" class="quiz-feedback"></div>
+            </div>
+            <!-- Snippet 3 -->
+            <div class="snippet-question bg-white p-3 rounded-md border border-gray-200">
+                <p class="font-mono text-lg p-2 bg-gray-100 rounded mb-2">你好世界 😊👍</p>
+                <p class="font-semibold mb-1">Can this be represented by 8-bit ASCII?</p>
+                <div id="snippet3-options">
+                    <button class="option-button" data-snippet="3" data-answer="Unicode">Yes, ASCII is enough</button>
+                    <button class="option-button" data-snippet="3" data-answer="Unicode">No, Unicode is needed</button>
+                </div>
+                <div id="snippet3-feedback" class="quiz-feedback"></div>
+            </div>
+        </div>
+        <button id="check-snippets" class="check-button mt-4">Check Snippet Answers</button>
+        <div id="snippets-overall-feedback" class="feedback-area mt-2"></div>
+    </section>
+
+    <!-- New Task 7: Storage Size Estimation -->
+    <section id="task7" class="task-container">
+        <h2 class="task-title text-2xl">Task 7: Storage Size - Food for Thought!</h2>
+        <p class="mb-2">Consider the string: <code class="font-mono bg-gray-200 p-1 rounded">"Code Club 💻"</code></p>
+        <p class="mb-2">Think about how much storage this string might take up using different character sets/encodings. This isn't a direct calculation task for now, but a conceptual one.</p>
+        <div class="space-y-3">
+            <div>
+                <p class="font-semibold">1. Using 8-bit ASCII:</p>
+                <ul class="list-disc list-inside ml-4 text-gray-700">
+                    <li>How many characters in "Code Club " can be represented by standard ASCII?</li>
+                    <li>What happens to the '💻' emoji? Can standard ASCII represent it?</li>
+                    <li>Roughly, how many bytes would "Code Club " (without the emoji) take in ASCII?</li>
+                </ul>
+                <textarea rows="3" class="w-full p-2 mt-1 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" placeholder="Your thoughts on ASCII storage..."></textarea>
+            </div>
+            <div>
+                <p class="font-semibold">2. Using Unicode (e.g., UTF-8 encoding):</p>
+                <ul class="list-disc list-inside ml-4 text-gray-700">
+                    <li>UTF-8 uses 1 byte for standard English/ASCII characters. How many bytes for "Code Club "?</li>
+                    <li>Emojis in UTF-8 often take 3 or 4 bytes. If '💻' takes 4 bytes, what's the total for the whole string "Code Club 💻" in UTF-8?</li>
+                </ul>
+                 <textarea rows="3" class="w-full p-2 mt-1 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" placeholder="Your thoughts on Unicode (UTF-8) storage..."></textarea>
+            </div>
+        </div>
+        <button id="reveal-storage-discussion" class="reveal-button mt-3">Reveal Discussion Points</button>
+        <div id="storage-discussion-feedback" class="feedback-area mt-2">
+            <p><strong>Discussion Points:</strong></p>
+            <p><strong>For 8-bit ASCII:</strong></p>
+            <ul class="list-disc list-inside">
+                <li>"Code Club " (10 characters, including space) can be represented.</li>
+                <li>The '💻' emoji cannot be represented by standard 8-bit ASCII. It would likely be lost, replaced by a '?', or cause an error.</li>
+                <li>"Code Club " would take 10 bytes (1 byte per character).</li>
+            </ul>
+            <p class="mt-2"><strong>For Unicode (UTF-8):</strong></p>
+            <ul class="list-disc list-inside">
+                <li>"Code Club " (10 characters) would take 10 bytes (1 byte each as they are ASCII-compatible).</li>
+                <li>If '💻' takes 4 bytes in UTF-8, the total string "Code Club 💻" would take 10 (for "Code Club ") + 4 (for 💻) = 14 bytes.</li>
+            </ul>
+            <p class="mt-2"><em>This shows that Unicode can be very efficient for text that is mostly ASCII characters (like in UTF-8), but provides the ability to represent a much wider range of characters, which might take more space for those specific non-ASCII characters.</em></p>
+        </div>
+    </section>
+
+    <!-- New Task 8: Interactive Character Code Explorer -->
+    <section id="task8" class="task-container">
+        <h2 class="task-title text-2xl">Task 8: Interactive Character Code Explorer</h2>
+        <p class="mb-2">Computers use numerical codes for every character. Let's explore this! This is similar to how Python's <code class="font-mono bg-gray-200 p-0.5 rounded">ord()</code> (character to code) and <code class="font-mono bg-gray-200 p-0.5 rounded">chr()</code> (code to character) functions work.</p>
+        
+        <div class="grid md:grid-cols-2 gap-6 mt-4">
+            <!-- Part 1: Character to Code Point -->
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h3 class="task-subtitle text-lg mb-2">Character to Code Point</h3>
+                <label for="char-to-code-input" class="block text-sm font-medium text-gray-700">Enter a Single Character:</label>
+                <input type="text" id="char-to-code-input" maxlength="1" class="mt-1 p-2 border border-gray-300 rounded-md w-full text-center">
+                <div id="char-to-code-result" class="mt-2 text-sm text-indigo-700 min-h-[40px] bg-indigo-50 p-2 rounded"></div>
+            </div>
+
+            <!-- Part 2: Code Point to Character -->
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h3 class="task-subtitle text-lg mb-2">Code Point to Character</h3>
+                <label for="code-to-char-input" class="block text-sm font-medium text-gray-700">Enter Decimal Code Point:</label>
+                <input type="number" id="code-to-char-input" class="mt-1 p-2 border border-gray-300 rounded-md w-full text-center">
+                <div id="code-to-char-result" class="mt-2 text-sm text-indigo-700 min-h-[40px] bg-indigo-50 p-2 rounded flex items-center justify-center"></div>
+            </div>
+        </div>
+
+        <!-- Part 3: String to Code Points (Harder Task) -->
+        <div class="bg-white p-4 rounded-lg shadow mt-6">
+            <h3 class="task-subtitle text-lg mb-2">Challenge: String to Code Points</h3>
+            <label for="string-to-codes-input" class="block text-sm font-medium text-gray-700">Enter a Short String (e.g., "Hi!"):</label>
+            <input type="text" id="string-to-codes-input" maxlength="10" class="mt-1 p-2 border border-gray-300 rounded-md w-full">
+            <div id="string-to-codes-result" class="mt-2 text-sm text-indigo-700 min-h-[50px] bg-indigo-50 p-2 rounded"></div>
+        </div>
+         <p class="text-xs text-gray-500 mt-4">Note: The "Code Point to Character" part will show special messages for non-printable control characters (like ASCII 0-31, 127 and Unicode 128-159).</p>
+    </section>
+
+
+    <!-- Real-World Context -->
+    <section id="real-world" class="task-container bg-yellow-50 border-yellow-200">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="task-title text-2xl text-yellow-700">Real-World Context & Importance</h2>
+            <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer read-checkbox">
+                Mark as Read
+            </label>
+        </div>
+        <ul class="list-disc list-inside text-yellow-600 space-y-1">
+            <li><strong>Web Pages:</strong> The text you see on websites is encoded using character sets. UTF-8 (a Unicode encoding) is the most common encoding for HTML documents on the internet, ensuring that pages can display diverse languages and symbols correctly.</li>
+            <li><strong>Text Documents & Emails:</strong> When you save a text file or send an email, the characters are stored and transmitted using a character set.</li>
+            <li><strong>Programming Languages:</strong> Modern programming languages (like Python, Java, JavaScript) use Unicode internally to handle strings, allowing developers to work with text from any language.</li>
+            <li><strong>Operating Systems:</strong> Your computer's OS uses character sets to display filenames, user interface text, and manage text input/output.</li>
+            <li><strong>Databases:</strong> Databases need to store text data from various sources, often in multiple languages. Unicode support is crucial here.</li>
+            <li><strong>Text Messaging (SMS/MMS):</strong> While older SMS had limitations, modern messaging apps heavily rely on Unicode to support emojis and international characters.</li>
+        </ul>
+        <p class="mt-3 text-yellow-700 italic">Essentially, any time a computer needs to store, process, or display textual information, character sets are involved!</p>
+    </section>
+
+    <!-- Myth Busters -->
+    <section id="myth-busters" class="task-container bg-red-50 border-red-200">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="task-title text-2xl text-red-700">Character Set Myth Busters!</h2>
+            <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer read-checkbox">
+                Mark as Read
+            </label>
+        </div>
+        <div class="space-y-3">
+            <div>
+                <p><strong class="text-red-600">Myth:</strong> ASCII is completely outdated and no longer used.</p>
+                <p><strong class="text-green-600">Buster:</strong> While Unicode (especially UTF-8) is dominant for general text, ASCII is still foundational. The first 128 characters of Unicode are identical to ASCII. This means UTF-8 is backward-compatible with ASCII for these characters. Also, some simple systems, embedded devices, or older protocols might still use plain ASCII or Extended ASCII for efficiency or legacy reasons.</p>
+            </div>
+            <div>
+                <p><strong class="text-red-600">Myth:</strong> All Unicode characters take up 16 bits (2 bytes) of storage.</p>
+                <p><strong class="text-green-600">Buster:</strong> Not necessarily! Unicode is a standard that assigns a unique number (code point) to each character. How that number is stored in bytes depends on the <strong class="keyword">Unicode encoding<span class="tooltip">Methods like UTF-8, UTF-16, and UTF-32 that define how Unicode code points are mapped to byte sequences.</span></strong> used.
+                    <ul class="list-disc list-inside ml-4 text-green-700">
+                        <li><strong>UTF-8</strong> is a variable-width encoding: ASCII characters use 1 byte, while other characters can use 2, 3, or 4 bytes. This is very efficient for documents that are mostly English/ASCII.</li>
+                        <li><strong>UTF-16</strong> typically uses 2 bytes for most common characters, but can use 4 bytes (a surrogate pair) for characters outside the Basic Multilingual Plane (BMP).</li>
+                        <li><strong>UTF-32</strong> uses a fixed 4 bytes for every character.</li>
+                    </ul>
+                </p>
+            </div>
+             <div>
+                <p><strong class="text-red-600">Myth:</strong> You need to install different fonts to see different languages.</p>
+                <p><strong class="text-green-600">Buster:</strong> While fonts are necessary to *display* characters, the ability to *represent* characters from different languages is the job of the character set (like Unicode). A font is a collection of graphical representations (glyphs) for characters. If your system has a font that includes the glyphs for the Unicode characters in a document, it can display them. If not, you might see placeholder boxes (like ☐) or question marks, even if the underlying Unicode data is correct. Modern operating systems come with fonts that cover a very wide range of Unicode characters.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Example Exam Questions -->
+    <section id="exam-questions" class="task-container">
+        <h2 class="task-title text-2xl">Exam-Style Questions</h2>
+        <div class="space-y-6">
+            <!-- Question 1 -->
+            <div class="exam-question-item">
+                <p class="font-semibold">1. Define the term 'character set'. (1 mark)</p>
+                <textarea id="exam-q1" class="w-full p-2 border border-gray-300 rounded-md mt-1" rows="2" placeholder="Your answer..."></textarea>
+                <button class="mark-scheme-button" data-question="exam-q1" data-marks="1">Show Mark Scheme</button>
+                <div id="mark-scheme-exam-q1" class="mark-scheme">
+                    <p><strong>Answer:</strong> A defined list of characters (1) recognised by computer hardware/software (and each character has a unique code). <br> <em>(Accept variations like: A set of symbols/letters/numbers that a computer can understand/represent.)</em></p>
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="exam-question-item">
+                <p class="font-semibold">2. Explain one reason why Unicode was introduced. (2 marks)</p>
+                <textarea id="exam-q2" class="w-full p-2 border border-gray-300 rounded-md mt-1" rows="3" placeholder="Your answer..."></textarea>
+                <button class="mark-scheme-button" data-question="exam-q2" data-marks="2">Show Mark Scheme</button>
+                <div id="mark-scheme-exam-q2" class="mark-scheme">
+                    <p><strong>Answer (any one of these for 2 marks, or similar points):</strong></p>
+                    <ul class="list-disc list-inside">
+                        <li>ASCII (or other older character sets) could not represent enough characters (1) for all world languages/symbols/emojis (1).</li>
+                        <li>To provide a universal standard (1) that could represent characters from (almost) all languages (1).</li>
+                        <li>To overcome the limitation of ASCII's small character capacity (1) which was insufficient for global communication/software (1).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="exam-question-item">
+                <p class="font-semibold">3. A computer uses 8-bit ASCII to store text. The ASCII code for 'C' is 67 and for 'a' is 97. Show the 8-bit binary representation for the word "Ca". (2 marks)</p>
+                <input type="text" id="exam-q3" class="w-full p-2 border border-gray-300 rounded-md mt-1 font-mono" placeholder="e.g., 01000001 01100010">
+                <button class="mark-scheme-button" data-question="exam-q3" data-marks="2">Show Mark Scheme</button>
+                <div id="mark-scheme-exam-q3" class="mark-scheme">
+                    <p><strong>Answer:</strong></p>
+                    <p>C (67) = <code class="font-mono">01000011</code> (1 mark)</p>
+                    <p>a (97) = <code class="font-mono">01100001</code> (1 mark)</p>
+                    <p>So, "Ca" = <code class="font-mono">0100001101100001</code> (or <code class="font-mono">01000011 01100001</code>)</p>
+                    <p><em>(Award marks for correct binary for each character. Deduct if not 8-bit per character if specified by question, but here it is.)</em></p>
+                </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="exam-question-item">
+                <p class="font-semibold">4. Compare ASCII and Unicode in terms of the number of characters they can represent and their suitability for representing text in different languages. (4 marks)</p>
+                <textarea id="exam-q4" class="w-full p-2 border border-gray-300 rounded-md mt-1" rows="4" placeholder="Your answer..."></textarea>
+                <button class="mark-scheme-button" data-question="exam-q4" data-marks="4">Show Mark Scheme</button>
+                <div id="mark-scheme-exam-q4" class="mark-scheme">
+                    <p><strong>Answer (award marks for points like these, up to 4):</strong></p>
+                    <ul class="list-disc list-inside">
+                        <li><strong>Number of Characters:</strong>
+                            <ul>
+                                <li>ASCII (8-bit) can represent 256 characters. (1 mark)</li>
+                                <li>Unicode can represent a vastly larger number of characters (e.g., over a million / 65,536 for 16-bit). (1 mark)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Suitability for Languages:</strong>
+                            <ul>
+                                <li>ASCII is suitable for English and some Western European languages but limited for others. (1 mark)</li>
+                                <li>Unicode is suitable for representing characters from (almost) all world languages, including complex scripts and emojis. (1 mark)</li>
+                            </ul>
+                        </li>
+                        <li><em>(Also accept: ASCII uses fewer bits per character (typically 1 byte) vs Unicode which can use more (e.g. 2 or 4 bytes, or variable with UTF-8). Unicode is a superset of ASCII.)</em></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Videos -->
+    <section id="related-videos" class="task-container">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="task-title text-2xl">Helpful Videos</h2>
+            <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer read-checkbox">
+                Mark as Read
+            </label>
+        </div>
+        <p class="mb-2">Watch these videos to reinforce your understanding:</p>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div class="video-placeholder bg-gray-200 p-4 rounded-md text-center">
+                <i class="fas fa-video text-4xl text-gray-400 mb-2"></i>
+                <p class="text-gray-600">Video 1: Introduction to Character Sets (Link Placeholder)</p>
+            </div>
+            <div class="video-placeholder bg-gray-200 p-4 rounded-md text-center">
+                <i class="fas fa-video text-4xl text-gray-400 mb-2"></i>
+                <p class="text-gray-600">Video 2: ASCII vs Unicode Explained (Link Placeholder)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Takeaways -->
+    <section id="key-takeaways" class="task-container bg-indigo-50 border-indigo-200">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="task-title text-2xl text-indigo-700">Lesson Summary: Key Takeaways</h2>
+            <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer read-checkbox">
+                Mark as Read
+            </label>
+        </div>
+        <ul class="list-disc list-inside text-indigo-600 space-y-1">
+            <li>A <strong>character set</strong> is a defined list of characters, each with a unique numerical code.</li>
+            <li><strong>ASCII</strong> (8-bit) can represent 256 characters, mainly for English and some Western languages. Each character is assigned a unique binary code.</li>
+            <li><strong>Unicode</strong> was created to represent characters from (virtually) all languages and symbols, including emojis. It can use more bits (e.g., 16 or 32, or variable with UTF-8) and is a superset of ASCII.</li>
+            <li>Computers store text by converting characters into their binary character codes based on the character set being used.</li>
+            <li>UTF-8 is a common Unicode encoding, especially on the web, due to its efficiency and ASCII compatibility.</li>
+        </ul>
+    </section>
+
+    <!-- What's Next? -->
+    <section id="whats-next" class="task-container">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="task-title text-2xl">Where to Next?</h2>
+            <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer read-checkbox">
+                Mark as Read
+            </label>
+        </div>
+        <p>Now that you understand how text is represented, you might want to explore:</p>
+        <ul class="list-disc list-inside text-gray-700 space-y-1">
+            <li>How images and sound are represented in binary.</li>
+            <li>Data compression techniques used to reduce file sizes.</li>
+            <li>Units of data storage (bits, bytes, kilobytes, etc.).</li>
+        </ul>
+    </section>
+
+    <!-- Extension Activities -->
+    <section id="extension-activities" class="task-container bg-green-50 border-green-200">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="task-title text-2xl text-green-700">Going Further: Extension Activities</h2>
+            <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">
+                <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 cursor-pointer read-checkbox">
+                Mark as Read
+            </label>
+        </div>
+        <ul class="list-disc list-inside text-green-600 space-y-2">
+            <li><strong>Research UTF-8:</strong> Investigate how UTF-8 encoding works. How does it manage to be variable-width? Why is it the most popular encoding on the web?</li>
+            <li><strong>Explore a Unicode Chart:</strong> Go to a website like <a href="https://unicode-table.com/" target="_blank" class="text-blue-600 hover:underline">unicode-table.com</a>. Find the Unicode block for a non-Latin script (e.g., Cyrillic, Arabic, Hiragana) or the emoji block. What are some interesting characters or symbols you find? Note their hexadecimal code points.</li>
+            <li><strong>Character Encoding Issues:</strong> Research "mojibake". What causes it, and how can it be prevented? Have you ever encountered it?</li>
+            <li><strong>Interactive Unicode Explorer:</strong> Experiment with character codes directly below!
+                <div class="mt-3 p-4 bg-white rounded-lg shadow border border-green-300">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="border-r border-green-200 pr-2">
+                            <label for="ext-char-input" class="block text-sm font-medium text-gray-700">Enter a Character:</label>
+                            <input type="text" id="ext-char-input" maxlength="1" class="mt-1 p-2 border border-gray-300 rounded-md w-full text-center">
+                            <div id="ext-codepoint-result" class="mt-2 text-sm text-green-700 min-h-[20px]"></div>
+                        </div>
+                        <div>
+                            <label for="ext-codepoint-input" class="block text-sm font-medium text-gray-700">Enter Decimal Code Point:</label>
+                            <input type="number" id="ext-codepoint-input" class="mt-1 p-2 border border-gray-300 rounded-md w-full text-center">
+                            <div id="ext-char-result" class="mt-2 text-sm text-green-700 min-h-[20px] flex items-center justify-center"></div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+    <!-- Footer with Score, Reset, and PDF Export -->
+    <footer class="mt-12 text-center no-print">
+        <div id="final-score-area" class="task-container bg-purple-100 border-purple-300 mb-6">
+            <h2 class="task-title text-2xl text-purple-700">Worksheet Score</h2>
+            <p id="final-score-display" class="text-3xl font-bold text-purple-800">Your score: 0 / 0</p>
+            <p id="final-score-feedback" class="text-purple-600"></p>
+        </div>
+        <button id="calculate-final-score" class="final-button">Calculate Final Score</button>
+        <button id="reset-all-tasks" class="reset-button">Reset All Tasks</button>
+        <button id="export-pdf" class="export-pdf-button">Export to PDF</button>
+    </footer>
+
+    </div> <!-- Closing Main Content Wrapper -->
+
+    
+    <script src="js/gcse-memstore-datastorage-charsets.js"></script>
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+</html>

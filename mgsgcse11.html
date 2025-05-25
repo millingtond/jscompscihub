@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Systems Architecture - GCSE CS - MGS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide-react@latest/dist/umd/lucide.js"></script>
+    
+    
+<link rel="stylesheet" href="css/style.css">
+</head>
+<nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <a href="home.html" class="text-xl font-bold hover:text-gray-300 transition-colors">MGS CS Hub</a>
+        <ul class="flex space-x-3 lg:space-x-4">
+        </ul>
+        <ul class="flex flex-wrap space-x-2 sm:space-x-3 lg:space-x-4 text-sm sm:text-base">
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 7</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 8</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 9</a></li>
+            <li><a href="gcse.html" class="hover:text-gray-300 transition-colors">GCSE</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">A Level</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Competitions</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">CS News</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Extracurricular</a></li>
+        </ul>
+    </div>
+</nav>
+
+\1
+
+
+
+    <div class="container mx-auto px-4 py-12">
+
+        <header class="mb-10">
+            <a href="gcse.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 group">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left w-5 h-5 mr-2 transition-transform duration-200 group-hover:-translate-x-1"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+                Back to GCSE Topics
+            </a>
+            <h1 class="text-3xl md:text-4xl font-bold text-indigo-700 text-center">Systems Architecture</h1>
+            <p class="text-center text-lg text-gray-600 mt-2">Component 01: Computer Systems</p>
+        </header>
+
+        <main class="bg-white p-6 md:p-8 rounded-lg shadow-md border border-gray-200">
+            <div class="content-area">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4 border-b pb-2">Overview</h2>
+                <p>
+                    This section covers the fundamental components of a computer system and how they interact. Understanding systems architecture is crucial for comprehending how software instructions are executed by hardware.
+                </p>
+
+                <h3>Key Concepts</h3>
+                <ul>
+                    <li>The purpose of the Central Processing Unit (CPU)</li>
+                    <li>Von Neumann architecture: MAR, MDR, Program Counter, Accumulator</li>
+                    <li>The function of the CPU components: ALU, CU, Cache</li>
+                    <li>The Fetch-Decode-Execute cycle</li>
+                    <li>Factors affecting CPU performance: clock speed, cores, cache size</li>
+                    <li>Embedded systems: purpose and examples</li>
+                </ul>
+
+                <h3>Resources</h3>
+                <p class="mb-6">
+                   Explore the subtopics below for more details and specific resources:
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+
+                    <a href="gcse-sysarch-arch.html" class="subtopic-card bg-blue-50 p-4 rounded-lg shadow-sm flex flex-col items-center text-center text-blue-800 hover:text-blue-900">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cpu text-blue-600 w-6 h-6"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M9 2v2"/><path d="M9 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M15 4h-2"/><path d="M15 20h-2"/><path d="M9 4H7"/><path d="M9 20H7"/></svg>
+                        </div>
+                        <h4 class="font-semibold text-md">1.1.1 Architecture of the CPU</h4>
+                    </a>
+
+                    <a href="gcse-sysarch-performance.html" class="subtopic-card bg-green-50 p-4 rounded-lg shadow-sm flex flex-col items-center text-center text-green-800 hover:text-green-900">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-gauge text-green-600 w-6 h-6"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg>
+                        </div>
+                        <h4 class="font-semibold text-md">1.1.2 CPU performance</h4>
+                    </a>
+
+                    <a href="gcse-sysarch-embedded.html" class="subtopic-card bg-purple-50 p-4 rounded-lg shadow-sm flex flex-col items-center text-center text-purple-800 hover:text-purple-900">
+                        <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-3">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hard-drive text-purple-600 w-6 h-6"><line x1="22" x2="2" y1="12" y2="12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/><line x1="6" x2="6.01" y1="16" y2="16"/><line x1="10" x2="10.01" y1="16" y2="16"/></svg>
+                        </div>
+                        <h4 class="font-semibold text-md">1.1.3 Embedded systems</h4>
+                    </a>
+
+                </div>
+
+                <h3>Revision Notes</h3>
+                <iframe src="https://capable-friday-d28.notion.site/ebd/1c96319465ae80f2847ccd8a54b04ef5" width="100%" height="600" frameborder="0" allowfullscreen />
+
+            </div>
+        </main>
+
+        <footer class="text-center mt-16 text-gray-500 text-sm">
+            <p>&copy; <span id="currentYear"></span> MGS. All rights reserved.</p>
+        </footer>
+
+    </div>
+
+    
+    <script src="js/mgsgcse11.js"></script>
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+</html>

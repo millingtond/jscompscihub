@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Time Calculator V3</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    
+<link rel="stylesheet" href="css/style.css">
+</head>
+<nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <a href="home.html" class="text-xl font-bold hover:text-gray-300 transition-colors">MGS CS Hub</a>
+        <ul class="flex space-x-3 lg:space-x-4">
+        </ul>
+        <ul class="flex flex-wrap space-x-2 sm:space-x-3 lg:space-x-4 text-sm sm:text-base">
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 7</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 8</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Year 9</a></li>
+            <li><a href="gcse.html" class="hover:text-gray-300 transition-colors">GCSE</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">A Level</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Competitions</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">CS News</a></li>
+            <li><a href="#" class="hover:text-gray-300 transition-colors">Extracurricular</a></li>
+        </ul>
+    </div>
+</nav>
+
+\1
+
+
+
+    <div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-lg shadow-xl">
+
+        <a href="gcse-memstore-compression.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 group">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left w-5 h-5 mr-2 transition-transform duration-200 group-hover:-translate-x-1"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+            Back to Lesson
+        </a>
+
+        <header class="mb-6 border-b pb-4">
+            <h1 class="text-2xl md:text-3xl font-bold text-indigo-700 mb-2"><i class="fas fa-calculator mr-2"></i>Enhanced Download Time Calculator</h1>
+        </header>
+
+        <section id="calculator-section" class="bg-indigo-50 p-5 rounded-lg border border-indigo-200">
+            <p class="text-gray-700 mb-4">
+                Calculate the approximate Internet download time for a file based on its size and different connection speeds. Results update automatically!
+            </p>
+            <p class="text-sm text-gray-600 mb-4">
+                <strong>Formula:</strong> Time (s) = (File Size in MB * 8) / Connection Speed (Mbps)
+            </p>
+            <p class="text-sm text-gray-600 mb-2">
+                <span class="unit-tooltip">MB<span class="tooltip-text">Megabyte: Unit of digital information storage (1 MB = 1024 KB).</span></span> vs
+                <span class="unit-tooltip">Mbps<span class="tooltip-text">Megabits per second: Unit of data transfer speed (1 Mbps = 1000 Kbps). Note the lowercase 'b' for bits.</span></span>
+            </p>
+
+             <div class="mb-4">
+                 <span class="text-sm font-medium text-gray-700 mr-2">Quick Examples:</span>
+                 <button class="example-button" data-size="4.4" data-unit="MB">MP3 Song (4.4 MB)</button>
+                 <button class="example-button" data-size="51.49" data-unit="MB">CD Quality Song (51 MB)</button>
+                 <button class="example-button" data-size="700" data-unit="MB">CD-ROM (700 MB)</button>
+                 <button class="example-button" data-size="5" data-unit="GB">HD Movie (5 GB)</button>
+                 <button class="example-button" data-size="50" data-unit="GB">Large Game (50 GB)</button>
+             </div>
+
+            <div class="mb-6 grid grid-cols-1 md:grid-cols-2 gap-4 items-end">
+                <div>
+                    <label for="file-size" class="block text-lg font-medium text-indigo-800 mb-2">Enter File Size:</label>
+                    <div class="flex items-center">
+                        <input type="number" id="file-size" name="file-size" step="any" class="w-full p-2" placeholder="e.g., 51.49">
+                        <select id="file-size-unit" name="file-size-unit" class="p-2">
+                            <option value="KB">KB</option>
+                            <option value="MB" selected>MB</option>
+                            <option value="GB">GB</option>
+                            <option value="TB">TB</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label for="custom-speed" class="block text-lg font-medium text-indigo-800 mb-2">Custom Speed (Optional):</label>
+                     <div class="flex items-center">
+                        <input type="number" id="custom-speed" name="custom-speed" step="any" class="w-full p-2" placeholder="e.g., 50">
+                        <select id="custom-speed-unit" name="custom-speed-unit" class="p-2">
+                            <option value="Kbps">Kbps</option>
+                            <option value="Mbps" selected>Mbps</option>
+                            <option value="Gbps">Gbps</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+             <div id="error-msg" class="error-message text-center mb-4"></div>
+
+            <div class="mb-6 text-center">
+                 <button id="reset-btn" class="calc-button reset-button">Reset Calculator</button>
+            </div>
+
+            <div>
+                <h3 class="text-lg font-semibold text-indigo-800 mb-4">Approximate Download Times:</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="output-container">
+                        <label class="block text-sm font-medium text-gray-700 mb-1 text-center"><i class="fas fa-wifi mr-1 text-blue-500"></i>Broadband (200 Mbps)</label>
+                        <div id="time-200mbps" class="output-box"><span>--</span></div>
+                        <div class="progress-bar-container"><div id="progress-200mbps" class="progress-bar-fill"></div></div>
+                    </div>
+                    <div class="output-container">
+                        <label class="block text-sm font-medium text-gray-700 mb-1 text-center"><i class="fas fa-signal mr-1 text-green-500"></i>4G Mobile (23 Mbps)</label>
+                        <div id="time-4g" class="output-box"><span>--</span></div>
+                        <div class="progress-bar-container"><div id="progress-4g" class="progress-bar-fill"></div></div>
+                    </div>
+                     <div class="output-container">
+                        <label class="block text-sm font-medium text-gray-700 mb-1 text-center"><i class="fas fa-tachometer-alt mr-1 text-purple-500"></i>Custom Speed</label>
+                        <div id="time-custom" class="output-box"><span>--</span></div>
+                        <div class="progress-bar-container"><div id="progress-custom" class="progress-bar-fill"></div></div>
+                    </div>
+                    <div class="output-container">
+                        <label class="block text-sm font-medium text-gray-700 mb-1 text-center"><i class="fas fa-phone-slash mr-1 text-red-500"></i>Dial-up (28.8 Kbps)</label>
+                        <div id="time-dialup" class="output-box"><span>--</span></div>
+                        <div class="progress-bar-container"><div id="progress-dialup" class="progress-bar-fill"></div></div>
+                    </div>
+                </div>
+                </div>
+
+             <p class="text-xs text-gray-500 mt-6 italic">
+                 *Note: These are theoretical calculations. Real-world download times can vary due to network congestion, server speed, Wi-Fi quality, data throttling, and other factors.
+             </p>
+        </section>
+
+    </div>
+
+    
+    <script src="js/gcse-memstore-compression-dlcalc.js"></script>
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+
+    <script src="js/worksheet-common.js"></script>
+</body>
+
+</html>
