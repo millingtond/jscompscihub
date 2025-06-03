@@ -1,0 +1,2076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trojan Horse Security Simulation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00ff88;
+            --danger: #ff3366;
+            --warning: #ffaa00;
+            --bg-dark: #0a0a0a;
+            --bg-medium: #1a1a1a;
+            --bg-light: #2a2a2a;
+            --text: #e0e0e0;
+            --text-dim: #888;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: var(--bg-dark);
+            color: var(--text);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 255, 136, 0.03) 2px,
+                    rgba(0, 255, 136, 0.03) 4px
+                );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 2px solid var(--primary);
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: var(--primary);
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+            animation: glitch 2s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 100% { text-shadow: 0 0 20px rgba(0, 255, 136, 0.5); }
+            50% { text-shadow: 2px 2px 10px rgba(255, 51, 102, 0.8); }
+        }
+
+        .subtitle {
+            color: var(--text-dim);
+            margin-top: 10px;
+            font-size: 1.2em;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 30px;
+            min-height: 600px;
+        }
+
+        .sidebar {
+            background: var(--bg-medium);
+            border: 1px solid var(--primary);
+            border-radius: 10px;
+            padding: 20px;
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+
+        .sidebar h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.2em;
+        }
+
+        .module-list {
+            list-style: none;
+        }
+
+        .module-list li {
+            padding: 12px;
+            margin: 8px 0;
+            background: var(--bg-light);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .module-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: var(--primary);
+            transform: scaleY(0);
+            transition: transform 0.3s;
+        }
+
+        .module-list li:hover {
+            background: rgba(0, 255, 136, 0.1);
+            transform: translateX(5px);
+        }
+
+        .module-list li.active {
+            background: rgba(0, 255, 136, 0.2);
+            color: var(--primary);
+        }
+
+        .module-list li.active::before {
+            transform: scaleY(1);
+        }
+
+        .module-list li.completed {
+            opacity: 0.7;
+        }
+
+        .module-list li.completed::after {
+            content: '✓';
+            position: absolute;
+            right: 10px;
+            color: var(--primary);
+        }
+
+        .content-area {
+            background: var(--bg-medium);
+            border: 1px solid var(--primary);
+            border-radius: 10px;
+            padding: 30px;
+            min-height: 600px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .module-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .module-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .stats-bar {
+            background: var(--bg-light);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2em;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .stat-label {
+            color: var(--text-dim);
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .simulation-area {
+            background: var(--bg-dark);
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+            padding: 30px;
+            margin: 20px 0;
+            position: relative;
+            min-height: 400px;
+        }
+
+        .fake-app {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            max-width: 400px;
+            margin: 0 auto;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fake-app:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.5);
+        }
+
+        .fake-app h3 {
+            font-size: 2em;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .fake-app p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+        }
+
+        .download-btn {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .warning-signs {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 170, 0, 0.1);
+            border: 1px solid var(--warning);
+            border-radius: 10px;
+        }
+
+        .warning-signs h4 {
+            color: var(--warning);
+            margin-bottom: 10px;
+        }
+
+        .warning-list {
+            list-style: none;
+            color: var(--text-dim);
+        }
+
+        .warning-list li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .warning-list li::before {
+            content: '⚠';
+            position: absolute;
+            left: 0;
+            color: var(--warning);
+        }
+
+        .payload-visualization {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .viz-section {
+            background: var(--bg-dark);
+            border: 1px solid var(--primary);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .viz-section h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .code-block {
+            background: #000;
+            border: 1px solid #333;
+            border-radius: 5px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+            color: #0f0;
+            margin: 10px 0;
+        }
+
+        .progress-bar {
+            background: var(--bg-dark);
+            border: 1px solid var(--primary);
+            border-radius: 20px;
+            height: 30px;
+            overflow: hidden;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, var(--primary), var(--danger));
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .activity-log {
+            background: #000;
+            border: 1px solid var(--primary);
+            border-radius: 10px;
+            padding: 20px;
+            height: 300px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            margin: 20px 0;
+        }
+
+        .log-entry {
+            padding: 5px 0;
+            border-bottom: 1px solid #222;
+            animation: logAppear 0.3s;
+        }
+
+        @keyframes logAppear {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .log-entry.danger {
+            color: var(--danger);
+        }
+
+        .log-entry.warning {
+            color: var(--warning);
+        }
+
+        .log-entry.success {
+            color: var(--primary);
+        }
+
+        .defense-panel {
+            background: var(--bg-light);
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .defense-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .defense-toggle {
+            background: var(--bg-dark);
+            border: 1px solid var(--text-dim);
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .defense-toggle.active {
+            border-color: var(--primary);
+            background: rgba(0, 255, 136, 0.1);
+        }
+
+        .defense-toggle h5 {
+            color: var(--text);
+            margin-bottom: 5px;
+        }
+
+        .defense-toggle p {
+            color: var(--text-dim);
+            font-size: 0.8em;
+        }
+
+        .toggle-switch {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 40px;
+            height: 20px;
+            background: var(--bg-medium);
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 16px;
+            height: 16px;
+            background: var(--text-dim);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .defense-toggle.active .toggle-switch {
+            background: var(--primary);
+        }
+
+        .defense-toggle.active .toggle-switch::after {
+            transform: translateX(20px);
+            background: var(--bg-dark);
+        }
+
+        .quiz-section {
+            background: var(--bg-light);
+            border: 1px solid var(--primary);
+            border-radius: 10px;
+            padding: 30px;
+            margin: 20px 0;
+        }
+
+        .quiz-question {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            background: var(--bg-dark);
+            border: 2px solid var(--text-dim);
+            border-radius: 5px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .quiz-option.correct {
+            border-color: var(--primary);
+            background: rgba(0, 255, 136, 0.1);
+        }
+
+        .quiz-option.incorrect {
+            border-color: var(--danger);
+            background: rgba(255, 51, 102, 0.1);
+        }
+
+        .phishing-email {
+            background: white;
+            color: #333;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .email-header {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .email-field {
+            display: flex;
+            margin: 5px 0;
+            font-size: 0.9em;
+        }
+
+        .email-field strong {
+            width: 80px;
+            color: #666;
+        }
+
+        .suspicious-element {
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .suspicious-element:hover {
+            background: rgba(255, 0, 0, 0.1);
+            color: var(--danger);
+        }
+
+        .tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-dark);
+            color: var(--text);
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 0.8em;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            z-index: 10;
+        }
+
+        .suspicious-element:hover .tooltip {
+            opacity: 1;
+        }
+
+        .network-monitor {
+            background: #000;
+            border: 1px solid var(--primary);
+            border-radius: 10px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            margin: 20px 0;
+        }
+
+        .packet {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px solid #222;
+            font-size: 0.9em;
+            animation: packetFlow 0.5s;
+        }
+
+        @keyframes packetFlow {
+            from { 
+                opacity: 0; 
+                transform: translateX(-50px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateX(0);
+            }
+        }
+
+        .packet.outgoing {
+            color: var(--danger);
+        }
+
+        .packet.blocked {
+            color: var(--warning);
+            text-decoration: line-through;
+        }
+
+        .achievements {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .achievement {
+            background: var(--bg-light);
+            border: 2px solid var(--text-dim);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            opacity: 0.5;
+            transition: all 0.3s;
+        }
+
+        .achievement.unlocked {
+            opacity: 1;
+            border-color: var(--primary);
+            background: rgba(0, 255, 136, 0.1);
+        }
+
+        .achievement-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .achievement-name {
+            font-size: 0.9em;
+            color: var(--text);
+        }
+
+        .control-buttons {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: var(--bg-dark);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 255, 136, 0.4);
+        }
+
+        .btn.danger {
+            background: var(--danger);
+        }
+
+        .btn.warning {
+            background: var(--warning);
+            color: var(--bg-dark);
+        }
+
+        .score-display {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--bg-medium);
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+            padding: 20px;
+            min-width: 200px;
+            z-index: 100;
+        }
+
+        .score-value {
+            font-size: 2em;
+            color: var(--primary);
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-medium);
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalAppear 0.3s;
+        }
+
+        @keyframes modalAppear {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 2em;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .close-modal:hover {
+            color: var(--danger);
+            transform: rotate(90deg);
+        }
+
+        .sound-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--bg-medium);
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 100;
+        }
+
+        .sound-toggle:hover {
+            transform: scale(1.1);
+            background: rgba(0, 255, 136, 0.1);
+        }
+
+        .sound-toggle.muted {
+            border-color: var(--text-dim);
+            opacity: 0.5;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+                margin-bottom: 20px;
+            }
+
+            .payload-visualization {
+                grid-template-columns: 1fr;
+            }
+
+            .score-display {
+                position: static;
+                margin: 20px 0;
+            }
+        }
+
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            animation: fadeOut 1s 2s forwards;
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                pointer-events: none;
+            }
+        }
+
+        .loading-content {
+            text-align: center;
+        }
+
+        .loading-spinner {
+            width: 100px;
+            height: 100px;
+            border: 3px solid var(--bg-medium);
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .matrix-column {
+            position: absolute;
+            top: -100%;
+            font-family: 'Courier New', monospace;
+            font-size: 20px;
+            color: var(--primary);
+            animation: matrixFall linear infinite;
+        }
+
+        @keyframes matrixFall {
+            to {
+                transform: translateY(200vh);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h2 style="color: var(--primary);">Initializing Security Simulation...</h2>
+        </div>
+    </div>
+
+    <div class="matrix-bg" id="matrixBg"></div>
+
+    <div class="container">
+        <header>
+            <h1>TROJAN HORSE SECURITY SIMULATION</h1>
+            <p class="subtitle">Interactive Cybersecurity Training Platform</p>
+        </header>
+
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-value" id="scoreValue">0</div>
+                <div class="stat-label">Security Score</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="threatsDetected">0</div>
+                <div class="stat-label">Threats Detected</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="modulesCompleted">0/12</div>
+                <div class="stat-label">Modules Completed</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="defenseLevel">0%</div>
+                <div class="stat-label">Defense Level</div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <aside class="sidebar">
+                <h3>TRAINING MODULES</h3>
+                <ul class="module-list" id="moduleList">
+                    <li data-module="introduction" class="active">Introduction</li>
+                    <li data-module="deception">Initial Deception</li>
+                    <li data-module="payload">Payload Analysis</li>
+                    <li data-module="activities">Trojan Activities</li>
+                    <li data-module="social">Social Engineering</li>
+                    <li data-module="vectors">Attack Vectors</li>
+                    <li data-module="defense">Defense Mechanisms</li>
+                    <li data-module="mobile">Mobile Threats</li>
+                    <li data-module="incident">Incident Response</li>
+                    <li data-module="recovery">System Recovery</li>
+                    <li data-module="prevention">Prevention Tips</li>
+                    <li data-module="final">Final Assessment</li>
+                </ul>
+            </aside>
+
+            <main class="content-area">
+                <!-- Introduction Module -->
+                <div class="module-content active" id="introduction">
+                    <h2>Welcome to Trojan Horse Security Training</h2>
+                    <p>This interactive simulation will teach you how trojan horses work and how to protect yourself from them.</p>
+                    
+                    <div class="simulation-area">
+                        <h3>What is a Trojan Horse?</h3>
+                        <p>A trojan horse is malicious software that disguises itself as legitimate software to trick users into installing it.</p>
+                        
+                        <div class="code-block">
+                            <pre>// Example of how a trojan might hide
+function legitimateFunction() {
+    console.log("Performing expected task...");
+    hiddenMaliciousFunction(); // Hidden call
+}
+
+function hiddenMaliciousFunction() {
+    // Steal data, install backdoor, etc.
+}</pre>
+                        </div>
+                        
+                        <div class="control-buttons">
+                            <button class="btn" onclick="nextModule()">Start Training</button>
+                        </div>
+                    </div>
+
+                    <div class="achievements">
+                        <div class="achievement unlocked">
+                            <div class="achievement-icon">🎯</div>
+                            <div class="achievement-name">First Steps</div>
+                        </div>
+                        <div class="achievement">
+                            <div class="achievement-icon">🛡️</div>
+                            <div class="achievement-name">Defender</div>
+                        </div>
+                        <div class="achievement">
+                            <div class="achievement-icon">🔍</div>
+                            <div class="achievement-name">Investigator</div>
+                        </div>
+                        <div class="achievement">
+                            <div class="achievement-icon">⚡</div>
+                            <div class="achievement-name">Quick Learner</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Deception Module -->
+                <div class="module-content" id="deception">
+                    <h2>Initial Deception Phase</h2>
+                    <p>Trojans disguise themselves as legitimate software. Can you spot the deception?</p>
+                    
+                    <div class="simulation-area">
+                        <div class="fake-app" onclick="simulateDownload()">
+                            <h3>🎮 Super Game Booster</h3>
+                            <p>Boost your gaming performance by 300%!</p>
+                            <p style="font-size: 0.8em;">★★★★★ 5.0 (2 reviews)</p>
+                            <button class="download-btn">DOWNLOAD FREE</button>
+                        </div>
+                        
+                        <div class="warning-signs">
+                            <h4>Red Flags to Watch For:</h4>
+                            <ul class="warning-list">
+                                <li>Too good to be true claims</li>
+                                <li>Very few or suspicious reviews</li>
+                                <li>Unknown publisher</li>
+                                <li>Requests excessive permissions</li>
+                                <li>Downloaded from unofficial sources</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="quiz-section">
+                        <h3 class="quiz-question">What makes this app suspicious?</h3>
+                        <div class="quiz-options">
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">It has a colorful design</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, true)">Claims unrealistic performance boost</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">It's free to download</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, true)">Only 2 reviews for a 5-star app</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payload Module -->
+                <div class="module-content" id="payload">
+                    <h2>Payload Delivery Visualization</h2>
+                    <p>See how malicious code is hidden inside seemingly legitimate programs.</p>
+                    
+                    <div class="payload-visualization">
+                        <div class="viz-section">
+                            <h4>What User Sees</h4>
+                            <div class="code-block">
+                                <pre>Installing: GameBooster.exe
+[████████████████] 100%
+Installation Complete!
+Launching application...</pre>
+                            </div>
+                        </div>
+                        
+                        <div class="viz-section">
+                            <h4>What Actually Happens</h4>
+                            <div class="code-block">
+                                <pre style="color: #ff3366;">Extracting: payload.dll
+Injecting: system32\svchost.exe
+Creating: HKLM\Software\Malware
+Opening backdoor: port 4444
+Stealing: passwords.db</pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="payloadProgress"></div>
+                    </div>
+                    
+                    <div class="activity-log" id="activityLog">
+                        <div class="log-entry success">[SYSTEM] Starting installation...</div>
+                    </div>
+                    
+                    <div class="control-buttons">
+                        <button class="btn" onclick="startPayloadSimulation()">Simulate Infection</button>
+                        <button class="btn danger" onclick="stopSimulation()">Stop Simulation</button>
+                    </div>
+                </div>
+
+                <!-- Activities Module -->
+                <div class="module-content" id="activities">
+                    <h2>Common Trojan Activities</h2>
+                    <p>Monitor what trojans do once they're installed on a system.</p>
+                    
+                    <div class="simulation-area">
+                        <h3>Live System Monitor</h3>
+                        <div class="network-monitor" id="networkMonitor">
+                            <div class="packet">
+                                <span>SYSTEM: Normal operation</span>
+                                <span>Status: OK</span>
+                            </div>
+                        </div>
+                        
+                        <div class="defense-panel">
+                            <h3>Active Defenses</h3>
+                            <div class="defense-controls">
+                                <div class="defense-toggle" onclick="toggleDefense(this, 'firewall')">
+                                    <h5>Firewall</h5>
+                                    <p>Block unauthorized connections</p>
+                                    <div class="toggle-switch"></div>
+                                </div>
+                                <div class="defense-toggle" onclick="toggleDefense(this, 'antivirus')">
+                                    <h5>Antivirus</h5>
+                                    <p>Scan for malicious files</p>
+                                    <div class="toggle-switch"></div>
+                                </div>
+                                <div class="defense-toggle" onclick="toggleDefense(this, 'behavior')">
+                                    <h5>Behavior Analysis</h5>
+                                    <p>Monitor suspicious activities</p>
+                                    <div class="toggle-switch"></div>
+                                </div>
+                                <div class="defense-toggle" onclick="toggleDefense(this, 'sandbox')">
+                                    <h5>Sandbox</h5>
+                                    <p>Isolate unknown programs</p>
+                                    <div class="toggle-switch"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="control-buttons">
+                        <button class="btn" onclick="simulateTrojanActivity()">Start Activity Monitor</button>
+                        <button class="btn warning" onclick="showActivityDetails()">View Details</button>
+                    </div>
+                </div>
+
+                <!-- Social Engineering Module -->
+                <div class="module-content" id="social">
+                    <h2>Social Engineering Tactics</h2>
+                    <p>Learn how attackers use psychology to spread trojans.</p>
+                    
+                    <div class="phishing-email">
+                        <div class="email-header">
+                            <div class="email-field">
+                                <strong>From:</strong>
+                                <span class="suspicious-element">security@amazom.com
+                                    <span class="tooltip">Suspicious domain - not amazon.com!</span>
+                                </span>
+                            </div>
+                            <div class="email-field">
+                                <strong>Subject:</strong>
+                                <span>URGENT: Your Account Will Be Closed!</span>
+                            </div>
+                        </div>
+                        <div class="email-body">
+                            <p>Dear Valued Customer,</p>
+                            <p>We detected <span class="suspicious-element">suspicious activity
+                                <span class="tooltip">Creating urgency - common tactic</span>
+                            </span> on your account. Click the link below to verify:</p>
+                            <p>
+                                <a href="#" class="suspicious-element" onclick="showPhishingWarning(event)">
+                                    https://amazom.com/verify-account
+                                    <span class="tooltip">Malicious link - check URL carefully!</span>
+                                </a>
+                            </p>
+                            <p>Act now or <span class="suspicious-element">lose access forever!
+                                <span class="tooltip">Threatening language - red flag!</span>
+                            </span></p>
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-section">
+                        <h3 class="quiz-question">How many red flags can you identify?</h3>
+                        <input type="number" id="flagCount" style="padding: 10px; margin: 10px 0;">
+                        <button class="btn" onclick="checkFlagCount()">Submit</button>
+                    </div>
+                </div>
+
+                <!-- Attack Vectors Module -->
+                <div class="module-content" id="vectors">
+                    <h2>Attack Vectors</h2>
+                    <p>Explore different ways trojans can infect systems.</p>
+                    
+                    <div class="simulation-area">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                            <div class="viz-section" onclick="showVectorDetails('email')">
+                                <h4>📧 Email Attachments</h4>
+                                <p>Malicious files disguised as documents</p>
+                                <div class="code-block">invoice.pdf.exe</div>
+                            </div>
+                            
+                            <div class="viz-section" onclick="showVectorDetails('download')">
+                                <h4>💾 Software Downloads</h4>
+                                <p>Infected software from untrusted sources</p>
+                                <div class="code-block">cracked_software.zip</div>
+                            </div>
+                            
+                            <div class="viz-section" onclick="showVectorDetails('usb')">
+                                <h4>🔌 USB Drives</h4>
+                                <p>AutoRun malware on removable media</p>
+                                <div class="code-block">autorun.inf</div>
+                            </div>
+                            
+                            <div class="viz-section" onclick="showVectorDetails('web')">
+                                <h4>🌐 Compromised Websites</h4>
+                                <p>Drive-by downloads from infected sites</p>
+                                <div class="code-block">exploit.js</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Defense Module -->
+                <div class="module-content" id="defense">
+                    <h2>Defense Mechanisms</h2>
+                    <p>Build your defensive strategy against trojans.</p>
+                    
+                    <div class="simulation-area">
+                        <h3>Security Dashboard</h3>
+                        <div class="defense-panel">
+                            <div class="stats-bar">
+                                <div class="stat-item">
+                                    <div class="stat-value" id="threatLevel">LOW</div>
+                                    <div class="stat-label">Threat Level</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value" id="blockedAttempts">0</div>
+                                    <div class="stat-label">Blocked Attempts</div>
+                                </div>
+                            </div>
+                            
+                            <div class="activity-log" id="defenseLog">
+                                <div class="log-entry success">[FIREWALL] Monitoring network traffic...</div>
+                                <div class="log-entry">[ANTIVIRUS] Real-time protection active</div>
+                            </div>
+                        </div>
+                        
+                        <div class="control-buttons">
+                            <button class="btn" onclick="runSecurityScan()">Run Security Scan</button>
+                            <button class="btn warning" onclick="updateDefinitions()">Update Definitions</button>
+                            <button class="btn danger" onclick="emergencyMode()">Emergency Mode</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Module -->
+                <div class="module-content" id="mobile">
+                    <h2>Mobile Device Threats</h2>
+                    <p>Understand trojans targeting smartphones and tablets.</p>
+                    
+                    <div class="simulation-area">
+                        <div style="max-width: 300px; margin: 0 auto; background: #333; border-radius: 30px; padding: 20px;">
+                            <div style="background: black; border-radius: 20px; padding: 20px; min-height: 500px;">
+                                <h4 style="text-align: center; color: white;">App Permissions</h4>
+                                <div style="margin: 20px 0;">
+                                    <p style="color: white; margin: 10px 0;">Flashlight App requests:</p>
+                                    <ul style="color: #ff3366; list-style: none;">
+                                        <li>📞 Phone Calls</li>
+                                        <li>📍 Location</li>
+                                        <li>📷 Camera</li>
+                                        <li>🎤 Microphone</li>
+                                        <li>📱 Contacts</li>
+                                        <li>💬 SMS</li>
+                                    </ul>
+                                </div>
+                                <button class="btn danger" style="width: 100%;" onclick="denyPermissions()">Deny</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="warning-signs">
+                        <h4>Mobile Security Tips:</h4>
+                        <ul class="warning-list">
+                            <li>Only install apps from official stores</li>
+                            <li>Check app permissions carefully</li>
+                            <li>Keep your OS updated</li>
+                            <li>Use mobile antivirus</li>
+                            <li>Avoid clicking links in SMS</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Incident Response Module -->
+                <div class="module-content" id="incident">
+                    <h2>Incident Response</h2>
+                    <p>Learn how to respond when a trojan is detected.</p>
+                    
+                    <div class="simulation-area">
+                        <h3>⚠️ SECURITY ALERT: Trojan Detected!</h3>
+                        
+                        <div class="quiz-section">
+                            <h3 class="quiz-question">What should you do first?</h3>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="checkIncidentResponse(this, 'disconnect')">
+                                    Disconnect from network
+                                </div>
+                                <div class="quiz-option" onclick="checkIncidentResponse(this, 'delete')">
+                                    Delete suspicious files
+                                </div>
+                                <div class="quiz-option" onclick="checkIncidentResponse(this, 'restart')">
+                                    Restart the computer
+                                </div>
+                                <div class="quiz-option" onclick="checkIncidentResponse(this, 'ignore')">
+                                    Ignore and continue working
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="incidentSteps" style="display: none; margin-top: 30px;">
+                            <h4>Correct Response Steps:</h4>
+                            <ol style="color: var(--primary); line-height: 2;">
+                                <li>Disconnect from all networks immediately</li>
+                                <li>Enter Safe Mode</li>
+                                <li>Run full antivirus scan</li>
+                                <li>Document all symptoms</li>
+                                <li>Check for data theft indicators</li>
+                                <li>Change all passwords from clean device</li>
+                                <li>Notify IT security team</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recovery Module -->
+                <div class="module-content" id="recovery">
+                    <h2>System Recovery</h2>
+                    <p>Steps to clean and recover an infected system.</p>
+                    
+                    <div class="simulation-area">
+                        <h3>Recovery Progress</h3>
+                        <div id="recoverySteps">
+                            <div class="recovery-step" onclick="performRecoveryStep(this, 1)">
+                                <h4>Step 1: Boot into Safe Mode</h4>
+                                <p>Prevents trojan from loading</p>
+                            </div>
+                            <div class="recovery-step" onclick="performRecoveryStep(this, 2)">
+                                <h4>Step 2: Run Antivirus Scan</h4>
+                                <p>Detect and remove malicious files</p>
+                            </div>
+                            <div class="recovery-step" onclick="performRecoveryStep(this, 3)">
+                                <h4>Step 3: Check System Files</h4>
+                                <p>Verify system integrity</p>
+                            </div>
+                            <div class="recovery-step" onclick="performRecoveryStep(this, 4)">
+                                <h4>Step 4: Restore from Backup</h4>
+                                <p>Recover clean files</p>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="recoveryProgress"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prevention Module -->
+                <div class="module-content" id="prevention">
+                    <h2>Prevention Best Practices</h2>
+                    <p>Learn how to prevent trojan infections.</p>
+                    
+                    <div class="simulation-area">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                            <div class="viz-section">
+                                <h4>🛡️ Software Security</h4>
+                                <ul style="list-style: none; color: var(--text-dim);">
+                                    <li>✓ Keep OS and software updated</li>
+                                    <li>✓ Use reputable antivirus</li>
+                                    <li>✓ Enable firewall</li>
+                                    <li>✓ Regular security scans</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="viz-section">
+                                <h4>👤 User Behavior</h4>
+                                <ul style="list-style: none; color: var(--text-dim);">
+                                    <li>✓ Verify email senders</li>
+                                    <li>✓ Avoid suspicious links</li>
+                                    <li>✓ Download from official sources</li>
+                                    <li>✓ Check file extensions</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="viz-section">
+                                <h4>🔐 Data Protection</h4>
+                                <ul style="list-style: none; color: var(--text-dim);">
+                                    <li>✓ Regular backups</li>
+                                    <li>✓ Use strong passwords</li>
+                                    <li>✓ Enable 2FA</li>
+                                    <li>✓ Encrypt sensitive data</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Final Assessment Module -->
+                <div class="module-content" id="final">
+                    <h2>Final Security Assessment</h2>
+                    <p>Test your knowledge with the final challenge!</p>
+                    
+                    <div class="simulation-area">
+                        <h3>Scenario-Based Challenge</h3>
+                        <p>You receive an email with an attachment. Analyze it for threats.</p>
+                        
+                        <div class="phishing-email">
+                            <div class="email-header">
+                                <div class="email-field">
+                                    <strong>From:</strong> HR@yourcompany.com
+                                </div>
+                                <div class="email-field">
+                                    <strong>Subject:</strong> Updated Employee Handbook
+                                </div>
+                            </div>
+                            <div class="email-body">
+                                <p>Please review the attached updated handbook.</p>
+                                <p>Attachment: <a href="#" onclick="analyzeFinalAttachment(event)">Employee_Handbook_2025.pdf.exe</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="control-buttons">
+                            <button class="btn" onclick="submitFinalAssessment()">Submit Assessment</button>
+                        </div>
+                    </div>
+                    
+                    <div id="certificateArea" style="display: none;">
+                        <div style="background: var(--bg-light); border: 3px solid var(--primary); border-radius: 20px; padding: 40px; text-align: center; margin: 30px 0;">
+                            <h2 style="color: var(--primary); margin-bottom: 20px;">🏆 Certificate of Completion</h2>
+                            <p style="font-size: 1.2em;">Congratulations! You have successfully completed the</p>
+                            <h3 style="color: var(--primary); margin: 20px 0;">Trojan Horse Security Training</h3>
+                            <p>Score: <span id="finalScore" style="color: var(--primary); font-size: 2em;">0</span></p>
+                            <button class="btn" onclick="window.print()">Print Certificate</button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div class="sound-toggle" onclick="toggleSound()" title="Toggle Sound">
+        <span id="soundIcon">🔊</span>
+    </div>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">&times;</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let score = 0;
+        let threatsDetected = 0;
+        let modulesCompleted = [];
+        let defenses = {
+            firewall: false,
+            antivirus: false,
+            behavior: false,
+            sandbox: false
+        };
+        let soundEnabled = true;
+        let currentModule = 'introduction';
+
+        // Sound effects (using Web Audio API)
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        
+        function playSound(type) {
+            if (!soundEnabled) return;
+            
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            switch(type) {
+                case 'success':
+                    oscillator.frequency.value = 800;
+                    gainNode.gain.value = 0.1;
+                    break;
+                case 'error':
+                    oscillator.frequency.value = 200;
+                    gainNode.gain.value = 0.1;
+                    break;
+                case 'click':
+                    oscillator.frequency.value = 600;
+                    gainNode.gain.value = 0.05;
+                    break;
+            }
+            
+            oscillator.start();
+            oscillator.stop(audioContext.currentTime + 0.1);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            setupMatrixBackground();
+            setupModuleNavigation();
+            updateStats();
+            
+            // Remove loading screen after delay
+            setTimeout(() => {
+                document.querySelector('.loading-screen').style.display = 'none';
+            }, 2000);
+        });
+
+        // Matrix background effect
+        function setupMatrixBackground() {
+            const matrixBg = document.getElementById('matrixBg');
+            const characters = '01';
+            
+            for (let i = 0; i < 20; i++) {
+                const column = document.createElement('div');
+                column.className = 'matrix-column';
+                column.style.left = Math.random() * 100 + '%';
+                column.style.animationDuration = (Math.random() * 10 + 5) + 's';
+                column.style.animationDelay = Math.random() * 5 + 's';
+                
+                let text = '';
+                for (let j = 0; j < 30; j++) {
+                    text += characters[Math.floor(Math.random() * characters.length)] + '<br>';
+                }
+                column.innerHTML = text;
+                
+                matrixBg.appendChild(column);
+            }
+        }
+
+        // Module navigation
+        function setupModuleNavigation() {
+            const moduleItems = document.querySelectorAll('.module-list li');
+            moduleItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    playSound('click');
+                    const moduleName = this.dataset.module;
+                    showModule(moduleName);
+                });
+            });
+        }
+
+        function showModule(moduleName) {
+            // Update active states
+            document.querySelectorAll('.module-list li').forEach(li => li.classList.remove('active'));
+            document.querySelector(`[data-module="${moduleName}"]`).classList.add('active');
+            
+            // Show content
+            document.querySelectorAll('.module-content').forEach(content => content.classList.remove('active'));
+            document.getElementById(moduleName).classList.add('active');
+            
+            currentModule = moduleName;
+            
+            // Mark as completed if not already
+            if (!modulesCompleted.includes(moduleName) && moduleName !== 'introduction') {
+                modulesCompleted.push(moduleName);
+                document.querySelector(`[data-module="${moduleName}"]`).classList.add('completed');
+                updateStats();
+                updateScore(50);
+            }
+        }
+
+        function nextModule() {
+            const modules = Array.from(document.querySelectorAll('.module-list li'));
+            const currentIndex = modules.findIndex(m => m.dataset.module === currentModule);
+            if (currentIndex < modules.length - 1) {
+                showModule(modules[currentIndex + 1].dataset.module);
+            }
+        }
+
+        // Update statistics
+        function updateStats() {
+            document.getElementById('scoreValue').textContent = score;
+            document.getElementById('threatsDetected').textContent = threatsDetected;
+            document.getElementById('modulesCompleted').textContent = `${modulesCompleted.length}/12`;
+            
+            const defenseLevel = Object.values(defenses).filter(d => d).length * 25;
+            document.getElementById('defenseLevel').textContent = defenseLevel + '%';
+        }
+
+        function updateScore(points) {
+            score += points;
+            updateStats();
+            playSound('success');
+            
+            // Show score animation
+            const scoreDisplay = document.getElementById('scoreValue');
+            scoreDisplay.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                scoreDisplay.style.transform = 'scale(1)';
+            }, 300);
+        }
+
+        // Deception module functions
+        function simulateDownload() {
+            playSound('error');
+            addLog('activityLog', 'User clicked on suspicious download!', 'danger');
+            
+            const modal = document.getElementById('modal');
+            const modalBody = document.getElementById('modalBody');
+            modalBody.innerHTML = `
+                <h2 style="color: var(--danger);">⚠️ Security Warning!</h2>
+                <p>You just clicked on a potentially malicious download!</p>
+                <p>In a real scenario, this could have infected your system.</p>
+                <h3>What to look for:</h3>
+                <ul>
+                    <li>Unrealistic claims (300% performance boost)</li>
+                    <li>Very few reviews for a "popular" app</li>
+                    <li>Unknown publisher</li>
+                    <li>Suspicious download sources</li>
+                </ul>
+                <button class="btn" onclick="closeModal()">I Understand</button>
+            `;
+            modal.classList.add('active');
+            
+            threatsDetected++;
+            updateStats();
+        }
+
+        function checkAnswer(element, isCorrect) {
+            const options = element.parentElement.querySelectorAll('.quiz-option');
+            options.forEach(opt => {
+                opt.onclick = null;
+                opt.style.cursor = 'default';
+            });
+            
+            if (isCorrect) {
+                element.classList.add('correct');
+                updateScore(100);
+                playSound('success');
+            } else {
+                element.classList.add('incorrect');
+                playSound('error');
+            }
+        }
+
+        // Payload module functions
+        function startPayloadSimulation() {
+            const progress = document.getElementById('payloadProgress');
+            const log = document.getElementById('activityLog');
+            
+            // Clear log
+            log.innerHTML = '';
+            
+            // Simulation sequence
+            const steps = [
+                { text: '[SYSTEM] Starting installation...', type: 'success', progress: 10 },
+                { text: '[INSTALLER] Extracting files...', type: '', progress: 20 },
+                { text: '[HIDDEN] payload.dll extracted', type: 'danger', progress: 30 },
+                { text: '[HIDDEN] Injecting into svchost.exe', type: 'danger', progress: 40 },
+                { text: '[INSTALLER] Creating shortcuts...', type: '', progress: 50 },
+                { text: '[HIDDEN] Registry keys modified', type: 'danger', progress: 60 },
+                { text: '[HIDDEN] Opening backdoor port 4444', type: 'danger', progress: 70 },
+                { text: '[INSTALLER] Finalizing installation...', type: '', progress: 80 },
+                { text: '[HIDDEN] Stealing browser passwords', type: 'danger', progress: 90 },
+                { text: '[SYSTEM] Installation complete!', type: 'success', progress: 100 }
+            ];
+            
+            let stepIndex = 0;
+            const interval = setInterval(() => {
+                if (stepIndex < steps.length) {
+                    const step = steps[stepIndex];
+                    addLog('activityLog', step.text, step.type);
+                    progress.style.width = step.progress + '%';
+                    stepIndex++;
+                } else {
+                    clearInterval(interval);
+                    updateScore(150);
+                }
+            }, 1000);
+        }
+
+        function stopSimulation() {
+            location.reload(); // Simple reset
+        }
+
+        function addLog(logId, text, type = '') {
+            const log = document.getElementById(logId);
+            const entry = document.createElement('div');
+            entry.className = 'log-entry' + (type ? ' ' + type : '');
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${text}`;
+            log.appendChild(entry);
+            log.scrollTop = log.scrollHeight;
+        }
+
+        // Defense functions
+        function toggleDefense(element, defenseType) {
+            defenses[defenseType] = !defenses[defenseType];
+            element.classList.toggle('active');
+            updateStats();
+            playSound('click');
+            
+            if (defenses[defenseType]) {
+                addLog('defenseLog', `[DEFENSE] ${defenseType.toUpperCase()} activated`, 'success');
+            } else {
+                addLog('defenseLog', `[DEFENSE] ${defenseType.toUpperCase()} deactivated`, 'warning');
+            }
+        }
+
+        // Activity monitoring
+        function simulateTrojanActivity() {
+            const monitor = document.getElementById('networkMonitor');
+            monitor.innerHTML = '';
+            
+            const activities = [
+                { text: 'Connecting to C&C server...', type: 'outgoing' },
+                { text: 'Uploading passwords.db', type: 'outgoing' },
+                { text: 'Downloading additional payload', type: 'incoming' },
+                { text: 'Scanning for cryptocurrency wallets', type: 'system' },
+                { text: 'Keylogger activated', type: 'danger' }
+            ];
+            
+            let actIndex = 0;
+            const interval = setInterval(() => {
+                if (actIndex < activities.length) {
+                    const activity = activities[actIndex];
+                    const packet = document.createElement('div');
+                    packet.className = 'packet ' + activity.type;
+                    
+                    // Check if blocked by defenses
+                    if ((activity.type === 'outgoing' && defenses.firewall) ||
+                        (activity.type === 'danger' && defenses.antivirus)) {
+                        packet.classList.add('blocked');
+                        packet.innerHTML = `<span>${activity.text}</span><span>BLOCKED</span>`;
+                        playSound('success');
+                        updateScore(25);
+                    } else {
+                        packet.innerHTML = `<span>${activity.text}</span><span>ACTIVE</span>`;
+                        playSound('error');
+                    }
+                    
+                    monitor.appendChild(packet);
+                    actIndex++;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 1500);
+        }
+
+        // Social engineering functions
+        function showPhishingWarning(event) {
+            event.preventDefault();
+            playSound('error');
+            alert('Warning: This would have taken you to a malicious site!');
+            updateScore(50);
+        }
+
+        function checkFlagCount() {
+            const count = parseInt(document.getElementById('flagCount').value);
+            if (count === 4) {
+                updateScore(200);
+                showModal('Correct! You identified all 4 red flags:\n1. Misspelled domain (amazom.com)\n2. Urgency tactics\n3. Threatening language\n4. Suspicious link');
+            } else {
+                showModal(`Not quite. There are 4 red flags in this email. You found ${count}. Try again!`);
+            }
+        }
+
+        // Attack vector functions
+        function showVectorDetails(vectorType) {
+            const details = {
+                email: {
+                    title: 'Email Attachment Attacks',
+                    content: `
+                        <h3>How Email Trojans Work:</h3>
+                        <ul>
+                            <li>Disguised as legitimate documents (invoices, resumes, reports)</li>
+                            <li>Use double extensions (document.pdf.exe)</li>
+                            <li>Exploit user trust in known contacts</li>
+                            <li>Often use social engineering in subject/body</li>
+                        </ul>
+                        <h4>Protection:</h4>
+                        <ul>
+                            <li>Never open unexpected attachments</li>
+                            <li>Verify sender through separate channel</li>
+                            <li>Check file extensions carefully</li>
+                            <li>Use email scanning tools</li>
+                        </ul>
+                    `
+                },
+                download: {
+                    title: 'Software Download Trojans',
+                    content: `
+                        <h3>Common Sources:</h3>
+                        <ul>
+                            <li>Cracked/pirated software</li>
+                            <li>Fake software update sites</li>
+                            <li>Bundled with free software</li>
+                            <li>Torrent and P2P networks</li>
+                        </ul>
+                        <h4>Red Flags:</h4>
+                        <ul>
+                            <li>Too good to be true offers</li>
+                            <li>Requires disabling antivirus</li>
+                            <li>Unknown publishers</li>
+                            <li>Modified file sizes</li>
+                        </ul>
+                    `
+                },
+                usb: {
+                    title: 'USB/Removable Media Attacks',
+                    content: `
+                        <h3>USB Attack Methods:</h3>
+                        <ul>
+                            <li>AutoRun exploitation</li>
+                            <li>Disguised file icons</li>
+                            <li>Malicious shortcuts</li>
+                            <li>Firmware-level attacks</li>
+                        </ul>
+                        <h4>Prevention:</h4>
+                        <ul>
+                            <li>Disable AutoRun/AutoPlay</li>
+                            <li>Scan all USB devices</li>
+                            <li>Use USB security tools</li>
+                            <li>Never use found USB drives</li>
+                        </ul>
+                    `
+                },
+                web: {
+                    title: 'Web-Based Trojans',
+                    content: `
+                        <h3>Web Infection Methods:</h3>
+                        <ul>
+                            <li>Drive-by downloads</li>
+                            <li>Malicious ads (malvertising)</li>
+                            <li>Compromised legitimate sites</li>
+                            <li>Exploit kits</li>
+                        </ul>
+                        <h4>Safety Measures:</h4>
+                        <ul>
+                            <li>Keep browser updated</li>
+                            <li>Use ad blockers</li>
+                            <li>Avoid suspicious sites</li>
+                            <li>Enable click-to-play for plugins</li>
+                        </ul>
+                    `
+                }
+            };
+            
+            const detail = details[vectorType];
+            showModal(`<h2>${detail.title}</h2>${detail.content}`);
+            playSound('click');
+        }
+
+        // Defense simulation functions
+        function runSecurityScan() {
+            const defenseLog = document.getElementById('defenseLog');
+            defenseLog.innerHTML = '';
+            
+            const scanSteps = [
+                '[SCAN] Initializing security scan...',
+                '[SCAN] Checking running processes...',
+                '[SCAN] Found suspicious process: svchost.exe (PID: 4444)',
+                '[SCAN] Analyzing network connections...',
+                '[SCAN] Detected outbound connection to 192.168.1.100:4444',
+                '[SCAN] Scanning registry...',
+                '[SCAN] Found malicious registry entry',
+                '[SCAN] Threat detected: Trojan.Generic',
+                '[SCAN] Quarantining infected files...',
+                '[SCAN] Scan complete. 1 threat removed.'
+            ];
+            
+            let stepIndex = 0;
+            const interval = setInterval(() => {
+                if (stepIndex < scanSteps.length) {
+                    addLog('defenseLog', scanSteps[stepIndex], 
+                           stepIndex === 7 ? 'danger' : 
+                           stepIndex === 9 ? 'success' : '');
+                    stepIndex++;
+                } else {
+                    clearInterval(interval);
+                    updateScore(100);
+                    document.getElementById('threatLevel').textContent = 'SECURE';
+                    document.getElementById('blockedAttempts').textContent = '1';
+                }
+            }, 800);
+        }
+
+        function updateDefinitions() {
+            addLog('defenseLog', '[UPDATE] Downloading latest definitions...', 'warning');
+            setTimeout(() => {
+                addLog('defenseLog', '[UPDATE] Definitions updated successfully', 'success');
+                updateScore(50);
+            }, 2000);
+        }
+
+        function emergencyMode() {
+            document.body.style.background = '#330000';
+            addLog('defenseLog', '[EMERGENCY] All network connections blocked!', 'danger');
+            addLog('defenseLog', '[EMERGENCY] System isolated from network', 'danger');
+            
+            Object.keys(defenses).forEach(key => {
+                defenses[key] = true;
+                document.querySelector(`[onclick*="${key}"]`).classList.add('active');
+            });
+            
+            updateStats();
+            updateScore(75);
+        }
+
+        // Mobile module functions
+        function denyPermissions() {
+            showModal(`
+                <h2 style="color: var(--primary);">Excellent Decision!</h2>
+                <p>You correctly identified that a flashlight app doesn't need:</p>
+                <ul>
+                    <li>Phone call access</li>
+                    <li>Location data</li>
+                    <li>Camera access (beyond flashlight)</li>
+                    <li>Microphone access</li>
+                    <li>Contacts access</li>
+                    <li>SMS access</li>
+                </ul>
+                <p>Always question excessive permissions!</p>
+            `);
+            updateScore(150);
+        }
+
+        // Incident response functions
+        function checkIncidentResponse(element, action) {
+            const correct = action === 'disconnect';
+            checkAnswer(element, correct);
+            
+            if (correct) {
+                document.getElementById('incidentSteps').style.display = 'block';
+                showModal('Correct! Disconnecting from the network prevents the trojan from communicating with its command server and stops data theft.');
+            } else {
+                const feedback = {
+                    'delete': 'Deleting files might remove evidence needed for investigation.',
+                    'restart': 'Restarting might allow the trojan to establish persistence.',
+                    'ignore': 'Ignoring the threat allows it to continue its malicious activities!'
+                };
+                showModal(`Incorrect. ${feedback[action]}`);
+            }
+        }
+
+        // Recovery functions
+        function performRecoveryStep(element, step) {
+            element.style.background = 'rgba(0, 255, 136, 0.2)';
+            element.style.borderColor = 'var(--primary)';
+            
+            const progress = document.getElementById('recoveryProgress');
+            progress.style.width = (step * 25) + '%';
+            
+            updateScore(50);
+            
+            if (step === 4) {
+                showModal('System recovery complete! Your system is now clean and secure.');
+            }
+        }
+
+        // Final assessment functions
+        function analyzeFinalAttachment(event) {
+            event.preventDefault();
+            showModal(`
+                <h2 style="color: var(--danger);">Threat Detected!</h2>
+                <p>You correctly identified a malicious file!</p>
+                <h3>Red Flags:</h3>
+                <ul>
+                    <li>Double extension: .pdf.exe</li>
+                    <li>Executable file disguised as document</li>
+                    <li>Even from "trusted" sender, verify suspicious attachments</li>
+                </ul>
+                <p>In a real scenario, this file would have infected your system.</p>
+            `);
+            updateScore(300);
+            threatsDetected++;
+            updateStats();
+        }
+
+        function submitFinalAssessment() {
+            document.getElementById('certificateArea').style.display = 'block';
+            document.getElementById('finalScore').textContent = score;
+            
+            // Unlock final achievement
+            const achievements = document.querySelectorAll('.achievement');
+            achievements.forEach(ach => ach.classList.add('unlocked'));
+            
+            playSound('success');
+        }
+
+        // Modal functions
+        function showModal(content) {
+            const modal = document.getElementById('modal');
+            const modalBody = document.getElementById('modalBody');
+            modalBody.innerHTML = content;
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+            playSound('click');
+        }
+
+        // Sound toggle
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            const soundToggle = document.querySelector('.sound-toggle');
+            const soundIcon = document.getElementById('soundIcon');
+            
+            if (soundEnabled) {
+                soundToggle.classList.remove('muted');
+                soundIcon.textContent = '🔊';
+            } else {
+                soundToggle.classList.add('muted');
+                soundIcon.textContent = '🔇';
+            }
+            
+            playSound('click');
+        }
+
+        // Show activity details
+        function showActivityDetails() {
+            showModal(`
+                <h2>Trojan Activities Explained</h2>
+                <h3>Common Malicious Activities:</h3>
+                <ul>
+                    <li><strong>Data Theft:</strong> Stealing passwords, credit cards, personal files</li>
+                    <li><strong>Keylogging:</strong> Recording everything you type</li>
+                    <li><strong>Screen Capture:</strong> Taking screenshots of your activities</li>
+                    <li><strong>Backdoor Access:</strong> Allowing remote control of your system</li>
+                    <li><strong>Cryptocurrency Mining:</strong> Using your CPU for mining</li>
+                    <li><strong>Botnet Participation:</strong> Using your PC for attacks</li>
+                    <li><strong>Ransomware Deployment:</strong> Encrypting files for ransom</li>
+                </ul>
+                <p>Enable all defenses to block these activities!</p>
+            `);
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            } else if (e.key === 'ArrowRight') {
+                nextModule();
+            } else if (e.key === 'm' || e.key === 'M') {
+                toggleSound();
+            }
+        });
+
+        // Auto-save progress (in real app, this would save to backend)
+        setInterval(() => {
+            localStorage.setItem('trojanSimProgress', JSON.stringify({
+                score: score,
+                modulesCompleted: modulesCompleted,
+                defenses: defenses
+            }));
+        }, 5000);
+
+        // Load saved progress
+        window.addEventListener('load', function() {
+            const saved = localStorage.getItem('trojanSimProgress');
+            if (saved) {
+                const data = JSON.parse(saved);
+                score = data.score || 0;
+                modulesCompleted = data.modulesCompleted || [];
+                defenses = data.defenses || defenses;
+                
+                // Update UI
+                updateStats();
+                modulesCompleted.forEach(module => {
+                    document.querySelector(`[data-module="${module}"]`).classList.add('completed');
+                });
+            }
+        });
+
+        // Easter egg: Konami code
+        let konamiCode = [];
+        const konamiPattern = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        
+        document.addEventListener('keydown', function(e) {
+            konamiCode.push(e.key);
+            konamiCode = konamiCode.slice(-10);
+            
+            if (JSON.stringify(konamiCode) === JSON.stringify(konamiPattern)) {
+                score += 1000;
+                updateStats();
+                showModal('<h2>🎮 Konami Code Activated!</h2><p>+1000 Security Points!</p>');
+                konamiCode = [];
+            }
+        });
+
+        // Add some visual polish
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('mouseenter', () => playSound('click'));
+        });
+
+        // Performance optimization: Throttle scroll events
+        let scrollTimeout;
+        window.addEventListener('scroll', function() {
+            if (scrollTimeout) {
+                window.cancelAnimationFrame(scrollTimeout);
+            }
+            scrollTimeout = window.requestAnimationFrame(function() {
+                // Update any scroll-based animations here
+            });
+        });
+    </script>
+</body>
+</html>
