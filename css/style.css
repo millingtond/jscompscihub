@@ -521,6 +521,236 @@ body.gcse-algo-searchsort { background-color: #f3f4f6; }
 }
 .cooling-visual.overloaded { background-color: #fca5a5; color: #991b1b; animation: pulseRed 1s infinite; }
 @keyframes pulseRed { 0%, 100% { background-color: #fca5a5; } 50% { background-color: #ef4444; } }
+
+/* General Transitions for Interactivity */
+.option-button, .check-button, .reset-button, .mark-scheme-button, .export-pdf-button, .reveal-guidance-button, #reveal-starter-answers-btn {
+    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, color 0.3s ease-in-out, transform 0.1s ease-in-out;
+}
+
+.option-button:hover, .check-button:hover, .reset-button:hover, .mark-scheme-button:hover, .export-pdf-button:hover, .reveal-guidance-button:hover, #reveal-starter-answers-btn:hover {
+    filter: brightness(90%);
+}
+.option-button:active, .check-button:active, .reset-button:active, .mark-scheme-button:active, .export-pdf-button:active, .reveal-guidance-button:active, #reveal-starter-answers-btn:active {
+    transform: translateY(1px);
+}
+
+/* Styles for revealable content transitions */
+.feedback-area, .mark-scheme, #solutions-guidance, .extension-guidance {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out, margin-top 0.5s ease-in-out, padding-top 0.5s ease-in-out, padding-bottom 0.5s ease-in-out;
+    margin-top: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    box-sizing: border-box; /* Important for smooth height transition with padding */
+}
+
+.feedback-area.show, .mark-scheme.show, #solutions-guidance.show, .extension-guidance.show {
+    max-height: 1500px; /* Adjust as needed, large enough for typical content */
+    opacity: 1;
+    margin-top: 1rem; /* Default Tailwind: mt-4 */
+    padding-top: 1.25rem; /* Default Tailwind: p-5 */
+    padding-bottom: 1.25rem; /* Default Tailwind: p-5 */
+}
+/* Ensure specific padding for these elements if they are part of other components */
+#starter-answers-feedback.show, #impact-matching-feedback.show, #ewaste-lifecycle-feedback.show, #task3-feedback.show, #solutions-guidance.show {
+    padding-left: 1.25rem; /* Default Tailwind: p-5 */
+    padding-right: 1.25rem; /* Default Tailwind: p-5 */
+}
+.mark-scheme.show, .extension-guidance.show {
+     padding-left: 1.25rem; 
+     padding-right: 1.25rem;
+}
+
+
+/* Task 1 Matching Hint Styles */
+.matching-item.correct-hint {
+    background-color: #e0f2fe !important; /* Tailwind sky-100 */
+    border-color: #7dd3fc !important; /* Tailwind sky-300 */
+    color: #0c4a6e !important; /* Tailwind sky-800 */
+}
+.hint-feedback {
+    color: #0369a1; /* Tailwind sky-700 */
+    background-color: #f0f9ff; /* Tailwind sky-50 */
+    border: 1px solid #bae6fd; /* Tailwind sky-200 */
+    padding: 0.75rem;
+    border-radius: 0.375rem; /* Tailwind rounded-md */
+}
+
+/* Keyword Tooltip (if not already styled well) */
+.keyword {
+    position: relative;
+    text-decoration: underline dotted;
+    cursor: help;
+}
+.keyword .tooltip {
+    visibility: hidden;
+    width: 220px;
+    background-color: #374151; /* Tailwind gray-700 */
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px;
+    position: absolute;
+    z-index: 10;
+    bottom: 125%; /* Position above the keyword */
+    left: 50%;
+    margin-left: -110px; /* Use half of the width to center */
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.875rem; /* Tailwind text-sm */
+    line-height: 1.25rem;
+}
+.keyword:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+.keyword .tooltip::after { /* Tooltip arrow */
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #374151 transparent transparent transparent;
+}
+
+/* For PDF export, to hide elements like buttons if needed */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+}
+.no-print-pdf { /* Class to specifically hide elements during html2pdf generation */
+    display: none !important;
+}
+
+/* Ensure consistent styling for list items if needed */
+.task-container ul li {
+    margin-bottom: 0.25rem; /* Tailwind mb-1 */
+}
+
+/* General Transitions for Interactivity */
+.option-button, .check-button, .reset-button, .mark-scheme-button, .export-pdf-button, .reveal-guidance-button, #reveal-starter-answers-btn, #visualize-ewaste-btn, #calculate-eco-score-btn, #run-inefficient-code, #run-efficient-code, .check-button-alt {
+    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, color 0.3s ease-in-out, transform 0.1s ease-in-out, filter 0.3s ease-in-out;
+}
+
+.option-button:hover, .check-button:hover, .reset-button:hover, .mark-scheme-button:hover, .export-pdf-button:hover, .reveal-guidance-button:hover, #reveal-starter-answers-btn:hover, #visualize-ewaste-btn:hover, #calculate-eco-score-btn:hover, #run-inefficient-code:hover, #run-efficient-code:hover, .check-button-alt:hover {
+    filter: brightness(90%);
+}
+.option-button:active, .check-button:active, .reset-button:active, .mark-scheme-button:active, .export-pdf-button:active, .reveal-guidance-button:active, #reveal-starter-answers-btn:active, #visualize-ewaste-btn:active, #calculate-eco-score-btn:active, #run-inefficient-code:active, #run-efficient-code:active, .check-button-alt:active {
+    transform: translateY(1px);
+}
+
+/* Styles for revealable content transitions */
+.feedback-area, .mark-scheme, #solutions-guidance, .extension-guidance, #eco-score-results {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out, margin-top 0.5s ease-in-out, padding-top 0.5s ease-in-out, padding-bottom 0.5s ease-in-out;
+    margin-top: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    box-sizing: border-box; 
+}
+
+.feedback-area.show, .mark-scheme.show, #solutions-guidance.show, .extension-guidance.show, #eco-score-results.show {
+    max-height: 1500px; 
+    opacity: 1;
+    margin-top: 1rem; 
+    padding-top: 1.25rem; 
+    padding-bottom: 1.25rem; 
+}
+#starter-answers-feedback.show, #impact-matching-feedback.show, #ewaste-lifecycle-feedback.show, #task3-feedback.show, #solutions-guidance.show {
+    padding-left: 1.25rem; 
+    padding-right: 1.25rem; 
+}
+.mark-scheme.show, .extension-guidance.show {
+     padding-left: 1.25rem; 
+     padding-right: 1.25rem;
+}
+/* Ensure starter answers feedback if always shown has padding */
+#starter-answers-feedback {
+    padding: 1.25rem; /* Tailwind p-5 */
+}
+
+
+/* Task 1 Matching Hint Styles */
+.matching-item.correct-hint {
+    background-color: #e0f2fe !important; /* Tailwind sky-100 */
+    border-color: #7dd3fc !important; /* Tailwind sky-300 */
+    color: #0c4a6e !important; /* Tailwind sky-800 */
+}
+.hint-feedback {
+    color: #0369a1; /* Tailwind sky-700 */
+    background-color: #f0f9ff; /* Tailwind sky-50 */
+    border: 1px solid #bae6fd; /* Tailwind sky-200 */
+    padding: 0.75rem;
+    border-radius: 0.375rem; /* Tailwind rounded-md */
+}
+
+/* Keyword Tooltip */
+.keyword { position: relative; text-decoration: underline dotted; cursor: help; }
+.keyword .tooltip { visibility: hidden; width: 220px; background-color: #374151; color: #fff; text-align: center; border-radius: 6px; padding: 8px; position: absolute; z-index: 10; bottom: 125%; left: 50%; margin-left: -110px; opacity: 0; transition: opacity 0.3s; font-size: 0.875rem; line-height: 1.25rem; }
+.keyword:hover .tooltip { visibility: visible; opacity: 1; }
+.keyword .tooltip::after { content: ""; position: absolute; top: 100%; left: 50%; margin-left: -5px; border-width: 5px; border-style: solid; border-color: #374151 transparent transparent transparent; }
+
+@media print { .no-print { display: none !important; } }
+.no-print-pdf { display: none !important; }
+
+/* Task 5: Carbon Calculator Slider Styles */
+.styled-slider { -webkit-appearance: none; appearance: none; width: 100%; height: 8px; border-radius: 5px; background: #d1d5db; /* gray-300 */ outline: none; opacity: 0.7; transition: opacity .2s; }
+.styled-slider:hover { opacity: 1; }
+.styled-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 20px; height: 20px; border-radius: 50%; background: #4f46e5; /* indigo-600 */ cursor: pointer; }
+.styled-slider::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: #4f46e5; /* indigo-600 */ cursor: pointer; border: none; }
+
+.slider-laptop::-webkit-slider-thumb { background: #34d399; /* emerald-500 */}
+.slider-laptop::-moz-range-thumb { background: #34d399; }
+.slider-phone::-webkit-slider-thumb { background: #60a5fa; /* blue-400 */}
+.slider-phone::-moz-range-thumb { background: #60a5fa; }
+.slider-gaming::-webkit-slider-thumb { background: #ef4444; /* red-500 */}
+.slider-gaming::-moz-range-thumb { background: #ef4444; }
+.slider-streaming::-webkit-slider-thumb { background: #a855f7; /* purple-500 */}
+.slider-streaming::-moz-range-thumb { background: #a855f7; }
+.slider-cloud::-webkit-slider-thumb { background: #f59e0b; /* amber-500 */}
+.slider-cloud::-moz-range-thumb { background: #f59e0b; }
+
+
+/* Task 8: Code Efficiency */
+.code-block-display {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+.check-button-alt { /* For run buttons in code efficiency */
+    background-color: #3b82f6; /* blue-500 */
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem; /* rounded-md */
+    font-weight: 500; /* medium */
+    border: 1px solid transparent;
+}
+.check-button-alt:hover { background-color: #2563eb; /* blue-600 */ }
+
+
+/* Task 9: PUE Gauge */
+.pue-gauge-container { display: flex; justify-content: center; align-items: center; }
+.pue-gauge { width: 200px; height: 20px; background-color: #e5e7eb; /* gray-200 */ border-radius: 10px; position: relative; border: 1px solid #d1d5db; /* gray-300 */ }
+.pue-gauge-fill { height: 100%; background-color: #ef4444; /* red-500, default worst */ border-radius: 10px; transition: width 0.5s ease-in-out, background-color 0.5s ease-in-out; }
+.pue-gauge-text { position: absolute; width: 100%; text-align: center; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 0.75rem; /* text-xs */ font-weight: bold; color: #1f2937; /* gray-800 */ }
+
+.slider-it::-webkit-slider-thumb { background: #0ea5e9; /* sky-500 */}
+.slider-it::-moz-range-thumb { background: #0ea5e9; }
+.slider-cooling::-webkit-slider-thumb { background: #ec4899; /* pink-500 */}
+.slider-cooling::-moz-range-thumb { background: #ec4899; }
+.slider-renewable::-webkit-slider-thumb { background: #22c55e; /* green-500 */}
+.slider-renewable::-moz-range-thumb { background: #22c55e; }
+
+
 /* --- End of gcse-ethics-enviro.css --- */
 
 
@@ -530,35 +760,411 @@ body.gcse-algo-searchsort { background-color: #f3f4f6; }
     border-radius: 0.5rem; margin-bottom: 1rem;
 }
 .scenario-box p { margin-bottom: 0.5rem; }
+
+
+/* Styles for Task 5: Data Guardian Challenge */
+.data-guardian-scenario {
+    /* Basic styling already covered by Tailwind and .scenario-box if used */
+}
+.data-guardian-scenario label { display: block; margin-bottom: 0.25rem; cursor: pointer; }
+.data-guardian-scenario label:hover { background-color: #f0f9ff; /* sky-50 */ }
+
+/* Styles for Task 6: Legal Case Pathway Visualizer */
+#case-pathway-display ol {
+    padding-left: 1.5rem; /* Indent for ordered list numbers */
+}
+#case-pathway-display li i { /* Icon color within pathway */
+    color: #8b5cf6; /* purple-500 */
+
+/* Styles for Task 7: Compliant Design Sim (if specific styling needed beyond forms) */
+/* Basic form elements will use Tailwind's defaults or existing form styles */
+
+/* Styles for Task 8: "Is it Hacking?" Decision Tree */
+#hacking-tree-node-display p {
+    margin-bottom: 0.5rem;
+}
+#hacking-tree-choices button {
+    margin-right: 0.5rem;
+}
+.check-button-alt { /* General alternative button style if needed */
+    background-color: #3b82f6; /* blue-500 */
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem; /* rounded-md */
+    font-weight: 500; /* medium */
+    border: 1px solid transparent;
+    transition: background-color 0.2s ease;
+}
+.check-button-alt:hover { background-color: #2563eb; /* blue-600 */ }
+
+
+/* ... (all previous styles remain) ... */
+
+/* Styles for Task 5: Data Guardian Challenge (if any specific needed) */
+.data-guardian-scenario label:hover { 
+    background-color: #f0f9ff; /* sky-50 for subtle hover on radio options */
+}
+
+/* Styles for Task 6: Legal Case Pathway Visualizer */
+#case-pathway-display li {
+    transition: background-color 0.3s ease;
+}
+#case-pathway-display li:hover {
+    background-color: #ede9fe; /* purple-100 lighter hover */
+}
+
+/* Styles for Task 7: Compliant Design Sim */
+.compliant-design-question {
+    padding: 0.75rem;
+    border: 1px solid #ccfbf1; /* teal-200 */
+    border-radius: 0.375rem; /* rounded-md */
+    background-color: #f0fdfa; /* teal-50 */
+}
+.compliant-design-question label:hover {
+    background-color: #ccfbf1; /* teal-100 */
+}
+
+
+/* Styles for Task 9: Data Security Risk Explorer */
+.risk-meter-container {
+    width: 100%;
+    height: 20px;
+    background-color: #e5e7eb; /* gray-200 */
+    border-radius: 10px;
+    margin-top: 0.25rem;
+    border: 1px solid #d1d5db;
+}
+.risk-meter-bar {
+    height: 100%;
+    border-radius: 10px;
+    /* Color and width set by JS */
+}
+.styled-slider.slider-training::-webkit-slider-thumb { background: #06b6d4; /* cyan-500 */ }
+.styled-slider.slider-training::-moz-range-thumb { background: #06b6d4; }
+
+/* Styles for Task 9: Data Security Risk Explorer */
+.risk-meter-container {
+    width: 100%;
+    height: 24px; /* Slightly taller */
+    background-color: #e5e7eb; /* gray-200 */
+    border-radius: 0.375rem; /* rounded-md */
+    margin-top: 0.25rem;
+    border: 1px solid #d1d5db; /* gray-300 */
+    position: relative; /* For potential text overlay if needed */
+}
+.risk-meter-bar {
+    height: 100%;
+    border-radius: 0.375rem; /* rounded-md */
+    /* Color and width set by JS, e.g., bg-green-500, bg-yellow-500, bg-red-500 */
+    transition: width 0.5s ease-in-out, background-color 0.5s ease-in-out; /* Smooth transition */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.75rem; /* text-xs */
+    font-weight: bold;
+}
+
+/* Ensure styled-slider and specific slider thumb colors are defined from previous environmental worksheet if needed */
+.styled-slider { -webkit-appearance: none; appearance: none; width: 100%; height: 8px; border-radius: 5px; background: #d1d5db; outline: none; opacity: 0.7; transition: opacity .2s; }
+.styled-slider:hover { opacity: 1; }
+.styled-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 20px; height: 20px; border-radius: 50%; background: #4f46e5; /* indigo-600 */ cursor: pointer; }
+.styled-slider::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: #4f46e5; cursor: pointer; border: none; }
+.styled-slider.slider-training::-webkit-slider-thumb { background: #06b6d4; /* cyan-500 */ }
+.styled-slider.slider-training::-moz-range-thumb { background: #06b6d4; }
+
+.check-button-alt { /* For CMA tree buttons */
+    background-color: #3b82f6; /* blue-500 */
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem; /* rounded-md */
+    font-weight: 500; /* medium */
+    border: 1px solid transparent;
+    transition: background-color 0.2s ease;
+}
+.check-button-alt:hover { background-color: #2563eb; /* blue-600 */ }
+
+
+*/
 /* --- End of gcse-ethics-legal.css --- */
 
 
 /* --- Unique Styles from gcse-ethics-licsences.css --- */
-.sorter-container { display: flex; flex-wrap: wrap; justify-content: space-around; gap: 1rem; margin-top: 1rem; }
+/* --- Base & General Styles (Ensure these are present and consistent) --- */
+body {
+    font-family: 'Inter', sans-serif;
+    /* Ensure global background like bg-gray-50 or #f8fafc is set if not by Tailwind body class */
+}
+
+/* Buttons (ensure consistency with other worksheets) */
+.check-button, .mark-scheme-button, .reset-button, .export-pdf-button, .reveal-guidance-button, .option-button,
+#check-compatibility-btn, #suggest-business-model-btn /* IDs for new sim buttons if they don't use general classes */
+ {
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem; /* rounded-md */
+    font-weight: 500; /* medium */
+    transition: background-color 0.2s ease, filter 0.2s ease, transform 0.1s ease;
+    cursor: pointer;
+    border: none;
+    margin-top: 0.75rem; 
+    margin-right: 0.5rem;
+    display: inline-block;
+    text-align: center;
+}
+.check-button, #check-compatibility-btn, #suggest-business-model-btn { background-color: #4f46e5; /* indigo-600 */ }
+.check-button:hover, #check-compatibility-btn:hover, #suggest-business-model-btn:hover { filter: brightness(90%); }
+
+.mark-scheme-button { background-color: #10b981; /* emerald-500 */ }
+.mark-scheme-button:hover { filter: brightness(90%); }
+
+.reset-button { background-color: #6b7280; /* gray-500 */ }
+.reset-button:hover { filter: brightness(90%); }
+
+.export-pdf-button { background-color: #22c55e; /* green-500 */ }
+.export-pdf-button:hover { filter: brightness(90%); }
+
+.reveal-guidance-button { background-color: #0ea5e9; /* sky-500 */ }
+.reveal-guidance-button:hover { filter: brightness(90%); }
+
+/* Option buttons for quick checks, etc. */
+.option-button {
+    border: 1px solid #d1d5db; /* gray-300 */
+    background-color: #ffffff; /* bg-white */
+    color: #374151; /* text-gray-700 */
+    margin-bottom: 0.25rem; /* Add some default spacing */
+}
+.option-button:hover:not(:disabled) {
+    background-color: #f3f4f6; /* gray-100 */
+}
+.option-button.selected { /* For general selection indication if needed */
+    background-color: #60a5fa !important; 
+    color: white !important; 
+    border-color: #3b82f6 !important; 
+}
+
+
+button:disabled { opacity: 0.6; cursor: not-allowed; }
+button:active { transform: translateY(1px); }
+
+/* Feedback, Mark Scheme, Extension Guidance, Accordion Content (Transitions) */
+.feedback-area, .mark-scheme, .extension-guidance, .accordion-content {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out, 
+                padding-top 0.4s ease-in-out, padding-bottom 0.4s ease-in-out,
+                margin-top 0.4s ease-in-out;
+    margin-top: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    box-sizing: border-box; 
+}
+.feedback-area.show, .mark-scheme.show, .extension-guidance.show, .accordion-content.show {
+    max-height: 1000px; /* Adjust if content is very long */
+    opacity: 1;
+    margin-top: 1rem; 
+    padding-top: 0.75rem; 
+    padding-bottom: 0.75rem; 
+}
+/* Specific padding for feedback areas */
+#license-sorter-feedback.show, 
+#compatibility-feedback.show, 
+#business-model-suggestion.show,
+.quick-check-feedback.show /* Ensure quick check feedback also gets padding when shown */
+{
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    padding-top: 0.5rem; /* Add some top/bottom padding for standalone feedback */
+    padding-bottom: 0.5rem;
+    margin-top: 0.5rem; /* Add margin if it's appearing standalone */
+}
+
+.feedback-area .correct-feedback, .quick-check-feedback.correct-feedback { color: #166534; /* text-green-800 */ font-weight: 600;}
+.feedback-area .incorrect-feedback, .quick-check-feedback.incorrect-feedback { color: #991b1b; /* text-red-800 */ font-weight: 600;}
+
+/* Input and Select Focus Styles for Accessibility */
+select:focus, textarea:focus, input[type="text"]:focus, input[type="number"]:focus, .accordion-button:focus, .sorter-item:focus, button:focus {
+    outline: 2px solid #2563eb; /* Tailwind blue-600 */
+    outline-offset: 1px;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3); 
+}
+.form-radio:focus { 
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.4); /* Example for indigo */
+}
+
+
+/* --- Styles specific to gcse-ethics-licsences.html --- */
+
+/* Accordion Styles for "Main Licence Categories" */
+.accordion-button { 
+    transition: background-color 0.2s ease-in-out;
+    /* Tailwind classes in HTML handle most base styling (p-3, bg-*, border, rounded-t-md) */
+}
+.accordion-icon {
+    transition: transform 0.3s ease-out; 
+}
+.accordion-icon.rotate-180 {
+    transform: rotate(180deg);
+}
+/* .accordion-content and .accordion-content.show handled by general reveal styles above */
+.quick-check {
+    background-color: rgba(0,0,0,0.03); 
+    padding: 0.75rem; /* Increased padding */
+    margin-top: 0.75rem; /* Space above quick check */
+    border-radius: 0.25rem; /* rounded-sm */
+    border-top: 1px solid rgba(0,0,0,0.08); /* Subtle separator */
+}
+.quick-check-btn.selected.correct { /* Uses .option-button class in HTML */
+    background-color: #10b981 !important; 
+    color: white !important;
+    border-color: #059669 !important; 
+}
+.quick-check-btn.selected.incorrect {
+    background-color: #ef4444 !important; 
+    color: white !important;
+    border-color: #dc2626 !important; 
+}
+.quick-check-feedback {
+    min-height: 1.25rem; 
+    font-weight: normal; /* Ensure not inheriting bold from general feedback if nested */
+}
+
+/* Task 1: License Sorter Styles (Consolidated and Refined) */
+.sorter-container { 
+    display: grid; 
+    grid-template-columns: 1fr; 
+    gap: 1rem; 
+    margin-top: 1rem; 
+}
+@media (min-width: 768px) { 
+    .sorter-container { 
+        grid-template-columns: 1fr 1fr; 
+    } 
+}
+
 .sorter-column {
-    width: 100%; background-color: #fff; border: 1px solid #d1d5db;
-    border-radius: 0.5rem; padding: 1rem; min-height: 150px;
+    background-color: #fff; 
+    border: 1px solid #d1d5db; /* gray-300 */
+    border-radius: 0.5rem; /* rounded-lg */
+    /* padding removed, header and dropzone will have their own */
+    display: flex;
+    flex-direction: column;
 }
-@media (min-width: 768px) { .sorter-column { width: 45%; } }
-.sorter-column h4 { font-weight: 600; text-align: center; margin-bottom: 0.75rem; }
-.sorter-dropzone {
-    border: 2px dashed #a1a1aa; min-height: 120px; border-radius: 0.375rem;
-    padding: 0.5rem; transition: background-color 0.2s ease;
+.sorter-column h4 { /* For #proprietary-dropzone-header and #opensource-dropzone-header */
+    font-weight: 600; 
+    text-align: center; 
+    /* margin-bottom: 0; Removed as dropzone will provide spacing */
+    padding: 0.75rem; /* Increased padding for header */
+    border-radius: 0.375rem 0.375rem 0 0; /* rounded-t-md */
+    border-bottom: 1px solid #d1d5db; /* Add border to separate from dropzone */
 }
-.sorter-dropzone.dragover { background-color: rgba(147, 197, 253, 0.4); }
-.sorter-item {
-    background-color: #e0f2fe; border: 1px solid #7dd3fc; padding: 4px 8px;
-    margin: 4px; border-radius: 4px; cursor: grab; display: inline-block;
-    font-size: 0.8rem; touch-action: none;
+#proprietary-dropzone-header { background-color: #E0F2FE; color: #0C4A6E; border-color: #bae6fd; } /* sky-100, sky-800, sky-200 */
+#opensource-dropzone-header { background-color: #D1FAE5; color: #065F46; border-color: #6ee7b7;} /* green-100, green-800, green-300 */
+
+.sorter-dropzone { /* Common for bank and category drop zones */
+    border: 2px dashed #a1a1aa; /* gray-400 */
+    min-height: 150px; 
+    padding: 0.75rem; 
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    flex-grow: 1; /* Allows dropzone to fill column for category zones */
 }
-.sorter-item:active { cursor: grabbing; }
-.sorter-item.dragging { opacity: 0.5; border-style: dashed;}
-.sorter-bank {
-    margin-top: 1rem; text-align: center; min-height: 50px;
-    background-color: #e5e7eb; padding: 0.5rem; border-radius: 0.375rem;
+/* Specific background colors for category drop zones */
+#proprietary-dropzone { 
+    background-color: #f0f9ff;  /* sky-50 */
+    border-radius: 0 0 0.375rem 0.375rem; /* rounded-b-md */
+    border-top: none; /* Remove top border as header has bottom border */
 }
-.sorter-dropzone .sorter-item.correct { background-color: #dcfce7 !important; border-color: #4ade80 !important; }
-.sorter-dropzone .sorter-item.incorrect { background-color: #fee2e2 !important; border-color: #f87171 !important; }
+#opensource-dropzone { 
+    background-color: #f0fdf4;  /* green-50 */
+    border-radius: 0 0 0.375rem 0.375rem; /* rounded-b-md */
+    border-top: none; /* Remove top border as header has bottom border */
+}
+
+.sorter-bank { /* Specific styling for the bank if different from category dropzones */
+    background-color: #f3f4f6; /* gray-100 */
+    border-radius: 0.375rem; /* rounded-md for standalone bank */
+    margin-bottom: 1rem;
+}
+
+.sorter-dropzone.dragover { 
+    border-style: solid;
+    border-width: 2px; 
+}
+#proprietary-dropzone.dragover { background-color: #e0f2fe; border-color: #7dd3fc; } /* sky-100, sky-300 */
+#opensource-dropzone.dragover { background-color: #dcfce7; border-color: #6ee7b7; } /* green-100, green-300 */
+.sorter-bank.dragover { background-color: #e5e7eb; border-color: #9ca3af;} /* gray-200, gray-400 */
+
+
+.sorter-item { 
+    background-color: #e0e7ff; /* indigo-100 */
+    border: 1px solid #c7d2fe; /* indigo-200 */
+    color: #3730a3; /* indigo-800 */
+    padding: 0.5rem 0.75rem;
+    margin: 0.25rem;
+    border-radius: 0.375rem; /* rounded-md */
+    cursor: grab;
+    text-align: center;
+    font-size: 0.875rem; /* text-sm */
+    transition: background-color 0.2s, border-color 0.2s, opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    user-select: none; 
+    touch-action: none; 
+}
+.sorter-item:active, .sorter-item.dragging {
+    cursor: grabbing;
+    opacity: 0.7;
+    transform: scale(1.05); 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
+}
+.sorter-dropzone .sorter-item.correct {
+    background-color: #dcfce7 !important; 
+    border-color: #4ade80 !important; 
+    color: #15803d !important; 
+}
+.sorter-dropzone .sorter-item.incorrect {
+    background-color: #fee2e2 !important; 
+    border-color: #f87171 !important; 
+    color: #b91c1c !important; 
+}
+
+/* Task 2 & 3: New Simulation Styles (Licence Compatibility & Business Model) */
+.business-model-question label:hover {
+    background-color: #fffbeb; /* amber-50 for subtle hover on radio options */
+}
+#compatibility-feedback p, #business-model-suggestion p, #business-model-suggestion h5 {
+    margin-bottom: 0.5rem; 
+}
+#compatibility-feedback, #business-model-suggestion {
+    /* Uses .feedback-area styles for reveal and base padding/border */
+    /* Specific background handled by Tailwind in HTML (bg-white) */
+}
+
+/* "Mark as Read" Progress Indicator */
+#read-progress {
+    position: fixed;
+    bottom: 1rem; 
+    right: 1rem; 
+    background-color: #374151; /* gray-700 */
+    color: white;
+    padding: 0.75rem 1rem; /* p-3 */
+    border-radius: 0.5rem; /* rounded-lg */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-lg */
+    z-index: 50;
+    opacity: 0; /* Initially hidden, JS will make it visible */
+    transition: opacity 0.3s ease-in-out;
+}
+#read-progress.visible { 
+    opacity: 1;
+}
+
+/* Remove Keyword related CSS - This section should be deleted from your style.css */
+/*
+.keyword { ... }
+.keyword .tooltip { ... }
+.keyword .tooltip::after { ... }
+.keyword:hover .tooltip { ... }
+*/
 /* --- End of gcse-ethics-licsences.css --- */
 
 
@@ -1528,6 +2134,101 @@ code.inline-code {
 .ai-feedback strong { color: #0369a1; }
 /* --- End of gcse-sec-prevention.css --- */
 
+        /* Styles for new interactive elements - can be moved to style.css */
+        .threat-simulation-container {
+            border: 2px dashed #cbd5e1; /* slate-300 */
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 0.5rem;
+            background-color: #f8fafc; /* slate-50 */
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .sim-icon {
+            font-size: 2rem;
+            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+        }
+
+        .sim-file {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0.5rem;
+            border: 1px solid #e2e8f0; /* slate-200 */
+            border-radius: 0.25rem;
+            background-color: white;
+            box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
+        }
+        .sim-file.infected {
+            border-color: #ef4444; /* red-500 */
+            background-color: #fee2e2; /* red-100 */
+        }
+        .sim-file.locked {
+            border-color: #f97316; /* orange-500 */
+            background-color: #ffedd5; /* orange-100 */
+        }
+        .sim-file .fa-file-alt { color: #60a5fa; } /* blue-400 */
+        .sim-file.infected .fa-file-alt { color: #b91c1c; } /* red-700 */
+        .sim-file.locked .fa-file-alt { color: #c2410c; } /* orange-700 */
+
+
+        .network-node {
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            background-color: #3b82f6; /* blue-500 */
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0.5rem;
+            transition: background-color 0.5s;
+        }
+        .network-node.infected-worm {
+            background-color: #a855f7; /* purple-500 */
+        }
+        .network-path {
+            height: 2px;
+            background-color: #9ca3af; /* gray-400 */
+            flex-grow: 1;
+            margin: 0 0.25rem;
+        }
+        .worm-sim-path { display: flex; align-items: center; width: 80%; }
+
+        .trojan-horse-game button {
+            padding: 0.5rem 1rem;
+            margin: 0.25rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+        }
+        .trojan-horse-game .legit-app { background-color: #22c55e; color:white; } /* green-500 */
+        .trojan-horse-game .trojan-app { background-color: #ef4444; color:white;} /* red-500 */
+
+        #keylogger-output {
+            font-family: monospace;
+            background-color: #1f2937; /* gray-800 */
+            color: #34d399; /* emerald-400 */
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            min-height: 30px;
+            width: 200px;
+            text-align: left;
+        }
+        .brute-force-attempt {
+            display: inline-block;
+            padding: 2px 5px;
+            margin: 2px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            background-color: #f0f0f0;
+            font-family: monospace;
+        }
+        .brute-force-success { background-color: #a7f3d0; border-color: #059669;}
+        #brute-force-visual { min-height: 50px; }
 
 /* --- Unique Styles from gcse-sysarch-arch.css --- */
 .diagram-layout-container {
@@ -2261,3 +2962,4 @@ body.mgsgcse-page /* Generic class for all mgsgcseXX pages */
         .draggable-label.correct { background-color: #a7f3d0; border-color: #059669;}
         .draggable-label.incorrect { background-color: #fecaca; border-color: #dc2626;}
         .drop-zone.drag-over { background-color: #e0e7ff; } /* Light indigo when dragging over */
+    }

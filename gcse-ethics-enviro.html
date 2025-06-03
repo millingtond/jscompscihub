@@ -10,9 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    
-<link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
     <div class="max-w-6xl mx-auto flex justify-between items-center">
@@ -33,8 +31,6 @@
 </nav>
 
 \1
-
-
 
     <div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-lg shadow-xl">
 
@@ -57,18 +53,18 @@
                     <div class="space-y-3">
                         <div>
                             <label for="starter-q1-devices" class="block text-sm font-medium text-yellow-700">1. List three electronic devices you use regularly. What do you think happens to them when they are no longer useful or broken?</label>
-                            <textarea id="starter-q1-devices" rows="3" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white"></textarea>
+                            <textarea id="starter-q1-devices" rows="3" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white focus:ring-indigo-500 focus:border-indigo-500"></textarea>
                         </div>
                         <div>
                             <label for="starter-q2-energy" class="block text-sm font-medium text-yellow-700">2. Where does the electricity that powers your computer and the internet mostly come from? (Think about energy sources).</label>
-                            <textarea id="starter-q2-energy" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white"></textarea>
+                            <textarea id="starter-q2-energy" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white focus:ring-indigo-500 focus:border-indigo-500"></textarea>
                         </div>
                          <div>
                             <label for="starter-q3-cloud" class="block text-sm font-medium text-yellow-700">3. When you store files "in the cloud" (like Google Drive or iCloud), where do you think those files are physically stored?</label>
-                            <textarea id="starter-q3-cloud" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white"></textarea>
+                            <textarea id="starter-q3-cloud" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white focus:ring-indigo-500 focus:border-indigo-500"></textarea>
                         </div>
                     </div>
-                    <div id="starter-answers-feedback" class="feedback-area !bg-yellow-100 !border-yellow-300 !text-yellow-700">
+                    <div id="starter-answers-feedback" class="feedback-area !bg-yellow-100 !border-yellow-300 !text-yellow-700 mt-4 p-4 rounded show">
                         <p><strong>Example Answers:</strong></p>
                         <ul class="list-disc list-inside">
                             <li>1. Phone, laptop, games console. They might be thrown in the bin (ending up in landfill), taken to a recycling centre, sold, or passed on.</li>
@@ -101,7 +97,7 @@
 
             <section id="intro-environmental" class="task-container">
                  <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-seedling mr-2"></i> Introduction: Technology's Environmental Price Tag</h2>
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-seedling mr-2 text-indigo-500"></i> Introduction: Technology's Environmental Price Tag</h2>
                      <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
                         <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
                     </label>
@@ -114,11 +110,11 @@
             </section>
 
             <section id="task1-impact-matching" class="task-container">
-                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-recycle mr-2"></i>Task 1: Match the Impact to its Description <span class="font-bold text-sm text-gray-500 ml-auto">(Max 6 points)</span></h2>
-                <p class="text-gray-600 mb-4">Match the environmental impact on the left with its correct description on the right. Click one item from each list to create a pair.</p>
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-arrows-left-right-to-line mr-2 text-cyan-500"></i>Task 1: Match the Impact to its Description <span class="font-bold text-sm text-gray-500 ml-auto">(Max 6 points)</span></h2>
+                <p class="text-gray-600 mb-4">Match the environmental impact on the left with its correct description on the right. Click one item from each list to create a pair. If you get stuck, a hint may appear after two incorrect tries for an item.</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 quiz-item" data-points="6">
                     <div>
-                        <h4 class="font-semibold mb-2 text-center text-gray-600">Environmental Impact</h4>
+                        <h4 class="font-semibold mb-2 text-center text-gray-700">Environmental Impact</h4>
                         <ul id="impact-term-list" class="matching-list">
                             <li class="matching-item option-button w-full text-left !mt-1" data-match="ewaste">Electronic Waste (E-waste)</li>
                             <li class="matching-item option-button w-full text-left !mt-1" data-match="energy">Energy Consumption</li>
@@ -129,7 +125,7 @@
                         </ul>
                     </div>
                     <div>
-                         <h4 class="font-semibold mb-2 text-center text-gray-600">Description</h4>
+                         <h4 class="font-semibold mb-2 text-center text-gray-700">Description</h4>
                          <ul id="impact-definition-list" class="matching-list">
                             <li class="matching-item option-button w-full text-left !mt-1" data-match="energy">The electricity used by devices and infrastructure, often leading to greenhouse gas emissions if from non-renewable sources.</li>
                             <li class="matching-item option-button w-full text-left !mt-1" data-match="mining">Extraction of specific elements needed for electronic components, which can be destructive to landscapes and resource-intensive.</li>
@@ -144,95 +140,62 @@
                     <button class="check-button no-print" onclick="checkImpactMatches()">Check Matches</button>
                     <button class="reset-button no-print" onclick="resetImpactMatches()">Reset Task 1</button>
                 </div>
-                <div id="impact-matching-feedback" class="feedback-area mt-4"></div>
+                <div id="impact-matching-feedback" class="feedback-area mt-4 hidden"></div>
             </section>
 
-<section id="task2-ewaste-lifecycle" class="task-container">
-                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-dumpster mr-2"></i>Task 2: The Lifecycle of E-Waste <span class="font-bold text-sm text-gray-500 ml-auto">(Max 5 points)</span></h2>
+            <section id="task2-ewaste-lifecycle" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-recycle mr-2 text-green-500"></i>Task 2: The Lifecycle of E-Waste <span class="font-bold text-sm text-gray-500 ml-auto">(Max 5 points)</span></h2>
                 <p class="text-gray-600 mb-4">Drag the stages into the correct order to show a simplified lifecycle of an electronic device that becomes <span class="keyword">e-waste<span class="tooltip">Discarded electrical or electronic devices. Contains toxic materials like lead, mercury, cadmium, which can leach into soil and water if not disposed of properly.</span></span>.</p>
                 <div class="quiz-item" data-points="5">
-                    <div id="ewaste-steps-pool" class="ewaste-dropzone mb-6 flex-row justify-around flex-wrap">
-                        <h4 class="font-semibold text-sm text-gray-700 mb-2 w-full text-center">Lifecycle Stages (Drag these)</h4>
+                    <div id="ewaste-steps-pool" class="ewaste-dropzone mb-6 p-4 border-2 border-dashed border-gray-400 rounded-md min-h-[60px] flex flex-row justify-around items-center flex-wrap gap-2">
+                        <h4 class="font-semibold text-sm text-gray-700 mb-2 w-full text-center">Lifecycle Stages (Drag these to the slots below)</h4>
                         <div class="ewaste-step" draggable="true" id="ewaste-step-disposal">Disposal (potentially improper, leading to pollution)</div>
                         <div class="ewaste-step" draggable="true" id="ewaste-step-manufacturing">Manufacturing (using resources and energy)</div>
                         <div class="ewaste-step" draggable="true" id="ewaste-step-obsolescence">Use & Obsolescence (device becomes old or unwanted)</div>
                         <div class="ewaste-step" draggable="true" id="ewaste-step-extraction">Raw Material Extraction (mining)</div>
                         <div class="ewaste-step" draggable="true" id="ewaste-step-recycling">Recycling/Recovery (if done correctly)</div>
                     </div>
-                    <h4 class="font-semibold text-gray-700 mb-2">Device Lifecycle Order:</h4>
-                    <div id="ewaste-ordered-steps"> 
-                        <div id="ewaste-slot-0" class="ewaste-slot h-10 border-2 border-dashed border-gray-300 rounded-md"></div>
-                        <div id="ewaste-slot-1" class="ewaste-slot h-10 border-2 border-dashed border-gray-300 rounded-md"></div>
-                        <div id="ewaste-slot-2" class="ewaste-slot h-10 border-2 border-dashed border-gray-300 rounded-md"></div>
-                        <div id="ewaste-slot-3" class="ewaste-slot h-10 border-2 border-dashed border-gray-300 rounded-md"></div>
-                        <div id="ewaste-slot-4" class="ewaste-slot h-10 border-2 border-dashed border-gray-300 rounded-md"></div>
+                    <h4 class="font-semibold text-gray-700 mb-2">Device Lifecycle Order (Drag from pool to here):</h4>
+                    <div id="ewaste-ordered-steps" class="space-y-2"> 
+                        <div id="ewaste-slot-0" class="ewaste-slot h-12 border-2 border-dashed border-gray-300 rounded-md p-2 flex items-center justify-center text-gray-400">Slot 1</div>
+                        <div id="ewaste-slot-1" class="ewaste-slot h-12 border-2 border-dashed border-gray-300 rounded-md p-2 flex items-center justify-center text-gray-400">Slot 2</div>
+                        <div id="ewaste-slot-2" class="ewaste-slot h-12 border-2 border-dashed border-gray-300 rounded-md p-2 flex items-center justify-center text-gray-400">Slot 3</div>
+                        <div id="ewaste-slot-3" class="ewaste-slot h-12 border-2 border-dashed border-gray-300 rounded-md p-2 flex items-center justify-center text-gray-400">Slot 4</div>
+                        <div id="ewaste-slot-4" class="ewaste-slot h-12 border-2 border-dashed border-gray-300 rounded-md p-2 flex items-center justify-center text-gray-400">Slot 5</div>
                     </div> 
                 </div>
                 <div class="text-center mt-4">
                     <button class="check-button no-print" onclick="checkEwasteLifecycle()">Check Order</button>
                     <button class="reset-button no-print" onclick="resetEwasteLifecycle()">Reset Task 2</button>
                 </div>
-                <div id="ewaste-lifecycle-feedback" class="feedback-area mt-4"></div>
+                <div id="ewaste-lifecycle-feedback" class="feedback-area mt-4 hidden"></div>
             </section>
 
-            <section id="task3-datacenter-sim" class="task-container">
-                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-server mr-2"></i>Task 3: Data Centre Energy Conceptual Sim <span class="font-bold text-sm text-gray-500 ml-auto">(Max 2 points for questions)</span></h2>
-                <p class="text-gray-600 mb-4"><span class="keyword">Data centres<span class="tooltip">Facilities used to house computer systems and associated components, such as telecommunications and storage systems. They consume vast amounts of energy for power and cooling.</span></span> consume huge amounts of energy for powering servers and for cooling. Adjust the sliders to see a conceptual representation of load and cooling effort.</p>
-                <div class="datacenter-sim-container">
-                    <div class="w-full md:w-1/2 space-y-4 mb-4 md:mb-0">
-                        <div>
-                            <label for="server-load-slider" class="block text-sm font-medium text-gray-700">Server Load (%): <span id="server-load-value" class="font-semibold">50</span>%</label>
-                            <input type="range" id="server-load-slider" min="0" max="100" value="50" class="w-full">
-                        </div>
-                        <div>
-                            <label for="cooling-slider" class="block text-sm font-medium text-gray-700">Cooling Efficiency (1=Low, 5=High): <span id="cooling-value" class="font-semibold">3</span></label>
-                            <input type="range" id="cooling-slider" min="1" max="5" value="3" class="w-full">
-                        </div>
-                    </div>
-                    <div class="w-full md:w-1/2 flex flex-col items-center">
-                        <div id="datacenter-visual" class="datacenter-visual">
-                            </div>
-                        <div id="cooling-visual" class="cooling-visual mt-2">Cooling System</div>
-                        <p id="datacenter-energy-status" class="text-sm text-center mt-2 font-medium text-indigo-700"></p>
-                    </div>
-                </div>
-                <div class="mt-6 space-y-3 quiz-item" data-points="2">
-                    <div>
-                        <label for="datacenter-q1" class="block text-sm font-medium text-gray-700">1. What are the two main reasons data centres consume large amounts of energy? (2 marks)</label>
-                        <input type="text" id="datacenter-q1" class="mt-1 block w-full p-2 border border-gray-300 rounded-md bg-white" placeholder="Reason 1, Reason 2">
-                    </div>
-                </div>
-                <button class="check-button no-print" onclick="checkDatacenterAnswers()">Check Answer</button>
-                <button class="reset-button no-print" onclick="resetDatacenterTask()">Reset Task 3</button>
-                <div id="task3-feedback" class="feedback-area"></div>
-            </section>
-
-            <section id="task4-solutions-brainstorm" class="task-container">
-                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-lightbulb-idea mr-2"></i>Task 4: Brainstorming Solutions <span class="font-bold text-sm text-gray-500 ml-auto">(Self-Assessment)</span></h2>
+            <section id="task3-solutions-brainstorm" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-lightbulb-on mr-2 text-yellow-500"></i>Task 3: Brainstorming Solutions <span class="font-bold text-sm text-gray-500 ml-auto">(Self-Assessment)</span></h2>
                 <p class="text-gray-600 mb-4">For each environmental impact listed below, suggest one practical way individuals or the tech industry could help reduce it.</p>
                 <div class="space-y-4">
                     <div>
                         <label for="solution-ewaste" class="block text-sm font-medium text-gray-700"><strong>E-waste:</strong></label>
-                        <textarea id="solution-ewaste" rows="2" class="mt-1 block w-full p-2 border border-gray-300 rounded-md bg-white"></textarea>
+                        <textarea id="solution-ewaste" rows="2" class="mt-1 block w-full p-2 border border-gray-300 rounded-md bg-white focus:ring-indigo-500 focus:border-indigo-500"></textarea>
                     </div>
                     <div>
                         <label for="solution-energy" class="block text-sm font-medium text-gray-700"><strong>Energy Consumption (Devices & Data Centres):</strong></label>
-                        <textarea id="solution-energy" rows="2" class="mt-1 block w-full p-2 border border-gray-300 rounded-md bg-white"></textarea>
+                        <textarea id="solution-energy" rows="2" class="mt-1 block w-full p-2 border border-gray-300 rounded-md bg-white focus:ring-indigo-500 focus:border-indigo-500"></textarea>
                     </div>
                     <div>
                         <label for="solution-materials" class="block text-sm font-medium text-gray-700"><strong>Mining Rare Earth Materials & Water Use:</strong></label>
-                        <textarea id="solution-materials" rows="2" class="mt-1 block w-full p-2 border border-gray-300 rounded-md bg-white"></textarea>
+                        <textarea id="solution-materials" rows="2" class="mt-1 block w-full p-2 border border-gray-300 rounded-md bg-white focus:ring-indigo-500 focus:border-indigo-500"></textarea>
                     </div>
                 </div>
                 <div class="text-center mt-4">
-                    <!-- Added the Check button, initially disabled -->
-                    <button id="check-task4-solutions-btn" class="check-button no-print" onclick="checkTask4Solutions()" disabled>Check My Answers</button>
-                    <button class="reset-button no-print" onclick="resetTask4Solutions()">Reset Task 4</button>
+                    <button id="check-task3-solutions-btn" class="check-button no-print" onclick="checkTask3Solutions()" disabled>Check My Answers</button>
+                    <button class="reset-button no-print" onclick="resetTask3Solutions()">Reset Task 3</button>
                 </div>
-                <div id="task4-feedback" class="feedback-area mt-4"></div> <!-- Added a feedback area -->
-                <div id="solutions-guidance" class="feedback-area !bg-green-50 !border-green-200 !text-green-700 hidden"> <!-- Added hidden class -->
+                <div id="task3-feedback" class="feedback-area mt-4 hidden"></div>
+                <div id="solutions-guidance" class="feedback-area !bg-green-50 !border-green-200 !text-green-700 hidden">
                     <p><strong>Example Solutions / Discussion Points:</strong></p>
-                    <ul>
+                    <ul class="list-disc list-inside">
                         <li><strong>E-waste:</strong> Proper recycling through certified facilities, designing products for easier disassembly and repair (right to repair), extending device lifespan, donating or selling used electronics.</li>
                         <li><strong>Energy Consumption:</strong> Using energy-efficient modes on devices, choosing energy-star rated appliances, data centres using renewable energy sources, more efficient cooling technologies for data centres, developing lower-power processors.</li>
                         <li><strong>Mining & Water Use:</strong> Designing products with fewer rare earth materials, increasing recycling of these materials from old devices, companies investing in sustainable mining practices, developing alternative materials, water-efficient manufacturing processes. Adopting principles of a <span class="keyword">circular economy<span class="tooltip">An economic model focused on minimizing waste and making the most of resources by keeping products and materials in use for as long as possible, through repairing, reusing, refurbishing, and recycling.</span></span>.</li>
@@ -242,7 +205,7 @@
 
             <section id="real-world-environmental" class="task-container">
                 <div class="flex justify-between items-center mb-4">
-                   <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-industry mr-2 text-blue-500"></i> Real-World Context: Tech's Green Efforts & Challenges</h2>
+                   <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-globe-europe mr-2 text-blue-500"></i> Real-World Context: Tech's Green Efforts & Challenges</h2>
                     <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
                    </label>
@@ -261,7 +224,7 @@
 
            <section id="myth-busters-environmental" class="task-container">
                 <div class="flex justify-between items-center mb-4">
-                   <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-question-circle mr-2 text-red-500"></i> Environmental Myth Busters!</h2>
+                   <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-comment-slash mr-2 text-red-500"></i> Environmental Myth Busters!</h2>
                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
                    </label>
@@ -283,14 +246,18 @@
            </section>
 
             <section id="exam-practice-environmental" class="task-container">
-                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-graduation-cap mr-2"></i>Task 5: Exam Practice Questions</h2>
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-file-signature mr-2 text-purple-500"></i>Task 4: Exam Practice Questions</h2>
                 <p class="text-gray-600 mb-6">Apply your knowledge to these exam-style questions.</p>
                 <div class="space-y-6">
                     <div class="exam-question-item">
                         <p class="font-medium text-gray-800 mb-2">1. Describe two environmental concerns associated with the disposal of old computer equipment. [2 marks]</p>
-                        <textarea id="exam-q1-env" class="exam-answer-textarea" placeholder="Two concerns about e-waste disposal..."></textarea>
-                        <button class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q1-env', 'exam-q1-env', 15)">Show Mark Scheme</button>
-                        <div id="ms-exam-q1-env" class="mark-scheme">
+                        <textarea id="exam-q1-env" class="exam-answer-textarea focus:ring-indigo-500 focus:border-indigo-500" placeholder="Two concerns about e-waste disposal..."></textarea>
+                        <div class="mt-2">
+                            <label for="exam-q1-marks" class="text-sm font-medium text-gray-700 mr-2">Predicted Marks (out of 2):</label>
+                            <input type="number" id="exam-q1-marks" name="exam-q1-marks" min="0" max="2" class="marks-input p-1 border border-gray-300 rounded-md w-20 focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+                        <button class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q1-env', 'exam-q1-env', 'exam-q1-marks', 15)">Show Mark Scheme</button>
+                        <div id="ms-exam-q1-env" class="mark-scheme hidden">
                             <p><strong>Mark Scheme (Any two from):</strong></p>
                             <ul>
                                 <li>Harmful chemicals/toxic materials (e.g., lead, mercury) can leach into soil/waterways from landfill. (1 mark)</li>
@@ -302,9 +269,13 @@
                     </div>
                     <div class="exam-question-item">
                         <p class="font-medium text-gray-800 mb-2">2. Explain how the energy consumption of data centres can contribute to climate change. [2 marks]</p>
-                        <textarea id="exam-q2-env" class="exam-answer-textarea" placeholder="Link data centre energy to climate change..."></textarea>
-                        <button class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q2-env', 'exam-q2-env', 15)">Show Mark Scheme</button>
-                        <div id="ms-exam-q2-env" class="mark-scheme">
+                        <textarea id="exam-q2-env" class="exam-answer-textarea focus:ring-indigo-500 focus:border-indigo-500" placeholder="Link data centre energy to climate change..."></textarea>
+                        <div class="mt-2">
+                            <label for="exam-q2-marks" class="text-sm font-medium text-gray-700 mr-2">Predicted Marks (out of 2):</label>
+                            <input type="number" id="exam-q2-marks" name="exam-q2-marks" min="0" max="2" class="marks-input p-1 border border-gray-300 rounded-md w-20 focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+                        <button class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q2-env', 'exam-q2-env', 'exam-q2-marks', 15)">Show Mark Scheme</button>
+                        <div id="ms-exam-q2-env" class="mark-scheme hidden">
                             <p><strong>Mark Scheme:</strong></p>
                             <ul>
                                 <li>Data centres consume large amounts of electricity (for powering servers and cooling). (1 mark)</li>
@@ -314,9 +285,13 @@
                     </div>
                     <div class="exam-question-item">
                         <p class="font-medium text-gray-800 mb-2">3. Suggest one way a computer user can reduce the environmental impact of their technology use. [1 mark]</p>
-                        <textarea id="exam-q3-env" class="exam-answer-textarea" placeholder="One individual action..."></textarea>
-                        <button class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q3-env', 'exam-q3-env', 10)">Show Mark Scheme</button>
-                        <div id="ms-exam-q3-env" class="mark-scheme">
+                        <textarea id="exam-q3-env" class="exam-answer-textarea focus:ring-indigo-500 focus:border-indigo-500" placeholder="One individual action..."></textarea>
+                        <div class="mt-2">
+                           <label for="exam-q3-marks" class="text-sm font-medium text-gray-700 mr-2">Predicted Marks (out of 1):</label>
+                           <input type="number" id="exam-q3-marks" name="exam-q3-marks" min="0" max="1" class="marks-input p-1 border border-gray-300 rounded-md w-20 focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+                        <button class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q3-env', 'exam-q3-env', 'exam-q3-marks', 10)">Show Mark Scheme</button>
+                        <div id="ms-exam-q3-env" class="mark-scheme hidden">
                             <p><strong>Mark Scheme (Any one from):</strong></p>
                             <ul>
                                 <li>Recycle old devices responsibly.</li>
@@ -331,27 +306,229 @@
                 </div>
             </section>
 
+ <section id="task5-carbon-calculator" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-calculator mr-2 text-lime-500"></i> Task 5: Interactive Tech Carbon Footprint Calculator (Illustrative)</h2>
+                <div class="bg-lime-50 p-5 rounded-lg border border-lime-200 space-y-4">
+                    <p class="text-gray-700">Estimate the illustrative carbon footprint of your tech usage. Adjust the sliders and see the conceptual impact. This tool provides simplified estimates for educational purposes.</p>
+                    
+                    <div>
+                        <label for="laptop-hours" class="block text-sm font-medium text-gray-700">Laptop Usage (hours/day): <span id="laptop-hours-value" class="font-semibold">0</span></label>
+                        <input type="range" id="laptop-hours" name="laptop-hours" min="0" max="12" value="0" class="w-full mt-1 styled-slider slider-laptop">
+                    </div>
+                    <div>
+                        <label for="phone-hours" class="block text-sm font-medium text-gray-700">Smartphone Usage (hours/day): <span id="phone-hours-value" class="font-semibold">0</span></label>
+                        <input type="range" id="phone-hours" name="phone-hours" min="0" max="12" value="0" class="w-full mt-1 styled-slider slider-phone">
+                    </div>
+                    <div>
+                        <label for="gaming-hours" class="block text-sm font-medium text-gray-700">Gaming Console Usage (hours/day): <span id="gaming-hours-value" class="font-semibold">0</span></label>
+                        <input type="range" id="gaming-hours" name="gaming-hours" min="0" max="8" value="0" class="w-full mt-1 styled-slider slider-gaming">
+                    </div>
+                    <div>
+                        <label for="streaming-hours" class="block text-sm font-medium text-gray-700">Video Streaming (hours/day): <span id="streaming-hours-value" class="font-semibold">0</span></label>
+                        <input type="range" id="streaming-hours" name="streaming-hours" min="0" max="10" value="0" class="w-full mt-1 styled-slider slider-streaming">
+                    </div>
+                    <div>
+                        <label for="cloud-storage" class="block text-sm font-medium text-gray-700">Cloud Storage (GB used this month): <span id="cloud-storage-value" class="font-semibold">0</span></label>
+                        <input type="range" id="cloud-storage" name="cloud-storage" min="0" max="1000" value="0" step="10" class="w-full mt-1 styled-slider slider-cloud">
+                    </div>
+                    
+                    <div id="carbon-calculator-results" class="mt-6 p-4 bg-white rounded-md shadow border border-lime-300">
+                        <h3 class="text-lg font-semibold text-lime-700">Your Estimated Annual Tech Footprint:</h3>
+                        <p class="text-2xl font-bold text-lime-600"><span id="co2-output">0.00</span> kg CO<sub>2</sub>e / year</p>
+                        <p class="text-sm text-gray-600 mt-2">This is conceptually equivalent to:</p>
+                        <ul class="list-disc list-inside text-sm text-gray-600 pl-4">
+                            <li><span id="trees-offset">0</span> trees absorbing CO<sub>2</sub> for one year.</li>
+                            <li>Driving <span id="driving-kms">0</span> km in an average petrol car.</li>
+                        </ul>
+                        <p class="text-xs text-gray-500 mt-3 italic">Note: These are highly simplified estimations for educational purposes and do not reflect precise scientific calculations. Actual emissions vary greatly based on device models, local energy grids, and specific usage patterns.</p>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-lime-300">
+                        <label for="reflection-task5" class="block text-sm font-medium text-gray-700 mb-1">My reflections on this simulation:</label>
+                        <textarea id="reflection-task5" name="reflection-task5" rows="3" class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" placeholder="What did you learn or find surprising from the Carbon Footprint Calculator?"></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <section id="task6-ewaste-visualizer" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-trash-alt mr-2 text-brown-500"></i> Task 6: E-Waste Pathway Visualizer</h2>
+                <div class="bg-orange-50 p-5 rounded-lg border border-orange-200 space-y-4">
+                    <p class="text-gray-700">Explore the potential journey of your old electronics. Select a device and how you dispose of it to see a simplified outcome.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label for="ewaste-device-type" class="block text-sm font-medium text-gray-700">Choose a device:</label>
+                            <select id="ewaste-device-type" name="ewaste-device-type" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                <option value="smartphone">Smartphone</option>
+                                <option value="laptop">Laptop</option>
+                                <option value="tablet">Tablet</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="ewaste-disposal-method" class="block text-sm font-medium text-gray-700">Choose disposal method:</label>
+                            <select id="ewaste-disposal-method" name="ewaste-disposal-method" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                <option value="bin">Throw in General Bin</option>
+                                <option value="recycle_center">Take to Official Recycling Centre</option>
+                                <option value="sell_donate">Sell or Donate</option>
+                                <option value="informal_recycle">Informal/Uncertified Recycler</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button id="visualize-ewaste-btn" class="check-button no-print">Visualize Pathway</button>
+            
+                    <div id="ewaste-pathway-output" class="mt-6 p-4 bg-white rounded-md shadow border-orange-300 min-h-[150px] flex flex-col items-center justify-center">
+                        <p class="text-gray-500">Select options and click "Visualize Pathway" to see the outcome.</p>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-orange-300">
+                        <label for="reflection-task6" class="block text-sm font-medium text-gray-700 mb-1">My reflections on this simulation:</label>
+                        <textarea id="reflection-task6" name="reflection-task6" rows="3" class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" placeholder="What are your thoughts on e-waste pathways after using this visualizer?"></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <section id="task7-greener-gadget" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-tablet-alt mr-2 text-teal-500"></i> Task 7: Design a "Greener" Gadget Sim</h2>
+                <div class="bg-teal-50 p-5 rounded-lg border border-teal-200 space-y-4">
+                    <p class="text-gray-700">Make choices to design a more environmentally friendly fictional tablet and see its conceptual "eco-score".</p>
+                    
+                    <div class="space-y-3">
+                        <div>
+                            <p class="block text-sm font-medium text-gray-700">1. Casing Material:</p>
+                            <div class="mt-1 space-y-1">
+                                <label class="inline-flex items-center"><input type="radio" name="gadget-material" value="virgin_aluminum" class="form-radio h-4 w-4 text-indigo-600"> <span class="ml-2">Virgin Aluminum</span></label><br>
+                                <label class="inline-flex items-center"><input type="radio" name="gadget-material" value="recycled_aluminum" class="form-radio h-4 w-4 text-indigo-600"> <span class="ml-2">100% Recycled Aluminum</span></label><br>
+                                <label class="inline-flex items-center"><input type="radio" name="gadget-material" value="standard_plastic" class="form-radio h-4 w-4 text-indigo-600"> <span class="ml-2">Standard Plastic</span></label>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="block text-sm font-medium text-gray-700">2. Repairability:</p>
+                             <div class="mt-1 space-y-1">
+                                <label class="inline-flex items-center"><input type="radio" name="gadget-repair" value="hard" class="form-radio h-4 w-4 text-indigo-600"> <span class="ml-2">Hard to Repair (Glued, Special Tools)</span></label><br>
+                                <label class="inline-flex items-center"><input type="radio" name="gadget-repair" value="moderate" class="form-radio h-4 w-4 text-indigo-600"> <span class="ml-2">Moderate (Some Standard Parts)</span></label><br>
+                                <label class="inline-flex items-center"><input type="radio" name="gadget-repair" value="easy" class="form-radio h-4 w-4 text-indigo-600"> <span class="ml-2">Easy to Repair (Modular, Standard Screws)</span></label>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="block text-sm font-medium text-gray-700">3. Manufacturing Energy Source:</p>
+                             <div class="mt-1 space-y-1">
+                                <label class="inline-flex items-center"><input type="radio" name="gadget-energy" value="fossil_fuels" class="form-radio h-4 w-4 text-indigo-600"> <span class="ml-2">Mainly Fossil Fuels</span></label><br>
+                                <label class="inline-flex items-center"><input type="radio" name="gadget-energy" value="mixed" class="form-radio h-4 w-4 text-indigo-600"> <span class="ml-2">Mixed Sources</span></label><br>
+                                <label class="inline-flex items-center"><input type="radio" name="gadget-energy" value="renewable" class="form-radio h-4 w-4 text-indigo-600"> <span class="ml-2">Mainly Renewable Energy</span></label>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="calculate-eco-score-btn" class="check-button no-print mt-4">Calculate Eco-Score</button>
+            
+                    <div id="eco-score-results" class="mt-6 p-4 bg-white rounded-md shadow border-teal-300 hidden">
+                        <h3 class="text-lg font-semibold text-teal-700">Gadget Eco-Score:</h3>
+                        <p class="text-3xl font-bold text-teal-600"><span id="eco-score-value">0</span> / 100</p>
+                        <p id="eco-score-feedback" class="text-sm text-gray-700 mt-2"></p>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-teal-300">
+                        <label for="reflection-task7" class="block text-sm font-medium text-gray-700 mb-1">My reflections on this simulation:</label>
+                        <textarea id="reflection-task7" name="reflection-task7" rows="3" class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" placeholder="What choices surprised you in the Greener Gadget sim? How might this influence your future choices?"></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <section id="task8-code-efficiency" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fab fa-python mr-2 text-sky-500"></i> Task 8: Impact of Python Code Efficiency (Conceptual)</h2>
+                <div class="bg-sky-50 p-5 rounded-lg border border-sky-200 space-y-4">
+                    <p class="text-gray-700">Even simple code changes can impact performance and, conceptually, energy use. Compare the two (highly simplified) Python approaches below for summing numbers in a list.</p>
+                    
+                    <div class="space-y-6"> 
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-2">Approach 1: Less Efficient Python</h4>
+                            <pre class="code-block-display bg-gray-800 text-white p-3 rounded-md text-sm"><code>def sum_list_slow(data_list):
+    total = 0
+    for item in data_list:
+        # Simulate some extra processing for each item
+        for _ in range(50):  # Unnecessary inner loop
+            pass
+        total += item
+    return total</code></pre>
+                            <button id="run-inefficient-code" class="check-button-alt no-print mt-2">Simulate Run (Less Efficient)</button>
+                            <div id="inefficient-code-output" class="mt-2 text-sm"></div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-2">Approach 2: More Efficient Python</h4>
+                            <pre class="code-block-display bg-gray-800 text-white p-3 rounded-md text-sm"><code>def sum_list_fast(data_list):
+    total = 0
+    for item in data_list:
+        total += item
+    return total
+
+# Note: Python's built-in sum(data_list) 
+# would be even more efficient in practice.</code></pre>
+                            <button id="run-efficient-code" class="check-button-alt no-print mt-2">Simulate Run (More Efficient)</button>
+                            <div id="efficient-code-output" class="mt-2 text-sm"></div>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-3 italic">Note: "Operations" are conceptual and for illustration of relative difference only, based on a sample list of 1000 numbers.</p>
+                    
+                    <div class="mt-6 pt-4 border-t border-sky-300">
+                        <label for="reflection-task8" class="block text-sm font-medium text-gray-700 mb-1">My reflections on this simulation:</label>
+                        <textarea id="reflection-task8" name="reflection-task8" rows="3" class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" placeholder="How does code efficiency relate to environmental impact?"></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <section id="task9-pue-explorer" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-server mr-2 text-fuchsia-500"></i> Task 9: Data Centre PUE Explorer (Simplified)</h2>
+                <div class="bg-fuchsia-50 p-5 rounded-lg border border-fuchsia-200 space-y-4">
+                    <p class="text-gray-700">Power Usage Effectiveness (PUE) is a measure of data centre energy efficiency. A PUE of 1.0 is "perfect". Explore conceptual factors affecting it.</p>
+                    <div>
+                        <label for="it-energy-slider" class="block text-sm font-medium text-gray-700">IT Equipment Energy (Conceptual Units): <span id="it-energy-value" class="font-semibold">100</span></label>
+                        <input type="range" id="it-energy-slider" name="it-energy-slider" min="50" max="200" value="100" class="w-full mt-1 styled-slider slider-it">
+                        <p class="text-xs text-gray-500">Energy used by servers, storage, network.</p>
+                    </div>
+                    <div>
+                        <label for="cooling-energy-slider" class="block text-sm font-medium text-gray-700">Cooling & Other Infrastructure Energy (Conceptual Units): <span id="cooling-energy-value" class="font-semibold">50</span></label>
+                        <input type="range" id="cooling-energy-slider" name="cooling-energy-slider" min="10" max="200" value="50" class="w-full mt-1 styled-slider slider-cooling">
+                        <p class="text-xs text-gray-500">Energy for cooling, lighting, power distribution losses.</p>
+                    </div>
+                     <div>
+                        <label for="renewable-source-slider" class="block text-sm font-medium text-gray-700">Renewable Energy Mix (%): <span id="renewable-source-value" class="font-semibold">20</span>%</label>
+                        <input type="range" id="renewable-source-slider" name="renewable-source-slider" min="0" max="100" value="20" step="5" class="w-full mt-1 styled-slider slider-renewable">
+                        <p class="text-xs text-gray-500">Percentage of total energy from renewable sources.</p>
+                    </div>
+
+                    <div id="pue-results" class="mt-6 p-4 bg-white rounded-md shadow border-fuchsia-300">
+                        <h3 class="text-lg font-semibold text-fuchsia-700">Data Centre Efficiency:</h3>
+                        <p class="text-xl">Total Facility Energy: <span id="total-facility-energy" class="font-bold">150</span> Units</p>
+                        <p class="text-2xl font-bold text-fuchsia-600 mt-1">PUE: <span id="pue-value">1.50</span></p>
+                        <div class="pue-gauge-container mt-2 mb-2">
+                            <div class="pue-gauge">
+                                <div class="pue-gauge-fill" id="pue-gauge-fill"></div>
+                                <div class="pue-gauge-text" id="pue-gauge-text">1.50</div>
+                            </div>
+                        </div>
+                        <p class="text-md mt-1">Conceptual Carbon Impact Score: <span id="pue-carbon-impact" class="font-bold">0</span></p>
+                        <p class="text-xs text-gray-500 mt-3 italic">Note: PUE = Total Facility Energy / IT Equipment Energy. Lower is better. Carbon Impact Score is illustrative, higher means more non-renewable energy used.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-fuchsia-300">
+                        <label for="reflection-task9" class="block text-sm font-medium text-gray-700 mb-1">My reflections on this simulation:</label>
+                        <textarea id="reflection-task9" name="reflection-task9" rows="3" class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" placeholder="What factors most influence data centre PUE and its environmental impact?"></textarea>
+                    </div>
+                </div>
+            </section>
             <section id="related-videos-environmental" class="task-container">
                  <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-video mr-2 text-purple-500"></i> Related Videos</h2>
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fab fa-youtube mr-2 text-red-600"></i> Related Video</h2>
                     <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
                         <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
                     </label>
                 </div>
                 <div class="bg-purple-50 p-5 rounded-lg border border-purple-200 space-y-4">
-                    <p class="text-gray-700">Watch these videos to learn more about the environmental impact of technology:</p>
+                    <p class="text-gray-700">Watch this video to learn more about the environmental impact of technology:</p>
                     <ul class="list-disc list-inside space-y-3 text-purple-800 pl-4">
                         <li>
-                            <strong>Video 1: The Problem with E-Waste</strong>
-                            <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 1: E-Waste Explained]</div>
-                        </li>
-                        <li>
-                            <strong>Video 2: Data Centers and Energy Consumption</strong>
-                            <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 2: Data Centre Energy]</div>
-                        </li>
-                         <li>
-                            <strong>Video 3: Green Computing Initiatives</strong>
-                            <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 3: Solutions & Green IT]</div>
+                            <strong>Video: Environmental Impact of Technology</strong>
+                            <div class="video-container mt-1 aspect-video">
+                                <iframe class="w-full h-full" src="https://www.youtube.com/watch?v=g91-xCNv8-E&list=PLCiOXwirraUAEhj4TUjMxYm4593B2dUPF&index=45&pp=iAQB0gcJCbEJAYcqIYzv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -359,7 +536,7 @@
 
             <section id="key-takeaways-environmental" class="task-container">
                  <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-key mr-2"></i>Key Takeaways</h2>
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-key mr-2 text-amber-500"></i>Key Takeaways</h2>
                     <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
                         <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
                     </label>
@@ -377,7 +554,7 @@
 
             <section id="next-steps-environmental" class="task-container">
                 <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-2xl task-title text-indigo-600">What's Next?</h2>
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-arrow-alt-circle-right mr-2 text-teal-500"></i>What's Next?</h2>
                     <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
                         <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
                     </label>
@@ -397,50 +574,75 @@
             </section>
 
             <section id="extension-activities-environmental" class="task-container">
-                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-recycle mr-2 text-orange-500"></i> Extension Activities</h2>
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-rocket mr-2 text-orange-500"></i> Extension Activities</h2>
                 <div class="bg-orange-50 p-5 rounded-lg border border-orange-200 space-y-6">
                     <div class="extension-task">
                         <h3 class="font-semibold text-orange-800 mb-2">1. The Circular Economy in Tech</h3>
                         <p class="text-sm text-gray-700 mb-2">The concept of a <span class="keyword">circular economy<span class="tooltip">An economic model focused on minimizing waste and making the most of resources by keeping products and materials in use for as long as possible, through repairing, reusing, refurbishing, and recycling.</span></span> aims to move away from a "take-make-dispose" model.</p>
                         <p class="text-sm text-gray-700 mb-2">Research Task: How can the principles of a circular economy be applied to the lifecycle of electronic devices? Find one example of a company or initiative that is promoting a more circular approach to electronics.</p>
-                        <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Circular economy principles for tech? Company example?"></textarea>
+                        <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white focus:ring-indigo-500 focus:border-indigo-500" placeholder="Circular economy principles for tech? Company example?"></textarea>
+                        <button class="reveal-guidance-button check-button no-print mt-2">Reveal Key Considerations</button>
+                        <div class="extension-guidance feedback-area !bg-blue-50 !border-blue-200 !text-blue-700 hidden">
+                            <p><strong>Key areas to consider for your research:</strong></p>
+                            <ul class="list-disc list-inside pl-4">
+                                <li>Design for durability and repairability.</li>
+                                <li>Use of recycled and recyclable materials.</li>
+                                <li>Take-back schemes and closed-loop recycling.</li>
+                                <li>Product-as-a-service models.</li>
+                                <li>Right to Repair legislation.</li>
+                                <li>Examples: Fairphone, Apple's recycling robots (Daisy), Dell's closed-loop plastics.</li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="extension-task border-t border-orange-200 pt-4">
                         <h3 class="font-semibold text-orange-800 mb-2">2. Green Computing & Sustainable Software</h3>
                         <p class="text-sm text-gray-700 mb-2"><span class="keyword">Green computing<span class="tooltip">The environmentally responsible and eco-friendly use of computers and their resources. Includes practices like energy efficiency, e-waste reduction, and use of sustainable materials.</span></span> involves designing, manufacturing, using, and disposing of computing resources in an environmentally friendly way. This also extends to software.</p>
                         <p class="text-sm text-gray-700 mb-2">Research Task: What are some principles of "sustainable software engineering"? How can the way software is written and run impact energy consumption?</p>
-                        <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Principles of sustainable software? Software's impact on energy?"></textarea>
+                        <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white focus:ring-indigo-500 focus:border-indigo-500" placeholder="Principles of sustainable software? Software's impact on energy?"></textarea>
+                        <button class="reveal-guidance-button check-button no-print mt-2">Reveal Key Considerations</button>
+                        <div class="extension-guidance feedback-area !bg-blue-50 !border-blue-200 !text-blue-700 hidden">
+                            <p><strong>Key areas to consider for your research:</strong></p>
+                            <ul class="list-disc list-inside pl-4">
+                                <li>Writing efficient algorithms and code.</li>
+                                <li>Minimizing data transfer and storage.</li>
+                                <li>Choosing energy-efficient programming languages or frameworks (conceptually).</li>
+                                <li>Optimizing for hardware (e.g., mobile vs. server).</li>
+                                <li>"Carbon-aware" software that might adjust operations based on renewable energy availability.</li>
+                                <li>Principles from the Green Software Foundation.</li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="extension-task border-t border-orange-200 pt-4">
                         <h3 class="font-semibold text-orange-800 mb-2">3. The Human Cost of Mining</h3>
                         <p class="text-sm text-gray-700 mb-2">The extraction of <span class="keyword">rare earth materials<span class="tooltip">A set of seventeen chemical elements in the periodic table. Essential for many electronic components. Mining them can be environmentally destructive and resource-intensive.</span></span> and other minerals like cobalt and coltan (used in batteries and electronics) often has significant social and ethical implications in the regions where they are mined, beyond just the environmental damage.</p>
                         <p class="text-sm text-gray-700 mb-2">Research Task: Briefly investigate the social or ethical issues associated with the mining of one specific material used in electronic devices (e.g., cobalt in the DRC, tin, tantalum, tungsten - "conflict minerals").</p>
-                        <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Material chosen? Associated social/ethical issues?"></textarea>
+                        <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white focus:ring-indigo-500 focus:border-indigo-500" placeholder="Material chosen? Associated social/ethical issues?"></textarea>
+                        <button class="reveal-guidance-button check-button no-print mt-2">Reveal Key Considerations</button>
+                        <div class="extension-guidance feedback-area !bg-blue-50 !border-blue-200 !text-blue-700 hidden">
+                            <p><strong>Key areas to consider for your research (for a chosen material like Cobalt):</strong></p>
+                            <ul class="list-disc list-inside pl-4">
+                                <li>Artisanal and small-scale mining (ASM) conditions.</li>
+                                <li>Child labor and forced labor.</li>
+                                <li>Health and safety risks for miners.</li>
+                                <li>Conflict financing ("conflict minerals").</li>
+                                <li>Displacement of communities.</li>
+                                <li>Efforts for responsible sourcing and traceability.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </section>
             
             <footer class="mt-12 text-center no-print">
-                <div id="final-score-area" class="task-container bg-purple-100 border-purple-300 mb-6">
-                    <h2 class="task-title text-2xl text-purple-700">Worksheet Score</h2>
-                    <p id="final-score-display" class="text-3xl font-bold text-purple-800">Your score: 0 / 0</p>
-                    <p id="final-score-feedback" class="text-purple-600"></p>
-                </div>
-                <button id="calculate-final-score" class="final-button">Calculate Final Score</button>
                 <button id="reset-all-tasks" class="reset-button">Reset All Tasks</button>
                 <button id="export-pdf-button" class="export-pdf-button">Export to PDF</button>
             </footer>
 
         </main>
     </div>
-
+    <div id="read-progress" class="fixed bottom-4 right-4 bg-gray-700 text-white p-3 rounded-lg shadow-lg no-print transition-opacity duration-300 opacity-0">Sections Read: 0 / 0</div>
     
     <script src="js/gcse-ethics-enviro.js"></script>
     <script src="js/worksheet-common.js"></script>
 </body>
-
-
-    <script src="js/worksheet-common.js"></script>
-</body>
-
 </html>

@@ -1,4 +1,5 @@
 // --- Flashcard Data for Keywords ---
+// ... (remains the same)
 const flashcardData = {
     "electronic waste (e-waste)": "Discarded electrical or electronic devices. Contains toxic materials like lead, mercury, cadmium, which can leach into soil and water if not disposed of properly.",
     "energy consumption": "The use of energy or power. Computing devices and data centres consume significant amounts of electricity, contributing to greenhouse gas emissions if sourced from fossil fuels.",
@@ -10,12 +11,8 @@ const flashcardData = {
     "circular economy": "An economic model focused on minimizing waste and making the most of resources by keeping products and materials in use for as long as possible, through repairing, reusing, refurbishing, and recycling."
 };
 
-// --- Global Variables for Scoring ---
-let totalPossibleScore = 0;
-let currentScore = 0;
-let scoreCalculated = false;
-
 // --- Helper: Add Keyword Tooltips ---
+// ... (remains the same)
 function addTooltips() {
     document.querySelectorAll('.keyword').forEach(span => {
         const keywordText = span.textContent.trim().toLowerCase().replace(/[().,]/g, '');
@@ -32,19 +29,31 @@ function addTooltips() {
 }
 
 // --- Helper: Toggle Reveal ---
+// ... (remains the same, ensure CSS transitions are used for 'show' class)
 function toggleReveal(contentId, buttonElement, revealText, hideText) {
     const content = document.getElementById(contentId);
     if (!content) return;
-    content.classList.toggle('show');
+    
+    if (content.classList.contains('show')) {
+        content.classList.remove('show');
+        content.classList.add('hidden');
+    } else {
+        content.classList.remove('hidden'); 
+        setTimeout(() => { content.classList.add('show'); }, 10); 
+    }
+
     if (buttonElement) {
         buttonElement.textContent = content.classList.contains('show') ? hideText : revealText;
     }
 }
 
+
 // --- Task 1: Impact Matching ---
+// ... (remains the same as previous update with hint logic) ...
 let selectedImpactTerm = null;
 let selectedImpactDef = null;
 let impactMatchesMade = {};
+let impactMatchAttempts = {}; 
 
 function setupImpactMatching() {
     const termList = document.getElementById('impact-term-list');
@@ -52,29 +61,38 @@ function setupImpactMatching() {
     const feedbackEl = document.getElementById('impact-matching-feedback');
     if (!termList || !defList) return;
 
-    selectedImpactTerm = null; selectedImpactDef = null; impactMatchesMade = {};
+    selectedImpactTerm = null; selectedImpactDef = null; impactMatchesMade = {}; impactMatchAttempts = {};
+    
     termList.querySelectorAll('.matching-item').forEach(item => {
-        item.classList.remove('selected', 'correct', 'incorrect', 'disabled');
+        item.classList.remove('selected', 'correct', 'incorrect', 'disabled', 'hint-shown');
         item.disabled = false;
         item.onclick = () => handleImpactMatchClick(item, 'term');
+        impactMatchAttempts[item.dataset.match] = 0; 
     });
     defList.querySelectorAll('.matching-item').forEach(item => {
-        item.classList.remove('selected', 'correct', 'incorrect', 'disabled');
+        item.classList.remove('selected', 'correct', 'incorrect', 'disabled', 'correct-hint');
         item.disabled = false;
         item.onclick = () => handleImpactMatchClick(item, 'definition');
     });
 
-    for (let i = defList.children.length; i >= 0; i--) { // Shuffle definitions
+    for (let i = defList.children.length; i >= 0; i--) {
         defList.appendChild(defList.children[Math.random() * i | 0]);
     }
 
-    if (feedbackEl) feedbackEl.classList.remove('show');
+    if (feedbackEl) {
+      feedbackEl.innerHTML = '';
+      feedbackEl.classList.remove('show');
+      feedbackEl.classList.add('hidden');
+    }
     const quizItem = termList.closest('.quiz-item');
-    if (quizItem) { quizItem.dataset.answeredCorrectly = "false"; delete quizItem.dataset.answered; }
+    if (quizItem) { 
+      quizItem.dataset.answeredCorrectly = "false"; 
+      delete quizItem.dataset.answered;
+    }
 }
 
 function handleImpactMatchClick(item, type) {
-    if (item.disabled) return;
+    if (item.disabled || item.classList.contains('correct')) return;
     if (type === 'term') {
         if (selectedImpactTerm) selectedImpactTerm.classList.remove('selected');
         selectedImpactTerm = item; item.classList.add('selected');
@@ -89,20 +107,60 @@ function attemptImpactMatch() {
     const termMatchId = selectedImpactTerm.dataset.match;
     const defMatchId = selectedImpactDef.dataset.match;
 
-    selectedImpactTerm.classList.remove('selected'); selectedImpactDef.classList.remove('selected');
+    const currentSelectedTerm = selectedImpactTerm; 
+    const currentSelectedDef = selectedImpactDef; 
+
+    currentSelectedTerm.classList.remove('selected'); 
+    currentSelectedDef.classList.remove('selected');
 
     if (termMatchId === defMatchId) {
-        selectedImpactTerm.classList.add('correct'); selectedImpactDef.classList.add('correct');
-        selectedImpactTerm.disabled = true; selectedImpactDef.disabled = true;
+        currentSelectedTerm.classList.add('correct'); 
+        currentSelectedDef.classList.add('correct');
+        currentSelectedTerm.disabled = true; 
+        currentSelectedDef.disabled = true;
         impactMatchesMade[termMatchId] = true;
+        currentSelectedTerm.classList.remove('hint-shown', 'incorrect');
+        currentSelectedDef.classList.remove('correct-hint', 'incorrect');
+        
+        const feedbackEl = document.getElementById('impact-matching-feedback');
+        const hintPara = feedbackEl.querySelector(`p.hint-feedback[data-hint-for='${termMatchId}']`);
+        if(hintPara) hintPara.remove();
+
     } else {
-        selectedImpactTerm.classList.add('incorrect'); selectedImpactDef.classList.add('incorrect');
+        currentSelectedTerm.classList.add('incorrect'); 
+        currentSelectedDef.classList.add('incorrect');
+        impactMatchAttempts[termMatchId]++;
+
+        if (impactMatchAttempts[termMatchId] >= 2 && !currentSelectedTerm.classList.contains('hint-shown')) {
+            const feedbackEl = document.getElementById('impact-matching-feedback');
+            const correctDefElement = document.querySelector(`#impact-definition-list .matching-item[data-match='${termMatchId}']`);
+            if (correctDefElement && feedbackEl) {
+                let hintPara = feedbackEl.querySelector(`p.hint-feedback[data-hint-for='${termMatchId}']`);
+                if(!hintPara) {
+                    hintPara = document.createElement('p');
+                    hintPara.className = 'hint-feedback font-semibold mt-2';
+                    hintPara.dataset.hintFor = termMatchId;
+                    hintPara.innerHTML = `<i class="fas fa-info-circle mr-1"></i>Hint: "<em>${currentSelectedTerm.textContent}</em>" relates to something like "<em>${correctDefElement.textContent.substring(0, 50)}...</em>".`;
+                    feedbackEl.appendChild(hintPara);
+                }
+                feedbackEl.classList.remove('hidden');
+                setTimeout(() => { feedbackEl.classList.add('show'); }, 10);
+                correctDefElement.classList.add('correct-hint');
+                currentSelectedTerm.classList.add('hint-shown');
+            }
+        }
+        
         setTimeout(() => {
-            if (selectedImpactTerm && !selectedImpactTerm.classList.contains('correct')) selectedImpactTerm.classList.remove('incorrect');
-            if (selectedImpactDef && !selectedImpactDef.classList.contains('correct')) selectedImpactDef.classList.remove('incorrect');
-        }, 800);
+            if (currentSelectedTerm && !currentSelectedTerm.classList.contains('correct')) {
+                 currentSelectedTerm.classList.remove('incorrect');
+            }
+            if (currentSelectedDef && !currentSelectedDef.classList.contains('correct') && !currentSelectedDef.classList.contains('correct-hint')) {
+                currentSelectedDef.classList.remove('incorrect');
+            }
+        }, 1000);
     }
-    selectedImpactTerm = null; selectedImpactDef = null;
+    selectedImpactTerm = null; 
+    selectedImpactDef = null;
 }
 
 function checkImpactMatches() {
@@ -110,217 +168,163 @@ function checkImpactMatches() {
     const termListEl = document.getElementById('impact-term-list');
     if (!termListEl || !feedbackEl) return;
 
+    const generalFeedback = feedbackEl.querySelector('p:not(.hint-feedback)');
+    if (generalFeedback) generalFeedback.remove();
+
     const totalPairs = termListEl.children.length;
     const correctMatches = Object.keys(impactMatchesMade).length;
-    let allAttempted = true;
+    
+    let allAttemptedViaMatching = true;
     termListEl.querySelectorAll('.matching-item').forEach(term => {
-        if (!term.disabled) allAttempted = false;
+        if (!term.disabled) allAttemptedViaMatching = false;
         if (!term.classList.contains('correct') && term.disabled === false) term.classList.add('incorrect');
     });
     document.getElementById('impact-definition-list').querySelectorAll('.matching-item').forEach(def => {
-        if (!def.classList.contains('correct') && def.disabled === false) def.classList.add('incorrect');
+        if (!def.classList.contains('correct') && def.disabled === false && !def.classList.contains('correct-hint') ) def.classList.add('incorrect');
     });
 
-    if (!allAttempted && totalPairs > 0) {
+    if (!allAttemptedViaMatching && totalPairs > 0 && correctMatches < totalPairs) {
         alert("Please attempt to match all impacts before checking.");
         return;
     }
-
+    
     const quizItem = termListEl.closest('.quiz-item');
+    let feedbackMessage = "";
     if (correctMatches === totalPairs) {
-        feedbackEl.innerHTML = `<p class="correct-feedback font-semibold">All impacts matched correctly! (+${quizItem.dataset.points} points)</p>`;
+        feedbackMessage = `<p class="correct-feedback font-semibold">All impacts matched correctly! (+${quizItem.dataset.points} points)</p>`;
         quizItem.dataset.answeredCorrectly = "true";
     } else {
-        feedbackEl.innerHTML = `<p class="incorrect-feedback font-semibold">Some impacts are mismatched. You got ${correctMatches}/${totalPairs} correct. Check red items.</p>`;
+        feedbackMessage = `<p class="incorrect-feedback font-semibold">Some impacts are mismatched. You got ${correctMatches}/${totalPairs} correct. Review red items or use the hints.</p>`;
         quizItem.dataset.answeredCorrectly = "false";
     }
-    feedbackEl.classList.add('show');
+    feedbackEl.insertAdjacentHTML('afterbegin', feedbackMessage);
+    feedbackEl.classList.remove('hidden');
+    setTimeout(() => { feedbackEl.classList.add('show'); }, 10);
     quizItem.dataset.answered = "true";
-    if (scoreCalculated) calculateScore();
 }
 function resetImpactMatches() {
-    setupImpactMatching();
-    if (scoreCalculated) calculateScore();
+    setupImpactMatching(); 
 }
 
-// --- Task 2: E-Waste Lifecycle Sorter (REVISED) ---
+// --- Task 2: E-Waste Lifecycle Sorter ---
+// ... (remains the same) ...
 const correctEwasteOrder = ["ewaste-step-extraction", "ewaste-step-manufacturing", "ewaste-step-obsolescence", "ewaste-step-disposal", "ewaste-step-recycling"];
-const ewasteSlotPlaceholders = {}; // To store initial HTML of slots
-let ewasteDraggedItem = null;      // The item currently being dragged
-let ewasteSourceSlotId = null;
-
-// Global variables for Task 4 (new)
-let task4Textareas;
-let task4CheckButton;
-
-
+const ewasteSlotPlaceholders = {};
+let ewasteDraggedItem = null;
+let ewasteSourceSlotId = null; 
 
 function initializeEwasteSorter() {
-    // Setup draggable items in the pool
-    document.querySelectorAll('#ewaste-steps-pool .ewaste-step').forEach(item => {
-        item.draggable = true; // Ensure draggable is set
-        item.addEventListener('dragstart', ewasteDragStart);
-         item.addEventListener('dragend', ewasteDragEnd); // Important for cleanup
+    const pool = document.getElementById('ewaste-steps-pool');
+    const slots = document.querySelectorAll('#ewaste-ordered-steps .ewaste-slot');
+    if (!pool || slots.length === 0) return;
+    slots.forEach(slot => {
+        ewasteSlotPlaceholders[slot.id] = slot.innerHTML; 
+        slot.addEventListener('dragover', ewasteDragOver);
+        slot.addEventListener('dragenter', ewasteDragEnter);
+        slot.addEventListener('dragleave', ewasteDragLeave);
+        slot.addEventListener('drop', ewasteDrop);
     });
-
-    // Initialize Task 4 elements (new)
-    task4Textareas = document.querySelectorAll('#task4-solutions-brainstorm textarea');
-    task4CheckButton = document.getElementById('check-task4-solutions-btn');
-    task4Guidance = document.getElementById('solutions-guidance'); // Assuming this ID exists
-    task4Feedback = document.getElementById('task4-feedback'); // Assuming this ID exists
-
-    if (task4Textareas && task4CheckButton) {
-        task4Textareas.forEach(textarea => textarea.addEventListener('input', updateTask4CheckButtonState));
-        updateTask4CheckButtonState(); // Set initial state
-    }
-    // Call reset to set initial state correctly
-    if (typeof resetEwasteLifecycle === 'function') {
-        resetEwasteLifecycle();
-    }
-
+    pool.addEventListener('dragover', ewasteDragOver);
+    pool.addEventListener('dragenter', ewasteDragEnter);
+    pool.addEventListener('dragleave', ewasteDragLeave);
+    pool.addEventListener('drop', ewasteDrop);
+    pool.querySelectorAll('.ewaste-step').forEach(item => {
+        item.draggable = true;
+        item.addEventListener('dragstart', ewasteDragStart);
+        item.addEventListener('dragend', ewasteDragEnd);
+    });
+     resetEwasteLifecycle(); 
+}
 function ewasteDragStart(event) {
     ewasteDraggedItem = event.target;
     event.dataTransfer.setData('text/plain', event.target.id);
     event.dataTransfer.effectAllowed = 'move';
-    event.target.classList.add('opacity-50'); // Visual cue for dragging
-
-    // Check if the item is being dragged from one of the ordered slots
-    if (event.target.parentElement && event.target.parentElement.id.startsWith('ewaste-slot-')) {
+    event.target.classList.add('opacity-50');
+    if (event.target.parentElement && event.target.parentElement.classList.contains('ewaste-slot')) {
         ewasteSourceSlotId = event.target.parentElement.id;
-    } else {
-        ewasteSourceSlotId = null; // Item is from the pool
-    }
+    } else { ewasteSourceSlotId = null; }
 }
-
 function ewasteDragEnd(event) {
-    if (ewasteDraggedItem) { // ewasteDraggedItem might be null if drag was cancelled
-        ewasteDraggedItem.classList.remove('opacity-50');
-    }
-
-    // If an item was dragged FROM a slot, and that slot is now empty
-    // (because the item was dropped elsewhere OR the drag was cancelled by dropping outside a valid target),
-    // then restore its placeholder.
+    if (ewasteDraggedItem) { ewasteDraggedItem.classList.remove('opacity-50'); }
     if (ewasteSourceSlotId) {
         const sourceSlot = document.getElementById(ewasteSourceSlotId);
         if (sourceSlot && sourceSlot.children.length === 0 && ewasteSlotPlaceholders[sourceSlot.id] !== undefined) {
-            sourceSlot.innerHTML = ewasteSlotPlaceholders[sourceSlot.id];
+            if (!sourceSlot.contains(ewasteDraggedItem)) { sourceSlot.innerHTML = ewasteSlotPlaceholders[sourceSlot.id]; }
         }
     }
-    ewasteDraggedItem = null;
-    ewasteSourceSlotId = null;
+    ewasteDraggedItem = null; ewasteSourceSlotId = null;
 }
-
-// Function to update the state of the Task 4 check button (new)
-function updateTask4CheckButtonState() {
-    if (!task4Textareas || !task4CheckButton) return;
-    let allFilled = true;
-    task4Textareas.forEach(textarea => {
-        if (textarea.value.trim().length === 0) allFilled = false;
-    });
-    task4CheckButton.disabled = !allFilled;
-}
-
-function ewasteDragOver(event) {
-    event.preventDefault(); // Necessary to allow dropping
-}
-
+function ewasteDragOver(event) { event.preventDefault(); }
 function ewasteDragEnter(event) {
     event.preventDefault();
     const dropTarget = event.currentTarget;
-    // Make sure currentTarget is a valid drop zone (a slot or the pool)
-    if (dropTarget.id.startsWith('ewaste-slot-') || dropTarget.id === 'ewaste-steps-pool') {
-        dropTarget.classList.add('bg-indigo-100', 'border-indigo-400'); // Visual cue for valid drop target
+    if (dropTarget.classList.contains('ewaste-slot') || dropTarget.id === 'ewaste-steps-pool') {
+        dropTarget.classList.add('bg-indigo-100', 'border-indigo-400');
     }
 }
-
 function ewasteDragLeave(event) {
     const dropTarget = event.currentTarget;
-    if (dropTarget.id.startsWith('ewaste-slot-') || dropTarget.id === 'ewaste-steps-pool') {
+    if (dropTarget.classList.contains('ewaste-slot') || dropTarget.id === 'ewaste-steps-pool') {
         dropTarget.classList.remove('bg-indigo-100', 'border-indigo-400');
     }
 }
-
 function ewasteDrop(event) {
     event.preventDefault();
     const dropTarget = event.currentTarget;
     dropTarget.classList.remove('bg-indigo-100', 'border-indigo-400');
-
-    if (!ewasteDraggedItem) return; // Should not happen if dragstart was successful
-
-    const targetIsSlot = dropTarget.id.startsWith('ewaste-slot-');
+    if (!ewasteDraggedItem) return;
+    const targetIsSlot = dropTarget.classList.contains('ewaste-slot');
     const targetIsPool = dropTarget.id === 'ewaste-steps-pool';
-
     if (targetIsSlot) {
-        // If the target slot already contains an item, move that item back to the pool
         if (dropTarget.children.length > 0 && dropTarget.firstChild !== ewasteDraggedItem) {
             const existingItem = dropTarget.firstChild;
+            existingItem.classList.remove('correct', 'incorrect', 'text-white', '!bg-green-500', 'border-green-700', '!bg-red-500', 'border-red-700');
             document.getElementById('ewaste-steps-pool').appendChild(existingItem);
-            // Ensure items moved back to the pool are draggable again (already handled by initial setup)
         }
-
-        // If the dragged item came FROM a different slot, restore that original slot's placeholder
         if (ewasteSourceSlotId && ewasteSourceSlotId !== dropTarget.id) {
             const originalSlot = document.getElementById(ewasteSourceSlotId);
             if (originalSlot && originalSlot.children.length === 0 && ewasteSlotPlaceholders[originalSlot.id] !== undefined) {
                 originalSlot.innerHTML = ewasteSlotPlaceholders[originalSlot.id];
             }
         }
-        
-        dropTarget.innerHTML = ''; // Clear current content (placeholder or old item)
+        dropTarget.innerHTML = ''; 
         dropTarget.appendChild(ewasteDraggedItem);
-
     } else if (targetIsPool) {
-        // If the item was dragged from a slot and is now being dropped back into the pool
         if (ewasteSourceSlotId) {
             const originalSlot = document.getElementById(ewasteSourceSlotId);
             if (originalSlot && ewasteSlotPlaceholders[originalSlot.id] !== undefined) {
-                originalSlot.innerHTML = ewasteSlotPlaceholders[originalSlot.id]; // Restore placeholder
+                originalSlot.innerHTML = ewasteSlotPlaceholders[originalSlot.id]; 
             }
         }
-        dropTarget.appendChild(ewasteDraggedItem); // Add item to pool
-        // Remove any correctness styling if it was in a slot
-        ewasteDraggedItem.classList.remove('correct', 'incorrect');
+        dropTarget.appendChild(ewasteDraggedItem);
+        ewasteDraggedItem.classList.remove('correct', 'incorrect', 'text-white', '!bg-green-500', 'border-green-700', '!bg-red-500', 'border-red-700');
     }
-    // ewasteDraggedItem and ewasteSourceSlotId are reset in ewasteDragEnd
 }
-
 function checkEwasteLifecycle() {
     const feedbackDiv = document.getElementById('ewaste-lifecycle-feedback');
     const task2Container = document.getElementById('task2-ewaste-lifecycle');
     if (!task2Container || !feedbackDiv) return;
-
     const quizItem = task2Container.querySelector('.quiz-item');
     if (!quizItem) return;
-
     let allSlotsFilled = true;
     const placedItems = [];
     for (let i = 0; i < correctEwasteOrder.length; i++) {
         const slot = document.getElementById(`ewaste-slot-${i}`);
         const itemInSlot = slot ? slot.querySelector('.ewaste-step') : null;
-        if (!itemInSlot) {
-            allSlotsFilled = false;
-        }
-        placedItems.push(itemInSlot); // Will contain the item or null
+        if (!itemInSlot) allSlotsFilled = false;
+        placedItems.push(itemInSlot);
     }
-
-    if (!allSlotsFilled) {
-        alert("Please drag a lifecycle stage into each of the order slots.");
-        return;
-    }
-
+    if (!allSlotsFilled) { alert("Please drag a lifecycle stage into each of the order slots."); return; }
     let correctOrderCount = 0;
     placedItems.forEach((step, index) => {
-        if (step) { // Should always be true due to allSlotsFilled check
-            step.classList.remove('correct', 'incorrect');
+        if (step) {
+            step.classList.remove('correct', 'incorrect', 'text-white', '!bg-green-500', 'border-green-700', '!bg-red-500', 'border-red-700');
             if (step.id === correctEwasteOrder[index]) {
                 step.classList.add('correct', 'text-white', '!bg-green-500', 'border-green-700');
                 correctOrderCount++;
-            } else {
-                step.classList.add('incorrect', 'text-white', '!bg-red-500', 'border-red-700');
-            }
+            } else { step.classList.add('incorrect', 'text-white', '!bg-red-500', 'border-red-700'); }
         }
     });
-
     quizItem.dataset.answered = "true";
     if (correctOrderCount === correctEwasteOrder.length) {
         feedbackDiv.innerHTML = `<p class="correct-feedback font-semibold">Correct order! Well done! (+${quizItem.dataset.points} points)</p>`;
@@ -329,326 +333,532 @@ function checkEwasteLifecycle() {
         feedbackDiv.innerHTML = `<p class="incorrect-feedback font-semibold">Not quite the right order. You got ${correctOrderCount}/${correctEwasteOrder.length} steps correct. Review the highlighted items.</p>`;
         quizItem.dataset.answeredCorrectly = "false";
     }
-    feedbackDiv.classList.add('show');
-    if (scoreCalculated) calculateScore();
+    feedbackDiv.classList.remove('hidden');
+    setTimeout(() => { feedbackDiv.classList.add('show'); }, 10);
 }
-
 function resetEwasteLifecycle() {
     const pool = document.getElementById('ewaste-steps-pool');
     if (!pool) return;
-
-    // Move items from slots back to pool and restore slot placeholders
     for (let i = 0; i < correctEwasteOrder.length; i++) {
         const slot = document.getElementById(`ewaste-slot-${i}`);
         if (slot) {
             const itemInSlot = slot.querySelector('.ewaste-step');
             if (itemInSlot) {
                 itemInSlot.classList.remove('correct', 'incorrect', 'text-white', '!bg-green-500', 'border-green-700', '!bg-red-500', 'border-red-700', 'opacity-50');
-                pool.appendChild(itemInSlot);
+                pool.appendChild(itemInSlot); 
             }
-            // Restore the original placeholder HTML (empty styled div)
-            if (ewasteSlotPlaceholders[slot.id] !== undefined) {
-                slot.innerHTML = ewasteSlotPlaceholders[slot.id];
-            } else {
-                slot.innerHTML = ''; // Fallback: just clear it
-            }
-            slot.classList.remove('drag-over-active', 'bg-indigo-100', 'border-indigo-400');
+            if (ewasteSlotPlaceholders[slot.id] !== undefined) { slot.innerHTML = ewasteSlotPlaceholders[slot.id];}
+            else { slot.innerHTML = `Slot ${i + 1}`; slot.classList.add('text-gray-400', 'flex', 'items-center', 'justify-center');}
+            slot.classList.remove('bg-indigo-100', 'border-indigo-400');
         }
     }
-
-    // Ensure all original draggable items are in the pool and reset their styles
-    const originalItemIds = [
-        "ewaste-step-disposal", "ewaste-step-manufacturing",
-        "ewaste-step-obsolescence", "ewaste-step-extraction", "ewaste-step-recycling"
-    ];
+     const originalItemIds = ["ewaste-step-disposal", "ewaste-step-manufacturing", "ewaste-step-obsolescence", "ewaste-step-extraction", "ewaste-step-recycling"];
     originalItemIds.forEach(id => {
         const item = document.getElementById(id);
         if (item) {
-            if (item.parentElement !== pool) {
-                pool.appendChild(item); // Ensure it's in the pool
-            }
+            if (item.parentElement !== pool) pool.appendChild(item);
             item.classList.remove('correct', 'incorrect', 'text-white', '!bg-green-500', 'border-green-700', '!bg-red-500', 'border-red-700', 'opacity-50');
-            item.draggable = true; // Ensure it's draggable
+            item.draggable = true;
         }
     });
-    
-    // Clear feedback and reset state
     const feedbackArea = document.getElementById('ewaste-lifecycle-feedback');
-    if (feedbackArea) {
-        feedbackArea.innerHTML = '';
-        feedbackArea.classList.remove('show');
-    }
-    
+    if (feedbackArea) { feedbackArea.innerHTML = ''; feedbackArea.classList.remove('show'); feedbackArea.classList.add('hidden'); }
     const quizItem = document.querySelector('#task2-ewaste-lifecycle .quiz-item');
-    if (quizItem) {
-        quizItem.dataset.answeredCorrectly = "false";
-        delete quizItem.dataset.answered;
-    }
-
-    ewasteDraggedItem = null;
-    ewasteSourceSlotId = null;
-    if (scoreCalculated) calculateScore();
+    if (quizItem) { quizItem.dataset.answeredCorrectly = "false"; delete quizItem.dataset.answered;}
+    ewasteDraggedItem = null; ewasteSourceSlotId = null;
 }
 
-
-// --- Task 3: Data Centre Sim ---
-const serverLoadSlider = document.getElementById('server-load-slider');
-const coolingSlider = document.getElementById('cooling-slider');
-const datacenterVisual = document.getElementById('datacenter-visual');
-const coolingVisual = document.getElementById('cooling-visual');
-const energyStatus = document.getElementById('datacenter-energy-status');
-
-function updateDatacenterSim() {
-    if (!serverLoadSlider || !coolingSlider || !datacenterVisual || !coolingVisual || !energyStatus) return;
-    const load = parseInt(serverLoadSlider.value);
-    const coolingEfficiency = parseInt(coolingSlider.value); // 1 (low) to 5 (high)
-
-    document.getElementById('server-load-value').textContent = load;
-    document.getElementById('cooling-value').textContent = coolingEfficiency;
-
-    datacenterVisual.innerHTML = ''; // Clear previous racks
-    const totalRacks = 20; // Max visual racks
-    const activeRacks = Math.ceil((load / 100) * totalRacks);
-
-    for (let i = 0; i < totalRacks; i++) {
-        const rack = document.createElement('div');
-        rack.className = 'server-rack-visual';
-        if (i < activeRacks) rack.classList.add('active');
-        datacenterVisual.appendChild(rack);
+// --- Task 3: Solutions Brainstorm ---
+// ... (remains the same) ...
+let task3Textareas; let task3CheckButton; let task3Guidance; let task3Feedback;
+function initializeTask3() { 
+    task3Textareas = document.querySelectorAll('#task3-solutions-brainstorm textarea'); 
+    task3CheckButton = document.getElementById('check-task3-solutions-btn'); 
+    task3Guidance = document.getElementById('solutions-guidance');
+    task3Feedback = document.getElementById('task3-feedback'); 
+    if (task3Textareas && task3CheckButton) {
+        task3Textareas.forEach(textarea => textarea.addEventListener('input', updateTask3CheckButtonState));
+        updateTask3CheckButtonState(); 
     }
-
-    let energyDemand = load * 2; // Base energy for load
-    let coolingDemand = load * 1.5; // Cooling needed is proportional to load
-    let coolingProvided = coolingEfficiency * 30; // Max cooling provided by efficient system
-
-    let statusText = "";
-    coolingVisual.classList.remove('overloaded');
-
-    if (coolingProvided < coolingDemand && load > 30) { // Only show overloaded if load is somewhat significant
-        statusText = "Cooling system struggling! High energy use.";
-        coolingVisual.classList.add('overloaded');
-        energyDemand += (coolingDemand - coolingProvided) * 0.5; // Extra energy for struggling cooling
-    } else if (load > 70) {
-        statusText = "High server load, significant energy use.";
-    } else if (load > 30) {
-        statusText = "Moderate server load and energy use.";
-    } else {
-        statusText = "Low server load, optimized energy use.";
-    }
-    energyStatus.textContent = `${statusText} (Conceptual Energy Units: ${Math.round(energyDemand + (coolingDemand / coolingEfficiency * 5))})`;
 }
-function checkDatacenterAnswers() {
-    const q1AnswerEl = document.getElementById('datacenter-q1');
-    const feedbackDiv = document.getElementById('task3-feedback');
-    const quizItem = q1AnswerEl.closest('.quiz-item');
-    const answer = q1AnswerEl.value.toLowerCase();
-    let correctPoints = 0;
-    let feedbackHtml = "<ul>";
-
-    if (answer.trim().length < 10) {
-        feedbackHtml += `<li class="incorrect-feedback"><i class="fas fa-times mr-1"></i>Please provide a more detailed answer.</li>`;
-    } else {
-        if (answer.includes("powering server") || answer.includes("running server") || answer.includes("electricity for servers")) {
-            feedbackHtml += `<li class="correct-feedback"><i class="fas fa-check mr-1"></i>Mentioned powering servers.</li>`; correctPoints++;
-        } else {
-            feedbackHtml += `<li class="incorrect-feedback"><i class="fas fa-times mr-1"></i>Missing: Powering the servers themselves.</li>`;
-        }
-        if (answer.includes("cooling") || answer.includes("air conditioning") || answer.includes("temperature control")) {
-            feedbackHtml += `<li class="correct-feedback"><i class="fas fa-check mr-1"></i>Mentioned cooling systems.</li>`; correctPoints++;
-        } else {
-            feedbackHtml += `<li class="incorrect-feedback"><i class="fas fa-times mr-1"></i>Missing: Energy for cooling systems.</li>`;
-        }
-    }
-    feedbackHtml += "</ul>";
-    quizItem.dataset.answeredCorrectly = (correctPoints === 2).toString();
-    quizItem.dataset.answered = "true";
-    feedbackDiv.innerHTML = `<p class="${correctPoints === 2 ? 'correct-feedback' : 'incorrect-feedback'} font-semibold">You identified ${correctPoints}/2 main reasons.</p>${feedbackHtml}`;
-    feedbackDiv.classList.add('show');
-    if (scoreCalculated) calculateScore();
+function updateTask3CheckButtonState() { 
+    if (!task3Textareas || !task3CheckButton) return;
+    let allFilled = true;
+    task3Textareas.forEach(textarea => { if (textarea.value.trim().length === 0) allFilled = false; });
+    task3CheckButton.disabled = !allFilled;
 }
-function resetDatacenterTask() {
-    if (serverLoadSlider) serverLoadSlider.value = 50;
-    if (coolingSlider) coolingSlider.value = 3;
-    updateDatacenterSim();
-    document.getElementById('datacenter-q1').value = '';
-    document.getElementById('task3-feedback').classList.remove('show');
-    const quizItem = document.querySelector('#task3-datacenter-sim .quiz-item');
-    quizItem.dataset.answeredCorrectly = "false";
-    delete quizItem.dataset.answered;
-    if (scoreCalculated) calculateScore();
+function checkTask3Solutions() { 
+    if (!task3Guidance || !task3Feedback) return;
+    task3Guidance.classList.remove('hidden'); setTimeout(() => { task3Guidance.classList.add('show'); }, 10);
+    task3Feedback.innerHTML = '<p class="text-green-700 font-semibold">Review the example solutions above and compare them to your ideas!</p>';
+    task3Feedback.classList.remove('hidden'); setTimeout(() => { task3Feedback.classList.add('show'); }, 10);
+}
+function resetTask3Solutions() { 
+    if (!task3Textareas || !task3CheckButton || !task3Guidance || !task3Feedback) return;
+    task3Textareas.forEach(textarea => textarea.value = '');
+    task3Guidance.classList.remove('show'); task3Guidance.classList.add('hidden');
+    task3Feedback.innerHTML = '';
+    task3Feedback.classList.remove('show'); task3Feedback.classList.add('hidden');
+    updateTask3CheckButtonState();
 }
 
-// --- Exam Practice Question Logic ---
-function toggleMarkScheme(markSchemeId, textareaId, minLength = 10) {
+// --- Exam Practice Question Logic (Task 4) ---
+// ... (remains the same) ...
+function toggleMarkScheme(markSchemeId, textareaId, marksInputId, minLength = 10) {
     const markSchemeDiv = document.getElementById(markSchemeId);
     const textarea = document.getElementById(textareaId);
-    const buttonElement = event.target;
-
-    if (!markSchemeDiv) return;
-
-    if (!markSchemeDiv.classList.contains('show')) {
-        if (textarea && textarea.value.trim().length < minLength) {
-            alert(`Please attempt a more detailed answer (at least ${minLength} characters) before viewing the mark scheme.`);
-            return;
-        }
+    const marksInput = document.getElementById(marksInputId);
+    const buttonElement = event.target; 
+    if (!markSchemeDiv || !marksInput) return;
+    if (!markSchemeDiv.classList.contains('show')) { 
+        if (marksInput.value.trim() === '') { alert(`Please enter your predicted marks before viewing the mark scheme.`); return; }
+        if (textarea && textarea.value.trim().length < minLength) { alert(`Please attempt a more detailed answer (at least ${minLength} characters) for the question before viewing the mark scheme.`); return; }
     }
     toggleReveal(markSchemeId, buttonElement, 'Show Mark Scheme', 'Hide Mark Scheme');
 }
 
-// --- Final Score Calculation ---
-function calculateScore() {
-    currentScore = 0;
-    totalPossibleScore = 0;
-    scoreCalculated = true;
+// --- Task 5: Interactive Carbon Footprint Calculator ---
+function initializeCarbonCalculator() {
+    const sliders = {
+        laptop: document.getElementById('laptop-hours'),
+        phone: document.getElementById('phone-hours'),
+        gaming: document.getElementById('gaming-hours'),
+        streaming: document.getElementById('streaming-hours'),
+        cloud: document.getElementById('cloud-storage')
+    };
+    const values = {
+        laptop: document.getElementById('laptop-hours-value'),
+        phone: document.getElementById('phone-hours-value'),
+        gaming: document.getElementById('gaming-hours-value'),
+        streaming: document.getElementById('streaming-hours-value'),
+        cloud: document.getElementById('cloud-storage-value')
+    };
+    const co2OutputEl = document.getElementById('co2-output');
+    const treesOffsetEl = document.getElementById('trees-offset');
+    const drivingKmsEl = document.getElementById('driving-kms');
 
-    document.querySelectorAll('.quiz-item').forEach(item => {
-        if (item.closest('#starter-activity') || item.closest('#exam-practice-environmental') || item.closest('#task4-solutions-brainstorm')) return;
+    // Illustrative emission factors (kg CO2e per unit per year)
+    // These are highly simplified and for educational purposes only.
+    const factors = {
+        laptopPerHrDay: 0.03 * 365,    // kg CO2e per (hour/day) per year
+        phonePerHrDay: 0.005 * 365,   // kg CO2e per (hour/day) per year
+        gamingPerHrDay: 0.1 * 365,    // kg CO2e per (hour/day) per year
+        streamingPerHrDay: 0.04 * 365,// kg CO2e per (hour/day) per year
+        cloudPerGBMonth: 0.01 * 12    // kg CO2e per (GB/month) per year
+    };
+    const treeAbsorptionKgPerYear = 22; // Average tree CO2 absorption
+    const carEmissionKgPerKm = 0.17;    // Average car CO2 emission
 
-        const points = parseInt(item.dataset.points || 0);
-        totalPossibleScore += points;
-        if (item.dataset.answeredCorrectly === 'true') {
-            currentScore += points;
+    function calculateAndDisplayFootprint() {
+        const laptopHours = parseFloat(sliders.laptop.value);
+        const phoneHours = parseFloat(sliders.phone.value);
+        const gamingHours = parseFloat(sliders.gaming.value);
+        const streamingHours = parseFloat(sliders.streaming.value);
+        const cloudStorageGB = parseFloat(sliders.cloud.value);
+
+        values.laptop.textContent = laptopHours;
+        values.phone.textContent = phoneHours;
+        values.gaming.textContent = gamingHours;
+        values.streaming.textContent = streamingHours;
+        values.cloud.textContent = cloudStorageGB;
+
+        let totalCo2e = 0;
+        totalCo2e += laptopHours * factors.laptopPerHrDay;
+        totalCo2e += phoneHours * factors.phonePerHrDay;
+        totalCo2e += gamingHours * factors.gamingPerHrDay;
+        totalCo2e += streamingHours * factors.streamingPerHrDay;
+        totalCo2e += cloudStorageGB * factors.cloudPerGBMonth;
+        
+        co2OutputEl.textContent = totalCo2e.toFixed(2);
+        treesOffsetEl.textContent = (totalCo2e / treeAbsorptionKgPerYear).toFixed(1);
+        drivingKmsEl.textContent = (totalCo2e / carEmissionKgPerKm).toFixed(0);
+    }
+
+    for (const key in sliders) {
+        if (sliders[key]) {
+            sliders[key].addEventListener('input', calculateAndDisplayFootprint);
         }
+    }
+    calculateAndDisplayFootprint(); // Initial calculation
+}
+
+// --- Task 6: E-Waste Pathway Visualizer ---
+function initializeEwasteVisualizer() {
+    const deviceSelect = document.getElementById('ewaste-device-type');
+    const disposalSelect = document.getElementById('ewaste-disposal-method');
+    const visualizeBtn = document.getElementById('visualize-ewaste-btn');
+    const outputDiv = document.getElementById('ewaste-pathway-output');
+
+    const pathways = {
+        smartphone: {
+            bin: { text: "Smartphone in bin: Ends up in landfill. Harmful chemicals like lead and mercury can leach into soil and water. Valuable materials are lost.", icon: "fas fa-dumpster-fire", color: "text-red-600" },
+            recycle_center: { text: "Smartphone to official recycling: Materials like gold, silver, copper, and plastics can be recovered and reused, reducing need for new mining. Ensures safer handling of hazardous components.", icon: "fas fa-recycle", color: "text-green-600" },
+            sell_donate: { text: "Smartphone sold/donated: Extends the device's life, reducing immediate need for a new one. Good for the environment and can help others.", icon: "fas fa-gift", color: "text-blue-600" },
+            informal_recycle: { text: "Smartphone to informal recycler: Often dismantled in unsafe conditions in developing countries. Workers (sometimes children) exposed to toxins. Some materials recovered, but high pollution.", icon: "fas fa-exclamation-triangle", color: "text-yellow-600" }
+        },
+        laptop: {
+            bin: { text: "Laptop in bin: Similar to phones, larger volume of e-waste in landfill. Batteries can be a fire hazard. More valuable materials lost.", icon: "fas fa-dumpster-fire", color: "text-red-600" },
+            recycle_center: { text: "Laptop to official recycling: Recovers aluminum, plastics, circuit board components. Proper battery disposal is crucial.", icon: "fas fa-recycle", color: "text-green-600" },
+            sell_donate: { text: "Laptop sold/donated: Significantly extends lifespan, very beneficial. Data security important before passing on.", icon: "fas fa-gift", color: "text-blue-600" },
+            informal_recycle: { text: "Laptop to informal recycler: Similar risks to smartphones but on a larger scale. Burning cables to get copper is common and highly toxic.", icon: "fas fa-exclamation-triangle", color: "text-yellow-600" }
+        },
+        tablet: { // Similar to smartphone but can add nuances
+            bin: { text: "Tablet in bin: Contributes to landfill e-waste. Screen materials and battery are problematic.", icon: "fas fa-dumpster-fire", color: "text-red-600" },
+            recycle_center: { text: "Tablet to official recycling: Good recovery of glass, metals, and plastics if processed correctly.", icon: "fas fa-recycle", color: "text-green-600" },
+            sell_donate: { text: "Tablet sold/donated: Extends usable life, reducing overall resource demand.", icon: "fas fa-gift", color: "text-blue-600" },
+            informal_recycle: { text: "Tablet to informal recycler: Similar issues to other devices with unsafe practices and pollution.", icon: "fas fa-exclamation-triangle", color: "text-yellow-600" }
+        }
+    };
+
+    if (visualizeBtn) {
+        visualizeBtn.addEventListener('click', () => {
+            const device = deviceSelect.value;
+            const method = disposalSelect.value;
+            const outcome = pathways[device]?.[method];
+
+            if (outcome) {
+                outputDiv.innerHTML = `
+                    <i class="${outcome.icon} ${outcome.color} text-6xl mb-4"></i>
+                    <p class="text-center">${outcome.text}</p>
+                `;
+            } else {
+                outputDiv.innerHTML = `<p class="text-gray-500">Details for this combination are not available.</p>`;
+            }
+        });
+    }
+}
+
+// --- Task 7: Design a "Greener" Gadget Sim ---
+function initializeGreenerGadgetSim() {
+    const ecoScoreBtn = document.getElementById('calculate-eco-score-btn');
+    const resultsDiv = document.getElementById('eco-score-results');
+    const scoreValueEl = document.getElementById('eco-score-value');
+    const scoreFeedbackEl = document.getElementById('eco-score-feedback');
+
+    const baseScore = 30;
+    const scores = {
+        material: { virgin_aluminum: 5, recycled_aluminum: 20, standard_plastic: 10 },
+        repair: { hard: 5, moderate: 15, easy: 25 },
+        energy: { fossil_fuels: 5, mixed: 15, renewable: 25 }
+    };
+
+    if (ecoScoreBtn) {
+        ecoScoreBtn.addEventListener('click', () => {
+            const selectedMaterial = document.querySelector('input[name="gadget-material"]:checked');
+            const selectedRepair = document.querySelector('input[name="gadget-repair"]:checked');
+            const selectedEnergy = document.querySelector('input[name="gadget-energy"]:checked');
+
+            if (!selectedMaterial || !selectedRepair || !selectedEnergy) {
+                alert("Please make a selection for all criteria.");
+                return;
+            }
+
+            let currentScore = baseScore;
+            currentScore += scores.material[selectedMaterial.value] || 0;
+            currentScore += scores.repair[selectedRepair.value] || 0;
+            currentScore += scores.energy[selectedEnergy.value] || 0;
+            
+            scoreValueEl.textContent = currentScore;
+            let feedbackText = "Your gadget design has a score of " + currentScore + ". ";
+            if (currentScore > 80) feedbackText += "Excellent! This is a very green design!";
+            else if (currentScore > 60) feedbackText += "Good job! This design has strong green credentials.";
+            else if (currentScore > 40) feedbackText += "Not bad, but there's room for improvement to make it greener.";
+            else feedbackText += "This design could be much greener. Consider more sustainable choices.";
+            
+            scoreFeedbackEl.textContent = feedbackText;
+            resultsDiv.classList.remove('hidden');
+            setTimeout(() => { resultsDiv.classList.add('show'); }, 10);
+        });
+    }
+}
+
+// --- Task 8: Impact of Code Efficiency ---
+function initializeCodeEfficiencySim() {
+    const runInefficientBtn = document.getElementById('run-inefficient-code');
+    const runEfficientBtn = document.getElementById('run-efficient-code');
+    const inefficientOutputEl = document.getElementById('inefficient-code-output');
+    const efficientOutputEl = document.getElementById('efficient-code-output');
+    
+    // Conceptual size of the list for simulation
+    const listSize = 1000; 
+
+    if (runInefficientBtn) {
+        runInefficientBtn.addEventListener('click', () => {
+            // Conceptual operations for sum_list_slow (Python)
+            // Outer loop runs listSize times.
+            // Inner loop (pass * 50) + (total += item) = 51 operations per item
+            let operations = listSize * (50 + 1); // +1 for the addition, 50 for the inner loop
+            operations += listSize; //  Roughly for the outer loop iterations/checks themselves
+            inefficientOutputEl.innerHTML = `Simulated "sum_list_slow (Python)": <strong class="text-red-600">${operations} conceptual operations</strong>.`;
+        });
+    }
+    if (runEfficientBtn) {
+        runEfficientBtn.addEventListener('click', () => {
+            // Conceptual operations for sum_list_fast (Python)
+            // Loop runs listSize times.
+            // (total += item) = 1 operation per item
+            let operations = listSize * 1; // +1 for the addition
+            operations += listSize; // Roughly for the loop iterations/checks
+            efficientOutputEl.innerHTML = `Simulated "sum_list_fast (Python)": <strong class="text-green-600">${operations} conceptual operations</strong>.`;
+        });
+    }
+}
+
+// --- Task 9: Data Centre PUE Explorer ---
+function initializePueExplorer() {
+    const itEnergySlider = document.getElementById('it-energy-slider');
+    const coolingEnergySlider = document.getElementById('cooling-energy-slider');
+    const renewableSlider = document.getElementById('renewable-source-slider');
+
+    const itEnergyValueEl = document.getElementById('it-energy-value');
+    const coolingEnergyValueEl = document.getElementById('cooling-energy-value');
+    const renewableValueEl = document.getElementById('renewable-source-value');
+    
+    const totalFacilityEnergyEl = document.getElementById('total-facility-energy');
+    const pueValueEl = document.getElementById('pue-value');
+    const pueGaugeFillEl = document.getElementById('pue-gauge-fill');
+    const pueGaugeTextEl = document.getElementById('pue-gauge-text');
+    const pueCarbonImpactEl = document.getElementById('pue-carbon-impact');
+
+    function updatePueDisplay() {
+        const itEnergy = parseFloat(itEnergySlider.value);
+        const coolingEnergy = parseFloat(coolingEnergySlider.value);
+        const renewablePercent = parseFloat(renewableSlider.value);
+
+        itEnergyValueEl.textContent = itEnergy;
+        coolingEnergyValueEl.textContent = coolingEnergy;
+        renewableValueEl.textContent = renewablePercent;
+
+        const totalFacilityEnergy = itEnergy + coolingEnergy;
+        const pue = totalFacilityEnergy / itEnergy;
+
+        totalFacilityEnergyEl.textContent = totalFacilityEnergy.toFixed(0);
+        pueValueEl.textContent = pue.toFixed(2);
+        pueGaugeTextEl.textContent = pue.toFixed(2);
+
+        // Gauge: PUE 1.0 is 0% fill (best), PUE 3.0 is 100% fill (worst). Scale: (PUE - 1) / 2
+        const gaugeFillPercent = Math.min(100, Math.max(0, ((pue - 1) / 2) * 100)); 
+        pueGaugeFillEl.style.width = `${gaugeFillPercent}%`;
+        if (pue < 1.2) pueGaugeFillEl.style.backgroundColor = '#10B981'; // Green
+        else if (pue < 1.5) pueGaugeFillEl.style.backgroundColor = '#F59E0B'; // Amber
+        else pueGaugeFillEl.style.backgroundColor = '#EF4444'; // Red
+
+
+        // Conceptual Carbon Impact: Higher for higher PUE and lower renewables
+        // Max impact score of 1000 for PUE 3.0 and 0% renewables
+        // Min impact score of 0 for PUE 1.0 and 100% renewables
+        const nonRenewablePercent = 100 - renewablePercent;
+        const carbonImpact = (pue * 50) + (nonRenewablePercent * 5); // Arbitrary weighting
+        pueCarbonImpactEl.textContent = carbonImpact.toFixed(0);
+    }
+
+    [itEnergySlider, coolingEnergySlider, renewableSlider].forEach(slider => {
+        if (slider) slider.addEventListener('input', updatePueDisplay);
     });
-
-    const scoreDisplayEl = document.getElementById('final-score-display');
-    const feedbackDisplay = document.getElementById('final-score-feedback');
-    const scoreArea = document.getElementById('final-score-area');
-
-    scoreDisplayEl.textContent = `Your interactive task score: ${currentScore} / ${totalPossibleScore}`;
-    let percentage = totalPossibleScore > 0 ? (currentScore / totalPossibleScore) * 100 : 0;
-    let feedbackMessage = "";
-
-    if (percentage === 100) feedbackMessage = "Excellent! Full marks on interactive tasks!";
-    else if (percentage >= 75) feedbackMessage = "Great job! You have a strong understanding.";
-    else if (percentage >= 50) feedbackMessage = "Good effort! Review any tasks you found tricky.";
-    else feedbackMessage = "Keep practicing! Revisit the tasks and explanations to improve.";
-
-    feedbackDisplay.textContent = feedbackMessage;
-    feedbackDisplay.className = `text-purple-600 ${percentage >= 75 ? 'font-semibold' : ''}`;
-    scoreArea.style.display = 'block';
-    scoreArea.scrollIntoView({ behavior: 'smooth' });
-}
-// Function to handle the click of the Task 4 check button (new)
-function checkTask4Solutions() {
-    if (!task4Guidance || !task4Feedback) return;
-    task4Guidance.classList.remove('hidden'); // Reveal the example solutions
-    task4Feedback.innerHTML = '<p class="text-green-700 font-semibold">Review the example solutions above and compare them to your ideas!</p>'; // Provide feedback
-}
-}
-// Function to reset Task 4 (new)
-function resetTask4Solutions() {
-    if (!task4Textareas || !task4CheckButton || !task4Guidance || !task4Feedback) return;
-    task4Textareas.forEach(textarea => textarea.value = ''); // Clear textareas
-    task4Guidance.classList.add('hidden'); // Hide guidance again
-    task4Feedback.innerHTML = ''; // Clear feedback
-    updateTask4CheckButtonState(); // Disable the button
+    if (itEnergySlider) updatePueDisplay(); // Initial calculation
 }
 
-// Modify the overall reset function if it exists (assuming it's called resetAllTasks)
-// If you don't have a resetAllTasks, you might need to add event listeners to individual reset buttons
-// and ensure they call resetTask4Solutions if needed
+
+// --- "Mark as Read" Progress ---
+// ... (remains the same) ...
+let totalReadableSections = 0;
+let sectionsRead = 0;
+let readProgressElement = null;
+let readCheckboxes = [];
+function updateReadProgress() {
+    if (readProgressElement && totalReadableSections > 0) {
+        readProgressElement.textContent = `Sections Read: ${sectionsRead} / ${totalReadableSections}`;
+        readProgressElement.classList.remove('opacity-0'); 
+    } else if (readProgressElement) { readProgressElement.classList.add('opacity-0');}
+}
+function initializeReadProgress() {
+    readCheckboxes = document.querySelectorAll('.read-checkbox');
+    totalReadableSections = readCheckboxes.length;
+    readProgressElement = document.getElementById('read-progress');
+    sectionsRead = 0;
+    readCheckboxes.forEach(cb => { if (cb.checked) sectionsRead++; });
+    if (totalReadableSections > 0) {
+        updateReadProgress();
+        readCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                sectionsRead = 0;
+                readCheckboxes.forEach(cb => { if (cb.checked) sectionsRead++; });
+                updateReadProgress();
+            });
+        });
+    } else if (readProgressElement) { readProgressElement.style.display = 'none'; }
+}
+
+// --- Extension Activity Self-Reflection ---
+// ... (remains the same) ...
+function initializeExtensionActivities() {
+    document.querySelectorAll('.reveal-guidance-button').forEach(button => {
+        button.addEventListener('click', function() {
+            const guidanceDiv = this.nextElementSibling; 
+            if (guidanceDiv && guidanceDiv.classList.contains('extension-guidance')) {
+                if (guidanceDiv.classList.contains('show')) {
+                    guidanceDiv.classList.remove('show'); guidanceDiv.classList.add('hidden');
+                    this.textContent = 'Reveal Key Considerations';
+                } else {
+                    guidanceDiv.classList.remove('hidden'); setTimeout(() => { guidanceDiv.classList.add('show'); }, 10);
+                    this.textContent = 'Hide Key Considerations';
+                }
+            }
+        });
+    });
+}
+
 // --- Reset All Tasks ---
 function resetAllTasks() {
     if (!confirm("Are you sure you want to reset all tasks? Your progress will be lost.")) return;
-    // Reset Starter
+    
     ['starter-q1-devices', 'starter-q2-energy', 'starter-q3-cloud'].forEach(id => {
         const el = document.getElementById(id); if (el) el.value = '';
     });
-    const starterFeedbackDiv = document.getElementById('starter-answers-feedback');
-    if(starterFeedbackDiv && starterFeedbackDiv.classList.contains('show')) starterFeedbackDiv.classList.remove('show');
+    // Starter answers are always visible now, no button to reset.
 
-
-    // Reset Tasks
     resetImpactMatches();
-    resetEwasteLifecycle(); // This will now call the corrected version
-    resetDatacenterTask();
+    resetEwasteLifecycle();
+    resetTask3Solutions(); 
 
-    // Reset Task 4 (Solutions Brainstorm)
-    ['solution-ewaste', 'solution-energy', 'solution-materials'].forEach(id => {
+    ['exam-q1-env', 'exam-q2-env', 'exam-q3-env'].forEach(id => {
         const el = document.getElementById(id); if (el) el.value = '';
     });
-    const solutionsGuidanceDiv = document.getElementById('solutions-guidance');
-     if(solutionsGuidanceDiv && solutionsGuidanceDiv.classList.contains('show')) solutionsGuidanceDiv.classList.remove('show');
-
-
-    // Reset Exam Practice
-    ['exam-q1-env', 'exam-q2-env', 'exam-q3-env'].forEach(id => {
+    ['exam-q1-marks', 'exam-q2-marks', 'exam-q3-marks'].forEach(id => {
         const el = document.getElementById(id); if (el) el.value = '';
     });
     ['ms-exam-q1-env', 'ms-exam-q2-env', 'ms-exam-q3-env'].forEach(id => {
         const msDiv = document.getElementById(id);
-        const msButton = document.querySelector(`button[onclick*="'${id}'"]`);
+        const msButton = document.querySelector(`button[onclick*="'${id}'"]`); 
         if (msDiv && msDiv.classList.contains('show')) {
-             msDiv.classList.remove('show');
-             if(msButton) msButton.textContent = 'Show Mark Scheme';
+             msDiv.classList.remove('show');  msDiv.classList.add('hidden');
+             if(msButton) msButton.textContent = 'Show Mark Scheme'; 
         }
     });
+    
+    // Reset new simulation tasks
+    if (document.getElementById('laptop-hours')) { // Check if carbon calculator exists
+        ['laptop-hours', 'phone-hours', 'gaming-hours', 'streaming-hours', 'cloud-storage'].forEach(id => {
+            const slider = document.getElementById(id);
+            if (slider) { slider.value = slider.min === "0" ? "0" : slider.defaultValue || "0"; }
+        });
+        initializeCarbonCalculator(); // Recalculate and display reset values
+    }
+    if (document.getElementById('ewaste-pathway-output')) { // Check if e-waste visualizer exists
+        document.getElementById('ewaste-pathway-output').innerHTML = '<p class="text-gray-500">Select options and click "Visualize Pathway" to see the outcome.</p>';
+        if(document.getElementById('ewaste-device-type')) document.getElementById('ewaste-device-type').selectedIndex = 0;
+        if(document.getElementById('ewaste-disposal-method')) document.getElementById('ewaste-disposal-method').selectedIndex = 0;
+    }
+    if (document.getElementById('calculate-eco-score-btn')) { // Greener Gadget
+        document.querySelectorAll('input[name="gadget-material"]').forEach(rb => rb.checked = false);
+        document.querySelectorAll('input[name="gadget-repair"]').forEach(rb => rb.checked = false);
+        document.querySelectorAll('input[name="gadget-energy"]').forEach(rb => rb.checked = false);
+        const ecoResults = document.getElementById('eco-score-results');
+        if (ecoResults) { ecoResults.classList.add('hidden'); ecoResults.classList.remove('show');}
+        if (document.getElementById('eco-score-value')) document.getElementById('eco-score-value').textContent = "0";
+        if (document.getElementById('eco-score-feedback')) document.getElementById('eco-score-feedback').textContent = "";
+    }
+    if (document.getElementById('run-inefficient-code')) { // Code Efficiency
+         if(document.getElementById('inefficient-code-output')) document.getElementById('inefficient-code-output').innerHTML = "";
+         if(document.getElementById('efficient-code-output')) document.getElementById('efficient-code-output').innerHTML = "";
+    }
+    if (document.getElementById('it-energy-slider')) { // PUE Explorer
+        ['it-energy-slider', 'cooling-energy-slider', 'renewable-source-slider'].forEach(id => {
+             const slider = document.getElementById(id);
+             if(slider) slider.value = slider.defaultValue;
+        });
+        initializePueExplorer(); // Recalculate
+    }
 
-    // Reset Read Checkboxes
+
     document.querySelectorAll('.read-checkbox').forEach(checkbox => checkbox.checked = false);
-    // Reset Final Score
-    currentScore = 0; scoreCalculated = false;
-    const finalScoreArea = document.getElementById('final-score-area');
-    if (finalScoreArea) finalScoreArea.style.display = 'none';
-    
-    const finalScoreDisplay = document.getElementById('final-score-display');
-    if (finalScoreDisplay) finalScoreDisplay.textContent = 'Your score: 0 / 0'; // Recalculate total possible if needed or set default
-    
-    const finalScoreFeedback = document.getElementById('final-score-feedback');
-    if(finalScoreFeedback) finalScoreFeedback.textContent = '';
+    sectionsRead = 0; 
+    updateReadProgress();
 
-
+    document.querySelectorAll('.extension-task textarea').forEach(ta => ta.value = '');
+    document.querySelectorAll('.extension-guidance').forEach(div => {
+        div.classList.remove('show'); div.classList.add('hidden');
+        const button = div.previousElementSibling;
+        if (button && button.classList.contains('reveal-guidance-button')) {
+            button.textContent = 'Reveal Key Considerations';
+        }
+    });
+    
     alert("All tasks have been reset.");
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // --- PDF Export ---
+// ... (PDF Export function remains largely the same) ...
 function exportToPDF() {
-    alert("Preparing PDF. This might take a moment. Please ensure pop-ups are allowed. Interactive elements might not be fully captured in their current state.");
-    const element = document.querySelector('.max-w-4xl.mx-auto.bg-white');
+    alert("Preparing PDF. This might take a moment. Please ensure pop-ups are allowed. Interactive elements may not be fully captured in their current state.");
+    const element = document.querySelector('.max-w-4xl.mx-auto.bg-white'); 
     const opt = {
-        margin: [0.5, 0.5, 0.7, 0.5], // top, left, bottom, right (inches)
-        filename: 'gcse-environmental-impact-lesson.pdf',
-        image: { type: 'jpeg', quality: 0.95 },
-        html2canvas: { scale: 2, logging: false, useCORS: true, scrollY: -window.scrollY },
-        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' },
-        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+        margin:       [0.5, 0.5, 0.7, 0.5], 
+        filename:     'gcse-environmental-impact-lesson.pdf',
+        image:        { type: 'jpeg', quality: 0.95 },
+        html2canvas:  { scale: 2, logging: false, useCORS: true, scrollY: -window.scrollY, ignoreElements: (el) => el.classList.contains('no-print-pdf') },
+        jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' },
+        pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] } 
     };
-
-    const revealableElements = document.querySelectorAll('.feedback-area, .quiz-feedback, .mark-scheme, .reveal-content');
-    const initiallyHidden = [];
+    const revealableSelector = '.feedback-area, .mark-scheme, #solutions-guidance, .extension-guidance, #eco-score-results';
+    const revealableElements = document.querySelectorAll(revealableSelector);
+    const initiallyHiddenOrShown = [];
     revealableElements.forEach(el => {
-        if (!el.classList.contains('show')) { initiallyHidden.push(el); el.classList.add('show'); }
+        const wasHidden = el.classList.contains('hidden') || !el.classList.contains('show'); // Check both Tailwind hidden and our show logic
+        initiallyHiddenOrShown.push({element: el, wasHidden: wasHidden});
+        el.classList.remove('hidden'); 
+        el.classList.add('show');    
     });
-    const finalScoreArea = document.getElementById('final-score-area');
-    let finalScoreWasHidden = true;
-    if (finalScoreArea) {
-        finalScoreWasHidden = finalScoreArea.style.display === 'none';
-        if (finalScoreWasHidden) finalScoreArea.style.display = 'block';
-    }
     
+    // Make starter answers visible for PDF if they were managed by a button before
+    const starterAnswers = document.getElementById('starter-answers-feedback');
+    let starterWasHiddenForPdf = false;
+    if (starterAnswers && !starterAnswers.classList.contains('show')) {
+        starterWasHiddenForPdf = true;
+        starterAnswers.classList.remove('hidden');
+        starterAnswers.classList.add('show');
+    }
+
 
     const exportButton = document.getElementById('export-pdf-button');
     const resetButton = document.getElementById('reset-all-tasks');
-    const calcScoreButton = document.getElementById('calculate-final-score');
-    if (exportButton) exportButton.disabled = true;
-    if (resetButton) resetButton.disabled = true;
-    if (calcScoreButton) calcScoreButton.disabled = true;
+    const readProgressElemForPdf = document.getElementById('read-progress');
+
+    if (exportButton) exportButton.classList.add('no-print-pdf');
+    if (resetButton) resetButton.classList.add('no-print-pdf');
+    if (readProgressElemForPdf) readProgressElemForPdf.classList.add('no-print-pdf');
 
     html2pdf().from(element).set(opt).save().then(function () {
-        initiallyHidden.forEach(el => el.classList.remove('show'));
-        if (finalScoreArea && finalScoreWasHidden) finalScoreArea.style.display = 'none';
-        if (exportButton) exportButton.disabled = false;
-        if (resetButton) resetButton.disabled = false;
-        if (calcScoreButton) calcScoreButton.disabled = false;
+        initiallyHiddenOrShown.forEach(item => {
+            if(item.wasHidden) {
+                item.element.classList.remove('show');
+                item.element.classList.add('hidden');
+            }
+        });
+        if(starterWasHiddenForPdf && starterAnswers){
+            starterAnswers.classList.remove('show');
+            starterAnswers.classList.add('hidden'); // Or restore its original state if it was more complex
+        }
+        if (exportButton) exportButton.classList.remove('no-print-pdf');
+        if (resetButton) resetButton.classList.remove('no-print-pdf');
+        if (readProgressElemForPdf) readProgressElemForPdf.classList.remove('no-print-pdf');
+        console.log("PDF Exported");
     }).catch(function (error) {
         console.error("Error generating PDF:", error);
-        initiallyHidden.forEach(el => el.classList.remove('show'));
-        if (finalScoreArea && finalScoreWasHidden) finalScoreArea.style.display = 'none';
-        if (exportButton) exportButton.disabled = false;
-        if (resetButton) resetButton.disabled = false;
-        if (calcScoreButton) calcScoreButton.disabled = false;
+         initiallyHiddenOrShown.forEach(item => {
+             if(item.wasHidden) {
+                item.element.classList.remove('show');
+                item.element.classList.add('hidden');
+            }
+        });
+        if(starterWasHiddenForPdf && starterAnswers){
+            starterAnswers.classList.remove('show');
+            starterAnswers.classList.add('hidden');
+        }
+        if (exportButton) exportButton.classList.remove('no-print-pdf');
+        if (resetButton) resetButton.classList.remove('no-print-pdf');
+        if (readProgressElemForPdf) readProgressElemForPdf.classList.remove('no-print-pdf');
     });
 }
 
@@ -656,27 +866,20 @@ function exportToPDF() {
 document.addEventListener('DOMContentLoaded', () => {
     addTooltips();
     setupImpactMatching();
-    initializeEwasteSorter(); // Calls the new setup for Task 2
-    updateDatacenterSim(); // Initial call for sim
-    if (serverLoadSlider) serverLoadSlider.addEventListener('input', updateDatacenterSim);
-    if (coolingSlider) coolingSlider.addEventListener('input', updateDatacenterSim);
+    initializeEwasteSorter();
+    initializeTask3(); 
+    initializeReadProgress();
+    initializeExtensionActivities();
 
-    // Calculate initial total possible score
-    totalPossibleScore = 0;
-    document.querySelectorAll('.quiz-item').forEach(item => {
-        // Ensure only scorable items are counted
-        if (item.closest('#starter-activity') || item.closest('#exam-practice-environmental') || item.closest('#task4-solutions-brainstorm')) return;
-        totalPossibleScore += parseInt(item.dataset.points || 0);
-    });
-    const finalScoreDisplay = document.getElementById('final-score-display');
-    if (finalScoreDisplay) {
-        finalScoreDisplay.textContent = `Your score: 0 / ${totalPossibleScore}`;
-    }
+    // Initialize new simulation tasks
+    initializeCarbonCalculator();
+    initializeEwasteVisualizer();
+    initializeGreenerGadgetSim();
+    initializeCodeEfficiencySim();
+    initializePueExplorer();
 
+    // Removed starter answers reveal button logic as it's always visible or handled differently
 
-    const calcFinalScoreButton = document.getElementById('calculate-final-score');
-    if(calcFinalScoreButton) calcFinalScoreButton.addEventListener('click', calculateScore);
-    
     const resetAllTasksButton = document.getElementById('reset-all-tasks');
     if(resetAllTasksButton) resetAllTasksButton.addEventListener('click', resetAllTasks);
 

@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCSE CS: Threats to Computer Systems - Part 1 (Interactive)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Styles for original interactive elements */
+        .threat-simulation-container {
+            border: 2px dashed #cbd5e1; /* slate-300 */
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 0.5rem;
+            background-color: #f8fafc; /* slate-50 */
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem; 
+        }
+
+        .sim-icon { font-size: 2rem; transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out; }
+        .sim-file { display: flex; flex-direction: column; align-items: center; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 0.25rem; background-color: white; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05); min-width: 120px; text-align: center; }
+        .sim-file.infected { border-color: #ef4444; background-color: #fee2e2; }
+        .sim-file.locked { border-color: #f97316; background-color: #ffedd5; position: relative; }
+        .sim-file.locked::after { content: "LOCKED"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-15deg); font-size: 0.8rem; font-weight: bold; color: #c2410c; background-color: rgba(255, 237, 213, 0.8); padding: 2px 4px; border-radius: 3px; }
+        .sim-file .fa-file-alt, .sim-file .fa-file-word, .sim-file .fa-file-image, .sim-file .fa-file-excel { color: #60a5fa; }
+        .sim-file.infected .fa-file-alt, .sim-file.infected .fa-file-word, .sim-file.infected .fa-file-image, .sim-file.infected .fa-file-excel { color: #b91c1c; }
+        .sim-file.locked .fa-file-alt, .sim-file.locked .fa-file-word, .sim-file.locked .fa-file-image, .sim-file.locked .fa-file-excel { color: #c2410c; }
+
+        .trojan-horse-game button { padding: 0.5rem 1rem; margin: 0.25rem; border-radius: 0.375rem; cursor: pointer; }
+        .trojan-horse-game .legit-app { background-color: #22c55e; color:white; }
+        .trojan-horse-game .trojan-app { background-color: #ef4444; color:white;}
+        .trojan-alert { margin-top: 0.5rem; padding: 0.75rem; border-radius: 0.375rem; background-color: #fecaca; border: 2px solid #dc2626; color: #b91c1c; font-weight: bold; text-align: center; }
+        .data-transfer-animation { margin-top: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
+        .data-transfer-animation .fa-file { color: #60a5fa; animation: moveFile 1.5s linear infinite; }
+        @keyframes moveFile { 0% { transform: translateX(-20px); opacity: 0;} 50% { opacity: 1;} 100% { transform: translateX(20px); opacity: 0;} }
+
+        #keylogger-output, #hacker-server-log { font-family: monospace; background-color: #1f2937; color: #34d399; padding: 0.5rem; border-radius: 0.25rem; min-height: 30px; width: 100%; max-width: 300px; text-align: left; margin-top: 0.5rem; border: 1px solid #4b5563; }
+        #hacker-server-log { color: #f87171; } 
+        .transmission-animation { display: inline-block; animation: transmit 0.5s infinite alternate; }
+        @keyframes transmit { 0% { opacity: 1; } 100% { opacity: 0.3; } }
+
+        /* Old Brute Force styles removed */
+
+        .fill-in-blank { border: 1px solid #9ca3af; border-radius: 0.25rem; padding: 0.25rem 0.5rem; margin: 0 0.25rem; min-width: 100px; background-color: white; }
+        .fill-in-blank.correct { border-color: #10b981; background-color: #d1fae5; }
+        .fill-in-blank.incorrect { border-color: #ef4444; background-color: #fee2e2; }
+        .self-assess-input { width: 60px; padding: 0.25rem; margin-left: 0.5rem; border-radius: 0.25rem; border: 1px solid #ccc; text-align: center; }
+
+        /* Styles for Network Virus Simulation & Advanced Worm Sim (shared where possible, specific if needed) */
+        .network-simulation-body { 
+            font-family: 'Inter', sans-serif; 
+            overscroll-behavior: none; 
+            background-color: #111827; /* gray-900 */
+            color: white;
+            padding: 1rem; 
+            border-radius: 0.5rem; 
+            margin-top: 1rem;
+        }
+        .network-simulation-computer {
+            transition: background-color 0.5s ease, border-color 0.5s ease, transform 0.3s ease;
+            min-width: 100px; 
+        }
+        .network-simulation-computer:hover { transform: translateY(-3px); }
+        .network-simulation-computer-screen { min-height: 50px; }
+        .network-simulation-defense-icons { font-size: 0.7rem; gap: 0.3rem; }
+        .network-simulation-defense-icons i { padding: 2px; border-radius: 3px; }
+        
+        .netvirus-defense-on { color: #22c55e; }
+        .netvirus-defense-off { color: #ef4444; }
+        .netvirus-defense-weak { color: #eab308; }
+
+        .advworm-defense-on { color: #22c55e; }
+        .advworm-defense-off { color: #ef4444; }
+        .advworm-defense-weak { color: #eab308; }
+
+
+        .network-simulation-log-entry { animation: fadeInLog 0.5s ease; }
+        @keyframes fadeInLog { 
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .network-simulation-event-log::-webkit-scrollbar { width: 6px; }
+        .network-simulation-event-log::-webkit-scrollbar-track { background: #374151; }
+        .network-simulation-event-log::-webkit-scrollbar-thumb { background: #6b7280; border-radius: 3px; }
+        .network-simulation-event-log::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+
+        .network-simulation-status-infected { animation: pulseNetworkInfected 1.5s infinite ease-in-out; }
+        @keyframes pulseNetworkInfected { 
+            0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); } 
+            50% { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
+        }
+         .advworm-status-infected { animation: pulseAdvWormInfected 1.5s infinite ease-in-out; }
+        @keyframes pulseAdvWormInfected { 
+            0%, 100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.7); } 
+            50% { box-shadow: 0 0 0 6px rgba(249, 115, 22, 0); }
+        }
+
+        .network-simulation-status-blocked-flash { animation: pulseNetworkBlocked 0.7s 1; }
+        @keyframes pulseNetworkBlocked { 
+            0%, 100% { border-color: #06b6d4; box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.7); } 
+            50% { border-color: #06b6d4; box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.3); }
+        }
+        .network-simulation-info-box h3 { color: #f6ad55; } 
+
+        /* Styles for NEW Brute Force Simulator */
+        .brute-force-sim-body { /* Wrapper for the new sim's dark theme */
+            font-family: 'Inter', sans-serif;
+            overscroll-behavior: none;
+            background-color: #111827; /* gray-900 from new sim */
+            color: white;
+            padding: 1.5rem; /* p-6 equivalent */
+            border-radius: 0.5rem; /* rounded-lg */
+            margin-top: 1rem;
+        }
+        .brute-force-sim-log-entry { animation: bruteForceFadeInLog 0.3s ease-out; }
+        @keyframes bruteForceFadeInLog {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        #bruteForceAdv_eventLog::-webkit-scrollbar { width: 8px; }
+        #bruteForceAdv_eventLog::-webkit-scrollbar-track { background: #1f2937; } /* gray-800 */
+        #bruteForceAdv_eventLog::-webkit-scrollbar-thumb { background: #4b5563; border-radius: 4px; } /* gray-600 */
+        .brute-force-sim-info-box h3 { color: #fbbf24; } /* amber-400 */
+        .brute-force-target-system {
+            transition: border-color 0.5s ease, box-shadow 0.5s ease;
+        }
+        .brute-force-target-locked {
+            border-color: #ef4444; /* red-500 */
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.5);
+        }
+        .brute-force-target-unlocked {
+            border-color: #22c55e; /* green-500 */
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.5);
+        }
+        .brute-force-target-lockout { /* For account lockout */
+            border-color: #f97316; /* orange-500 */
+            box-shadow: 0 0 15px rgba(249, 115, 22, 0.6);
+        }
+        .brute-force-attempt-display {
+            min-height: 2.5em; 
+            font-family: 'Courier New', Courier, monospace;
+            word-break: break-all;
+        }
+        .brute-force-sim-body input[type="text"]:disabled, 
+        .brute-force-sim-body input[type="number"]:disabled, 
+        .brute-force-sim-body select:disabled, 
+        .brute-force-sim-body input[type="checkbox"]:disabled + span {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+        .brute-force-sim-body input[type="checkbox"]:disabled {
+            cursor: not-allowed;
+        }
+        .brute-force-sim-body button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .brute-force-mode-button {
+            transition: all 0.2s ease-in-out;
+        }
+        .brute-force-mode-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+    </style>
+</head>
+<body class="bg-slate-50">
+    <nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <a href="home.html" class="text-xl font-bold hover:text-gray-300 transition-colors">MGS CS Hub</a>
+            <ul class="flex flex-wrap space-x-2 sm:space-x-3 lg:space-x-4 text-sm sm:text-base">
+                <li><a href="gcse.html" class="hover:text-gray-300 transition-colors">GCSE Home</a></li>
+                <li><a href="gcse-sec-threats2.html" class="hover:text-gray-300 transition-colors">Threats Part 2</a></li>
+                <li><a href="gcse-sec-prevention1.html" class="hover:text-gray-300 transition-colors">Prevention Part 1</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 worksheet-container">
+        <header class="mb-8 text-center">
+            <h1 class="text-3xl font-bold text-indigo-700 flex items-center justify-center">
+                <i class="fas fa-shield-virus mr-3 text-red-500 text-4xl"></i>
+                Threats to Computer Systems - Part 1: Malware & Brute Force
+            </h1>
+            <p class="text-lg text-slate-600 mt-2">Understanding common digital dangers.</p>
+        </header>
+
+        <section id="starter-activity" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-user-secret mr-2 text-yellow-500"></i> Starter: Digital Detective</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-200 space-y-3">
+                <p class="text-yellow-700">Imagine you're a digital detective. You've received reports of strange computer behavior. List 3 suspicious signs that might make you think a computer is under attack or infected with malware. What would be your initial guess for each sign?</p>
+                <textarea id="starter-q1-threats" rows="4" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" placeholder=""></textarea>
+            </div>
+        </section>
+
+        <section id="lesson-outcomes" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-bullseye mr-2 text-green-500"></i> Lesson Outcomes</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-green-50 p-5 rounded-lg border border-green-200">
+                <p class="font-semibold text-green-800 mb-3">By the end of this lesson, you should be able to:</p>
+                <ul class="list-disc list-inside space-y-2 text-green-700 pl-4">
+                    <li>Define <strong class="keyword">Malware</strong>.</li>
+                    <li>Describe a <strong class="keyword">Virus</strong> and its potential impact.</li>
+                    <li>Describe a <strong class="keyword">Worm</strong> and its potential impact.</li>
+                    <li>Describe <strong class="keyword">Spyware</strong> and its potential impact.</li>
+                    <li>Describe <strong class="keyword">Ransomware</strong> and its potential impact.</li>
+                    <li>Describe a <strong class="keyword">Trojan Horse</strong> and its potential impact.</li>
+                    <li>Explain what a <strong class="keyword">Brute Force Attack</strong> is and how it works.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="intro-malware" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-skull-crossbones mr-2"></i> What is Malware? (Fill in the Blanks)</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-indigo-50 p-5 rounded-lg border border-indigo-200 space-y-3" id="malware-fill-blanks-container">
+                <p><strong class="keyword">Malware</strong> is short for <input type="text" id="blank-malware-1" class="fill-in-blank" data-answer="Malicious Software|Malicious Code" placeholder=""> Software. It's any software intentionally designed to cause <input type="text" id="blank-malware-2" class="fill-in-blank" data-answer="disruption|damage|harm" placeholder=""> to a computer, server, client, or computer network, leak private information, gain <input type="text" id="blank-malware-3" class="fill-in-blank" data-answer="unauthorized access|illegal access" placeholder=""> to information or systems, or which unknowingly interferes with the user's computer <input type="text" id="blank-malware-4" class="fill-in-blank" data-answer="security|privacy" placeholder=""> and privacy.</p>
+                <div class="mt-2">
+                    <button class="check-button" onclick="checkFillBlanks('malware-fill-blanks-container')">Check My Answers</button>
+                    <button class="reset-button ml-2" onclick="resetFillBlanks('malware-fill-blanks-container')">Reset Blanks</button>
+                </div>
+                <div id="malware-fill-blanks-feedback" class="feedback-area mt-2"></div>
+            </div>
+        </section>
+
+        <section id="threat-virus" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-red-600"><i class="fas fa-virus mr-2"></i> Virus (Fill in the Blanks)</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-red-50 p-5 rounded-lg border border-red-200 space-y-3" id="virus-fill-blanks-container">
+                <p>A <strong class="keyword">Virus</strong> is a type of malicious software that, when executed, <input type="text" id="blank-virus-1" class="fill-in-blank" data-answer="replicates|copies itself" placeholder=""> by inserting copies of itself into other computer <input type="text" id="blank-virus-2" class="fill-in-blank" data-answer="programs|applications|files" placeholder="">, data files, or the boot sector of the hard drive. When this replication succeeds, the affected areas are then said to be "<input type="text" id="blank-virus-3" class="fill-in-blank" data-answer="infected" placeholder="">" with a computer virus. It needs a <input type="text" id="blank-virus-4" class="fill-in-blank" data-answer="host|host program|host file" placeholder=""> program to spread and typically requires human action (like running an infected program).</p>
+                <div class="mt-2">
+                    <button class="check-button" onclick="checkFillBlanks('virus-fill-blanks-container')">Check My Answers</button>
+                    <button class="reset-button ml-2" onclick="resetFillBlanks('virus-fill-blanks-container')">Reset Blanks</button>
+                </div>
+                <div id="virus-fill-blanks-feedback" class="feedback-area mt-2"></div>
+
+                <h3 class="text-lg font-semibold text-red-700 mt-4">Impact of a Virus:</h3>
+                <p class="text-sm text-red-700">In your own words, describe <strong>three</strong> potential impacts a virus can have on a computer or its user.</p>
+                <textarea id="virus-impact-student" class="exam-answer-textarea mt-1" rows="3" placeholder=""></textarea>
+                <button id="reveal-virus-impact-btn" class="reveal-button !bg-red-400 hover:!bg-red-500 mt-1" onclick="toggleReveal('virus-impact-suggested', this, 'Reveal Suggested Impacts', 'Hide Suggested Impacts')" disabled>Reveal Suggested Impacts</button>
+                <div id="virus-impact-suggested" class="feedback-area !bg-red-100 !border-red-300 !text-red-700">
+                    <p><strong>Suggested Impacts:</strong></p>
+                    <ul class="list-disc list-inside">
+                        <li>Corrupts or deletes data on your computer.</li>
+                        <li>Can spread to other computers when infected files are shared.</li>
+                        <li>May cause the computer to crash or run very slowly.</li>
+                        <li>Can fill up the hard drive with copies of itself or other data.</li>
+                        <li>If it steals data, it could lead to identity theft or issues with Data Protection laws for organizations.</li>
+                    </ul>
+                </div>
+                
+                <div class="threat-simulation-container mt-6">
+                    <h3 class="text-lg font-semibold text-red-700">Virus Spreading Demo (Local Machine Files)</h3>
+                    <div id="virus-sim-area" class="flex space-x-4 items-end">
+                        <div id="clean-file-1" class="sim-file"><i class="fas fa-file-alt sim-icon"></i> CleanFile1.exe</div>
+                        <div id="infected-file-user-click" class="sim-file cursor-pointer"><i class="fas fa-file-virus sim-icon text-red-500"></i> RiskyApp.exe</div>
+                        <div id="clean-file-2" class="sim-file"><i class="fas fa-file-alt sim-icon"></i> MyDocument.doc</div>
+                    </div>
+                    <div class="flex space-x-2 mt-2">
+                        <button class="sim-button !bg-red-500 hover:!bg-red-600" onclick="simulateVirusSpread()">Click to Run RiskyApp.exe</button>
+                        <button class="reset-button !bg-gray-400 hover:!bg-gray-500" onclick="resetVirusSim()">Reset Sim</button>
+                    </div>
+                    <p id="virus-sim-status" class="text-sm text-red-700 h-6"></p>
+                </div>
+
+                <div class="network-simulation-body mt-6"> 
+                    <div class="w-full max-w-4xl mx-auto"> 
+                        <header class="mb-4 text-center">
+                            <h3 class="text-xl md:text-2xl font-bold text-red-400">Virus Spreading Demo (Across a Network)</h3>
+                            <p class="text-gray-400 mt-1 text-sm">Watch how a virus might spread from one computer to others on a network.</p>
+                        </header>
+                
+                        <div id="netVirus_networkArea" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-4 p-2 bg-gray-700 rounded-md">
+                            </div>
+                
+                        <div class="flex flex-col md:flex-row gap-4 md:gap-6">
+                            <div class="md:w-1/3 bg-gray-800 p-3 rounded-lg shadow-xl">
+                                <h4 class="text-lg font-semibold mb-2 text-red-300 border-b border-gray-700 pb-1">Controls</h4>
+                                <div class="space-y-2">
+                                    <button id="netVirus_introduceVirusBtn" class="w-full bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-3 rounded-lg transition-colors shadow-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 text-sm">
+                                        Introduce Virus (to PC #1)
+                                    </button>
+                                    <button id="netVirus_resetSimulationBtn" class="w-full bg-sky-600 hover:bg-sky-700 text-white font-medium py-2 px-3 rounded-lg transition-colors shadow-md focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-50 text-sm">
+                                        Reset Network Sim
+                                    </button>
+                                </div>
+                                <div class="mt-3 text-xs text-gray-400">
+                                    <p><strong class="text-gray-300">Healthy:</strong> Blue border</p>
+                                    <p><strong class="text-gray-300">Infected:</strong> Red border & screen, pulsing</p>
+                                    <p><strong class="text-gray-300">Blocked:</strong> Brief cyan flash</p>
+                                </div>
+                            </div>
+                
+                            <div class="md:w-2/3 bg-gray-800 p-3 rounded-lg shadow-xl">
+                                <h4 class="text-lg font-semibold mb-2 text-red-300 border-b border-gray-700 pb-1">Network Event Log</h4>
+                                <div id="netVirus_eventLog" class="network-simulation-event-log h-40 md:h-48 overflow-y-auto space-y-1 text-xs pr-1">
+                                    </div>
+                            </div>
+                        </div>
+                         <div class="bg-gray-800 p-3 rounded-lg shadow-xl mt-4 network-simulation-info-box">
+                            <h3 class="text-md font-semibold mb-1 border-b border-gray-700 pb-1 text-red-300">Virus Exploits & Defenses (Simplified)</h3>
+                            <p class="text-xs text-gray-300 leading-relaxed">
+                                <strong class="text-red-400">Virus:</strong> Spreads when an infected file is shared or run. This simulation shows it trying to exploit an <strong class="text-yellow-400">Outdated OS</strong> on connected PCs.
+                                If that fails (OS is up-to-date), it attempts a secondary method that can be blocked by <strong class="text-green-400">Active Antivirus</strong> OR a <strong class="text-green-400">Strong Firewall</strong>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="threat-worm" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-purple-600"><i class="fas fa-bug mr-2"></i> Worm</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-purple-50 p-5 rounded-lg border border-purple-200 space-y-3">
+                <p>A <strong class="keyword">Worm</strong> is a standalone piece of software that replicates itself to spread to other computers, often using a computer network. It doesn't need a host program.</p>
+                <h3 class="text-lg font-semibold text-purple-700 mt-4">Impact of a Worm:</h3>
+                <p class="text-sm text-purple-700">In your own words, describe <strong>three</strong> potential impacts a worm can have.</p>
+                <textarea id="worm-impact-student" class="exam-answer-textarea mt-1" rows="3" placeholder=""></textarea>
+                <button id="reveal-worm-impact-btn" class="reveal-button !bg-purple-400 hover:!bg-purple-500 mt-1" onclick="toggleReveal('worm-impact-suggested', this, 'Reveal Suggested Impacts', 'Hide Suggested Impacts')" disabled>Reveal Suggested Impacts</button>
+                <div id="worm-impact-suggested" class="feedback-area !bg-purple-100 !border-purple-300 !text-purple-700">
+                    <p><strong>Suggested Impacts:</strong></p>
+                    <ul class="list-disc list-inside">
+                        <li>Can spread very rapidly across networks, consuming significant bandwidth and slowing down the network for all users.</li>
+                        <li>May carry "payloads" that delete files, encrypt data (like ransomware), or create backdoors for hackers to access systems.</li>
+                        <li>Can be used to create <strong class="keyword">botnets</strong> (networks of infected computers) for launching other attacks like DDoS (Distributed Denial of Service).</li>
+                        <li>Can cause widespread disruption to services that rely on the affected network.</li>
+                    </ul>
+                </div>
+                <div class="network-simulation-body mt-6"> 
+                    <div class="w-full max-w-5xl mx-auto"> 
+                        <header class="mb-4 text-center">
+                            <h3 class="text-xl md:text-2xl font-bold text-orange-400">Advanced Worm Propagation Simulation</h3>
+                            <p class="text-gray-400 mt-1 text-sm">Observe how a worm exploits vulnerabilities and how defenses can stop it.</p>
+                        </header>
+                
+                        <div id="advWormSim_networkArea" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-6 p-4 bg-gray-800 rounded-lg shadow-xl">
+                            </div>
+                
+                        <div class="flex flex-col lg:flex-row gap-4 md:gap-6">
+                            <div class="lg:w-1/3 flex flex-col gap-4 md:gap-6">
+                                <div class="bg-gray-800 p-4 rounded-lg shadow-xl">
+                                    <h4 class="text-xl font-semibold mb-3 text-orange-300 border-b border-gray-700 pb-2">Controls</h4>
+                                    <div class="space-y-3">
+                                        <button id="advWormSim_releaseWormBtn" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-medium py-2 px-4 rounded-lg transition-colors shadow-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50">
+                                            Release Worm (on PC #1)
+                                        </button>
+                                        <button id="advWormSim_resetSimulationBtn" class="w-full bg-sky-600 hover:bg-sky-700 text-white font-medium py-2 px-4 rounded-lg transition-colors shadow-md focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-50">
+                                            Reset Simulation
+                                        </button>
+                                    </div>
+                                    <div class="mt-4 text-sm text-gray-400">
+                                        <p><strong class="text-gray-300">Clean:</strong> Blue border</p>
+                                        <p><strong class="text-gray-300">Infected:</strong> Orange border, pulsing</p>
+                                        <p><strong class="text-gray-300">Blocked:</strong> Brief cyan flash</p>
+                                    </div>
+                                </div>
+                
+                                <div class="bg-gray-800 p-4 rounded-lg shadow-xl network-simulation-info-box"> <h3 class="text-lg font-semibold mb-2 border-b border-gray-700 pb-1">Worm Exploits & Defenses</h3>
+                                    <p class="text-xs text-gray-300 leading-relaxed">
+                                        <strong class="text-orange-400">Worms:</strong> Spread <strong class="text-orange-300">autonomously</strong>. This worm first tries to exploit an <strong class="text-yellow-400">Outdated OS</strong>.
+                                        If that fails, it attempts a secondary exploit targeting systems with <strong class="text-red-400">Inactive Antivirus</strong> AND a <strong class="text-yellow-500">Basic/No Firewall</strong>.
+                                    </p>
+                                    <p class="text-xs text-gray-300 mt-2 leading-relaxed">
+                                        <strong class="text-sky-400">Defenses:</strong> PCs resist if defenses counter the worm's current exploit. An <strong class="text-green-400">Up-to-Date OS</strong> (<i class="fas fa-desktop advworm-defense-on"></i>) blocks the first exploit. <strong class="text-green-400">Active Antivirus</strong> (<i class="fas fa-shield-alt advworm-defense-on"></i>) or a <strong class="text-green-400">Strong Firewall</strong> (<i class="fas fa-fire-alt advworm-defense-on"></i>) can block the secondary exploit.
+                                    </p>
+                                </div>
+                            </div>
+                
+                            <div class="lg:w-2/3 bg-gray-800 p-4 rounded-lg shadow-xl">
+                                <h4 class="text-xl font-semibold mb-3 text-orange-300 border-b border-gray-700 pb-2">Event Log</h4>
+                                <div id="advWormSim_eventLog" class="network-simulation-event-log h-64 md:h-80 lg:h-[calc(100%-4rem)] overflow-y-auto space-y-2 text-sm pr-2">
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="threat-trojan" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-blue-600"><i class="fas fa-horse-head mr-2"></i> Trojan Horse (Fill in the Blanks)</h2>
+                 <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-blue-50 p-5 rounded-lg border border-blue-200 space-y-3" id="trojan-fill-blanks-container">
+                <p>A <strong class="keyword">Trojan Horse</strong> misrepresents itself as <input type="text" id="blank-trojan-1" class="fill-in-blank" data-answer="useful|legitimate|harmless" placeholder=""> or interesting software to <input type="text" id="blank-trojan-2" class="fill-in-blank" data-answer="trick|deceive|fool" placeholder=""> users into installing it. Unlike viruses and worms, Trojans do <input type="text" id="blank-trojan-3" class="fill-in-blank" data-answer="not|not self" placeholder=""> replicate themselves.</p>
+                <div class="mt-2">
+                    <button class="check-button" onclick="checkFillBlanks('trojan-fill-blanks-container')">Check My Answers</button>
+                    <button class="reset-button ml-2" onclick="resetFillBlanks('trojan-fill-blanks-container')">Reset Blanks</button>
+                </div>
+                <div id="trojan-fill-blanks-feedback" class="feedback-area mt-2"></div>
+
+                <h3 class="text-lg font-semibold text-blue-700 mt-4">Impact of a Trojan Horse:</h3>
+                <p class="text-sm text-blue-700">In your own words, describe <strong>three</strong> potential impacts a Trojan Horse can have.</p>
+                <textarea id="trojan-impact-student" class="exam-answer-textarea mt-1" rows="3" placeholder=""></textarea>
+                <button id="reveal-trojan-impact-btn" class="reveal-button !bg-blue-400 hover:!bg-blue-500 mt-1" onclick="toggleReveal('trojan-impact-suggested', this, 'Reveal Suggested Impacts', 'Hide Suggested Impacts')" disabled>Reveal Suggested Impacts</button>
+                <div id="trojan-impact-suggested" class="feedback-area !bg-blue-100 !border-blue-300 !text-blue-700">
+                    <p><strong>Suggested Impacts:</strong></p>
+                    <ul class="list-disc list-inside">
+                        <li>Creates a "backdoor," giving malicious users unauthorized access to the victim's system.</li>
+                        <li>Can steal sensitive data such as login credentials, financial details, and personal files.</li>
+                        <li>May download and install other types of malware, like spyware or ransomware, onto the infected computer.</li>
+                        <li>Could allow an attacker to control the infected computer remotely, using it for activities like sending spam or participating in DDoS attacks.</li>
+                    </ul>
+                </div>
+                <div class="threat-simulation-container trojan-horse-game">
+                    <h3 class="text-lg font-semibold text-blue-700">Spot the Trojan!</h3>
+                    <p class="text-sm text-blue-600">One of these is not like the others... Click the one you think is a Trojan!</p>
+                    <div id="trojan-apps-area" class="flex flex-wrap justify-center gap-2">
+                        <button id="app-game" class="legit-app" onclick="checkTrojan('legit', 'app-game')"><i class="fas fa-gamepad mr-1"></i> CoolGame.exe</button>
+                        <button id="app-utility" class="legit-app" onclick="checkTrojan('legit', 'app-utility')"><i class="fas fa-tools mr-1"></i> SystemOptimizer.exe</button>
+                        <button id="app-trojan" class="trojan-app" onclick="checkTrojan('trojan', 'app-trojan')"><i class="fas fa-gift mr-1"></i> Free_GiftCard_Generator.exe</button>
+                    </div>
+                    <div id="trojan-sim-feedback-area" class="mt-2 text-center">
+                        <div id="trojan-alert-message" class="trojan-alert hidden">System Alert: Unauthorized Access Detected!</div>
+                        <div id="trojan-data-transfer" class="data-transfer-animation hidden">
+                            <i class="fas fa-file text-blue-500"></i>
+                            <i class="fas fa-long-arrow-alt-right text-gray-400 mx-1"></i>
+                            <i class="fas fa-server text-red-500"></i>
+                        </div>
+                        <p id="trojan-game-status" class="text-sm text-blue-700 h-10"></p>
+                    </div>
+                    <button class="reset-button !bg-gray-400 hover:!bg-gray-500 mt-2" onclick="resetTrojanSim()">Reset Sim</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="threat-spyware" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-yellow-600"><i class="fas fa-eye mr-2"></i> Spyware</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-200 space-y-3">
+                <p><strong class="keyword">Spyware</strong> secretly collects user information (keystrokes, browsing habits, webcam footage) and sends it to a third party.</p>
+                <h3 class="text-lg font-semibold text-yellow-700 mt-4">Impact of Spyware:</h3>
+                <p class="text-sm text-yellow-700">In your own words, describe <strong>three</strong> potential impacts spyware can have.</p>
+                <textarea id="spyware-impact-student" class="exam-answer-textarea mt-1" rows="3" placeholder=""></textarea>
+                <button id="reveal-spyware-impact-btn" class="reveal-button !bg-yellow-400 hover:!bg-yellow-500 mt-1" onclick="toggleReveal('spyware-impact-suggested', this, 'Reveal Suggested Impacts', 'Hide Suggested Impacts')" disabled>Reveal Suggested Impacts</button>
+                <div id="spyware-impact-suggested" class="feedback-area !bg-yellow-100 !border-yellow-300 !text-yellow-700">
+                    <p><strong>Suggested Impacts:</strong></p>
+                    <ul class="list-disc list-inside">
+                        <li>Steals personal information like login credentials, credit card numbers (<strong class="keyword">Keyloggers</strong> are a common form).</li>
+                        <li>Monitors internet browsing habits, which can be sold to advertisers or used for more malicious purposes.</li>
+                        <li>Can capture screenshots, record audio via microphone, or activate webcams without the user's knowledge.</li>
+                        <li>May slow down the computer and internet connection due to its background activity and data transmission.</li>
+                        <li>Can lead to identity theft and financial fraud.</li>
+                    </ul>
+                </div>
+                <div class="threat-simulation-container">
+                    <h3 class="text-lg font-semibold text-yellow-700">Keylogger & Data Transmission Demo</h3>
+                    <label for="fake-password" class="text-sm text-yellow-700">Type a fake password (watch it appear here and "on the hacker's server"):</label>
+                    <input type="text" id="fake-password" class="p-1 border rounded-md w-full max-w-xs" placeholder="">
+                    <div class="w-full max-w-xs">
+                        <p class="text-sm text-yellow-700 mt-1">Victim's Keystrokes (Local Log):</p>
+                        <div id="keylogger-output"></div>
+                    </div>
+                    <div class="w-full max-w-xs">
+                        <p class="text-sm text-red-500 mt-1">Hacker's Server Log (<span id="transmission-indicator" class="hidden">Transmitting... <i class="fas fa-wifi transmission-animation"></i></span>):</p>
+                        <div id="hacker-server-log"></div>
+                    </div>
+                    <button class="reset-button !bg-gray-400 hover:!bg-gray-500 mt-2" onclick="resetKeyloggerSim()">Reset Sim</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="threat-ransomware" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-orange-600"><i class="fas fa-lock mr-2"></i> Ransomware</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-orange-50 p-5 rounded-lg border border-orange-200 space-y-3">
+                <p><strong class="keyword">Ransomware</strong> blocks access to data (usually by encryption) and demands payment for its release.</p>
+                <h3 class="text-lg font-semibold text-orange-700 mt-4">Impact of Ransomware:</h3>
+                <p class="text-sm text-orange-700">In your own words, describe <strong>three</strong> potential impacts ransomware can have.</p>
+                <textarea id="ransomware-impact-student" class="exam-answer-textarea mt-1" rows="3" placeholder=""></textarea>
+                <button id="reveal-ransomware-impact-btn" class="reveal-button !bg-orange-400 hover:!bg-orange-500 mt-1" onclick="toggleReveal('ransomware-impact-suggested', this, 'Reveal Suggested Impacts', 'Hide Suggested Impacts')" disabled>Reveal Suggested Impacts</button>
+                <div id="ransomware-impact-suggested" class="feedback-area !bg-orange-100 !border-orange-300 !text-orange-700">
+                    <p><strong>Suggested Impacts:</strong></p>
+                    <ul class="list-disc list-inside">
+                        <li>Complete loss of access to critical personal or business files if the ransom is not paid or if decryption fails.</li>
+                        <li>Significant financial loss due to ransom payment (though payment doesn't guarantee file recovery and may encourage attackers).</li>
+                        <li>Major disruption to business operations, leading to downtime, lost revenue, and reputational damage.</li>
+                        <li>Potential for sensitive data to be leaked or sold by attackers even if the ransom is paid.</li>
+                        <li>Cost of recovery, including IT support, system restoration, and potential data recovery services.</li>
+                    </ul>
+                </div>
+                <div class="threat-simulation-container">
+                    <h3 class="text-lg font-semibold text-orange-700">Ransomware Attack Simulation!</h3>
+                    <div id="ransomware-files-area" class="flex space-x-2 flex-wrap justify-center">
+                        <div id="doc1-ransom" class="sim-file"><i class="fas fa-file-word sim-icon"></i> MyDoc1.docx</div>
+                        <div id="pic1-ransom" class="sim-file"><i class="fas fa-file-image sim-icon"></i> Holiday.jpg</div>
+                        <div id="sheet1-ransom" class="sim-file"><i class="fas fa-file-excel sim-icon"></i> Budget.xlsx</div>
+                    </div>
+                    <div class="flex space-x-2 mt-2">
+                        <button class="sim-button !bg-orange-500 hover:!bg-orange-600" onclick="simulateRansomware()">Run "Update.exe"</button>
+                        <button class="reset-button !bg-gray-400 hover:!bg-gray-500" onclick="resetRansomwareSim()">Reset Sim</button>
+                    </div>
+                    <div id="ransom-demand" class="hidden mt-2 p-4 bg-black text-red-400 border-4 border-red-600 rounded font-mono w-full max-w-md text-center">
+                        <p class="text-2xl animate-pulse"><i class="fas fa-skull-crossbones"></i> ALL YOUR FILES ARE ENCRYPTED! <i class="fas fa-skull-crossbones"></i></p>
+                        <p class="mt-2">To recover your files, send 1 Bitcoin to address:</p>
+                        <p class="text-sm break-all bg-gray-800 p-1 rounded my-1">1FakeBitcoinAddressXYZ123ABC</p>
+                        <p>You have 24 hours, or your files will be lost FOREVER!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="threat-bruteforce" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-slate-700"><i class="fas fa-key mr-2"></i> Brute Force Attacks</h2>
+                 <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-slate-100 p-5 rounded-lg border border-slate-300 space-y-3">
+                <p>A <strong class="keyword">Brute Force Attack</strong> is a trial-and-error method using automated software to guess passwords or PINs by trying many combinations.</p>
+                <p><strong>How it works:</strong> Systematically tries all character combinations, may use a <strong class="keyword">dictionary attack</strong>, continues until password found. High computing power increases success.</p>
+                <h3 class="text-lg font-semibold text-slate-700 mt-4">Impact of a Brute Force Attack:</h3>
+                <p class="text-sm text-slate-700">In your own words, describe <strong>two</strong> potential impacts of a successful brute force attack.</p>
+                <textarea id="bruteforce-impact-student" class="exam-answer-textarea mt-1" rows="2" placeholder=""></textarea>
+                <button id="reveal-bruteforce-impact-btn" class="reveal-button !bg-slate-400 hover:!bg-slate-500 mt-1" onclick="toggleReveal('bruteforce-impact-suggested', this, 'Reveal Suggested Impacts', 'Hide Suggested Impacts')" disabled>Reveal Suggested Impacts</button>
+                <div id="bruteforce-impact-suggested" class="feedback-area !bg-slate-200 !border-slate-400 !text-slate-700">
+                    <p><strong>Suggested Impacts:</strong></p>
+                    <ul class="list-disc list-inside">
+                        <li>Unauthorized access to the victim's account (e.g., email, social media, banking).</li>
+                        <li>Theft of personal or sensitive information stored in the compromised account.</li>
+                        <li>Potential for the attacker to impersonate the victim or use the account for further malicious activities.</li>
+                        <li>If the attack is on a system rather than an account, it could lead to full system compromise.</li>
+                    </ul>
+                </div>
+                <div class="brute-force-sim-body mt-4">
+                    <div id="bruteForceAdv_modeSelectionScreen" class="text-center p-4 md:p-8 bg-gray-800 rounded-lg shadow-xl">
+                        <h3 class="text-xl md:text-2xl font-semibold text-amber-300 mb-6">Brute Force Attack Simulator: Choose Mode</h3>
+                        <div class="flex flex-col sm:flex-row justify-center gap-4">
+                            <button id="bruteForceAdv_selectSimpleModeBtn" class="brute-force-mode-button bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md text-lg">
+                                <i class="fas fa-mouse-pointer mr-2"></i>Simple Mode
+                                <p class="text-xs font-normal mt-1">(Quick 3-letter lowercase demo)</p>
+                            </button>
+                            <button id="bruteForceAdv_selectAdvancedModeBtn" class="brute-force-mode-button bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg shadow-md text-lg">
+                                <i class="fas fa-cogs mr-2"></i>Advanced Mode
+                                <p class="text-xs font-normal mt-1">(Configure password & defenses)</p>
+                            </button>
+                        </div>
+                    </div>
+            
+                    <div id="bruteForceAdv_simulatorInterface" class="hidden">
+                        <p id="bruteForceAdv_modeDisplay" class="text-center text-amber-300 font-semibold mb-4"></p>
+                        
+                        <div id="bruteForceAdv_simpleModeConfig" class="bg-gray-800 p-6 rounded-lg shadow-xl mb-6 hidden">
+                            <h4 class="text-xl font-semibold mb-3 text-blue-300">Set Target Password (Simple Mode)</h4>
+                            <div class="flex items-center space-x-3">
+                                <input type="text" id="bruteForceAdv_simpleUserPasswordInput" maxlength="3" placeholder="" class="flex-grow p-2 rounded-md bg-gray-700 border border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-black">
+                                <button id="bruteForceAdv_simpleSetPasswordBtn" class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition-colors shadow-md">
+                                    Set Password
+                                </button>
+                            </div>
+                            <p id="bruteForceAdv_simplePasswordValidationError" class="text-red-400 text-xs mt-2 h-4"></p>
+                        </div>
+            
+                        <div id="bruteForceAdv_advancedModeConfig" class="bg-gray-800 p-6 rounded-lg shadow-xl mb-6 hidden">
+                            <h4 class="text-xl font-semibold mb-3 text-purple-300">Configure Attack (Advanced Mode)</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="bruteForceAdv_advPasswordLength" class="block text-sm font-medium text-gray-300 mb-1">Password Length (1-6):</label>
+<input type="number" id="bruteForceAdv_advPasswordLength" min="1" max="6" value="3" class="w-full p-2 rounded-md bg-gray-700 border border-gray-600 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none text-black/
+                                    <label for="bruteForceAdv_advPasswordInput" class="block text-sm font-medium text-gray-300 mt-3 mb-1">Target Password:</label>
+<input type="text" id="bruteForceAdv_advPasswordInput" placeholder="" class="w-full p-2 rounded-md bg-gray-700 border border-gray-600 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none text-black">                                    <p class="text-xs text-gray-500 mt-1">Must match selected length & charsets.</p>
+                                </div>
+                                <div>
+                                    <p class="block text-sm font-medium text-gray-300 mb-2">Character Sets:</p>
+                                    <div class="space-y-2">
+                                        <label class="flex items-center"><input type="checkbox" id="bruteForceAdv_charLowercase" class="form-checkbox h-5 w-5 text-purple-600 rounded mr-2" checked> <span class="text-gray-200">Lowercase (a-z)</span></label>
+                                        <label class="flex items-center"><input type="checkbox" id="bruteForceAdv_charUppercase" class="form-checkbox h-5 w-5 text-purple-600 rounded mr-2"> <span class="text-gray-200">Uppercase (A-Z)</span></label>
+                                        <label class="flex items-center"><input type="checkbox" id="bruteForceAdv_charNumbers" class="form-checkbox h-5 w-5 text-purple-600 rounded mr-2"> <span class="text-gray-200">Numbers (0-9)</span></label>
+                                        <label class="flex items-center"><input type="checkbox" id="bruteForceAdv_charSymbols" class="form-checkbox h-5 w-5 text-purple-600 rounded mr-2"> <span class="text-gray-200">Symbols (!@#$...)</span></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <label for="bruteForceAdv_attackSpeed" class="block text-sm font-medium text-gray-300 mb-1">Attack Speed:</label>
+                                <select id="bruteForceAdv_attackSpeed" class="w-full p-2 rounded-md bg-gray-700 border border-gray-600 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none text-white">
+                                    <option value="normal">Normal</option>
+                                    <option value="fast">Fast</option>
+                                    <option value="very_fast">Very Fast</option>
+                                </select>
+                            </div>
+                             <div class="mt-4">
+                                <p class="block text-sm font-medium text-gray-300 mb-1">Estimated Time to Crack:</p>
+                                <p id="bruteForceAdv_estimatedTimeText" class="text-lg text-amber-400 font-semibold">-</p>
+                            </div>
+                            <div class="mt-4 border-t border-gray-700 pt-4">
+                                 <label class="flex items-center">
+                                    <input type="checkbox" id="bruteForceAdv_enableAccountLockout" class="form-checkbox h-5 w-5 text-purple-600 rounded mr-2"> <span class="text-gray-200">Enable Account Lockout</span>
+                                </label>
+                                <div id="bruteForceAdv_accountLockoutOptions" class="ml-7 mt-2 hidden">
+                                    <label for="bruteForceAdv_lockoutAttemptsInput" class="text-sm text-gray-400">Lockout after 
+                                    <input type="number" id="bruteForceAdv_lockoutAttemptsInput" value="100" min="1" class="w-20 p-1 rounded-md bg-gray-700 border border-gray-600 text-sm mx-1 text-white"> attempts.</label>
+                                </div>
+                            </div>
+                            <button id="bruteForceAdv_advSetupAttackBtn" class="mt-6 w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition-colors shadow-md">
+                                Prepare Attack
+                            </button>
+                             <p id="bruteForceAdv_advConfigError" class="text-red-400 text-xs mt-2 h-4"></p>
+                        </div>
+            
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                            <div class="md:col-span-1 bg-gray-800 p-6 rounded-lg shadow-xl flex flex-col items-center justify-center brute-force-target-system brute-force-target-locked">
+                                <i id="bruteForceAdv_lockIcon" class="fas fa-lock text-6xl text-red-400 mb-4 transition-colors duration-500"></i>
+                                <p id="bruteForceAdv_systemStatus" class="text-xl font-semibold text-red-400 transition-colors duration-500">SYSTEM LOCKED</p>
+                                <p class="text-xs text-gray-500 mt-1">Target: <span id="bruteForceAdv_targetPasswordDisplay" class="font-mono">***</span></p>
+                            </div>
+            
+                            <div class="md:col-span-2 bg-gray-800 p-6 rounded-lg shadow-xl">
+                                <h4 class="text-xl font-semibold mb-3 text-amber-300">Attack Monitor</h4>
+                                <div class="mb-3">
+                                    <p class="text-sm text-gray-400">Current Attempt:</p>
+                                    <p id="bruteForceAdv_currentAttemptText" class="text-2xl text-yellow-400 brute-force-attempt-display">-</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-400">Attempts Made:</p>
+                                    <p id="bruteForceAdv_attemptsCountText" class="text-2xl text-yellow-400">0</p>
+                                </div>
+                                 <div class="mt-6 flex space-x-3">
+                                    <button id="bruteForceAdv_startAttackBtn" class="flex-1 bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg transition-colors shadow-md" disabled>
+                                        <i class="fas fa-play mr-2"></i>Start Attack
+                                    </button>
+                                    <button id="bruteForceAdv_resetSimulationBtn" class="flex-1 bg-sky-600 hover:bg-sky-700 text-white font-medium py-2 px-4 rounded-lg transition-colors shadow-md" disabled>
+                                        <i class="fas fa-undo mr-2"></i>Reset
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="md:col-span-2 bg-gray-800 p-4 rounded-lg shadow-xl">
+                                <h4 class="text-xl font-semibold mb-3 text-amber-300 border-b border-gray-700 pb-2">Event Log</h4>
+                                <div id="bruteForceAdv_eventLog" class="h-48 overflow-y-auto space-y-1 text-xs pr-2">
+                                </div>
+                            </div>
+                            <div class="md:col-span-1 bg-gray-800 p-4 rounded-lg shadow-xl brute-force-sim-info-box">
+                                <h3 class="text-lg font-semibold mb-2 border-b border-gray-700 pb-1"><i class="fas fa-info-circle mr-1"></i>What is This?</h3>
+                                <p id="bruteForceAdv_infoBoxText" class="text-xs text-gray-300 leading-relaxed">
+                                    A <strong class="text-amber-300">brute-force attack</strong> tries many passwords hoping to eventually guess correctly.
+                                </p>
+                            </div>
+                        </div>
+                        <button id="bruteForceAdv_backToModeSelectionBtn" class="mt-6 bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded-lg transition-colors shadow-md w-full md:w-auto">
+                            <i class="fas fa-arrow-left mr-2"></i>Back to Mode Selection
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="task-malware-id" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                 <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-question-circle mr-2 text-teal-500"></i> Task 1: Identify the Threat! (More Scenarios)</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-teal-50 p-5 rounded-lg border border-teal-200 space-y-4">
+                <div class="quiz-item" data-points="1">
+                    <p class="font-medium text-gray-700">1. You download a free game. After installation, your antivirus says personal files are being copied and sent to an unknown server. The game itself doesn't spread to other programs.</p>
+                    <select id="threat-q1" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm">
+                        <option value="">Select a threat...</option><option value="Virus">Virus</option><option value="Worm">Worm</option><option value="Trojan Horse">Trojan Horse</option><option value="Spyware">Spyware</option><option value="Ransomware">Ransomware</option>
+                    </select>
+                    <button class="check-button mt-2" onclick="checkThreatQuestion('threat-q1', 'Trojan Horse', 'feedback-q1')">Check Answer</button>
+                    <div id="feedback-q1" class="feedback-area-inline mt-1"></div>
+                </div>
+                <div class="quiz-item" data-points="1">
+                    <p class="font-medium text-gray-700">2. An email attachment, when opened, slows your PC. Later, friends get the same infected email *from you*, which you didn't send. The program attaches to other files.</p>
+                    <select id="threat-q2" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm">
+                         <option value="">Select a threat...</option><option value="Virus">Virus</option><option value="Worm">Worm</option><option value="Trojan Horse">Trojan Horse</option><option value="Spyware">Spyware</option><option value="Ransomware">Ransomware</option>
+                    </select>
+                    <button class="check-button mt-2" onclick="checkThreatQuestion('threat-q2', 'Virus', 'feedback-q2')">Check Answer</button>
+                    <div id="feedback-q2" class="feedback-area-inline mt-1"></div>
+                </div>
+                 <div class="quiz-item" data-points="1">
+                    <p class="font-medium text-gray-700">3. Your documents are inaccessible, file extensions changed. A message demands cryptocurrency to get them back.</p>
+                    <select id="threat-q3" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm">
+                         <option value="">Select a threat...</option><option value="Virus">Virus</option><option value="Worm">Worm</option><option value="Trojan Horse">Trojan Horse</option><option value="Spyware">Spyware</option><option value="Ransomware">Ransomware</option>
+                    </select>
+                    <button class="check-button mt-2" onclick="checkThreatQuestion('threat-q3', 'Ransomware', 'feedback-q3')">Check Answer</button>
+                    <div id="feedback-q3" class="feedback-area-inline mt-1"></div>
+                </div>
+                <div class="quiz-item" data-points="1">
+                    <p class="font-medium text-gray-700">4. Without any action on your part, your computer starts sending out huge amounts of network traffic, and other computers on your home network also begin to behave erratically and spread the same traffic.</p>
+                    <select id="threat-q4" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm">
+                         <option value="">Select a threat...</option><option value="Virus">Virus</option><option value="Worm">Worm</option><option value="Trojan Horse">Trojan Horse</option><option value="Spyware">Spyware</option><option value="Ransomware">Ransomware</option>
+                    </select>
+                    <button class="check-button mt-2" onclick="checkThreatQuestion('threat-q4', 'Worm', 'feedback-q4')">Check Answer</button>
+                    <div id="feedback-q4" class="feedback-area-inline mt-1"></div>
+                </div>
+                <div class="quiz-item" data-points="1">
+                    <p class="font-medium text-gray-700">5. After installing a new "system cleanup" tool from a pop-up ad, you notice your online banking password was stolen, even though you use a strong, unique password. You suspect your keystrokes were recorded.</p>
+                    <select id="threat-q5" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm">
+                        <option value="">Select a threat...</option><option value="Virus">Virus</option><option value="Worm">Worm</option><option value="Trojan Horse">Trojan Horse</option><option value="Spyware">Spyware</option><option value="Ransomware">Ransomware</option>
+                    </select>
+                    <button class="check-button mt-2" onclick="checkThreatQuestion('threat-q5', 'Spyware', 'feedback-q5')">Check Answer</button>
+                    <div id="feedback-q5" class="feedback-area-inline mt-1"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="task-drag-drop-threats" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-random mr-2 text-cyan-500"></i> Task 2: Match the Malware!</h2>
+            <div class="bg-cyan-50 p-5 rounded-lg border border-cyan-200">
+                <p class="text-sm text-cyan-700 mb-4">Drag the threat type to its correct description. Be careful, some descriptions might be tricky!</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="font-semibold text-cyan-800 mb-2">Threat Types (Draggable)</h3>
+                        <div id="draggable-threats" class="space-y-2">
+                            <div class="drag-item p-2 bg-red-200 border border-red-400 rounded cursor-grab" draggable="true" id="drag-virus">Virus</div>
+                            <div class="drag-item p-2 bg-purple-200 border border-purple-400 rounded cursor-grab" draggable="true" id="drag-worm">Worm</div>
+                            <div class="drag-item p-2 bg-blue-200 border border-blue-400 rounded cursor-grab" draggable="true" id="drag-trojan">Trojan Horse</div>
+                            <div class="drag-item p-2 bg-yellow-200 border border-yellow-400 rounded cursor-grab" draggable="true" id="drag-spyware">Spyware</div>
+                            <div class="drag-item p-2 bg-orange-200 border border-orange-400 rounded cursor-grab" draggable="true" id="drag-ransomware">Ransomware</div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-cyan-800 mb-2">Descriptions (Drop Zones)</h3>
+                        <div class="space-y-3" id="dropzone-container">
+                            <div class="drop-zone p-3 bg-white border-2 border-dashed border-gray-300 rounded min-h-[50px] flex items-center" data-match="drag-virus">Description A: Replicates by attaching to files, needs human help to spread.</div>
+                            <div class="drop-zone p-3 bg-white border-2 border-dashed border-gray-300 rounded min-h-[50px] flex items-center" data-match="drag-worm">Description B: Self-replicates across networks without a host file.</div>
+                            <div class="drop-zone p-3 bg-white border-2 border-dashed border-gray-300 rounded min-h-[50px] flex items-center" data-match="drag-trojan">Description C: Disguises as useful software to trick users.</div>
+                            <div class="drop-zone p-3 bg-white border-2 border-dashed border-gray-300 rounded min-h-[50px] flex items-center" data-match="drag-spyware">Description D: Secretly records user activity and sends it to attackers.</div>
+                            <div class="drop-zone p-3 bg-white border-2 border-dashed border-gray-300 rounded min-h-[50px] flex items-center" data-match="drag-ransomware">Description E: Encrypts files and demands payment for their release.</div>
+                        </div>
+                    </div>
+                </div>
+                <button id="check-drag-drop" class="sim-button !bg-cyan-500 hover:!bg-cyan-600 mt-4">Check Matches</button>
+                <p id="drag-drop-feedback" class="text-sm mt-2 h-6"></p>
+            </div>
+        </section>
+
+
+        <section id="exam-practice-threats1" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-graduation-cap mr-2"></i> Task 3: Exam Practice Questions</h2>
+            <p class="text-gray-600 mb-6">Apply your knowledge. Mark schemes unlock after you type enough!</p>
+            <div class="space-y-6">
+                <div class="exam-question-item" data-points="3">
+                    <div class="flex justify-between items-start">
+                        <p class="font-medium text-gray-800 mb-1 flex-grow">1. Describe what a <strong class="keyword">Virus</strong> is and state two ways it can affect a computer. [3 marks]</p>
+                        <div class="flex items-center ml-2">
+                            <label for="self-assess-q1" class="text-xs text-gray-600 mr-1">My Score:</label>
+                            <input type="number" id="self-assess-q1" min="0" max="3" class="self-assess-input">
+                        </div>
+                    </div>
+                    <textarea id="exam-q1" class="exam-answer-textarea" placeholder=""></textarea>
+                    <button id="ms-button-q1" class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q1', 'exam-q1')" disabled>Show Mark Scheme</button>
+                    <div id="ms-exam-q1" class="mark-scheme">
+                        <p><strong>Mark Scheme:</strong></p>
+                        <ul>
+                            <li>A virus is a program/software that replicates/copies itself (1 mark).</li>
+                            <li>It embeds itself in other programs or data files / requires a host (1 mark).</li>
+                            <li><strong>Any ONE from:</strong> Corrupts/deletes data OR causes computer to crash/run slow OR fills up hard drive OR allows hackers to steal data. (1 mark)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exam-question-item" data-points="2">
+                     <div class="flex justify-between items-start">
+                        <p class="font-medium text-gray-800 mb-1 flex-grow">2. Explain one key difference between a <strong class="keyword">Virus</strong> and a <strong class="keyword">Worm</strong>. [2 marks]</p>
+                        <div class="flex items-center ml-2">
+                            <label for="self-assess-q2" class="text-xs text-gray-600 mr-1">My Score:</label>
+                            <input type="number" id="self-assess-q2" min="0" max="2" class="self-assess-input">
+                        </div>
+                    </div>
+                    <textarea id="exam-q2" class="exam-answer-textarea" placeholder=""></textarea>
+                    <button id="ms-button-q2" class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q2', 'exam-q2')" disabled>Show Mark Scheme</button>
+                    <div id="ms-exam-q2" class="mark-scheme">
+                        <p><strong>Mark Scheme:</strong></p>
+                        <ul>
+                            <li>A virus needs to attach itself to a host program or file to spread (1 mark), whereas a worm is standalone software that can spread by itself (1 mark) often across networks.</li>
+                            <li>OR A virus typically requires human action to spread (e.g. opening an infected file) (1 mark), while a worm can propagate automatically across networks (1 mark).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exam-question-item" data-points="2">
+                    <div class="flex justify-between items-start">
+                        <p class="font-medium text-gray-800 mb-1 flex-grow">3. What is a <strong class="keyword">Brute Force Attack</strong>? [2 marks]</p>
+                        <div class="flex items-center ml-2">
+                            <label for="self-assess-q3" class="text-xs text-gray-600 mr-1">My Score:</label>
+                            <input type="number" id="self-assess-q3" min="0" max="2" class="self-assess-input">
+                        </div>
+                    </div>
+                    <textarea id="exam-q3" class="exam-answer-textarea" placeholder=""></textarea>
+                    <button id="ms-button-q3" class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q3', 'exam-q3')" disabled>Show Mark Scheme</button>
+                    <div id="ms-exam-q3" class="mark-scheme">
+                        <p><strong>Mark Scheme:</strong></p>
+                        <ul>
+                            <li>An attack that tries every possible password/encryption key (1 mark).</li>
+                            <li>Until the correct one is found / often uses automated software or a dictionary of common passwords (1 mark).</li>
+                        </ul>
+                    </div>
+                </div>
+                 <div class="exam-question-item" data-points="3">
+                    <div class="flex justify-between items-start">
+                        <p class="font-medium text-gray-800 mb-1 flex-grow">4. A user's computer has become very slow, and they notice their webcam light sometimes turns on by itself. Their internet banking details were also recently stolen. Which specific type of malware is most likely responsible, and why? [3 marks]</p>
+                        <div class="flex items-center ml-2">
+                            <label for="self-assess-q4" class="text-xs text-gray-600 mr-1">My Score:</label>
+                            <input type="number" id="self-assess-q4" min="0" max="3" class="self-assess-input">
+                        </div>
+                    </div>
+                    <textarea id="exam-q4" class="exam-answer-textarea" placeholder=""></textarea>
+                    <button id="ms-button-q4" class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q4', 'exam-q4')" disabled>Show Mark Scheme</button>
+                    <div id="ms-exam-q4" class="mark-scheme">
+                        <p><strong>Mark Scheme:</strong></p>
+                        <ul>
+                            <li>Spyware (1 mark).</li>
+                            <li>Reason 1: Spyware can monitor webcam activity (explaining the light) (1 mark).</li>
+                            <li>Reason 2: Spyware (e.g. keyloggers) can steal login/banking details (explaining the stolen details) (1 mark).</li>
+                            <li>(Allow: Spyware can also cause system slowdowns by running in the background.)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="key-takeaways-threats1" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-key mr-2"></i>Key Takeaways</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-300 space-y-2 show">
+                <ul class="list-disc list-inside space-y-1 text-yellow-800">
+                    <li><strong class="keyword">Malware</strong> is software designed to harm or exploit computer systems.</li>
+                    <li><strong class="keyword">Viruses</strong> replicate by attaching to host files and require human action to spread.</li>
+                    <li><strong class="keyword">Worms</strong> are standalone and can self-replicate across networks.</li>
+                    <li><strong class="keyword">Trojan Horses</strong> disguise as legitimate software to trick users into installation; they don't self-replicate.</li>
+                    <li><strong class="keyword">Spyware</strong> secretly gathers user information.</li>
+                    <li><strong class="keyword">Ransomware</strong> encrypts files and demands payment for their release.</li>
+                    <li><strong class="keyword">Brute Force Attacks</strong> attempt to guess passwords by trying many combinations.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="next-steps-threats1" class="task-container">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl task-title text-indigo-600">What's Next?</h2>
+                <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
+                    <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
+                </label>
+            </div>
+            <div class="bg-indigo-50 p-5 rounded-lg border border-indigo-200 space-y-3">
+                <p>Now that you've learned about these initial threats, you're ready to explore more advanced threats and then how to prevent them:</p>
+                <ul class="list-disc list-inside space-y-2 text-indigo-800 pl-4">
+                    <li><a href="gcse-sec-threats2.html" class="text-blue-600 hover:underline">Threats to Computer Systems - Part 2 (Social Engineering, DDoS, etc.)</a></li>
+                    <li><a href="gcse-sec-prevention1.html" class="text-blue-600 hover:underline">Preventing Threats - Part 1 (Firewalls, Anti-Malware, etc.)</a></li>
+                </ul>
+                 <p>You can also return to the main <a href="gcse.html#security" class="text-blue-600 hover:underline">GCSE Security Overview</a>.</p>
+            </div>
+        </section>
+
+        <section id="extension-activities-threats1" class="task-container">
+            <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-flask mr-2 text-orange-500"></i> Extension Activities</h2>
+            <div class="bg-orange-50 p-5 rounded-lg border border-orange-200 space-y-6">
+                <div class="extension-task">
+                    <h3 class="font-semibold text-orange-800 mb-2">1. Real-World Ransomware Case Study</h3>
+                    <p class="text-sm text-gray-700 mb-2">Research a major ransomware attack that has occurred in the last 2-3 years (e.g., Colonial Pipeline, HSE Ireland, Kaseya). Briefly describe:
+                        <ul class="list-disc list-inside text-sm text-gray-600 pl-4">
+                            <li>Who was targeted?</li>
+                            <li>What was the impact of the attack?</li>
+                            <li>Was a ransom paid (if known)?</li>
+                            <li>What were some of an key lessons learned?</li>
+                        </ul>
+                    </p>
+                    <textarea rows="5" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder=""></textarea>
+                </div>
+                <div class="extension-task">
+                    <h3 class="font-semibold text-orange-800 mb-2">2. Beyond the Basics: Other Malware Types</h3>
+                    <p class="text-sm text-gray-700 mb-1">Briefly research and describe what a <strong class="keyword">Rootkit</strong> is and its primary danger.</p>
+                    <textarea rows="3" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder=""></textarea>
+                    <p class="text-sm text-gray-700 mt-3 mb-1">Can you name and briefly describe one characteristic of <strong class="keyword">Adware</strong> OR <strong class="keyword">Fileless Malware</strong>?</p>
+                    <textarea rows="3" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder=""></textarea>
+                </div>
+            </div>
+        </section>
+
+        <footer class="mt-12 text-center no-print">
+            <button id="reset-all-tasks" class="reset-button">Reset All Tasks</button>
+            <button id="export-pdf-button" class="export-pdf-button">Export to PDF</button>
+             <p class="text-xs text-gray-500 mt-4">© <span id="currentYear"></span> MGS CS Hub. Content tailored for OCR GCSE Computer Science (J277).</p>
+        </footer>
+    </div>
+
+    <script src="js/gcse-sec-threats.js"></script>
+    <script src="js/worksheet-common.js"></script>
+</body>
+</html>

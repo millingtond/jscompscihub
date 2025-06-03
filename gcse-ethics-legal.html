@@ -10,15 +10,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    
-<link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
     <div class="max-w-6xl mx-auto flex justify-between items-center">
         <a href="home.html" class="text-xl font-bold hover:text-gray-300 transition-colors">MGS CS Hub</a>
-        <ul class="flex space-x-3 lg:space-x-4">
-        </ul>
         <ul class="flex flex-wrap space-x-2 sm:space-x-3 lg:space-x-4 text-sm sm:text-base">
             <li><a href="#" class="hover:text-gray-300 transition-colors">Year 7</a></li>
             <li><a href="#" class="hover:text-gray-300 transition-colors">Year 8</a></li>
@@ -33,8 +29,6 @@
 </nav>
 
 \1
-
-
 
     <div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-lg shadow-xl">
 
@@ -57,25 +51,16 @@
                     <div class="space-y-3">
                         <div>
                             <label for="starter-q1-why-laws" class="block text-sm font-medium text-yellow-700">1. Why do you think specific laws are needed for computers and the internet, in addition to general laws?</label>
-                            <textarea id="starter-q1-why-laws" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" placeholder="e.g., New types of crime, protecting data..."></textarea>
+                            <textarea id="starter-q1-why-laws" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white focus:ring-indigo-500 focus:border-indigo-500" placeholder="Your thoughts on why specific tech laws are needed..."></textarea>
                         </div>
                         <div>
                             <label for="starter-q2-protect" class="block text-sm font-medium text-yellow-700">2. What kind of things related to computers or online activity do you think laws should protect?</label>
-                            <textarea id="starter-q2-protect" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" placeholder="e.g., Personal information, creative work..."></textarea>
+                            <textarea id="starter-q2-protect" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white focus:ring-indigo-500 focus:border-indigo-500" placeholder="What aspects of digital life need legal protection?"></textarea>
                         </div>
                          <div>
                             <label for="starter-q3-illegal" class="block text-sm font-medium text-yellow-700">3. Can you think of any actions using a computer that are, or should be, illegal?</label>
-                            <textarea id="starter-q3-illegal" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" placeholder="e.g., Stealing passwords..."></textarea>
+                            <textarea id="starter-q3-illegal" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white focus:ring-indigo-500 focus:border-indigo-500" placeholder="List some computer-based actions you think are illegal..."></textarea>
                         </div>
-                    </div>
-                    <button class="reveal-button !bg-yellow-500 hover:!bg-yellow-600 no-print" onclick="toggleReveal('starter-answers-feedback', this, 'Reveal Discussion Points', 'Hide Discussion Points')">Reveal Discussion Points</button>
-                    <div id="starter-answers-feedback" class="feedback-area !bg-yellow-100 !border-yellow-300 !text-yellow-700">
-                        <p><strong>Discussion Points:</strong></p>
-                        <ul class="list-disc list-inside">
-                            <li>1. Specific laws are needed because technology creates new opportunities for crime (e.g., hacking, data theft) and new ways personal information can be misused. General laws might not adequately cover these digital scenarios.</li>
-                            <li>2. Laws should protect: personal data/privacy, original creative work (software, music, films), against unauthorized access to systems, against the creation and spread of harmful software (malware).</li>
-                            <li>3. Illegal actions: Hacking into someone's account, spreading viruses, illegally downloading copyrighted movies or music, stealing personal data, online fraud.</li>
-                        </ul>
                     </div>
                 </div>
             </section>
@@ -90,15 +75,15 @@
                 <div class="bg-green-50 p-5 rounded-lg border border-green-200">
                     <p class="font-semibold text-green-800 mb-3">By the end of this lesson, you should be able to:</p>
                     <ul class="list-disc list-inside space-y-2 text-green-700 pl-4">
-                        <li>State the purpose of the <span class="keyword">Data Protection Act (DPA)<span class="tooltip">UK law governing the processing of personal data. It sets out principles for how organisations must handle individuals' information. (Often refers to DPA 2018 which incorporates GDPR).</span></span>.</li>
+                        <li>State the purpose of the <strong>Data Protection Act (DPA)</strong>.</li>
                         <li>Describe key principles and rights under the DPA (e.g., data accuracy, purpose limitation, right to access).</li>
                         <li>Identify actions that would infringe the DPA.</li>
-                        <li>State the purpose of the <span class="keyword">Computer Misuse Act (CMA)<span class="tooltip">UK law making it illegal to gain unauthorised access to computer systems, to computer material with intent to commit further offences, or to modify computer material without authorisation. Also covers making/supplying malware.</span></span>.</li>
+                        <li>State the purpose of the <strong>Computer Misuse Act (CMA)</strong>.</li>
                         <li>Describe the main offences under the CMA (e.g., unauthorised access, unauthorised modification).</li>
                         <li>Identify actions that would infringe the CMA.</li>
-                        <li>State the purpose of the <span class="keyword">Copyright, Designs and Patents Act (CDPA)<span class="tooltip">UK law protecting intellectual property rights for creators of original literary, artistic, musical, dramatic works, software, films, and sound recordings.</span></span>.</li>
-                        <li>Describe what <span class="keyword">copyright<span class="tooltip">A legal right granting the creator of an original work exclusive rights to its use and distribution, usually for a limited time.</span></span> protects and identify actions that infringe copyright.</li>
-                        <li>Understand the concept of <span class="keyword">Creative Commons<span class="tooltip">A licensing framework that allows creators to grant public permission to share and use their work on conditions of their choice, offering alternatives to traditional 'all rights reserved' copyright.</span></span> licensing.</li>
+                        <li>State the purpose of the <strong>Copyright, Designs and Patents Act (CDPA)</strong>.</li>
+                        <li>Describe what <strong>copyright</strong> protects and identify actions that infringe copyright.</li>
+                        <li>Understand the concept of <strong>Creative Commons</strong> licensing.</li>
                     </ul>
                 </div>
             </section>
@@ -119,7 +104,7 @@
                             <li><strong>The Copyright, Designs and Patents Act 1988</strong></li>
                         </ul>
                     </p>
-                    <p>Understanding these acts is crucial for anyone using or developing technology. Hover over <span class="keyword">keywords<span class="tooltip">This is an example tooltip!</span></span> for definitions.</p>
+                    <p>Understanding these acts is crucial for anyone using or developing technology. Key terms will be highlighted in <strong>bold</strong>.</p>
                 </div>
             </section>
 
@@ -132,7 +117,7 @@
                     </label>
                 </div>
                 <div class="bg-sky-50 p-4 rounded-lg border border-sky-200 mb-6">
-                    <p>The <strong class="keyword">Data Protection Act (DPA) 2018<span class="tooltip">UK law governing the processing of personal data. It sets out principles for how organisations must handle individuals' information. (Often refers to DPA 2018 which incorporates GDPR).</span></span> is the UK's implementation of the General Data Protection Regulation (GDPR). It controls how your <span class="keyword">personal data<span class="tooltip">Information relating to an identifiable living individual. Examples include name, address, email, medical records, online identifiers.</span></span> is used by organisations, businesses, or the government.</p>
+                    <p>The <strong>Data Protection Act (DPA) 2018</strong> is the UK's implementation of the General Data Protection Regulation (GDPR). It controls how your <strong>personal data</strong> is used by organisations, businesses, or the government.</p>
                     <p class="mt-2"><strong>Key Principles of Data Protection (summarised):</strong></p>
                     <ul class="list-disc list-inside ml-4 space-y-1 text-sm">
                         <li><strong>Lawfulness, fairness and transparency:</strong> Data must be processed lawfully, fairly, and in a transparent manner.</li>
@@ -141,37 +126,41 @@
                         <li><strong>Accuracy:</strong> Data must be accurate and, where necessary, kept up to date.</li>
                         <li><strong>Storage limitation:</strong> Data must be kept in a form which permits identification of data subjects for no longer than is necessary.</li>
                         <li><strong>Integrity and confidentiality (security):</strong> Data must be processed in a manner that ensures appropriate security.</li>
-                        <li><strong>Accountability:</strong> The <span class="keyword">data controller<span class="tooltip">A person or organisation that determines the purposes and means of processing personal data.</span></span> is responsible for, and must be able to demonstrate, compliance with these principles.</li>
+                        <li><strong>Accountability:</strong> The <strong>data controller</strong> is responsible for, and must be able to demonstrate, compliance with these principles.</li>
                     </ul>
                     <p class="mt-2">Individuals also have rights, such as the right to access their data, the right to have inaccuracies corrected, and the right to have data erased in certain circumstances.</p>
                 </div>
 
-                <div id="task-dpa-scenarios" class="quiz-item mb-6" data-points="4">
-                    <h3 class="text-lg font-medium text-gray-700 mb-2">Task 1.1: DPA Infringement Spotter (Max 4 points)</h3>
-                    <p class="text-sm text-gray-600 mb-2">For each scenario, decide if it's likely a breach of the DPA. (1 point per correct identification)</p>
-                    <div class="space-y-3">
+                <div id="task-dpa-scenarios" class="quiz-item mb-6">
+                    <h3 class="text-lg font-medium text-gray-700 mb-2">Task 1.1: DPA Infringement Spotter</h3>
+                    <p class="text-sm text-gray-600 mb-2">For each scenario, decide if it's likely a breach of the DPA and justify your answer.</p>
+                    <div class="space-y-4">
                         <div class="scenario-box">
                             <p><strong>Scenario A:</strong> A company sells its customer email list to a marketing firm without informing customers or getting their consent.</p>
-                            <select class="dpa-scenario-select"> <option value="">Is this a DPA breach?</option> <option value="yes">Yes</option> <option value="no">No</option> </select>
-                            <div class="feedback mt-1"></div>
+                            <select id="dpa-scenario-a-select" class="dpa-scenario-select focus:ring-indigo-500 focus:border-indigo-500"> <option value="">Is this a DPA breach?</option> <option value="yes">Yes</option> <option value="no">No</option> </select>
+                            <textarea id="dpa-scenario-a-justify" class="mt-2 block w-full p-2 border border-gray-300 rounded-md shadow-sm bg-white focus:ring-indigo-500 focus:border-indigo-500" rows="2" placeholder="Justify your answer..."></textarea>
+                            <div class="feedback mt-1 hidden"></div>
                         </div>
                         <div class="scenario-box">
                             <p><strong>Scenario B:</strong> A school securely stores student exam results on its password-protected server, accessible only by authorized staff for educational purposes.</p>
-                            <select class="dpa-scenario-select"> <option value="">Is this a DPA breach?</option> <option value="yes">Yes</option> <option value="no">No</option> </select>
-                            <div class="feedback mt-1"></div>
+                            <select id="dpa-scenario-b-select" class="dpa-scenario-select focus:ring-indigo-500 focus:border-indigo-500"> <option value="">Is this a DPA breach?</option> <option value="yes">Yes</option> <option value="no">No</option> </select>
+                            <textarea id="dpa-scenario-b-justify" class="mt-2 block w-full p-2 border border-gray-300 rounded-md shadow-sm bg-white focus:ring-indigo-500 focus:border-indigo-500" rows="2" placeholder="Justify your answer..."></textarea>
+                            <div class="feedback mt-1 hidden"></div>
                         </div>
                         <div class="scenario-box">
                             <p><strong>Scenario C:</strong> An online shop stores customer credit card details in a plain text file on a publicly accessible web server.</p>
-                            <select class="dpa-scenario-select"> <option value="">Is this a DPA breach?</option> <option value="yes">Yes</option> <option value="no">No</option> </select>
-                            <div class="feedback mt-1"></div>
+                            <select id="dpa-scenario-c-select" class="dpa-scenario-select focus:ring-indigo-500 focus:border-indigo-500"> <option value="">Is this a DPA breach?</option> <option value="yes">Yes</option> <option value="no">No</option> </select>
+                            <textarea id="dpa-scenario-c-justify" class="mt-2 block w-full p-2 border border-gray-300 rounded-md shadow-sm bg-white focus:ring-indigo-500 focus:border-indigo-500" rows="2" placeholder="Justify your answer..."></textarea>
+                            <div class="feedback mt-1 hidden"></div>
                         </div>
                         <div class="scenario-box">
                             <p><strong>Scenario D:</strong> You request a copy of the personal data a company holds about you, and they provide it within one month, free of charge.</p>
-                            <select class="dpa-scenario-select"> <option value="">Is this a DPA breach?</option> <option value="yes">Yes</option> <option value="no">No</option> </select>
-                            <div class="feedback mt-1"></div>
+                            <select id="dpa-scenario-d-select" class="dpa-scenario-select focus:ring-indigo-500 focus:border-indigo-500"> <option value="">Is this a DPA breach?</option> <option value="yes">Yes</option> <option value="no">No</option> </select>
+                            <textarea id="dpa-scenario-d-justify" class="mt-2 block w-full p-2 border border-gray-300 rounded-md shadow-sm bg-white focus:ring-indigo-500 focus:border-indigo-500" rows="2" placeholder="Justify your answer..."></textarea>
+                            <div class="feedback mt-1 hidden"></div>
                         </div>
                     </div>
-                    <button class="check-button no-print !mt-2" onclick="checkDPAScenarios()">Check DPA Scenarios</button>
+                    <button class="check-button no-print !mt-3" onclick="checkDPAScenarios()">Check DPA Scenarios</button>
                 </div>
             </section>
 
@@ -184,43 +173,46 @@
                     </label>
                 </div>
                 <div class="bg-red-50 p-4 rounded-lg border border-red-200 mb-6">
-                    <p>The <strong class="keyword">Computer Misuse Act (CMA) 1990<span class="tooltip">UK law making it illegal to gain unauthorised access to computer systems, to computer material with intent to commit further offences, or to modify computer material without authorisation. Also covers making/supplying malware.</span></span> was introduced to deal with the problem of <span class="keyword">hacking<span class="tooltip">The act of gaining unauthorised access to computer systems or networks.</span></span> and other forms of computer misuse.</p>
+                     <p>The <strong>Computer Misuse Act (CMA) 1990</strong> was introduced to deal with the problem of <strong>hacking</strong> and other forms of computer misuse.</p>
                     <p class="mt-2"><strong>Main Offences under the CMA:</strong></p>
                     <ul class="list-disc list-inside ml-4 space-y-1 text-sm">
                         <li><strong>Section 1: Unauthorised access to computer material.</strong> This covers basic hacking, like guessing a password to log into someone else's account without permission, even if nothing is changed or stolen.</li>
                         <li><strong>Section 2: Unauthorised access with intent to commit or facilitate commission of further offences.</strong> This is more serious, e.g., hacking into a system with the intention of stealing data or committing fraud.</li>
-                        <li><strong>Section 3: Unauthorised acts with intent to impair, or with recklessness as to impairing, operation of computer, etc.</strong> This covers actions like deleting or corrupting files, or introducing <span class="keyword">malware<span class="tooltip">Malicious software designed to disrupt, damage, or gain unauthorized access to a computer system (e.g., viruses, worms, ransomware, spyware).</span></span> (like viruses or worms) that damages or disrupts a system.</li>
+                        <li><strong>Section 3: Unauthorised acts with intent to impair, or with recklessness as to impairing, operation of computer, etc.</strong> This covers actions like deleting or corrupting files, or introducing <strong>malware</strong> (like viruses or worms) that damages or disrupts a system.</li>
                         <li><strong>Section 3ZA: Unauthorised acts causing, or creating risk of, serious damage.</strong> This covers acts that endanger human welfare or national security.</li>
                         <li><strong>Section 3A: Making, supplying or obtaining articles for use in offence under section 1 or 3.</strong> This makes it illegal to create, distribute, or possess tools (like malware creation kits or hacking software) intended for committing CMA offences.</li>
                     </ul>
                 </div>
-
-                <div id="task-cma-scenarios" class="quiz-item mb-6" data-points="4">
-                    <h3 class="text-lg font-medium text-gray-700 mb-2">Task 2.1: CMA Offence Identifier (Max 4 points)</h3>
-                    <p class="text-sm text-gray-600 mb-2">For each scenario, identify which main section of the Computer Misuse Act has most likely been breached. (1 point per correct identification)</p>
-                    <div class="space-y-3">
+                <div id="task-cma-scenarios" class="quiz-item mb-6">
+                    <h3 class="text-lg font-medium text-gray-700 mb-2">Task 2.1: CMA Offence Identifier</h3>
+                    <p class="text-sm text-gray-600 mb-2">For each scenario, identify which main section of the Computer Misuse Act has most likely been breached and justify your answer.</p>
+                    <div class="space-y-4">
                         <div class="scenario-box">
                             <p><strong>Scenario A:</strong> An employee guesses their manager's password and reads their private emails out of curiosity, without changing anything.</p>
-                            <select class="cma-scenario-select"> <option value="">Select CMA Section...</option> <option value="s1">Section 1</option> <option value="s2">Section 2</option> <option value="s3">Section 3</option> <option value="s3a">Section 3A</option></select>
-                            <div class="feedback mt-1"></div>
+                            <select id="cma-scenario-a-select" class="cma-scenario-select focus:ring-indigo-500 focus:border-indigo-500"> <option value="">Select CMA Section...</option> <option value="s1">Section 1</option> <option value="s2">Section 2</option> <option value="s3">Section 3</option> <option value="s3a">Section 3A</option></select>
+                            <textarea id="cma-scenario-a-justify" class="mt-2 block w-full p-2 border border-gray-300 rounded-md shadow-sm bg-white focus:ring-indigo-500 focus:border-indigo-500" rows="2" placeholder="Justify your answer..."></textarea>
+                            <div class="feedback mt-1 hidden"></div>
                         </div>
                         <div class="scenario-box">
                             <p><strong>Scenario B:</strong> A student writes and distributes a computer virus that deletes files on infected computers.</p>
-                            <select class="cma-scenario-select"> <option value="">Select CMA Section...</option> <option value="s1">Section 1</option> <option value="s2">Section 2</option> <option value="s3">Section 3 (or 3A)</option> <option value="s3a">Section 3A (or 3)</option></select>
-                            <div class="feedback mt-1"></div>
+                            <select id="cma-scenario-b-select" class="cma-scenario-select focus:ring-indigo-500 focus:border-indigo-500"> <option value="">Select CMA Section...</option> <option value="s1">Section 1</option> <option value="s2">Section 2</option> <option value="s3">Section 3 (or 3A)</option> <option value="s3a">Section 3A (or 3)</option></select>
+                            <textarea id="cma-scenario-b-justify" class="mt-2 block w-full p-2 border border-gray-300 rounded-md shadow-sm bg-white focus:ring-indigo-500 focus:border-indigo-500" rows="2" placeholder="Justify your answer..."></textarea>
+                            <div class="feedback mt-1 hidden"></div>
                         </div>
                         <div class="scenario-box">
                             <p><strong>Scenario C:</strong> A hacker breaks into a bank's computer system to transfer funds illegally to their own account.</p>
-                            <select class="cma-scenario-select"> <option value="">Select CMA Section...</option> <option value="s1">Section 1</option> <option value="s2">Section 2</option> <option value="s3">Section 3</option> <option value="s3a">Section 3A</option></select>
-                            <div class="feedback mt-1"></div>
+                            <select id="cma-scenario-c-select" class="cma-scenario-select focus:ring-indigo-500 focus:border-indigo-500"> <option value="">Select CMA Section...</option> <option value="s1">Section 1</option> <option value="s2">Section 2</option> <option value="s3">Section 3</option> <option value="s3a">Section 3A</option></select>
+                            <textarea id="cma-scenario-c-justify" class="mt-2 block w-full p-2 border border-gray-300 rounded-md shadow-sm bg-white focus:ring-indigo-500 focus:border-indigo-500" rows="2" placeholder="Justify your answer..."></textarea>
+                            <div class="feedback mt-1 hidden"></div>
                         </div>
                          <div class="scenario-box">
                             <p><strong>Scenario D:</strong> Someone creates and sells software designed to help others guess passwords for social media accounts.</p>
-                            <select class="cma-scenario-select"> <option value="">Select CMA Section...</option> <option value="s1">Section 1</option> <option value="s2">Section 2</option> <option value="s3">Section 3</option> <option value="s3a">Section 3A</option></select>
-                            <div class="feedback mt-1"></div>
+                            <select id="cma-scenario-d-select" class="cma-scenario-select focus:ring-indigo-500 focus:border-indigo-500"> <option value="">Select CMA Section...</option> <option value="s1">Section 1</option> <option value="s2">Section 2</option> <option value="s3">Section 3</option> <option value="s3a">Section 3A</option></select>
+                            <textarea id="cma-scenario-d-justify" class="mt-2 block w-full p-2 border border-gray-300 rounded-md shadow-sm bg-white focus:ring-indigo-500 focus:border-indigo-500" rows="2" placeholder="Justify your answer..."></textarea>
+                            <div class="feedback mt-1 hidden"></div>
                         </div>
                     </div>
-                    <button class="check-button no-print !mt-2" onclick="checkCMAScenarios()">Check CMA Scenarios</button>
+                    <button class="check-button no-print !mt-3" onclick="checkCMAScenarios()">Check CMA Scenarios</button>
                 </div>
             </section>
 
@@ -233,43 +225,47 @@
                     </label>
                 </div>
                 <div class="bg-emerald-50 p-4 rounded-lg border border-emerald-200 mb-6">
-                    <p>The <strong class="keyword">Copyright, Designs and Patents Act (CDPA) 1988<span class="tooltip">UK law protecting intellectual property rights for creators of original literary, artistic, musical, dramatic works, software, films, and sound recordings.</span></span> gives creators of literary, dramatic, musical, and artistic works, sound recordings, broadcasts, films, and typographical arrangements of published editions, the right to control the ways in which their material may be used.</p>
-                    <p class="mt-2"><strong class="keyword">Copyright<span class="tooltip">A legal right granting the creator of an original work exclusive rights to its use and distribution, usually for a limited time.</span></span> is an automatic right; creators don't need to register it. It protects the expression of an idea, not the idea itself. This means you can't copy someone's software code, song, or book chapter without permission, but you can write your own software that does a similar thing, or write your own song about a similar topic.</p>
+                    <p>The <strong>Copyright, Designs and Patents Act (CDPA) 1988</strong> gives creators of literary, dramatic, musical, and artistic works, sound recordings, broadcasts, films, and typographical arrangements of published editions, the right to control the ways in which their material may be used.</p>
+                    <p class="mt-2"><strong>Copyright</strong> is an automatic right; creators don't need to register it. It protects the expression of an idea, not the idea itself. This means you can't copy someone's software code, song, or book chapter without permission, but you can write your own software that does a similar thing, or write your own song about a similar topic.</p>
                     <p class="mt-2"><strong>What it covers:</strong> Software (code), website content, music, films, books, photographs, video games, etc.</p>
                     <p class="mt-2"><strong>Infringements include:</strong> Making copies without permission, sharing copyrighted material illegally (e.g., peer-to-peer file sharing of movies), using someone else's images or music in your own work without a license or permission.</p>
-                    <p class="mt-2"><strong class="keyword">Creative Commons<span class="tooltip">A licensing framework that allows creators to grant public permission to share and use their work on conditions of their choice, offering alternatives to traditional 'all rights reserved' copyright.</span></span> is a licensing system that allows creators to let others use their work under certain conditions, offering more flexibility than traditional "all rights reserved" copyright.</p>
+                    <p class="mt-2"><strong>Creative Commons</strong> is a licensing system that allows creators to let others use their work under certain conditions, offering more flexibility than traditional "all rights reserved" copyright.</p>
                 </div>
 
-                <div id="task-cdpa-scenarios" class="quiz-item mb-6" data-points="4">
-                    <h3 class="text-lg font-medium text-gray-700 mb-2">Task 3.1: CDPA Infringement? Yes or No (Max 4 points)</h3>
-                    <p class="text-sm text-gray-600 mb-2">Is the following action likely an infringement of the CDPA? (1 point per correct identification)</p>
-                    <div class="space-y-3">
+                <div id="task-cdpa-scenarios" class="quiz-item mb-6">
+                    <h3 class="text-lg font-medium text-gray-700 mb-2">Task 3.1: CDPA Infringement? Yes or No</h3>
+                    <p class="text-sm text-gray-600 mb-2">Is the following action likely an infringement of the CDPA? Justify your answer.</p>
+                    <div class="space-y-4">
                         <div class="scenario-box">
                             <p><strong>Scenario A:</strong> Using a picture you found on Google Images as your company logo without checking its license or getting permission.</p>
-                            <select class="cdpa-scenario-select"> <option value="">Infringement?</option> <option value="yes">Yes</option> <option value="no">No</option> </select>
-                            <div class="feedback mt-1"></div>
+                            <select id="cdpa-scenario-a-select" class="cdpa-scenario-select focus:ring-indigo-500 focus:border-indigo-500"> <option value="">Infringement?</option> <option value="yes">Yes</option> <option value="no">No</option> </select>
+                            <textarea id="cdpa-scenario-a-justify" class="mt-2 block w-full p-2 border border-gray-300 rounded-md shadow-sm bg-white focus:ring-indigo-500 focus:border-indigo-500" rows="2" placeholder="Justify your answer..."></textarea>
+                            <div class="feedback mt-1 hidden"></div>
                         </div>
                         <div class="scenario-box">
                             <p><strong>Scenario B:</strong> Buying a music album and making a copy for your friend to listen to.</p>
-                            <select class="cdpa-scenario-select"> <option value="">Infringement?</option> <option value="yes">Yes</option> <option value="no">No</option> </select>
-                            <div class="feedback mt-1"></div>
+                            <select id="cdpa-scenario-b-select" class="cdpa-scenario-select focus:ring-indigo-500 focus:border-indigo-500"> <option value="">Infringement?</option> <option value="yes">Yes</option> <option value="no">No</option> </select>
+                            <textarea id="cdpa-scenario-b-justify" class="mt-2 block w-full p-2 border border-gray-300 rounded-md shadow-sm bg-white focus:ring-indigo-500 focus:border-indigo-500" rows="2" placeholder="Justify your answer..."></textarea>
+                            <div class="feedback mt-1 hidden"></div>
                         </div>
                         <div class="scenario-box">
                             <p><strong>Scenario C:</strong> Writing a book review and quoting a short paragraph from the book for criticism, with attribution.</p>
-                            <select class="cdpa-scenario-select"> <option value="">Infringement?</option> <option value="yes">Yes</option> <option value="no">No</option> </select>
-                            <div class="feedback mt-1"></div>
+                            <select id="cdpa-scenario-c-select" class="cdpa-scenario-select focus:ring-indigo-500 focus:border-indigo-500"> <option value="">Infringement?</option> <option value="yes">Yes</option> <option value="no">No</option> </select>
+                            <textarea id="cdpa-scenario-c-justify" class="mt-2 block w-full p-2 border border-gray-300 rounded-md shadow-sm bg-white focus:ring-indigo-500 focus:border-indigo-500" rows="2" placeholder="Justify your answer..."></textarea>
+                            <div class="feedback mt-1 hidden"></div>
                         </div>
                         <div class="scenario-box">
                             <p><strong>Scenario D:</strong> Downloading a piece of software that is explicitly offered for free under a Creative Commons license that permits sharing.</p>
-                            <select class="cdpa-scenario-select"> <option value="">Infringement?</option> <option value="yes">Yes</option> <option value="no">No</option> </select>
-                            <div class="feedback mt-1"></div>
+                            <select id="cdpa-scenario-d-select" class="cdpa-scenario-select focus:ring-indigo-500 focus:border-indigo-500"> <option value="">Infringement?</option> <option value="yes">Yes</option> <option value="no">No</option> </select>
+                            <textarea id="cdpa-scenario-d-justify" class="mt-2 block w-full p-2 border border-gray-300 rounded-md shadow-sm bg-white focus:ring-indigo-500 focus:border-indigo-500" rows="2" placeholder="Justify your answer..."></textarea>
+                            <div class="feedback mt-1 hidden"></div>
                         </div>
                     </div>
-                    <button class="check-button no-print !mt-2" onclick="checkCDPAScenarios()">Check CDPA Scenarios</button>
+                    <button class="check-button no-print !mt-3" onclick="checkCDPAScenarios()">Check CDPA Scenarios</button>
                 </div>
             </section>
             
-            <section id="real-world-legislation" class="task-container">
+             <section id="real-world-legislation" class="task-container">
                 <div class="flex justify-between items-center mb-4">
                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-landmark mr-2 text-blue-500"></i> Real-World Application of These Laws</h2>
                     <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
@@ -296,11 +292,11 @@
                <div class="bg-red-50 p-5 rounded-lg border border-red-200 space-y-4">
                    <div>
                        <p><strong class="font-semibold text-red-800">Myth 1:</strong> "If it's on the internet, it's free to use for anything."</p>
-                       <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> Most content on the internet (images, text, music, videos) is protected by <span class="keyword">copyright<span class="tooltip">A legal right granting the creator of an original work exclusive rights to its use and distribution, usually for a limited time.</span></span>. Just because you can access it doesn't mean you have the right to copy, distribute, or use it commercially without permission or a proper license (like Creative Commons).</p>
+                       <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> Most content on the internet (images, text, music, videos) is protected by <strong>copyright</strong>. Just because you can access it doesn't mean you have the right to copy, distribute, or use it commercially without permission or a proper license (like Creative Commons).</p>
                    </div>
                    <div class="border-t border-red-200 pt-4">
                        <p><strong class="font-semibold text-red-800">Myth 2:</strong> "The Computer Misuse Act only applies to serious 'hackers' attacking big companies."</p>
-                       <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> The CMA applies to any <span class="keyword">unauthorised access<span class="tooltip">Gaining access to a computer system, program, or data without permission from the owner or a legitimate user.</span></span> to computer material, even if it's just looking at someone's files without permission on a shared computer or guessing a friend's social media password. The intent and level of harm affect the severity of the offence, but the act itself can still be illegal.</p>
+                       <p class="text-sm text-red-700 mt-1 pl-4"><strong>Reality:</strong> The CMA applies to any <strong>unauthorised access</strong> to computer material, even if it's just looking at someone's files without permission on a shared computer or guessing a friend's social media password. The intent and level of harm affect the severity of the offence, but the act itself can still be illegal.</p>
                    </div>
                    <div class="border-t border-red-200 pt-4">
                        <p><strong class="font-semibold text-red-800">Myth 3:</strong> "The Data Protection Act means companies can never share my data."</p>
@@ -315,9 +311,13 @@
                 <div class="space-y-6">
                     <div class="exam-question-item">
                         <p class="font-medium text-gray-800 mb-2">1. A company stores customer data insecurely, leading to a data breach where personal details are stolen. Which UK law has the company most likely infringed? State one principle of this law they have violated. [2 marks]</p>
-                        <textarea id="exam-q1-leg" class="exam-answer-textarea" placeholder="Law and violated principle..."></textarea>
-                        <button class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q1-leg', 'exam-q1-leg', 15)">Show Mark Scheme</button>
-                        <div id="ms-exam-q1-leg" class="mark-scheme">
+                        <textarea id="exam-q1-leg" class="exam-answer-textarea focus:ring-indigo-500 focus:border-indigo-500" placeholder="Law and violated principle..."></textarea>
+                        <div class="mt-2">
+                            <label for="exam-q1-leg-marks" class="text-sm font-medium text-gray-700 mr-2">Predicted Marks (out of 2):</label>
+                            <input type="number" id="exam-q1-leg-marks" name="exam-q1-leg-marks" min="0" max="2" class="marks-input p-1 border border-gray-300 rounded-md w-20 focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+                        <button class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q1-leg', 'exam-q1-leg', 'exam-q1-leg-marks', 15)">Show Mark Scheme</button>
+                        <div id="ms-exam-q1-leg" class="mark-scheme hidden">
                             <p><strong>Mark Scheme:</strong></p>
                             <ul>
                                 <li>Law: Data Protection Act (DPA) 2018 / GDPR. (1 mark)</li>
@@ -327,22 +327,29 @@
                     </div>
                     <div class="exam-question-item">
                         <p class="font-medium text-gray-800 mb-2">2. An employee uses their colleague's login details, without permission, to access company sales figures they are not authorized to see. Identify the Act that makes this illegal and the specific type of offence committed. [2 marks]</p>
-                        <textarea id="exam-q2-leg" class="exam-answer-textarea" placeholder="Act and type of offence..."></textarea>
-                        <button class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q2-leg', 'exam-q2-leg', 15)">Show Mark Scheme</button>
-                        <div id="ms-exam-q2-leg" class="mark-scheme">
+                        <textarea id="exam-q2-leg" class="exam-answer-textarea focus:ring-indigo-500 focus:border-indigo-500" placeholder="Act and type of offence..."></textarea>
+                         <div class="mt-2">
+                            <label for="exam-q2-leg-marks" class="text-sm font-medium text-gray-700 mr-2">Predicted Marks (out of 2):</label>
+                            <input type="number" id="exam-q2-leg-marks" name="exam-q2-leg-marks" min="0" max="2" class="marks-input p-1 border border-gray-300 rounded-md w-20 focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+                        <button class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q2-leg', 'exam-q2-leg', 'exam-q2-leg-marks', 15)">Show Mark Scheme</button>
+                        <div id="ms-exam-q2-leg" class="mark-scheme hidden">
                             <p><strong>Mark Scheme:</strong></p>
                             <ul>
                                 <li>Act: Computer Misuse Act (CMA) 1990. (1 mark)</li>
                                 <li>Offence: Unauthorised access to computer material (Section 1 offence). (1 mark)</li>
-                                <li>(Allow: Could also be Section 2 if intent for further offence is implied, but Section 1 is primary for just access).</li>
                             </ul>
                         </div>
                     </div>
                     <div class="exam-question-item">
                         <p class="font-medium text-gray-800 mb-2">3. A musician finds their latest song being used in a popular online video without their permission. Which Act protects their work, and what right has been infringed? [2 marks]</p>
-                        <textarea id="exam-q3-leg" class="exam-answer-textarea" placeholder="Act and right infringed..."></textarea>
-                        <button class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q3-leg', 'exam-q3-leg', 15)">Show Mark Scheme</button>
-                        <div id="ms-exam-q3-leg" class="mark-scheme">
+                        <textarea id="exam-q3-leg" class="exam-answer-textarea focus:ring-indigo-500 focus:border-indigo-500" placeholder="Act and right infringed..."></textarea>
+                        <div class="mt-2">
+                            <label for="exam-q3-leg-marks" class="text-sm font-medium text-gray-700 mr-2">Predicted Marks (out of 2):</label>
+                            <input type="number" id="exam-q3-leg-marks" name="exam-q3-leg-marks" min="0" max="2" class="marks-input p-1 border border-gray-300 rounded-md w-20 focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+                        <button class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q3-leg', 'exam-q3-leg', 'exam-q3-leg-marks', 15)">Show Mark Scheme</button>
+                        <div id="ms-exam-q3-leg" class="mark-scheme hidden">
                             <p><strong>Mark Scheme:</strong></p>
                             <ul>
                                 <li>Act: Copyright, Designs and Patents Act (CDPA) 1988. (1 mark)</li>
@@ -353,30 +360,178 @@
                 </div>
             </section>
 
-            <section id="related-videos-legislation" class="task-container">
-                 <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-video mr-2 text-purple-500"></i> Related Videos</h2>
-                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
-                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
-                    </label>
-                </div>
+            <section id="task5-data-guardian" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-user-shield mr-2 text-cyan-500"></i> Task 5: Data Guardian Challenge (DPA)</h2>
+                <div class="bg-cyan-50 p-5 rounded-lg border border-cyan-200 space-y-4">
+                    <p class="text-gray-700">You are the data protection officer for 'StyleSphere', a new online fashion app. How do you respond to these situations according to the DPA?</p>
+                    
+                    <div id="dg-scenario1" class="data-guardian-scenario p-3 border border-cyan-300 rounded bg-white">
+                        <p class="font-semibold mb-2">Scenario 1: A user, Priya, emails asking for a complete copy of all personal data StyleSphere holds about her.</p>
+                        <div class="space-y-1">
+                            <label class="block"><input type="radio" name="dg-scenario1" value="a" class="form-radio mr-1"> A) Tell Priya it will cost £10 and take up to 3 months.</label>
+                            <label class="block"><input type="radio" name="dg-scenario1" value="b" class="form-radio mr-1"> B) Verify Priya's identity and provide all her data free of charge within one month.</label>
+                            <label class="block"><input type="radio" name="dg-scenario1" value="c" class="form-radio mr-1"> C) Explain to Priya that the company doesn't provide data to users for security reasons.</label>
+                        </div>
+                        <div id="dg-scenario1-feedback" class="feedback-area mt-2 hidden"></div>
+                    </div>
+
+                    <div id="dg-scenario2" class="data-guardian-scenario p-3 border border-cyan-300 rounded bg-white mt-4">
+                        <p class="font-semibold mb-2">Scenario 2: The marketing team wants to send promotional emails about a new shoe line to all registered users.</p>
+                        <div class="space-y-1">
+                            <label class="block"><input type="radio" name="dg-scenario2" value="a" class="form-radio mr-1"> A) Send to all users, as they registered with the app.</label>
+                            <label class="block"><input type="radio" name="dg-scenario2" value="b" class="form-radio mr-1"> B) Only send to users who explicitly ticked a box saying "I agree to receive marketing emails" during sign-up.</label>
+                            <label class="block"><input type="radio" name="dg-scenario2" value="c" class="form-radio mr-1"> C) Buy a list of fashion enthusiasts' emails and add them to the mailing list.</label>
+                        </div>
+                        <div id="dg-scenario2-feedback" class="feedback-area mt-2 hidden"></div>
+                    </div>
+
+                    <div id="dg-scenario3" class="data-guardian-scenario p-3 border border-cyan-300 rounded bg-white mt-4">
+                        <p class="font-semibold mb-2">Scenario 3: StyleSphere collects users' full home addresses at sign-up but only uses postcodes for regional content filtering. A user has pointed out their stored address is old.</p>
+                        <div class="space-y-1">
+                            <label class="block"><input type="radio" name="dg-scenario3" value="a" class="form-radio mr-1"> A) Ignore the complaint; the full address might be useful later.</label>
+                            <label class="block"><input type="radio" name="dg-scenario3" value="b" class="form-radio mr-1"> B) Update the user's address upon request but continue collecting full addresses from everyone.</label>
+                            <label class="block"><input type="radio" name="dg-scenario3" value="c" class="form-radio mr-1"> C) Update the user's address and review if collecting the full address is necessary or if just the postcode would suffice (data minimisation).</label>
+                        </div>
+                        <div id="dg-scenario3-feedback" class="feedback-area mt-2 hidden"></div>
+                    </div>
+
+                    <div id="dg-scenario4" class="data-guardian-scenario p-3 border border-cyan-300 rounded bg-white mt-4">
+                        <p class="font-semibold mb-2">Scenario 4: An employee accidentally leaves a USB drive containing unencrypted customer details on a train, and it's lost.</p>
+                        <div class="space-y-1">
+                            <label class="block"><input type="radio" name="dg-scenario4" value="a" class="form-radio mr-1"> A) Do nothing immediately; hope the USB drive is found or ignored.</label>
+                            <label class="block"><input type="radio" name="dg-scenario4" value="b" class="form-radio mr-1"> B) Assess the risk. If high, notify the ICO within 72 hours and inform affected customers without undue delay. Review data security policies.</label>
+                            <label class="block"><input type="radio" name="dg-scenario4" value="c" class="form-radio mr-1"> C) Discipline the employee but don't report the loss to avoid bad publicity.</label>
+                        </div>
+                        <div id="dg-scenario4-feedback" class="feedback-area mt-2 hidden"></div>
+                    </div>
+                     <button id="check-data-guardian-btn" class="check-button no-print mt-3">Check My DPA Decisions</button>
+                     </div>
+            </section>
+
+            <section id="task6-case-pathway" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-shoe-prints mr-2 text-purple-500"></i> Task 6: Legal Case Pathway Visualizer</h2>
                 <div class="bg-purple-50 p-5 rounded-lg border border-purple-200 space-y-4">
-                    <p class="text-gray-700">Watch these videos to learn more about UK computing legislation:</p>
-                    <ul class="list-disc list-inside space-y-3 text-purple-800 pl-4">
-                        <li>
-                            <strong>Video 1: Data Protection Act Explained Simply</strong>
-                            <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 1: DPA Overview]</div>
-                        </li>
-                        <li>
-                            <strong>Video 2: Understanding the Computer Misuse Act</strong>
-                            <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 2: CMA Focus]</div>
-                        </li>
-                         <li>
-                            <strong>Video 3: Copyright Basics for Digital Content</strong>
-                            <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 3: CDPA Basics]</div>
-                        </li>
-                    </ul>
-                </div>
+                    <p class="text-gray-700 mb-2">Select a scenario to see a simplified visual pathway of potential legal consequences.</p>
+                    <div>
+                        <label for="case-scenario-select" class="block text-sm font-medium text-gray-700">Choose Scenario:</label>
+                        <select id="case-scenario-select" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                            <option value="">Select a case type...</option>
+                            <option value="software_piracy">Software Piracy (CDPA)</option>
+                            <option value="hacking_profile">Hacking a Social Media Profile (CMA)</option>
+                            <option value="data_breach_company">Company Data Breach (DPA)</option>
+                        </select>
+                    </div>
+                    <div id="case-pathway-display" class="mt-4 p-3 min-h-[200px] bg-white border border-purple-300 rounded flex flex-col items-center justify-center">
+                        <p class="text-gray-500">Pathway will be shown here.</p>
+                    </div>
+                    </div>
+            </section>
+
+            <section id="task7-compliant-design" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-drafting-compass mr-2 text-teal-500"></i> Task 7: Legally Compliant App Design Sim</h2>
+                <div class="bg-teal-50 p-5 rounded-lg border border-teal-200 space-y-4">
+                    <p class="text-gray-700 mb-2">You're designing a new social photo-sharing app, "SnapShare". Make choices for the following design aspects and see the legal compliance feedback.</p>
+                    <div id="compliant-design-choices" class="space-y-6">
+                        <div class="compliant-design-question">
+                            <p class="font-semibold mb-1">1. Privacy Policy & Data Collection (DPA):</p>
+                            <div class="space-y-1 pl-2">
+                                <label class="block"><input type="radio" name="design-q1-privacy" value="a" class="form-radio mr-1"> No specific privacy policy, collect all user data possible (name, email, DOB, location, contacts, Browse habits) by default.</label>
+                                <label class="block"><input type="radio" name="design-q1-privacy" value="b" class="form-radio mr-1"> A basic privacy policy that's hard to find. Collect email and password, plus location and contacts if the user enables related features.</label>
+                                <label class="block"><input type="radio" name="design-q1-privacy" value="c" class="form-radio mr-1"> A clear, easily accessible privacy policy. Only collect essential data (username, email, password). Ask for explicit consent for optional data like location, with clear explanation of use.</label>
+                            </div>
+                        </div>
+                        <div class="compliant-design-question">
+                            <p class="font-semibold mb-1">2. Image Content & Copyright (CDPA):</p>
+                            <div class="space-y-1 pl-2">
+                                <label class="block"><input type="radio" name="design-q2-copyright" value="a" class="form-radio mr-1"> Allow users to easily search and embed any image from the internet into their posts, without checks.</label>
+                                <label class="block"><input type="radio" name="design-q2-copyright" value="b" class="form-radio mr-1"> Encourage users to upload their own photos. Provide a library of CC0 (public domain) images. Have a 'report copyright violation' feature.</label>
+                                <label class="block"><input type="radio" name="design-q2-copyright" value="c" class="form-radio mr-1"> Users can only upload their own photos. The app automatically watermarks all images with "SnapShare".</label>
+                            </div>
+                        </div>
+                        <div class="compliant-design-question">
+                            <p class="font-semibold mb-1">3. User Forum & Content Moderation (CMA / Online Safety):</p>
+                             <div class="space-y-1 pl-2">
+                                <label class="block"><input type="radio" name="design-q3-moderation" value="a" class="form-radio mr-1"> No active moderation of user comments or forums. "Free speech" approach.</label>
+                                <label class="block"><input type="radio" name="design-q3-moderation" value="b" class="form-radio mr-1"> Reactive moderation: Remove content only when users report it as offensive or illegal (e.g. hate speech, sharing hacking tools).</label>
+                                <label class="block"><input type="radio" name="design-q3-moderation" value="c" class="form-radio mr-1"> Proactive moderation using AI filters and human moderators to identify and remove illegal/harmful content, including material that could breach CMA (e.g. selling hacking tools).</label>
+                            </div>
+                        </div>
+                         <div class="compliant-design-question">
+                            <p class="font-semibold mb-1">4. Cookie Usage & Consent (DPA/PECR):</p>
+                             <div class="space-y-1 pl-2">
+                                <label class="block"><input type="radio" name="design-q4-cookies" value="a" class="form-radio mr-1"> Use all types of cookies (essential, analytics, marketing) by default. Mention it deep in the terms of service.</label>
+                                <label class="block"><input type="radio" name="design-q4-cookies" value="b" class="form-radio mr-1"> Use a cookie banner that says "By using this site, you accept cookies." No options to decline non-essential ones.</label>
+                                <label class="block"><input type="radio" name="design-q4-cookies" value="c" class="form-radio mr-1"> Clear cookie banner explaining types of cookies used. Essential cookies active by default. Granular opt-in choices for analytics and marketing cookies.</label>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="check-compliant-design-btn" class="check-button no-print mt-3">Assess App Compliance</button>
+                    <div id="compliant-design-feedback" class="feedback-area mt-2 hidden"></div>
+                     </div>
+            </section>
+
+             <section id="task8-hacking-tree" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-sitemap mr-2 text-red-500"></i> Task 8: Is It Hacking? (CMA Decision Tree)</h2>
+                <div class="bg-red-50 p-5 rounded-lg border border-red-200 space-y-4">
+                    <p class="text-gray-700 mb-2">Answer the questions to determine if a scenario might involve an offence under the Computer Misuse Act.</p>
+                    <div id="hacking-tree-node-display" class="p-3 bg-white border border-red-300 rounded min-h-[100px]">
+                        </div>
+                    <div id="hacking-tree-choices" class="mt-3 space-x-2">
+                        </div>
+                    <button id="reset-hacking-tree-btn" class="reset-button no-print mt-3">Start Tree Over</button>
+                    </div>
+            </section>
+
+            <section id="task9-security-risk" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-shield-alt mr-2 text-sky-500"></i> Task 9: Data Security Risk Explorer (DPA)</h2>
+                <div class="bg-sky-50 p-5 rounded-lg border border-sky-200 space-y-4">
+                     <p class="text-gray-700 mb-2">Adjust the security factors for "InfoCorp Ltd." and see its conceptual Data Breach Risk Score and DPA (Integrity & Confidentiality) Compliance Level.</p>
+                    
+                    <div class="space-y-3">
+                        <div>
+                            <label for="secrisk-password-policy" class="block text-sm font-medium text-gray-700">Password Policy Strength:</label>
+                            <select id="secrisk-password-policy" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                <option value="weak">Weak (e.g., 6 chars, no complexity)</option>
+                                <option value="moderate" selected>Moderate (e.g., 8 chars, mix types)</option>
+                                <option value="strong">Strong (e.g., 12+ chars, complexity, MFA encouraged)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="secrisk-encryption" class="block text-sm font-medium text-gray-700">Data Encryption (Sensitive Data):</label>
+                            <select id="secrisk-encryption" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                <option value="none">None</option>
+                                <option value="basic" selected>Basic (e.g., some fields encrypted at rest)</option>
+                                <option value="strong">Strong (e.g., end-to-end for transit, strong encryption at rest)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="secrisk-staff-training" class="block text-sm font-medium text-gray-700">Staff DPA & Security Training (% completion & recency): <span id="secrisk-staff-training-value" class="font-semibold">50</span>%</label>
+                            <input type="range" id="secrisk-staff-training" min="0" max="100" value="50" step="10" class="w-full mt-1 styled-slider slider-training">
+                        </div>
+                         <div>
+                            <label class="flex items-center mt-2">
+                                <input type="checkbox" id="secrisk-firewall-ids" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-2">
+                                <span class="text-sm font-medium text-gray-700">Modern Firewall & Intrusion Detection System (IDS) active and regularly updated?</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="security-risk-results" class="mt-6 p-4 bg-white rounded-md shadow border-sky-300">
+                        <h3 class="text-lg font-semibold text-sky-700">InfoCorp Ltd. - Security Status:</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                            <div>
+                                <p class="text-sm text-gray-600">Conceptual Data Breach Risk:</p>
+                                <p id="security-risk-score-text" class="text-2xl font-bold">Medium</p>
+                                <div class="risk-meter-container mt-1"><div id="risk-meter-bar" class="risk-meter-bar"></div></div>
+                            </div>
+                             <div>
+                                <p class="text-sm text-gray-600">DPA Compliance (Integrity & Confidentiality):</p>
+                                <p id="security-dpa-compliance" class="text-2xl font-bold">Partial</p>
+                            </div>
+                        </div>
+                        <p id="security-risk-feedback" class="text-sm text-gray-600 mt-3 italic"></p>
+                    </div>
+                     </div>
             </section>
 
             <section id="key-takeaways-legislation" class="task-container">
@@ -390,7 +545,7 @@
                     <ul class="list-disc list-inside space-y-1 text-yellow-800">
                         <li><strong>Data Protection Act (DPA) 2018:</strong> Governs how personal data is collected, processed, stored, and shared. Emphasizes principles like lawfulness, fairness, transparency, purpose limitation, data minimisation, accuracy, storage limitation, integrity/confidentiality, and accountability. Gives individuals rights over their data.</li>
                         <li><strong>Computer Misuse Act (CMA) 1990:</strong> Makes it illegal to gain unauthorised access to computer systems/material, access with intent to commit further crimes, make unauthorised modifications (e.g., deleting data, spreading malware), or make/supply tools for such misuse.</li>
-                        <li><strong>Copyright, Designs and Patents Act (CDPA) 1988:</strong> Protects <span class="keyword">intellectual property<span class="tooltip">Creations of the mind, such as inventions; literary and artistic works; designs; and symbols, names and images used in commerce. Protected by patents, copyright and trademarks.</span></span> like software, music, films, books, and images. Prevents unauthorised copying, distribution, or adaptation. <span class="keyword">Copyright<span class="tooltip">A legal right granting the creator of an original work exclusive rights to its use and distribution, usually for a limited time.</span></span> is automatic.</li>
+                        <li><strong>Copyright, Designs and Patents Act (CDPA) 1988:</strong> Protects <strong>intellectual property</strong> like software, music, films, books, and images. Prevents unauthorised copying, distribution, or adaptation. <strong>Copyright</strong> is automatic.</li>
                         <li>These laws are crucial for ensuring privacy, security, and fair use of digital technologies and creative works.</li>
                     </ul>
                 </div>
@@ -407,9 +562,9 @@
                     <p class="text-teal-800 font-medium">You've now covered key UK computing legislation!</p>
                     <p class="text-teal-700 mt-2">Other aspects of Topic 1.6 "Ethical, Legal, Cultural and Environmental concerns" include:</p>
                     <ul class="list-disc list-inside space-y-1 text-teal-700 mt-3 pl-4">
-                        <li>Ethical implications of AI and Facial Recognition (covered in a previous lesson).</li>
+                        <li>Ethical implications of AI and Facial Recognition.</li>
                         <li>Cultural implications of technology (e.g., digital divide, social media effects).</li>
-                        <li>Environmental impacts of computing (covered in a previous lesson).</li>
+                        <li>Environmental impacts of computing.</li>
                         <li>Open source vs. proprietary software.</li>
                     </ul>
                      <p class="mt-3"><a href="mgsgcse16.html" class="font-semibold text-teal-900 hover:underline">← Back to Ethical, Legal, Cultural & Environmental Concerns Overview</a></p>
@@ -423,44 +578,66 @@
                         <h3 class="font-semibold text-orange-800 mb-2">1. GDPR vs. DPA 2018</h3>
                         <p class="text-sm text-gray-700 mb-2">The DPA 2018 incorporates the EU's General Data Protection Regulation (GDPR) into UK law.</p>
                         <p class="text-sm text-gray-700 mb-2">Research Task: What were the main reasons for introducing GDPR across Europe? Are there any significant differences or UK-specific additions in the DPA 2018 compared to the core GDPR text?</p>
-                        <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Reasons for GDPR? DPA 2018 vs GDPR differences?"></textarea>
+                        <textarea id="extension-q1-textarea" rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white focus:ring-indigo-500 focus:border-indigo-500" placeholder="Reasons for GDPR? DPA 2018 vs GDPR differences?"></textarea>
+                        <button class="reveal-guidance-button check-button no-print mt-2">Reveal Key Considerations</button>
+                        <div id="extension-guidance-1" class="extension-guidance feedback-area !bg-blue-50 !border-blue-200 !text-blue-700 hidden">
+                            <p><strong>Key areas to consider for your research:</strong></p>
+                            <ul class="list-disc list-inside pl-4">
+                                <li>Harmonization of data protection laws across EU.</li>
+                                <li>Strengthening individuals' rights in the digital age.</li>
+                                <li>Increased fines for non-compliance.</li>
+                                <li>Impact of Brexit on UK data protection alignment.</li>
+                                <li>Specific UK derogations or national provisions within DPA 2018 (e.g., for journalism, research).</li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="extension-task border-t border-orange-200 pt-4">
                         <h3 class="font-semibold text-orange-800 mb-2">2. Digital Millennium Copyright Act (DMCA) - USA</h3>
                         <p class="text-sm text-gray-700 mb-2">The CDPA is UK law. The USA has its own significant copyright law, the DMCA.</p>
                         <p class="text-sm text-gray-700 mb-2">Research Task: What are the key provisions of the DMCA? How does it address issues like online copyright infringement and anti-circumvention measures (preventing the bypassing of copy protection)?</p>
-                        <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Key DMCA provisions? Online infringement? Anti-circumvention?"></textarea>
+                        <textarea id="extension-q2-textarea" rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white focus:ring-indigo-500 focus:border-indigo-500" placeholder="Key DMCA provisions? Online infringement? Anti-circumvention?"></textarea>
+                        <button class="reveal-guidance-button check-button no-print mt-2">Reveal Key Considerations</button>
+                        <div id="extension-guidance-2" class="extension-guidance feedback-area !bg-blue-50 !border-blue-200 !text-blue-700 hidden">
+                            <p><strong>Key areas to consider for your research:</strong></p>
+                            <ul class="list-disc list-inside pl-4">
+                                <li>"Safe harbor" provisions for Online Service Providers (OSPs).</li>
+                                <li>Takedown notices system.</li>
+                                <li>Prohibition on circumventing technological protection measures (TPMs).</li>
+                                <li>Impact on fair use, reverse engineering, and security research.</li>
+                                <li>Comparison with UK/EU approaches to online infringement.</li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="extension-task border-t border-orange-200 pt-4">
                         <h3 class="font-semibold text-orange-800 mb-2">3. Ethical Hacking vs. Computer Misuse</h3>
                         <p class="text-sm text-gray-700 mb-2">"Ethical hackers" (or penetration testers) are hired to find vulnerabilities in systems, which sounds like it could fall under the CMA.</p>
                         <p class="text-sm text-gray-700 mb-2">Research Task: What distinguishes legal ethical hacking from illegal computer misuse under the CMA? What key factor makes ethical hacking permissible?</p>
-                        <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Ethical hacking vs. CMA? Key distinguishing factor?"></textarea>
+                        <textarea id="extension-q3-textarea" rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white focus:ring-indigo-500 focus:border-indigo-500" placeholder="Ethical hacking vs. CMA? Key distinguishing factor?"></textarea>
+                        <button class="reveal-guidance-button check-button no-print mt-2">Reveal Key Considerations</button>
+                        <div id="extension-guidance-3" class="extension-guidance feedback-area !bg-blue-50 !border-blue-200 !text-blue-700 hidden">
+                            <p><strong>Key areas to consider for your research:</strong></p>
+                            <ul class="list-disc list-inside pl-4">
+                                <li><strong>Authorization/Permission:</strong> This is the absolute key. Ethical hacking is done with explicit, written permission from the system owner.</li>
+                                <li>Scope of work: Defined contractually, outlining what can and cannot be tested.</li>
+                                <li>Intent: To improve security vs. malicious intent or personal gain.</li>
+                                <li>Reporting: Ethical hackers report vulnerabilities to the owner for fixing.</li>
+                                <li>Certifications and professional conduct for ethical hackers (e.g., CREST, OSCP, CEH).</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </section>
             
             <footer class="mt-12 text-center no-print">
-                <div id="final-score-area" class="task-container bg-purple-100 border-purple-300 mb-6">
-                    <h2 class="task-title text-2xl text-purple-700">Worksheet Score</h2>
-                    <p id="final-score-display" class="text-3xl font-bold text-purple-800">Your score: 0 / 0</p>
-                    <p id="final-score-feedback" class="text-purple-600"></p>
-                </div>
-                <button id="calculate-final-score" class="final-button">Calculate Final Score</button>
                 <button id="reset-all-tasks" class="reset-button">Reset All Tasks</button>
                 <button id="export-pdf-button" class="export-pdf-button">Export to PDF</button>
             </footer>
 
         </main>
     </div>
-
+    <div id="read-progress" class="fixed bottom-4 right-4 bg-gray-700 text-white p-3 rounded-lg shadow-lg no-print transition-opacity duration-300 opacity-0">Sections Read: 0 / 0</div>
     
     <script src="js/gcse-ethics-legal.js"></script>
     <script src="js/worksheet-common.js"></script>
 </body>
-
-
-    <script src="js/worksheet-common.js"></script>
-</body>
-
 </html>

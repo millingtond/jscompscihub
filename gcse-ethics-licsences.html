@@ -3,22 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GCSE CS Lesson: Software Licenses - Open Source vs. Proprietary</title>
+    <title>GCSE CS Lesson: Software Licences - Proprietary & Open Source</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    
-<link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <nav class="bg-gray-800 text-white p-3 no-print sticky top-0 z-50 shadow-md mb-6">
     <div class="max-w-6xl mx-auto flex justify-between items-center">
         <a href="home.html" class="text-xl font-bold hover:text-gray-300 transition-colors">MGS CS Hub</a>
-        <ul class="flex space-x-3 lg:space-x-4">
-        </ul>
         <ul class="flex flex-wrap space-x-2 sm:space-x-3 lg:space-x-4 text-sm sm:text-base">
             <li><a href="#" class="hover:text-gray-300 transition-colors">Year 7</a></li>
             <li><a href="#" class="hover:text-gray-300 transition-colors">Year 8</a></li>
@@ -34,8 +30,6 @@
 
 \1
 
-
-
     <div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-lg shadow-xl">
 
         <a href="mgsgcse16.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 group no-print">
@@ -44,38 +38,25 @@
         </a>
 
         <header class="mb-8 border-b pb-4">
-            <h1 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-2">Understanding Software Licenses: Open Source vs. Proprietary</h1>
-            <p class="text-lg text-gray-600">OCR GCSE Computer Science (J277) - Component 1.6: Legal & Ethical Concerns</p>
+            <h1 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-2">Understanding Software Permissions: Licences</h1>
+            <p class="text-lg text-gray-600">OCR GCSE Computer Science (J277) - Focusing on Open Source and Proprietary Software</p>
         </header>
 
         <main class="space-y-8 md:space-y-12">
 
             <section id="starter-activity" class="task-container">
-                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-file-contract mr-2 text-yellow-500"></i> Starter Activity (5 mins)</h2>
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-file-signature mr-2 text-yellow-500"></i> Starter Activity (5 mins)</h2>
                 <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-200 space-y-4">
-                    <p class="font-semibold text-yellow-800">Software and You...</p>
+                    <p class="font-semibold text-yellow-800">Permissions & Software...</p>
                     <div class="space-y-3">
                         <div>
-                            <label for="starter-q1-software" class="block text-sm font-medium text-yellow-700">1. List three pieces of software you use regularly (e.g., an app, a game, an operating system).</label>
-                            <textarea id="starter-q1-software" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" placeholder="e.g., Microsoft Word, Google Chrome, Minecraft..."></textarea>
+                            <label for="starter-q1-free" class="block text-sm font-medium text-yellow-700">1. If software is described as "free", what might this mean about how you can use it?</label>
+                            <textarea id="starter-q1-free" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white focus:ring-indigo-500 focus:border-indigo-500" placeholder="Your thoughts on 'free' software..."></textarea>
                         </div>
                         <div>
-                            <label for="starter-q2-permission" class="block text-sm font-medium text-yellow-700">2. Did you have to agree to any terms or conditions to use them? What do you think a "software license" is for?</label>
-                            <textarea id="starter-q2-permission" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" placeholder="Terms of service? What does a license do?"></textarea>
+                            <label for="starter-q2-rules" class="block text-sm font-medium text-yellow-700">2. Why are rules (licences) important for software creators and users?</label>
+                            <textarea id="starter-q2-rules" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white focus:ring-indigo-500 focus:border-indigo-500" placeholder="Why have rules for digital content?"></textarea>
                         </div>
-                         <div>
-                            <label for="starter-q3-free" class="block text-sm font-medium text-yellow-700">3. Some software is free, some you have to pay for. Does "free" software mean you can do anything you want with it (e.g., copy it, change it, sell it)? Why or why not?</label>
-                            <textarea id="starter-q3-free" rows="2" class="mt-1 block w-full p-2 border border-yellow-300 rounded-md shadow-sm bg-white" placeholder="Your thoughts on 'free' software..."></textarea>
-                        </div>
-                    </div>
-                    <button class="reveal-button !bg-yellow-500 hover:!bg-yellow-600 no-print" onclick="toggleReveal('starter-answers-feedback', this, 'Reveal Discussion Points', 'Hide Discussion Points')">Reveal Discussion Points</button>
-                    <div id="starter-answers-feedback" class="feedback-area !bg-yellow-100 !border-yellow-300 !text-yellow-700">
-                        <p><strong>Discussion Points:</strong></p>
-                        <ul class="list-disc list-inside">
-                            <li>1. Answers will vary (e.g., TikTok, Windows, Call of Duty, Photoshop).</li>
-                            <li>2. Yes, often you agree to an End User License Agreement (EULA) or terms of service. A software license is a legal document that grants permission to use software under specific conditions and restrictions. It protects the creator's rights.</li>
-                            <li>3. Not necessarily. "Free" (as in free of charge, "gratis") doesn't always mean "free" (as in freedom to modify/distribute, "libre"). Even free software usually has a license that dictates what you can and cannot do with it. Some free software might be open source allowing modifications, while other free software might be proprietary and restrict changes.</li>
-                        </ul>
                     </div>
                 </div>
             </section>
@@ -90,266 +71,286 @@
                 <div class="bg-green-50 p-5 rounded-lg border border-green-200">
                     <p class="font-semibold text-green-800 mb-3">By the end of this lesson, you should be able to:</p>
                     <ul class="list-disc list-inside space-y-2 text-green-700 pl-4">
-                        <li>Define what a software <span class="keyword">license<span class="tooltip">A legal instrument governing the use or redistribution of software. It grants the user permission to use the software under specified conditions.</span></span> is and explain its importance.</li>
-                        <li>Describe the characteristics of <span class="keyword">Open Source software<span class="tooltip">Software with source code that anyone can inspect, modify, and enhance. It's often distributed with a license that grants users the rights to use, study, change, and distribute the software and its source code to anyone and for any purpose.</span></span>.</li>
-                        <li>Describe the characteristics of <span class="keyword">Proprietary software<span class="tooltip">Software that is owned by an individual or a company (usually the one that developed it). There are almost always major restrictions on its use, and its source code is almost always kept secret. Also known as closed-source software.</span></span> (closed source).</li>
-                        <li>Compare the benefits and drawbacks of open source and proprietary software from user and developer perspectives.</li>
-                        <li>Define <span class="keyword">source code<span class="tooltip">The human-readable instructions written by programmers in a high-level programming language. This is what is modified in open source software.</span></span>, <span class="keyword">off-the-shelf software<span class="tooltip">Software created to be sold in bulk to many users such as Office or Adobe products. The manufacturer won't customise it for you.</span></span>, and <span class="keyword">bespoke software<span class="tooltip">Software that is specially designed and written for a single organisation or group of users.</span></span>.</li>
-                        <li>Discuss legal issues related to software licensing, including compliance with the <span class="keyword">Copyright, Designs and Patents Act (CDPA)<span class="tooltip">UK law protecting intellectual property rights for creators of original literary, artistic, musical, dramatic works, software, films, and sound recordings.</span></span>.</li>
+                        <li>Define what a <strong>software licence</strong> is and its purpose.</li>
+                        <li>Distinguish between <strong>proprietary software</strong> and <strong>open source software</strong>.</li>
+                        <li>Describe characteristics of proprietary licences.</li>
+                        <li>Describe characteristics of open source licences.
+                        <li>Explain what <strong>source code</strong> is in this context.</li>
+                        <li>Define <strong>bespoke software</strong>.</li>
+                        <li>Understand key <strong>legal issues when choosing software licences</strong>.</li>
                     </ul>
                 </div>
             </section>
 
-            <section id="intro-licenses" class="task-container">
+            <section id="intro-licences" class="task-container">
                  <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-scroll mr-2"></i> Introduction: What is a Software License?</h2>
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-scroll mr-2"></i> Introduction: What are Licences?</h2>
                      <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
                         <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
                     </label>
                 </div>
                 <div class="bg-indigo-50 p-5 rounded-lg border border-indigo-200 space-y-3">
-                    <p>When you use a piece of software, you don't usually own the software itself. Instead, you are granted permission to use it under certain terms and conditions. This permission is given through a <strong class="keyword">software license<span class="tooltip">A legal instrument governing the use or redistribution of software. It grants the user permission to use the software under specified conditions.</span></strong>.</p>
-                    <p>A software license is a legal agreement between the software creator (or copyright holder) and the user. It defines what the user can and cannot do with the software, such as how many computers it can be installed on, whether it can be modified, and if it can be shared with others.</p>
-                    <p>Licenses are crucial because software is a form of <span class="keyword">intellectual property (IP)<span class="tooltip">Creations of the mind, such as inventions; literary and artistic works; designs; and symbols, names and images used in commerce. Protected by patents, copyright and trademarks.</span></span>, protected by laws like the <span class="keyword">Copyright, Designs and Patents Act (CDPA)<span class="tooltip">UK law protecting intellectual property rights for creators of original literary, artistic, musical, dramatic works, software, films, and sound recordings.</span></span>. The license ensures that creators get paid or acknowledged for their work and helps prevent unauthorized use or distribution.</p>
-                    <p>There are two main categories of software licenses: <strong class="keyword">Open Source<span class="tooltip">Software with source code that anyone can inspect, modify, and enhance. It's often distributed with a license that grants users the rights to use, study, change, and distribute the software and its source code to anyone and for any purpose.</span></strong> and <strong class="keyword">Proprietary<span class="tooltip">Software that is owned by an individual or a company (usually the one that developed it). There are almost always major restrictions on its use, and its source code is almost always kept secret. Also known as closed-source software.</span></strong>. We'll explore these in detail. Hover over <span class="keyword">keywords<span class="tooltip">This is an example tooltip!</span></span> for definitions.</p>
+                    <p>A <strong>software licence</strong> is a legal document that governs the use and/or redistribution of software. It grants the licensee (the user) permission to use the software under certain conditions set by the licensor (the copyright holder, usually the developer or publisher). A key purpose is to make sure the creators get paid or acknowledged for the work they did.</p>
+                    <p>Without a licence, using software would generally be a breach of <strong>copyright law</strong>, as software is a creative work. Licences can range from very restrictive to very permissive.</p>
+                    <p>We'll explore different types of software licences, focusing on <strong>proprietary</strong> and <strong>open source</strong>, and discuss related concepts and legal considerations. Key terms are in <strong>bold</strong>.</p>
                 </div>
             </section>
 
-            <section id="open-source-section" class="task-container">
-                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-folder-open mr-2 text-green-500"></i>Open Source Software</h2>
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-xl font-semibold text-green-700">Characteristics</h3>
-                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
-                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
-                    </label>
-                </div>
-                <div class="bg-green-50 p-4 rounded-lg border border-green-200 mb-6">
-                    <p><strong class="keyword">Open Source software<span class="tooltip">Software with source code that anyone can inspect, modify, and enhance. It's often distributed with a license that grants users the rights to use, study, change, and distribute the software and its source code to anyone and for any purpose.</span></span> is software for which the original <span class="keyword">source code<span class="tooltip">The human-readable instructions written by programmers in a high-level programming language. This is what is modified in open source software.</span></span> (the human-readable instructions written by programmers) is made freely available and may be redistributed and modified.</p>
-                    <p class="mt-2"><strong>Key Characteristics:</strong></p>
-                    <ul class="list-disc list-inside ml-4 space-y-1 text-sm">
-                        <li><strong>Source code is distributed with the software:</strong> Users can view and study how the software works.</li>
-                        <li><strong>Users can modify the source code:</strong> This allows for customization, bug fixing, and adding new features.</li>
-                        <li><strong>Users can redistribute the source code (and modifications):</strong> Often, this must be done under the same or a compatible open source license.</li>
-                        <li><strong>Can be free of charge or paid:</strong> "Open source" doesn't necessarily mean "free of cost," though much of it is.</li>
-                        <li>Relies on community collaboration for development and support.</li>
-                        <li>Examples: Linux Operating System, Apache Web Server, Mozilla Firefox browser, GIMP image editor, LibreOffice suite.</li>
-                    </ul>
-                </div>
-
-                <div id="task-open-source-pros-cons" class="quiz-item mb-6" data-points="4">
-                    <h3 class="text-lg font-medium text-gray-700 mb-2">Task 1.1: Open Source - Pros & Cons Sorter (Max 4 points)</h3>
-                    <p class="text-sm text-gray-600 mb-2">Drag the statements to the correct box: "Pros of Open Source" or "Cons of Open Source". (1 point per correctly placed category, max 2 for pros, max 2 for cons)</p>
-                    <div class="sorter-bank" id="os-proscons-bank">
-                        <span class="sorter-item" draggable="true" data-type="pro">Often free of charge.</span>
-                        <span class="sorter-item" draggable="true" data-type="con">Support can be reliant on community forums (may not be official/guaranteed).</span>
-                        <span class="sorter-item" draggable="true" data-type="pro">Allows users to modify and customize software to their needs.</span>
-                        <span class="sorter-item" draggable="true" data-type="con">May lack polished user interfaces or comprehensive documentation compared to commercial products.</span>
-                        <span class="sorter-item" draggable="true" data-type="pro">Transparency - source code can be inspected for security vulnerabilities.</span>
-                        <span class="sorter-item" draggable="true" data-type="con">No single entity responsible for issues if something goes wrong.</span>
-                        <span class="sorter-item" draggable="true" data-type="pro">Large community support often available online.</span>
-                        <span class="sorter-item" draggable="true" data-type="con">Can sometimes have compatibility issues with proprietary hardware/software.</span>
-                    </div>
-                    <div class="sorter-container mt-4">
-                        <div class="sorter-column">
-                            <h4 class="text-green-700">Pros of Open Source</h4>
-                            <div class="sorter-dropzone" id="os-pros-dropzone" data-category="pro"></div>
-                        </div>
-                        <div class="sorter-column">
-                            <h4 class="text-red-700">Cons of Open Source</h4>
-                            <div class="sorter-dropzone" id="os-cons-dropzone" data-category="con"></div>
-                        </div>
-                    </div>
-                    <button class="check-button no-print !mt-2" onclick="checkOSProsCons()">Check Pros & Cons</button>
-                </div>
-            </section>
-
-            <section id="proprietary-section" class="task-container">
-                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-lock mr-2 text-red-500"></i>Proprietary Software (Closed Source)</h2>
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-xl font-semibold text-green-700">Characteristics & Examples</h3>
-                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
-                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
-                    </label>
-                </div>
-                <div class="bg-red-50 p-4 rounded-lg border border-red-200 mb-6">
-                    <p><strong class="keyword">Proprietary software<span class="tooltip">Software that is owned by an individual or a company (usually the one that developed it). There are almost always major restrictions on its use, and its source code is almost always kept secret. Also known as closed-source software.</span></strong>, also known as closed-source software, is software that is owned by an individual or company (usually the developer). Its use is governed by a license that typically restricts copying, modification, and distribution.</p>
-                    <p class="mt-2"><strong>Key Characteristics:</strong></p>
-                    <ul class="list-disc list-inside ml-4 space-y-1 text-sm">
-                        <li><strong>Source code is NOT made available:</strong> Users receive only the compiled, executable code.</li>
-                        <li><strong>License restricts use:</strong> Users typically cannot legally copy, modify, or redistribute the software without explicit permission.</li>
-                        <li>Often requires payment for a license (though some proprietary software can be "freeware").</li>
-                        <li>Development and support are usually handled by the owning company.</li>
-                        <li>Examples: Microsoft Windows, Microsoft Office, Adobe Photoshop, most commercial video games.</li>
-                    </ul>
-                    <p class="mt-3 font-semibold">Benefits to the Manufacturer/Developer:</p>
-                     <ul class="list-disc list-inside ml-4 space-y-1 text-sm">
-                        <li>Protects their <span class="keyword">intellectual property (IP)<span class="tooltip">Creations of the mind, such as inventions; literary and artistic works; designs; and symbols, names and images used in commerce. Protected by patents, copyright and trademarks.</span></span> and prevents competitors from easily copying their software.</li>
-                        <li>Allows them to charge a fee for licenses, generating revenue.</li>
-                        <li>Ensures quality control and compatibility as they control all modifications.</li>
-                        <li>Can provide dedicated customer support and regular updates.</li>
-                    </ul>
-                </div>
-
-                <div id="task-proprietary-quiz" class="quiz-item mb-6" data-points="2">
-                    <h3 class="text-lg font-medium text-gray-700 mb-2">Task 2.1: Proprietary Software - True or False? (Max 2 points)</h3>
-                    <div class="space-y-2">
-                        <div>
-                            <p class="text-sm mb-1">1. Users of proprietary software usually have access to its source code.</p>
-                            <button class="option-button" data-answer="true">True</button> <button class="option-button" data-answer="false">False</button> <span class="feedback ml-2"></span>
-                        </div>
-                        <div>
-                            <p class="text-sm mb-1">2. Proprietary software licenses often allow users to freely share copies with friends.</p>
-                            <button class="option-button" data-answer="true">True</button> <button class="option-button" data-answer="false">False</button> <span class="feedback ml-2"></span>
-                        </div>
-                    </div>
-                    <button class="check-button no-print !mt-2" onclick="checkProprietaryQuiz()">Check True/False</button>
-                </div>
-            </section>
-
-            <section id="shelf-bespoke-section" class="task-container">
-                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-shopping-cart mr-2 text-purple-500"></i>Off-the-Shelf vs. Bespoke Software</h2>
-                <div class="flex justify-between items-center mb-4">
-                     <h3 class="text-xl font-semibold text-purple-700">Two Approaches to Software Acquisition</h3>
-                     <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
-                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
-                    </label>
-                </div>
-                <div class="bg-purple-50 p-4 rounded-lg border border-purple-200 mb-6 grid md:grid-cols-2 gap-4">
+            <section id="licence-concepts-interactive" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-tags mr-2 text-sky-500"></i>Main Software Concepts & Licence Categories</h2>
+                <p class="text-gray-600 mb-4">Click on each term to learn more and test your understanding.</p>
+                <div class="space-y-2 accordion-container">
                     <div>
-                        <h4 class="font-semibold text-purple-800"><span class="keyword">Off-the-Shelf Software<span class="tooltip">Software created to be sold in bulk to many users such as Office or Adobe products. The manufacturer won't customise it for you.</span></span></h4>
-                        <p class="text-sm">This is general-purpose software designed to be sold to a large number of customers. It's ready to use "as is."</p>
-                        <ul class="list-disc list-inside ml-4 text-xs mt-1">
-                            <li>Examples: Microsoft Office, Adobe Photoshop, antivirus software, most video games.</li>
-                            <li>Pros: Cheaper, readily available, well-tested, lots of support/tutorials.</li>
-                            <li>Cons: May have many features you don't need, or lack specific features you do need; cannot be easily customized by the user.</li>
-                        </ul>
+                        <button class="accordion-button w-full text-left flex justify-between items-center p-3 bg-sky-100 hover:bg-sky-200 border border-sky-300 rounded-t-md focus:outline-none">
+                            <span><strong>Proprietary Software</strong></span>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </button>
+                        <div class="accordion-content bg-sky-50 border border-t-0 border-sky-300 p-3 rounded-b-md">
+                            <p>With <strong>proprietary software</strong>, the licence restricts the copying, modifying, and distribution of the software without the explicit permission of the copyright owner. The <strong>source code</strong> is typically not made available to users; only the compiled (machine-readable) code is published.</p>
+                            <p class="mt-1"><strong>Benefits to Manufacturer:</strong> Helps protect their intellectual property, allows them to control development, and often enables them to charge for the software.</p>
+                            <div class="quick-check mt-3 pt-2 border-t border-sky-200">
+                                <p class="text-sm font-semibold text-sky-700">Quick Check: True or False? "Users of proprietary software usually have access to its source code."</p>
+                                <div class="mt-1 space-x-2">
+                                    <button class="quick-check-btn option-button !py-1 !px-3" data-answer="false">True</button>
+                                    <button class="quick-check-btn option-button !py-1 !px-3" data-answer="true">False</button>
+                                </div>
+                                <div class="quick-check-feedback text-sm mt-1"></div>
+                            </div>
+                        </div>
                     </div>
                     <div>
-                        <h4 class="font-semibold text-purple-800"><span class="keyword">Bespoke Software<span class="tooltip">Software that is specially designed and written for a single organisation or group of users.</span></span> (Custom Software)</h4>
-                        <p class="text-sm">This software is specially designed and written for a specific organization or user to meet their unique requirements.</p>
-                        <ul class="list-disc list-inside ml-4 text-xs mt-1">
-                            <li>Examples: A custom inventory system for a specific warehouse, a unique patient management system for a hospital, specialized scientific analysis software.</li>
-                            <li>Pros: Perfectly tailored to the user's needs, can provide a competitive advantage.</li>
-                            <li>Cons: Very expensive, takes a long time to develop, may have limited support (reliant on original developers).</li>
-                        </ul>
-                    </div>
-                </div>
-                 <div id="task-shelf-bespoke-scenario" class="quiz-item mb-6" data-points="2">
-                    <h3 class="text-lg font-medium text-gray-700 mb-2">Task 3.1: Shelf or Bespoke? (Max 2 points)</h3>
-                    <p class="text-sm text-gray-600 mb-2">For each scenario, would off-the-shelf or bespoke software be more appropriate?</p>
-                    <div class="space-y-3">
-                        <div class="scenario-box">
-                            <p><strong>Scenario A:</strong> A student needs software to write essays and create presentations for school.</p>
-                            <select class="scenario-select"> <option value="">Select Type...</option> <option value="off-the-shelf">Off-the-Shelf</option> <option value="bespoke">Bespoke</option> </select>
-                            <div class="feedback mt-1"></div>
-                        </div>
-                        <div class="scenario-box">
-                            <p><strong>Scenario B:</strong> A specialist scientific research lab needs software to control a unique piece of experimental equipment and analyze its very specific data output.</p>
-                            <select class="scenario-select"> <option value="">Select Type...</option> <option value="off-the-shelf">Off-the-Shelf</option> <option value="bespoke">Bespoke</option> </select>
-                            <div class="feedback mt-1"></div>
-                        </div>
-                    </div>
-                    <button class="check-button no-print !mt-2" onclick="checkShelfBespokeScenarios()">Check Scenarios</button>
-                </div>
-            </section>
-
-            <section id="legal-issues-section" class="task-container">
-                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-balance-scale-left mr-2 text-orange-500"></i>Legal Issues When Choosing Software</h2>
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-xl font-semibold text-orange-700">Important Considerations</h3>
-                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
-                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
-                    </label>
-                </div>
-                <div class="bg-orange-50 p-4 rounded-lg border border-orange-200 mb-6">
-                    <p>When an organization chooses software, they must consider several legal aspects:</p>
-                    <ul class="list-disc list-inside ml-4 space-y-1 text-sm">
-                        <li><strong>Abiding by the Software License:</strong> This is paramount. The license dictates how many users can use it, if it can be copied, modified, etc. Ignoring the license is a breach of contract and often copyright law.</li>
-                        <li><strong>Open Source Implications:</strong> If choosing open source software, the organization must understand the specific open source license terms.
-                            <ul>
-                                <li>They can usually make modifications.</li>
-                                <li>However, some licenses (e.g., "copyleft" licenses like GPL) require that any modifications or derivative works are also made open source under the same terms.</li>
-                                <li>They must usually credit all previous contributors if redistributing modified code.</li>
+                        <button class="accordion-button w-full text-left flex justify-between items-center p-3 bg-green-100 hover:bg-green-200 border border-green-300 rounded-t-md focus:outline-none">
+                            <span><strong>Open Source Software (OSS)</strong></span>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </button>
+                        <div class="accordion-content bg-green-50 border border-t-0 border-green-300 p-3 rounded-b-md">
+                            <p><strong>Open source software</strong> is released under a licence that allows users more freedom. Key characteristics include:</p>
+                            <ul class="list-disc list-inside ml-4 text-sm">
+                                <li>The <strong>source code</strong> is distributed with the software (or made easily available).</li>
+                                <li>The customer can modify the source code.</li>
+                                <li>The customer can redistribute the source code and modified versions, often under conditions (e.g., same licence).</li>
+                                <li>Can be free of charge or paid; the "open" refers to freedom and access.</li>
                             </ul>
-                        </li>
-                        <li><strong>Cost of Proprietary Software:</strong> Purchasing licenses for off-the-shelf proprietary software can be expensive, especially for many users. This needs to be budgeted for.</li>
-                        <li><strong>Data Protection Compliance:</strong> Any software that handles <span class="keyword">personal data<span class="tooltip">Information relating to an identifiable living individual. Examples include name, address, email, medical records, online identifiers.</span></span> must enable the organization to comply with the <span class="keyword">Data Protection Act (DPA)<span class="tooltip">UK law governing the processing of personal data. It sets out principles for how organisations must handle individuals' information. (Often refers to DPA 2018 which incorporates GDPR).</span></span>. This includes how data is stored, secured, and accessed.</li>
-                    </ul>
-                </div>
-                 <div id="task-legal-issues-quiz" class="quiz-item mb-6" data-points="2">
-                    <h3 class="text-lg font-medium text-gray-700 mb-2">Task 4.1: Legal Considerations - Quick Questions (Max 2 points)</h3>
-                    <div class="space-y-3">
-                        <div>
-                            <p class="text-sm mb-1">1. True or False: If software is open source, you can always use its code in your own proprietary (closed-source) commercial product without any restrictions.</p>
-                            <button class="option-button" data-answer="true">True</button> <button class="option-button" data-answer="false">False</button> <span class="feedback ml-2"></span>
-                        </div>
-                        <div>
-                            <p class="text-sm mb-1">2. Which UK law primarily governs how organizations must handle customer names and addresses?</p>
-                            <button class="option-button" data-answer="cma">Computer Misuse Act</button> <button class="option-button" data-answer="cdpa">Copyright, Designs and Patents Act</button> <button class="option-button" data-answer="dpa">Data Protection Act</button> <span class="feedback ml-2"></span>
+                             <div class="quick-check mt-3 pt-2 border-t border-green-200">
+                                <p class="text-sm font-semibold text-green-700">Quick Check: Can open source software be sold for a price?</p>
+                                <div class="mt-1 space-x-2">
+                                    <button class="quick-check-btn option-button !py-1 !px-3" data-answer="true">Yes</button>
+                                    <button class="quick-check-btn option-button !py-1 !px-3" data-answer="false">No</button>
+                                </div>
+                                <div class="quick-check-feedback text-sm mt-1"></div>
+                            </div>
                         </div>
                     </div>
-                    <button class="check-button no-print !mt-2" onclick="checkLegalIssuesQuiz()">Check Questions</button>
+                     <div>
+                        <button class="accordion-button w-full text-left flex justify-between items-center p-3 bg-yellow-100 hover:bg-yellow-200 border border-yellow-300 rounded-t-md focus:outline-none">
+                            <span><strong>Freeware & Shareware</strong></span>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </button>
+                        <div class="accordion-content bg-yellow-50 border border-t-0 border-yellow-300 p-3 rounded-b-md">
+                            <p><strong>Freeware:</strong> Software available at no cost, but usually proprietary (source code not available, cannot modify/redistribute). Restrictions like "personal use only" may apply.</p>
+                            <p class="mt-2"><strong>Shareware:</strong> Distributed free on a trial basis. Payment may be needed later for full features or continued use. May expire or have limited functionality until purchased.</p>
+                             <div class="quick-check mt-3 pt-2 border-t border-yellow-200">
+                                <p class="text-sm font-semibold text-yellow-700">Quick Check: Is Shareware always completely free to use indefinitely?</p>
+                                <div class="mt-1 space-x-2">
+                                    <button class="quick-check-btn option-button !py-1 !px-3" data-answer="false">Yes</button>
+                                    <button class="quick-check-btn option-button !py-1 !px-3" data-answer="true">No</button>
+                                </div>
+                                <div class="quick-check-feedback text-sm mt-1"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="accordion-button w-full text-left flex justify-between items-center p-3 bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-t-md focus:outline-none">
+                            <span><strong>Source Code</strong></span>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </button>
+                        <div class="accordion-content bg-gray-50 border border-t-0 border-gray-300 p-3 rounded-b-md">
+                            <p>The <strong>source code</strong> is the human-readable set of instructions (e.g., written in Python, Java, C++) that define how a software application functions. It's made public for open source software but remains a secret in proprietary software, where users usually only get the compiled, machine-executable version.</p>
+                             <div class="quick-check mt-3 pt-2 border-t border-gray-200">
+                                <p class="text-sm font-semibold text-gray-700">Quick Check: Proprietary software licences typically grant access to the software's source code. True or False?</p>
+                                <div class="mt-1 space-x-2">
+                                    <button class="quick-check-btn option-button !py-1 !px-3" data-answer="false">True</button>
+                                    <button class="quick-check-btn option-button !py-1 !px-3" data-answer="true">False</button>
+                                </div>
+                                <div class="quick-check-feedback text-sm mt-1"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="accordion-button w-full text-left flex justify-between items-center p-3 bg-purple-100 hover:bg-purple-200 border border-purple-300 rounded-t-md focus:outline-none">
+                            <span><strong>Bespoke Software</strong></span>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </button>
+                        <div class="accordion-content bg-purple-50 border border-t-0 border-purple-300 p-3 rounded-b-md">
+                            <p><strong>Bespoke software</strong> (also known as custom software) is specially designed and written for a single organisation or group of users to meet their specific requirements. It is tailored to their unique workflows and needs, unlike off-the-shelf software designed for a mass market.</p>
+                             <div class="quick-check mt-3 pt-2 border-t border-purple-200">
+                                <p class="text-sm font-semibold text-purple-700">Quick Check: Is Microsoft Word an example of bespoke software for most users?</p>
+                                <div class="mt-1 space-x-2">
+                                    <button class="quick-check-btn option-button !py-1 !px-3" data-answer="false">Yes</button>
+                                    <button class="quick-check-btn option-button !py-1 !px-3" data-answer="true">No</button>
+                                </div>
+                                <div class="quick-check-feedback text-sm mt-1"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="accordion-button w-full text-left flex justify-between items-center p-3 bg-red-100 hover:bg-red-200 border border-red-300 rounded-t-md focus:outline-none">
+                            <span><strong>Legal Issues When Choosing Software Licences</strong></span>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </button>
+                        <div class="accordion-content bg-red-50 border border-t-0 border-red-300 p-3 rounded-b-md">
+                            <p>Choosing and using software involves several legal considerations:</p>
+                            <ul class="list-disc list-inside ml-4 text-sm">
+                                <li>You <strong>must abide by the software licence terms</strong>.</li>
+                                <li>For <strong>open source software</strong>, modifications may need to be shared back, and contributors credited.</li>
+                                <li><strong>Off-the-shelf (proprietary) software</strong> must be legally purchased.</li>
+                                <li>All software used must enable compliance with laws like the <strong>Data Protection Act</strong>.</li>
+                            </ul>
+                            <div class="quick-check mt-3 pt-2 border-t border-red-200">
+                                <p class="text-sm font-semibold text-red-700">Quick Check: If you modify open source software, you never have to share your changes. True or False?</p>
+                                <div class="mt-1 space-x-2">
+                                    <button class="quick-check-btn option-button !py-1 !px-3" data-answer="false">True</button>
+                                    <button class="quick-check-btn option-button !py-1 !px-3" data-answer="true">False</button>
+                                </div>
+                                <div class="quick-check-feedback text-sm mt-1"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
-            <section id="exam-practice-licenses" class="task-container">
-                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-graduation-cap mr-2"></i>Task 5: Exam Practice Questions</h2>
-                <p class="text-gray-600 mb-6">Apply your knowledge to these exam-style questions.</p>
+            <section id="task1-license-sorter" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-random mr-2 text-purple-500"></i>Task 1: License Sorter</h2>
+                <p class="text-gray-600 mb-2">Drag each characteristic from the "Bank" and drop it under the correct licence category it primarily describes.</p>
+                <div id="license-bank" class="sorter-bank sorter-dropzone mb-4 p-4 border-2 border-dashed border-gray-400 rounded-md min-h-[60px] flex flex-row justify-around items-center flex-wrap gap-2">
+                    </div>
+                <div class="sorter-container grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="sorter-column">
+                        <h4 id="proprietary-dropzone-header" class="text-lg font-semibold mb-0 p-2 rounded-t-md text-center">Proprietary Software</h4>
+                        <div id="proprietary-dropzone" class="sorter-dropzone min-h-[150px] p-2 rounded-b-md"></div>
+                    </div>
+                    <div class="sorter-column">
+                        <h4 id="opensource-dropzone-header" class="text-lg font-semibold mb-0 p-2 rounded-t-md text-center">Open Source Software</h4>
+                        <div id="opensource-dropzone" class="sorter-dropzone min-h-[150px] p-2 rounded-b-md"></div>
+                    </div>
+                </div>
+                <div class="text-center mt-4">
+                    <button id="check-license-sort-btn" class="check-button no-print">Check My Sort</button>
+                    <button id="reset-license-sort-btn" class="reset-button no-print">Reset Task 1</button>
+                </div>
+                <div id="license-sorter-feedback" class="feedback-area mt-2 hidden"></div>
+            </section>
+
+<section id="task2-licence-compatibility" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-project-diagram mr-2 text-lime-500"></i> Task 2: Software Licence Compatibility Checker (Conceptual)</h2>
+                <div class="bg-lime-50 p-5 rounded-lg border border-lime-200 space-y-4">
+                    <p class="text-gray-700 mb-2">You're developing new software. Choose your project's type and a component you want to add to see conceptual compatibility advice.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+                        <div>
+                            <label for="project-type-select" class="block text-sm font-medium text-gray-700">1. Your Project Type:</label>
+                            <select id="project-type-select" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                <option value="proprietary">Proprietary Software Project</option>
+                                <option value="opensource_general">Open Source Software Project</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="component-type-select" class="block text-sm font-medium text-gray-700">2. Component to Add:</label>
+                            <select id="component-type-select" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                <option value="component_proprietary">Another Proprietary Software Component</option>
+                                <option value="component_os_sharealike">Open Source Component (that requires derivatives to also be open source)</option>
+                                <option value="component_os_permissive">Open Source Component (more permissive, fewer restrictions on reuse in other projects)</option>
+                                <option value="component_public_domain">Public Domain Code</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button id="check-compatibility-btn" class="check-button no-print">Check Compatibility</button>
+            
+                    <div id="compatibility-feedback" class="feedback-area mt-3 p-3 bg-white border border-lime-300 rounded-md min-h-[60px] hidden">
+                        </div>
+                </div>
+            </section>
+
+            <section id="task3-business-model-choice" class="task-container"> <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-lightbulb-dollar mr-2 text-amber-500"></i> Task 3: Choosing Your Path - Software Business Model Scenario</h2>
+                <div class="bg-amber-50 p-5 rounded-lg border border-amber-200 space-y-4">
+                    <p class="text-gray-700 mb-2">Imagine you've created an innovative new software tool. Answer the questions below based on your primary goals for this tool.</p>
+                    <div id="business-model-questions" class="space-y-5">
+                        <div class="business-model-question">
+                            <p class="font-semibold mb-1">1. What is your primary revenue goal?</p>
+                            <label class="block"><input type="radio" name="bm-q1-revenue" value="direct_sales" class="form-radio mr-1"> Maximize direct sales revenue from the software itself.</label>
+                            <label class="block"><input type="radio" name="bm-q1-revenue" value="community_services" class="form-radio mr-1"> Build a large user community quickly; revenue via services, support, or related products.</label>
+                        </div>
+                        <div class="business-model-question">
+                            <p class="font-semibold mb-1">2. How much control do you need over the product roadmap?</p>
+                            <label class="block"><input type="radio" name="bm-q2-control" value="full_control" class="form-radio mr-1"> Full and exclusive control is essential.</label>
+                            <label class="block"><input type="radio" name="bm-q2-control" value="community_input" class="form-radio mr-1"> Community contributions and input are welcome and encouraged.</label>
+                        </div>
+                        <div class="business-model-question">
+                            <p class="font-semibold mb-1">3. What's your approach to source code access?</p>
+                            <label class="block"><input type="radio" name="bm-q3-sourcecode" value="secret_ip" class="form-radio mr-1"> Keep it secret as valuable intellectual property.</label>
+                            <label class="block"><input type="radio" name="bm-q3-sourcecode" value="open_transparent" class="form-radio mr-1"> Open it for transparency, trust, and collaboration.</label>
+                        </div>
+                    </div>
+                    <button id="suggest-business-model-btn" class="check-button no-print mt-4">See Suggested Model</button>
+                    <div id="business-model-suggestion" class="feedback-area mt-3 p-3 bg-white border border-amber-300 rounded-md min-h-[80px] hidden"></div>
+                </div>
+            </section>
+
+            <section id="exam-practice-licences" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-graduation-cap mr-2"></i>Task 4: Exam Practice Questions</h2> <p class="text-gray-600 mb-6">Apply your knowledge to these exam-style questions.</p>
                 <div class="space-y-6">
                     <div class="exam-question-item">
-                        <p class="font-medium text-gray-800 mb-2">1. Explain two differences between open source software and proprietary software. [4 marks]</p>
-                        <textarea id="exam-q1-license" class="exam-answer-textarea" placeholder="Difference 1... Difference 2..."></textarea>
-                        <button class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q1-license', 'exam-q1-license', 25)">Show Mark Scheme</button>
-                        <div id="ms-exam-q1-license" class="mark-scheme">
-                            <p><strong>Mark Scheme (1 mark for each aspect of a difference, max 2 differences for 4 marks):</strong></p>
+                        <p class="font-medium text-gray-800 mb-2">1. Explain two key characteristics that distinguish open source software from proprietary software. [2 marks]</p>
+                        <textarea id="exam-q1-lic" class="exam-answer-textarea focus:ring-indigo-500 focus:border-indigo-500" placeholder="Two distinguishing characteristics..."></textarea>
+                         <div class="mt-2">
+                            <label for="exam-q1-lic-marks" class="text-sm font-medium text-gray-700 mr-2">Predicted Marks (out of 2):</label>
+                            <input type="number" id="exam-q1-lic-marks" class="marks-input p-1 border border-gray-300 rounded-md w-20 focus:ring-indigo-500 focus:border-indigo-500" min="0" max="2">
+                        </div>
+                        <button class="mark-scheme-button no-print" onclick="toggleLicenceMarkScheme('ms-exam-q1-lic', 'exam-q1-lic', 'exam-q1-lic-marks', 15)">Show Mark Scheme</button>
+                        <div id="ms-exam-q1-lic" class="mark-scheme hidden">
+                            <p><strong>Mark Scheme (Any two from, 1 mark each):</strong></p>
                             <ul>
-                                <li><strong>Source Code Access:</strong> Open source provides access to source code (1), proprietary typically does not (1).</li>
-                                <li><strong>Modification Rights:</strong> Open source allows users to modify the software (1), proprietary usually restricts or prohibits modification (1).</li>
-                                <li><strong>Distribution Rights:</strong> Open source often allows redistribution (sometimes with conditions) (1), proprietary strictly controls redistribution (1).</li>
-                                <li><strong>Cost:</strong> Open source is often free of charge (but can be paid) (1), proprietary usually requires payment for a license (1).</li>
-                                <li><strong>Support Model:</strong> Open source often relies on community support (1), proprietary usually offers official support from the vendor (1).</li>
+                                <li>Open source software's source code is publicly available/distributed, whereas proprietary software's source code is usually kept secret.</li>
+                                <li>Open source software licences grant users the freedom to modify and redistribute the software, whereas proprietary software licences typically restrict this.</li>
+                                <li>Open source software often emphasizes community collaboration, while proprietary software is controlled by a single entity.</li>
+                                <li>Open source users may have an obligation to share modifications (copyleft), which is not a feature of proprietary software.</li>
                             </ul>
                         </div>
                     </div>
                     <div class="exam-question-item">
-                        <p class="font-medium text-gray-800 mb-2">2. A school is choosing a new office suite. Discuss one advantage and one disadvantage of choosing an open source office suite compared to a proprietary one like Microsoft Office. [4 marks]</p>
-                        <textarea id="exam-q2-license" class="exam-answer-textarea" placeholder="One advantage of open source... One disadvantage of open source..."></textarea>
-                        <button class="mark-scheme-button no-print" onclick="toggleMarkScheme('ms-exam-q2-license', 'exam-q2-license', 25)">Show Mark Scheme</button>
-                        <div id="ms-exam-q2-license" class="mark-scheme">
+                        <p class="font-medium text-gray-800 mb-2">2. A small bakery commissions a software developer to create a unique online ordering system just for their business. What type of software is this an example of? [1 mark]</p>
+                        <textarea id="exam-q2-lic" class="exam-answer-textarea focus:ring-indigo-500 focus:border-indigo-500" placeholder="Type of software..."></textarea>
+                        <div class="mt-2">
+                            <label for="exam-q2-lic-marks" class="text-sm font-medium text-gray-700 mr-2">Predicted Marks (out of 1):</label>
+                            <input type="number" id="exam-q2-lic-marks" class="marks-input p-1 border border-gray-300 rounded-md w-20 focus:ring-indigo-500 focus:border-indigo-500" min="0" max="1">
+                        </div>
+                        <button class="mark-scheme-button no-print" onclick="toggleLicenceMarkScheme('ms-exam-q2-lic', 'exam-q2-lic', 'exam-q2-lic-marks', 5)">Show Mark Scheme</button>
+                        <div id="ms-exam-q2-lic" class="mark-scheme hidden">
                             <p><strong>Mark Scheme:</strong></p>
                             <ul>
-                                <li><strong>Advantage of Open Source (e.g., LibreOffice):</strong> Often free of charge / lower cost (1), which saves the school money especially for many licenses (1). OR Can be modified/customized if the school has technical expertise (1) to better suit specific needs (1).</li>
-                                <li><strong>Disadvantage of Open Source:</strong> May have less polished user interface or fewer advanced features compared to established proprietary options (1), potentially leading to a steeper learning curve or reduced productivity for some users (1). OR Support might rely on community forums (1), which may not be as immediate or comprehensive as dedicated vendor support (1). OR File compatibility issues with users of proprietary software (1), making collaboration harder (1).</li>
+                                <li>Bespoke software / Custom software. (1 mark)</li>
                             </ul>
-                             <p class="text-xs italic mt-1">(Award 2 marks for a well-explained advantage, and 2 marks for a well-explained disadvantage)</p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section id="related-videos-licenses" class="task-container">
+            <section id="related-videos-licences" class="task-container">
                  <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-video mr-2 text-purple-500"></i> Related Videos</h2>
+                    <h2 class="text-2xl task-title text-indigo-600"><i class="fab fa-youtube mr-2 text-red-600"></i> Related Video</h2>
                     <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
                         <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
                     </label>
                 </div>
                 <div class="bg-purple-50 p-5 rounded-lg border border-purple-200 space-y-4">
-                    <p class="text-gray-700">Watch these videos to learn more about software licenses:</p>
-                    <ul class="list-disc list-inside space-y-3 text-purple-800 pl-4">
-                        <li>
-                            <strong>Video 1: Open Source vs. Proprietary Software Explained</strong>
-                            <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 1: General Overview]</div>
-                        </li>
-                        <li>
-                            <strong>Video 2: Understanding Creative Commons Licenses</strong>
-                            <div class="video-placeholder bg-gray-200 h-32 flex items-center justify-center text-gray-500 rounded mt-1">[Video Placeholder 2: Creative Commons Focus]</div>
-                        </li>
-                    </ul>
+                    <p class="text-gray-700">Watch this video to learn more about software licences:</p>
+                    <div class="video-container mt-1 aspect-video">
+                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/49IVvPiiGP4?si=XptkzNFRE_7QcFD6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
                 </div>
             </section>
 
-            <section id="key-takeaways-licenses" class="task-container">
+            <section id="key-takeaways-licences" class="task-container">
                  <div class="flex justify-between items-center mb-4">
                     <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-key mr-2"></i>Key Takeaways</h2>
                     <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
@@ -358,80 +359,93 @@
                 </div>
                 <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-300 space-y-2 show">
                     <ul class="list-disc list-inside space-y-1 text-yellow-800">
-                        <li>A <strong class="keyword">software license<span class="tooltip">A legal instrument governing the use or redistribution of software. It grants the user permission to use the software under specified conditions.</span></strong> is a legal agreement defining how software can be used, copied, modified, and distributed.</li>
-                        <li><strong class="keyword">Open Source software<span class="tooltip">Software with source code that anyone can inspect, modify, and enhance. It's often distributed with a license that grants users the rights to use, study, change, and distribute the software and its source code to anyone and for any purpose.</span></strong> provides access to its <span class="keyword">source code<span class="tooltip">The human-readable instructions written by programmers in a high-level programming language. This is what is modified in open source software.</span></span>, allowing modification and redistribution, often fostering community collaboration and being free of charge.</li>
-                        <li><strong class="keyword">Proprietary software<span class="tooltip">Software that is owned by an individual or a company (usually the one that developed it). There are almost always major restrictions on its use, and its source code is almost always kept secret. Also known as closed-source software.</span></strong> (closed source) does not provide source code access and has stricter license terms, typically restricting modification and redistribution, and often involves a purchase cost.</li>
-                        <li>Manufacturers use proprietary licenses to protect their <span class="keyword">intellectual property (IP)<span class="tooltip">Creations of the mind, such as inventions; literary and artistic works; designs; and symbols, names and images used in commerce. Protected by patents, copyright and trademarks.</span></span>, generate revenue, and maintain control over their product.</li>
-                        <li><strong class="keyword">Off-the-shelf software<span class="tooltip">Software created to be sold in bulk to many users such as Office or Adobe products. The manufacturer won't customise it for you.</span></strong> is mass-produced for general use, while <strong class="keyword">bespoke software<span class="tooltip">Software that is specially designed and written for a single organisation or group of users.</span></strong> is custom-developed for specific client needs.</li>
-                        <li>Legal considerations include adhering to license terms, understanding open source obligations (like crediting authors or sharing modifications), and ensuring software used for handling personal data complies with the <span class="keyword">Data Protection Act<span class="tooltip">UK law governing the processing of personal data. It sets out principles for how organisations must handle individuals' information. (Often refers to DPA 2018 which incorporates GDPR).</span></span>.</li>
+                        <li>A <strong>software licence</strong> dictates terms of use for software, protecting creators and defining user permissions.</li>
+                        <li><strong>Proprietary software</strong> typically has restricted use, modification, and distribution, with secret <strong>source code</strong>.</li>
+                        <li><strong>Open source software</strong> provides <strong>source code</strong> access and freedoms to use, study, modify, and distribute, often with conditions.</li>
+                        <li><strong>Freeware</strong> is free to use but often proprietary; <strong>Shareware</strong> is try-before-you-buy.</li>
+                        <li><strong>Bespoke software</strong> is custom-made for specific users.</li>
+                        <li>Choosing a licence involves <strong>legal issues</strong> such as abiding by terms, costs, modification rights, and data protection compliance.</li>
                     </ul>
                 </div>
             </section>
 
-            <section id="next-steps-licenses" class="task-container">
+             <section id="next-steps-licences" class="task-container">
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-2xl task-title text-indigo-600">What's Next?</h2>
-                    <label class="flex items-center text-sm text-gray-500 cursor-pointer hover:text-gray-700 no-print">
-                        <input type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 mr-1.5 read-checkbox"> Mark as Read
-                    </label>
                 </div>
                 <div class="bg-teal-50 p-5 rounded-lg border border-teal-300">
-                    <p class="text-teal-800 font-medium">You've now explored the world of software licenses!</p>
-                    <p class="text-teal-700 mt-2">This is a key part of Topic 1.6 "Ethical, Legal, Cultural and Environmental concerns." Depending on what you've covered, you might next look at:</p>
-                    <ul class="list-disc list-inside space-y-1 text-teal-700 mt-3 pl-4">
-                        <li>Other aspects of the <span class="keyword">Copyright, Designs and Patents Act<span class="tooltip">UK law protecting intellectual property rights for creators of original literary, artistic, musical, dramatic works, software, films, and sound recordings.</span></span> beyond software.</li>
-                        <li>The cultural impact of technology (e.g., digital divide, social media effects).</li>
-                        <li>Reviewing other legislation like the Data Protection Act or Computer Misuse Act if not yet covered in detail.</li>
-                    </ul>
                      <p class="mt-3"><a href="mgsgcse16.html" class="font-semibold text-teal-900 hover:underline">← Back to Ethical, Legal, Cultural & Environmental Concerns Overview</a></p>
                 </div>
             </section>
 
-            <section id="extension-activities-licenses" class="task-container">
-                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-code-branch mr-2 text-orange-500"></i> Extension Activities</h2>
+            <section id="extension-activities-licences" class="task-container">
+                <h2 class="text-2xl task-title text-indigo-600"><i class="fas fa-flask mr-2 text-orange-500"></i> Extension Activities</h2>
                 <div class="bg-orange-50 p-5 rounded-lg border border-orange-200 space-y-6">
                     <div class="extension-task">
-                        <h3 class="font-semibold text-orange-800 mb-2">1. Specific Open Source Licenses</h3>
-                        <p class="text-sm text-gray-700 mb-2">There isn't just one "open source license." Common examples include GPL (General Public License), MIT License, and Apache License.</p>
-                        <p class="text-sm text-gray-700 mb-2">Research Task: Choose two different open source licenses (e.g., GPLv3 and MIT). What are the key differences in their terms, particularly regarding modification and redistribution of the software and its derivatives?</p>
-                        <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="License 1 vs. License 2: Key differences..."></textarea>
+                        <h3 class="font-semibold text-orange-800 mb-2">1. Investigate a Specific EULA</h3>
+                        <p class="text-sm text-gray-700 mb-2">Find the End User Licence Agreement (EULA) for a piece of proprietary software you use (e.g., a game, OS, app).</p>
+                        <p class="text-sm text-gray-700 mb-2">Research Task: Summarize 2-3 key restrictions stated in its EULA. What are you NOT allowed to do?</p>
+                        <textarea id="extension-eula-research" rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white focus:ring-indigo-500 focus:border-indigo-500" placeholder="Software name, key EULA restrictions..."></textarea>
+                        <button class="reveal-guidance-button check-button no-print mt-2">Reveal Key Considerations</button>
+                        <div id="extension-guidance-eula" class="extension-guidance feedback-area !bg-blue-50 !border-blue-200 !text-blue-700 hidden">
+                            <p><strong>Key areas to look for in a EULA:</strong></p>
+                            <ul class="list-disc list-inside pl-4">
+                                <li>Restrictions on copying or number of installations.</li>
+                                <li>Prohibitions on reverse engineering, decompiling, or modifying the software.</li>
+                                <li>Limitations on transferring the licence to someone else.</li>
+                                <li>Clauses on data collection and privacy by the software vendor.</li>
+                                <li>Disclaimers of warranty and limitations of liability.</li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="extension-task border-t border-orange-200 pt-4">
-                        <h3 class="font-semibold text-orange-800 mb-2">2. Software Patents</h3>
-                        <p class="text-sm text-gray-700 mb-2">While copyright protects the specific code (expression of an idea), patents can sometimes protect the underlying algorithms or methods used in software (the idea itself), though this is a complex and debated area.</p>
-                        <p class="text-sm text-gray-700 mb-2">Research Task: What is a software patent? How does it differ from copyright for software? What are some arguments for and against allowing software patents?</p>
-                        <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="Software patent definition? Difference from copyright? Pros/Cons?"></textarea>
+                        <h3 class="font-semibold text-orange-800 mb-2">2. The GPL and "Copyleft"</h3>
+                        <p class="text-sm text-gray-700 mb-2">The GNU General Public License (GPL) is a well-known open source licence with a "copyleft" provision.</p>
+                        <p class="text-sm text-gray-700 mb-2">Research Task: What does "copyleft" mean? How does the GPL ensure that software (and its modifications) remains open source?</p>
+                        <textarea id="extension-gpl-research" rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white focus:ring-indigo-500 focus:border-indigo-500" placeholder="Define copyleft. How GPL enforces openness..."></textarea>
+                        <button class="reveal-guidance-button check-button no-print mt-2">Reveal Key Considerations</button>
+                        <div id="extension-guidance-gpl" class="extension-guidance feedback-area !bg-blue-50 !border-blue-200 !text-blue-700 hidden">
+                            <p><strong>Key Considerations for GPL/Copyleft Research:</strong></p>
+                            <ul class="list-disc list-inside pl-4">
+                                <li>Copyleft: If you distribute modified versions of GPL software, those versions must also be licensed under the GPL (or compatible terms).</li>
+                                <li>This ensures that the software remains free and open, preventing it from becoming proprietary.</li>
+                                <li>The "four essential freedoms" of free software.</li>
+                                <li>Contrast with permissive licences (like MIT) which don't have this strong reciprocal sharing requirement for modified versions.</li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="extension-task border-t border-orange-200 pt-4">
-                        <h3 class="font-semibold text-orange-800 mb-2">3. Digital Rights Management (DRM)</h3>
-                        <p class="text-sm text-gray-700 mb-2">Proprietary software and media often use DRM technologies to control how they can be used, copied, or accessed.</p>
-                        <p class="text-sm text-gray-700 mb-2">Research Task: What is Digital Rights Management (DRM)? Give an example of how it's used. What are some ethical arguments for and against the use of DRM?</p>
-                        <textarea rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white" placeholder="DRM definition? Example? Ethical arguments for/against?"></textarea>
+                        <h3 class="font-semibold text-orange-800 mb-2">3. Business Use of Open Source</h3>
+                        <p class="text-sm text-gray-700 mb-2">Many large companies (e.g., Google, Microsoft, IBM) use and contribute to open source software.</p>
+                        <p class="text-sm text-gray-700 mb-2">Research Task: Why would a commercial company choose to use or even develop open source software? What are the benefits for them?</p>
+                        <textarea id="extension-audit-research" rows="4" class="w-full p-2 border border-orange-300 rounded-md bg-white focus:ring-indigo-500 focus:border-indigo-500" placeholder="Benefits for businesses using/developing OSS..."></textarea>
+                        <button class="reveal-guidance-button check-button no-print mt-2">Reveal Key Considerations</button>
+                        <div id="extension-guidance-audit" class="extension-guidance feedback-area !bg-blue-50 !border-blue-200 !text-blue-700 hidden">
+                            <p><strong>Key Considerations for Business Use of OSS Research:</strong></p>
+                            <ul class="list-disc list-inside pl-4">
+                                <li>Cost savings (often no direct licence fees).</li>
+                                <li>Access to a large community for support and development.</li>
+                                <li>Ability to customize and adapt the software to their needs.</li>
+                                <li>Transparency and security (source code can be audited).</li>
+                                <li>Attracting talent (developers often like working with OSS).</li>
+                                <li>Building industry standards or ecosystems around their technology.</li>
+                                <li>Offering commercial services or products around an open source core.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </section>
             
             <footer class="mt-12 text-center no-print">
-                <div id="final-score-area" class="task-container bg-purple-100 border-purple-300 mb-6">
-                    <h2 class="task-title text-2xl text-purple-700">Worksheet Score</h2>
-                    <p id="final-score-display" class="text-3xl font-bold text-purple-800">Your score: 0 / 0</p>
-                    <p id="final-score-feedback" class="text-purple-600"></p>
-                </div>
-                <button id="calculate-final-score" class="final-button">Calculate Final Score</button>
                 <button id="reset-all-tasks" class="reset-button">Reset All Tasks</button>
                 <button id="export-pdf-button" class="export-pdf-button">Export to PDF</button>
             </footer>
 
         </main>
     </div>
-
+    <div id="read-progress" class="fixed bottom-4 right-4 bg-gray-700 text-white p-3 rounded-lg shadow-lg no-print transition-opacity duration-300 opacity-0">Sections Read: 0 / 0</div>
     
     <script src="js/gcse-ethics-licsences.js"></script>
     <script src="js/worksheet-common.js"></script>
 </body>
-
-
-    <script src="js/worksheet-common.js"></script>
-</body>
-
 </html>
